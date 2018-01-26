@@ -9,7 +9,8 @@ import java.util.List;
 
 public class XsdGroup extends XsdReferenceElement {
 
-    public static final String TAG = "xsd:group";
+    public static final String XSD_TAG = "xsd:group";
+    public static final String XS_TAG = "xs:group";
 
     private GroupVisitor visitor = new GroupVisitor();
 

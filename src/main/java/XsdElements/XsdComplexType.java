@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 
 public class XsdComplexType extends XsdAbstractElement {
 
-    public static final String TAG = "xsd:complexType";
+    public static final String XSD_TAG = "xsd:complexType";
+    public static final String XS_TAG = "xs:complexType";
 
     private ComplexTypeVisitor visitor = new ComplexTypeVisitor();
 

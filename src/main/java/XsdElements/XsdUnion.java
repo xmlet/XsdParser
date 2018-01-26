@@ -11,7 +11,8 @@ import java.util.List;
 
 public class XsdUnion extends XsdAbstractElement {
 
-    public static final String TAG = "xsd:union";
+    public static final String XSD_TAG = "xsd:union";
+    public static final String XS_TAG = "xs:union";
 
     private UnionVisitor visitor = new UnionVisitor();
 

@@ -11,7 +11,9 @@ import java.util.List;
 
 public class XsdAttributeGroup extends XsdReferenceElement {
 
-    public static final String TAG = "xsd:attributeGroup";
+    public static final String XSD_TAG = "xsd:attributeGroup";
+    public static final String XS_TAG = "xs:attributeGroup";
+
     private final AttributeGroupVisitor visitor = new AttributeGroupVisitor();
 
     private List<XsdAttributeGroup> attributeGroups = new ArrayList<>();
@@ -38,7 +40,13 @@ public class XsdAttributeGroup extends XsdReferenceElement {
 
     @Override
     protected List<ReferenceBase> getElements() {
-        return attributes;
+        List<ReferenceBase> allAttributes = new ArrayList<>();
+
+        attributeGroups.forEach(attributeGroup -> allAttributes.addAll(attributeGroup.getElements()));
+
+        allAttributes.addAll(attributes);
+
+        return allAttributes;
     }
 
     @Override
@@ -46,7 +54,7 @@ public class XsdAttributeGroup extends XsdReferenceElement {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
         XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.getParent(), placeHolderAttributes);
 
-        elementCopy.addAttributes(this.getElements());
+        elementCopy.attributes.addAll(this.attributes);
         elementCopy.attributeGroups.addAll(this.getAttributeGroups());
 
         return elementCopy;
@@ -60,7 +68,6 @@ public class XsdAttributeGroup extends XsdReferenceElement {
             attributeGroup.attributes.forEach(attribute -> attribute.getElement().setParent(attributeGroup));
 
             this.attributeGroups.add(attributeGroup);
-            this.addAttributes(attributeGroup.attributes);
         }
     }
 

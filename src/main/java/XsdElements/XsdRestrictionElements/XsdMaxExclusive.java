@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdMaxExclusive extends XsdAbstractRestrictionChild{
 
-    public static String TAG = "xsd:maxExclusive";
+    public static String XSD_TAG = "xsd:maxExclusive";
+    public static String XS_TAG = "xs:maxExclusive";
 
     private int value;
 

@@ -1,9 +1,11 @@
 import XsdElements.*;
+import XsdElements.ElementsWrapper.ConcreteElement;
 import XsdElements.XsdRestrictionElements.XsdEnumeration;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import XsdParser.*;
@@ -150,5 +152,30 @@ public class XsdParserTest {
         Assert.assertNull(restriction.getPattern());
         Assert.assertNull(restriction.getTotalDigits());
         Assert.assertNull(restriction.getWhiteSpace());
+    }
+
+    @Test
+    public void testClassAttribute(){
+        elements.forEach(element ->
+            Assert.assertTrue(element.getXsdComplexType()
+                    .getXsdAttributeGroup()
+                    .stream()
+                    .anyMatch(attributeGroup ->
+                            attributeGroup.getXsdElements()
+                                    .filter(groupElement -> groupElement instanceof XsdAttribute)
+                                    .map(attribute -> (XsdAttribute) attribute)
+                                    .anyMatch(attribute -> attribute.getName().equals("class"))))
+        );
+    }
+
+    @Test
+    public void testClassParent(){
+        Optional<XsdAttribute> classAttribute = elements.get(0).getXsdComplexType().getXsdAttributes().filter(attribute -> attribute.getName() != null && attribute.getName().equals("class")).findFirst();
+
+        Assert.assertTrue(classAttribute.isPresent());
+
+        XsdAttribute classAttributeXsd = classAttribute.get();
+
+        Assert.assertEquals("classAttributeGroup", ((XsdAttributeGroup)classAttributeXsd.getParent()).getName());
     }
 }

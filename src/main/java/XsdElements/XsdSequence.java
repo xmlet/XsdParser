@@ -9,7 +9,8 @@ import java.util.HashMap;
 
 public class XsdSequence extends XsdMultipleElements{
 
-    public static final String TAG = "xsd:sequence";
+    public static final String XSD_TAG = "xsd:sequence";
+    public static final String XS_TAG = "xs:sequence";
 
     private SequenceVisitor visitor = new SequenceVisitor();
 

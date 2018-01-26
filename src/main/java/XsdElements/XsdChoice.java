@@ -9,7 +9,9 @@ import java.util.HashMap;
 
 public class XsdChoice extends XsdMultipleElements{
 
-    public static final String TAG = "xsd:choice";
+    public static final String XSD_TAG = "xsd:choice";
+    public static final String XS_TAG = "xs:choice";
+
 
     private ChoiceVisitor visitor = new ChoiceVisitor();
 

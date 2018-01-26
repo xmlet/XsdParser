@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdLength extends XsdAbstractRestrictionChild{
 
-    public static String TAG = "xsd:length";
+    public static String XSD_TAG = "xsd:length";
+    public static String XS_TAG = "xs:length";
 
     private int value;
 

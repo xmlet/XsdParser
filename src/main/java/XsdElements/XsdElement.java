@@ -12,7 +12,8 @@ import java.util.List;
 
 public class XsdElement extends XsdReferenceElement {
 
-    public static final String TAG = "xsd:element";
+    public static final String XSD_TAG = "xsd:element";
+    public static final String XS_TAG = "xs:element";
 
     private Visitor visitor = new ElementVisitor();
 

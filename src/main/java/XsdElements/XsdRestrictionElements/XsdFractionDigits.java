@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdFractionDigits extends XsdAbstractRestrictionChild {
 
-    public static String TAG = "xsd:fractionDigits";
+    public static String XSD_TAG = "xsd:fractionDigits";
+    public static String XS_TAG = "xs:fractionDigits";
 
     private int value;
 

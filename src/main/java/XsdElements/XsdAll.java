@@ -8,7 +8,9 @@ import java.util.HashMap;
 
 public class XsdAll extends XsdMultipleElements {
 
-    public static final String TAG = "xsd:all";
+    public static final String XSD_TAG = "xsd:all";
+    public static final String XS_TAG = "xs:all";
+
     private final AllVisitor visitor = new AllVisitor();
 
     private XsdAll(XsdAbstractElement parent, HashMap<String, String> elementFieldsMap){

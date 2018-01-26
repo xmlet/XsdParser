@@ -9,7 +9,8 @@ import java.util.List;
 
 public class XsdList extends XsdAbstractElement {
 
-    public static final String TAG = "xsd:list";
+    public static final String XSD_TAG = "xsd:list";
+    public static final String XS_TAG = "xs:list";
 
     private ListVisitor visitor = new ListVisitor();
 
@@ -35,6 +36,10 @@ public class XsdList extends XsdAbstractElement {
         if (elementFieldsMap != null){
             this.itemType = elementFieldsMap.getOrDefault(ITEM_TYPE, itemType);
         }
+    }
+
+    public String getItemType() {
+        return itemType;
     }
 
     @Override

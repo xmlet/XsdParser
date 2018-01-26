@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdPattern extends XsdAbstractRestrictionChild {
 
-    public static String TAG = "xsd:pattern";
+    public static String XSD_TAG = "xsd:pattern";
+    public static String XS_TAG = "xs:pattern";
 
     private String value;
 

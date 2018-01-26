@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdEnumeration extends XsdAbstractRestrictionChild{
 
-    public static String TAG = "xsd:enumeration";
+    public static String XSD_TAG = "xsd:enumeration";
+    public static String XS_TAG = "xs:enumeration";
 
     private String value;
 

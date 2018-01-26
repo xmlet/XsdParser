@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdMinExclusive extends XsdAbstractRestrictionChild {
 
-    public static String TAG = "xsd:minExclusive";
+    public static String XSD_TAG = "xsd:minExclusive";
+    public static String XS_TAG = "xs:minExclusive";
 
     private int value;
 

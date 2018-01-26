@@ -14,7 +14,8 @@ import java.util.List;
 
 public class XsdAttribute extends XsdReferenceElement {
 
-    public static final String TAG = "xsd:attribute";
+    public static final String XSD_TAG = "xsd:attribute";
+    public static final String XS_TAG = "xs:attribute";
 
     private AttributeVisitor visitor = new AttributeVisitor();
 
@@ -26,6 +27,10 @@ public class XsdAttribute extends XsdReferenceElement {
 
     private XsdAttribute(XsdAbstractElement parent, HashMap<String, String> elementFieldsMap) {
         super(parent, elementFieldsMap);
+
+        if (getName() != null && getName().equals("class")){
+            int a = 5;
+        }
     }
 
     private XsdAttribute(HashMap<String, String> elementFieldsMap) {
@@ -34,6 +39,10 @@ public class XsdAttribute extends XsdReferenceElement {
 
     private XsdAttribute(XsdAbstractElement parent) {
         super(parent);
+
+        if (getName() != null && getName().equals("class")){
+            int a = 5;
+        }
     }
 
     @Override
@@ -79,6 +88,15 @@ public class XsdAttribute extends XsdReferenceElement {
         copy.simpleType = this.simpleType;
 
         return copy;
+    }
+
+    @Override
+    protected void setParent(XsdAbstractElement parent) {
+        super.setParent(parent);
+
+        if (getName() != null && getName().equals("class")){
+            int a = 5;
+        }
     }
 
     @Override

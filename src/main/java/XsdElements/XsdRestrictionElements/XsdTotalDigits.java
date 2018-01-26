@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdTotalDigits extends XsdAbstractRestrictionChild{
 
-    public static String TAG = "xsd:totalDigits";
+    public static String XSD_TAG = "xsd:totalDigits";
+    public static String XS_TAG = "xs:totalDigits";
 
     private int value;
 

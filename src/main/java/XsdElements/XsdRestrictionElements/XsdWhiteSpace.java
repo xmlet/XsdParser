@@ -8,7 +8,8 @@ import java.util.HashMap;
 
 public class XsdWhiteSpace extends XsdAbstractRestrictionChild {
 
-    public static String TAG = "xsd:whiteSpace";
+    public static String XSD_TAG = "xsd:whiteSpace";
+    public static String XS_TAG = "xs:whiteSpace";
 
     private String value;
 

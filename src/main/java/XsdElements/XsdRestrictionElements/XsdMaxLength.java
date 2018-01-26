@@ -9,7 +9,8 @@ import java.util.HashMap;
 
 public class XsdMaxLength extends XsdAbstractRestrictionChild{
 
-    public static String TAG = "xsd:maxLength";
+    public static String XSD_TAG = "xsd:maxLength";
+    public static String XS_TAG = "xs:maxLength";
 
     private int value;
 

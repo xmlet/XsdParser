@@ -3,7 +3,7 @@
 
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <modelVersion>4.0.0</modelVersion>
 
     <build>
@@ -132,7 +132,7 @@
         <developerConnection>scm:git:git@github.com:xmlet/XsdParser.git</developerConnection>
         <url>git@github.com:xmlet/XsdParser.git</url>
         <!--tag>HEAD</tag-->
-      <tag>xsdParser-1.0.0</tag>
+      <tag>xsdParser-1.0.1</tag>
   </scm>
     <distributionManagement>
         <snapshotRepository>

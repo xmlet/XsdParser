@@ -4,7 +4,6 @@ import XsdElements.ElementsWrapper.ConcreteElement;
 import XsdElements.ElementsWrapper.ReferenceBase;
 import XsdElements.ElementsWrapper.UnsolvedReference;
 import XsdElements.Visitors.Visitor;
-import XsdElements.XsdRestrictionElements.XsdAbstractRestrictionChild;
 import XsdParser.XsdParser;
 import org.w3c.dom.Node;
 
@@ -27,10 +26,6 @@ public class XsdAttribute extends XsdReferenceElement {
 
     private XsdAttribute(XsdAbstractElement parent, HashMap<String, String> elementFieldsMap) {
         super(parent, elementFieldsMap);
-
-        if (getName() != null && getName().equals("class")){
-            int a = 5;
-        }
     }
 
     private XsdAttribute(HashMap<String, String> elementFieldsMap) {
@@ -39,10 +34,6 @@ public class XsdAttribute extends XsdReferenceElement {
 
     private XsdAttribute(XsdAbstractElement parent) {
         super(parent);
-
-        if (getName() != null && getName().equals("class")){
-            int a = 5;
-        }
     }
 
     @Override
@@ -54,7 +45,7 @@ public class XsdAttribute extends XsdReferenceElement {
             this.fixed = elementFieldsMap.getOrDefault(FIXED, fixed);
             this.type = elementFieldsMap.getOrDefault(TYPE, type);
 
-            if (type != null && !XsdParser.getBuiltInDataTypes().contains(type)){
+            if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
                 XsdAttribute placeHolder = new XsdAttribute(this);
                 this.simpleType = new UnsolvedReference(type, placeHolder);
                 XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.simpleType);
@@ -79,10 +70,8 @@ public class XsdAttribute extends XsdReferenceElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
-
+    public XsdAttribute clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
-
         XsdAttribute copy = new XsdAttribute(this.getParent(), placeHolderAttributes);
 
         copy.simpleType = this.simpleType;
@@ -93,10 +82,6 @@ public class XsdAttribute extends XsdReferenceElement {
     @Override
     protected void setParent(XsdAbstractElement parent) {
         super.setParent(parent);
-
-        if (getName() != null && getName().equals("class")){
-            int a = 5;
-        }
     }
 
     @Override
@@ -110,26 +95,15 @@ public class XsdAttribute extends XsdReferenceElement {
         }
     }
 
-    public String getDefaultElement() {
-        return defaultElement;
-    }
-
-    public String getFixed() {
-        return fixed;
+    public XsdSimpleType getXsdSimpleType(){
+        return simpleType instanceof ConcreteElement ? (XsdSimpleType) simpleType.getElement() : null;
     }
 
     public String getType() {
         return type;
     }
 
-    ReferenceBase getSimpleType() {
-        return simpleType;
-    }
-
-    public XsdSimpleType getXsdSimpleType(){
-        return simpleType instanceof ConcreteElement ? (XsdSimpleType) simpleType.getElement() : null;
-    }
-
+    @SuppressWarnings("unused")
     public List<XsdRestriction> getAllRestrictions(){
         XsdSimpleType simpleType = getXsdSimpleType();
 

@@ -4,6 +4,7 @@ import XsdElements.ElementsWrapper.ReferenceBase;
 import XsdElements.Visitors.Visitor;
 import org.w3c.dom.Node;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,11 +38,15 @@ public class XsdGroup extends XsdReferenceElement {
 
     @Override
     protected List<ReferenceBase> getElements() {
-        return childElement.getElements();
+        List<ReferenceBase> list = new ArrayList<>();
+
+        list.add(ReferenceBase.createFromXsd(childElement));
+
+        return list;
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
+    public XsdAbstractElement clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
         XsdGroup elementCopy = new XsdGroup(this.getParent(), placeHolderAttributes);
 
@@ -51,11 +56,12 @@ public class XsdGroup extends XsdReferenceElement {
     }
 
     private void setChildElement(XsdMultipleElements childElement) {
-        childElement.getElements().forEach(childElementObj -> childElementObj.getElement().setParent(this));
         this.childElement = childElement;
+        childElement.getElements().forEach(childElementObj -> childElementObj.getElement().setParent(childElement));
+        this.childElement.setParent(this);
     }
 
-    XsdMultipleElements getChildElement() {
+    private XsdMultipleElements getChildElement() {
         return childElement;
     }
 

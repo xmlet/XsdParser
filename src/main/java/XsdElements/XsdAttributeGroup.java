@@ -50,12 +50,12 @@ public class XsdAttributeGroup extends XsdReferenceElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
+    public XsdAbstractElement clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
         XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.getParent(), placeHolderAttributes);
 
         elementCopy.attributes.addAll(this.attributes);
-        elementCopy.attributeGroups.addAll(this.getAttributeGroups());
+        elementCopy.attributeGroups.addAll(this.attributeGroups);
 
         return elementCopy;
     }
@@ -79,12 +79,13 @@ public class XsdAttributeGroup extends XsdReferenceElement {
         this.attributes.addAll(attributes);
     }
 
-    public static ReferenceBase parse(Node node) {
-        return xsdParseSkeleton(node, new XsdAttributeGroup(convertNodeMap(node.getAttributes())));
-    }
-
+    @SuppressWarnings("unused")
     public List<XsdAttributeGroup> getAttributeGroups() {
         return attributeGroups;
+    }
+
+    public static ReferenceBase parse(Node node) {
+        return xsdParseSkeleton(node, new XsdAttributeGroup(convertNodeMap(node.getAttributes())));
     }
 
     class AttributeGroupVisitor extends Visitor {

@@ -1,6 +1,7 @@
 import XsdElements.*;
-import XsdElements.ElementsWrapper.ConcreteElement;
 import XsdElements.XsdRestrictionElements.XsdEnumeration;
+import XsdParser.UnsolvedReferenceItem;
+import XsdParser.XsdParser;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,30 +9,34 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import XsdParser.*;
+public class HtmlParseTest {
 
-public class XsdParserTest {
-
-    private static final String FILE_NAME = XsdParserTest.class.getClassLoader().getResource("html_5.xsd").getPath();
+    private static final String HTML_FILE_NAME = HtmlParseTest.class.getClassLoader().getResource("html_5.xsd").getPath();
     private static final List<XsdElement> elements;
     private static final XsdParser parser;
 
     static{
         parser = new XsdParser();
 
-        elements = parser.parse(FILE_NAME)
-                         .filter(element -> element instanceof XsdElement)
-                         .map(element -> (XsdElement) element)
-                         .collect(Collectors.toList());
+        elements = parser.parse(HTML_FILE_NAME)
+                .filter(element -> element instanceof XsdElement)
+                .map(element -> (XsdElement) element)
+                .collect(Collectors.toList());
     }
 
+    /**
+     * Verifies the excepted element count.
+     */
     @Test
-    public void testElementCount() throws Exception {
+    public void testElementCount() {
         Assert.assertEquals(104, elements.size());
     }
 
+    /**
+     * Tests if the first element, which should be the html as all the expected contents.
+     */
     @Test
-    public void testFirstElementContents() throws Exception {
+    public void testFirstElementContents() {
         XsdElement htmlElement = elements.get(0);
 
         Assert.assertEquals("html", htmlElement.getName());
@@ -56,8 +61,11 @@ public class XsdParserTest {
         Assert.assertEquals("head", ((XsdElement)child2).getName());
     }
 
+    /**
+     * Tests the first element attribute count against the expected count.
+     */
     @Test
-    public void testFirstElementAttributes() throws Exception {
+    public void testFirstElementAttributes() {
         XsdElement htmlElement = elements.get(0);
 
         Assert.assertEquals("html", htmlElement.getName());
@@ -69,9 +77,12 @@ public class XsdParserTest {
         Assert.assertEquals(84, elementAttributes.size());
     }
 
+    /**
+     * Verifies if there is any unexpected unsolved references in the parsing.
+     */
     @Test
-    public void testUnsolvedReferences() throws Exception {
-        List<UnsolvedReferenceItem> unsolvedReferenceList = parser.getUnsolvedReferencesForFile(FILE_NAME);
+    public void testUnsolvedReferences() {
+        List<UnsolvedReferenceItem> unsolvedReferenceList = parser.getUnsolvedReferencesForFile(HTML_FILE_NAME);
 
         Assert.assertEquals(4, unsolvedReferenceList.size());
 
@@ -100,17 +111,22 @@ public class XsdParserTest {
         Assert.assertEquals("hreflang", parent4Attr.getName());
     }
 
+    /**
+     * Verifies the contents of a XsdSimpleType object against the expected values.
+     */
     @Test
-    public void testSimpleTypes() throws Exception {
+    public void testSimpleTypes() {
         XsdElement htmlElement = elements.get(5);
 
         Assert.assertEquals("meta", htmlElement.getName());
 
         XsdComplexType metaChild = htmlElement.getXsdComplexType();
 
-        XsdAttribute attribute = metaChild.getXsdAttributes().findFirst().get();
+        Optional<XsdAttribute> attributeOptional = metaChild.getXsdAttributes().filter(attribute1 -> attribute1.getName().equals("http_equiv")).findFirst();
 
-        Assert.assertEquals("http-equiv", attribute.getName());
+        Assert.assertTrue(attributeOptional.isPresent());
+
+        XsdAttribute attribute = attributeOptional.get();
 
         Assert.assertEquals(true, attribute.getXsdSimpleType() != null);
 
@@ -154,17 +170,19 @@ public class XsdParserTest {
         Assert.assertNull(restriction.getWhiteSpace());
     }
 
+    /**
+     * Verifies if all the html_5 elements have a attribute with the name 'class'.
+     */
     @Test
     public void testClassAttribute(){
         elements.forEach(element ->
-            Assert.assertTrue(element.getXsdComplexType()
-                    .getXsdAttributeGroup()
-                    .stream()
-                    .anyMatch(attributeGroup ->
-                            attributeGroup.getXsdElements()
-                                    .filter(groupElement -> groupElement instanceof XsdAttribute)
-                                    .map(attribute -> (XsdAttribute) attribute)
-                                    .anyMatch(attribute -> attribute.getName().equals("class"))))
+                Assert.assertTrue(element.getXsdComplexType()
+                        .getXsdAttributeGroup()
+                        .anyMatch(attributeGroup ->
+                                attributeGroup.getXsdElements()
+                                        .filter(groupElement -> groupElement instanceof XsdAttribute)
+                                        .map(attribute -> (XsdAttribute) attribute)
+                                        .anyMatch(attribute -> attribute.getName().equals("class"))))
         );
     }
 

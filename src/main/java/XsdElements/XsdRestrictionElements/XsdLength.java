@@ -17,7 +17,7 @@ public class XsdLength extends XsdAbstractRestrictionChild{
         this.value = value;
     }
 
-    XsdLength(HashMap<String, String> elementFieldsMap) {
+    private XsdLength(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdLength extends XsdAbstractRestrictionChild{
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdLength(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdLength clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdLength(this.value);
     }
 
     public int getValue() {

@@ -23,12 +23,8 @@ public class XsdUnion extends XsdAbstractElement {
         super(parent, elementFieldsMap);
     }
 
-    public XsdUnion(HashMap<String, String> elementFieldsMap) {
+    private XsdUnion(HashMap<String, String> elementFieldsMap) {
         super(elementFieldsMap);
-    }
-
-    private XsdUnion(XsdAbstractElement parent) {
-        super(parent);
     }
 
     public void setFields(HashMap<String, String> elementFieldsMap){
@@ -37,10 +33,6 @@ public class XsdUnion extends XsdAbstractElement {
         if (elementFieldsMap != null){
             this.memberTypes = elementFieldsMap.getOrDefault(MEMBER_TYPES, memberTypes);
         }
-    }
-
-    public String getMemberTypes() {
-        return memberTypes;
     }
 
     public List<String> getMemberTypesList() {
@@ -59,8 +51,13 @@ public class XsdUnion extends XsdAbstractElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
-        return null;
+    public XsdUnion clone(HashMap<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(this.getElementFieldsMap());
+        XsdUnion elementCopy = new XsdUnion(this.getParent(), placeHolderAttributes);
+
+        elementCopy.simpleTypeList = this.simpleTypeList;
+
+        return elementCopy;
     }
 
     @Override

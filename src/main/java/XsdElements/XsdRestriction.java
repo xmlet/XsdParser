@@ -36,20 +36,12 @@ public class XsdRestriction extends XsdAbstractElement {
 
     private String base;
 
-    public XsdRestriction(){
-
-    }
-
     private XsdRestriction(XsdAbstractElement parent, HashMap<String, String> elementFieldsMap) {
         super(parent, elementFieldsMap);
     }
 
-    public XsdRestriction(HashMap<String, String> elementFieldsMap) {
+    private XsdRestriction(HashMap<String, String> elementFieldsMap) {
         super(elementFieldsMap);
-    }
-
-    private XsdRestriction(XsdAbstractElement parent) {
-        super(parent);
     }
 
     public void setFields(HashMap<String, String> elementFieldsMap){
@@ -72,8 +64,35 @@ public class XsdRestriction extends XsdAbstractElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
-        return null;
+    public XsdRestriction clone(HashMap<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(this.getElementFieldsMap());
+        XsdRestriction elementCopy = new XsdRestriction(this.getParent(), placeHolderAttributes);
+
+        HashMap<String, String> dummy = new HashMap<>();
+
+        elementCopy.simpleType = this.simpleType;
+
+        elementCopy.attributes = this.attributes;
+        elementCopy.attributeGroups = this.attributeGroups;
+        elementCopy.enumeration = this.enumeration;
+
+        elementCopy.fractionDigits = fractionDigits == null ? null : fractionDigits.clone(dummy);
+        elementCopy.length = length == null ? null : length.clone(dummy);
+        elementCopy.maxExclusive = maxExclusive == null ? null : maxExclusive.clone(dummy);
+        elementCopy.maxInclusive = maxInclusive == null ? null : maxInclusive.clone(dummy);
+        elementCopy.maxLength = maxLength == null ? null : maxLength.clone(dummy);
+        elementCopy.minExclusive = minExclusive == null ? null : minExclusive.clone(dummy);
+        elementCopy.minInclusive = minInclusive == null ? null : minInclusive.clone(dummy);
+        elementCopy.minLength = minLength == null ? null : minLength.clone(dummy);
+        elementCopy.pattern = pattern == null ? null : pattern.clone(dummy);
+        elementCopy.totalDigits = totalDigits == null ? null : totalDigits.clone(dummy);
+        elementCopy.whiteSpace = whiteSpace == null ? null : whiteSpace.clone(dummy);
+
+        return elementCopy;
+    }
+
+    private void addAttribute(ReferenceBase attribute) {
+        this.attributes.add(attribute);
     }
 
     @Override
@@ -89,31 +108,19 @@ public class XsdRestriction extends XsdAbstractElement {
         return base;
     }
 
-    public void setBase(String base) {
-        this.base = base;
-    }
-
     public List<XsdEnumeration> getEnumeration() {
         return enumeration;
     }
 
-    public void setEnumeration(List<XsdEnumeration> enumeration){
+    void setEnumeration(List<XsdEnumeration> enumeration){
         this.enumeration = enumeration;
-    }
-
-    public void setEnumeration(String enumeration){
-        this.enumeration.add(new XsdEnumeration(enumeration));
     }
 
     public XsdFractionDigits getFractionDigits() {
         return fractionDigits;
     }
 
-    public void setFractionDigits(int fractionDigits) {
-        this.fractionDigits = new XsdFractionDigits(fractionDigits);
-    }
-
-    public void setFractionDigits(XsdFractionDigits fractionDigits) {
+    void setFractionDigits(XsdFractionDigits fractionDigits) {
         this.fractionDigits = fractionDigits;
     }
 
@@ -121,11 +128,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = new XsdLength(length);
-    }
-
-    public void setLength(XsdLength length) {
+    void setLength(XsdLength length) {
         this.length = length;
     }
 
@@ -133,11 +136,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return maxExclusive;
     }
 
-    public void setMaxExclusive(int maxExclusive) {
-        this.maxExclusive = new XsdMaxExclusive(maxExclusive);
-    }
-
-    public void setMaxExclusive(XsdMaxExclusive maxExclusive) {
+    void setMaxExclusive(XsdMaxExclusive maxExclusive) {
         this.maxExclusive = maxExclusive;
     }
 
@@ -145,11 +144,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return maxInclusive;
     }
 
-    public void setMaxInclusive(int maxInclusive) {
-        this.maxInclusive = new XsdMaxInclusive(maxInclusive);
-    }
-
-    public void setMaxInclusive(XsdMaxInclusive maxInclusive) {
+    void setMaxInclusive(XsdMaxInclusive maxInclusive) {
         this.maxInclusive = maxInclusive;
     }
 
@@ -157,11 +152,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return maxLength;
     }
 
-    public void setMaxLength(int maxLength) {
-        this.maxLength = new XsdMaxLength(maxLength);
-    }
-
-    public void setMaxLength(XsdMaxLength maxLength) {
+    void setMaxLength(XsdMaxLength maxLength) {
         this.maxLength = maxLength;
     }
 
@@ -169,11 +160,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return minExclusive;
     }
 
-    public void setMinExclusive(int minExclusive) {
-        this.minExclusive = new XsdMinExclusive(minExclusive);
-    }
-
-    public void setMinExclusive(XsdMinExclusive minExclusive) {
+    void setMinExclusive(XsdMinExclusive minExclusive) {
         this.minExclusive = minExclusive;
     }
 
@@ -181,11 +168,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return minInclusive;
     }
 
-    public void setMinInclusive(int minInclusive) {
-        this.minInclusive = new XsdMinInclusive(minInclusive);
-    }
-
-    public void setMinInclusive(XsdMinInclusive minInclusive) {
+    void setMinInclusive(XsdMinInclusive minInclusive) {
         this.minInclusive = minInclusive;
     }
 
@@ -193,11 +176,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return minLength;
     }
 
-    public void setMinLength(int minLength) {
-        this.minLength = new XsdMinLength(minLength);
-    }
-
-    public void setMinLength(XsdMinLength minLength) {
+    void setMinLength(XsdMinLength minLength) {
         this.minLength = minLength;
     }
 
@@ -205,11 +184,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return pattern;
     }
 
-    public void setPattern(String pattern) {
-        this.pattern = new XsdPattern(pattern);
-    }
-
-    public void setPattern(XsdPattern pattern) {
+    void setPattern(XsdPattern pattern) {
         this.pattern = pattern;
     }
 
@@ -217,11 +192,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return totalDigits;
     }
 
-    public void setTotalDigits(int totalDigits) {
-        this.totalDigits = new XsdTotalDigits(totalDigits);
-    }
-
-    public void setTotalDigits(XsdTotalDigits totalDigits) {
+    void setTotalDigits(XsdTotalDigits totalDigits) {
         this.totalDigits = totalDigits;
     }
 
@@ -229,11 +200,7 @@ public class XsdRestriction extends XsdAbstractElement {
         return whiteSpace;
     }
 
-    public void setWhiteSpace(String whiteSpace) {
-        this.whiteSpace = new XsdWhiteSpace(whiteSpace);
-    }
-
-    public void setWhiteSpace(XsdWhiteSpace whiteSpace) {
+    void setWhiteSpace(XsdWhiteSpace whiteSpace) {
         this.whiteSpace = whiteSpace;
     }
 

@@ -8,6 +8,7 @@ import XsdParser.XsdParser;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
@@ -15,26 +16,26 @@ import java.util.stream.Stream;
 
 public abstract class XsdAbstractElement {
 
-    private HashMap<String, String> elementFieldsMap = new HashMap<>();
+    protected HashMap<String, String> elementFieldsMap = new HashMap<>();
 
-    public static final String ID = "id";
+    private static final String ID = "id";
     public static final String NAME = "name";
-    public static final String ABSTRACT = "abstract";
-    public static final String DEFAULT_ELEMENT = "defaultElement";
-    public static final String FIXED = "fixed";
-    public static final String TYPE = "type";
-    public static final String MIXED = "mixed";
-    public static final String BLOCK = "block";
-    public static final String FINAL = "final";
-    public static final String SUBSTITUTION_GROUP = "substitutionGroup";
-    public static final String DEFAULT = "default";
-    public static final String FORM = "form";
-    public static final String NILLABLE = "nillable";
-    public static final String MIN_OCCURS = "maxOccurs";
-    public static final String MAX_OCCURS = "minOccurs";
-    public static final String ITEM_TYPE = "itemType";
-    public static final String BASE = "base";
-    public static final String MEMBER_TYPES = "memberTypes";
+    static final String ABSTRACT = "abstract";
+    static final String DEFAULT_ELEMENT = "defaultElement";
+    static final String FIXED = "fixed";
+    static final String TYPE = "type";
+    static final String MIXED = "mixed";
+    static final String BLOCK = "block";
+    static final String FINAL = "final";
+    static final String SUBSTITUTION_GROUP = "substitutionGroup";
+    static final String DEFAULT = "default";
+    static final String FORM = "form";
+    static final String NILLABLE = "nillable";
+    static final String MIN_OCCURS = "maxOccurs";
+    static final String MAX_OCCURS = "minOccurs";
+    static final String ITEM_TYPE = "itemType";
+    static final String BASE = "base";
+    static final String MEMBER_TYPES = "memberTypes";
     public static final String VALUE = "value";
 
     private String id;
@@ -58,7 +59,7 @@ public abstract class XsdAbstractElement {
     }
 
     /**
-     * This method serves as a base to all XsdElements which need to set their class specific attributes
+     * This method serves as a base to all XsdElements which need to set their class specific attributes.
      * @param elementFieldsMap The node map containing all attributes of a XSDElement
      */
     public void setFields(HashMap<String, String> elementFieldsMap){
@@ -73,15 +74,19 @@ public abstract class XsdAbstractElement {
         return elementFieldsMap;
     }
 
-    public String getId() {
-        return id;
-    }
-
+    /**
+     * Obtains the visitor of an XsdAbstractElement instance.
+     * @return The concrete visitor instance.
+     */
     public abstract Visitor getVisitor();
 
     public abstract void accept(Visitor visitor);
 
-    public abstract XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes);
+    /**
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A deep copy of the object from which is called upon.
+     */
+    public abstract XsdAbstractElement clone(HashMap<String, String> placeHolderAttributes);
 
     protected abstract List<ReferenceBase> getElements();
 
@@ -89,13 +94,15 @@ public abstract class XsdAbstractElement {
         List<ReferenceBase> elements = getElements();
 
         if (elements == null){
-            return null;
+            return new ArrayList<XsdAbstractElement>().stream();
         }
 
         return elements.stream().filter(element -> element instanceof ConcreteElement).map(ReferenceBase::getElement);
     }
 
     /**
+     * The base code for parsing an XsdAbstractElement. All the concrete implementations of this
+     * class should call this method in order to parse its contents.
      * @param node The node from where the element will be parsed
      * @param element The concrete element that will be populated and returned
      * @return A wrapper object that contains the parsed XSD object.
@@ -149,6 +156,9 @@ public abstract class XsdAbstractElement {
         }
     }
 
+    /**
+     * @return The parent of the current XsdAbstractElement.
+     */
     public XsdAbstractElement getParent() {
         return parent;
     }

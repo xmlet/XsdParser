@@ -33,7 +33,7 @@ public class XsdAll extends XsdMultipleElements {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
+    public XsdAbstractElement clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
 
         XsdAll elementCopy = new XsdAll(this.getParent(), placeHolderAttributes);

@@ -11,14 +11,14 @@ public class UnsolvedReferenceItem {
     private UnsolvedReference unsolvedReference;
     private List<XsdAbstractElement> parents;
 
-    public UnsolvedReferenceItem(UnsolvedReference unsolvedReference){
+    UnsolvedReferenceItem(UnsolvedReference unsolvedReference){
         this.unsolvedReference = unsolvedReference;
         this.parents = new ArrayList<>();
 
         this.parents.add(unsolvedReference.getParent());
     }
 
-    public UnsolvedReference getUnsolvedReference() {
+    UnsolvedReference getUnsolvedReference() {
         return unsolvedReference;
     }
 

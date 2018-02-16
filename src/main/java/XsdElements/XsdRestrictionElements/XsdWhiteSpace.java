@@ -17,7 +17,7 @@ public class XsdWhiteSpace extends XsdAbstractRestrictionChild {
         this.value = value;
     }
 
-    XsdWhiteSpace(HashMap<String, String> elementFieldsMap) {
+    private XsdWhiteSpace(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdWhiteSpace extends XsdAbstractRestrictionChild {
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdWhiteSpace(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdWhiteSpace clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdWhiteSpace(this.value);
     }
 
     public String getValue() {

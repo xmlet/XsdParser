@@ -5,6 +5,7 @@ package XsdElements;
 import XsdElements.ElementsWrapper.ReferenceBase;
 import XsdElements.Visitors.Visitor;
 import XsdElements.XsdRestrictionElements.XsdEnumeration;
+import XsdParser.XsdParser;
 import org.w3c.dom.Node;
 
 import java.util.*;
@@ -12,7 +13,7 @@ import java.util.*;
 public class XsdSimpleType extends XsdAbstractElement {
 
     public static final String XSD_TAG = "xsd:simpleType";
-    public static final String XS_TAG = "xsd:simpleType";
+    public static final String XS_TAG = "xs:simpleType";
 
     private SimpleTypeVisitor visitor = new SimpleTypeVisitor();
 
@@ -23,65 +24,12 @@ public class XsdSimpleType extends XsdAbstractElement {
     private String name;
     private String finalObj;
 
-    static Map<String, String> xsdTypesToJava = new HashMap<>();
-
-    static {
-        xsdTypesToJava.put("xsd:anyURI", "String");
-        xsdTypesToJava.put("xsd:boolean", "Boolean");
-        //xsdTypesToJava.put("xsd:base64Binary", "[B");
-        //xsdTypesToJava.put("xsd:hexBinary", "[B");
-        xsdTypesToJava.put("xsd:date", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:dateTime", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:time", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:duration", "Duration");
-        xsdTypesToJava.put("xsd:dayTimeDuration", "Duration");
-        xsdTypesToJava.put("xsd:yearMonthDuration", "Duration");
-        xsdTypesToJava.put("xsd:gDay", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:gMonth", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:gMonthDay", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:gYear", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:gYearMonth", "XMLGregorianCalendar");
-        xsdTypesToJava.put("xsd:decimal", "BigDecimal");
-        xsdTypesToJava.put("xsd:integer", "BigInteger");
-        xsdTypesToJava.put("xsd:nonPositiveInteger", "BigInteger");
-        xsdTypesToJava.put("xsd:negativeInteger", "BigInteger");
-        xsdTypesToJava.put("xsd:long", "Long");
-        xsdTypesToJava.put("xsd:int", "Integer");
-        xsdTypesToJava.put("xsd:short", "Short");
-        xsdTypesToJava.put("xsd:byte", "Byte");
-        xsdTypesToJava.put("xsd:nonNegativeInteger", "BigInteger");
-        xsdTypesToJava.put("xsd:unsignedLong", "BigInteger");
-        xsdTypesToJava.put("xsd:unsignedInt", "Long");
-        xsdTypesToJava.put("xsd:unsignedShort", "Integer");
-        xsdTypesToJava.put("xsd:unsignedByte", "Short");
-        xsdTypesToJava.put("xsd:positiveInteger", "BigInteger");
-        xsdTypesToJava.put("xsd:double", "Double");
-        xsdTypesToJava.put("xsd:float", "Float");
-        xsdTypesToJava.put("xsd:QName", "QName");
-        xsdTypesToJava.put("xsd:NOTATION", "QName");
-        xsdTypesToJava.put("xsd:string", "String");
-        xsdTypesToJava.put("xsd:normalizedString", "String");
-        xsdTypesToJava.put("xsd:token", "String");
-        xsdTypesToJava.put("xsd:language", "String");
-        xsdTypesToJava.put("xsd:NMTOKEN", "String");
-        xsdTypesToJava.put("xsd:Name", "String");
-        xsdTypesToJava.put("xsd:NCName", "String");
-        xsdTypesToJava.put("xsd:ID", "String");
-        xsdTypesToJava.put("xsd:IDREF", "String");
-        xsdTypesToJava.put("xsd:ENTITY", "String");
-        xsdTypesToJava.put("xsd:untypedAtomic", "String");
-    }
-
     private XsdSimpleType(XsdAbstractElement parent, HashMap<String, String> elementFieldsMap) {
         super(parent, elementFieldsMap);
     }
 
-    public XsdSimpleType(HashMap<String, String> elementFieldsMap) {
+    private XsdSimpleType(HashMap<String, String> elementFieldsMap) {
         super(elementFieldsMap);
-    }
-
-    private XsdSimpleType(XsdAbstractElement parent) {
-        super(parent);
     }
 
     public void setFields(HashMap<String, String> elementFieldsMap){
@@ -105,7 +53,7 @@ public class XsdSimpleType extends XsdAbstractElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
+    public XsdSimpleType clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
         XsdSimpleType copy = new XsdSimpleType(this.getParent(), placeHolderAttributes);
 
@@ -147,11 +95,19 @@ public class XsdSimpleType extends XsdAbstractElement {
         return this.list;
     }
 
+    /**
+     * This method obtains all the restrictions for the current XsdSimpleType element.
+     * It also joins multiple restrictions with the same base attribute in the same XsdRestriction
+     * object, if a overlap doesn't occur. In case of restriction overlap an exception is thrown
+     * because the information on the xsd file is contradictory.
+     * @return A list of restrictions.
+     */
     List<XsdRestriction> getAllRestrictions() {
         Map<String, XsdRestriction> restrictions = new HashMap<>();
+        Map<String, String> xsdBuiltinTypes = XsdParser.getXsdTypesToJava();
 
         if (restriction != null){
-            restrictions.put(xsdTypesToJava.get(restriction.getBase()), restriction);
+            restrictions.put(xsdBuiltinTypes.get(restriction.getBase()), restriction);
         }
 
         if (union != null){
@@ -159,7 +115,7 @@ public class XsdSimpleType extends XsdAbstractElement {
                 XsdRestriction unionMemberRestriction = unionMember.getRestriction();
 
                 if (unionMemberRestriction != null){
-                    XsdRestriction existingRestriction = restrictions.getOrDefault(xsdTypesToJava.get(unionMemberRestriction.getBase()), null);
+                    XsdRestriction existingRestriction = restrictions.getOrDefault(xsdBuiltinTypes.get(unionMemberRestriction.getBase()), null);
 
                     if (existingRestriction != null){
                         if (existsRestrictionOverlap(existingRestriction, unionMemberRestriction)){
@@ -193,7 +149,7 @@ public class XsdSimpleType extends XsdAbstractElement {
                             }
                         }
                     } else {
-                        restrictions.put(xsdTypesToJava.get(unionMemberRestriction.getBase()), unionMemberRestriction);
+                        restrictions.put(xsdBuiltinTypes.get(unionMemberRestriction.getBase()), unionMemberRestriction);
                     }
                 }
             });
@@ -202,6 +158,12 @@ public class XsdSimpleType extends XsdAbstractElement {
         return new ArrayList<>(restrictions.values());
     }
 
+    /**
+     * Checks for any restriction overlap between two different XsdRestriction objects.
+     * @param existingRestriction The existing restriction.
+     * @param unionMemberRestriction The second restriction found.
+     * @return True if an overlap between the restrictions occur, false if it doesn't ocurr.
+     */
     private boolean existsRestrictionOverlap(XsdRestriction existingRestriction, XsdRestriction unionMemberRestriction) {
         return  (existingRestriction.getWhiteSpace() != null && unionMemberRestriction.getWhiteSpace() != null && existingRestriction.getWhiteSpace() != unionMemberRestriction.getWhiteSpace()) ||
                 (existingRestriction.getPattern() != null && unionMemberRestriction.getPattern() != null && existingRestriction.getPattern() != unionMemberRestriction.getPattern()) ||

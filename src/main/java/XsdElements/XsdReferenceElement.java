@@ -3,7 +3,7 @@ package XsdElements;
 import java.util.HashMap;
 
 /**
- * This class is an abstraction of all classes that can have a ref attribute, which helps
+ * This class is an abstraction of all classes that can have a ref/name attribute, which helps
  * distinguish those from the other XsdElements
  */
 public abstract class XsdReferenceElement extends XsdAbstractElement {
@@ -37,16 +37,11 @@ public abstract class XsdReferenceElement extends XsdAbstractElement {
         }
     }
 
+    /**
+     * @return The name of the element, with all the special characters replaced with the '_' char.
+     */
     public String getName() {
-        return name;
-    }
-
-    public String getMaxOccurs() {
-        return maxOccurs;
-    }
-
-    public String getMinOccurs() {
-        return minOccurs;
+        return name == null ? null : name.replaceAll("[^a-zA-Z0-9]", "_");
     }
 
     public void setName(String name) {

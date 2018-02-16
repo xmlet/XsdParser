@@ -17,7 +17,7 @@ public class XsdFractionDigits extends XsdAbstractRestrictionChild {
         this.value = value;
     }
 
-    XsdFractionDigits(HashMap<String, String> elementFieldsMap) {
+    private XsdFractionDigits(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdFractionDigits extends XsdAbstractRestrictionChild {
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdFractionDigits(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdFractionDigits clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdFractionDigits(this.value);
     }
 
     public int getValue() {

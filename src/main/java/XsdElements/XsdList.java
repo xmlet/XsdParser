@@ -54,8 +54,13 @@ public class XsdList extends XsdAbstractElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
-        return null;
+    public XsdList clone(HashMap<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(this.getElementFieldsMap());
+        XsdList elementCopy = new XsdList(this.getParent(), placeHolderAttributes);
+
+        elementCopy.simpleType = this.simpleType;
+
+        return elementCopy;
     }
 
     @Override

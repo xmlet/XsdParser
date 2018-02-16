@@ -17,7 +17,7 @@ public class XsdPattern extends XsdAbstractRestrictionChild {
         this.value = value;
     }
 
-    XsdPattern(HashMap<String, String> elementFieldsMap) {
+    private XsdPattern(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdPattern extends XsdAbstractRestrictionChild {
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdPattern(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdPattern clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdPattern(this.value);
     }
 
     public String getValue() {

@@ -17,7 +17,7 @@ public class XsdMinExclusive extends XsdAbstractRestrictionChild {
         this.value = value;
     }
 
-    XsdMinExclusive(HashMap<String, String> elementFieldsMap) {
+    private XsdMinExclusive(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdMinExclusive extends XsdAbstractRestrictionChild {
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdMinExclusive(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdMinExclusive clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdMinExclusive(this.value);
     }
 
     public int getValue() {

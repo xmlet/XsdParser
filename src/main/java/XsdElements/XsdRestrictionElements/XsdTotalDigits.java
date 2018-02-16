@@ -17,7 +17,7 @@ public class XsdTotalDigits extends XsdAbstractRestrictionChild{
         this.value = value;
     }
 
-    XsdTotalDigits(HashMap<String, String> elementFieldsMap) {
+    private XsdTotalDigits(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdTotalDigits extends XsdAbstractRestrictionChild{
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdTotalDigits(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdTotalDigits clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdTotalDigits(this.value);
     }
 
     public int getValue() {

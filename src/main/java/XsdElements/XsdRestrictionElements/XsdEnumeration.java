@@ -17,7 +17,7 @@ public class XsdEnumeration extends XsdAbstractRestrictionChild{
         this.value = value;
     }
 
-    XsdEnumeration(HashMap<String, String> elementFieldsMap) {
+    private XsdEnumeration(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdEnumeration extends XsdAbstractRestrictionChild{
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdEnumeration(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdEnumeration clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdEnumeration(this.value);
     }
 
     public String getValue() {

@@ -48,9 +48,15 @@ public class XsdElement extends XsdReferenceElement {
             String type = elementFieldsMap.get(TYPE);
 
             if (type != null){
-                XsdElement placeHolder = new XsdElement(this);
-                this.type = new UnsolvedReference(type, placeHolder);
-                XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.type);
+                if (XsdParser.getXsdTypesToJava().containsKey(type)){
+                    HashMap<String, String> attributes = new HashMap<>();
+                    attributes.put(NAME, type);
+                    this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, attributes));
+                } else {
+                    XsdElement placeHolder = new XsdElement(this);
+                    this.type = new UnsolvedReference(type, placeHolder);
+                    XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.type);
+                }
             }
 
             this.substitutionGroup = elementFieldsMap.getOrDefault(SUBSTITUTION_GROUP, substitutionGroup);
@@ -81,7 +87,7 @@ public class XsdElement extends XsdReferenceElement {
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
+    public XsdElement clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
         return new XsdElement(this.getParent(), placeHolderAttributes);
     }
@@ -92,6 +98,7 @@ public class XsdElement extends XsdReferenceElement {
 
         if (this.type != null && this.type instanceof UnsolvedReference && ((UnsolvedReference) this.type).getRef().equals(element.getName())){
             this.type = element;
+            element.getElement().setParent(this);
         }
     }
 
@@ -99,16 +106,8 @@ public class XsdElement extends XsdReferenceElement {
         this.complexType = ReferenceBase.createFromXsd(complexType);
     }
 
-    ReferenceBase getComplexType() {
-        return complexType;
-    }
-
     public XsdComplexType getXsdComplexType() {
-        return complexType == null ? null : (XsdComplexType) complexType.getElement();
-    }
-
-    ReferenceBase getType(){
-        return type;
+        return complexType == null ? type == null ? null : (XsdComplexType) type.getElement() : (XsdComplexType) complexType.getElement();
     }
 
     public XsdAbstractElement getXsdType(){
@@ -117,34 +116,6 @@ public class XsdElement extends XsdReferenceElement {
         }
 
         return null;
-    }
-
-    public String getSubstitutionGroup() {
-        return substitutionGroup;
-    }
-
-    public String getDefault() {
-        return defaultObj;
-    }
-
-    public String getFixed() {
-        return fixed;
-    }
-
-    public String getForm() {
-        return form;
-    }
-
-    public String getNillable() {
-        return nillable;
-    }
-
-    public String getAbstract() {
-        return abstractObj;
-    }
-
-    public String getBlock() {
-        return block;
     }
 
     public String getFinal() {

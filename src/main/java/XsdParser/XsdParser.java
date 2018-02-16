@@ -18,21 +18,24 @@ import java.util.stream.Stream;
 
 public class XsdParser {
 
+    //TODO Suportar extensão com o complexContent
+
     /**
      * ParseMappers is a map that defines a function to each XsdElement type supported by this mapper,
      * this way, based on the XsdElement TAG, the according parsed is invoked.
      */
     public static HashMap<String, Function<Node, ReferenceBase>> parseMappers;
-    public static List<String> builtInDataTypes;
+    private static HashMap<String, String> xsdTypesToJava;
     private static XsdParser instance;
 
-    private List<ReferenceBase> elements = new ArrayList<>();
-    private List<UnsolvedReference> unsolvedElements = new ArrayList<>();
+    private Map<String, List<ReferenceBase>> parseElements = new HashMap<>();
+    private Map<String, List<UnsolvedReference>> unsolvedElements = new HashMap<>();
     private Map<String, List<UnsolvedReferenceItem>> parserUnsolvedElementsMap = new HashMap<>();
+    private String currentFile;
 
     static {
         parseMappers = new HashMap<>();
-        builtInDataTypes = new ArrayList<>();
+        xsdTypesToJava = new HashMap<>();
 
         parseMappers.put(XsdAll.XSD_TAG, XsdAll::parse);
         parseMappers.put(XsdAll.XS_TAG, XsdAll::parse);
@@ -84,50 +87,92 @@ public class XsdParser {
         parseMappers.put(XsdWhiteSpace.XSD_TAG, XsdWhiteSpace::parse);
         parseMappers.put(XsdWhiteSpace.XS_TAG, XsdWhiteSpace::parse);
 
-        builtInDataTypes.add("xsd:anyURI");
-        builtInDataTypes.add("xsd:boolean");
-        builtInDataTypes.add("xsd:base64Binary");
-        builtInDataTypes.add("xsd:hexBinary");
-        builtInDataTypes.add("xsd:date");
-        builtInDataTypes.add("xsd:dateTime");
-        builtInDataTypes.add("xsd:time");
-        builtInDataTypes.add("xsd:duration");
-        builtInDataTypes.add("xsd:dayTimeDuration");
-        builtInDataTypes.add("xsd:yearMonthDuration");
-        builtInDataTypes.add("xsd:gDay");
-        builtInDataTypes.add("xsd:gMonth");
-        builtInDataTypes.add("xsd:gMonthDay");
-        builtInDataTypes.add("xsd:gYear");
-        builtInDataTypes.add("xsd:gYearMonth");
-        builtInDataTypes.add("xsd:decimal");
-        builtInDataTypes.add("xsd:integer");
-        builtInDataTypes.add("xsd:nonPositiveInteger");
-        builtInDataTypes.add("xsd:negativeInteger");
-        builtInDataTypes.add("xsd:long");
-        builtInDataTypes.add("xsd:int");
-        builtInDataTypes.add("xsd:short");
-        builtInDataTypes.add("xsd:byte");
-        builtInDataTypes.add("xsd:nonNegativeInteger");
-        builtInDataTypes.add("xsd:unsignedLong");
-        builtInDataTypes.add("xsd:unsignedInt");
-        builtInDataTypes.add("xsd:unsignedShort");
-        builtInDataTypes.add("xsd:unsignedByte");
-        builtInDataTypes.add("xsd:positiveInteger");
-        builtInDataTypes.add("xsd:double");
-        builtInDataTypes.add("xsd:float");
-        builtInDataTypes.add("xsd:QName");
-        builtInDataTypes.add("xsd:NOTATION");
-        builtInDataTypes.add("xsd:string");
-        builtInDataTypes.add("xsd:normalizedString");
-        builtInDataTypes.add("xsd:token");
-        builtInDataTypes.add("xsd:language");
-        builtInDataTypes.add("xsd:NMTOKEN");
-        builtInDataTypes.add("xsd:Name");
-        builtInDataTypes.add("xsd:NCName");
-        builtInDataTypes.add("xsd:ID");
-        builtInDataTypes.add("xsd:IDREF");
-        builtInDataTypes.add("xsd:ENTITY");
-        builtInDataTypes.add("xsd:untypedAtomic");
+        xsdTypesToJava.put("xsd:anyURI", "String");
+        xsdTypesToJava.put("xs:anyURI", "String");
+        xsdTypesToJava.put("xsd:boolean", "Boolean");
+        xsdTypesToJava.put("xs:boolean", "Boolean");
+        //xsdTypesToJava.put("xsd:base64Binary", "[B");
+        //xsdTypesToJava.put("xsd:hexBinary", "[B");
+        xsdTypesToJava.put("xsd:date", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:date", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:dateTime", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:dateTime", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:time", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:time", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:duration", "Duration");
+        xsdTypesToJava.put("xs:duration", "Duration");
+        xsdTypesToJava.put("xsd:dayTimeDuration", "Duration");
+        xsdTypesToJava.put("xs:dayTimeDuration", "Duration");
+        xsdTypesToJava.put("xsd:yearMonthDuration", "Duration");
+        xsdTypesToJava.put("xs:yearMonthDuration", "Duration");
+        xsdTypesToJava.put("xsd:gDay", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:gDay", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:gMonth", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:gMonth", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:gMonthDay", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:gMonthDay", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:gYear", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:gYear", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:gYearMonth", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xs:gYearMonth", "XMLGregorianCalendar");
+        xsdTypesToJava.put("xsd:decimal", "BigDecimal");
+        xsdTypesToJava.put("xs:decimal", "BigDecimal");
+        xsdTypesToJava.put("xsd:integer", "BigInteger");
+        xsdTypesToJava.put("xs:integer", "BigInteger");
+        xsdTypesToJava.put("xsd:nonPositiveInteger", "BigInteger");
+        xsdTypesToJava.put("xs:nonPositiveInteger", "BigInteger");
+        xsdTypesToJava.put("xsd:negativeInteger", "BigInteger");
+        xsdTypesToJava.put("xs:negativeInteger", "BigInteger");
+        xsdTypesToJava.put("xsd:long", "Long");
+        xsdTypesToJava.put("xs:long", "Long");
+        xsdTypesToJava.put("xsd:int", "Integer");
+        xsdTypesToJava.put("xs:int", "Integer");
+        xsdTypesToJava.put("xsd:short", "Short");
+        xsdTypesToJava.put("xs:short", "Short");
+        xsdTypesToJava.put("xsd:byte", "Byte");
+        xsdTypesToJava.put("xs:byte", "Byte");
+        xsdTypesToJava.put("xsd:nonNegativeInteger", "BigInteger");
+        xsdTypesToJava.put("xs:nonNegativeInteger", "BigInteger");
+        xsdTypesToJava.put("xsd:unsignedLong", "BigInteger");
+        xsdTypesToJava.put("xs:unsignedLong", "BigInteger");
+        xsdTypesToJava.put("xsd:unsignedInt", "Long");
+        xsdTypesToJava.put("xs:unsignedInt", "Long");
+        xsdTypesToJava.put("xsd:unsignedShort", "Integer");
+        xsdTypesToJava.put("xs:unsignedShort", "Integer");
+        xsdTypesToJava.put("xsd:unsignedByte", "Short");
+        xsdTypesToJava.put("xs:unsignedByte", "Short");
+        xsdTypesToJava.put("xsd:positiveInteger", "BigInteger");
+        xsdTypesToJava.put("xs:positiveInteger", "BigInteger");
+        xsdTypesToJava.put("xsd:double", "Double");
+        xsdTypesToJava.put("xs:double", "Double");
+        xsdTypesToJava.put("xsd:float", "Float");
+        xsdTypesToJava.put("xs:float", "Float");
+        xsdTypesToJava.put("xsd:QName", "QName");
+        xsdTypesToJava.put("xs:QName", "QName");
+        xsdTypesToJava.put("xsd:NOTATION", "QName");
+        xsdTypesToJava.put("xs:NOTATION", "QName");
+        xsdTypesToJava.put("xsd:string", "String");
+        xsdTypesToJava.put("xs:string", "String");
+        xsdTypesToJava.put("xsd:normalizedString", "String");
+        xsdTypesToJava.put("xs:normalizedString", "String");
+        xsdTypesToJava.put("xsd:token", "String");
+        xsdTypesToJava.put("xs:token", "String");
+        xsdTypesToJava.put("xsd:language", "String");
+        xsdTypesToJava.put("xs:language", "String");
+        xsdTypesToJava.put("xsd:NMTOKEN", "String");
+        xsdTypesToJava.put("xs:NMTOKEN", "String");
+        xsdTypesToJava.put("xsd:Name", "String");
+        xsdTypesToJava.put("xs:Name", "String");
+        xsdTypesToJava.put("xsd:NCName", "String");
+        xsdTypesToJava.put("xs:NCName", "String");
+        xsdTypesToJava.put("xsd:ID", "String");
+        xsdTypesToJava.put("xs:ID", "String");
+        xsdTypesToJava.put("xsd:IDREF", "String");
+        xsdTypesToJava.put("xs:IDREF", "String");
+        xsdTypesToJava.put("xsd:ENTITY", "String");
+        xsdTypesToJava.put("xs:ENTITY", "String");
+        xsdTypesToJava.put("xsd:untypedAtomic", "String");
+        xsdTypesToJava.put("xs:untypedAtomic", "String");
     }
 
     public XsdParser(){
@@ -135,11 +180,11 @@ public class XsdParser {
     }
 
     /**
-     * Parses a Xsd file and all the contained elements. This code iterates on the nodes and parses
+     * Parses a Xsd file and all the contained parseElements. This code iterates on the nodes and parses
      * the supported ones. The supported types are identified by their TAG, in parseMappers which maps
      * the xsd tag to a function that parses that xsd type.
      * @param filePath The file path to the xsd file.
-     * @return A stream of parsed wrapped xsd elements.
+     * @return A stream of parsed wrapped xsd parseElements.
      */
     public Stream<XsdAbstractElement> parse(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
@@ -150,6 +195,9 @@ public class XsdParser {
                 throw new RuntimeException("The file doesn't exist");
             }
 
+            currentFile = filePath;
+            unsolvedElements.put(filePath, new ArrayList<>());
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
@@ -159,6 +207,10 @@ public class XsdParser {
             doc.getDocumentElement().normalize();
 
             NodeList nodes = doc.getFirstChild().getChildNodes();
+
+            ArrayList<ReferenceBase> elements = new ArrayList<>();
+
+            parseElements.put(filePath, elements);
 
             for (int temp = 0; temp < nodes.getLength(); temp++) {
                 Node node = nodes.item(temp);
@@ -178,14 +230,14 @@ public class XsdParser {
 
         resolveRefs(filePath);
 
-        return elements.stream()
-                        .filter(element -> element instanceof ConcreteElement)
-                        .map(ReferenceBase::getElement);
+        return parseElements.get(filePath).stream()
+                .filter(element -> element instanceof ConcreteElement)
+                .map(ReferenceBase::getElement);
     }
 
     /**
      * This method resolves all the remaining UnsolvedReferences. It starts by gathering all the named
-     * elements and then iterates on the unsolvedElements List in order to find if any of the unsolvedReferences
+     * parseElements and then iterates on the unsolvedElements List in order to find if any of the unsolvedReferences
      * can be solved by replacing the unsolvedElement by its matching ConcreteElement, present in the
      * concreteElementsMap. The unsolvedReference matches a ConcreteElement by having its ref attribute
      * with the same value as the name attribute of the ConcreteElement.
@@ -194,14 +246,18 @@ public class XsdParser {
     private void resolveRefs(String filePath) {
         HashMap<String, ConcreteElement> concreteElementsMap = new HashMap<>();
 
-        elements.stream()
+        parseElements
+                .get(filePath)
+                .stream()
                 .filter(concreteElement -> concreteElement instanceof ConcreteElement)
                 .map(concreteElement -> (ConcreteElement) concreteElement)
                 .forEach(referenceElement -> concreteElementsMap.put(referenceElement.getName(), referenceElement));
 
+        List<UnsolvedReference> unsolvedElementsList = unsolvedElements.get(filePath);
+
         //noinspection ForLoopReplaceableByForEach
-        for (int i = 0; i < unsolvedElements.size(); i++) {
-            replaceUnsolvedReference(concreteElementsMap, unsolvedElements.get(i), filePath);
+        for (int i = 0; i < unsolvedElementsList.size(); i++) {
+            replaceUnsolvedReference(concreteElementsMap, unsolvedElementsList.get(i), filePath);
         }
     }
 
@@ -220,7 +276,7 @@ public class XsdParser {
             HashMap<String, String> oldElementAttributes = unsolvedReference.getElement().getElementFieldsMap();
 
             XsdAbstractElement substitutionElement = concreteElement.getElement()
-                                                                .createCopyWithAttributes(oldElementAttributes);
+                    .clone(oldElementAttributes);
 
             ConcreteElement substitutionElementWrapper = (ConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
 
@@ -266,10 +322,10 @@ public class XsdParser {
     }
 
     public void addUnsolvedReference(UnsolvedReference unsolvedReference){
-        unsolvedElements.add(unsolvedReference);
+        unsolvedElements.get(currentFile).add(unsolvedReference);
     }
 
-    public static List<String> getBuiltInDataTypes() {
-        return builtInDataTypes;
+    public static HashMap<String, String> getXsdTypesToJava() {
+        return xsdTypesToJava;
     }
 }

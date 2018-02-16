@@ -18,10 +18,6 @@
 	 Warning: 
 -->
 
-	<!-- TODO: list of charsets for meta intellisense -->
-	<!-- TODO: item/itemfor/itemprop validation? -->
-	<!-- TODO: DOM5 -->
-
 	<xsd:annotation>
 		<xsd:documentation>
 			Microsoft Visual Studio schema for HTML 5
@@ -102,7 +98,6 @@
 			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="contextmenu" />
-		<!-- TODO: support whildcards like <xsd:attribute name="data-*" /> -->
 		<xsd:attribute name="data-FolderName" />
 		<xsd:attribute name="data-MsgId" />
 		<xsd:attribute name="dir" default="ltr">
@@ -237,7 +232,6 @@
 			<xsd:element ref="b" />
 			<xsd:element ref="bdo" />
 			<xsd:element ref="blockquote" />
-			<xsd:element ref="bdo" />
 			<xsd:element ref="br" />
 			<xsd:element ref="button" />
 
@@ -653,17 +647,9 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="section" type="simpleFlowContentElement" vs:disallowedancestor="address">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="section" type="simpleFlowContentElement" vs:disallowedancestor="address"/>
 
-	<xsd:element name="nav" type="simpleFlowContentElement" vs:disallowedancestor="address" >
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="nav" type="simpleFlowContentElement" vs:disallowedancestor="address"/>
 
 	<xsd:element name="article" vs:disallowedancestor="address">
 		<xsd:complexType mixed="true">
@@ -675,47 +661,19 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="aside" type="simpleFlowContentElement" vs:disallowedancestor="address">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="aside" type="simpleFlowContentElement" vs:disallowedancestor="address"/>
 
-	<xsd:element name="h1" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="h1" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="h2" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="h2" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="h3" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="h3" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="h4" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="h4" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="h5" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="h5" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="h6" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="h6" type="simplePhrasingContentElement"/>
 
 	<xsd:element name="hgroup">
 		<xsd:complexType>
@@ -731,29 +689,13 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="header" vs:disallowedancestor="header footer address" type="simpleFlowContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="header" vs:disallowedancestor="header footer address" type="simpleFlowContentElement"/>
 
-	<xsd:element name="footer" vs:disallowedancestor="header footer address" type="simpleFlowContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="footer" vs:disallowedancestor="header footer address" type="simpleFlowContentElement"/>
 
-	<xsd:element name="address" vs:disallowedancestor="address" type="simpleFlowContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="address" vs:disallowedancestor="address" type="simpleFlowContentElement"/>
 
-	<xsd:element name="p" type="simplePhrasingContentElement" vs:implicitclosure="true">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="p" type="simplePhrasingContentElement" vs:implicitclosure="true"/>
 
 	<xsd:element name="br">
 		<xsd:complexType>
@@ -761,15 +703,11 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="pre" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="pre" type="simplePhrasingContentElement"/>
 
 	<xsd:element name="dialog">
 		<xsd:complexType>
-			<!-- TODO: support xsd:sequence
+			<!--
 			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
 				<xsd:element ref="dd" />
 				<xsd:element ref="dt" />
@@ -877,29 +815,13 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="em" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="em" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="strong" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="strong" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="small" type="simplePhrasingContentElement" >
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="small" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="cite" type="simplePhrasingContentElement" >
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="cite" type="simplePhrasingContentElement"/>
 
 	<xsd:element name="q">
 		<xsd:complexType mixed="true">
@@ -911,71 +833,27 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="dfn" type="simplePhrasingContentElement" vs:disallowedancestor="dfn">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="dfn" type="simplePhrasingContentElement" vs:disallowedancestor="dfn"/>
 
-	<xsd:element name="abbr" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="abbr" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="code" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="code" type="simplePhrasingContentElement"/>
 		
-	<xsd:element name="var" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="var" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="samp" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="samp" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="kbd" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="kbd" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="sub" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="sub" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="sup" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="sup" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="i" type="simplePhrasingContentElement" >
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="i" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="b" type="simplePhrasingContentElement">
-		<xsd:complexType>
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="b" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="mark" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="mark" type="simplePhrasingContentElement"/>
 
 	<xsd:element name="progress">
 		<xsd:complexType mixed="true">
@@ -1015,7 +893,7 @@
 
 	<xsd:element name="ruby">
 		<xsd:complexType mixed="true">
-			<!-- TODO: support xsd:sequence
+			<!--
 			<xsd:sequence minOccurs="1" maxOccurs="unbounded">
 					<xsd:group ref="phrasingContent" />
 				<xsd:choice>
@@ -1033,29 +911,13 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="rt" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="rt" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="rp" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="rp" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="bdo" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="bdo" type="simplePhrasingContentElement"/>
 
-	<xsd:element name="span" type="simplePhrasingContentElement">
-		<xsd:complexType> 
-			<xsd:attributeGroup ref="classAttributeGroup" /> 
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="span" type="simplePhrasingContentElement"/>
 
 	<!--=================== Inserted/Deleted Text ============================-->
 
@@ -1085,7 +947,7 @@
 
 	<xsd:element name="figure" vs:disallowedancestor="legend">
 		<xsd:complexType mixed="true">
-			<!-- TODO: support xsd:sequence
+			<!--
 			<xsd:choice minOccurs="1" maxOccurs="1">
 				<xsd:sequence minOccurs="1" maxOccurs="1">
 					<xsd:element ref="legend" />
@@ -1189,7 +1051,7 @@
 
 	<xsd:element name="details" vs:disallowedancestor="button">
 		<xsd:complexType mixed="true">
-			<!-- TODO: support xsd:sequence
+			<!--
 			<xsd:sequence minOccurs="1" maxOccurs="1">
 				<xsd:element ref="legend" />
 				<xsd:group ref="flowContent" />
@@ -1274,11 +1136,7 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="div" type="simpleFlowContentElement">
-		<xsd:complexType>
-			<xsd:attributeGroup ref="classAttributeGroup"/>
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="div" type="simpleFlowContentElement"/>
 
 	<!--=================== Interactive content =======================================-->
 
@@ -1849,7 +1707,7 @@
 
 	<xsd:element name="table" vs:disallowedancestor="caption">
 		<xsd:complexType>
-			<!-- TODO: cupport order per W3C: 
+			<!--
 				In this order: optionally a caption element, followed by either zero or more colgroup elements, 
 				followed optionally by a thead element, followed optionally by a tfoot element, 
 				followed by either zero or more tbody elements or one or more tr elements, followed optionally 
@@ -1868,11 +1726,7 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="caption" type="simpleFlowContentElement">
-		<xsd:complexType>
-			<xsd:attributeGroup ref="commonAttributeGroup" />
-		</xsd:complexType>
-	</xsd:element>
+	<xsd:element name="caption" type="simpleFlowContentElement"/>
 
 	<xsd:element name="colgroup">
 		<xsd:complexType>

@@ -17,7 +17,7 @@ public class XsdMaxInclusive extends XsdAbstractRestrictionChild{
         this.value = value;
     }
 
-    XsdMaxInclusive(HashMap<String, String> elementFieldsMap) {
+    private XsdMaxInclusive(HashMap<String, String> elementFieldsMap) {
         setFields(elementFieldsMap);
     }
 
@@ -36,6 +36,11 @@ public class XsdMaxInclusive extends XsdAbstractRestrictionChild{
 
     public static ReferenceBase parse(Node node){
         return ReferenceBase.createFromXsd(new XsdMaxInclusive(convertNodeMap(node.getAttributes())));
+    }
+
+    @Override
+    public XsdMaxInclusive clone(HashMap<String, String> placeHolderAttributes) {
+        return new XsdMaxInclusive(this.value);
     }
 
     public int getValue() {

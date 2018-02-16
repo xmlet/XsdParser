@@ -34,31 +34,13 @@ public class XsdSequence extends XsdMultipleElements{
     }
 
     @Override
-    public XsdAbstractElement createCopyWithAttributes(HashMap<String, String> placeHolderAttributes) {
+    public XsdAbstractElement clone(HashMap<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(this.getElementFieldsMap());
         XsdSequence elementCopy = new XsdSequence(this.getParent(), placeHolderAttributes);
 
         elementCopy.addElements(this.getElements());
 
         return elementCopy;
-    }
-
-    private void addElement(XsdGroup groupElement){
-        XsdMultipleElements groupChild = groupElement.getChildElement();
-
-        if (groupChild != null){
-            super.addElements(groupElement.getChildElement().getElements());
-        } else {
-            super.addElement(new UnsolvedReference(groupElement));
-        }
-    }
-
-    private void addElement(XsdChoice choiceElement){
-        super.addElements(choiceElement.getElements());
-    }
-
-    private void addElement(XsdSequence sequenceElement){
-        super.addElements(sequenceElement.getElements());
     }
 
     public static ReferenceBase parse(Node node){
@@ -81,19 +63,19 @@ public class XsdSequence extends XsdMultipleElements{
         @Override
         public void visit(XsdGroup element) {
             super.visit(element);
-            XsdSequence.this.addElement(element);
+            XsdSequence.this.addElement(ReferenceBase.createFromXsd(element));
         }
 
         @Override
         public void visit(XsdChoice element) {
             super.visit(element);
-            XsdSequence.this.addElement(element);
+            XsdSequence.this.addElement(ReferenceBase.createFromXsd(element));
         }
 
         @Override
         public void visit(XsdSequence element) {
             super.visit(element);
-            XsdSequence.this.addElement(element);
+            XsdSequence.this.addElement(ReferenceBase.createFromXsd(element));
         }
     }
 }

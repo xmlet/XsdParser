@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <xsd:element name="restrictedNumber">
+        <xsd:complexType>
+            <xsd:attribute name="restrictedNumberAttr" fixed="true" id="restrictedNumberId" form="qualified" use="required">
+                <xsd:simpleType>
+                    <xsd:restriction>
+                        <xsd:maxExclusive value="100" fixed="true"/>
+                        <xsd:maxInclusive value="99" fixed="false"/>
+                        <xsd:minInclusive value="1" fixed="false"/>
+                        <xsd:minExclusive value="0" fixed="true"/>
+                        <xsd:fractionDigits value="2" fixed="true"/>
+                        <xsd:totalDigits value="10" fixed="false"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="restrictedString">
+        <xsd:complexType>
+            <xsd:attribute name="restrictedStringAttr">
+                <xsd:simpleType>
+                    <xsd:restriction>
+                        <xsd:length value="10" fixed="true"/>
+                        <xsd:maxLength value="10" fixed="true"/>
+                        <xsd:minLength value="10" fixed="true"/>
+                        <xsd:pattern value=".*"/>
+                        <xsd:whiteSpace value="preserve" fixed="false"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="annotatedElement">
+        <xsd:annotation>
+            <xsd:appinfo source="source">Some text.</xsd:appinfo>
+            <xsd:documentation source="source">Some documentation.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="restrictedList">
+        <xsd:simpleType>
+            <xsd:list id="listId" itemType="xsd:int">
+                <xsd:simpleType>
+                    <xsd:union>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:int">
+                                <xsd:length value="5"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:int">
+                                <xsd:maxLength value="5"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:union>
+                </xsd:simpleType>
+            </xsd:list>
+        </xsd:simpleType>
+    </xsd:element>
+
+
+</xsd:schema>
+

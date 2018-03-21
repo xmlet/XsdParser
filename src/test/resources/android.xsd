@@ -1273,5 +1273,1233 @@
       <xs:extension base="LinearLayout" />
     </xs:complexContent>
 </xs:complexType>
+
+	<xs:attribute name='android:cacheColorHint' type='xs:string' />
+<xs:attribute name='android:choiceMode' type='xs:string' />
+<xs:attribute name='android:drawSelectorOnTop' type='xs:string' />
+<xs:attribute name='android:fastScrollAlwaysVisible' type='xs:string' />
+<xs:attribute name='android:fastScrollEnabled' type='xs:string' />
+<xs:attribute name='android:listSelector' type='xs:string' />
+<xs:attribute name='android:scrollingCache' type='xs:string' />
+<xs:attribute name='android:smoothScrollbar' type='xs:string' />
+<xs:attribute name='android:stackFromBottom' type='xs:string' />
+<xs:attribute name='android:textFilterEnabled' type='xs:string' />
+<xs:attribute name='android:transcriptMode' type='xs:string' />
+<xs:attribute name='android:entries' type='xs:string' />
+<xs:attribute name='android:layout_x' type='xs:string' />
+<xs:attribute name='android:layout_y' type='xs:string' />
+<xs:attribute name='android:factor' type='xs:string' />
+<xs:attribute name='android:accessibilityEventTypes' type='xs:string' />
+<xs:attribute name='android:accessibilityFeedbackType' type='xs:string' />
+<xs:attribute name='android:accessibilityFlags' type='xs:string' />
+<xs:attribute name='android:canRetrieveWindowContent' type='xs:string' />
+<xs:attribute name='android:description' type='xs:string' />
+<xs:attribute name='android:notificationTimeout' type='xs:string' />
+<xs:attribute name='android:packageNames' type='xs:string' />
+<xs:attribute name='android:settingsActivity' type='xs:string' />
+<xs:attribute name='android:accountPreferences' type='xs:string' />
+<xs:attribute name='android:accountType' type='xs:string' />
+<xs:attribute name='android:customTokens' type='xs:string' />
+<xs:attribute name='android:icon' type='xs:string' />
+<xs:attribute name='android:label' type='xs:string' />
+<xs:attribute name='android:smallIcon' type='xs:string' />
+<xs:attribute name='android:background' type='xs:string' />
+<xs:attribute name='android:backgroundSplit' type='xs:string' />
+<xs:attribute name='android:backgroundStacked' type='xs:string' />
+<xs:attribute name='android:customNavigationLayout' type='xs:string' />
+<xs:attribute name='android:displayOptions' type='xs:string' />
+<xs:attribute name='android:divider' type='xs:string' />
+<xs:attribute name='android:height' type='xs:string' />
+<xs:attribute name='android:homeLayout' type='xs:string' />
+<xs:attribute name='android:indeterminateProgressStyle' type='xs:string' />
+<xs:attribute name='android:itemPadding' type='xs:string' />
+<xs:attribute name='android:logo' type='xs:string' />
+<xs:attribute name='android:navigationMode' type='xs:string' />
+<xs:attribute name='android:progressBarPadding' type='xs:string' />
+<xs:attribute name='android:progressBarStyle' type='xs:string' />
+<xs:attribute name='android:subtitle' type='xs:string' />
+<xs:attribute name='android:subtitleTextStyle' type='xs:string' />
+<xs:attribute name='android:title' type='xs:string' />
+<xs:attribute name='android:titleTextStyle' type='xs:string' />
+<xs:attribute name='android:layout_gravity'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='bottom' />
+        <xs:enumeration value='center' />
+        <xs:enumeration value='center_horizontal' />
+        <xs:enumeration value='center_vertical' />
+        <xs:enumeration value='clip_horizontal' />
+        <xs:enumeration value='clip_vertical' />
+        <xs:enumeration value='fill' />
+        <xs:enumeration value='fill_horizontal' />
+        <xs:enumeration value='fill_vertical' />
+        <xs:enumeration value='left' />
+        <xs:enumeration value='right' />
+        <xs:enumeration value='top' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:animateFirstView' type='xs:string' />
+<xs:attribute name='android:inAnimation' type='xs:string' />
+<xs:attribute name='android:loopViews' type='xs:string' />
+<xs:attribute name='android:outAnimation' type='xs:string' />
+<xs:attribute name='android:autoStart' type='xs:string' />
+<xs:attribute name='android:flipInterval' type='xs:string' />
+<xs:attribute name='android:bottomBright' type='xs:string' />
+<xs:attribute name='android:bottomDark' type='xs:string' />
+<xs:attribute name='android:bottomMedium' type='xs:string' />
+<xs:attribute name='android:centerBright' type='xs:string' />
+<xs:attribute name='android:centerDark' type='xs:string' />
+<xs:attribute name='android:centerMedium' type='xs:string' />
+<xs:attribute name='android:fullBright' type='xs:string' />
+<xs:attribute name='android:fullDark' type='xs:string' />
+<xs:attribute name='android:layout' type='xs:string' />
+<xs:attribute name='android:topBright' type='xs:string' />
+<xs:attribute name='android:topDark' type='xs:string' />
+<xs:attribute name='android:fromAlpha' type='xs:string' />
+<xs:attribute name='android:toAlpha' type='xs:string' />
+<xs:attribute name='android:dial' type='xs:string' />
+<xs:attribute name='android:hand_hour' type='xs:string' />
+<xs:attribute name='android:hand_minute' type='xs:string' />
+<xs:attribute name='android:installLocation' type='xs:string' />
+<xs:attribute name='android:sharedUserId' type='xs:string' />
+<xs:attribute name='android:sharedUserLabel' type='xs:string' />
+<xs:attribute name='android:versionCode' type='xs:string' />
+<xs:attribute name='android:versionName' type='xs:string' />
+<xs:attribute name='android:name' type='xs:string' />
+<xs:attribute name='android:allowTaskReparenting' type='xs:string' />
+<xs:attribute name='android:alwaysRetainTaskState' type='xs:string' />
+<xs:attribute name='android:clearTaskOnLaunch' type='xs:string' />
+<xs:attribute name='android:configChanges' type='xs:string' />
+<xs:attribute name='android:enabled' type='xs:string' />
+<xs:attribute name='android:excludeFromRecents' type='xs:string' />
+<xs:attribute name='android:exported' type='xs:string' />
+<xs:attribute name='android:finishOnCloseSystemDialogs' type='xs:string' />
+<xs:attribute name='android:finishOnTaskLaunch' type='xs:string' />
+<xs:attribute name='android:hardwareAccelerated' type='xs:string' />
+<xs:attribute name='android:immersive' type='xs:string' />
+<xs:attribute name='android:launchMode' type='xs:string' />
+<xs:attribute name='android:multiprocess' type='xs:string' />
+<xs:attribute name='android:noHistory' type='xs:string' />
+<xs:attribute name='android:permission' type='xs:string' />
+<xs:attribute name='android:process' type='xs:string' />
+<xs:attribute name='android:screenOrientation' type='xs:string' />
+<xs:attribute name='android:stateNotNeeded' type='xs:string' />
+<xs:attribute name='android:taskAffinity' type='xs:string' />
+<xs:attribute name='android:theme' type='xs:string' />
+<xs:attribute name='android:uiOptions' type='xs:string' />
+<xs:attribute name='android:windowSoftInputMode' type='xs:string' />
+<xs:attribute name='android:targetActivity' type='xs:string' />
+<xs:attribute name='android:allowBackup' type='xs:string' />
+<xs:attribute name='android:allowClearUserData' type='xs:string' />
+<xs:attribute name='android:backupAgent' type='xs:string' />
+<xs:attribute name='android:debuggable' type='xs:string' />
+<xs:attribute name='android:hasCode' type='xs:string' />
+<xs:attribute name='android:killAfterRestore' type='xs:string' />
+<xs:attribute name='android:largeHeap' type='xs:string' />
+<xs:attribute name='android:manageSpaceActivity' type='xs:string' />
+<xs:attribute name='android:persistent' type='xs:string' />
+<xs:attribute name='android:restoreAnyVersion' type='xs:string' />
+<xs:attribute name='android:restoreNeedsApplication' type='xs:string' />
+<xs:attribute name='android:testOnly' type='xs:string' />
+<xs:attribute name='android:vmSafeMode' type='xs:string' />
+<xs:attribute name='android:screenDensity' type='xs:string' />
+<xs:attribute name='android:screenSize' type='xs:string' />
+<xs:attribute name='android:host' type='xs:string' />
+<xs:attribute name='android:mimeType' type='xs:string' />
+<xs:attribute name='android:path' type='xs:string' />
+<xs:attribute name='android:pathPattern' type='xs:string' />
+<xs:attribute name='android:pathPrefix' type='xs:string' />
+<xs:attribute name='android:port' type='xs:string' />
+<xs:attribute name='android:scheme' type='xs:string' />
+<xs:attribute name='android:functionalTest' type='xs:string' />
+<xs:attribute name='android:handleProfiling' type='xs:string' />
+<xs:attribute name='android:targetPackage' type='xs:string' />
+<xs:attribute name='android:priority' type='xs:string' />
+<xs:attribute name='android:resource' type='xs:string' />
+<xs:attribute name='android:value' type='xs:string' />
+<xs:attribute name='android:publicKey' type='xs:string' />
+<xs:attribute name='android:readPermission' type='xs:string' />
+<xs:attribute name='android:writePermission' type='xs:string' />
+<xs:attribute name='android:permissionGroup' type='xs:string' />
+<xs:attribute name='android:protectionLevel' type='xs:string' />
+<xs:attribute name='android:authorities' type='xs:string' />
+<xs:attribute name='android:grantUriPermissions' type='xs:string' />
+<xs:attribute name='android:initOrder' type='xs:string' />
+<xs:attribute name='android:syncable' type='xs:string' />
+<xs:attribute name='android:stopWithTask' type='xs:string' />
+<xs:attribute name='android:anyDensity' type='xs:string' />
+<xs:attribute name='android:compatibleWidthLimitDp' type='xs:string' />
+<xs:attribute name='android:largeScreens' type='xs:string' />
+<xs:attribute name='android:largestWidthLimitDp' type='xs:string' />
+<xs:attribute name='android:normalScreens' type='xs:string' />
+<xs:attribute name='android:requiresSmallestWidthDp' type='xs:string' />
+<xs:attribute name='android:resizeable' type='xs:string' />
+<xs:attribute name='android:smallScreens' type='xs:string' />
+<xs:attribute name='android:xlargeScreens' type='xs:string' />
+<xs:attribute name='android:reqFiveWayNav' type='xs:string' />
+<xs:attribute name='android:reqHardKeyboard' type='xs:string' />
+<xs:attribute name='android:reqKeyboardType' type='xs:string' />
+<xs:attribute name='android:reqNavigation' type='xs:string' />
+<xs:attribute name='android:reqTouchScreen' type='xs:string' />
+<xs:attribute name='android:glEsVersion' type='xs:string' />
+<xs:attribute name='android:required' type='xs:string' />
+<xs:attribute name='android:maxSdkVersion' type='xs:string' />
+<xs:attribute name='android:minSdkVersion' type='xs:string' />
+<xs:attribute name='android:targetSdkVersion' type='xs:string' />
+<xs:attribute name='android:drawable' type='xs:string' />
+<xs:attribute name='android:pivotX' type='xs:string' />
+<xs:attribute name='android:pivotY' type='xs:string' />
+<xs:attribute name='android:visible' type='xs:string' />
+<xs:attribute name='android:detachWallpaper' type='xs:string' />
+<xs:attribute name='android:duration' type='xs:string' />
+<xs:attribute name='android:fillAfter' type='xs:string' />
+<xs:attribute name='android:fillBefore' type='xs:string' />
+<xs:attribute name='android:fillEnabled' type='xs:string' />
+<xs:attribute name='android:interpolator' type='xs:string' />
+<xs:attribute name='android:repeatCount' type='xs:string' />
+<xs:attribute name='android:repeatMode' type='xs:string' />
+<xs:attribute name='android:startOffset' type='xs:string' />
+<xs:attribute name='android:zAdjustment' type='xs:string' />
+<xs:attribute name='android:oneshot' type='xs:string' />
+<xs:attribute name='android:variablePadding' type='xs:string' />
+<xs:attribute name='android:shareInterpolator' type='xs:string' />
+<xs:attribute name='android:valueFrom' type='xs:string' />
+<xs:attribute name='android:valueTo' type='xs:string' />
+<xs:attribute name='android:valueType' type='xs:string' />
+<xs:attribute name='android:ordering' type='xs:string' />
+<xs:attribute name='android:tension' type='xs:string' />
+<xs:attribute name='android:extraTension' type='xs:string' />
+<xs:attribute name='android:autoAdvanceViewId' type='xs:string' />
+<xs:attribute name='android:configure' type='xs:string' />
+<xs:attribute name='android:initialLayout' type='xs:string' />
+<xs:attribute name='android:minHeight' type='xs:string' />
+<xs:attribute name='android:minResizeHeight' type='xs:string' />
+<xs:attribute name='android:minResizeWidth' type='xs:string' />
+<xs:attribute name='android:minWidth' type='xs:string' />
+<xs:attribute name='android:previewImage' type='xs:string' />
+<xs:attribute name='android:resizeMode' type='xs:string' />
+<xs:attribute name='android:updatePeriodMillis' type='xs:string' />
+<xs:attribute name='android:completionHint' type='xs:string' />
+<xs:attribute name='android:completionHintView' type='xs:string' />
+<xs:attribute name='android:completionThreshold' type='xs:string' />
+<xs:attribute name='android:dropDownAnchor' type='xs:string' />
+<xs:attribute name='android:dropDownHeight' type='xs:string' />
+<xs:attribute name='android:dropDownHorizontalOffset' type='xs:string' />
+<xs:attribute name='android:dropDownSelector' type='xs:string' />
+<xs:attribute name='android:dropDownVerticalOffset' type='xs:string' />
+<xs:attribute name='android:dropDownWidth' type='xs:string' />
+<xs:attribute name='android:inputType' type='xs:string' />
+<xs:attribute name='android:antialias' type='xs:string' />
+<xs:attribute name='android:dither' type='xs:string' />
+<xs:attribute name='android:filter' type='xs:string' />
+<xs:attribute name='android:gravity'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='bottom' />
+        <xs:enumeration value='center' />
+        <xs:enumeration value='center_horizontal' />
+        <xs:enumeration value='center_vertical' />
+        <xs:enumeration value='clip_horizontal' />
+        <xs:enumeration value='clip_vertical' />
+        <xs:enumeration value='fill' />
+        <xs:enumeration value='fill_horizontal' />
+        <xs:enumeration value='fill_vertical' />
+        <xs:enumeration value='left' />
+        <xs:enumeration value='right' />
+        <xs:enumeration value='top' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:src' type='xs:string' />
+<xs:attribute name='android:tileMode' type='xs:string' />
+<xs:attribute name='android:dateTextAppearance' type='xs:string' />
+<xs:attribute name='android:firstDayOfWeek' type='xs:string' />
+<xs:attribute name='android:focusedMonthDateColor' type='xs:string' />
+<xs:attribute name='android:maxDate' type='xs:string' />
+<xs:attribute name='android:minDate' type='xs:string' />
+<xs:attribute name='android:selectedDateVerticalBar' type='xs:string' />
+<xs:attribute name='android:selectedWeekBackgroundColor' type='xs:string' />
+<xs:attribute name='android:showWeekNumber' type='xs:string' />
+<xs:attribute name='android:shownWeekCount' type='xs:string' />
+<xs:attribute name='android:unfocusedMonthDateColor' type='xs:string' />
+<xs:attribute name='android:weekDayTextAppearance' type='xs:string' />
+<xs:attribute name='android:weekNumberColor' type='xs:string' />
+<xs:attribute name='android:weekSeparatorLineColor' type='xs:string' />
+<xs:attribute name='android:disableDependentsState' type='xs:string' />
+<xs:attribute name='android:summaryOff' type='xs:string' />
+<xs:attribute name='android:summaryOn' type='xs:string' />
+<xs:attribute name='android:checkMark' type='xs:string' />
+<xs:attribute name='android:checked' type='xs:string' />
+<xs:attribute name='android:format' type='xs:string' />
+<xs:attribute name='android:clipOrientation' type='xs:string' />
+<xs:attribute name='android:color' type='xs:string' />
+<xs:attribute name='android:button' type='xs:string' />
+<xs:attribute name='android:allContactsName' type='xs:string' />
+<xs:attribute name='android:detailColumn' type='xs:string' />
+<xs:attribute name='android:detailSocialSummary' type='xs:string' />
+<xs:attribute name='android:summaryColumn' type='xs:string' />
+<xs:attribute name='android:cycles' type='xs:string' />
+<xs:attribute name='android:dialogIcon' type='xs:string' />
+<xs:attribute name='android:dialogLayout' type='xs:string' />
+<xs:attribute name='android:dialogMessage' type='xs:string' />
+<xs:attribute name='android:dialogTitle' type='xs:string' />
+<xs:attribute name='android:negativeButtonText' type='xs:string' />
+<xs:attribute name='android:positiveButtonText' type='xs:string' />
+<xs:attribute name='android:bottomLeftRadius' type='xs:string' />
+<xs:attribute name='android:bottomRightRadius' type='xs:string' />
+<xs:attribute name='android:radius' type='xs:string' />
+<xs:attribute name='android:topLeftRadius' type='xs:string' />
+<xs:attribute name='android:topRightRadius' type='xs:string' />
+<xs:attribute name='android:state_accelerated' type='xs:string' />
+<xs:attribute name='android:state_activated' type='xs:string' />
+<xs:attribute name='android:state_active' type='xs:string' />
+<xs:attribute name='android:state_checkable' type='xs:string' />
+<xs:attribute name='android:state_checked' type='xs:string' />
+<xs:attribute name='android:state_drag_can_accept' type='xs:string' />
+<xs:attribute name='android:state_drag_hovered' type='xs:string' />
+<xs:attribute name='android:state_enabled' type='xs:string' />
+<xs:attribute name='android:state_first' type='xs:string' />
+<xs:attribute name='android:state_focused' type='xs:string' />
+<xs:attribute name='android:state_hovered' type='xs:string' />
+<xs:attribute name='android:state_last' type='xs:string' />
+<xs:attribute name='android:state_middle' type='xs:string' />
+<xs:attribute name='android:state_pressed' type='xs:string' />
+<xs:attribute name='android:state_selected' type='xs:string' />
+<xs:attribute name='android:state_single' type='xs:string' />
+<xs:attribute name='android:state_window_focused' type='xs:string' />
+<xs:attribute name='android:state_empty' type='xs:string' />
+<xs:attribute name='android:state_expanded' type='xs:string' />
+<xs:attribute name='android:childDivider' type='xs:string' />
+<xs:attribute name='android:childIndicator' type='xs:string' />
+<xs:attribute name='android:childIndicatorLeft' type='xs:string' />
+<xs:attribute name='android:childIndicatorRight' type='xs:string' />
+<xs:attribute name='android:groupIndicator' type='xs:string' />
+<xs:attribute name='android:indicatorLeft' type='xs:string' />
+<xs:attribute name='android:indicatorRight' type='xs:string' />
+<xs:attribute name='android:id' type='xs:string' />
+<xs:attribute name='android:tag' type='xs:string' />
+<xs:attribute name='android:fragmentCloseEnterAnimation' type='xs:string' />
+<xs:attribute name='android:fragmentCloseExitAnimation' type='xs:string' />
+<xs:attribute name='android:fragmentFadeEnterAnimation' type='xs:string' />
+<xs:attribute name='android:fragmentFadeExitAnimation' type='xs:string' />
+<xs:attribute name='android:fragmentOpenEnterAnimation' type='xs:string' />
+<xs:attribute name='android:fragmentOpenExitAnimation' type='xs:string' />
+<xs:attribute name='android:foreground' type='xs:string' />
+<xs:attribute name='android:foregroundGravity' type='xs:string' />
+<xs:attribute name='android:measureAllChildren' type='xs:string' />
+<xs:attribute name='android:animationDuration' type='xs:string' />
+<xs:attribute name='android:spacing' type='xs:string' />
+<xs:attribute name='android:unselectedAlpha' type='xs:string' />
+<xs:attribute name='android:eventsInterceptionEnabled' type='xs:string' />
+<xs:attribute name='android:fadeDuration' type='xs:string' />
+<xs:attribute name='android:fadeEnabled' type='xs:string' />
+<xs:attribute name='android:fadeOffset' type='xs:string' />
+<xs:attribute name='android:gestureColor' type='xs:string' />
+<xs:attribute name='android:gestureStrokeAngleThreshold' type='xs:string' />
+<xs:attribute name='android:gestureStrokeLengthThreshold' type='xs:string' />
+<xs:attribute name='android:gestureStrokeSquarenessThreshold' type='xs:string' />
+<xs:attribute name='android:gestureStrokeType' type='xs:string' />
+<xs:attribute name='android:gestureStrokeWidth' type='xs:string' />
+<xs:attribute name='android:orientation'>
+  
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='horizontal' />
+        <xs:enumeration value='vertical' />
+      </xs:restriction>
+    </xs:simpleType>
+  
+</xs:attribute>
+<xs:attribute name='android:uncertainGestureColor' type='xs:string' />
+<xs:attribute name='android:innerRadius' type='xs:string' />
+<xs:attribute name='android:innerRadiusRatio' type='xs:string' />
+<xs:attribute name='android:shape' type='xs:string' />
+<xs:attribute name='android:thickness' type='xs:string' />
+<xs:attribute name='android:thicknessRatio' type='xs:string' />
+<xs:attribute name='android:useLevel' type='xs:string' />
+<xs:attribute name='android:angle' type='xs:string' />
+<xs:attribute name='android:centerColor' type='xs:string' />
+<xs:attribute name='android:centerX' type='xs:string' />
+<xs:attribute name='android:centerY' type='xs:string' />
+<xs:attribute name='android:endColor' type='xs:string' />
+<xs:attribute name='android:gradientRadius' type='xs:string' />
+<xs:attribute name='android:startColor' type='xs:string' />
+<xs:attribute name='android:type' type='xs:string' />
+<xs:attribute name='android:bottom' type='xs:string' />
+<xs:attribute name='android:left' type='xs:string' />
+<xs:attribute name='android:right' type='xs:string' />
+<xs:attribute name='android:top' type='xs:string' />
+<xs:attribute name='android:width' type='xs:string' />
+<xs:attribute name='android:dashGap' type='xs:string' />
+<xs:attribute name='android:dashWidth' type='xs:string' />
+<xs:attribute name='android:alignmentMode' type='xs:string' />
+<xs:attribute name='android:columnCount' type='xs:string' />
+<xs:attribute name='android:columnOrderPreserved' type='xs:string' />
+<xs:attribute name='android:rowCount' type='xs:string' />
+<xs:attribute name='android:rowOrderPreserved' type='xs:string' />
+<xs:attribute name='android:useDefaultMargins' type='xs:string' />
+<xs:attribute name='android:columnDelay' type='xs:string' />
+<xs:attribute name='android:direction' type='xs:string' />
+<xs:attribute name='android:directionPriority' type='xs:string' />
+<xs:attribute name='android:rowDelay' type='xs:string' />
+<xs:attribute name='android:layout_column' type='xs:string' />
+<xs:attribute name='android:layout_columnSpan' type='xs:string' />
+<xs:attribute name='android:layout_row' type='xs:string' />
+<xs:attribute name='android:layout_rowSpan' type='xs:string' />
+<xs:attribute name='android:columnWidth' type='xs:string' />
+<xs:attribute name='android:horizontalSpacing' type='xs:string' />
+<xs:attribute name='android:numColumns' type='xs:string' />
+<xs:attribute name='android:stretchMode' type='xs:string' />
+<xs:attribute name='android:verticalSpacing' type='xs:string' />
+<xs:attribute name='android:fillViewport' type='xs:string' />
+<xs:attribute name='android:maxItemsPerRow' type='xs:string' />
+<xs:attribute name='android:maxRows' type='xs:string' />
+<xs:attribute name='android:moreIcon' type='xs:string' />
+<xs:attribute name='android:rowHeight' type='xs:string' />
+<xs:attribute name='android:adjustViewBounds' type='xs:string' />
+<xs:attribute name='android:baseline' type='xs:string' />
+<xs:attribute name='android:baselineAlignBottom' type='xs:string' />
+<xs:attribute name='android:cropToPadding' type='xs:string' />
+<xs:attribute name='android:maxHeight' type='xs:string' />
+<xs:attribute name='android:maxWidth' type='xs:string' />
+<xs:attribute name='android:scaleType' type='xs:string' />
+<xs:attribute name='android:tint' type='xs:string' />
+<xs:attribute name='android:isDefault' type='xs:string' />
+<xs:attribute name='android:imeExtractEnterAnimation' type='xs:string' />
+<xs:attribute name='android:imeExtractExitAnimation' type='xs:string' />
+<xs:attribute name='android:imeFullscreenBackground' type='xs:string' />
+<xs:attribute name='android:imeSubtypeExtraValue' type='xs:string' />
+<xs:attribute name='android:imeSubtypeLocale' type='xs:string' />
+<xs:attribute name='android:imeSubtypeMode' type='xs:string' />
+<xs:attribute name='android:isAuxiliary' type='xs:string' />
+<xs:attribute name='android:overridesImplicitlyEnabledSubtype' type='xs:string' />
+<xs:attribute name='android:insetBottom' type='xs:string' />
+<xs:attribute name='android:insetLeft' type='xs:string' />
+<xs:attribute name='android:insetRight' type='xs:string' />
+<xs:attribute name='android:insetTop' type='xs:string' />
+<xs:attribute name='android:action' type='xs:string' />
+<xs:attribute name='android:data' type='xs:string' />
+<xs:attribute name='android:targetClass' type='xs:string' />
+<xs:attribute name='android:horizontalGap' type='xs:string' />
+<xs:attribute name='android:keyHeight' type='xs:string' />
+<xs:attribute name='android:keyWidth' type='xs:string' />
+<xs:attribute name='android:verticalGap' type='xs:string' />
+<xs:attribute name='android:keyBackground' type='xs:string' />
+<xs:attribute name='android:keyPreviewHeight' type='xs:string' />
+<xs:attribute name='android:keyPreviewLayout' type='xs:string' />
+<xs:attribute name='android:keyPreviewOffset' type='xs:string' />
+<xs:attribute name='android:keyTextColor' type='xs:string' />
+<xs:attribute name='android:keyTextSize' type='xs:string' />
+<xs:attribute name='android:labelTextSize' type='xs:string' />
+<xs:attribute name='android:popupLayout' type='xs:string' />
+<xs:attribute name='android:shadowColor' type='xs:string' />
+<xs:attribute name='android:shadowRadius' type='xs:string' />
+<xs:attribute name='android:verticalCorrection' type='xs:string' />
+<xs:attribute name='android:state_long_pressable' type='xs:string' />
+<xs:attribute name='android:codes' type='xs:string' />
+<xs:attribute name='android:iconPreview' type='xs:string' />
+<xs:attribute name='android:isModifier' type='xs:string' />
+<xs:attribute name='android:isRepeatable' type='xs:string' />
+<xs:attribute name='android:isSticky' type='xs:string' />
+<xs:attribute name='android:keyEdgeFlags' type='xs:string' />
+<xs:attribute name='android:keyIcon' type='xs:string' />
+<xs:attribute name='android:keyLabel' type='xs:string' />
+<xs:attribute name='android:keyOutputText' type='xs:string' />
+<xs:attribute name='android:keyboardMode' type='xs:string' />
+<xs:attribute name='android:popupCharacters' type='xs:string' />
+<xs:attribute name='android:popupKeyboard' type='xs:string' />
+<xs:attribute name='android:rowEdgeFlags' type='xs:string' />
+<xs:attribute name='android:opacity' type='xs:string' />
+<xs:attribute name='android:animation' type='xs:string' />
+<xs:attribute name='android:animationOrder' type='xs:string' />
+<xs:attribute name='android:delay' type='xs:string' />
+<xs:attribute name='android:maxLevel' type='xs:string' />
+<xs:attribute name='android:minLevel' type='xs:string' />
+<xs:attribute name='android:baselineAligned'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:baselineAlignedChildIndex' type='xs:string' />
+<xs:attribute name='android:dividerPadding' type='xs:string' />
+<xs:attribute name='android:measureWithLargestChild' type='xs:string' />
+<xs:attribute name='android:showDividers' type='xs:string' />
+<xs:attribute name='android:weightSum' type='xs:string' />
+<xs:attribute name='android:layout_height' type='xs:string' />
+<xs:attribute name='android:layout_weight' type='xs:string' />
+<xs:attribute name='android:layout_width' type='xs:string' />
+<xs:attribute name='android:entryValues' type='xs:string' />
+<xs:attribute name='android:dividerHeight' type='xs:string' />
+<xs:attribute name='android:footerDividersEnabled' type='xs:string' />
+<xs:attribute name='android:headerDividersEnabled' type='xs:string' />
+<xs:attribute name='android:overScrollFooter' type='xs:string' />
+<xs:attribute name='android:overScrollHeader' type='xs:string' />
+<xs:attribute name='android:apiKey' type='xs:string' />
+<xs:attribute name='android:checkableBehavior' type='xs:string' />
+<xs:attribute name='android:menuCategory' type='xs:string' />
+<xs:attribute name='android:orderInCategory' type='xs:string' />
+<xs:attribute name='android:actionLayout' type='xs:string' />
+<xs:attribute name='android:actionProviderClass' type='xs:string' />
+<xs:attribute name='android:actionViewClass' type='xs:string' />
+<xs:attribute name='android:alphabeticShortcut' type='xs:string' />
+<xs:attribute name='android:checkable' type='xs:string' />
+<xs:attribute name='android:numericShortcut' type='xs:string' />
+<xs:attribute name='android:onClick' type='xs:string' />
+<xs:attribute name='android:showAsAction' type='xs:string' />
+<xs:attribute name='android:titleCondensed' type='xs:string' />
+<xs:attribute name='android:headerBackground' type='xs:string' />
+<xs:attribute name='android:horizontalDivider' type='xs:string' />
+<xs:attribute name='android:itemBackground' type='xs:string' />
+<xs:attribute name='android:itemIconDisabledAlpha' type='xs:string' />
+<xs:attribute name='android:itemTextAppearance' type='xs:string' />
+<xs:attribute name='android:verticalDivider' type='xs:string' />
+<xs:attribute name='android:windowAnimationStyle' type='xs:string' />
+<xs:attribute name='android:directionDescriptions' type='xs:string' />
+<xs:attribute name='android:targetDescriptions' type='xs:string' />
+<xs:attribute name='android:popupAnimationStyle' type='xs:string' />
+<xs:attribute name='android:popupBackground' type='xs:string' />
+<xs:attribute name='android:state_above_anchor' type='xs:string' />
+<xs:attribute name='android:defaultValue' type='xs:string' />
+<xs:attribute name='android:dependency' type='xs:string' />
+<xs:attribute name='android:fragment' type='xs:string' />
+<xs:attribute name='android:key' type='xs:string' />
+<xs:attribute name='android:order' type='xs:string' />
+<xs:attribute name='android:selectable' type='xs:string' />
+<xs:attribute name='android:shouldDisableView' type='xs:string' />
+<xs:attribute name='android:summary' type='xs:string' />
+<xs:attribute name='android:widgetLayout' type='xs:string' />
+<xs:attribute name='android:orderingFromXml' type='xs:string' />
+<xs:attribute name='android:breadCrumbShortTitle' type='xs:string' />
+<xs:attribute name='android:breadCrumbTitle' type='xs:string' />
+<xs:attribute name='android:animationResolution' type='xs:string' />
+<xs:attribute name='android:indeterminate' type='xs:string' />
+<xs:attribute name='android:indeterminateBehavior' type='xs:string' />
+<xs:attribute name='android:indeterminateDrawable' type='xs:string' />
+<xs:attribute name='android:indeterminateDuration' type='xs:string' />
+<xs:attribute name='android:indeterminateOnly' type='xs:string' />
+<xs:attribute name='android:max' type='xs:string' />
+<xs:attribute name='android:progress' type='xs:string' />
+<xs:attribute name='android:progressDrawable' type='xs:string' />
+<xs:attribute name='android:secondaryProgress' type='xs:string' />
+<xs:attribute name='android:propertyName' type='xs:string' />
+<xs:attribute name='android:checkedButton' type='xs:string' />
+<xs:attribute name='android:isIndicator' type='xs:string' />
+<xs:attribute name='android:numStars' type='xs:string' />
+<xs:attribute name='android:rating' type='xs:string' />
+<xs:attribute name='android:stepSize' type='xs:string' />
+<xs:attribute name='android:ignoreGravity' type='xs:string' />
+<xs:attribute name='android:layout_above' type='xs:string' />
+<xs:attribute name='android:layout_alignBaseline' type='xs:string' />
+<xs:attribute name='android:layout_alignBottom' type='xs:string' />
+<xs:attribute name='android:layout_alignLeft' type='xs:string' />
+<xs:attribute name='android:layout_alignParentBottom' type='xs:string' />
+<xs:attribute name='android:layout_alignParentLeft' type='xs:string' />
+<xs:attribute name='android:layout_alignParentRight' type='xs:string' />
+<xs:attribute name='android:layout_alignParentTop' type='xs:string' />
+<xs:attribute name='android:layout_alignRight' type='xs:string' />
+<xs:attribute name='android:layout_alignTop' type='xs:string' />
+<xs:attribute name='android:layout_alignWithParentIfMissing' type='xs:string' />
+<xs:attribute name='android:layout_below' type='xs:string' />
+<xs:attribute name='android:layout_centerHorizontal' type='xs:string' />
+<xs:attribute name='android:layout_centerInParent' type='xs:string' />
+<xs:attribute name='android:layout_centerVertical' type='xs:string' />
+<xs:attribute name='android:layout_toLeftOf' type='xs:string' />
+<xs:attribute name='android:layout_toRightOf' type='xs:string' />
+<xs:attribute name='android:ringtoneType' type='xs:string' />
+<xs:attribute name='android:showDefault' type='xs:string' />
+<xs:attribute name='android:showSilent' type='xs:string' />
+<xs:attribute name='android:fromDegrees' type='xs:string' />
+<xs:attribute name='android:toDegrees' type='xs:string' />
+<xs:attribute name='android:fromXScale' type='xs:string' />
+<xs:attribute name='android:fromYScale' type='xs:string' />
+<xs:attribute name='android:toXScale' type='xs:string' />
+<xs:attribute name='android:toYScale' type='xs:string' />
+<xs:attribute name='android:scaleGravity' type='xs:string' />
+<xs:attribute name='android:scaleHeight' type='xs:string' />
+<xs:attribute name='android:scaleWidth' type='xs:string' />
+<xs:attribute name='android:useIntrinsicSizeAsMinimum' type='xs:string' />
+<xs:attribute name='android:iconifiedByDefault' type='xs:string' />
+<xs:attribute name='android:imeOptions' type='xs:string' />
+<xs:attribute name='android:queryHint' type='xs:string' />
+<xs:attribute name='android:autoUrlDetect' type='xs:string' />
+<xs:attribute name='android:hint' type='xs:string' />
+<xs:attribute name='android:includeInGlobalSearch' type='xs:string' />
+<xs:attribute name='android:queryAfterZeroResults' type='xs:string' />
+<xs:attribute name='android:searchButtonText' type='xs:string' />
+<xs:attribute name='android:searchMode' type='xs:string' />
+<xs:attribute name='android:searchSettingsDescription' type='xs:string' />
+<xs:attribute name='android:searchSuggestAuthority' type='xs:string' />
+<xs:attribute name='android:searchSuggestIntentAction' type='xs:string' />
+<xs:attribute name='android:searchSuggestIntentData' type='xs:string' />
+<xs:attribute name='android:searchSuggestPath' type='xs:string' />
+<xs:attribute name='android:searchSuggestSelection' type='xs:string' />
+<xs:attribute name='android:searchSuggestThreshold' type='xs:string' />
+<xs:attribute name='android:voiceLanguage' type='xs:string' />
+<xs:attribute name='android:voiceLanguageModel' type='xs:string' />
+<xs:attribute name='android:voiceMaxResults' type='xs:string' />
+<xs:attribute name='android:voicePromptText' type='xs:string' />
+<xs:attribute name='android:voiceSearchMode' type='xs:string' />
+<xs:attribute name='android:keycode' type='xs:string' />
+<xs:attribute name='android:queryActionMsg' type='xs:string' />
+<xs:attribute name='android:suggestActionMsg' type='xs:string' />
+<xs:attribute name='android:suggestActionMsgColumn' type='xs:string' />
+<xs:attribute name='android:thumb' type='xs:string' />
+<xs:attribute name='android:thumbOffset' type='xs:string' />
+<xs:attribute name='android:actionModeCopyDrawable' type='xs:string' />
+<xs:attribute name='android:actionModeCutDrawable' type='xs:string' />
+<xs:attribute name='android:actionModePasteDrawable' type='xs:string' />
+<xs:attribute name='android:actionModeSelectAllDrawable' type='xs:string' />
+<xs:attribute name='android:allowSingleTap' type='xs:string' />
+<xs:attribute name='android:animateOnClick' type='xs:string' />
+<xs:attribute name='android:bottomOffset' type='xs:string' />
+<xs:attribute name='android:content' type='xs:string' />
+<xs:attribute name='android:handle' type='xs:string' />
+<xs:attribute name='android:topOffset' type='xs:string' />
+<xs:attribute name='android:subtypeExtraValue' type='xs:string' />
+<xs:attribute name='android:subtypeLocale' type='xs:string' />
+<xs:attribute name='android:prompt' type='xs:string' />
+<xs:attribute name='android:spinnerMode' type='xs:string' />
+<xs:attribute name='android:constantSize' type='xs:string' />
+<xs:attribute name='android:enterFadeDuration' type='xs:string' />
+<xs:attribute name='android:exitFadeDuration' type='xs:string' />
+<xs:attribute name='android:switchMinWidth' type='xs:string' />
+<xs:attribute name='android:switchPadding' type='xs:string' />
+<xs:attribute name='android:switchTextAppearance' type='xs:string' />
+<xs:attribute name='android:textOff' type='xs:string' />
+<xs:attribute name='android:textOn' type='xs:string' />
+<xs:attribute name='android:thumbTextPadding' type='xs:string' />
+<xs:attribute name='android:track' type='xs:string' />
+<xs:attribute name='android:switchTextOff' type='xs:string' />
+<xs:attribute name='android:switchTextOn' type='xs:string' />
+<xs:attribute name='android:allowParallelSyncs' type='xs:string' />
+<xs:attribute name='android:contentAuthority' type='xs:string' />
+<xs:attribute name='android:isAlwaysSyncable' type='xs:string' />
+<xs:attribute name='android:supportsUploading' type='xs:string' />
+<xs:attribute name='android:userVisible' type='xs:string' />
+<xs:attribute name='android:tabStripEnabled' type='xs:string' />
+<xs:attribute name='android:tabStripLeft' type='xs:string' />
+<xs:attribute name='android:tabStripRight' type='xs:string' />
+<xs:attribute name='android:collapseColumns' type='xs:string' />
+<xs:attribute name='android:shrinkColumns' type='xs:string' />
+<xs:attribute name='android:stretchColumns' type='xs:string' />
+<xs:attribute name='android:layout_span' type='xs:string' />
+<xs:attribute name='android:textAllCaps' type='xs:string' />
+<xs:attribute name='android:textColor' type='xs:string' />
+<xs:attribute name='android:textColorHighlight' type='xs:string' />
+<xs:attribute name='android:textColorHint' type='xs:string' />
+<xs:attribute name='android:textColorLink' type='xs:string' />
+<xs:attribute name='android:textSize' type='xs:string' />
+<xs:attribute name='android:textStyle' type='xs:string' />
+<xs:attribute name='android:typeface' type='xs:string' />
+<xs:attribute name='android:autoLink' type='xs:string' />
+<xs:attribute name='android:autoText' type='xs:string' />
+<xs:attribute name='android:bufferType' type='xs:string' />
+<xs:attribute name='android:capitalize' type='xs:string' />
+<xs:attribute name='android:cursorVisible' type='xs:string' />
+<xs:attribute name='android:digits' type='xs:string' />
+<xs:attribute name='android:drawableBottom' type='xs:string' />
+<xs:attribute name='android:drawableEnd' type='xs:string' />
+<xs:attribute name='android:drawableLeft' type='xs:string' />
+<xs:attribute name='android:drawablePadding' type='xs:string' />
+<xs:attribute name='android:drawableRight' type='xs:string' />
+<xs:attribute name='android:drawableStart' type='xs:string' />
+<xs:attribute name='android:drawableTop' type='xs:string' />
+<xs:attribute name='android:editable' type='xs:string' />
+<xs:attribute name='android:editorExtras' type='xs:string' />
+<xs:attribute name='android:ellipsize' type='xs:string' />
+<xs:attribute name='android:ems' type='xs:string' />
+<xs:attribute name='android:freezesText' type='xs:string' />
+<xs:attribute name='android:imeActionId' type='xs:string' />
+<xs:attribute name='android:imeActionLabel' type='xs:string' />
+<xs:attribute name='android:includeFontPadding' type='xs:string' />
+<xs:attribute name='android:inputMethod' type='xs:string' />
+<xs:attribute name='android:lineSpacingExtra' type='xs:string' />
+<xs:attribute name='android:lineSpacingMultiplier' type='xs:string' />
+<xs:attribute name='android:lines' type='xs:string' />
+<xs:attribute name='android:linksClickable' type='xs:string' />
+<xs:attribute name='android:marqueeRepeatLimit' type='xs:string' />
+<xs:attribute name='android:maxEms' type='xs:string' />
+<xs:attribute name='android:maxLength' type='xs:string' />
+<xs:attribute name='android:maxLines' type='xs:string' />
+<xs:attribute name='android:minEms' type='xs:string' />
+<xs:attribute name='android:minLines' type='xs:string' />
+<xs:attribute name='android:numeric' type='xs:string' />
+<xs:attribute name='android:password' type='xs:string' />
+<xs:attribute name='android:phoneNumber' type='xs:string' />
+<xs:attribute name='android:privateImeOptions' type='xs:string' />
+<xs:attribute name='android:scrollHorizontally' type='xs:string' />
+<xs:attribute name='android:selectAllOnFocus' type='xs:string' />
+<xs:attribute name='android:shadowDx' type='xs:string' />
+<xs:attribute name='android:shadowDy' type='xs:string' />
+<xs:attribute name='android:singleLine' type='xs:string' />
+<xs:attribute name='android:text' type='xs:string' />
+<xs:attribute name='android:textAppearance' type='xs:string' />
+<xs:attribute name='android:textCursorDrawable' type='xs:string' />
+<xs:attribute name='android:textEditNoPasteWindowLayout' type='xs:string' />
+<xs:attribute name='android:textEditPasteWindowLayout' type='xs:string' />
+<xs:attribute name='android:textEditSideNoPasteWindowLayout' type='xs:string' />
+<xs:attribute name='android:textEditSidePasteWindowLayout' type='xs:string' />
+<xs:attribute name='android:textEditSuggestionItemLayout' type='xs:string' />
+<xs:attribute name='android:textIsSelectable' type='xs:string' />
+<xs:attribute name='android:textScaleX' type='xs:string' />
+<xs:attribute name='android:textSelectHandle' type='xs:string' />
+<xs:attribute name='android:textSelectHandleLeft' type='xs:string' />
+<xs:attribute name='android:textSelectHandleRight' type='xs:string' />
+<xs:attribute name='android:state_multiline' type='xs:string' />
+<xs:attribute name='android:absListViewStyle' type='xs:string' />
+<xs:attribute name='android:actionBarDivider' type='xs:string' />
+<xs:attribute name='android:actionBarItemBackground' type='xs:string' />
+<xs:attribute name='android:actionBarSize' type='xs:string' />
+<xs:attribute name='android:actionBarSplitStyle' type='xs:string' />
+<xs:attribute name='android:actionBarStyle' type='xs:string' />
+<xs:attribute name='android:actionBarTabBarStyle' type='xs:string' />
+<xs:attribute name='android:actionBarTabStyle' type='xs:string' />
+<xs:attribute name='android:actionBarTabTextStyle' type='xs:string' />
+<xs:attribute name='android:actionBarWidgetTheme' type='xs:string' />
+<xs:attribute name='android:actionButtonStyle' type='xs:string' />
+<xs:attribute name='android:actionDropDownStyle' type='xs:string' />
+<xs:attribute name='android:actionMenuTextAppearance' type='xs:string' />
+<xs:attribute name='android:actionMenuTextColor' type='xs:string' />
+<xs:attribute name='android:actionModeBackground' type='xs:string' />
+<xs:attribute name='android:actionModeCloseButtonStyle' type='xs:string' />
+<xs:attribute name='android:actionModeCloseDrawable' type='xs:string' />
+<xs:attribute name='android:actionModeSplitBackground' type='xs:string' />
+<xs:attribute name='android:actionModeStyle' type='xs:string' />
+<xs:attribute name='android:actionOverflowButtonStyle' type='xs:string' />
+<xs:attribute name='android:activatedBackgroundIndicator' type='xs:string' />
+<xs:attribute name='android:alertDialogIcon' type='xs:string' />
+<xs:attribute name='android:alertDialogStyle' type='xs:string' />
+<xs:attribute name='android:alertDialogTheme' type='xs:string' />
+<xs:attribute name='android:autoCompleteTextViewStyle' type='xs:string' />
+<xs:attribute name='android:backgroundDimAmount' type='xs:string' />
+<xs:attribute name='android:backgroundDimEnabled' type='xs:string' />
+<xs:attribute name='android:borderlessButtonStyle' type='xs:string' />
+<xs:attribute name='android:buttonBarButtonStyle' type='xs:string' />
+<xs:attribute name='android:buttonBarStyle' type='xs:string' />
+<xs:attribute name='android:buttonStyle' type='xs:string' />
+<xs:attribute name='android:buttonStyleInset' type='xs:string' />
+<xs:attribute name='android:buttonStyleSmall' type='xs:string' />
+<xs:attribute name='android:buttonStyleToggle' type='xs:string' />
+<xs:attribute name='android:calendarViewStyle' type='xs:string' />
+<xs:attribute name='android:candidatesTextStyleSpans' type='xs:string' />
+<xs:attribute name='android:checkBoxPreferenceStyle' type='xs:string' />
+<xs:attribute name='android:checkboxStyle' type='xs:string' />
+<xs:attribute name='android:colorActivatedHighlight' type='xs:string' />
+<xs:attribute name='android:colorBackground' type='xs:string' />
+<xs:attribute name='android:colorBackgroundCacheHint' type='xs:string' />
+<xs:attribute name='android:colorFocusedHighlight' type='xs:string' />
+<xs:attribute name='android:colorForeground' type='xs:string' />
+<xs:attribute name='android:colorForegroundInverse' type='xs:string' />
+<xs:attribute name='android:colorLongPressedHighlight' type='xs:string' />
+<xs:attribute name='android:colorMultiSelectHighlight' type='xs:string' />
+<xs:attribute name='android:colorPressedHighlight' type='xs:string' />
+<xs:attribute name='android:datePickerStyle' type='xs:string' />
+<xs:attribute name='android:detailsElementBackground' type='xs:string' />
+<xs:attribute name='android:dialogPreferenceStyle' type='xs:string' />
+<xs:attribute name='android:dialogTheme' type='xs:string' />
+<xs:attribute name='android:disabledAlpha' type='xs:string' />
+<xs:attribute name='android:dividerHorizontal' type='xs:string' />
+<xs:attribute name='android:dividerVertical' type='xs:string' />
+<xs:attribute name='android:dropDownHintAppearance' type='xs:string' />
+<xs:attribute name='android:dropDownItemStyle' type='xs:string' />
+<xs:attribute name='android:dropDownListViewStyle' type='xs:string' />
+<xs:attribute name='android:dropDownSpinnerStyle' type='xs:string' />
+<xs:attribute name='android:editTextBackground' type='xs:string' />
+<xs:attribute name='android:editTextColor' type='xs:string' />
+<xs:attribute name='android:editTextPreferenceStyle' type='xs:string' />
+<xs:attribute name='android:editTextStyle' type='xs:string' />
+<xs:attribute name='android:expandableListPreferredChildIndicatorLeft' type='xs:string' />
+<xs:attribute name='android:expandableListPreferredChildIndicatorRight' type='xs:string' />
+<xs:attribute name='android:expandableListPreferredChildPaddingLeft' type='xs:string' />
+<xs:attribute name='android:expandableListPreferredItemIndicatorLeft' type='xs:string' />
+<xs:attribute name='android:expandableListPreferredItemIndicatorRight' type='xs:string' />
+<xs:attribute name='android:expandableListPreferredItemPaddingLeft' type='xs:string' />
+<xs:attribute name='android:expandableListViewStyle' type='xs:string' />
+<xs:attribute name='android:expandableListViewWhiteStyle' type='xs:string' />
+<xs:attribute name='android:fastScrollOverlayPosition' type='xs:string' />
+<xs:attribute name='android:fastScrollPreviewBackgroundLeft' type='xs:string' />
+<xs:attribute name='android:fastScrollPreviewBackgroundRight' type='xs:string' />
+<xs:attribute name='android:fastScrollTextColor' type='xs:string' />
+<xs:attribute name='android:fastScrollThumbDrawable' type='xs:string' />
+<xs:attribute name='android:fastScrollTrackDrawable' type='xs:string' />
+<xs:attribute name='android:galleryItemBackground' type='xs:string' />
+<xs:attribute name='android:galleryStyle' type='xs:string' />
+<xs:attribute name='android:gridViewStyle' type='xs:string' />
+<xs:attribute name='android:homeAsUpIndicator' type='xs:string' />
+<xs:attribute name='android:horizontalScrollViewStyle' type='xs:string' />
+<xs:attribute name='android:imageButtonStyle' type='xs:string' />
+<xs:attribute name='android:imageWellStyle' type='xs:string' />
+<xs:attribute name='android:listChoiceBackgroundIndicator' type='xs:string' />
+<xs:attribute name='android:listChoiceIndicatorMultiple' type='xs:string' />
+<xs:attribute name='android:listChoiceIndicatorSingle' type='xs:string' />
+<xs:attribute name='android:listDivider' type='xs:string' />
+<xs:attribute name='android:listDividerAlertDialog' type='xs:string' />
+<xs:attribute name='android:listPopupWindowStyle' type='xs:string' />
+<xs:attribute name='android:listPreferredItemHeight' type='xs:string' />
+<xs:attribute name='android:listPreferredItemHeightLarge' type='xs:string' />
+<xs:attribute name='android:listPreferredItemHeightSmall' type='xs:string' />
+<xs:attribute name='android:listPreferredItemPaddingLeft' type='xs:string' />
+<xs:attribute name='android:listPreferredItemPaddingRight' type='xs:string' />
+<xs:attribute name='android:listSeparatorTextViewStyle' type='xs:string' />
+<xs:attribute name='android:listViewStyle' type='xs:string' />
+<xs:attribute name='android:listViewWhiteStyle' type='xs:string' />
+<xs:attribute name='android:mapViewStyle' type='xs:string' />
+<xs:attribute name='android:panelBackground' type='xs:string' />
+<xs:attribute name='android:panelColorBackground' type='xs:string' />
+<xs:attribute name='android:panelColorForeground' type='xs:string' />
+<xs:attribute name='android:panelFullBackground' type='xs:string' />
+<xs:attribute name='android:panelTextAppearance' type='xs:string' />
+<xs:attribute name='android:popupMenuStyle' type='xs:string' />
+<xs:attribute name='android:popupWindowStyle' type='xs:string' />
+<xs:attribute name='android:preferenceCategoryStyle' type='xs:string' />
+<xs:attribute name='android:preferenceInformationStyle' type='xs:string' />
+<xs:attribute name='android:preferenceLayoutChild' type='xs:string' />
+<xs:attribute name='android:preferenceScreenStyle' type='xs:string' />
+<xs:attribute name='android:preferenceStyle' type='xs:string' />
+<xs:attribute name='android:progressBarStyleHorizontal' type='xs:string' />
+<xs:attribute name='android:progressBarStyleInverse' type='xs:string' />
+<xs:attribute name='android:progressBarStyleLarge' type='xs:string' />
+<xs:attribute name='android:progressBarStyleLargeInverse' type='xs:string' />
+<xs:attribute name='android:progressBarStyleSmall' type='xs:string' />
+<xs:attribute name='android:progressBarStyleSmallInverse' type='xs:string' />
+<xs:attribute name='android:progressBarStyleSmallTitle' type='xs:string' />
+<xs:attribute name='android:quickContactBadgeStyleSmallWindowLarge' type='xs:string' />
+<xs:attribute name='android:quickContactBadgeStyleSmallWindowMedium' type='xs:string' />
+<xs:attribute name='android:quickContactBadgeStyleSmallWindowSmall' type='xs:string' />
+<xs:attribute name='android:quickContactBadgeStyleWindowLarge' type='xs:string' />
+<xs:attribute name='android:quickContactBadgeStyleWindowMedium' type='xs:string' />
+<xs:attribute name='android:quickContactBadgeStyleWindowSmall' type='xs:string' />
+<xs:attribute name='android:radioButtonStyle' type='xs:string' />
+<xs:attribute name='android:ratingBarStyle' type='xs:string' />
+<xs:attribute name='android:ratingBarStyleIndicator' type='xs:string' />
+<xs:attribute name='android:ratingBarStyleSmall' type='xs:string' />
+<xs:attribute name='android:ringtonePreferenceStyle' type='xs:string' />
+<xs:attribute name='android:scrollViewStyle' type='xs:string' />
+<xs:attribute name='android:seekBarStyle' type='xs:string' />
+<xs:attribute name='android:segmentedButtonStyle' type='xs:string' />
+<xs:attribute name='android:selectableItemBackground' type='xs:string' />
+<xs:attribute name='android:spinnerDropDownItemStyle' type='xs:string' />
+<xs:attribute name='android:spinnerItemStyle' type='xs:string' />
+<xs:attribute name='android:spinnerStyle' type='xs:string' />
+<xs:attribute name='android:starStyle' type='xs:string' />
+<xs:attribute name='android:switchPreferenceStyle' type='xs:string' />
+<xs:attribute name='android:tabWidgetStyle' type='xs:string' />
+<xs:attribute name='android:textAppearanceButton' type='xs:string' />
+<xs:attribute name='android:textAppearanceInverse' type='xs:string' />
+<xs:attribute name='android:textAppearanceLarge' type='xs:string' />
+<xs:attribute name='android:textAppearanceLargeInverse' type='xs:string' />
+<xs:attribute name='android:textAppearanceLargePopupMenu' type='xs:string' />
+<xs:attribute name='android:textAppearanceListItem' type='xs:string' />
+<xs:attribute name='android:textAppearanceListItemSmall' type='xs:string' />
+<xs:attribute name='android:textAppearanceMedium' type='xs:string' />
+<xs:attribute name='android:textAppearanceMediumInverse' type='xs:string' />
+<xs:attribute name='android:textAppearanceSearchResultSubtitle' type='xs:string' />
+<xs:attribute name='android:textAppearanceSearchResultTitle' type='xs:string' />
+<xs:attribute name='android:textAppearanceSmall' type='xs:string' />
+<xs:attribute name='android:textAppearanceSmallInverse' type='xs:string' />
+<xs:attribute name='android:textAppearanceSmallPopupMenu' type='xs:string' />
+<xs:attribute name='android:textCheckMark' type='xs:string' />
+<xs:attribute name='android:textCheckMarkInverse' type='xs:string' />
+<xs:attribute name='android:textColorAlertDialogListItem' type='xs:string' />
+<xs:attribute name='android:textColorHighlightInverse' type='xs:string' />
+<xs:attribute name='android:textColorHintInverse' type='xs:string' />
+<xs:attribute name='android:textColorLinkInverse' type='xs:string' />
+<xs:attribute name='android:textColorPrimary' type='xs:string' />
+<xs:attribute name='android:textColorPrimaryDisableOnly' type='xs:string' />
+<xs:attribute name='android:textColorPrimaryInverse' type='xs:string' />
+<xs:attribute name='android:textColorPrimaryInverseDisableOnly' type='xs:string' />
+<xs:attribute name='android:textColorPrimaryInverseNoDisable' type='xs:string' />
+<xs:attribute name='android:textColorPrimaryNoDisable' type='xs:string' />
+<xs:attribute name='android:textColorSecondary' type='xs:string' />
+<xs:attribute name='android:textColorSecondaryInverse' type='xs:string' />
+<xs:attribute name='android:textColorSecondaryInverseNoDisable' type='xs:string' />
+<xs:attribute name='android:textColorSecondaryNoDisable' type='xs:string' />
+<xs:attribute name='android:textColorTertiary' type='xs:string' />
+<xs:attribute name='android:textColorTertiaryInverse' type='xs:string' />
+<xs:attribute name='android:textSelectHandleWindowStyle' type='xs:string' />
+<xs:attribute name='android:textSuggestionsWindowStyle' type='xs:string' />
+<xs:attribute name='android:textViewStyle' type='xs:string' />
+<xs:attribute name='android:webTextViewStyle' type='xs:string' />
+<xs:attribute name='android:webViewStyle' type='xs:string' />
+<xs:attribute name='android:windowActionBar' type='xs:string' />
+<xs:attribute name='android:windowActionBarOverlay' type='xs:string' />
+<xs:attribute name='android:windowActionModeOverlay' type='xs:string' />
+<xs:attribute name='android:windowBackground' type='xs:string' />
+<xs:attribute name='android:windowCloseOnTouchOutside' type='xs:string' />
+<xs:attribute name='android:windowContentOverlay' type='xs:string' />
+<xs:attribute name='android:windowDisablePreview' type='xs:string' />
+<xs:attribute name='android:windowEnableSplitTouch' type='xs:string' />
+<xs:attribute name='android:windowFrame' type='xs:string' />
+<xs:attribute name='android:windowFullscreen' type='xs:string' />
+<xs:attribute name='android:windowIsFloating' type='xs:string' />
+<xs:attribute name='android:windowIsTranslucent' type='xs:string' />
+<xs:attribute name='android:windowNoDisplay' type='xs:string' />
+<xs:attribute name='android:windowNoTitle' type='xs:string' />
+<xs:attribute name='android:windowShowWallpaper' type='xs:string' />
+<xs:attribute name='android:windowTitleBackgroundStyle' type='xs:string' />
+<xs:attribute name='android:windowTitleSize' type='xs:string' />
+<xs:attribute name='android:windowTitleStyle' type='xs:string' />
+<xs:attribute name='android:yesNoPreferenceStyle' type='xs:string' />
+<xs:attribute name='android:fromXDelta' type='xs:string' />
+<xs:attribute name='android:fromYDelta' type='xs:string' />
+<xs:attribute name='android:toXDelta' type='xs:string' />
+<xs:attribute name='android:toYDelta' type='xs:string' />
+<xs:attribute name='android:mode' type='xs:string' />
+<xs:attribute name='android:layout_scale' type='xs:string' />
+<xs:attribute name='android:alpha' type='xs:string' />
+<xs:attribute name='android:clickable'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:contentDescription' type='xs:string' />
+<xs:attribute name='android:drawingCacheQuality'>
+  
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='auto' />
+        <xs:enumeration value='high' />
+        <xs:enumeration value='low' />
+      </xs:restriction>
+    </xs:simpleType>
+  
+</xs:attribute>
+<xs:attribute name='android:duplicateParentState'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:fadeScrollbars'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:fadingEdge'>
+  
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='horizontal' />
+        <xs:enumeration value='none' />
+        <xs:enumeration value='vertical' />
+      </xs:restriction>
+    </xs:simpleType>
+  
+</xs:attribute>
+<xs:attribute name='android:fadingEdgeLength' type='xs:string' />
+<xs:attribute name='android:filterTouchesWhenObscured' type='xs:string' />
+<xs:attribute name='android:fitsSystemWindows'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:focusable'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:focusableInTouchMode'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:hapticFeedbackEnabled'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:isScrollContainer'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:keepScreenOn'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:layerType' type='xs:string' />
+<xs:attribute name='android:longClickable'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:nextFocusDown' type='xs:string' />
+<xs:attribute name='android:nextFocusForward' type='xs:string' />
+<xs:attribute name='android:nextFocusLeft' type='xs:string' />
+<xs:attribute name='android:nextFocusRight' type='xs:string' />
+<xs:attribute name='android:nextFocusUp' type='xs:string' />
+<xs:attribute name='android:overScrollMode' type='xs:string' />
+<xs:attribute name='android:padding' type='xs:string' />
+<xs:attribute name='android:paddingBottom' type='xs:string' />
+<xs:attribute name='android:paddingLeft' type='xs:string' />
+<xs:attribute name='android:paddingRight' type='xs:string' />
+<xs:attribute name='android:paddingTop' type='xs:string' />
+<xs:attribute name='android:requiresFadingEdge' type='xs:string' />
+<xs:attribute name='android:rotation' type='xs:string' />
+<xs:attribute name='android:rotationX' type='xs:string' />
+<xs:attribute name='android:rotationY' type='xs:string' />
+<xs:attribute name='android:saveEnabled'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:scaleX' type='xs:string' />
+<xs:attribute name='android:scaleY' type='xs:string' />
+<xs:attribute name='android:scrollX' type='xs:string' />
+<xs:attribute name='android:scrollY' type='xs:string' />
+<xs:attribute name='android:scrollbarAlwaysDrawHorizontalTrack'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:scrollbarAlwaysDrawVerticalTrack'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:scrollbarDefaultDelayBeforeFade' type='xs:string' />
+<xs:attribute name='android:scrollbarFadeDuration' type='xs:string' />
+<xs:attribute name='android:scrollbarSize' type='xs:string' />
+<xs:attribute name='android:scrollbarStyle'>
+  
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='insideInset' />
+        <xs:enumeration value='insideOverlay' />
+        <xs:enumeration value='outsideInset' />
+        <xs:enumeration value='outsideOverlay' />
+      </xs:restriction>
+    </xs:simpleType>
+  
+</xs:attribute>
+<xs:attribute name='android:scrollbarThumbHorizontal' type='xs:string' />
+<xs:attribute name='android:scrollbarThumbVertical' type='xs:string' />
+<xs:attribute name='android:scrollbarTrackHorizontal' type='xs:string' />
+<xs:attribute name='android:scrollbarTrackVertical' type='xs:string' />
+<xs:attribute name='android:scrollbars'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='horizontal' />
+        <xs:enumeration value='none' />
+        <xs:enumeration value='vertical' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:soundEffectsEnabled'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:transformPivotX' type='xs:string' />
+<xs:attribute name='android:transformPivotY' type='xs:string' />
+<xs:attribute name='android:translationX' type='xs:string' />
+<xs:attribute name='android:translationY' type='xs:string' />
+<xs:attribute name='android:verticalScrollbarPosition' type='xs:string' />
+<xs:attribute name='android:visibility'>
+  
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='gone' />
+        <xs:enumeration value='invisible' />
+        <xs:enumeration value='visible' />
+      </xs:restriction>
+    </xs:simpleType>
+  
+</xs:attribute>
+<xs:attribute name='android:addStatesFromChildren'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:alwaysDrawnWithCache'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:animateLayoutChanges' type='xs:string' />
+<xs:attribute name='android:animationCache'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:clipChildren'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:clipToPadding'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='true' />
+        <xs:enumeration value='false' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:descendantFocusability'>
+  
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='afterDescendants' />
+        <xs:enumeration value='beforeDescendants' />
+        <xs:enumeration value='blocksDescendants' />
+      </xs:restriction>
+    </xs:simpleType>
+  
+</xs:attribute>
+<xs:attribute name='android:layoutAnimation' type='xs:string' />
+<xs:attribute name='android:persistentDrawingCache'>
+  <xs:simpleType><xs:union memberTypes='xs:string'>
+    <xs:simpleType>
+      <xs:restriction base='xs:NMTOKEN'>
+        <xs:enumeration value='all' />
+        <xs:enumeration value='animation' />
+        <xs:enumeration value='none' />
+        <xs:enumeration value='scrolling' />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:union></xs:simpleType>
+</xs:attribute>
+<xs:attribute name='android:splitMotionEvents' type='xs:string' />
+<xs:attribute name='android:layout_margin' type='xs:string' />
+<xs:attribute name='android:layout_marginBottom' type='xs:string' />
+<xs:attribute name='android:layout_marginLeft' type='xs:string' />
+<xs:attribute name='android:layout_marginRight' type='xs:string' />
+<xs:attribute name='android:layout_marginTop' type='xs:string' />
+<xs:attribute name='android:inflatedId' type='xs:string' />
+<xs:attribute name='android:streamType' type='xs:string' />
+<xs:attribute name='android:author' type='xs:string' />
+<xs:attribute name='android:thumbnail' type='xs:string' />
+<xs:attribute name='android:staticWallpaperPreview' type='xs:string' />
+<xs:attribute name='android:windowMinWidthMajor' type='xs:string' />
+<xs:attribute name='android:windowMinWidthMinor' type='xs:string' />
+<xs:attribute name='android:activityCloseEnterAnimation' type='xs:string' />
+<xs:attribute name='android:activityCloseExitAnimation' type='xs:string' />
+<xs:attribute name='android:activityOpenEnterAnimation' type='xs:string' />
+<xs:attribute name='android:activityOpenExitAnimation' type='xs:string' />
+<xs:attribute name='android:taskCloseEnterAnimation' type='xs:string' />
+<xs:attribute name='android:taskCloseExitAnimation' type='xs:string' />
+<xs:attribute name='android:taskOpenEnterAnimation' type='xs:string' />
+<xs:attribute name='android:taskOpenExitAnimation' type='xs:string' />
+<xs:attribute name='android:taskToBackEnterAnimation' type='xs:string' />
+<xs:attribute name='android:taskToBackExitAnimation' type='xs:string' />
+<xs:attribute name='android:taskToFrontEnterAnimation' type='xs:string' />
+<xs:attribute name='android:taskToFrontExitAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperCloseEnterAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperCloseExitAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperIntraCloseEnterAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperIntraCloseExitAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperIntraOpenEnterAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperIntraOpenExitAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperOpenEnterAnimation' type='xs:string' />
+<xs:attribute name='android:wallpaperOpenExitAnimation' type='xs:string' />
+<xs:attribute name='android:windowEnterAnimation' type='xs:string' />
+<xs:attribute name='android:windowExitAnimation' type='xs:string' />
+<xs:attribute name='android:windowHideAnimation' type='xs:string' />
+<xs:attribute name='android:windowShowAnimation' type='xs:string' />
+
 </xs:schema>
 

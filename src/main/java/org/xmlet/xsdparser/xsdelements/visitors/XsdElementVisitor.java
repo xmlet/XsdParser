@@ -2,43 +2,44 @@ package org.xmlet.xsdparser.xsdelements.visitors;
 
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
-public abstract class XsdElementVisitor {
+@SuppressWarnings("ALL")
+public interface XsdElementVisitor {
 
-    public void visit(XsdAll element) {
+    default void visit(XsdAll element) {
         visit((XsdMultipleElements) element);
     }
 
-    public void visit(XsdAttribute element) {
+    default void visit(XsdAttribute element) {
         visit((XsdReferenceElement) element);
     }
 
-    public void visit(XsdAttributeGroup element){
+    default void visit(XsdAttributeGroup element){
         visit((XsdReferenceElement) element);
     }
 
-    public void visit(XsdChoice element) {
+    default void visit(XsdChoice element) {
         visit((XsdMultipleElements) element);
     }
 
-    public void visit(XsdComplexType element) {}
+    default void visit(XsdComplexType element) {}
 
-    public void visit(XsdElement element){
+    default void visit(XsdElement element){
         visit((XsdReferenceElement) element);
     }
 
-    public void visit(XsdGroup element){
+    default void visit(XsdGroup element){
         visit((XsdReferenceElement) element);
     }
 
-    public void visit(XsdSequence element){
+    default void visit(XsdSequence element){
         visit((XsdMultipleElements) element);
     }
 
-    public void visit(XsdMultipleElements element){}
+    default void visit(XsdMultipleElements element){}
 
     private void visit(XsdReferenceElement element){
         ReferenceBase referenceBase = ReferenceBase.createFromXsd(element);
@@ -48,50 +49,50 @@ public abstract class XsdElementVisitor {
         }
     }
 
-    public void visit(XsdSimpleType element) {}
+    default void visit(XsdSimpleType element) {}
 
-    public void visit(XsdRestriction element) {}
+    default void visit(XsdRestriction element) {}
 
-    public void visit(XsdList element) {}
+    default void visit(XsdList element) {}
 
-    public void visit(XsdUnion element) {}
+    default void visit(XsdUnion element) {}
 
-    public void visit(XsdEnumeration element) {}
+    default void visit(XsdEnumeration element) {}
 
-    public void visit(XsdFractionDigits element) {}
+    default void visit(XsdFractionDigits element) {}
 
-    public void visit(XsdLength element) {}
+    default void visit(XsdLength element) {}
 
-    public void visit(XsdMaxExclusive element) {}
+    default void visit(XsdMaxExclusive element) {}
 
-    public void visit(XsdMaxInclusive element) {}
+    default void visit(XsdMaxInclusive element) {}
 
-    public void visit(XsdMaxLength element) {}
+    default void visit(XsdMaxLength element) {}
 
-    public void visit(XsdMinExclusive element) {}
+    default void visit(XsdMinExclusive element) {}
 
-    public void visit(XsdMinInclusive element) {}
+    default void visit(XsdMinInclusive element) {}
 
-    public void visit(XsdMinLength element) {}
+    default void visit(XsdMinLength element) {}
 
-    public void visit(XsdPattern element) {}
+    default void visit(XsdPattern element) {}
 
-    public void visit(XsdTotalDigits element) {}
+    default void visit(XsdTotalDigits element) {}
 
-    public void visit(XsdWhiteSpace element) {}
+    default void visit(XsdWhiteSpace element) {}
 
-    public void visit(XsdExtension element) {}
+    default void visit(XsdExtension element) {}
 
-    public void visit(XsdComplexContent element) {}
+    default void visit(XsdComplexContent element) {}
 
-    public void visit(XsdSimpleContent element) {}
+    default void visit(XsdSimpleContent element) {}
 
-    public void visit(XsdDocumentation element) {}
+    default void visit(XsdDocumentation element) {}
 
-    public void visit(XsdAppInfo element) {}
+    default void visit(XsdAppInfo element) {}
 
-    public void visit(XsdAnnotation xsdAnnotation) {}
+    default void visit(XsdAnnotation xsdAnnotation) {}
 
-    public abstract XsdAbstractElement getOwner();
+    XsdAbstractElement getOwner();
 
 }

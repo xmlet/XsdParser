@@ -4,6 +4,7 @@ import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,54 +20,32 @@ public class XsdUnion extends XsdAnnotatedElements {
     private List<XsdSimpleType> simpleTypeList = new ArrayList<>();
     private String memberTypes;
 
-    private XsdUnion(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdUnion(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdUnion(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public void setFields(Map<String, String> elementFieldsMap){
-        super.setFields(elementFieldsMap);
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
+        super.setFields(elementFieldsMapParam);
 
-        if (elementFieldsMap != null){
-            this.memberTypes = elementFieldsMap.getOrDefault(MEMBER_TYPES, memberTypes);
-        }
+        this.memberTypes = elementFieldsMap.getOrDefault(MEMBER_TYPES_TAG, memberTypes);
     }
 
     @Override
-    public XsdElementVisitor getXsdElementVisitor() {
+    public XsdElementVisitor getVisitor() {
         return visitor;
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
-    }
-
-    @Override
-    public XsdUnion clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdUnion elementCopy = new XsdUnion(this.getParent(), placeHolderAttributes);
-
-        elementCopy.simpleTypeList = this.simpleTypeList;
-
-        return elementCopy;
-    }
-
-    @Override
-    protected List<ReferenceBase> getElements() {
-        return null;
     }
 
     public List<XsdSimpleType> getUnionElements(){
         return simpleTypeList;
     }
 
-    @SuppressWarnings("unused")
     public List<String> getMemberTypesList() {
         return Arrays.asList(memberTypes.split(" "));
     }

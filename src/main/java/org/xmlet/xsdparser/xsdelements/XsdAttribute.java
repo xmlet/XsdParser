@@ -3,11 +3,14 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
-import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,68 +29,55 @@ public class XsdAttribute extends XsdReferenceElement {
     private String form;
     private String use;
 
-    private XsdAttribute(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdAttribute(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdAttribute(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public void setFields(Map<String, String> elementFieldsMap) {
-        super.setFields(elementFieldsMap);
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
+        super.setFields(elementFieldsMapParam);
 
-        if (elementFieldsMap != null){
-            super.setFields(elementFieldsMap);
+        this.defaultElement = elementFieldsMap.getOrDefault(DEFAULT_ELEMENT_TAG, defaultElement);
+        this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
+        this.type = elementFieldsMap.getOrDefault(TYPE_TAG, type);
+        this.form = elementFieldsMap.getOrDefault(FORM_TAG, form);
+        this.use = elementFieldsMap.getOrDefault(USE_TAG, "optional");
 
-            this.defaultElement = elementFieldsMap.getOrDefault(DEFAULT_ELEMENT, defaultElement);
-            this.fixed = elementFieldsMap.getOrDefault(FIXED, fixed);
-            this.type = elementFieldsMap.getOrDefault(TYPE, type);
-            this.form = elementFieldsMap.getOrDefault(FORM, form);
-            this.use = elementFieldsMap.getOrDefault(USE, "optional");
-
-            if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
-                XsdAttribute placeHolder = new XsdAttribute(this, null);
-                this.simpleType = new UnsolvedReference(type, placeHolder);
-                XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.simpleType);
-            }
+        if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
+            XsdAttribute placeHolder = new XsdAttribute(new HashMap<>());
+            placeHolder.setParent(this);
+            this.simpleType = new UnsolvedReference(type, placeHolder);
+            XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
     }
 
     @Override
-    public XsdElementVisitor getXsdElementVisitor() {
+    public XsdElementVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    protected List<ReferenceBase> getElements() {
-        return null;
-    }
+    public XsdAttribute clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.remove(REF_TAG);
 
-    @Override
-    public XsdAttribute clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdAttribute copy = new XsdAttribute(this.getParent(), placeHolderAttributes);
+        XsdAttribute copy = new XsdAttribute(placeHolderAttributes);
+        copy.setParent(this.parent);
 
+        copy.type = this.type;
         copy.simpleType = this.simpleType;
 
         return copy;
     }
 
     @Override
-    protected void setParent(XsdAbstractElement parent) {
-        super.setParent(parent);
-    }
-
-    @Override
-    public void replaceUnsolvedElements(ConcreteElement elementWrapper) {
+    public void replaceUnsolvedElements(NamedConcreteElement elementWrapper) {
         super.replaceUnsolvedElements(elementWrapper);
 
         XsdAbstractElement element = elementWrapper.getElement();
@@ -105,20 +95,26 @@ public class XsdAttribute extends XsdReferenceElement {
         return type;
     }
 
-    @SuppressWarnings("unused")
     public String getUse() {
         return use;
     }
 
-    @SuppressWarnings("unused")
-    public List<XsdRestriction> getAllRestrictions(){
-        XsdSimpleType simpleType = getXsdSimpleType();
+    public String getForm() {
+        return form;
+    }
 
-        if (simpleType != null){
-            return simpleType.getAllRestrictions();
+    public String getFixed() {
+        return fixed;
+    }
+
+    public List<XsdRestriction> getAllRestrictions(){
+        XsdSimpleType simpleTypeObj = getXsdSimpleType();
+
+        if (simpleTypeObj != null){
+            return simpleTypeObj.getAllRestrictions();
         }
 
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 
     public static ReferenceBase parse(Node node) {

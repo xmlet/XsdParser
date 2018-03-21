@@ -1,14 +1,16 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class XsdRestriction extends XsdAnnotatedElements {
 
@@ -16,9 +18,6 @@ public class XsdRestriction extends XsdAnnotatedElements {
     public static final String XS_TAG = "xs:restriction";
 
     private RestrictionXsdElementVisitor visitor = new RestrictionXsdElementVisitor();
-
-    private List<XsdAttributeGroup> attributeGroups = new ArrayList<>();
-    private List<ReferenceBase> attributes = new ArrayList<>();
 
     private XsdSimpleType simpleType;
 
@@ -37,69 +36,49 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
     private String base;
 
-    private XsdRestriction(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdRestriction(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdRestriction(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public void setFields(Map<String, String> elementFieldsMap){
-        super.setFields(elementFieldsMap);
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
+        super.setFields(elementFieldsMapParam);
 
-        if (elementFieldsMap != null){
-            this.base = elementFieldsMap.getOrDefault(BASE, base);
-        }
+        this.base = elementFieldsMap.getOrDefault(BASE_TAG, base);
     }
 
     @Override
-    public XsdElementVisitor getXsdElementVisitor() {
+    public XsdElementVisitor getVisitor() {
         return visitor;
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
     }
 
     @Override
-    public XsdRestriction clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdRestriction elementCopy = new XsdRestriction(this.getParent(), placeHolderAttributes);
+    public void replaceUnsolvedElements(NamedConcreteElement element) {
+        super.replaceUnsolvedElements(element);
 
-        HashMap<String, String> dummy = new HashMap<>();
-
-        elementCopy.simpleType = this.simpleType;
-
-        elementCopy.attributes = this.attributes;
-        elementCopy.attributeGroups = this.attributeGroups;
-        elementCopy.enumeration = this.enumeration;
-
-        elementCopy.fractionDigits = fractionDigits == null ? null : fractionDigits.clone(dummy);
-        elementCopy.length = length == null ? null : length.clone(dummy);
-        elementCopy.maxExclusive = maxExclusive == null ? null : maxExclusive.clone(dummy);
-        elementCopy.maxInclusive = maxInclusive == null ? null : maxInclusive.clone(dummy);
-        elementCopy.maxLength = maxLength == null ? null : maxLength.clone(dummy);
-        elementCopy.minExclusive = minExclusive == null ? null : minExclusive.clone(dummy);
-        elementCopy.minInclusive = minInclusive == null ? null : minInclusive.clone(dummy);
-        elementCopy.minLength = minLength == null ? null : minLength.clone(dummy);
-        elementCopy.pattern = pattern == null ? null : pattern.clone(dummy);
-        elementCopy.totalDigits = totalDigits == null ? null : totalDigits.clone(dummy);
-        elementCopy.whiteSpace = whiteSpace == null ? null : whiteSpace.clone(dummy);
-
-        return elementCopy;
-    }
-
-    @Override
-    protected List<ReferenceBase> getElements() {
-        return null;
+        visitor.replaceUnsolvedAttributes(element);
     }
 
     public static ReferenceBase parse(Node node){
         return xsdParseSkeleton(node, new XsdRestriction(convertNodeMap(node.getAttributes())));
+    }
+
+    public Stream<XsdAttribute> getXsdAttributes() {
+        return visitor.getXsdAttributes();
+    }
+
+    public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
+        return visitor.getXsdAttributeGroup();
+    }
+
+    public XsdSimpleType getSimpleType() {
+        return simpleType;
     }
 
     public String getBase() {
@@ -202,7 +181,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         this.whiteSpace = whiteSpace;
     }
 
-    class RestrictionXsdElementVisitor extends AnnotatedXsdElementVisitor {
+    class RestrictionXsdElementVisitor extends AttributesVisitor {
 
         @Override
         public XsdAbstractElement getOwner() {
@@ -291,6 +270,13 @@ public class XsdRestriction extends XsdAnnotatedElements {
             super.visit(element);
 
             XsdRestriction.this.whiteSpace = element;
+        }
+
+        @Override
+        public void visit(XsdSimpleType element) {
+            super.visit(element);
+
+            XsdRestriction.this.simpleType = element;
         }
     }
 }

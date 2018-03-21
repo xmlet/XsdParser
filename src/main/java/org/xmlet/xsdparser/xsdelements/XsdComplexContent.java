@@ -1,17 +1,17 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import org.w3c.dom.Node;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
-import org.w3c.dom.Node;
 
-import java.util.Collections;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public class XsdComplexContent extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:complexContent";
-    public static final String XS_TAG = "xs:complexContet";
+    public static final String XS_TAG = "xs:complexContent";
 
     private XsdElementVisitor xsdElementVisitor = new ComplexContentXsdElementVisitor();
 
@@ -20,53 +20,38 @@ public class XsdComplexContent extends XsdAnnotatedElements {
 
     private boolean mixed;
 
-    private XsdComplexContent(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdComplexContent(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdComplexContent(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public void setFields(Map<String, String> elementFieldsMap) {
-        super.setFields(elementFieldsMap);
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
+        super.setFields(elementFieldsMapParam);
 
-        if (elementFieldsMap != null){
-            this.mixed = Boolean.parseBoolean(elementFieldsMap.getOrDefault(MIXED, "false"));
-        }
+        this.mixed = Boolean.parseBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
     }
 
     @Override
-    public XsdElementVisitor getXsdElementVisitor() {
+    public XsdElementVisitor getVisitor() {
         return xsdElementVisitor;
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
     }
 
-    @Override
-    public XsdComplexContent clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdComplexContent elementCopy = new XsdComplexContent(this.getParent(), placeHolderAttributes);
-
-        elementCopy.restriction = this.restriction;
-        elementCopy.extension = this.extension;
-
-        return elementCopy;
-    }
-
-    @Override
-    protected List<ReferenceBase> getElements() {
-        return Collections.emptyList();
-    }
-
-    @SuppressWarnings("unused")
     public boolean isMixed() {
         return mixed;
+    }
+
+    public XsdExtension getXsdExtension() {
+        return extension instanceof ConcreteElement ? (XsdExtension) extension.getElement() : null;
+    }
+
+    public XsdRestriction getXsdRestriction(){
+        return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
     public static ReferenceBase parse(Node node){

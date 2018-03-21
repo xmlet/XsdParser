@@ -1,29 +1,23 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public abstract class XsdIdentifierElements extends XsdAbstractElement {
 
     private String id;
 
-    XsdIdentifierElements(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
-    }
-
-    XsdIdentifierElements(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
+    XsdIdentifierElements(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public void setFields(Map<String, String> elementFieldsMap) {
-        super.setFields(elementFieldsMap);
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
+        super.setFields(elementFieldsMapParam);
 
-        if (elementFieldsMap != null){
-            this.id = elementFieldsMap.getOrDefault(ID, id);
-        }
+        this.id = elementFieldsMap.getOrDefault(ID_TAG, id);
     }
 
-    @SuppressWarnings("unused")
     public String getId() {
         return id;
     }

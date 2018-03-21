@@ -1,10 +1,11 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,22 +20,18 @@ public class XsdAttributeGroup extends XsdReferenceElement {
     private List<XsdAttributeGroup> attributeGroups = new ArrayList<>();
     private List<ReferenceBase> attributes = new ArrayList<>();
 
-    private XsdAttributeGroup(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdAttributeGroup(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdAttributeGroup(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
     }
 
     @Override
-    public XsdElementVisitor getXsdElementVisitor() {
+    public XsdElementVisitor getVisitor() {
         return visitor;
     }
 
@@ -50,9 +47,12 @@ public class XsdAttributeGroup extends XsdReferenceElement {
     }
 
     @Override
-    public XsdAbstractElement clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.getParent(), placeHolderAttributes);
+    public XsdReferenceElement clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.remove(REF_TAG);
+
+        XsdAttributeGroup elementCopy = new XsdAttributeGroup(placeHolderAttributes);
+        elementCopy.setParent(parent);
 
         elementCopy.attributes.addAll(this.attributes);
         elementCopy.attributeGroups.addAll(this.attributeGroups);
@@ -61,7 +61,7 @@ public class XsdAttributeGroup extends XsdReferenceElement {
     }
 
     @Override
-    public void replaceUnsolvedElements(ConcreteElement element) {
+    public void replaceUnsolvedElements(NamedConcreteElement element) {
         if (element.getElement() instanceof  XsdAttributeGroup){
             XsdAttributeGroup attributeGroup = (XsdAttributeGroup) element.getElement();
 
@@ -71,7 +71,6 @@ public class XsdAttributeGroup extends XsdReferenceElement {
         }
     }
 
-    @SuppressWarnings("unused")
     public List<XsdAttributeGroup> getAttributeGroups() {
         return attributeGroups;
     }

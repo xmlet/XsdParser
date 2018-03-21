@@ -1,11 +1,11 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import org.w3c.dom.Node;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
-import org.w3c.dom.Node;
 
-import java.util.Collections;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public class XsdSimpleContent extends XsdAnnotatedElements {
@@ -18,39 +18,27 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
     private ReferenceBase restriction;
     private ReferenceBase extension;
 
-    private XsdSimpleContent(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdSimpleContent(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdSimpleContent(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public XsdElementVisitor getXsdElementVisitor() {
+    public XsdElementVisitor getVisitor() {
         return xsdElementVisitor;
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
     }
 
-    @Override
-    public XsdSimpleContent clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdSimpleContent elementCopy = new XsdSimpleContent(this.getParent(), placeHolderAttributes);
-
-        elementCopy.restriction = this.restriction;
-        elementCopy.extension = this.extension;
-
-        return elementCopy;
+    public XsdExtension getXsdExtension() {
+        return extension instanceof ConcreteElement ? (XsdExtension) extension.getElement() : null;
     }
 
-    @Override
-    protected List<ReferenceBase> getElements() {
-        return Collections.emptyList();
+    public XsdRestriction getXsdRestriction(){
+        return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
     public static ReferenceBase parse(Node node){

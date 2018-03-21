@@ -10,16 +10,15 @@ import org.xmlet.xsdparser.xsdelements.XsdReferenceElement;
 public class UnsolvedReference extends ReferenceBase {
 
     private String ref;
-    private final XsdReferenceElement element;
 
     UnsolvedReference(XsdReferenceElement element){
+        super(element);
         this.ref = getRef(element);
-        this.element = element;
     }
 
     public UnsolvedReference(String refType, XsdReferenceElement element){
+        super(element);
         this.ref = refType;
-        this.element = element;
     }
 
     public String getRef() {
@@ -30,7 +29,8 @@ public class UnsolvedReference extends ReferenceBase {
         return element.getParent();
     }
 
+    @Override
     public XsdReferenceElement getElement() {
-        return element;
+        return (XsdReferenceElement) element;
     }
 }

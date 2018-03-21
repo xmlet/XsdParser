@@ -124,7 +124,7 @@ public class HtmlParseTest {
 
         XsdComplexType metaChild = htmlElement.getXsdComplexType();
 
-        Optional<XsdAttribute> attributeOptional = metaChild.getXsdAttributes().filter(attribute1 -> attribute1.getName().equals("http_equiv")).findFirst();
+        Optional<XsdAttribute> attributeOptional = metaChild.getXsdAttributes().filter(attribute1 -> attribute1.getName().equals("httpequiv")).findFirst();
 
         Assert.assertTrue(attributeOptional.isPresent());
 

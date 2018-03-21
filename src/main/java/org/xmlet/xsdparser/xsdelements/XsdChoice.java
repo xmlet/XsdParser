@@ -4,6 +4,7 @@ import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public class XsdChoice extends XsdMultipleElements{
@@ -13,33 +14,19 @@ public class XsdChoice extends XsdMultipleElements{
 
     private ChoiceXsdElementVisitor visitor = new ChoiceXsdElementVisitor();
 
-    private XsdChoice(XsdAbstractElement parent, Map<String, String> elementFieldsMap) {
-        super(parent, elementFieldsMap);
-    }
-
-    private XsdChoice(Map<String, String> elementFieldsMap) {
-        super(elementFieldsMap);
+    private XsdChoice(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
     public void accept(XsdElementVisitor xsdElementVisitor) {
+        super.accept(xsdElementVisitor);
         xsdElementVisitor.visit(this);
-        this.setParent(xsdElementVisitor.getOwner());
     }
 
     @Override
-    public ChoiceXsdElementVisitor getXsdElementVisitor() {
+    public ChoiceXsdElementVisitor getVisitor() {
         return visitor;
-    }
-
-    @Override
-    public XsdAbstractElement clone(Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(this.getElementFieldsMap());
-        XsdChoice elementCopy = new XsdChoice(this.getParent(), placeHolderAttributes);
-
-        elementCopy.addElements(this.getElements());
-
-        return elementCopy;
     }
 
     public static ReferenceBase parse(Node node){

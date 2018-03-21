@@ -4,14 +4,13 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -19,48 +18,42 @@ public abstract class XsdAbstractElement {
 
     protected Map<String, String> elementFieldsMap = new HashMap<>();
 
-    static final String ID = "id";
-    public static final String NAME = "name";
-    static final String ABSTRACT = "abstract";
-    static final String DEFAULT_ELEMENT = "defaultElement";
-    protected static final String FIXED = "fixed";
-    static final String TYPE = "type";
-    static final String MIXED = "mixed";
-    static final String BLOCK = "block";
-    static final String FINAL = "final";
-    static final String USE = "use";
-    static final String SUBSTITUTION_GROUP = "substitutionGroup";
-    static final String DEFAULT = "default";
-    static final String FORM = "form";
-    static final String NILLABLE = "nillable";
-    static final String MIN_OCCURS = "minOccurs";
-    static final String MAX_OCCURS = "maxOccurs";
-    static final String ITEM_TYPE = "itemType";
-    static final String BASE = "base";
-    static final String SOURCE = "source";
-    static final String XML_LANG = "xml:lang";
-    static final String MEMBER_TYPES = "memberTypes";
-    public static final String VALUE = "value";
+    static final String ID_TAG = "id";
+    public static final String NAME_TAG = "name";
+    static final String ABSTRACT_TAG = "abstract";
+    static final String DEFAULT_ELEMENT_TAG = "defaultElement";
+    protected static final String FIXED_TAG = "fixed";
+    static final String TYPE_TAG = "type";
+    static final String MIXED_TAG = "mixed";
+    static final String BLOCK_TAG = "block";
+    static final String FINAL_TAG = "final";
+    static final String USE_TAG = "use";
+    static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
+    static final String DEFAULT_TAG = "default";
+    static final String FORM_TAG = "form";
+    static final String NILLABLE_TAG = "nillable";
+    static final String MIN_OCCURS_TAG = "minOccurs";
+    static final String MAX_OCCURS_TAG = "maxOccurs";
+    static final String ITEM_TYPE_TAG = "itemType";
+    static final String BASE_TAG = "base";
+    static final String SOURCE_TAG = "source";
+    static final String XML_LANG_TAG = "xml:lang";
+    static final String MEMBER_TYPES_TAG = "memberTypes";
+    public static final String REF_TAG = "ref";
+    public static final String VALUE_TAG = "value";
 
-    private XsdAbstractElement parent;
+    XsdAbstractElement parent;
 
-    protected XsdAbstractElement(Map<String, String> elementFieldsMap){
-        setFields(elementFieldsMap);
-    }
-
-    protected XsdAbstractElement(XsdAbstractElement parent, Map<String, String> elementFieldsMap){
-        setParent(parent);
-        setFields(elementFieldsMap);
+    protected XsdAbstractElement(@NotNull Map<String, String> elementFieldsMapParam){
+        setFields(elementFieldsMapParam);
     }
 
     /**
      * This method serves as a base to all xsdelements which need to set their class specific attributes.
-     * @param elementFieldsMap The node map containing all attributes of a XSDElement
+     * @param elementFieldsMapParam The node map containing all attributes of a XSDElement
      */
-    public void setFields(Map<String, String> elementFieldsMap){
-        if (elementFieldsMap != null){
-            this.elementFieldsMap = elementFieldsMap;
-        }
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
+        this.elementFieldsMap = elementFieldsMapParam;
     }
 
     public Map<String, String> getElementFieldsMap() {
@@ -71,17 +64,15 @@ public abstract class XsdAbstractElement {
      * Obtains the visitor of an XsdAbstractElement instance.
      * @return The concrete visitor instance.
      */
-    public abstract XsdElementVisitor getXsdElementVisitor();
+    public abstract XsdElementVisitor getVisitor();
 
-    public abstract void accept(XsdElementVisitor xsdElementVisitor);
+    public void accept(XsdElementVisitor xsdElementVisitor){
+        this.setParent(xsdElementVisitor.getOwner());
+    }
 
-    /**
-     * @param placeHolderAttributes The additional attributes to add to the clone.
-     * @return A deep copy of the object from which is called upon.
-     */
-    public abstract XsdAbstractElement clone(Map<String, String> placeHolderAttributes);
-
-    protected abstract List<ReferenceBase> getElements();
+    List<ReferenceBase> getElements(){
+        return Collections.emptyList();
+    }
 
     public Stream<XsdAbstractElement> getXsdElements(){
         List<ReferenceBase> elements = getElements();
@@ -103,18 +94,14 @@ public abstract class XsdAbstractElement {
     static ReferenceBase xsdParseSkeleton(Node node, XsdAbstractElement element){
         Node child = node.getFirstChild();
 
-        if (element instanceof XsdElement && ((XsdElement) element).getName() != null && ((XsdElement) element).getName().equals("html")){
-            int a  = 5;
-        }
-
         while (child != null) {
             if (child.getNodeType() == Node.ELEMENT_NODE) {
                 String nodeName = child.getNodeName();
 
-                Function<Node, ReferenceBase> parserFunction = XsdParser.parseMappers.get(nodeName);
+                Function<Node, ReferenceBase> parserFunction = XsdParser.getParseMappers().get(nodeName);
 
                 if (parserFunction != null){
-                    parserFunction.apply(child).getElement().accept(element.getXsdElementVisitor());
+                    parserFunction.apply(child).getElement().accept(element.getVisitor());
                 }
             }
 
@@ -140,7 +127,7 @@ public abstract class XsdAbstractElement {
      * ref attribute that matches a ConcreteElement name attribute
      * @param element A concrete element that will replace a unsolved reference, if existent
      */
-    public void replaceUnsolvedElements(ConcreteElement element){
+    public void replaceUnsolvedElements(NamedConcreteElement element){
         List<ReferenceBase> elements = this.getElements();
 
         if (elements != null){
@@ -160,7 +147,7 @@ public abstract class XsdAbstractElement {
         return parent;
     }
 
-    protected void setParent(XsdAbstractElement parent) {
+    void setParent(XsdAbstractElement parent) {
         this.parent = parent;
     }
 

@@ -1,9 +1,11 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,26 +18,20 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     private String maxOccurs;
     private Integer minOccurs;
 
-    XsdMultipleElements(XsdAbstractElement parent, Map<String, String> nodeAttributes) {
-        super(parent, nodeAttributes);
-    }
-
-    XsdMultipleElements(Map<String, String> nodeAttributes) {
-        super(nodeAttributes);
+    XsdMultipleElements(@NotNull Map<String, String> elementFieldsMapParam) {
+        super(elementFieldsMapParam);
     }
 
     @Override
-    public void setFields(Map<String, String> elementFieldsMap) {
-        super.setFields(elementFieldsMap);
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
+        super.setFields(elementFieldsMapParam);
 
-        if (elementFieldsMap != null){
-            this.minOccurs = Integer.parseInt(elementFieldsMap.getOrDefault(MIN_OCCURS, "1"));
-            this.maxOccurs = elementFieldsMap.getOrDefault(MAX_OCCURS, "1");
-        }
+        this.minOccurs = Integer.parseInt(elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
+        this.maxOccurs = elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1");
     }
 
     @Override
-    public void replaceUnsolvedElements(ConcreteElement elementWrapper) {
+    public void replaceUnsolvedElements(NamedConcreteElement elementWrapper) {
         if (elementWrapper.getElement() instanceof XsdElement){
             super.replaceUnsolvedElements(elementWrapper);
         }

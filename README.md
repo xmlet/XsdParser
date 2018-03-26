@@ -151,5 +151,5 @@ https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser
   
 ## Important remarks
 
-xsd:import - XsdParser does not support xsd:import tags, meaning that if there are import tags the content of the imported files should be manually added to the main file. Support for xsd:import tags will be added, when my schedule clears. 
+xsd:import - XsdParser does not support xsd:import tags, meaning that if there are import tags the content of the imported files should be manually added to the main file. Support for xsd:import tags will be added, when my schedule clears.   
 name attribute - XsdParser uses the name attribute as a tool in order to resolve references, therefore it should be unique in the file. Using multiple times the same name will generate unexpected behaviour.  

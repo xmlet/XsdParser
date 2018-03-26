@@ -31,7 +31,6 @@ Here follows a simple example where we want to obtain all the top level xsd:elem
 
 ``` java
 public class ParserApp {
-
     public static void main(String [] args) {
         String filePath = "Your file path here.";
         XsdParser parserInstance = new XsdParser();
@@ -71,28 +70,28 @@ The result could be consulted in the following way:
 
 
 ``` java
-    public static void main(String [] args) {
-        (...)
-                
-        XsdElement htmlElement = elements.get(0);
+public static void main(String [] args) {
+    (...)
+            
+    XsdElement htmlElement = elements.get(0);
 
-        XsdComplexType htmlComplexType = htmlElement.getXsdComplexType();
-        List<XsdAttribute> htmlAttributeList = htmlComplexType.getXsdAttributes().collect(Collectors.toList());
+    XsdComplexType htmlComplexType = htmlElement.getXsdComplexType();
+    List<XsdAttribute> htmlAttributeList = htmlComplexType.getXsdAttributes().collect(Collectors.toList());
 
-        XsdAttribute manifestAttribute = htmlAttributeList.get(0);
+    XsdAttribute manifestAttribute = htmlAttributeList.get(0);
 
-        XsdChoice choiceElement = (XsdChoice) htmlComplexType.getXsdChildElement();
+    XsdChoice choiceElement = (XsdChoice) htmlComplexType.getXsdChildElement();
 
-        List<XsdAbstractElement> choiceChildren = choiceElement.getXsdElements().collect(Collectors.toList());
+    List<XsdAbstractElement> choiceChildren = choiceElement.getXsdElements().collect(Collectors.toList());
 
-        XsdGroup flowContentGroup = (XsdGroup) choiceChildren.get(0);
+    XsdGroup flowContentGroup = (XsdGroup) choiceChildren.get(0);
 
-        XsdAll flowContentAll = (XsdAll) flowContentGroup.getChildElement();
+    XsdAll flowContentAll = (XsdAll) flowContentGroup.getChildElement();
 
-        List<XsdAbstractElement> groupMembers = flowContentAll.getXsdElements().collect(Collectors.toList());
+    List<XsdAbstractElement> groupMembers = flowContentAll.getXsdElements().collect(Collectors.toList());
 
-        XsdElement elem1 = (XsdElement) groupMembers.get(0);
-    }
+    XsdElement elem1 = (XsdElement) groupMembers.get(0);
+}
 ```
 
 ### Reference solving
@@ -140,7 +139,8 @@ and adding the replacement.
 ### Hierarchy support
 
 The parser supports xsd:base tags, which allow the use of hierarchies in the xsd files. 
-The extended xsd:element is referenced in the element containing the xsd:base tag so in order to obtain all the attributes/elements that attributes has you have to iterate on that base field.
+The extended xsd:element is referenced in the element containing the xsd:base tag so in order to obtain all the attributes/elements that element has you 
+have to iterate on that base field.
 
 ## Code Quality
 

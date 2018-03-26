@@ -76,6 +76,10 @@ public class XsdGroup extends XsdReferenceElement {
         this.childElement.setParent(this);
     }
 
+    public XsdMultipleElements getChildElement() {
+        return childElement;
+    }
+
     public static ReferenceBase parse(Node node){
         return xsdParseSkeleton(node, new XsdGroup(convertNodeMap(node.getAttributes())));
     }

@@ -90,7 +90,7 @@ parse function.
                 <xsd:choice>
                     <xsd:group ref="flowContent"/>
                 </xsd:choice>
-			    <xs:attribute name="manifest" type="xsd:anyURI" />
+                <xs:attribute name="manifest" type="xsd:anyURI" />
             </xs:complexType>
 	</xs:element>
 </xsd:schema>

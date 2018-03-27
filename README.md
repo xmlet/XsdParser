@@ -6,12 +6,24 @@
 
 # XsdParser
 
-XsdParser is a library that parses a XML Definition file (.xsd) into a list of java objects. Each different tag has a corresponding java object and its attributes are represented as fields in java. 
-All java objects follow the definition of the xsd rules and enforces them, which means that if a xsd file has an element containing a child that isn't supposed to it will ignore that child. 
+XsdParser is a library that parses a XML Definition file (.xsd) into a list of java objects. Each different tag has a corresponding java object
+ and its attributes are represented as fields in java. All these objects derive from the same abstract element, XsdAbstractElement.
+All java representations of the xsd elements follow the schema definition for xsd elements.  
+For example, the xsd:annotation tag only allows xsd:appinfo and xsd:documentation as children nodes, and also can have an attribute named id, therefore
+XsdParser has the following class (simplified for example purposes):
 
-The rules for the xsd schema are present in the following URL:
+```java
+public class XsdAnnotation extends XsdIdentifierElements {
 
-http://www.datypic.com/sc/xsd/s-xmlschema.xsd.html 
+    //The id field is inherited from XsdIdentifierElements.
+    private List<XsdAppInfo> appInfoList = new ArrayList<>();
+    private List<XsdDocumentation> documentations = new ArrayList<>();
+}
+```
+
+The set of rules followed by this library can be consulted in the following URL:
+
+http://www.datypic.com/sc/xsd/s-xmlschema.xsd.html
 
 ## Installation
 
@@ -35,15 +47,21 @@ public class ParserApp {
         String filePath = "Your file path here.";
         XsdParser parserInstance = new XsdParser();
 
-        List<XsdElement> elements = parserInstance.parse(filePath)
-                .filter(element -> element instanceof XsdElement)
-                .map(element -> (XsdElement) element)
-                .collect(Collectors.toList());
+        Stream<XsdElement> elementsStream = parserInstance.parse(filePath);
     }
 }
 ```
 
-If the parsed file were to contain the following xml:
+After parsing the file like shown above it's possible to start to navigate in the resulting parsed elements. In the image below it is 
+ presented the class diagram that could be useful before trying to start navigating in the result. There are multiple abstract classes
+  that allow to implement shared features and reduce duplicated code. 
+
+![image](https://raw.githubusercontent.com/xmlet/XsdParser/master/src/main/java/org/xmlet/xsdparser/xsdelements/xsdelements.png) 
+
+### Navigation
+
+A simple example of a xsd file is presented with the correspondent code that shows how to navigate in the element list produced by the
+parse function.
 
 ```xml
 <?xml version='1.0' encoding='utf-8' ?>
@@ -72,6 +90,8 @@ The result could be consulted in the following way:
 ``` java
 public static void main(String [] args) {
     (...)
+    
+    List<XsdElement> elements = elements.collect(Collectors.toList());
             
     XsdElement htmlElement = elements.get(0);
 

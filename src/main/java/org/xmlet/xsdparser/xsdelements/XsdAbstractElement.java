@@ -7,7 +7,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -40,7 +40,7 @@ public abstract class XsdAbstractElement {
     static final String XML_LANG_TAG = "xml:lang";
     static final String MEMBER_TYPES_TAG = "memberTypes";
     public static final String REF_TAG = "ref";
-    public static final String VALUE_TAG = "value";
+    protected static final String VALUE_TAG = "value";
 
     XsdAbstractElement parent;
 
@@ -64,13 +64,13 @@ public abstract class XsdAbstractElement {
      * Obtains the visitor of an XsdAbstractElement instance.
      * @return The concrete visitor instance.
      */
-    public abstract XsdElementVisitor getVisitor();
+    public abstract XsdAbstractElementVisitor getVisitor();
 
-    public void accept(XsdElementVisitor xsdElementVisitor){
-        this.setParent(xsdElementVisitor.getOwner());
+    public void accept(XsdAbstractElementVisitor xsdAbstractElementVisitor){
+        this.setParent(xsdAbstractElementVisitor.getOwner());
     }
 
-    List<ReferenceBase> getElements(){
+    public List<ReferenceBase> getElements(){
         return Collections.emptyList();
     }
 
@@ -147,7 +147,7 @@ public abstract class XsdAbstractElement {
         return parent;
     }
 
-    void setParent(XsdAbstractElement parent) {
+    public void setParent(XsdAbstractElement parent) {
         this.parent = parent;
     }
 

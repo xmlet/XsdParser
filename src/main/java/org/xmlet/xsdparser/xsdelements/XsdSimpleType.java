@@ -3,7 +3,8 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleTypeVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ public class XsdSimpleType extends XsdReferenceElement {
     public static final String XSD_TAG = "xsd:simpleType";
     public static final String XS_TAG = "xs:simpleType";
 
-    private SimpleTypeXsdElementVisitor visitor = new SimpleTypeXsdElementVisitor();
+    private XsdSimpleTypeVisitor visitor = new XsdSimpleTypeVisitor(this);
 
     private XsdRestriction restriction;
     private XsdUnion union;
@@ -38,14 +39,14 @@ public class XsdSimpleType extends XsdReferenceElement {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdSimpleTypeVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
@@ -222,32 +223,15 @@ public class XsdSimpleType extends XsdReferenceElement {
                hasDifferentValue(existing.getLength(), newRestriction.getLength());
     }
 
-    class SimpleTypeXsdElementVisitor extends AnnotatedXsdElementVisitor {
+    public void setList(XsdList list) {
+        this.list = list;
+    }
 
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdSimpleType.this;
-        }
+    public void setUnion(XsdUnion union) {
+        this.union = union;
+    }
 
-        @Override
-        public void visit(XsdList element) {
-            super.visit(element);
-
-            XsdSimpleType.this.list = element;
-        }
-
-        @Override
-        public void visit(XsdUnion element) {
-            super.visit(element);
-
-            XsdSimpleType.this.union = element;
-        }
-
-        @Override
-        public void visit(XsdRestriction element) {
-            super.visit(element);
-
-            XsdSimpleType.this.restriction = element;
-        }
+    public void setRestriction(XsdRestriction restriction) {
+        this.restriction = restriction;
     }
 }

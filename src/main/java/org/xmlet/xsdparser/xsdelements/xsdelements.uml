@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.xmlet.xsdparser.xsdelements</OriginalElement>
+  <nodes>
+    <node x="0.0" y="257.0">org.xmlet.xsdparser.xsdelements.XsdComplexContent</node>
+    <node x="1267.75" y="257.0">org.xmlet.xsdparser.xsdelements.xsdrestrictions</node>
+    <node x="73.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdChoice</node>
+    <node x="1441.75" y="257.0">org.xmlet.xsdparser.xsdelements.XsdUnion</node>
+    <node x="963.25" y="158.0">org.xmlet.xsdparser.xsdelements.XsdAnnotation</node>
+    <node x="1002.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdComplexType</node>
+    <node x="335.49999999999994" y="346.0">org.xmlet.xsdparser.xsdelements.XsdAll</node>
+    <node x="1162.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdAttribute</node>
+    <node x="1124.75" y="257.0">org.xmlet.xsdparser.xsdelements.XsdRestriction</node>
+    <node x="861.25" y="79.0">org.xmlet.xsdparser.xsdelements.XsdIdentifierElements</node>
+    <node x="723.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdSimpleType</node>
+    <node x="516.8299999999999" y="257.0">org.xmlet.xsdparser.xsdelements.XsdList</node>
+    <node x="776.75" y="257.0">org.xmlet.xsdparser.xsdelements.XsdReferenceElement</node>
+    <node x="958.75" y="257.0">org.xmlet.xsdparser.xsdelements.XsdSimpleContent</node>
+    <node x="197.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdSequence</node>
+    <node x="872.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdElement</node>
+    <node x="536.25" y="79.0">org.xmlet.xsdparser.xsdelements.XsdAnnotationChildren</node>
+    <node x="177.0" y="257.0">org.xmlet.xsdparser.xsdelements.XsdMultipleElements</node>
+    <node x="711.25" y="0.0">org.xmlet.xsdparser.xsdelements.XsdAbstractElement</node>
+    <node x="642.25" y="158.0">org.xmlet.xsdparser.xsdelements.XsdAppInfo</node>
+    <node x="556.5" y="346.0">org.xmlet.xsdparser.xsdelements.XsdAttributeGroup</node>
+    <node x="772.25" y="158.0">org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements</node>
+    <node x="472.24999999999994" y="158.0">org.xmlet.xsdparser.xsdelements.XsdDocumentation</node>
+    <node x="621.8299999999999" y="257.0">org.xmlet.xsdparser.xsdelements.XsdExtension</node>
+    <node x="436.49999999999994" y="346.0">org.xmlet.xsdparser.xsdelements.XsdGroup</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.xmlet.xsdparser.xsdelements.xsdrestrictions" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="1344.75" y="217.0" />
+      <point x="914.75" y="217.0" />
+      <point x="57.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAnnotation" target="org.xmlet.xsdparser.xsdelements.XsdIdentifierElements">
+      <point x="0.0" y="-14.5" />
+      <point x="1026.75" y="133.0" />
+      <point x="982.75" y="133.0" />
+      <point x="40.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdRestriction" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="1186.25" y="227.0" />
+      <point x="895.75" y="227.0" />
+      <point x="38.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAnnotationChildren" target="org.xmlet.xsdparser.xsdelements.XsdAbstractElement">
+      <point x="0.0" y="-14.5" />
+      <point x="622.25" y="54.0" />
+      <point x="749.75" y="54.0" />
+      <point x="-38.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdUnion" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="1491.25" y="207.0" />
+      <point x="933.75" y="207.0" />
+      <point x="76.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdSimpleContent" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="1031.75" y="237.0" />
+      <point x="876.75" y="237.0" />
+      <point x="19.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements" target="org.xmlet.xsdparser.xsdelements.XsdIdentifierElements">
+      <point x="0.0" y="-14.5" />
+      <point x="857.75" y="133.0" />
+      <point x="901.75" y="133.0" />
+      <point x="-40.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdGroup" target="org.xmlet.xsdparser.xsdelements.XsdReferenceElement">
+      <point x="5.6843418860808015E-14" y="-14.5" />
+      <point x="486.5" y="306.0" />
+      <point x="790.25" y="306.0" />
+      <point x="-67.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAll" target="org.xmlet.xsdparser.xsdelements.XsdMultipleElements">
+      <point x="0.0" y="-14.5" />
+      <point x="375.99999999999994" y="326.0" />
+      <point x="309.5" y="326.0" />
+      <point x="53.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdDocumentation" target="org.xmlet.xsdparser.xsdelements.XsdAnnotationChildren">
+      <point x="0.0" y="-14.5" />
+      <point x="547.25" y="133.0" />
+      <point x="579.25" y="133.0" />
+      <point x="-43.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAppInfo" target="org.xmlet.xsdparser.xsdelements.XsdAnnotationChildren">
+      <point x="0.0" y="-14.5" />
+      <point x="697.25" y="133.0" />
+      <point x="665.25" y="133.0" />
+      <point x="43.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdIdentifierElements" target="org.xmlet.xsdparser.xsdelements.XsdAbstractElement">
+      <point x="0.0" y="-14.5" />
+      <point x="942.25" y="54.0" />
+      <point x="826.75" y="54.0" />
+      <point x="38.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdChoice" target="org.xmlet.xsdparser.xsdelements.XsdMultipleElements">
+      <point x="0.0" y="-14.5" />
+      <point x="125.5" y="326.0" />
+      <point x="203.5" y="326.0" />
+      <point x="-53.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdElement" target="org.xmlet.xsdparser.xsdelements.XsdReferenceElement">
+      <point x="0.0" y="-14.5" />
+      <point x="927.5" y="326.0" />
+      <point x="871.25" y="326.0" />
+      <point x="13.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdList" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="559.3299999999999" y="227.0" />
+      <point x="819.75" y="227.0" />
+      <point x="-38.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdSequence" target="org.xmlet.xsdparser.xsdelements.XsdMultipleElements">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdComplexContent" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="78.5" y="207.0" />
+      <point x="781.75" y="207.0" />
+      <point x="-76.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAttributeGroup" target="org.xmlet.xsdparser.xsdelements.XsdReferenceElement">
+      <point x="0.0" y="-14.5" />
+      <point x="630.0" y="316.0" />
+      <point x="817.25" y="316.0" />
+      <point x="-40.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdAttribute" target="org.xmlet.xsdparser.xsdelements.XsdReferenceElement">
+      <point x="0.0" y="-14.5" />
+      <point x="1219.5" y="306.0" />
+      <point x="925.25" y="306.0" />
+      <point x="67.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdReferenceElement" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdSimpleType" target="org.xmlet.xsdparser.xsdelements.XsdReferenceElement">
+      <point x="0.0" y="-14.5" />
+      <point x="788.0" y="326.0" />
+      <point x="844.25" y="326.0" />
+      <point x="-13.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdExtension" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="680.3299999999999" y="237.0" />
+      <point x="838.75" y="237.0" />
+      <point x="-19.0" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdComplexType" target="org.xmlet.xsdparser.xsdelements.XsdReferenceElement">
+      <point x="0.0" y="-14.5" />
+      <point x="1072.5" y="316.0" />
+      <point x="898.25" y="316.0" />
+      <point x="40.5" y="14.5" />
+    </edge>
+    <edge source="org.xmlet.xsdparser.xsdelements.XsdMultipleElements" target="org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements">
+      <point x="0.0" y="-14.5" />
+      <point x="256.5" y="217.0" />
+      <point x="800.75" y="217.0" />
+      <point x="-57.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.826521460602178" x="801.7372500387537" y="213.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -3,7 +3,8 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -15,7 +16,7 @@ public class XsdComplexType extends XsdReferenceElement {
     public static final String XSD_TAG = "xsd:complexType";
     public static final String XS_TAG = "xs:complexType";
 
-    private ComplexTypeXsdElementVisitor visitor = new ComplexTypeXsdElementVisitor();
+    private XsdComplexTypeVisitor visitor = new XsdComplexTypeVisitor(this);
 
     private ReferenceBase childElement;
 
@@ -42,18 +43,18 @@ public class XsdComplexType extends XsdReferenceElement {
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    public ComplexTypeXsdElementVisitor getVisitor() {
+    public XsdComplexTypeVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    protected List<ReferenceBase> getElements() {
+    public List<ReferenceBase> getElements() {
         return childElement == null ? null : childElement.getElement().getElements();
     }
 
@@ -66,8 +67,8 @@ public class XsdComplexType extends XsdReferenceElement {
         elementCopy.setParent(this.parent);
 
         elementCopy.childElement = this.childElement;
-        elementCopy.visitor.attributes = this.visitor.attributes;
-        elementCopy.visitor.attributeGroups = this.visitor.attributeGroups;
+        elementCopy.visitor.setAttributes(this.visitor.getAttributes());
+        elementCopy.visitor.setAttributeGroups(this.visitor.getAttributeGroups());
 
         elementCopy.complexContent = this.complexContent;
         elementCopy.simpleContent = this.simpleContent;
@@ -91,7 +92,7 @@ public class XsdComplexType extends XsdReferenceElement {
     }
 
     List<ReferenceBase> getAttributes() {
-        return visitor.attributes;
+        return visitor.getAttributes();
     }
 
     public Stream<XsdAttribute> getXsdAttributes() {
@@ -122,39 +123,15 @@ public class XsdComplexType extends XsdReferenceElement {
         return xsdParseSkeleton(node, new XsdComplexType(convertNodeMap(node.getAttributes())));
     }
 
-    class ComplexTypeXsdElementVisitor extends AttributesVisitor {
+    public void setChildElement(ReferenceBase childElement) {
+        this.childElement = childElement;
+    }
 
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdComplexType.this;
-        }
+    public void setComplexContent(XsdComplexContent complexContent) {
+        this.complexContent = complexContent;
+    }
 
-        @Override
-        public void visit(XsdMultipleElements element) {
-            super.visit(element);
-
-            XsdComplexType.this.childElement = ReferenceBase.createFromXsd(element);
-        }
-
-        @Override
-        public void visit(XsdGroup element) {
-            super.visit(element);
-
-            XsdComplexType.this.childElement = ReferenceBase.createFromXsd(element);
-        }
-
-        @Override
-        public void visit(XsdComplexContent element) {
-            super.visit(element);
-
-            XsdComplexType.this.complexContent = element;
-        }
-
-        @Override
-        public void visit(XsdSimpleContent element) {
-            super.visit(element);
-
-            XsdComplexType.this.simpleContent = element;
-        }
+    public void setSimpleContent(XsdSimpleContent simpleContent) {
+        this.simpleContent = simpleContent;
     }
 }

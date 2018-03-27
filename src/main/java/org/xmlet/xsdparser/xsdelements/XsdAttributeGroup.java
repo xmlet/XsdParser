@@ -3,7 +3,8 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeGroupVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class XsdAttributeGroup extends XsdReferenceElement {
     public static final String XSD_TAG = "xsd:attributeGroup";
     public static final String XS_TAG = "xs:attributeGroup";
 
-    private final AttributeGroupXsdElementVisitor visitor = new AttributeGroupXsdElementVisitor();
+    private final XsdAttributeGroupVisitor visitor = new XsdAttributeGroupVisitor(this);
 
     private List<XsdAttributeGroup> attributeGroups = new ArrayList<>();
     private List<ReferenceBase> attributes = new ArrayList<>();
@@ -25,18 +26,18 @@ public class XsdAttributeGroup extends XsdReferenceElement {
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdAttributeGroupVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    protected List<ReferenceBase> getElements() {
+    public List<ReferenceBase> getElements() {
         List<ReferenceBase> allAttributes = new ArrayList<>();
 
         attributeGroups.forEach(attributeGroup -> allAttributes.addAll(attributeGroup.getElements()));
@@ -79,19 +80,8 @@ public class XsdAttributeGroup extends XsdReferenceElement {
         return xsdParseSkeleton(node, new XsdAttributeGroup(convertNodeMap(node.getAttributes())));
     }
 
-    class AttributeGroupXsdElementVisitor extends AnnotatedXsdElementVisitor {
 
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdAttributeGroup.this;
-        }
-
-        @Override
-        public void visit(XsdAttribute element) {
-            super.visit(element);
-
-            XsdAttributeGroup.this.attributes.add(ReferenceBase.createFromXsd(element));
-        }
+    public void addAttribute(ReferenceBase attribute) {
+        attributes.add(attribute);
     }
-
 }

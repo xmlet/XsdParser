@@ -2,7 +2,8 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdUnionVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class XsdUnion extends XsdAnnotatedElements {
     public static final String XSD_TAG = "xsd:union";
     public static final String XS_TAG = "xs:union";
 
-    private UnionXsdElementVisitor visitor = new UnionXsdElementVisitor();
+    private XsdUnionVisitor visitor = new XsdUnionVisitor(this);
 
     private List<XsdSimpleType> simpleTypeList = new ArrayList<>();
     private String memberTypes;
@@ -32,14 +33,14 @@ public class XsdUnion extends XsdAnnotatedElements {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdUnionVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     public List<XsdSimpleType> getUnionElements(){
@@ -54,18 +55,7 @@ public class XsdUnion extends XsdAnnotatedElements {
         return xsdParseSkeleton(node, new XsdUnion(convertNodeMap(node.getAttributes())));
     }
 
-    class UnionXsdElementVisitor extends AnnotatedXsdElementVisitor {
-
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdUnion.this;
-        }
-
-        @Override
-        public void visit(XsdSimpleType element) {
-            super.visit(element);
-
-            XsdUnion.this.simpleTypeList.add(element);
-        }
+    public void add(XsdSimpleType simpleType) {
+        simpleTypeList.add(simpleType);
     }
 }

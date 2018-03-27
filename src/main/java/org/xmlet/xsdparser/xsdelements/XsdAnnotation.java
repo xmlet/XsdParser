@@ -2,7 +2,8 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractAnnotationVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class XsdAnnotation extends XsdIdentifierElements {
     public static final String XSD_TAG = "xsd:annotation";
     public static final String XS_TAG = "xs:annotation";
 
-    private XsdElementVisitor xsdElementVisitor = new AnnotationXsdElementVisitor();
+    private XsdAbstractElementVisitor visitor = new XsdAbstractAnnotationVisitor(this);
 
     private List<XsdAppInfo> appInfoList = new ArrayList<>();
     private List<XsdDocumentation> documentations = new ArrayList<>();
@@ -24,14 +25,14 @@ public class XsdAnnotation extends XsdIdentifierElements {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
-        return xsdElementVisitor;
+    public XsdAbstractElementVisitor getVisitor() {
+        return visitor;
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     public List<XsdAppInfo> getAppInfoList() {
@@ -42,28 +43,15 @@ public class XsdAnnotation extends XsdIdentifierElements {
         return documentations;
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdAnnotation(convertNodeMap(node.getAttributes())));
+    public void add(XsdAppInfo appInfo){
+        appInfoList.add(appInfo);
     }
 
-    class AnnotationXsdElementVisitor implements XsdElementVisitor {
+    public void add(XsdDocumentation documentation){
+        documentations.add(documentation);
+    }
 
-        public XsdAbstractElement getOwner() {
-            return XsdAnnotation.this;
-        }
-
-        @Override
-        public void visit(XsdAppInfo element) {
-            XsdElementVisitor.super.visit(element);
-
-            XsdAnnotation.this.appInfoList.add(element);
-        }
-
-        @Override
-        public void visit(XsdDocumentation element) {
-            XsdElementVisitor.super.visit(element);
-
-            XsdAnnotation.this.documentations.add(element);
-        }
+    public static ReferenceBase parse(Node node){
+        return xsdParseSkeleton(node, new XsdAnnotation(convertNodeMap(node.getAttributes())));
     }
 }

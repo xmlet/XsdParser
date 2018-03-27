@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.xsdelements.visitors.VisitorNotFoundException;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -16,7 +16,7 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdAbstractElementVisitor getVisitor() {
         throw new VisitorNotFoundException("AppInfo/Documentation can't have children.");
     }
 

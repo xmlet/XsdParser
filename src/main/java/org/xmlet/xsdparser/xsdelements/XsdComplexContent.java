@@ -3,7 +3,8 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexContentVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -13,7 +14,7 @@ public class XsdComplexContent extends XsdAnnotatedElements {
     public static final String XSD_TAG = "xsd:complexContent";
     public static final String XS_TAG = "xs:complexContent";
 
-    private XsdElementVisitor xsdElementVisitor = new ComplexContentXsdElementVisitor();
+    private XsdComplexContentVisitor visitor = new XsdComplexContentVisitor(this);
 
     private ReferenceBase restriction;
     private ReferenceBase extension;
@@ -32,14 +33,14 @@ public class XsdComplexContent extends XsdAnnotatedElements {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
-        return xsdElementVisitor;
+    public XsdComplexContentVisitor getVisitor() {
+        return visitor;
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     public boolean isMixed() {
@@ -58,26 +59,11 @@ public class XsdComplexContent extends XsdAnnotatedElements {
         return xsdParseSkeleton(node, new XsdComplexContent(convertNodeMap(node.getAttributes())));
     }
 
-    class ComplexContentXsdElementVisitor extends AnnotatedXsdElementVisitor {
-
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdComplexContent.this;
-        }
-
-        @Override
-        public void visit(XsdRestriction element) {
-            super.visit(element);
-
-            XsdComplexContent.this.restriction = ReferenceBase.createFromXsd(element);
-        }
-
-        @Override
-        public void visit(XsdExtension element) {
-            super.visit(element);
-
-            XsdComplexContent.this.extension = ReferenceBase.createFromXsd(element);
-        }
+    public void setExtension(ReferenceBase extension) {
+        this.extension = extension;
     }
 
+    public void setRestriction(ReferenceBase restriction) {
+        this.restriction = restriction;
+    }
 }

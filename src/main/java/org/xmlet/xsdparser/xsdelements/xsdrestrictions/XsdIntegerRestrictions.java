@@ -1,20 +1,14 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public abstract class XsdIntegerRestrictions extends XsdAnnotatedElements {
 
-    private XsdElementVisitor xsdElementVisitor = new AnnotatedXsdElementVisitor() {
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdIntegerRestrictions.this;
-        }
-    };
+    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
     private boolean fixed;
     private int value;
 
@@ -23,8 +17,8 @@ public abstract class XsdIntegerRestrictions extends XsdAnnotatedElements {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
-        return xsdElementVisitor;
+    public XsdAnnotatedElementsVisitor getVisitor() {
+        return visitor;
     }
 
     @Override

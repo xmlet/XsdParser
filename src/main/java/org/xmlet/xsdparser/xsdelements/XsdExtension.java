@@ -6,7 +6,8 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdExtensionVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -20,7 +21,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     public static final String XSD_TAG = "xsd:extension";
     public static final String XS_TAG = "xs:extension";
 
-    private ExtensionXsdElementVisitor visitor = new ExtensionXsdElementVisitor();
+    private XsdExtensionVisitor visitor = new XsdExtensionVisitor(this);
 
     private ReferenceBase childElement;
     private ReferenceBase base;
@@ -55,18 +56,18 @@ public class XsdExtension extends XsdAnnotatedElements {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdExtensionVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    protected List<ReferenceBase> getElements() {
+    public List<ReferenceBase> getElements() {
         return childElement == null ? Collections.emptyList() : childElement.getElement().getElements();
     }
 
@@ -86,23 +87,7 @@ public class XsdExtension extends XsdAnnotatedElements {
         return visitor.getXsdAttributeGroup();
     }
 
-    class ExtensionXsdElementVisitor extends AttributesVisitor {
-
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdExtension.this;
-        }
-
-        @Override
-        public void visit(XsdMultipleElements element) {
-            super.visit(element);
-            XsdExtension.this.childElement = ReferenceBase.createFromXsd(element);
-        }
-
-        @Override
-        public void visit(XsdGroup element) {
-            super.visit(element);
-            XsdExtension.this.childElement = ReferenceBase.createFromXsd(element);
-        }
+    public void setChildElement(ReferenceBase childElement) {
+        this.childElement = childElement;
     }
 }

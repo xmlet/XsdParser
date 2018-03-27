@@ -46,7 +46,7 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     }
 
     @Override
-    protected List<ReferenceBase> getElements(){
+    public List<ReferenceBase> getElements(){
         return elements;
     }
 
@@ -57,12 +57,8 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
                 .map(ReferenceBase::getElement);
     }
 
-    void addElement(XsdAbstractElement element){
+    public void addElement(XsdAbstractElement element){
         this.elements.add(ReferenceBase.createFromXsd(element));
-    }
-
-    void addElements(List<ReferenceBase> elements){
-        this.elements.addAll(elements);
     }
 
     @SuppressWarnings("unused")

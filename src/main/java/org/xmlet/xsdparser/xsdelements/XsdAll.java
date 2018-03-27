@@ -2,7 +2,8 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAllVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -12,20 +13,20 @@ public class XsdAll extends XsdMultipleElements {
     public static final String XSD_TAG = "xsd:all";
     public static final String XS_TAG = "xs:all";
 
-    private final AllXsdElementVisitor visitor = new AllXsdElementVisitor();
+    private final XsdAllVisitor visitor = new XsdAllVisitor(this);
 
     private XsdAll(@NotNull Map<String, String> elementFieldsMapParam){
         super(elementFieldsMapParam);
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdAllVisitor getVisitor() {
         return visitor;
     }
 
@@ -33,18 +34,4 @@ public class XsdAll extends XsdMultipleElements {
         return xsdParseSkeleton(node, new XsdAll(convertNodeMap(node.getAttributes())));
     }
 
-    class AllXsdElementVisitor extends AnnotatedXsdElementVisitor {
-
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdAll.this;
-        }
-
-        @Override
-        public void visit(XsdElement element) {
-            super.visit(element);
-
-            XsdAll.this.addElement(element);
-        }
-    }
 }

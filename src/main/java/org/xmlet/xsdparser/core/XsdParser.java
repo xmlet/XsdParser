@@ -209,7 +209,7 @@ public class XsdParser {
      * @param filePath The file path to the xsd file.
      * @return A stream of parsed wrapped xsd parseElements.
      */
-    public Stream<XsdAbstractElement> parse(String filePath) {
+    public Stream<XsdElement> parse(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
         try {
             File xsdFile = new File(filePath);
@@ -254,8 +254,8 @@ public class XsdParser {
         resolveRefs(filePath);
 
         return parseElements.get(filePath).stream()
-                .filter(element -> element instanceof ConcreteElement)
-                .map(ReferenceBase::getElement);
+                .filter(element -> element instanceof ConcreteElement && element.getElement() instanceof XsdElement)
+                .map(element -> (XsdElement) element.getElement());
     }
 
     /**

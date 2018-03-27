@@ -3,7 +3,8 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdRestrictionsVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     public static final String XSD_TAG = "xsd:restriction";
     public static final String XS_TAG = "xs:restriction";
 
-    private RestrictionXsdElementVisitor visitor = new RestrictionXsdElementVisitor();
+    private XsdRestrictionsVisitor visitor = new XsdRestrictionsVisitor(this);
 
     private XsdSimpleType simpleType;
 
@@ -48,14 +49,14 @@ public class XsdRestriction extends XsdAnnotatedElements {
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdRestrictionsVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return fractionDigits;
     }
 
-    void setFractionDigits(XsdFractionDigits fractionDigits) {
+    public void setFractionDigits(XsdFractionDigits fractionDigits) {
         this.fractionDigits = fractionDigits;
     }
 
@@ -105,7 +106,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return length;
     }
 
-    void setLength(XsdLength length) {
+    public void setLength(XsdLength length) {
         this.length = length;
     }
 
@@ -113,7 +114,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return maxExclusive;
     }
 
-    void setMaxExclusive(XsdMaxExclusive maxExclusive) {
+    public void setMaxExclusive(XsdMaxExclusive maxExclusive) {
         this.maxExclusive = maxExclusive;
     }
 
@@ -121,7 +122,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return maxInclusive;
     }
 
-    void setMaxInclusive(XsdMaxInclusive maxInclusive) {
+    public void setMaxInclusive(XsdMaxInclusive maxInclusive) {
         this.maxInclusive = maxInclusive;
     }
 
@@ -129,7 +130,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return maxLength;
     }
 
-    void setMaxLength(XsdMaxLength maxLength) {
+    public void setMaxLength(XsdMaxLength maxLength) {
         this.maxLength = maxLength;
     }
 
@@ -137,7 +138,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return minExclusive;
     }
 
-    void setMinExclusive(XsdMinExclusive minExclusive) {
+    public void setMinExclusive(XsdMinExclusive minExclusive) {
         this.minExclusive = minExclusive;
     }
 
@@ -145,7 +146,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return minInclusive;
     }
 
-    void setMinInclusive(XsdMinInclusive minInclusive) {
+    public void setMinInclusive(XsdMinInclusive minInclusive) {
         this.minInclusive = minInclusive;
     }
 
@@ -153,7 +154,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return minLength;
     }
 
-    void setMinLength(XsdMinLength minLength) {
+    public void setMinLength(XsdMinLength minLength) {
         this.minLength = minLength;
     }
 
@@ -161,7 +162,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return pattern;
     }
 
-    void setPattern(XsdPattern pattern) {
+    public void setPattern(XsdPattern pattern) {
         this.pattern = pattern;
     }
 
@@ -169,7 +170,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return totalDigits;
     }
 
-    void setTotalDigits(XsdTotalDigits totalDigits) {
+    public void setTotalDigits(XsdTotalDigits totalDigits) {
         this.totalDigits = totalDigits;
     }
 
@@ -177,106 +178,15 @@ public class XsdRestriction extends XsdAnnotatedElements {
         return whiteSpace;
     }
 
-    void setWhiteSpace(XsdWhiteSpace whiteSpace) {
+    public void setWhiteSpace(XsdWhiteSpace whiteSpace) {
         this.whiteSpace = whiteSpace;
     }
 
-    class RestrictionXsdElementVisitor extends AttributesVisitor {
+    public void add(XsdEnumeration enumerationMember) {
+        enumeration.add(enumerationMember);
+    }
 
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdRestriction.this;
-        }
-
-        @Override
-        public void visit(XsdEnumeration element) {
-            super.visit(element);
-
-            XsdRestriction.this.enumeration.add(element);
-        }
-
-        @Override
-        public void visit(XsdFractionDigits element) {
-            super.visit(element);
-
-            XsdRestriction.this.fractionDigits = element;
-        }
-
-        @Override
-        public void visit(XsdLength element) {
-            super.visit(element);
-
-            XsdRestriction.this.length = element;
-        }
-
-        @Override
-        public void visit(XsdMaxExclusive element) {
-            super.visit(element);
-
-            XsdRestriction.this.maxExclusive = element;
-        }
-
-        @Override
-        public void visit(XsdMaxInclusive element) {
-            super.visit(element);
-
-            XsdRestriction.this.maxInclusive = element;
-        }
-
-        @Override
-        public void visit(XsdMaxLength element) {
-            super.visit(element);
-
-            XsdRestriction.this.maxLength = element;
-        }
-
-        @Override
-        public void visit(XsdMinExclusive element) {
-            super.visit(element);
-
-            XsdRestriction.this.minExclusive = element;
-        }
-
-        @Override
-        public void visit(XsdMinInclusive element) {
-            super.visit(element);
-
-            XsdRestriction.this.minInclusive = element;
-        }
-
-        @Override
-        public void visit(XsdMinLength element) {
-            super.visit(element);
-
-            XsdRestriction.this.minLength = element;
-        }
-
-        @Override
-        public void visit(XsdPattern element) {
-            super.visit(element);
-
-            XsdRestriction.this.pattern = element;
-        }
-
-        @Override
-        public void visit(XsdTotalDigits element) {
-            super.visit(element);
-
-            XsdRestriction.this.totalDigits = element;
-        }
-
-        @Override
-        public void visit(XsdWhiteSpace element) {
-            super.visit(element);
-
-            XsdRestriction.this.whiteSpace = element;
-        }
-
-        @Override
-        public void visit(XsdSimpleType element) {
-            super.visit(element);
-
-            XsdRestriction.this.simpleType = element;
-        }
+    public void setSimpleType(XsdSimpleType simpleType) {
+        this.simpleType = simpleType;
     }
 }

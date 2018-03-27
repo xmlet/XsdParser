@@ -1,20 +1,14 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 public class XsdStringRestrictions extends XsdAnnotatedElements{
 
-    private XsdElementVisitor xsdElementVisitor = new XsdAnnotatedElements.AnnotatedXsdElementVisitor() {
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdStringRestrictions.this;
-        }
-    };
+    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
     private String value;
 
     XsdStringRestrictions(@NotNull Map<String, String> elementFieldsMapParam) {
@@ -22,8 +16,8 @@ public class XsdStringRestrictions extends XsdAnnotatedElements{
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
-        return xsdElementVisitor;
+    public XsdAnnotatedElementsVisitor getVisitor() {
+        return visitor;
     }
 
     @Override

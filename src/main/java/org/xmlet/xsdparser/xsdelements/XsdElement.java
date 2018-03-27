@@ -6,6 +6,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ public class XsdElement extends XsdReferenceElement {
     public static final String XSD_TAG = "xsd:element";
     public static final String XS_TAG = "xs:element";
 
-    private XsdElementVisitor xsdElementVisitor = new ElementXsdElementVisitor();
+    private XsdElementVisitor visitor = new XsdElementVisitor(this);
 
     private ReferenceBase complexType;
     private ReferenceBase simpleType;
@@ -72,14 +73,14 @@ public class XsdElement extends XsdReferenceElement {
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
     public XsdElementVisitor getVisitor() {
-        return xsdElementVisitor;
+        return visitor;
     }
 
     @Override
@@ -150,23 +151,11 @@ public class XsdElement extends XsdReferenceElement {
         return abstractObj;
     }
 
-    class ElementXsdElementVisitor extends AnnotatedXsdElementVisitor {
+    public void setComplexType(ReferenceBase complexType) {
+        this.complexType = complexType;
+    }
 
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdElement.this;
-        }
-
-        @Override
-        public void visit(XsdComplexType element) {
-            super.visit(element);
-            XsdElement.this.complexType = ReferenceBase.createFromXsd(element);
-        }
-
-        @Override
-        public void visit(XsdSimpleType element) {
-            super.visit(element);
-            XsdElement.this.simpleType = ReferenceBase.createFromXsd(element);
-        }
+    public void setSimpleType(ReferenceBase simpleType) {
+        this.simpleType = simpleType;
     }
 }

@@ -19,10 +19,7 @@ public class OddTest {
     static {
         parser = new XsdParser();
 
-        elements = parser.parse(FILE_NAME)
-                .filter(element -> element instanceof XsdElement)
-                .map(element -> (XsdElement) element)
-                .collect(Collectors.toList());
+        elements = parser.parse(FILE_NAME).collect(Collectors.toList());
     }
 
     @Test

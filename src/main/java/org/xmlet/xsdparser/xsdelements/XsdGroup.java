@@ -2,7 +2,8 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdGroupVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class XsdGroup extends XsdReferenceElement {
     public static final String XSD_TAG = "xsd:group";
     public static final String XS_TAG = "xs:group";
 
-    private GroupXsdElementVisitor visitor = new GroupXsdElementVisitor();
+    private XsdGroupVisitor visitor = new XsdGroupVisitor(this);
 
     private XsdMultipleElements childElement;
 
@@ -34,18 +35,18 @@ public class XsdGroup extends XsdReferenceElement {
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    public GroupXsdElementVisitor getVisitor() {
+    public XsdGroupVisitor getVisitor() {
         return visitor;
     }
 
     @Override
-    protected List<ReferenceBase> getElements() {
+    public List<ReferenceBase> getElements() {
         List<ReferenceBase> list = new ArrayList<>();
 
         if (childElement != null){
@@ -70,7 +71,7 @@ public class XsdGroup extends XsdReferenceElement {
         return elementCopy;
     }
 
-    private void setChildElement(XsdMultipleElements childElement) {
+    public void setChildElement(XsdMultipleElements childElement) {
         this.childElement = childElement;
         childElement.getElements().forEach(childElementObj -> childElementObj.getElement().setParent(childElement));
         this.childElement.setParent(this);
@@ -92,18 +93,4 @@ public class XsdGroup extends XsdReferenceElement {
         return maxOccurs;
     }
 
-    class GroupXsdElementVisitor extends AnnotatedXsdElementVisitor {
-
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdGroup.this;
-        }
-
-        @Override
-        public void visit(XsdMultipleElements element) {
-            super.visit(element);
-
-            XsdGroup.this.setChildElement(element);
-        }
-    }
 }

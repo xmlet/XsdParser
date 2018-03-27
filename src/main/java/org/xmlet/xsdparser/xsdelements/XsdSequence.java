@@ -2,7 +2,8 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdSequenceVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -12,56 +13,24 @@ public class XsdSequence extends XsdMultipleElements{
     public static final String XSD_TAG = "xsd:sequence";
     public static final String XS_TAG = "xs:sequence";
 
-    private SequenceXsdElementVisitor visitor = new SequenceXsdElementVisitor();
+    private XsdSequenceVisitor visitor = new XsdSequenceVisitor(this);
 
     private XsdSequence(@NotNull Map<String, String> elementFieldsMapParam) {
         super(elementFieldsMapParam);
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    public SequenceXsdElementVisitor getVisitor() {
+    public XsdSequenceVisitor getVisitor() {
         return visitor;
     }
 
     public static ReferenceBase parse(Node node){
         return xsdParseSkeleton(node, new XsdSequence(convertNodeMap(node.getAttributes())));
-    }
-
-    class SequenceXsdElementVisitor extends AnnotatedXsdElementVisitor {
-
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdSequence.this;
-        }
-
-        @Override
-        public void visit(XsdElement element) {
-            super.visit(element);
-            XsdSequence.this.addElement(element);
-        }
-
-        @Override
-        public void visit(XsdGroup element) {
-            super.visit(element);
-            XsdSequence.this.addElement(element);
-        }
-
-        @Override
-        public void visit(XsdChoice element) {
-            super.visit(element);
-            XsdSequence.this.addElement(element);
-        }
-
-        @Override
-        public void visit(XsdSequence element) {
-            super.visit(element);
-            XsdSequence.this.addElement(element);
-        }
     }
 }

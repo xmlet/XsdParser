@@ -6,7 +6,8 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -19,7 +20,7 @@ public class XsdAttribute extends XsdReferenceElement {
     public static final String XSD_TAG = "xsd:attribute";
     public static final String XS_TAG = "xs:attribute";
 
-    private AttributeXsdElementVisitor visitor = new AttributeXsdElementVisitor();
+    private XsdAttributeVisitor visitor = new XsdAttributeVisitor(this);
 
     private ReferenceBase simpleType;
 
@@ -52,13 +53,13 @@ public class XsdAttribute extends XsdReferenceElement {
     }
 
     @Override
-    public void accept(XsdElementVisitor xsdElementVisitor) {
-        super.accept(xsdElementVisitor);
-        xsdElementVisitor.visit(this);
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
     }
 
     @Override
-    public XsdElementVisitor getVisitor() {
+    public XsdAttributeVisitor getVisitor() {
         return visitor;
     }
 
@@ -85,6 +86,10 @@ public class XsdAttribute extends XsdReferenceElement {
         if (element instanceof XsdSimpleType && simpleType != null && type.equals(elementWrapper.getName())){
             this.simpleType = elementWrapper;
         }
+    }
+
+    public void setSimpleType(ReferenceBase simpleType) {
+        this.simpleType = simpleType;
     }
 
     public XsdSimpleType getXsdSimpleType(){
@@ -121,18 +126,5 @@ public class XsdAttribute extends XsdReferenceElement {
         return xsdParseSkeleton(node, new XsdAttribute(convertNodeMap(node.getAttributes())));
     }
 
-    class AttributeXsdElementVisitor extends AnnotatedXsdElementVisitor {
 
-        @Override
-        public XsdAbstractElement getOwner() {
-            return XsdAttribute.this;
-        }
-
-        @Override
-        public void visit(XsdSimpleType element) {
-            super.visit(element);
-
-            XsdAttribute.this.simpleType = ReferenceBase.createFromXsd(element);
-        }
-    }
 }

@@ -12,8 +12,10 @@
      and its attributes are represented as fields in java. All these objects derive from the same abstract element, XsdAbstractElement.
     All java representations of the xsd elements follow the schema definition for xsd elements.  
     For example, the xsd:annotation tag only allows xsd:appinfo and xsd:documentation as children nodes, and also can have an attribute named id, therefore
-    XsdParser has the following class (simplified for example purposes): 
-</div>
+    XsdParser has the following class (simplified for example purposes):  
+</div>  
+
+<br />  
 
 ```java
 public class XsdAnnotation extends XsdIdentifierElements {
@@ -42,7 +44,7 @@ First, in order to include it to your Maven project, simply add this dependency:
 
 ## Usage example
 
-Here follows a simple example where we want to obtain all the top level xsd:element objects parsed.
+Here follows a simple example:
 
 ``` java
 public class ParserApp {
@@ -60,6 +62,8 @@ After parsing the file like shown above it's possible to start to navigate in th
   that allow to implement shared features and reduce duplicated code. 
 </div>
 
+<br />
+
 ![image](https://raw.githubusercontent.com/xmlet/XsdParser/master/src/main/java/org/xmlet/xsdparser/xsdelements/xsdelements.png) 
 
 ### Navigation
@@ -68,6 +72,8 @@ After parsing the file like shown above it's possible to start to navigate in th
 A simple example of a xsd file is presented with the correspondent code that shows how to navigate in the element list produced by the
 parse function.
 </div>
+
+<br />
 
 ```xml
 <?xml version='1.0' encoding='utf-8' ?>
@@ -91,7 +97,6 @@ parse function.
 ```
 
 The result could be consulted in the following way:
-
 
 ``` java
 public static void main(String [] args) {
@@ -131,7 +136,11 @@ This generates two problems when handling the parsing which are detailed below.
 
 <div style="text-align: right"> 
 The referenced element does not exist. Even though it should not happen, it might. In order to deal with this problem there were created wrappers to all elements.
+</div>
 
+<br />
+
+<div style="text-align: right">
 UnsolvedElement - A wrapper to all elements that were not found in the file.  
 ConcreteElement - A wrapper to all elements that are present in the document.  
 NamedConcreteElement - A wrapper to all elements that are present in the document and have a name attribute present.  
@@ -144,8 +153,10 @@ ReferenceBase - A shared interface from which UnsolvedReference and ConcreteElem
 In order to minimize the number of passages in the file, which take more time to perform, this library chose to parse all the elements and then resolve the references present. 
 This means that after parsing all the elements from the file, those same elements are filtered and obtained all the NamedConcreteElements. Those are the elements that may be 
 referenced by UnsolvedReferences. This way, we can compare the name present in the NamedConcreteElement and the ref in the UnsolvedElement. In the case that a match is present a 
-deep copy of the element wrapped in the NamedConcreteElement is made and accessing the parent of the element wrapped in UnsolvedElement the changed can be made. 
+deep copy of the element wrapped in the NamedConcreteElement is made and accessing the parent of the element wrapped in UnsolvedElement the change can be made. 
 </div>
+
+<br />
 
 Short Example:
 
@@ -185,11 +196,16 @@ There are some tests available using the HTML5 schema and the Android layouts sc
 The tests also cover most of the code, if you are interested in verifying the code quality/vulnerabilities/etc the various metrics are available on:
 </div>
 
+<br />
+
 https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser  
   
 ## Important remarks
 
 <div style="text-align: right"> 
-xsd:import - XsdParser does not support xsd:import tags, meaning that if there are import tags the content of the imported files should be manually added to the main file. Support for xsd:import tags will be added, when my schedule clears.   
-name attribute - XsdParser uses the name attribute as a tool in order to resolve references, therefore it should be unique in the file. Using multiple times the same name will generate unexpected behaviour.  
+<b>xsd:import</b> - XsdParser does not support xsd:import tags, meaning that if there are import tags the content of the imported files should be manually added to the main file. Support for xsd:import tags will be added, when my schedule clears.
+</div>     
+
+<div style="text-align: right">
+<b>name attribute</b> - XsdParser uses the name attribute as a tool in order to resolve references, therefore it should be unique in the file. Using multiple times the same name will generate unexpected behaviour.  
 </div>

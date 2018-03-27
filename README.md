@@ -141,10 +141,27 @@ The referenced element does not exist. Even though it should not happen, it migh
 <br />
 
 <div style="text-align: right">
-UnsolvedElement - A wrapper to all elements that were not found in the file.  
+UnsolvedElement - A wrapper to all elements that were not found in the file.
+</div>
+
+<div style="text-align: right">  
 ConcreteElement - A wrapper to all elements that are present in the document.  
+</div>
+
+<div style="text-align: right">
 NamedConcreteElement - A wrapper to all elements that are present in the document and have a name attribute present.  
+</div>
+
+<div style="text-align: right">
 ReferenceBase - A shared interface from which UnsolvedReference and ConcreteElement derive.  
+</div>
+
+<br />
+
+<div style="text-align: right">
+Any remaining UnsolvedReferences can be consulted after the file parsing using the method <i>getUnsolvedReferencesForFile</i> passing the full path of the parsed file. Those 
+are the references that were not in the file and the user of the XsdParser library should resolve it by either adding the missing elements to the file or 
+just acknowledging that there are elements missing.
 </div>
 
 #### Parsing Strategy
@@ -185,8 +202,8 @@ and adding the replacement.
 
 <div style="text-align: right"> 
 The parser supports xsd:base tags, which allow the use of hierarchies in the xsd files. 
-The extended xsd:element is referenced in the element containing the xsd:base tag so in order to obtain all the attributes/elements that element has you 
-have to iterate on that base field.
+The extended xsd:element is referenced in the element containing the xsd:base tag so in order to obtain all the attributes/elements that element has the user  
+has to iterate on that base field.
 </div>
 
 ## Code Quality

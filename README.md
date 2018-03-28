@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.xmlet/xsdParser.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.xmlet%7CxsdParser%7C1.0.6%7Cjar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.xmlet/xsdParser.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.xmlet%7CxsdParser%7C1.0.7%7Cjar)
 [![Build](https://sonarcloud.io/api/project_badges/measure?project=com.github.xmlet%3AxsdParser&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser)
 [![Coverage](https://sonarcloud.io/api/badges/measure?key=com.github.xmlet%3AxsdParser&metric=coverage)](https://sonarcloud.io/component_measures/domain/Coverage?id=com.github.xmlet%3AxsdParser)
 [![Vulnerabilities](https://sonarcloud.io/api/badges/measure?key=com.github.xmlet%3AxsdParser&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser)
@@ -38,7 +38,7 @@ First, in order to include it to your Maven project, simply add this dependency:
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
 </dependency>
 ```
 
@@ -102,26 +102,18 @@ The result could be consulted in the following way:
 public static void main(String [] args) {
     (...)
     
-    List<XsdElement> elements = elements.collect(Collectors.toList());
-            
-    XsdElement htmlElement = elements.get(0);
+    XsdElement htmlElement = elements.findFirst().get();
 
     XsdComplexType htmlComplexType = htmlElement.getXsdComplexType();
-    List<XsdAttribute> htmlAttributeList = htmlComplexType.getXsdAttributes().collect(Collectors.toList());
-
-    XsdAttribute manifestAttribute = htmlAttributeList.get(0);
+    XsdAttribute manifestAttribute = htmlComplexType.getXsdAttributes().findFirst().get();
 
     XsdChoice choiceElement = (XsdChoice) htmlComplexType.getXsdChildElement();
 
-    List<XsdAbstractElement> choiceChildren = choiceElement.getXsdElements().collect(Collectors.toList());
-
-    XsdGroup flowContentGroup = (XsdGroup) choiceChildren.get(0);
+    XsdGroup flowContentGroup = (XsdGroup) choiceElement.getXsdElements().findFirst().get();
 
     XsdAll flowContentAll = (XsdAll) flowContentGroup.getChildElement();
 
-    List<XsdAbstractElement> groupMembers = flowContentAll.getXsdElements().collect(Collectors.toList());
-
-    XsdElement elem1 = (XsdElement) groupMembers.get(0);
+    XsdElement elem1 = (XsdElement) flowContentAll.getXsdElements().findFirst().get();
 }
 ```
 
@@ -135,25 +127,25 @@ This generates two problems when handling the parsing which are detailed below.
 #### Missing ref elements
 
 <div style="text-align: right"> 
-The referenced element does not exist. Even though it should not happen, it might. In order to deal with this problem there were created wrappers to all elements.
+The referenced element does not exist. Even though it should not happen, it might. In order to deal with this problem there were created wrappers to each element.
 </div>
 
 <br />
 
 <div style="text-align: right">
-UnsolvedElement - A wrapper to all elements that were not found in the file.
+UnsolvedElement - A wrapper class to each element that was not found in the file.
 </div>
 
 <div style="text-align: right">  
-ConcreteElement - A wrapper to all elements that are present in the document.  
+ConcreteElement - A wrapper class to each element that is present in the document.  
 </div>
 
 <div style="text-align: right">
-NamedConcreteElement - A wrapper to all elements that are present in the document and have a name attribute present.  
+NamedConcreteElement - A wrapper class to each element that is present in the document and has a name attribute present.  
 </div>
 
 <div style="text-align: right">
-ReferenceBase - A shared interface from which UnsolvedReference and ConcreteElement derive.  
+ReferenceBase - A common interface between UnsolvedReference and ConcreteElement.  
 </div>
 
 <br />

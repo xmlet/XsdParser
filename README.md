@@ -9,7 +9,7 @@
 
 <div style="text-align:right"> 
     XsdParser is a library that parses a XML Definition file (.xsd) into a list of java objects. Each different xsd tag has 
-    a corresponding java class and the attributes of a given xsd type are represented as fields in java. All these classes derive from the 
+    a corresponding java class with fields matching the attributes of the given xsd type. All these classes derive from the 
     same abstract element, <i>XsdAbstractElement</i>. All java representations of the xsd elements follow the schema definition 
     for xsd elements. For example, the <i>xsd:annotation</i> tag only allows <i>xsd:appinfo</i> and <i>xsd:documentation</i> as children nodes, 
     and also can have an attribute named id, therefore XsdParser has the following class (simplified for example purposes):
@@ -117,7 +117,7 @@ public class ParserApp {
     public static void main(String [] args) {
         //(...)
         
-        XsdElement htmlElement = elements.findFirst().get();
+        XsdElement htmlElement = elementsStream.findFirst().get();
         
         XsdComplexType htmlComplexType = htmlElement.getXsdComplexType();
         XsdAttribute manifestAttribute = htmlComplexType.getXsdAttributes().findFirst().get();

@@ -1,0 +1,11 @@
+<xs:schema
+        xmlns="jar://C:/Program Files/JetBrains/IntelliJ IDEA 2017.2.5/lib/idea.jar!/standardSchemas/XMLSchema-1_1/XMLSchema.xsd"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="c1"/>
+
+    <xs:simpleType name="s1"/>
+
+    <xs:element name="e1" type="s1"/>
+
+</xs:schema>

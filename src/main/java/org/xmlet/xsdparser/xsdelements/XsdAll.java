@@ -1,7 +1,9 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAllVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
@@ -26,8 +28,34 @@ public class XsdAll extends XsdMultipleElements {
      */
     private final XsdAllVisitor visitor = new XsdAllVisitor(this);
 
-    private XsdAll(@NotNull Map<String, String> elementFieldsMapParam){
-        super(elementFieldsMapParam);
+    /**
+     * Specifies the minimum number of times this element can occur in the parent element. The value can be any
+     * number bigger or equal to 0. Default value is 1. This attribute cannot be used if the parent element is the
+     * XsdSchema element.
+     */
+    private Integer minOccurs;
+
+    /**
+     * Specifies the maximum number of times this element can occur in the parent element. The value can be any
+     * number bigger or equal to 0. Default value is 1. This attribute cannot be used if the parent element is the
+     * XsdSchema element.
+     */
+    private Integer maxOccurs;
+
+    private XsdAll(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam){
+        super(parser, elementFieldsMapParam);
+    }
+
+    /**
+     * Sets the occurs fields with the information provided in the Map object or with their default values.
+     * @param elementFieldsMapParam The Map object containing the information previously contained in the Node object.
+     */
+    @Override
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
+        super.setFields(elementFieldsMapParam);
+
+        this.minOccurs = EnumUtils.minOccursValidation(elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
+        this.maxOccurs = EnumUtils.maxOccursIntegerValidation(elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
     @Override
@@ -41,8 +69,17 @@ public class XsdAll extends XsdMultipleElements {
         return visitor;
     }
 
-    public static ReferenceBase parse(Node node) {
-        return xsdParseSkeleton(node, new XsdAll(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {
+        return xsdParseSkeleton(node, new XsdAll(parser, convertNodeMap(node.getAttributes())));
     }
 
+    @SuppressWarnings("unused")
+    public Integer getMinOccurs() {
+        return minOccurs;
+    }
+
+    @SuppressWarnings("unused")
+    public Integer getMaxOccurs() {
+        return maxOccurs;
+    }
 }

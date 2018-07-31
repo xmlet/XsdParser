@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -17,8 +18,8 @@ public class XsdWhiteSpace extends XsdStringRestrictions {
 
     private boolean fixed;
 
-    private XsdWhiteSpace(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdWhiteSpace(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -34,8 +35,8 @@ public class XsdWhiteSpace extends XsdStringRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(Node node){
-        return ReferenceBase.createFromXsd(new XsdWhiteSpace(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.getAttributes())));
     }
 
     public boolean isFixed() {

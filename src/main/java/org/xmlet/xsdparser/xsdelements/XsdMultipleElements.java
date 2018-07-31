@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -13,8 +14,7 @@ import java.util.stream.Stream;
 
 /**
  * A class that serves as a base class to three classes that share similarities, {@link XsdAll}, {@link XsdChoice} and
- * {@link XsdSequence}. Those three classes share the {@link XsdMultipleElements#maxOccurs} and
- * {@link XsdMultipleElements#minOccurs} fields and also the {@link XsdMultipleElements#elements} which is a list of
+ * {@link XsdSequence}. Those three classes share {@link XsdMultipleElements#elements} which is a list of
  * {@link XsdAbstractElement} objects contained in each of these types. The types of the instances present in the
  * {@link XsdMultipleElements#elements} list depends on the concrete type, {@link XsdAll}, {@link XsdChoice} or
  * {@link XsdSequence}.
@@ -26,34 +26,8 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
      */
     private List<ReferenceBase> elements = new ArrayList<>();
 
-    /**
-     * Specifies the minimum number of times this element can occur in the parent element. The value can be any
-     * number bigger or equal to 0. Default value is 1. This attribute cannot be used if the parent element is the
-     * XsdSchema element.
-     */
-    private Integer minOccurs;
-
-    /**
-     * Specifies the maximum number of times this element can occur in the parent element. The value can be any
-     * number bigger or equal to 0, or if you want to set no limit on the maximum number, use the value "unbounded".
-     * Default value is 1. This attribute cannot be used if the parent element is the XsdSchema element.
-     */
-    private String maxOccurs;
-
-    XsdMultipleElements(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
-    }
-
-    /**
-     * Sets the occurs fields with the information provided in the Map object or with their default values.
-     * @param elementFieldsMapParam The Map object containing the information previously contained in the Node object.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        this.minOccurs = Integer.parseInt(elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
-        this.maxOccurs = elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1");
+    XsdMultipleElements(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     /**
@@ -98,16 +72,6 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
 
     public void addElement(XsdAbstractElement element){
         this.elements.add(ReferenceBase.createFromXsd(element));
-    }
-
-    @SuppressWarnings("unused")
-    public Integer getMinOccurs() {
-        return minOccurs;
-    }
-
-    @SuppressWarnings("unused")
-    public String getMaxOccurs() {
-        return maxOccurs;
     }
 
 }

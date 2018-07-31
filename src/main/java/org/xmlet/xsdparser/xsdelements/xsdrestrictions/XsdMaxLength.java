@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -19,8 +20,8 @@ public class XsdMaxLength extends XsdIntegerRestrictions {
     public static final String XSD_TAG = "xsd:maxLength";
     public static final String XS_TAG = "xs:maxLength";
 
-    private XsdMaxLength(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdMaxLength(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -29,7 +30,7 @@ public class XsdMaxLength extends XsdIntegerRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(Node node){
-        return ReferenceBase.createFromXsd(new XsdMaxLength(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return ReferenceBase.createFromXsd(new XsdMaxLength(parser, convertNodeMap(node.getAttributes())));
     }
 }

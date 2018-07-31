@@ -6,6 +6,9 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
+import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
+import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeVisitor;
@@ -63,15 +66,20 @@ public class XsdAttribute extends XsdNamedElements {
     /**
      * Specifies if the current {@link XsdAttribute} attribute is "qualified" or "unqualified".
      */
-    private String form;
+    private FormEnum form;
 
     /**
      * Specifies how this {@link XsdAttribute} should be used. The possible values are: required, prohibited, optional.
      */
-    private String use;
+    private UsageEnum use;
 
-    private XsdAttribute(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdAttribute(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
+    }
+
+    private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
+        setParent(parent);
     }
 
     /**
@@ -88,14 +96,12 @@ public class XsdAttribute extends XsdNamedElements {
         this.defaultElement = elementFieldsMap.getOrDefault(DEFAULT_ELEMENT_TAG, defaultElement);
         this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
         this.type = elementFieldsMap.getOrDefault(TYPE_TAG, type);
-        this.form = elementFieldsMap.getOrDefault(FORM_TAG, form);
-        this.use = elementFieldsMap.getOrDefault(USE_TAG, "optional");
+        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.get(FORM_TAG));
+        this.use = EnumUtils.belongsToEnum(UsageEnum.OPTIONAL, elementFieldsMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
-            XsdAttribute placeHolder = new XsdAttribute(new HashMap<>());
-            placeHolder.setParent(this);
-            this.simpleType = new UnsolvedReference(type, placeHolder);
-            XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.simpleType);
+            this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>()));
+            parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
     }
 
@@ -119,10 +125,10 @@ public class XsdAttribute extends XsdNamedElements {
     @Override
     public XsdAttribute clone(@NotNull Map<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdAttribute copy = new XsdAttribute(placeHolderAttributes);
-        copy.setParent(this.parent);
+        XsdAttribute copy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes);
 
         copy.type = this.type;
         copy.simpleType = this.simpleType;
@@ -163,11 +169,11 @@ public class XsdAttribute extends XsdNamedElements {
     }
 
     public String getUse() {
-        return use;
+        return use.getValue();
     }
 
     public String getForm() {
-        return form;
+        return form.getValue();
     }
 
     public String getFixed() {
@@ -185,8 +191,8 @@ public class XsdAttribute extends XsdNamedElements {
         return Collections.emptyList();
     }
 
-    public static ReferenceBase parse(Node node) {
-        return xsdParseSkeleton(node, new XsdAttribute(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {
+        return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.getAttributes())));
     }
 
 }

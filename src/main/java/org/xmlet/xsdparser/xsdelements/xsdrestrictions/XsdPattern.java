@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -16,8 +17,8 @@ public class XsdPattern extends XsdStringRestrictions {
     public static final String XSD_TAG = "xsd:pattern";
     public static final String XS_TAG = "xs:pattern";
 
-    private XsdPattern(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdPattern(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class XsdPattern extends XsdStringRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(Node node){
-        return ReferenceBase.createFromXsd(new XsdPattern(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return ReferenceBase.createFromXsd(new XsdPattern(parser, convertNodeMap(node.getAttributes())));
     }
 }

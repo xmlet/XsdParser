@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -43,8 +44,8 @@ public class XsdComplexContent extends XsdAnnotatedElements {
      */
     private boolean mixed;
 
-    private XsdComplexContent(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdComplexContent(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -79,8 +80,8 @@ public class XsdComplexContent extends XsdAnnotatedElements {
         return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdComplexContent(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return xsdParseSkeleton(node, new XsdComplexContent(parser, convertNodeMap(node.getAttributes())));
     }
 
     public void setExtension(ReferenceBase extension) {

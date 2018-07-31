@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -37,8 +38,8 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
      */
     private ReferenceBase extension;
 
-    private XsdSimpleContent(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdSimpleContent(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -62,8 +63,8 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
         return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdSimpleContent(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return xsdParseSkeleton(node, new XsdSimpleContent(parser, convertNodeMap(node.getAttributes())));
     }
 
     public void setRestriction(ReferenceBase restriction) {

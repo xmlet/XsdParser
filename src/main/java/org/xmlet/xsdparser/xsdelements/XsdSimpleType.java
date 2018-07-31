@@ -4,6 +4,8 @@ import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
+import org.xmlet.xsdparser.xsdelements.enums.SimpleTypeFinalEnum;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleTypeVisitor;
@@ -51,17 +53,22 @@ public class XsdSimpleType extends XsdNamedElements {
     /**
      * Prevents other elements to derive depending on its value.
      */
-    private String finalObj;
+    private SimpleTypeFinalEnum finalObj;
 
-    private XsdSimpleType(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdSimpleType(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
+    }
+
+    private XsdSimpleType(XsdAbstractElement parent, XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
+        setParent(parent);
     }
 
     @Override
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
         super.setFields(elementFieldsMapParam);
 
-        this.finalObj = elementFieldsMap.getOrDefault(FINAL_TAG, finalObj);
+        this.finalObj = EnumUtils.belongsToEnum(SimpleTypeFinalEnum.ALL, elementFieldsMap.get(FINAL_TAG));
     }
 
     @Override
@@ -86,8 +93,7 @@ public class XsdSimpleType extends XsdNamedElements {
         placeHolderAttributes.putAll(elementFieldsMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdSimpleType copy = new XsdSimpleType(placeHolderAttributes);
-        copy.setParent(this.parent);
+        XsdSimpleType copy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes);
 
         copy.union = this.union;
         copy.list = this.list;
@@ -96,8 +102,8 @@ public class XsdSimpleType extends XsdNamedElements {
         return copy;
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdSimpleType(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.getAttributes())));
     }
 
     public XsdRestriction getRestriction() {
@@ -275,5 +281,10 @@ public class XsdSimpleType extends XsdNamedElements {
 
     public void setRestriction(XsdRestriction restriction) {
         this.restriction = restriction;
+    }
+
+    @SuppressWarnings("unused")
+    public String getFinalObj() {
+        return finalObj.getValue();
     }
 }

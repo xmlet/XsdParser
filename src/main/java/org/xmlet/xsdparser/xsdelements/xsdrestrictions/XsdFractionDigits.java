@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -16,8 +16,8 @@ public class XsdFractionDigits extends XsdIntegerRestrictions {
     public static final String XSD_TAG = "xsd:fractionDigits";
     public static final String XS_TAG = "xs:fractionDigits";
 
-    private XsdFractionDigits(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdFractionDigits(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class XsdFractionDigits extends XsdIntegerRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(Node node){
-        return ReferenceBase.createFromXsd(new XsdFractionDigits(XsdAbstractElement.convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return ReferenceBase.createFromXsd(new XsdFractionDigits(parser, convertNodeMap(node.getAttributes())));
     }
 }

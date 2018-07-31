@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -99,8 +100,8 @@ public class XsdRestriction extends XsdAnnotatedElements {
      */
     private String base;
 
-    private XsdRestriction(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdRestriction(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override
@@ -128,8 +129,8 @@ public class XsdRestriction extends XsdAnnotatedElements {
         visitor.replaceUnsolvedAttributes(element);
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdRestriction(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return xsdParseSkeleton(node, new XsdRestriction(parser, convertNodeMap(node.getAttributes())));
     }
 
     @SuppressWarnings("unused")

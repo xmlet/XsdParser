@@ -6,6 +6,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
@@ -35,8 +36,8 @@ public class XsdImport extends XsdAnnotatedElements {
      */
     private String schemaLocation;
 
-    private XsdImport(Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdImport(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     /**
@@ -45,14 +46,14 @@ public class XsdImport extends XsdAnnotatedElements {
      * @param elementFieldsMapParam The Map object containing the information previously contained in the Node object.
      */
     @Override
-    public void setFields(Map<String, String> elementFieldsMapParam) {
+    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
         super.setFields(elementFieldsMapParam);
 
         this.namespace = elementFieldsMap.getOrDefault(NAMESPACE, namespace);
         this.schemaLocation = elementFieldsMap.getOrDefault(SCHEMA_LOCATION, schemaLocation);
 
         if (this.schemaLocation != null){
-            XsdParser.getInstance().addFileToParse(this.schemaLocation);
+            parser.addFileToParse(this.schemaLocation);
         }
     }
 
@@ -61,8 +62,8 @@ public class XsdImport extends XsdAnnotatedElements {
         return visitor;
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdImport(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return xsdParseSkeleton(node, new XsdImport(parser, convertNodeMap(node.getAttributes())));
     }
 
     @SuppressWarnings("unused")

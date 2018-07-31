@@ -2,15 +2,13 @@ package org.xmlet.xsdparser.core;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xmlet.xsdparser.core.utils.NodeListSpliterator;
 import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,11 +18,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  * {@link XsdParser} in the core class of the XsdParser project. It functions as a one shot class, receiving the name
@@ -38,14 +37,13 @@ public class XsdParser {
      * type supported by this mapper, this way based on the concrete {@link XsdAbstractElement} tag the according parse
      * method can be invoked.
      */
-    private static final Map<String, Function<Node, ReferenceBase>> parseMappers;
+    private static final Map<String, BiFunction<XsdParser, Node, ReferenceBase>> parseMappers;
 
     /**
      * xsdTypesToJava is a {@link Map} object that contains the all the XSD types and their respective types in the Java
      * language.
      */
     private static final Map<String, String> xsdTypesToJava;
-    private static XsdParser instance;
 
     /**
      * parseElements contains all the top elements parsed by this class.
@@ -248,8 +246,6 @@ public class XsdParser {
      * @param filePath States the path of the XSD file to be parsed.
      */
     public XsdParser(String filePath){
-        instance = this;
-
         schemaLocations.add(filePath);
         int index = 0;
 
@@ -276,14 +272,22 @@ public class XsdParser {
                 throw new FileNotFoundException();
             }
 
-            NodeList nodes = getNodesFromXsdFile(filePath);
+            Node schemaNode = getSchemaNode(filePath);
 
-            stream(nodes).filter(node -> node.getNodeType() == Node.ELEMENT_NODE && parseMappers.get(node.getNodeName()) != null)
-                    .map(node -> parseMappers.get(node.getNodeName()).apply(node))
-                    .forEach(parseElements::add);
-        } catch (Exception e) {
+            if (isXsdSchema(schemaNode)){
+                XsdSchema.parse(this, schemaNode);
+            } else {
+                throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
+            }
+        } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
         }
+    }
+
+    private boolean isXsdSchema(Node node){
+        String schemaNodeName = node.getNodeName();
+
+        return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG);
     }
 
     /**
@@ -294,7 +298,7 @@ public class XsdParser {
      * @throws SAXException .
      * @throws ParserConfigurationException .
      */
-    private NodeList getNodesFromXsdFile(String filePath) throws IOException, SAXException, ParserConfigurationException {
+    private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
@@ -303,7 +307,7 @@ public class XsdParser {
         //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
         doc.getDocumentElement().normalize();
 
-        return doc.getFirstChild().getChildNodes();
+        return doc.getFirstChild();
     }
 
     /**
@@ -316,30 +320,12 @@ public class XsdParser {
      * name attribute of the {@link NamedConcreteElement}.
      */
     private void resolveRefs() {
-        HashMap<String, List<NamedConcreteElement>> concreteElementsMap = new HashMap<>();
+        Map<String, List<NamedConcreteElement>> concreteElementsMap = parseElements.stream()
+                                                                                   .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
+                                                                                   .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                                                                                   .collect(groupingBy(NamedConcreteElement::getName));
 
-        parseElements
-                .stream()
-                .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                .map(concreteElement -> (NamedConcreteElement) concreteElement)
-                .forEach(referenceElement -> {
-                    List<NamedConcreteElement> list = concreteElementsMap.get(referenceElement.getName());
-
-                    if (list != null){
-                        list.add(referenceElement);
-                    } else {
-                        List<NamedConcreteElement> newList = new ArrayList<>();
-
-                        newList.add(referenceElement);
-
-                        concreteElementsMap.put(referenceElement.getName(), newList);
-                    }
-                });
-
-        //noinspection ForLoopReplaceableByForEach
-        for (int i = 0; i < unsolvedElements.size(); i++) {
-            replaceUnsolvedReference(concreteElementsMap, unsolvedElements.get(i));
-        }
+        unsolvedElements.forEach(unsolvedElement -> replaceUnsolvedReference(concreteElementsMap, unsolvedElement));
     }
 
     /**
@@ -349,7 +335,7 @@ public class XsdParser {
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference The unsolved reference to solve.
      */
-    private void replaceUnsolvedReference(HashMap<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
+    private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
         if (concreteElements != null){
@@ -401,10 +387,26 @@ public class XsdParser {
      * @return A list of all the top level parsed elements by this class.
      */
     public Stream<XsdElement> getParseResult(){
+        List<XsdElement> elements = new ArrayList<>();
+
+        getResultSchemas()
+                .forEach(schema ->
+                        schema.getXsdElements()
+                                .filter(element -> element instanceof XsdElement )
+                                .map(element -> (XsdElement) element)
+                                .forEach(elements::add));
+
+        return elements.stream();
+    }
+
+    /**
+     * @return A list of all the top level parsed elements by this class.
+     */
+    public Stream<XsdSchema> getResultSchemas(){
         return parseElements
                 .stream()
-                .filter(element -> element instanceof ConcreteElement && element.getElement() instanceof XsdElement)
-                .map(element -> (XsdElement) element.getElement());
+                .filter(element -> element.getElement() instanceof XsdSchema)
+                .map(element -> (XsdSchema) element.getElement());
     }
 
     /**
@@ -425,20 +427,16 @@ public class XsdParser {
         schemaLocations.add(schemaLocation);
     }
 
-    private Stream<Node> stream(NodeList nodeList){
-        return StreamSupport.stream(new NodeListSpliterator(nodeList), false);
-    }
-
     public static Map<String, String> getXsdTypesToJava() {
         return xsdTypesToJava;
     }
 
-    public static Map<String, Function<Node, ReferenceBase>> getParseMappers() {
+    public static Map<String, BiFunction<XsdParser, Node, ReferenceBase>> getParseMappers() {
         return parseMappers;
     }
 
-    public static XsdParser getInstance(){
-        return instance;
+    public void addParsedElement(ReferenceBase wrappedElement) {
+        parseElements.add(wrappedElement);
     }
 
 }

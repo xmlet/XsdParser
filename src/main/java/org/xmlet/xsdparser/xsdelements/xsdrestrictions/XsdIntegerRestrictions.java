@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
@@ -16,8 +17,8 @@ public abstract class XsdIntegerRestrictions extends XsdAnnotatedElements {
     private boolean fixed;
     private int value;
 
-    public XsdIntegerRestrictions(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    public XsdIntegerRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     @Override

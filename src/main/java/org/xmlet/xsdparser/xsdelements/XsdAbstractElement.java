@@ -11,7 +11,7 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
 /**
@@ -23,6 +23,15 @@ public abstract class XsdAbstractElement {
      * A Map object containing the keys/values of the attributes that belong to the concrete element instance.
      */
     protected Map<String, String> elementFieldsMap = new HashMap<>();
+
+
+    static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
+    static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
+    static final String BLOCK_DEFAULT = "blockDefault";
+    static final String FINAL_DEFAULT = "finalDefault";
+    static final String TARGET_NAMESPACE = "targetNamespace";
+    static final String VERSION = "version";
+    static final String XMLNS = "xmlns";
 
     static final String ID_TAG = "id";
     public static final String NAME_TAG = "name";
@@ -55,7 +64,10 @@ public abstract class XsdAbstractElement {
      */
     XsdAbstractElement parent;
 
-    protected XsdAbstractElement(@NotNull Map<String, String> elementFieldsMapParam){
+    XsdParser parser;
+
+    protected XsdAbstractElement(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam){
+        setParser(parser);
         setFields(elementFieldsMapParam);
     }
 
@@ -113,23 +125,36 @@ public abstract class XsdAbstractElement {
      * @return A wrapper object that contains the parsed XSD object.
      */
     static ReferenceBase xsdParseSkeleton(Node node, XsdAbstractElement element){
+        XsdParser parser = element.getParser();
         Node child = node.getFirstChild();
 
         while (child != null) {
             if (child.getNodeType() == Node.ELEMENT_NODE) {
                 String nodeName = child.getNodeName();
 
-                Function<Node, ReferenceBase> parserFunction = XsdParser.getParseMappers().get(nodeName);
+                BiFunction<XsdParser, Node, ReferenceBase> parserFunction = XsdParser.getParseMappers().get(nodeName);
 
                 if (parserFunction != null){
-                    parserFunction.apply(child).getElement().accept(element.getVisitor());
+                    parserFunction.apply(parser, child).getElement().accept(element.getVisitor());
                 }
             }
 
             child = child.getNextSibling();
         }
 
-        return ReferenceBase.createFromXsd(element);
+        ReferenceBase wrappedElement = ReferenceBase.createFromXsd(element);
+
+        parser.addParsedElement(wrappedElement);
+
+        return wrappedElement;
+    }
+
+    private void setParser(XsdParser parser) {
+        this.parser = parser;
+    }
+
+    public XsdParser getParser() {
+        return parser;
     }
 
     /**

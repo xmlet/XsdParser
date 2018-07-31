@@ -1,6 +1,5 @@
 package org.xmlet.xsdparser.xsdelements.visitors;
 
-import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
@@ -44,11 +43,11 @@ public interface XsdAbstractElementVisitor {
 
     default void visit(XsdMultipleElements element){}
 
-    private void visit(XsdNamedElements element){
+    default void visit(XsdNamedElements element){
         ReferenceBase referenceBase = ReferenceBase.createFromXsd(element);
 
         if (referenceBase instanceof UnsolvedReference){
-            XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) referenceBase);
+            element.getParser().addUnsolvedReference((UnsolvedReference) referenceBase);
         }
     }
 
@@ -95,6 +94,10 @@ public interface XsdAbstractElementVisitor {
     default void visit(XsdAppInfo element) {}
 
     default void visit(XsdAnnotation xsdAnnotation) {}
+
+    default void visit(XsdImport xsdImport) {}
+
+    default void visit(XsdInclude xsdInclude) {}
 
     XsdAbstractElement getOwner();
 

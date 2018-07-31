@@ -16,12 +16,14 @@ public class HtmlPartedParseTest {
 
     private static final String HTML_FILE_NAME = HtmlParseTest.class.getClassLoader().getResource("html_5_types.xsd").getPath();
     private static final List<XsdElement> elements;
+    private static final List<XsdSchema> schemas;
     private static final XsdParser parser;
 
     static{
         parser = new XsdParser(HTML_FILE_NAME);
 
         elements = parser.getParseResult().collect(Collectors.toList());
+        schemas = parser.getResultSchemas().collect(Collectors.toList());
     }
 
     /**
@@ -30,6 +32,7 @@ public class HtmlPartedParseTest {
     @Test
     public void testElementCount() {
         Assert.assertEquals(104, elements.size());
+        Assert.assertEquals(2, schemas.size());
     }
 
     /**

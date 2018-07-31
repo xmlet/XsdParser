@@ -49,8 +49,8 @@ public class XsdExtension extends XsdAnnotatedElements {
      */
     private ReferenceBase base;
 
-    private XsdExtension(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdExtension(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     /**
@@ -64,10 +64,8 @@ public class XsdExtension extends XsdAnnotatedElements {
         String baseValue = elementFieldsMap.getOrDefault(BASE_TAG, null);
 
         if (baseValue != null){
-            XsdElement placeHolder = new XsdElement(new HashMap<>());
-            placeHolder.setParent(this);
-            this.base = new UnsolvedReference(baseValue, placeHolder);
-            XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.base);
+            this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>()));
+            parser.addUnsolvedReference((UnsolvedReference) this.base);
         }
     }
 
@@ -124,8 +122,8 @@ public class XsdExtension extends XsdAnnotatedElements {
         return base instanceof ConcreteElement ? (XsdElement) base.getElement() : null;
     }
 
-    public static ReferenceBase parse(Node node){
-        return xsdParseSkeleton(node, new XsdExtension(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+        return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.getAttributes())));
     }
 
     @SuppressWarnings("unused")

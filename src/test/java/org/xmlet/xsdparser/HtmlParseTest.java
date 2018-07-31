@@ -11,16 +11,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("Duplicates")
 public class HtmlParseTest {
 
     private static final String HTML_FILE_NAME = HtmlParseTest.class.getClassLoader().getResource("html_5.xsd").getPath();
     private static final List<XsdElement> elements;
+    private static final List<XsdSchema> schemas;
     private static final XsdParser parser;
 
     static{
         parser = new XsdParser(HTML_FILE_NAME);
 
         elements = parser.getParseResult().collect(Collectors.toList());
+        schemas = parser.getResultSchemas().collect(Collectors.toList());
     }
 
     /**
@@ -29,6 +32,7 @@ public class HtmlParseTest {
     @Test
     public void testElementCount() {
         Assert.assertEquals(104, elements.size());
+        Assert.assertEquals(1, schemas.size());
     }
 
     /**

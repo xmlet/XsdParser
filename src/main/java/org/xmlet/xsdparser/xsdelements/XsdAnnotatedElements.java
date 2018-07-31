@@ -1,5 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import org.xmlet.xsdparser.core.XsdParser;
+
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
@@ -15,8 +17,8 @@ public abstract class XsdAnnotatedElements extends XsdIdentifierElements {
      */
     private XsdAnnotation annotation;
 
-    protected XsdAnnotatedElements(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    protected XsdAnnotatedElements(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     public void setAnnotation(XsdAnnotation annotation){

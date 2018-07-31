@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
+import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
@@ -44,8 +45,13 @@ public class XsdAttributeGroup extends XsdNamedElements {
      */
     private List<ReferenceBase> attributes = new ArrayList<>();
 
-    private XsdAttributeGroup(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    private XsdAttributeGroup(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
+    }
+
+    private XsdAttributeGroup(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
+        setParent(parent);
     }
 
     @Override
@@ -86,8 +92,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
         placeHolderAttributes.putAll(elementFieldsMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdAttributeGroup elementCopy = new XsdAttributeGroup(placeHolderAttributes);
-        elementCopy.setParent(parent);
+        XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes);
 
         elementCopy.attributes.addAll(this.attributes);
         elementCopy.attributeGroups.addAll(this.attributeGroups);
@@ -111,8 +116,8 @@ public class XsdAttributeGroup extends XsdNamedElements {
         return attributeGroups;
     }
 
-    public static ReferenceBase parse(Node node) {
-        return xsdParseSkeleton(node, new XsdAttributeGroup(convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {
+        return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.getAttributes())));
     }
 
     public void addAttribute(ReferenceBase attribute) {

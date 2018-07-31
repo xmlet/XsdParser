@@ -1,5 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import org.xmlet.xsdparser.core.XsdParser;
+
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
@@ -13,8 +15,8 @@ public abstract class XsdIdentifierElements extends XsdAbstractElement {
      */
     private String id;
 
-    XsdIdentifierElements(@NotNull Map<String, String> elementFieldsMapParam) {
-        super(elementFieldsMapParam);
+    XsdIdentifierElements(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        super(parser, elementFieldsMapParam);
     }
 
     /**

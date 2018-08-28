@@ -2,6 +2,7 @@ package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -22,6 +23,13 @@ public class XsdMaxLength extends XsdIntegerRestrictions {
 
     private XsdMaxLength(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
+    }
+
+    @Override
+    public void setFields(Map<String, String> elementFieldsMapParam) {
+        super.setFields(elementFieldsMapParam);
+
+        value = AttributeValidations.validateRequiredNonNegativeInteger(XSD_TAG, VALUE_TAG, elementFieldsMap.get(VALUE_TAG));
     }
 
     @Override

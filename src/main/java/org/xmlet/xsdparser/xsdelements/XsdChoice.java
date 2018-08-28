@@ -3,7 +3,6 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdChoiceVisitor;
@@ -55,8 +54,8 @@ public class XsdChoice extends XsdMultipleElements {
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
         super.setFields(elementFieldsMapParam);
 
-        this.minOccurs = EnumUtils.minOccursValidation(elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
-        this.maxOccurs = EnumUtils.maxOccursValidation(elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+        this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
+        this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
     @Override

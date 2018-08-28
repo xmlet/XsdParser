@@ -9,18 +9,22 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * This class serves as a base to every different restriction that has its restricting parameter defined as an Integer.
- * i.e. xsd:maxLength or xsd:length.
+ * This class serves as a base to every different restriction that has its restricting parameter defined as a Double
+ * i.e. xsd:maxInclusive or xsd:maxExclusive.
  */
-public class XsdIntegerRestrictions extends XsdAnnotatedElements {
+public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
 
     private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
-    private boolean fixed;
-    protected int value;
+    private String restrictionName;
 
-    XsdIntegerRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private boolean fixed;
+    private double value;
+
+    XsdDoubleRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName) {
         super(parser, elementFieldsMapParam);
+
+        this.restrictionName = restrictionName;
     }
 
     @Override
@@ -33,22 +37,22 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
         super.setFields(elementFieldsMapParam);
 
         fixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(FIXED_TAG, "false"));
+        value = AttributeValidations.validateRequiredDouble(restrictionName, VALUE_TAG, elementFieldsMap.get(VALUE_TAG));
     }
 
     /**
      * Compares two different objects of this type.
-     *
      * @param o1 The first object.
      * @param o2 The object to compare.
      * @return True if the value of both classes is different, False if the value is equal.
      */
-    public static boolean hasDifferentValue(XsdIntegerRestrictions o1, XsdIntegerRestrictions o2) {
+    public static boolean hasDifferentValue(XsdDoubleRestrictions o1, XsdDoubleRestrictions o2) {
         if (o1 == null && o2 == null) {
             return false;
         }
 
-        int o1Value = Integer.MAX_VALUE;
-        int o2Value;
+        double o1Value = Double.MAX_VALUE;
+        double o2Value;
 
         if (o1 != null) {
             o1Value = o1.getValue();
@@ -62,7 +66,7 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
         return false;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 

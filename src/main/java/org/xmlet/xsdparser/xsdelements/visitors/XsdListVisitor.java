@@ -3,6 +3,7 @@ package org.xmlet.xsdparser.xsdelements.visitors;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdList;
 import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
 /**
  * Represents the restrictions of the {@link XsdList} element, which can only contain {@link XsdSimpleType} as children.
@@ -29,6 +30,10 @@ public class XsdListVisitor extends XsdAnnotatedElementsVisitor {
     @Override
     public void visit(XsdSimpleType element) {
         super.visit(element);
+
+        if (owner.getItemType() != null){
+            throw new ParsingException(XsdList.XSD_TAG + " element: The element cannot have both the itemType attribute and a " + XsdSimpleType.XSD_TAG + " element as content at the same time." );
+        }
 
         owner.setSimpleType(element);
     }

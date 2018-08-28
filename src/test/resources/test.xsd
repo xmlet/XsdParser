@@ -43,7 +43,7 @@
     
     <xsd:element name="restrictedList">
         <xsd:simpleType>
-            <xsd:list id="listId" itemType="xsd:int">
+            <xsd:list id="listId">
                 <xsd:simpleType>
                     <xsd:union>
                         <xsd:simpleType>
@@ -62,6 +62,11 @@
         </xsd:simpleType>
     </xsd:element>
 
-
+    <xsd:simpleType name="IDContatto">
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="99999999999999"/>
+            <xsd:maxInclusive value="99999999999999.9"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 </xsd:schema>
 

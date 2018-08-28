@@ -217,11 +217,7 @@ public class ParserApp {
   
 ## Important remarks
 
-<div align="justify"> 
-    <b>xsd:import</b> - XsdParser does not support <i>xsd:import</i> tags, meaning that if there are import tags the content of
-    the imported files should be manually added to the main file. Support for xsd:import tags will be added, when my 
-    schedule clears.
-    <br />
+<div align="justify">
     <b>name attribute</b> - XsdParser uses the name attribute as a tool in order to resolve references, therefore it 
     should be unique in the file. Using multiple times the same name will generate unexpected behaviour.
 </div>

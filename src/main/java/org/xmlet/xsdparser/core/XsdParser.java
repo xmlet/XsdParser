@@ -266,9 +266,7 @@ public class XsdParser {
     private void parseFile(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
         try {
-            File xsdFile = new File(filePath);
-
-            if (!xsdFile.exists()){
+            if (!new File(filePath).exists()){
                 throw new FileNotFoundException();
             }
 
@@ -294,9 +292,6 @@ public class XsdParser {
      * This function uses DOM to obtain a list of nodes from a XSD file.
      * @param filePath The path to the XSD file.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
-     * @throws IOException .
-     * @throws SAXException .
-     * @throws ParserConfigurationException .
      */
     private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

@@ -70,22 +70,22 @@ public class OddTest {
         Assert.assertNotNull(totalDigits);
         Assert.assertNotNull(fractionDigits);
 
-        Assert.assertEquals(100, maxExclusive.getValue());
+        Assert.assertEquals(100d, maxExclusive.getValue(), 0);
         Assert.assertTrue(maxExclusive.isFixed());
 
-        Assert.assertEquals(0, minExclusive.getValue());
+        Assert.assertEquals(0d, minExclusive.getValue(), 0);
         Assert.assertTrue(minExclusive.isFixed());
 
-        Assert.assertEquals(99, maxInclusive.getValue());
+        Assert.assertEquals(99d, maxInclusive.getValue(), 0);
         Assert.assertFalse(maxInclusive.isFixed());
 
-        Assert.assertEquals(1, minInclusive.getValue());
+        Assert.assertEquals(1d, minInclusive.getValue(), 0);
         Assert.assertFalse(minInclusive.isFixed());
 
-        Assert.assertEquals(2, fractionDigits.getValue());
+        Assert.assertEquals(2d, fractionDigits.getValue(), 0);
         Assert.assertTrue(fractionDigits.isFixed());
 
-        Assert.assertEquals(10, totalDigits.getValue());
+        Assert.assertEquals(10d, totalDigits.getValue(), 0);
         Assert.assertFalse(totalDigits.isFixed());
     }
 
@@ -130,18 +130,18 @@ public class OddTest {
         Assert.assertNotNull(xsdPattern);
         Assert.assertNotNull(xsdWhiteSpace);
 
-        Assert.assertEquals(10, xsdLength.getValue());
+        Assert.assertEquals(10d, xsdLength.getValue(), 0);
         Assert.assertTrue(xsdLength.isFixed());
 
-        Assert.assertEquals(10, xsdLength.getValue());
+        Assert.assertEquals(10d, xsdLength.getValue(), 0);
         Assert.assertTrue(xsdLength.isFixed());
 
-        Assert.assertEquals(10, xsdLength.getValue());
+        Assert.assertEquals(10d, xsdLength.getValue(), 0);
         Assert.assertTrue(xsdLength.isFixed());
 
         Assert.assertEquals(".*", xsdPattern.getValue());
 
-        Assert.assertEquals("preserve", xsdWhiteSpace.getValue());
+        Assert.assertEquals("preserve", xsdWhiteSpace.getValue().getValue());
         Assert.assertFalse(xsdWhiteSpace.isFixed());
     }
 
@@ -192,7 +192,6 @@ public class OddTest {
 
         Assert.assertNotNull(list);
         Assert.assertEquals("listId", list.getId());
-        Assert.assertEquals("xsd:int", list.getItemType());
 
         XsdSimpleType listSimpleType = list.getXsdSimpleType();
 
@@ -210,7 +209,39 @@ public class OddTest {
         XsdMaxLength maxLength = restriction.getMaxLength();
 
         Assert.assertNotNull(length);
-        Assert.assertEquals(5, length.getValue());
-        Assert.assertEquals(5, maxLength.getValue());
+        Assert.assertEquals(5d, length.getValue(), 0);
+        Assert.assertEquals(5d, maxLength.getValue(), 0);
+    }
+
+    @Test
+    public void testDoubleRestrictions() {
+        Optional<XsdSchema> xsdSchemaOptional = parser.getResultSchemas().findFirst();
+
+        Assert.assertTrue(xsdSchemaOptional.isPresent());
+
+        XsdSchema xsdSchema = xsdSchemaOptional.get();
+
+        Optional<XsdSimpleType> simpleTypeObj = xsdSchema.getXsdElements()
+                    .filter(element -> element instanceof XsdSimpleType)
+                    .map(element -> (XsdSimpleType) element)
+                    .filter(simpleType -> simpleType.getName().equals("IDContatto"))
+                    .findFirst();
+
+        Assert.assertTrue(simpleTypeObj.isPresent());
+
+        XsdSimpleType simpleType = simpleTypeObj.get();
+
+        XsdRestriction restriction = simpleType.getRestriction();
+
+        Assert.assertNotNull(restriction);
+
+        XsdMinInclusive minInclusive = restriction.getMinInclusive();
+        XsdMaxInclusive maxInclusive = restriction.getMaxInclusive();
+
+        Assert.assertNotNull(minInclusive);
+        Assert.assertNotNull(maxInclusive);
+
+        Assert.assertEquals(99999999999999d, minInclusive.getValue(), 0);
+        Assert.assertEquals(99999999999999.9d, maxInclusive.getValue(), 0);
     }
 }

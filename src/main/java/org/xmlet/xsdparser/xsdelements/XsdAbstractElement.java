@@ -91,6 +91,11 @@ public abstract class XsdAbstractElement {
     public abstract XsdAbstractElementVisitor getVisitor();
 
     /**
+     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+     */
+    public void validateSchemaRules(){ }
+
+    /**
      * Base method for all accept methods. It serves as a way to guarantee that every accept call assigns the parent
      * field.
      * @param xsdAbstractElementVisitor The visitor that is visiting the current instance.
@@ -135,7 +140,11 @@ public abstract class XsdAbstractElement {
                 BiFunction<XsdParser, Node, ReferenceBase> parserFunction = XsdParser.getParseMappers().get(nodeName);
 
                 if (parserFunction != null){
-                    parserFunction.apply(parser, child).getElement().accept(element.getVisitor());
+                    XsdAbstractElement childElement = parserFunction.apply(parser, child).getElement();
+
+                    childElement.accept(element.getVisitor());
+
+                    childElement.validateSchemaRules();
                 }
             }
 

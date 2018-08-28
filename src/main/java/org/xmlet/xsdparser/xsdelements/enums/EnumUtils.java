@@ -30,34 +30,4 @@ public class EnumUtils {
         }
     }
 
-    public static String maxOccursValidation(String value){
-        if (value.equals("unbounded")){
-            return value;
-        }
-
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            Integer.parseInt(value);
-            return value;
-        } catch (NumberFormatException e){
-            throw new ParsingException("The maxOccurs attribute should either be a number or have the \"unbounded\" value.");
-        }
-    }
-
-    public static Integer maxOccursIntegerValidation(String value){
-        try {
-            //noinspection ResultOfMethodCallIgnored
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e){
-            throw new ParsingException("The maxOccurs attribute in the xsd:all element should be a number.");
-        }
-    }
-
-    public static Integer minOccursValidation(String value){
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e){
-            throw new ParsingException("The minOccurs attribute should be a number.");
-        }
-    }
 }

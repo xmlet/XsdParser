@@ -52,7 +52,7 @@ public class XsdComplexContent extends XsdAnnotatedElements {
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
         super.setFields(elementFieldsMapParam);
 
-        this.mixed = Boolean.parseBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
+        this.mixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
     }
 
     @Override

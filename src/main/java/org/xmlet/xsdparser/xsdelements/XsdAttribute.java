@@ -9,6 +9,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeVisitor;
@@ -93,15 +94,62 @@ public class XsdAttribute extends XsdNamedElements {
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
         super.setFields(elementFieldsMapParam);
 
+        String formDefaultValue = getFormDefaultValue(parent);
+
         this.defaultElement = elementFieldsMap.getOrDefault(DEFAULT_ELEMENT_TAG, defaultElement);
         this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
         this.type = elementFieldsMap.getOrDefault(TYPE_TAG, type);
-        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.get(FORM_TAG));
+        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefaultValue));
         this.use = EnumUtils.belongsToEnum(UsageEnum.OPTIONAL, elementFieldsMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
             this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>()));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
+        }
+    }
+
+    private static String getFormDefaultValue(XsdAbstractElement parent) {
+        if (parent == null) return null;
+
+        if (parent instanceof XsdElement){
+            return ((XsdElement) parent).getForm();
+        }
+
+        if (parent instanceof XsdSchema){
+            return ((XsdSchema) parent).getAttributeFormDefault();
+        }
+
+        return getFormDefaultValue(parent.getParent());
+    }
+
+    /**
+     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+     */
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        rule2();
+        rule3();
+    }
+
+    /**
+     * Asserts if the current object has a ref attribute at the same time as either a simpleType as children, a form attribute or a type attribute.
+     * Throws an exception in that case.
+     */
+    private void rule3() {
+        if (elementFieldsMap.containsKey(REF_TAG) && (simpleType != null || form != null || type != null)){
+            throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, simpleType element, form attribute and type attribute cannot be present at the same time.");
+        }
+    }
+
+    /**
+     * Asserts if the current object has the fixed and default attributes at the same time, which isn't allowed, throwing
+     * an exception in that case.
+     */
+    private void rule2() {
+        if (fixed != null && defaultElement != null){
+            throw new ParsingException(XSD_TAG + " element: " + FIXED_TAG + " and " + DEFAULT_ELEMENT_TAG + " attributes are not allowed at the same time.");
         }
     }
 

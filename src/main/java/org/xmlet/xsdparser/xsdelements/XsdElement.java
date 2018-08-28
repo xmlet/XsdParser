@@ -10,6 +10,7 @@ import org.xmlet.xsdparser.xsdelements.enums.BlockEnum;
 import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
@@ -153,16 +154,83 @@ public class XsdElement extends XsdNamedElements {
             }
         }
 
+        String formDefault = AttributeValidations.getFormDefaultValue(parent);
+        String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
+        String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
+
         this.substitutionGroup = elementFieldsMap.getOrDefault(SUBSTITUTION_GROUP_TAG, substitutionGroup);
         this.defaultObj = elementFieldsMap.getOrDefault(DEFAULT_TAG, defaultObj);
         this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
-        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.get(FORM_TAG));
-        this.nillable = Boolean.parseBoolean(elementFieldsMap.getOrDefault(NILLABLE_TAG, "false"));
-        this.abstractObj = Boolean.parseBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
-        this.block = EnumUtils.belongsToEnum(BlockEnum.ALL, elementFieldsMap.get(BLOCK_TAG));
-        this.finalObj = EnumUtils.belongsToEnum(FinalEnum.ALL, elementFieldsMap.get(FINAL_TAG));
-        this.minOccurs = EnumUtils.minOccursValidation(elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
-        this.maxOccurs = EnumUtils.maxOccursValidation(elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefault));
+        this.nillable = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(NILLABLE_TAG, "false"));
+        this.abstractObj = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
+        this.block = EnumUtils.belongsToEnum(BlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.finalObj = EnumUtils.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
+        this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+    }
+
+    /**
+     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+     */
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        rule2();
+        rule3();
+        rule4();
+        rule5();
+        rule6();
+        rule7();
+    }
+
+    /**
+     * Asserts if the current object has a form attribute while being a direct child of the top level XsdSchema element,
+     * which isn't allowed, throwing an exception in that case.
+     */
+    private void rule7() {
+        if (parent instanceof XsdSchema && elementFieldsMap.containsKey(FORM_TAG)){
+            throw new ParsingException(XSD_TAG + " element: The " + FORM_TAG + " attribute can only be present when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+        }
+    }
+
+    private void rule6() {
+        //fixed 	Optional. Specifies a fixed value for the element (can only be used if the element's content is a simple type or text only)
+    }
+
+    private void rule5() {
+        // default 	Optional. Specifies a default value for the element (can only be used if the element's content is a simple type or text only)
+    }
+
+    /**
+     * Asserts if the current object isn't a direct child of the top level XsdSchema and has a value for the substitutionGroup,
+     * which isn't allowed, throwing an exception in that case.
+     */
+    private void rule4() {
+        if (!(parent instanceof XsdSchema) && substitutionGroup != null){
+            throw new ParsingException(XSD_TAG + " element: The " + SUBSTITUTION_GROUP_TAG + " attribute can only be present when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+        }
+    }
+
+    /**
+     * Asserts if the current object has a ref attribute while being a direct child of the top level XsdSchema element, which isn't allowed,
+     * throwing an exception in that case.
+     */
+    private void rule3() {
+        if (parent instanceof XsdSchema && elementFieldsMap.containsKey(REF_TAG)){
+            throw new ParsingException(XSD_TAG + " element: The " + REF_TAG + " attribute cannot be present when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+        }
+    }
+
+    /**
+     * Asserts if the current object is a direct child of the top level XsdSchema element and doesn't have a name, which isn't allowed,
+     * throwing an exception in that case.
+     */
+    private void rule2() {
+        if (parent instanceof XsdSchema && name == null){
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " attribute is required when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+        }
     }
 
     @Override
@@ -278,5 +346,9 @@ public class XsdElement extends XsdNamedElements {
     @SuppressWarnings("unused")
     public String getForm() {
         return form.getValue();
+    }
+
+    public String getType(){
+        return elementFieldsMap.getOrDefault(TYPE_TAG, null);
     }
 }

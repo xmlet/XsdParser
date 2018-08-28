@@ -2,6 +2,7 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -15,7 +16,7 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
     /**
      * The name of the element.
      */
-    private String name;
+    String name;
 
     XsdNamedElements(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
@@ -41,13 +42,32 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
     }
 
     /**
+     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+     */
+    @Override
+    public void validateSchemaRules() {
+        rule1();
+    }
+
+    /**
+     * Asserts that the current element doesn't have both ref and name attributes at the same time. Throws an exception
+     * if they are both present.
+     */
+    private void rule1() {
+        if (name != null && elementFieldsMap.containsKey(REF_TAG)){
+            throw new ParsingException(NAME_TAG + " and " + REF_TAG + " attributes cannot both be present at the same time.");
+        }
+    }
+
+    /**
      * @return The name of the element, with all the special characters replaced with the '_' char.
      */
     public String getName() {
         return name == null ? null : name.replaceAll("[^a-zA-Z0-9]", "_");
     }
 
-    String getRawName() {
+    @SuppressWarnings("WeakerAccess")
+    public String getRawName() {
         return name;
     }
 

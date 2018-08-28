@@ -3,10 +3,19 @@
            targetNamespace='http://schemas.microsoft.com/intellisense/html-5'
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="html">
-        <xs:complexType>
-            <!-- -->
-        </xs:complexType>
-    </xs:element>
+    <xs:simpleType name="IDContatto">
+        <xs:restriction base="xs:long">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="99999999999999"/>
+        </xs:restriction>
+    </xs:simpleType>
 
+
+    <xs:element name="address">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:whiteSpace value=""/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
 </xs:schema>

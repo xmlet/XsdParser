@@ -10,17 +10,17 @@ import java.util.Map;
 
 /**
  * States the maximum numeric value that a given type might take, excluding the respective value. The value is defined
- * as an Integer.
+ * as a Double.
  * e.g.
  *  * If the numeric type has a xsd:maxExclusive value="5" it means that the maximum value it can take is 4.9999(9).
  */
-public class XsdMaxExclusive extends XsdIntegerRestrictions {
+public class XsdMaxExclusive extends XsdDoubleRestrictions {
 
     public static final String XSD_TAG = "xsd:maxExclusive";
     public static final String XS_TAG = "xs:maxExclusive";
 
     private XsdMaxExclusive(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+        super(parser, elementFieldsMapParam, XSD_TAG);
     }
 
     @Override

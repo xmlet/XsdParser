@@ -6,6 +6,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.SimpleTypeFinalEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleTypeVisitor;
@@ -15,8 +16,10 @@ import javax.validation.constraints.NotNull;
 import java.security.InvalidParameterException;
 import java.util.*;
 
+import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdDoubleRestrictions.hasDifferentValue;
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdIntegerRestrictions.hasDifferentValue;
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdStringRestrictions.hasDifferentValue;
+import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdWhiteSpace.hasDifferentValue;
 
 /**
  * A class representing the xsd:simpleType element.
@@ -68,7 +71,40 @@ public class XsdSimpleType extends XsdNamedElements {
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
         super.setFields(elementFieldsMapParam);
 
-        this.finalObj = EnumUtils.belongsToEnum(SimpleTypeFinalEnum.ALL, elementFieldsMap.get(FINAL_TAG));
+        String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
+
+        this.finalObj = EnumUtils.belongsToEnum(SimpleTypeFinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+    }
+
+    /**
+     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+     */
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        rule2();
+        rule3();
+    }
+
+    /**
+     * Asserts that the current object has the required name attribute when not being a direct child of the XsdSchema element.
+     * Throws an exception if the required attribute is not present.
+     */
+    private void rule2() {
+        if (!(parent instanceof XsdSchema) && name != null){
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should only be used when the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " element." );
+        }
+    }
+
+    /**
+     * Asserts if the current has no value for its name attribute while being a direct child of the top level XsdSchema element,
+     * which is required. Throws an exception if no name is present.
+     */
+    private void rule3() {
+        if (parent instanceof XsdSchema && name == null){
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should is required the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " element." );
+        }
     }
 
     @Override

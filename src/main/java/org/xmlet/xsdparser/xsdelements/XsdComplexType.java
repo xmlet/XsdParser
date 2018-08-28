@@ -8,6 +8,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.ComplexTypeBlockEnum;
 import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.AttributesVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
@@ -102,10 +103,33 @@ public class XsdComplexType extends XsdNamedElements {
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
         super.setFields(elementFieldsMapParam);
 
-        this.elementAbstract = Boolean.parseBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
-        this.mixed = Boolean.parseBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
-        this.block = EnumUtils.belongsToEnum(ComplexTypeBlockEnum.ALL, elementFieldsMap.get(BLOCK_TAG));
-        this.elementFinal = EnumUtils.belongsToEnum(FinalEnum.ALL, elementFieldsMap.get(FINAL_TAG));
+        String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
+        String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
+
+        this.elementAbstract = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
+        this.mixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
+        this.block = EnumUtils.belongsToEnum(ComplexTypeBlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.elementFinal = EnumUtils.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+    }
+
+    /**
+     * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
+     */
+    @Override
+    public void validateSchemaRules(){
+        super.validateSchemaRules();
+
+        rule2();
+    }
+
+    /**
+     * Asserts if the current object has a simpleContent as children and contains a value for the mixed attribute, which isn't allowed throwing
+     * an exception in that case.
+     */
+    private void rule2() {
+        if (simpleContent != null && elementFieldsMap.containsKey(MIXED_TAG)){
+            throw new ParsingException(XSD_TAG + " element: The simpleContent element and the " + MIXED_TAG  + " attribute are not allowed at the same time.");
+        }
     }
 
     @Override

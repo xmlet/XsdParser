@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * A class is representing xsd:attributeGroup elements. It can have a ref attribute and therefore extends from
@@ -114,6 +115,28 @@ public class XsdAttributeGroup extends XsdNamedElements {
     @SuppressWarnings("unused")
     public List<XsdAttributeGroup> getAttributeGroups() {
         return attributeGroups;
+    }
+
+    /**
+     * @return All the attributes of this attributeGroup and other attributeGroups contained within.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdAttribute> getAllAttributes(){
+        return getElements()
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdAttribute)
+                .map(element -> (XsdAttribute) element.getElement());
+    }
+
+    /**
+     * @return The attributes directly defined in this attributeGroup.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdAttribute> getDirectAttributes(){
+        return attributes
+                    .stream()
+                    .filter(element -> element.getElement() instanceof XsdAttribute)
+                    .map(element -> (XsdAttribute) element.getElement());
     }
 
     public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {

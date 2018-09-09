@@ -160,6 +160,30 @@ public class XsdGroup extends XsdNamedElements {
         return childElement;
     }
 
+    /**
+     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdAll getChildAsdAll() {
+        return XsdMultipleElements.getChildAsdAll(childElement);
+    }
+
+    /**
+     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdChoice getChildAsChoice() {
+        return XsdMultipleElements.getChildAsChoice(childElement);
+    }
+
+    /**
+     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdSequence getChildAsSequence() {
+        return XsdMultipleElements.getChildAsSequence(childElement);
+    }
+
     public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
         return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.getAttributes())));
     }

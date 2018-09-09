@@ -19,7 +19,7 @@ public class OddTest {
     static {
         parser = new XsdParser(FILE_NAME);
 
-        elements = parser.getParseResult().collect(Collectors.toList());
+        elements = parser.getResultXsdElements().collect(Collectors.toList());
     }
 
     @Test
@@ -215,15 +215,13 @@ public class OddTest {
 
     @Test
     public void testDoubleRestrictions() {
-        Optional<XsdSchema> xsdSchemaOptional = parser.getResultSchemas().findFirst();
+        Optional<XsdSchema> xsdSchemaOptional = parser.getResultXsdSchemas().findFirst();
 
         Assert.assertTrue(xsdSchemaOptional.isPresent());
 
         XsdSchema xsdSchema = xsdSchemaOptional.get();
 
-        Optional<XsdSimpleType> simpleTypeObj = xsdSchema.getXsdElements()
-                    .filter(element -> element instanceof XsdSimpleType)
-                    .map(element -> (XsdSimpleType) element)
+        Optional<XsdSimpleType> simpleTypeObj = xsdSchema.getChildrenSimpleTypes()
                     .filter(simpleType -> simpleType.getName().equals("IDContatto"))
                     .findFirst();
 

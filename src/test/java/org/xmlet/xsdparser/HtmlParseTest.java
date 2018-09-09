@@ -22,8 +22,8 @@ public class HtmlParseTest {
     static{
         parser = new XsdParser(HTML_FILE_NAME);
 
-        elements = parser.getParseResult().collect(Collectors.toList());
-        schemas = parser.getResultSchemas().collect(Collectors.toList());
+        elements = parser.getResultXsdElements().collect(Collectors.toList());
+        schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
     }
 
     /**
@@ -48,20 +48,17 @@ public class HtmlParseTest {
 
         Assert.assertEquals(firstElementChild.getXsdChildElement().getClass(), XsdChoice.class);
 
-        XsdChoice complexTypeChild = (XsdChoice) firstElementChild.getXsdChildElement();
+        XsdChoice complexTypeChild = firstElementChild.getChildAsChoice();
 
-        List<XsdAbstractElement> choiceElements = complexTypeChild.getXsdElements().collect(Collectors.toList());
+        List<XsdElement> choiceElements = complexTypeChild.getChildrenElements().collect(Collectors.toList());
 
         Assert.assertEquals(2, choiceElements.size());
 
-        XsdAbstractElement child1 = choiceElements.get(0);
-        XsdAbstractElement child2 = choiceElements.get(1);
+        XsdElement child1 = choiceElements.get(0);
+        XsdElement child2 = choiceElements.get(1);
 
-        Assert.assertEquals(child1.getClass(), XsdElement.class);
-        Assert.assertEquals(child2.getClass(), XsdElement.class);
-
-        Assert.assertEquals("body", ((XsdElement)child1).getName());
-        Assert.assertEquals("head", ((XsdElement)child2).getName());
+        Assert.assertEquals("body", child1.getName());
+        Assert.assertEquals("head", child2.getName());
     }
 
     /**
@@ -182,9 +179,7 @@ public class HtmlParseTest {
                 Assert.assertTrue(element.getXsdComplexType()
                         .getXsdAttributeGroup()
                         .anyMatch(attributeGroup ->
-                                attributeGroup.getXsdElements()
-                                        .filter(groupElement -> groupElement instanceof XsdAttribute)
-                                        .map(attribute -> (XsdAttribute) attribute)
+                                attributeGroup.getAllAttributes()
                                         .anyMatch(attribute -> attribute.getName().equals("class"))))
         );
     }

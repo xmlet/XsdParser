@@ -148,4 +148,40 @@ public class XsdExtension extends XsdAnnotatedElements {
     public void setChildElement(ReferenceBase childElement) {
         this.childElement = childElement;
     }
+
+    /**
+     * @return The childElement as a XsdGroup object or null if childElement isn't a XsdGroup instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdGroup getChildAsGroup() {
+        return childElement.getElement() instanceof XsdGroup ? (XsdGroup) childElement.getElement() : null;
+    }
+
+    /**
+     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdAll getChildAsdAll() {
+        return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsdAll((XsdMultipleElements) childElement.getElement()) : null;
+    }
+
+    /**
+     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdChoice getChildAsChoice() {
+        return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsChoice((XsdMultipleElements) childElement.getElement()) : null;
+    }
+
+    /**
+     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     */
+    @SuppressWarnings("unused")
+    public XsdSequence getChildAsSequence() {
+        return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsSequence((XsdMultipleElements) childElement.getElement()) : null;
+    }
+
+    private boolean childrenIsMultipleElement(){
+        return childElement.getElement() instanceof XsdMultipleElements;
+    }
 }

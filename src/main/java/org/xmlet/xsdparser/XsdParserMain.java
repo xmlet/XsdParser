@@ -11,7 +11,7 @@ public class XsdParserMain {
 
     public static void main(String[] args){
         XsdParser parser = new XsdParser(args[0]);
-        XsdSchema schema = parser.getResultSchemas().findFirst().get();
-        List<XsdElement> parseResult = parser.getParseResult().collect(Collectors.toList());
+        XsdSchema schema = parser.getResultXsdSchemas().findFirst().get();
+        List<XsdElement> parseResult = parser.getResultXsdElements().collect(Collectors.toList());
     }
 }

@@ -18,7 +18,7 @@ public class AndroidParseTest {
     private static final List<XsdElement> elements;
 
     static {
-        elements = new XsdParser(ANDROID_FILE_NAME).getParseResult().collect(Collectors.toList());
+        elements = new XsdParser(ANDROID_FILE_NAME).getResultXsdElements().collect(Collectors.toList());
     }
 
     @Test

@@ -16,7 +16,7 @@ public class WpfeParseTest {
     static{
         parser = new XsdParser(WPFE_FILE_NAME);
 
-        elements = parser.getParseResult().collect(Collectors.toList());
+        elements = parser.getResultXsdElements().collect(Collectors.toList());
     }
 
     @Test

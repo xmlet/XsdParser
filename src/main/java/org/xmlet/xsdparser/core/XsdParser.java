@@ -241,7 +241,7 @@ public class XsdParser {
      * The XsdParser constructor will parse the XSD file with the filePath path and will also parse all the subsequent
      * XSD files with their path present in xsd:import and xsd:include tags. After parsing all the XSD files present it
      * resolves the references existent in the XSD language, represented by the ref attribute. When this method finishes
-     * the parse results and remaining unsolved references are accessible by the getParseResult and getUnsolvedReferences
+     * the parse results and remaining unsolved references are accessible by the getResultXsdElements and getUnsolvedReferences
      * methods, respectively.
      * @param filePath States the path of the XSD file to be parsed.
      */
@@ -379,25 +379,22 @@ public class XsdParser {
     }
 
     /**
-     * @return A list of all the top level parsed elements by this class.
+     * @return A list of all the top level parsed xsd:elements by this class. It doesn't return any other elements apart
+     * from xsd:elements. To access the whole element tree use {@link XsdParser#getResultXsdSchemas()}
      */
-    public Stream<XsdElement> getParseResult(){
+    public Stream<XsdElement> getResultXsdElements(){
         List<XsdElement> elements = new ArrayList<>();
 
-        getResultSchemas()
-                .forEach(schema ->
-                        schema.getXsdElements()
-                                .filter(element -> element instanceof XsdElement )
-                                .map(element -> (XsdElement) element)
-                                .forEach(elements::add));
+        getResultXsdSchemas().forEach(schema -> schema.getChildrenElements().forEach(elements::add));
 
         return elements.stream();
     }
 
     /**
-     * @return A list of all the top level parsed elements by this class.
+     * @return A list of all the {@link XsdSchema} elements parsed by this class. You can use the {@link XsdSchema} instances
+     * to navigate through the whole element tree.
      */
-    public Stream<XsdSchema> getResultSchemas(){
+    public Stream<XsdSchema> getResultXsdSchemas(){
         return parseElements
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdSchema)

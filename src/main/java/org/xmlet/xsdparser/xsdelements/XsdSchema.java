@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class XsdSchema extends XsdAnnotatedElements {
@@ -110,6 +111,11 @@ public class XsdSchema extends XsdAnnotatedElements {
         return elements.stream();
     }
 
+    @Override
+    public List<ReferenceBase> getElements() {
+        return elements.stream().map(ReferenceBase::createFromXsd).collect(Collectors.toList());
+    }
+
     public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {
         return xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.getAttributes())));
     }
@@ -181,5 +187,95 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     public String getXmlns() {
         return xmlns;
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdInclude}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdInclude> getChildrenIncludes(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdInclude)
+                .map(element -> (XsdInclude) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdImport}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdImport> getChildrenImports(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdImport)
+                .map(element -> (XsdImport) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdAnnotation}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdAnnotation> getChildrenAnnotations(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdAnnotation)
+                .map(element -> (XsdAnnotation) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdSimpleType}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdSimpleType> getChildrenSimpleTypes(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdSimpleType)
+                .map(element -> (XsdSimpleType) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdComplexType}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdComplexType> getChildrenComplexTypes(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdComplexType)
+                .map(element -> (XsdComplexType) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdGroup}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdGroup> getChildrenGroups(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdGroup)
+                .map(element -> (XsdGroup) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdAttributeGroup}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdAttributeGroup> getChildrenAttributeGroups(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdAttributeGroup)
+                .map(element -> (XsdAttributeGroup) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdElement}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdElement> getChildrenElements(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdElement)
+                .map(element -> (XsdElement) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdAttribute}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdAttribute> getChildrenAttributes(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdAttribute)
+                .map(element -> (XsdAttribute) element);
     }
 }

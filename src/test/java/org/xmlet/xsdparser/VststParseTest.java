@@ -15,7 +15,7 @@ public class VststParseTest {
     static{
         parser = new XsdParser(VSTST_FILE_NAME);
 
-        elements = parser.getParseResult().collect(Collectors.toList());
+        elements = parser.getResultXsdElements().collect(Collectors.toList());
     }
 
     @Test

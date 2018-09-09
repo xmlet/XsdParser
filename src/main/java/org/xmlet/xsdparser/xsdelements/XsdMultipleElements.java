@@ -74,4 +74,27 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
         this.elements.add(ReferenceBase.createFromXsd(element));
     }
 
+    /**
+     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     */
+    @SuppressWarnings("unused")
+    public static XsdAll getChildAsdAll(XsdMultipleElements element) {
+        return element instanceof XsdAll ? (XsdAll) element : null;
+    }
+
+    /**
+     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     */
+    @SuppressWarnings("unused")
+    public static XsdChoice getChildAsChoice(XsdMultipleElements element) {
+        return element instanceof XsdChoice ? (XsdChoice) element : null;
+    }
+
+    /**
+     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     */
+    @SuppressWarnings("unused")
+    public static XsdSequence getChildAsSequence(XsdMultipleElements element) {
+        return element instanceof XsdSequence ? (XsdSequence) element : null;
+    }
 }

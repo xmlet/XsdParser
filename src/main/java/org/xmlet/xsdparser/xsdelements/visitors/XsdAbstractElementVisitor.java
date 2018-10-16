@@ -6,7 +6,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 /**
- * This Visitor interface serves as a base to every {@link XsdAbstractElement} class visitors. It's meant to implement
+ * This Visitor interface serves as a base to every {@link XsdAbstractElement} class visitors. It is meant to implement
  * the restrictions between elements of the XSD language.
  */
 public interface XsdAbstractElementVisitor {

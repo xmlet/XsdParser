@@ -1,9 +1,14 @@
 package org.xmlet.xsdparser.xsdelements.enums;
 
+import org.xmlet.xsdparser.xsdelements.XsdSchema;
+
 import java.util.Arrays;
 import java.util.List;
 
-public enum BlockFinalEnum implements XsdEnum<BlockFinalEnum> {
+/**
+ * An {@link Enum} with all the possible values for the blockDefault attribute of {@link XsdSchema}.
+ */
+public enum BlockDefaultEnum implements XsdEnum<BlockDefaultEnum> {
 
     DEFAULT (""),
     EXTENSION ("extension"),
@@ -13,7 +18,7 @@ public enum BlockFinalEnum implements XsdEnum<BlockFinalEnum> {
 
     private final String value;
 
-    BlockFinalEnum(String value) {
+    BlockDefaultEnum(String value) {
         this.value = value;
     }
 
@@ -27,8 +32,8 @@ public enum BlockFinalEnum implements XsdEnum<BlockFinalEnum> {
     }
 
     @Override
-    public BlockFinalEnum[] getValues() {
-        return BlockFinalEnum.values();
+    public BlockDefaultEnum[] getValues() {
+        return BlockDefaultEnum.values();
     }
 
     @Override

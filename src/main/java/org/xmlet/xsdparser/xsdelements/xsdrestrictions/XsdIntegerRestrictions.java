@@ -9,14 +9,24 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * This class serves as a base to every different restriction that has its restricting parameter defined as an Integer.
+ * This class serves as a base to every different restriction that has its restricting parameter defined as an {@link Integer}.
+ * Classes like {@link XsdMaxLength} or {@link XsdLength} should extend this class.
  * i.e. xsd:maxLength or xsd:length.
  */
 public class XsdIntegerRestrictions extends XsdAnnotatedElements {
 
     private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
+    /**
+     * Indicates if the value is fixed.
+     */
     private boolean fixed;
+
+    /**
+     * The value of associated with a given restriction. This field has different meanings depending on the concrete
+     * restriction, e.g. if the concrete class is {@link XsdLength} this field means that the attribute which
+     * has the restriction can only have the length specified in this field..
+     */
     protected int value;
 
     XsdIntegerRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
@@ -37,7 +47,6 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
 
     /**
      * Compares two different objects of this type.
-     *
      * @param o1 The first object.
      * @param o2 The object to compare.
      * @return True if the value of both classes is different, False if the value is equal.

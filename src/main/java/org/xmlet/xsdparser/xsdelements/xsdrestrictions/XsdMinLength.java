@@ -7,14 +7,14 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Map;
 
 /**
- * States the minimum length of a given type, either a String, a List or another measurable type. This limit includes
- * the respective value. The value is defined as an Integer.
- * e.g.
- *  * If the type has a xsd:minLength value="2" it means that the String, List or another measurable type should have
- *      a minimum length of 2.
+ * States the minimum length of a given type, either a {@link String}, a {@link List} or another measurable type. This
+ * limit includes the respective value. The value is defined as an {@link Integer}.
+ * Example: If the type has a {@link XsdMinLength#value} of 2 it means that the {@link String}, {@link List} or another
+ * measurable type should have a minimum length of 2.
  */
 public class XsdMinLength extends XsdIntegerRestrictions {
 

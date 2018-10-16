@@ -6,7 +6,6 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
@@ -99,8 +98,8 @@ public class XsdAttribute extends XsdNamedElements {
         this.defaultElement = elementFieldsMap.getOrDefault(DEFAULT_ELEMENT_TAG, defaultElement);
         this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
         this.type = elementFieldsMap.getOrDefault(TYPE_TAG, type);
-        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefaultValue));
-        this.use = EnumUtils.belongsToEnum(UsageEnum.OPTIONAL, elementFieldsMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
+        this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefaultValue));
+        this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, elementFieldsMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
             this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>()));

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * States the number of fraction digits allowed in a numeric type. The value is defined as an Integer.
+ * States the number of fraction digits allowed in a numeric type. The value is defined as an {@link Integer}.
  */
 public class XsdFractionDigits extends XsdIntegerRestrictions {
 

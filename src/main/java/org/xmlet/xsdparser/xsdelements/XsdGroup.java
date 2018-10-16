@@ -161,15 +161,15 @@ public class XsdGroup extends XsdNamedElements {
     }
 
     /**
-     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
     @SuppressWarnings("unused")
-    public XsdAll getChildAsdAll() {
+    public XsdAll getChildAsAll() {
         return XsdMultipleElements.getChildAsdAll(childElement);
     }
 
     /**
-     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
     @SuppressWarnings("unused")
     public XsdChoice getChildAsChoice() {
@@ -177,7 +177,7 @@ public class XsdGroup extends XsdNamedElements {
     }
 
     /**
-     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
     @SuppressWarnings("unused")
     public XsdSequence getChildAsSequence() {

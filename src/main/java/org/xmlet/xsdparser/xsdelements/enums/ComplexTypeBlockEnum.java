@@ -1,8 +1,13 @@
 package org.xmlet.xsdparser.xsdelements.enums;
 
+import org.xmlet.xsdparser.xsdelements.XsdComplexType;
+
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * An {@link Enum} with all the possible values for the block attribute of {@link XsdComplexType}.
+ */
 public enum ComplexTypeBlockEnum implements XsdEnum<ComplexTypeBlockEnum> {
 
     EXTENSION ("extension"),

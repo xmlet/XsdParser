@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * States a pattern that a given attribute must match in order to be considered valid. The value is defined as a String.
- * This value is usually defined as a regular expression.
+ * States a pattern that a given attribute must match in order to be considered valid. The value is defined as a
+ * {@link String}. This value is usually defined as a regular expression.
  */
 public class XsdPattern extends XsdStringRestrictions {
 

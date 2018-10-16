@@ -3,6 +3,9 @@ package org.xmlet.xsdparser.xsdelements.enums;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * An {@link Enum} with all the possible values for the usage attribute.
+ */
 public enum UsageEnum implements XsdEnum<UsageEnum> {
 
     REQUIRED ("required"),

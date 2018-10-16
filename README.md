@@ -45,14 +45,14 @@ public class XsdAnnotation extends XsdIdentifierElements {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.12</version>
 </dependency>
 ```
 
 ## Usage example
 
 <div align="justify"> 
-    Here follows a simple example:
+    A simple example:
     <br />
     <br />
 </div>
@@ -61,9 +61,10 @@ public class XsdAnnotation extends XsdIdentifierElements {
 public class ParserApp {
     public static void main(String [] args) {
         String filePath = "Your file path here.";
-        XsdParser parserInstance = new XsdParser();
+        XsdParser parserInstance = new XsdParser(filePath);
 
-        Stream<XsdElement> elementsStream = parserInstance.parse(filePath);
+        Stream<XsdElement> elementsStream = parserInstance.getResultXsdElements(filePath);
+        Stream<XsdSchema> schemasStream = parserInstance.getResultXsdSchemas(filePath);
     }
 }
 ```
@@ -117,18 +118,16 @@ public class ParserApp {
     public static void main(String [] args) {
         //(...)
         
-        XsdElement htmlElement = elements.findFirst().get();
-        
         XsdComplexType htmlComplexType = htmlElement.getXsdComplexType();
         XsdAttribute manifestAttribute = htmlComplexType.getXsdAttributes().findFirst().get();
-    
-        XsdChoice choiceElement = (XsdChoice) htmlComplexType.getXsdChildElement();
-    
-        XsdGroup flowContentGroup = (XsdGroup) choiceElement.getXsdElements().findFirst().get();
-    
-        XsdAll flowContentAll = (XsdAll) flowContentGroup.getChildElement();
-    
-        XsdElement elem1 = (XsdElement) flowContentAll.getXsdElements().findFirst().get();
+        
+        XsdChoice choiceElement = htmlComplexType.getChildAsChoice();
+        
+        XsdGroup flowContentGroup = choiceElement.getChildrenGroups().findFirst().get();
+        
+        XsdAll flowContentAll = flowContentGroup.getChildAsAll();
+        
+        XsdElement elem1 = flowContentAll.getChildrenElements().findFirst().get();
     }
 }
 ```

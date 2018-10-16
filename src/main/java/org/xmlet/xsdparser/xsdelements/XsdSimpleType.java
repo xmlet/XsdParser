@@ -4,7 +4,6 @@ import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.SimpleTypeFinalEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -73,7 +72,7 @@ public class XsdSimpleType extends XsdNamedElements {
 
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
 
-        this.finalObj = EnumUtils.belongsToEnum(SimpleTypeFinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
     /**

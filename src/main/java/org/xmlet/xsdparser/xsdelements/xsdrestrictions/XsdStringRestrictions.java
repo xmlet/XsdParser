@@ -8,12 +8,18 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * This class serves as a base to every different restriction that has its restricting parameter defined as an String.
- * i.e. xsd:pattern or xsd:enumeration.
+ * This class serves as a base to every different restriction that has its restricting parameter defined as an {@link String}.
+ * Classes like {@link XsdPattern} or {@link XsdEnumeration} should extend this class.
  */
 public class XsdStringRestrictions extends XsdAnnotatedElements{
 
     private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
+
+    /**
+     * The value of associated with a given restriction. This field has different meanings depending on the concrete
+     * restriction, e.g. if the concrete class is {@link XsdEnumeration} this field means that the attribute which
+     * has the restriction can only have the value that is specified in this field.
+     */
     private String value;
 
     XsdStringRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {

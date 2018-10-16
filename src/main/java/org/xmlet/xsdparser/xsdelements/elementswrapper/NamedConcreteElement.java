@@ -5,7 +5,7 @@ import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
 
 /**
  * NamedConcreteElement is a wrapper class for an {@link XsdNamedElements} object which are {@link XsdAbstractElement}
- * objects which can have a name attribute.
+ * objects which have a name attribute.
  */
 public class NamedConcreteElement extends ConcreteElement{
 

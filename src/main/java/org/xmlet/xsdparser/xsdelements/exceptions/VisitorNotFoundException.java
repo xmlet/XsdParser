@@ -1,4 +1,4 @@
-package org.xmlet.xsdparser.xsdelements.visitors;
+package org.xmlet.xsdparser.xsdelements.exceptions;
 
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 

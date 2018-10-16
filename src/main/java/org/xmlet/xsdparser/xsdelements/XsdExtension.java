@@ -83,11 +83,11 @@ public class XsdExtension extends XsdAnnotatedElements {
         XsdNamedElements elem = element.getElement();
         String elemName = elem.getRawName();
 
-        if (this.base != null && this.base instanceof UnsolvedReference && elem instanceof XsdElement && ((UnsolvedReference) this.base).getRef().equals(elemName)){
+        if (this.base instanceof UnsolvedReference && elem instanceof XsdElement && ((UnsolvedReference) this.base).getRef().equals(elemName)){
             this.base = element;
         }
 
-        if (this.childElement != null && this.childElement instanceof UnsolvedReference &&
+        if (this.childElement instanceof UnsolvedReference &&
                 elem instanceof XsdGroup && ((UnsolvedReference) this.childElement).getRef().equals(elemName)){
             this.childElement = element;
         }
@@ -150,7 +150,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The childElement as a XsdGroup object or null if childElement isn't a XsdGroup instance.
+     * @return The childElement as a {@link XsdGroup} object or null if childElement isn't a {@link XsdGroup} instance.
      */
     @SuppressWarnings("unused")
     public XsdGroup getChildAsGroup() {
@@ -158,15 +158,15 @@ public class XsdExtension extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
     @SuppressWarnings("unused")
-    public XsdAll getChildAsdAll() {
+    public XsdAll getChildAsAll() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsdAll((XsdMultipleElements) childElement.getElement()) : null;
     }
 
     /**
-     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
     @SuppressWarnings("unused")
     public XsdChoice getChildAsChoice() {
@@ -174,7 +174,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
     @SuppressWarnings("unused")
     public XsdSequence getChildAsSequence() {

@@ -75,7 +75,8 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     * @param element The element containing the child to return.
+     * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
     @SuppressWarnings("unused")
     public static XsdAll getChildAsdAll(XsdMultipleElements element) {
@@ -83,7 +84,8 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     * @param element The element containing the child to return.
+     * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
     @SuppressWarnings("unused")
     public static XsdChoice getChildAsChoice(XsdMultipleElements element) {
@@ -91,7 +93,8 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     * @param element The element containing the child to return.
+     * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
     @SuppressWarnings("unused")
     public static XsdSequence getChildAsSequence(XsdMultipleElements element) {

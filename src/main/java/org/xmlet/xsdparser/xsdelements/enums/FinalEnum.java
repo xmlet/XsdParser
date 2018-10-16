@@ -3,6 +3,9 @@ package org.xmlet.xsdparser.xsdelements.enums;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * An {@link Enum} with all the possible values for the final attribute.
+ */
 public enum FinalEnum implements XsdEnum<FinalEnum> {
 
     EXTENSION ("extension"),

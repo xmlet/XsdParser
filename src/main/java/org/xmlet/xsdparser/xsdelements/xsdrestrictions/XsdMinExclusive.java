@@ -10,9 +10,9 @@ import java.util.Map;
 
 /**
  * States the minimum numeric value that a given type might take, excluding the respective value. The value is defined
- * as a Double.
- * e.g.
- *  * If the type has a xsd:minExclusive value="0" it means that the minimum value it can take is any number bigger than 0.
+ * as a {@link Double}.
+ * Example: If the type has a {@link XsdMinExclusive#value} of 0 it means that the minimum value it can take is any
+ * number bigger than 0.
  */
 public class XsdMinExclusive extends XsdDoubleRestrictions {
 

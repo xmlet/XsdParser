@@ -1,1 +1,0 @@
-call mvn org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -D"sonar.host.url"="https://sonarcloud.io" -D"sonar.organization"="%1" -D"sonar.login"="%2"

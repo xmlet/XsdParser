@@ -3,6 +3,9 @@ package org.xmlet.xsdparser.xsdelements.enums;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * An {@link Enum} with all the possible values for the form attribute.
+ */
 public enum FormEnum implements XsdEnum<FormEnum> {
 
     QUALIFIED ("qualified"),

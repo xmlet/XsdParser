@@ -5,7 +5,6 @@ import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.WhiteSpaceEnum;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
@@ -14,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * States how the whiteSpace characters should be treated. The value is defined as an String.
+ * States how the whiteSpace characters should be treated. The value is defined as an {@link String}.
  */
 public class XsdWhiteSpace extends XsdAnnotatedElements {
 
@@ -35,7 +34,7 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
         super.setFields(elementFieldsMapParam);
 
         fixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(FIXED_TAG, "false"));
-        value = EnumUtils.belongsToEnum(WhiteSpaceEnum.PRESERVE, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
+        value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.PRESERVE, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
     }
 
     @Override

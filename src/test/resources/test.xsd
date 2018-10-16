@@ -68,5 +68,19 @@
             <xsd:maxInclusive value="99999999999999.9"/>
         </xsd:restriction>
     </xsd:simpleType>
+
+
+    <xsd:group name="randomGroup">
+        <xsd:all>
+            <xsd:element name="annotatedExtension">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="annotatedElement"/>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:group>
+
 </xsd:schema>
 

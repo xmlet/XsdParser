@@ -3,22 +3,36 @@ package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * This class serves as a base to every different restriction that has its restricting parameter defined as a Double
- * i.e. xsd:maxInclusive or xsd:maxExclusive.
+ * This class serves as a base to every different restriction that has its restricting parameter defined as a
+ * {@link Double}. Classes like {@link XsdMaxInclusive} or {@link XsdMinInclusive} should derive from this type.
  */
 public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
 
     private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
+    /**
+     * The name of the restrictions that extends this class. This variable is only used to provide more information to the
+     * user in the event of a {@link ParsingException}.
+     */
     private String restrictionName;
 
+    /**
+     * Indicates if the value is fixed.
+     */
     private boolean fixed;
+
+    /**
+     * The value of associated with a given restriction. This field has different meanings depending on the concrete
+     * restriction, e.g. if the concrete class is {@link XsdMaxInclusive} this field means that the attribute which
+     * has the restriction can only have a value that doesn't exceed the current value of the value field.
+     */
     private double value;
 
     XsdDoubleRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName) {

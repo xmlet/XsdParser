@@ -7,7 +7,6 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.BlockEnum;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
@@ -161,11 +160,11 @@ public class XsdElement extends XsdNamedElements {
         this.substitutionGroup = elementFieldsMap.getOrDefault(SUBSTITUTION_GROUP_TAG, substitutionGroup);
         this.defaultObj = elementFieldsMap.getOrDefault(DEFAULT_TAG, defaultObj);
         this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
-        this.form = EnumUtils.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefault));
+        this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefault));
         this.nillable = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(NILLABLE_TAG, "false"));
         this.abstractObj = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
-        this.block = EnumUtils.belongsToEnum(BlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
-        this.finalObj = EnumUtils.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.block = AttributeValidations.belongsToEnum(BlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.finalObj = AttributeValidations.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
@@ -185,13 +184,15 @@ public class XsdElement extends XsdNamedElements {
         rule7();
     }
 
+    private static String xsdElementIsXsdSchema = XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.";
+
     /**
      * Asserts if the current object has a form attribute while being a direct child of the top level XsdSchema element,
      * which isn't allowed, throwing an exception in that case.
      */
     private void rule7() {
         if (parent instanceof XsdSchema && elementFieldsMap.containsKey(FORM_TAG)){
-            throw new ParsingException(XSD_TAG + " element: The " + FORM_TAG + " attribute can only be present when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+            throw new ParsingException(XSD_TAG + " element: The " + FORM_TAG + " attribute can only be present when the parent of the " + xsdElementIsXsdSchema);
         }
     }
 
@@ -209,7 +210,7 @@ public class XsdElement extends XsdNamedElements {
      */
     private void rule4() {
         if (!(parent instanceof XsdSchema) && substitutionGroup != null){
-            throw new ParsingException(XSD_TAG + " element: The " + SUBSTITUTION_GROUP_TAG + " attribute can only be present when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+            throw new ParsingException(XSD_TAG + " element: The " + SUBSTITUTION_GROUP_TAG + " attribute can only be present when the parent of the " + xsdElementIsXsdSchema);
         }
     }
 
@@ -219,7 +220,7 @@ public class XsdElement extends XsdNamedElements {
      */
     private void rule3() {
         if (parent instanceof XsdSchema && elementFieldsMap.containsKey(REF_TAG)){
-            throw new ParsingException(XSD_TAG + " element: The " + REF_TAG + " attribute cannot be present when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+            throw new ParsingException(XSD_TAG + " element: The " + REF_TAG + " attribute cannot be present when the parent of the " + xsdElementIsXsdSchema);
         }
     }
 
@@ -229,7 +230,7 @@ public class XsdElement extends XsdNamedElements {
      */
     private void rule2() {
         if (parent instanceof XsdSchema && name == null){
-            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " attribute is required when the parent of the " + XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.");
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " attribute is required when the parent of the " + xsdElementIsXsdSchema);
         }
     }
 
@@ -280,7 +281,7 @@ public class XsdElement extends XsdNamedElements {
 
         boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
-        if (this.type != null && this.type instanceof UnsolvedReference && isComplexOrSimpleType && ((UnsolvedReference) this.type).getRef().equals(element.getName())){
+        if (this.type instanceof UnsolvedReference && isComplexOrSimpleType && ((UnsolvedReference) this.type).getRef().equals(element.getName())){
             this.type = element;
             elem.setParent(this);
         }
@@ -295,7 +296,7 @@ public class XsdElement extends XsdNamedElements {
     }
 
     private XsdComplexType getXsdType(){
-        if (type != null && type instanceof ConcreteElement){
+        if (type instanceof ConcreteElement){
             return (XsdComplexType) type.getElement();
         }
 

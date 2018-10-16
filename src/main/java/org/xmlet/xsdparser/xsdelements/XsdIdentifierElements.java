@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 
 import javax.validation.constraints.NotNull;
@@ -20,8 +21,9 @@ public abstract class XsdIdentifierElements extends XsdAbstractElement {
     }
 
     /**
-     * Sets the id field with the value present in the Map with the Node information.
-     * @param elementFieldsMapParam The Map object containing the information previously contained in the Node object.
+     * Sets the id field with the value present in the {@link Map} with the {@link Node} information.
+     * @param elementFieldsMapParam The {@link Map} object containing the information previously contained in the
+     *                              {@link Node} object.
      */
     @Override
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {

@@ -25,6 +25,7 @@
 	</xsd:annotation>
 
 	<xsd:include schemaLocation="./src/test/resources/html_5_elements.xsd" />
+	<xsd:import schemaLocation="./src/test/resources/html_5_elements.xsd" />
 
 	<xsd:attributeGroup name="coreServerAttributeGroup" vs:nonbrowseable="true">
 		<!-- Attributes -->

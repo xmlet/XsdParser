@@ -33,40 +33,40 @@ import static java.util.stream.Collectors.groupingBy;
 public class XsdParser {
 
     /**
-     * ParseMappers is a {@link Map} object that contains a parse function to each {@link XsdAbstractElement} concrete
+     * A {@link Map} object that contains a parse function to each {@link XsdAbstractElement} concrete
      * type supported by this mapper, this way based on the concrete {@link XsdAbstractElement} tag the according parse
      * method can be invoked.
      */
     private static final Map<String, BiFunction<XsdParser, Node, ReferenceBase>> parseMappers;
 
     /**
-     * xsdTypesToJava is a {@link Map} object that contains the all the XSD types and their respective types in the Java
+     * A {@link Map} object that contains the all the XSD types and their respective types in the Java
      * language.
      */
     private static final Map<String, String> xsdTypesToJava;
 
     /**
-     * parseElements contains all the top elements parsed by this class.
+     * A {@link List} which contains all the top elements parsed by this class.
      */
     private List<ReferenceBase> parseElements = new ArrayList<>();
 
     /**
-     * unsolvedElements contains all the elements that weren't solved. This list is consulted after all the elements are
-     * parsed in order to find if there is any suitable parsed element to replace the unsolved element.
+     * A {@link List} of {@link UnsolvedReference} elements that weren't solved. This list is consulted after all the
+     * elements are parsed in order to find if there is any suitable parsed element to replace the unsolved element.
      */
     private List<UnsolvedReference> unsolvedElements = new ArrayList<>();
 
     /**
-     * This list contains all the elements that even after parsing all the elements on the file, don't have a suitable
-     * object to replace the reference. This list can be consulted after the parsing process to assert if there is any
-     * missing information in the XSD file.
+     * A {@link List} containing all the elements that even after parsing all the elements on the file, don't have a
+     * suitable object to replace the reference. This list can be consulted after the parsing process to assert if there
+     * is any missing information in the XSD file.
      */
     private List<UnsolvedReferenceItem> parserUnsolvedElementsMap = new ArrayList<>();
 
-
     /**
-     * This list contains the paths of files that were present in either xsd:include or xsd:import tags, either in the
-     * original files or subsequent files that also came from xsd:import or xsd:include tags.
+     * A {@link List} containing the paths of files that were present in either {@link XsdInclude} or {@link XsdImport}
+     * objects that are present in the original or subsequent files. These paths are stored to be parsed as well, the
+     * parsing process only ends when all the files present in this {@link List} are parsed.
      */
     private List<String> schemaLocations = new ArrayList<>();
 
@@ -238,11 +238,11 @@ public class XsdParser {
     }
 
     /**
-     * The XsdParser constructor will parse the XSD file with the filePath path and will also parse all the subsequent
+     * The XsdParser constructor will parse the XSD file with the {@code filepath} and will also parse all the subsequent
      * XSD files with their path present in xsd:import and xsd:include tags. After parsing all the XSD files present it
      * resolves the references existent in the XSD language, represented by the ref attribute. When this method finishes
-     * the parse results and remaining unsolved references are accessible by the getResultXsdElements and getUnsolvedReferences
-     * methods, respectively.
+     * the parse results and remaining unsolved references are accessible by the {@link XsdParser#getResultXsdSchemas()},
+     * {@link XsdParser#getResultXsdElements()} and {@link XsdParser#getUnsolvedReferences()}.
      * @param filePath States the path of the XSD file to be parsed.
      */
     public XsdParser(String filePath){
@@ -260,7 +260,8 @@ public class XsdParser {
 
     /**
      * Parses a XSD file and all its containing XSD elements. This code iterates on the nodes and parses the supported
-     * ones. The supported types are all the XSD types that have their tag present in the parseMappers field.
+     * ones. The supported types are all the XSD types that have their tag present in the {@link XsdParser#parseMappers}
+     * field.
      * @param filePath The path to the XSD file.
      */
     private void parseFile(String filePath) {
@@ -282,6 +283,11 @@ public class XsdParser {
         }
     }
 
+    /**
+     * Verifies if a given {@link Node} object, i.e. {@code node} is a xsd:schema node.
+     * @param node The node to verify.
+     * @return True if the node is a xsd:schema or xs:schema. False otherwise.
+     */
     private boolean isXsdSchema(Node node){
         String schemaNodeName = node.getNodeName();
 
@@ -291,6 +297,10 @@ public class XsdParser {
     /**
      * This function uses DOM to obtain a list of nodes from a XSD file.
      * @param filePath The path to the XSD file.
+     * @throws IOException If the file parsing throws {@link IOException}.
+     * @throws SAXException if the file parsing throws {@link SAXException}.
+     * @throws ParserConfigurationException If the {@link DocumentBuilderFactory#newDocumentBuilder()} throws
+     *      {@link ParserConfigurationException}.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
      */
     private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
@@ -315,10 +325,15 @@ public class XsdParser {
      * name attribute of the {@link NamedConcreteElement}.
      */
     private void resolveRefs() {
-        Map<String, List<NamedConcreteElement>> concreteElementsMap = parseElements.stream()
-                                                                                   .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                                                                   .map(concreteElement -> (NamedConcreteElement) concreteElement)
-                                                                                   .collect(groupingBy(NamedConcreteElement::getName));
+        Map<String, List<NamedConcreteElement>> concreteElementsMap =
+                parseElements.stream()
+                               .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
+                               .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                               .collect(groupingBy(NamedConcreteElement::getName));
+
+        Map<String, NamedConcreteElement> typeReferredElements = new HashMap<>();
+
+
 
         unsolvedElements.forEach(unsolvedElement -> replaceUnsolvedReference(concreteElementsMap, unsolvedElement));
     }
@@ -331,15 +346,31 @@ public class XsdParser {
      * @param unsolvedReference The unsolved reference to solve.
      */
     private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
+        if (unsolvedReference.getRef().equals("matchingOperations") && unsolvedReference.getParent() instanceof XsdComplexType &&
+                ((XsdComplexType)unsolvedReference.getParent()).getName() != null &&
+                ((XsdComplexType)unsolvedReference.getParent()).getName().equals("matching")){
+            int a = 5;
+        }
+
+        if (unsolvedReference.getRef().equals("matching") && unsolvedReference.getParent() instanceof XsdElement){
+            int a = 5;
+        }
+
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
         if (concreteElements != null){
             Map<String, String> oldElementAttributes = unsolvedReference.getElement().getElementFieldsMap();
 
             for (NamedConcreteElement concreteElement : concreteElements) {
-                XsdNamedElements substitutionElement = concreteElement.getElement().clone(oldElementAttributes);
+                NamedConcreteElement substitutionElementWrapper;
 
-                NamedConcreteElement substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
+                if (!unsolvedReference.isTypeRef()){
+                    XsdNamedElements substitutionElement = concreteElement.getElement().clone(oldElementAttributes);
+
+                    substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
+                } else {
+                    substitutionElementWrapper = concreteElement;
+                }
 
                 unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
@@ -358,9 +389,13 @@ public class XsdParser {
         if (parserUnsolvedElementsMap.isEmpty()){
             parserUnsolvedElementsMap.add(new UnsolvedReferenceItem(unsolvedReference));
         } else {
-            Optional<UnsolvedReferenceItem> innerEntry = parserUnsolvedElementsMap.stream()
-                    .filter(unsolvedReferenceObj -> unsolvedReferenceObj.getUnsolvedReference().getRef().equals(unsolvedReference.getRef()))
-                    .findFirst();
+            Optional<UnsolvedReferenceItem> innerEntry =
+                    parserUnsolvedElementsMap.stream()
+                                                .filter(unsolvedReferenceObj ->
+                                                        unsolvedReferenceObj.getUnsolvedReference()
+                                                                            .getRef()
+                                                                            .equals(unsolvedReference.getRef()))
+                                                .findFirst();
 
             if (innerEntry.isPresent()){
                 innerEntry.ifPresent(entry -> entry.getParents().add(unsolvedReference.getParent()));
@@ -371,7 +406,7 @@ public class XsdParser {
     }
 
     /**
-     * @return The list of {@link UnsolvedReferenceItem} that represent all the objects with a reference that couldn't
+     * @return The {@link List} of {@link UnsolvedReferenceItem} that represent all the objects with a reference that couldn't
      * be solved.
      */
     public List<UnsolvedReferenceItem> getUnsolvedReferences(){
@@ -391,8 +426,8 @@ public class XsdParser {
     }
 
     /**
-     * @return A list of all the {@link XsdSchema} elements parsed by this class. You can use the {@link XsdSchema} instances
-     * to navigate through the whole element tree.
+     * @return A {@link List} of all the {@link XsdSchema} elements parsed by this class. You can use the {@link XsdSchema}
+     * instances to navigate through the whole element tree.
      */
     public Stream<XsdSchema> getResultXsdSchemas(){
         return parseElements
@@ -416,7 +451,9 @@ public class XsdParser {
      * @param schemaLocation A new file path of another XSD file to parse.
      */
     public void addFileToParse(String schemaLocation) {
-        schemaLocations.add(schemaLocation);
+        if (!schemaLocations.contains(schemaLocation)){
+            schemaLocations.add(schemaLocation);
+        }
     }
 
     public static Map<String, String> getXsdTypesToJava() {

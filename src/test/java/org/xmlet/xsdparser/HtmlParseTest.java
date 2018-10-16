@@ -7,6 +7,7 @@ import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,16 +15,30 @@ import java.util.stream.Collectors;
 @SuppressWarnings("Duplicates")
 public class HtmlParseTest {
 
-    private static final String HTML_FILE_NAME = HtmlParseTest.class.getClassLoader().getResource("html_5.xsd").getPath();
     private static final List<XsdElement> elements;
     private static final List<XsdSchema> schemas;
     private static final XsdParser parser;
 
     static{
-        parser = new XsdParser(HTML_FILE_NAME);
+        parser = new XsdParser(getFilePath());
 
         elements = parser.getResultXsdElements().collect(Collectors.toList());
         schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+    }
+
+    @Test
+    public void testSchemaGetMethods(){
+        XsdSchema schema = schemas.get(0);
+
+        Assert.assertEquals( 104, schema.getChildrenElements().count());
+        Assert.assertEquals( 5, schema.getChildrenSimpleTypes().count());
+        Assert.assertEquals( 1, schema.getChildrenAnnotations().count());
+        Assert.assertEquals( 11, schema.getChildrenAttributeGroups().count());
+        Assert.assertEquals( 0, schema.getChildrenAttributes().count());
+        Assert.assertEquals( 2, schema.getChildrenComplexTypes().count());
+        Assert.assertEquals( 8, schema.getChildrenGroups().count());
+        Assert.assertEquals( 0, schema.getChildrenImports().count());
+        Assert.assertEquals( 0, schema.getChildrenIncludes().count());
     }
 
     /**
@@ -43,12 +58,17 @@ public class HtmlParseTest {
         XsdElement htmlElement = elements.get(0);
 
         Assert.assertEquals("html", htmlElement.getName());
+        Assert.assertEquals(1, (int) htmlElement.getMinOccurs());
+        Assert.assertEquals("1", htmlElement.getMaxOccurs());
 
         XsdComplexType firstElementChild = htmlElement.getXsdComplexType();
 
         Assert.assertEquals(firstElementChild.getXsdChildElement().getClass(), XsdChoice.class);
 
         XsdChoice complexTypeChild = firstElementChild.getChildAsChoice();
+        Assert.assertNull(firstElementChild.getChildAsAll());
+        Assert.assertNull(firstElementChild.getChildAsGroup());
+        Assert.assertNull(firstElementChild.getChildAsSequence());
 
         List<XsdElement> choiceElements = complexTypeChild.getChildrenElements().collect(Collectors.toList());
 
@@ -112,7 +132,7 @@ public class HtmlParseTest {
     }
 
     /**
-     * Verifies the contents of a XsdSimpleType object against the expected values.
+     * Verifies the contents of a {@link XsdSimpleType} object against the expected values.
      */
     @Test
     public void testSimpleTypes() {
@@ -184,6 +204,9 @@ public class HtmlParseTest {
         );
     }
 
+    /**
+     * Verifies if there is an attributeGroup named classAttributeGroup that is the parent of all the existing attributeGroups.
+     */
     @Test
     public void testClassParent(){
         Optional<XsdAttribute> classAttribute = elements.get(0).getXsdComplexType().getXsdAttributes().filter(attribute -> attribute.getName() != null && attribute.getName().equals("class")).findFirst();
@@ -193,5 +216,18 @@ public class HtmlParseTest {
         XsdAttribute classAttributeXsd = classAttribute.get();
 
         Assert.assertEquals("classAttributeGroup", ((XsdAttributeGroup)classAttributeXsd.getParent()).getName());
+    }
+
+    /**
+     * @return Obtains the filePath of the file associated with this test class.
+     */
+    private static String getFilePath(){
+        URL resource = HtmlParseTest.class.getClassLoader().getResource("html_5.xsd");
+
+        if (resource != null){
+            return resource.getPath();
+        } else {
+            throw new RuntimeException("The html_5.xsd file is missing from the XsdParser resource folder.");
+        }
     }
 }

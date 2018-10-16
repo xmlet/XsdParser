@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 /**
- * Represents a value that a given XSD type is allowed to take. The value is defined as a String.
+ * Represents a value that a given XSD type is allowed to take. The value is defined as a {@link String}.
  */
 public class XsdEnumeration extends XsdStringRestrictions {
 

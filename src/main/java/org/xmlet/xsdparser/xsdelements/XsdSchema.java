@@ -4,8 +4,7 @@ import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.enums.BlockFinalEnum;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
+import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -47,7 +46,7 @@ public class XsdSchema extends XsdAnnotatedElements {
      * {@link XsdComplexType}. The default value is "". Other possible value are "extension", "restriction",
      * "substitution" and "#all".
      */
-    private BlockFinalEnum blockDefault;
+    private BlockDefaultEnum blockDefault;
 
     /**
      * Specifies if the final attribute for the current {@link XsdSchema} children such as {@link XsdElement},
@@ -92,10 +91,10 @@ public class XsdSchema extends XsdAnnotatedElements {
     public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
         super.setFields(elementFieldsMapParam);
 
-        this.attributeFormDefault = EnumUtils.belongsToEnum(FormEnum.UNQUALIFIED, elementFieldsMap.getOrDefault(ATTRIBUTE_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
-        this.elementFormDefault = EnumUtils.belongsToEnum(FormEnum.UNQUALIFIED, elementFieldsMap.getOrDefault(ELEMENT_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
-        this.blockDefault = EnumUtils.belongsToEnum(BlockFinalEnum.DEFAULT, elementFieldsMap.getOrDefault(BLOCK_DEFAULT, BlockFinalEnum.DEFAULT.getValue()));
-        this.finalDefault = EnumUtils.belongsToEnum(FinalDefaultEnum.DEFAULT, elementFieldsMap.getOrDefault(FINAL_DEFAULT, FinalDefaultEnum.DEFAULT.getValue()));
+        this.attributeFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, elementFieldsMap.getOrDefault(ATTRIBUTE_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
+        this.elementFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, elementFieldsMap.getOrDefault(ELEMENT_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
+        this.blockDefault = AttributeValidations.belongsToEnum(BlockDefaultEnum.DEFAULT, elementFieldsMap.getOrDefault(BLOCK_DEFAULT, BlockDefaultEnum.DEFAULT.getValue()));
+        this.finalDefault = AttributeValidations.belongsToEnum(FinalDefaultEnum.DEFAULT, elementFieldsMap.getOrDefault(FINAL_DEFAULT, FinalDefaultEnum.DEFAULT.getValue()));
         this.targetNamespace = elementFieldsMap.getOrDefault(TARGET_NAMESPACE, targetNamespace);
         this.version = elementFieldsMap.getOrDefault(VERSION, version);
         this.xmlns = elementFieldsMap.getOrDefault(XMLNS, xmlns);

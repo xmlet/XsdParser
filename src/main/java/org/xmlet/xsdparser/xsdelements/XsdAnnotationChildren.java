@@ -3,7 +3,7 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
-import org.xmlet.xsdparser.xsdelements.visitors.VisitorNotFoundException;
+import org.xmlet.xsdparser.xsdelements.exceptions.VisitorNotFoundException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;

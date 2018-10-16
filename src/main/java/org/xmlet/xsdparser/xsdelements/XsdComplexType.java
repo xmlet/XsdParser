@@ -6,7 +6,6 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.ComplexTypeBlockEnum;
-import org.xmlet.xsdparser.xsdelements.enums.EnumUtils;
 import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.AttributesVisitor;
@@ -108,8 +107,8 @@ public class XsdComplexType extends XsdNamedElements {
 
         this.elementAbstract = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
         this.mixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
-        this.block = EnumUtils.belongsToEnum(ComplexTypeBlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
-        this.elementFinal = EnumUtils.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.block = AttributeValidations.belongsToEnum(ComplexTypeBlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
     /**
@@ -179,7 +178,7 @@ public class XsdComplexType extends XsdNamedElements {
         super.replaceUnsolvedElements(element);
         visitor.replaceUnsolvedAttributes(element);
 
-        if (this.childElement != null && this.childElement instanceof UnsolvedReference && this.childElement.getElement() instanceof XsdGroup &&
+        if (this.childElement instanceof UnsolvedReference && this.childElement.getElement() instanceof XsdGroup &&
                 element.getElement() instanceof XsdGroup && ((UnsolvedReference) this.childElement).getRef().equals(element.getName())){
             this.childElement = element;
             element.getElement().setParent(this);
@@ -246,21 +245,24 @@ public class XsdComplexType extends XsdNamedElements {
         return block.getValue();
     }
 
+    /**
+     * @return The childElement as a {@link XsdGroup} object or null if childElement isn't a {@link XsdGroup} instance.
+     */
     @SuppressWarnings("unused")
     public XsdGroup getChildAsGroup() {
         return childElement.getElement() instanceof XsdGroup ? (XsdGroup) childElement.getElement() : null;
     }
 
     /**
-     * @return The childElement as a XsdAll object or null if childElement isn't a XsdAll instance.
+     * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */
     @SuppressWarnings("unused")
-    public XsdAll getChildAsdAll() {
+    public XsdAll getChildAsAll() {
         return childrenIsMultipleElement() ? XsdMultipleElements.getChildAsdAll((XsdMultipleElements) childElement.getElement()) : null;
     }
 
     /**
-     * @return The childElement as a XsdChoice object or null if childElement isn't a XsdChoice instance.
+     * @return The childElement as a {@link XsdChoice} object or null if childElement isn't a {@link XsdChoice} instance.
      */
     @SuppressWarnings("unused")
     public XsdChoice getChildAsChoice() {
@@ -268,7 +270,7 @@ public class XsdComplexType extends XsdNamedElements {
     }
 
     /**
-     * @return The childElement as a XsdSequence object or null if childElement isn't a XsdSequence instance.
+     * @return The childElement as a {@link XsdSequence} object or null if childElement isn't a {@link XsdSequence} instance.
      */
     @SuppressWarnings("unused")
     public XsdSequence getChildAsSequence() {

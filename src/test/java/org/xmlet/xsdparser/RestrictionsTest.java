@@ -6,22 +6,32 @@ import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class OddTest {
+/**
+ * Multiple tests to verify Restrictions and {@link XsdAnnotation} behaviour.
+ */
+public class RestrictionsTest {
 
-    private static final String FILE_NAME = HtmlParseTest.class.getClassLoader().getResource("test.xsd").getPath();
     private static final List<XsdElement> elements;
+    private static final List<XsdSchema> schemas;
+
     private static final XsdParser parser;
 
     static {
-        parser = new XsdParser(FILE_NAME);
+        parser = new XsdParser(getFilePath());
 
+        schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         elements = parser.getResultXsdElements().collect(Collectors.toList());
     }
 
+    /**
+     * Asserts if all the {@link Integer} based restrictions, i.e. {@link XsdIntegerRestrictions}, parse their values
+     * properly.
+     */
     @Test
     public void testIntRestrictions() {
         Optional<XsdElement> restrictedNumberOptional = elements.stream().filter(element -> element.getName().equals("restrictedNumber")).findFirst();
@@ -89,6 +99,10 @@ public class OddTest {
         Assert.assertFalse(totalDigits.isFixed());
     }
 
+    /**
+     * Asserts if all the {@link String} based restrictions, i.e. {@link XsdStringRestrictions}, parse their values
+     * properly.
+     */
     @Test
     public void testStringRestrictions() {
         Optional<XsdElement> restrictedStringOptional = elements.stream().filter(element -> element.getName().equals("restrictedString")).findFirst();
@@ -145,6 +159,9 @@ public class OddTest {
         Assert.assertFalse(xsdWhiteSpace.isFixed());
     }
 
+    /**
+     * Tests {@link XsdAnnotation} contents.
+     */
     @Test
     public void testAnnotations() {
         Optional<XsdElement> annotatedElementOptional = elements.stream().filter(element -> element.getName().equals("annotatedElement")).findFirst();
@@ -176,6 +193,9 @@ public class OddTest {
         Assert.assertEquals("Some documentation.", documentation.getContent());
     }
 
+    /**
+     * Tests a {@link XsdList} value with multiple restrictions.
+     */
     @Test
     public void testList() {
         Optional<XsdElement> restrictedListOptional = elements.stream().filter(element -> element.getName().equals("restrictedList")).findFirst();
@@ -213,6 +233,10 @@ public class OddTest {
         Assert.assertEquals(5d, maxLength.getValue(), 0);
     }
 
+    /**
+     * Asserts if all the {@link Double} based restrictions, i.e. {@link XsdDoubleRestrictions}, parse their values
+     * properly.
+     */
     @Test
     public void testDoubleRestrictions() {
         Optional<XsdSchema> xsdSchemaOptional = parser.getResultXsdSchemas().findFirst();
@@ -241,5 +265,60 @@ public class OddTest {
 
         Assert.assertEquals(99999999999999d, minInclusive.getValue(), 0);
         Assert.assertEquals(99999999999999.9d, maxInclusive.getValue(), 0);
+    }
+
+    @Test
+    public void remainingTypesVerification(){
+        XsdSchema schema = schemas.get(0);
+
+        Optional<XsdGroup> groupOptional = schema.getChildrenGroups().findFirst();
+
+        Assert.assertTrue(groupOptional.isPresent());
+
+        XsdGroup group = groupOptional.get();
+
+        Assert.assertEquals("randomGroup", group.getName());
+
+        XsdAll all = group.getChildAsAll();
+
+        Assert.assertNull(group.getChildAsChoice());
+        Assert.assertNull(group.getChildAsSequence());
+        Assert.assertNotNull(all);
+
+        List<XsdElement> allChildren = all.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, allChildren.size());
+
+        XsdElement element = allChildren.get(0);
+
+        XsdComplexType complexType = element.getXsdComplexType();
+
+        Assert.assertNotNull(complexType);
+
+        XsdSimpleContent simpleContent = complexType.getSimpleContent();
+
+        Assert.assertNotNull(simpleContent);
+
+        XsdExtension extension = simpleContent.getXsdExtension();
+
+        Assert.assertNotNull(extension);
+
+        XsdElement base = extension.getBase();
+
+        Assert.assertNotNull(base);
+        Assert.assertEquals("annotatedElement", base.getName());
+    }
+
+    /**
+     * @return Obtains the filePath of the file associated with this test class.
+     */
+    private static String getFilePath(){
+        URL resource = HtmlParseTest.class.getClassLoader().getResource("test.xsd");
+
+        if (resource != null){
+            return resource.getPath();
+        } else {
+            throw new RuntimeException("The test.xsd file is missing from the XsdParser resource folder.");
+        }
     }
 }

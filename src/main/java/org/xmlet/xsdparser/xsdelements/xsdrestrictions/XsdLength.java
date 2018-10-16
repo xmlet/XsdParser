@@ -7,11 +7,12 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Map;
 
 /**
- * States the exact number of length to a given type, either a String, a List, or another measurable type. The value is
- * defined as an Integer.
+ * States the exact number of length to a given type, either a {@link String}, a {@link List}, or another measurable type.
+ * The value is defined as an {@link Integer}.
  */
 public class XsdLength extends XsdIntegerRestrictions {
 

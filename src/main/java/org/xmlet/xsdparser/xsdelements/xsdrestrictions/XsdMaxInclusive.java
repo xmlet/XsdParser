@@ -10,9 +10,8 @@ import java.util.Map;
 
 /**
  * States the maximum numeric value that a given type might take, including the respective value. The value is defined
- * as a Double.
- * e.g.
- *  * If the numeric type has a xsd:maxInclusive value="5" it means that the maximum value it can take is 5.
+ * as a {@link Double}.
+ * Example: If the numeric type has a {@link XsdMaxInclusive#value} of 5 it means that the maximum value it can take is 5.
  */
 public class XsdMaxInclusive extends XsdDoubleRestrictions {
 

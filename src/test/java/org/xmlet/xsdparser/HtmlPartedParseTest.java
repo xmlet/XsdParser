@@ -7,20 +7,24 @@ import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * This class has the exact same tests as {@link HtmlParseTest}. Its objective is to verify if there is any bug associated
+ * with parsing the same information divided into different XSD files.
+ */
 @SuppressWarnings("Duplicates")
 public class HtmlPartedParseTest {
 
-    private static final String HTML_FILE_NAME = HtmlParseTest.class.getClassLoader().getResource("html_5_types.xsd").getPath();
     private static final List<XsdElement> elements;
     private static final List<XsdSchema> schemas;
     private static final XsdParser parser;
 
     static{
-        parser = new XsdParser(HTML_FILE_NAME);
+        parser = new XsdParser(getFilePath());
 
         elements = parser.getResultXsdElements().collect(Collectors.toList());
         schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
@@ -184,6 +188,9 @@ public class HtmlPartedParseTest {
         );
     }
 
+    /**
+     * Verifies if there is an attributeGroup named classAttributeGroup that is the parent of all the existing attributeGroups.
+     */
     @Test
     public void testClassParent(){
         Optional<XsdAttribute> classAttribute = elements.get(0).getXsdComplexType().getXsdAttributes().filter(attribute -> attribute.getName() != null && attribute.getName().equals("class")).findFirst();
@@ -193,5 +200,18 @@ public class HtmlPartedParseTest {
         XsdAttribute classAttributeXsd = classAttribute.get();
 
         Assert.assertEquals("classAttributeGroup", ((XsdAttributeGroup)classAttributeXsd.getParent()).getName());
+    }
+
+    /**
+     * @return Obtains the filePath of the file associated with this test class.
+     */
+    private static String getFilePath(){
+        URL resource = HtmlParseTest.class.getClassLoader().getResource("html_5_types.xsd");
+
+        if (resource != null){
+            return resource.getPath();
+        } else {
+            throw new RuntimeException("The html_5_types.xsd file is missing from the XsdParser resource folder.");
+        }
     }
 }

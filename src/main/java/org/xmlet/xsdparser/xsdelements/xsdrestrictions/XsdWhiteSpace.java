@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -25,15 +25,10 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
     private boolean fixed;
     private WhiteSpaceEnum value;
 
-    private XsdWhiteSpace(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdWhiteSpace(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
-    }
 
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        fixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(FIXED_TAG, "false"));
+        fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
         value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.PRESERVE, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
     }
 
@@ -43,7 +38,7 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.getAttributes())));
     }
 

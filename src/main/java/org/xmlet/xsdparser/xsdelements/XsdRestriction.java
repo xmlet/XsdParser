@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -100,15 +100,10 @@ public class XsdRestriction extends XsdAnnotatedElements {
      */
     private String base;
 
-    private XsdRestriction(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+    private XsdRestriction(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
-        super.setFields(elementFieldsMapParam);
-
-        this.base = elementFieldsMap.getOrDefault(BASE_TAG, base);
+        this.base = attributesMap.getOrDefault(BASE_TAG, base);
     }
 
     @Override
@@ -129,7 +124,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         visitor.replaceUnsolvedAttributes(element);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdRestriction(parser, convertNodeMap(node.getAttributes())));
     }
 

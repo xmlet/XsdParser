@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -21,15 +21,10 @@ public class XsdMinLength extends XsdIntegerRestrictions {
     public static final String XSD_TAG = "xsd:minLength";
     public static final String XS_TAG = "xs:minLength";
 
-    private XsdMinLength(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdMinLength(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
-    }
 
-    @Override
-    public void setFields(Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        value = AttributeValidations.validateRequiredNonNegativeInteger(XSD_TAG, VALUE_TAG, elementFieldsMap.get(VALUE_TAG));
+        value = AttributeValidations.validateRequiredNonNegativeInteger(XSD_TAG, VALUE_TAG, attributesMap.get(VALUE_TAG));
     }
 
     @Override
@@ -38,7 +33,7 @@ public class XsdMinLength extends XsdIntegerRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return ReferenceBase.createFromXsd(new XsdMinLength(parser, convertNodeMap(node.getAttributes())));
     }
 }

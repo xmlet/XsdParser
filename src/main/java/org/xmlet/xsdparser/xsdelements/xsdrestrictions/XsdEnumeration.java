@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -16,7 +16,7 @@ public class XsdEnumeration extends XsdStringRestrictions {
     public static final String XSD_TAG = "xsd:enumeration";
     public static final String XS_TAG = "xs:enumeration";
 
-    private XsdEnumeration(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdEnumeration(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -26,7 +26,7 @@ public class XsdEnumeration extends XsdStringRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return ReferenceBase.createFromXsd(new XsdEnumeration(parser, convertNodeMap(node.getAttributes())));
     }
 }

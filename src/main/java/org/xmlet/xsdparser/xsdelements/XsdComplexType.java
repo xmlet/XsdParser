@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
@@ -83,32 +83,21 @@ public class XsdComplexType extends XsdNamedElements {
      */
     private XsdSimpleContent simpleContent;
 
-    XsdComplexType(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
-
-    XsdComplexType(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-        setParent(parent);
-    }
-
-    /**
-     * Extracts the field values from the received Map.
-     * The {@link XsdComplexType#elementAbstract} and {@link XsdComplexType#mixed} field both have the false as a
-     * default value.
-     * @param elementFieldsMapParam The Map object containing the information previously contained by the Node element.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
+    XsdComplexType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
 
-        this.elementAbstract = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
-        this.mixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(MIXED_TAG, "false"));
-        this.block = AttributeValidations.belongsToEnum(ComplexTypeBlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
-        this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.elementAbstract = AttributeValidations.validateBoolean(attributesMap.getOrDefault(ABSTRACT_TAG, "false"));
+        this.mixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(MIXED_TAG, "false"));
+        this.block = AttributeValidations.belongsToEnum(ComplexTypeBlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+    }
+
+    XsdComplexType(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        this(parser, elementFieldsMapParam);
+        setParent(parent);
     }
 
     /**
@@ -126,7 +115,7 @@ public class XsdComplexType extends XsdNamedElements {
      * an exception in that case.
      */
     private void rule2() {
-        if (simpleContent != null && elementFieldsMap.containsKey(MIXED_TAG)){
+        if (simpleContent != null && attributesMap.containsKey(MIXED_TAG)){
             throw new ParsingException(XSD_TAG + " element: The simpleContent element and the " + MIXED_TAG  + " attribute are not allowed at the same time.");
         }
     }
@@ -158,7 +147,7 @@ public class XsdComplexType extends XsdNamedElements {
      */
     @Override
     public XsdComplexType clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
         XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes);
@@ -224,7 +213,7 @@ public class XsdComplexType extends XsdNamedElements {
         return elementAbstract;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdComplexType(parser, convertNodeMap(node.getAttributes())));
     }
 

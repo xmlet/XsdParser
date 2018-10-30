@@ -18,6 +18,11 @@
 	 Warning: 
 -->
 
+	<xsd:complexContent>
+		<xsd:restriction base="xsd:string"/>
+		<xsd:attribute name="dummy"/>
+	</xsd:complexContent>
+
 	<xsd:annotation>
 		<xsd:documentation>
 			Microsoft Visual Studio schema for HTML 5

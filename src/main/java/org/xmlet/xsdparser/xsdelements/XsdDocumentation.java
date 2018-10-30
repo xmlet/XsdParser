@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -25,15 +25,9 @@ public class XsdDocumentation extends XsdAnnotationChildren {
      */
     private String xmlLang;
 
-    private XsdDocumentation(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
-
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        this.xmlLang = elementFieldsMap.getOrDefault(XML_LANG_TAG, xmlLang);
+    private XsdDocumentation(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
+        this.xmlLang = attributesMap.getOrDefault(XML_LANG_TAG, xmlLang);
     }
 
     @Override
@@ -42,7 +36,7 @@ public class XsdDocumentation extends XsdAnnotationChildren {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdAnnotationChildrenParse(node, new XsdDocumentation(parser, convertNodeMap(node.getAttributes())));
     }
 }

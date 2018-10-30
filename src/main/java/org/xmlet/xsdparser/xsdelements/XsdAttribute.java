@@ -2,6 +2,7 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -73,38 +74,26 @@ public class XsdAttribute extends XsdNamedElements {
      */
     private UsageEnum use;
 
-    private XsdAttribute(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
-
-    private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-        setParent(parent);
-    }
-
-    /**
-     * Sets all the fields of the {@link XsdAttribute} instance. Most values don't have default values except the
-     * {@link XsdAttribute#use} field. Regarding the {@link XsdAttribute#type} field we check if the value present is a
-     * built-in type, if not we create an {@link UnsolvedReference} object to be resolved at a later time in the
-     * parsing process.
-     * @param elementFieldsMapParam The Map object containing all the information previously contained in the parsed Node.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
+    private XsdAttribute(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
         String formDefaultValue = getFormDefaultValue(parent);
 
-        this.defaultElement = elementFieldsMap.getOrDefault(DEFAULT_ELEMENT_TAG, defaultElement);
-        this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
-        this.type = elementFieldsMap.getOrDefault(TYPE_TAG, type);
-        this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefaultValue));
-        this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, elementFieldsMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
+        this.defaultElement = attributesMap.getOrDefault(DEFAULT_ELEMENT_TAG, defaultElement);
+        this.fixed = attributesMap.getOrDefault(FIXED_TAG, fixed);
+        this.type = attributesMap.getOrDefault(TYPE_TAG, type);
+        this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefaultValue));
+        this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
             this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>()));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
+    }
+
+    private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        this(parser, attributesMap);
+        setParent(parent);
     }
 
     private static String getFormDefaultValue(XsdAbstractElement parent) {
@@ -137,7 +126,7 @@ public class XsdAttribute extends XsdNamedElements {
      * Throws an exception in that case.
      */
     private void rule3() {
-        if (elementFieldsMap.containsKey(REF_TAG) && (simpleType != null || form != null || type != null)){
+        if (attributesMap.containsKey(REF_TAG) && (simpleType != null || form != null || type != null)){
             throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, simpleType element, form attribute and type attribute cannot be present at the same time.");
         }
     }
@@ -171,7 +160,7 @@ public class XsdAttribute extends XsdNamedElements {
      */
     @Override
     public XsdAttribute clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
 
@@ -185,7 +174,7 @@ public class XsdAttribute extends XsdNamedElements {
 
     /**
      * Receives a {@link NamedConcreteElement} that should be the one requested earlier.
-     *  * In the {@link XsdAttribute#setFields} method:
+     *  * In the {@link XsdAttribute} constructor:
      *      this.simpleType = new UnsolvedReference(type, placeHolder);
      *      XsdParser.getInstance().addUnsolvedReference((UnsolvedReference) this.simpleType);
      * This implies that the object being received is the object that is being referred with the {@link XsdAttribute#type}
@@ -238,7 +227,7 @@ public class XsdAttribute extends XsdNamedElements {
         return Collections.emptyList();
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
         return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.getAttributes())));
     }
 

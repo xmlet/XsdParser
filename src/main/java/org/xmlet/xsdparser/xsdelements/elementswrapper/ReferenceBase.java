@@ -63,6 +63,6 @@ public abstract class ReferenceBase {
      * @return The value of the attribute contained in element with the name nodeName.
      */
     private static String getNodeValue(XsdAbstractElement element, String nodeName){
-        return element.getElementFieldsMap().getOrDefault(nodeName, null);
+        return element.getAttributesMap().getOrDefault(nodeName, null);
     }
 }

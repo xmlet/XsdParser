@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -119,31 +119,13 @@ public class XsdElement extends XsdNamedElements {
      */
     private String maxOccurs;
 
-    public XsdElement(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+    public XsdElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
-    public XsdElement(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-        setParent(parent);
-    }
-
-    /**
-     * Sets all the fields of the {@link XsdElement} instance. Applies default values whenever they exist.
-     * The {@link XsdElement#type} is treated in a special way. His value is received as a String, which is inspected
-     * and if the value is a built-in type we create a {@link XsdComplexType} to reflect that built-in type. If the
-     * value is a declared {@link XsdSimpleType} or {@link XsdComplexType} we add it as a {@link UnsolvedReference} to
-     * be resolved later in the parsing process.
-     * @param elementFieldsMapParam The Map object that contains the information previously present in the Node element.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
-        super.setFields(elementFieldsMapParam);
-
-        String typeString = elementFieldsMap.get(TYPE_TAG);
+        String typeString = attributesMap.get(TYPE_TAG);
 
         if (typeString != null){
-            if (XsdParser.getXsdTypesToJava().containsKey(typeString)){
+            if (XsdParserCore.getXsdTypesToJava().containsKey(typeString)){
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, typeString);
                 this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
@@ -157,16 +139,21 @@ public class XsdElement extends XsdNamedElements {
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
 
-        this.substitutionGroup = elementFieldsMap.getOrDefault(SUBSTITUTION_GROUP_TAG, substitutionGroup);
-        this.defaultObj = elementFieldsMap.getOrDefault(DEFAULT_TAG, defaultObj);
-        this.fixed = elementFieldsMap.getOrDefault(FIXED_TAG, fixed);
-        this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, elementFieldsMap.getOrDefault(FORM_TAG, formDefault));
-        this.nillable = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(NILLABLE_TAG, "false"));
-        this.abstractObj = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(ABSTRACT_TAG, "false"));
-        this.block = AttributeValidations.belongsToEnum(BlockEnum.ALL, elementFieldsMap.getOrDefault(BLOCK_TAG, blockDefault));
-        this.finalObj = AttributeValidations.belongsToEnum(FinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
-        this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
-        this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+        this.substitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, substitutionGroup);
+        this.defaultObj = attributesMap.getOrDefault(DEFAULT_TAG, defaultObj);
+        this.fixed = attributesMap.getOrDefault(FIXED_TAG, fixed);
+        this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefault));
+        this.nillable = AttributeValidations.validateBoolean(attributesMap.getOrDefault(NILLABLE_TAG, "false"));
+        this.abstractObj = AttributeValidations.validateBoolean(attributesMap.getOrDefault(ABSTRACT_TAG, "false"));
+        this.block = AttributeValidations.belongsToEnum(BlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.finalObj = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
+        this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+    }
+
+    public XsdElement(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        this(parser, elementFieldsMapParam);
+        setParent(parent);
     }
 
     /**
@@ -191,7 +178,7 @@ public class XsdElement extends XsdNamedElements {
      * which isn't allowed, throwing an exception in that case.
      */
     private void rule7() {
-        if (parent instanceof XsdSchema && elementFieldsMap.containsKey(FORM_TAG)){
+        if (parent instanceof XsdSchema && attributesMap.containsKey(FORM_TAG)){
             throw new ParsingException(XSD_TAG + " element: The " + FORM_TAG + " attribute can only be present when the parent of the " + xsdElementIsXsdSchema);
         }
     }
@@ -219,7 +206,7 @@ public class XsdElement extends XsdNamedElements {
      * throwing an exception in that case.
      */
     private void rule3() {
-        if (parent instanceof XsdSchema && elementFieldsMap.containsKey(REF_TAG)){
+        if (parent instanceof XsdSchema && attributesMap.containsKey(REF_TAG)){
             throw new ParsingException(XSD_TAG + " element: The " + REF_TAG + " attribute cannot be present when the parent of the " + xsdElementIsXsdSchema);
         }
     }
@@ -253,7 +240,7 @@ public class XsdElement extends XsdNamedElements {
      */
     @Override
     public XsdElement clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
 
@@ -270,7 +257,7 @@ public class XsdElement extends XsdNamedElements {
      * This method aims to replace the previously created {@link UnsolvedReference} in case that the type of the
      * current {@link XsdElement} instance is not a built-in type.
      * @param element A concrete element with a name that will replace the {@link UnsolvedReference} object created in the
-     *                {@link XsdElement#setFields(Map)} method. The {@link UnsolvedReference} is only replaced if there
+     *                {@link XsdElement} constructor. The {@link UnsolvedReference} is only replaced if there
      *                is a match between the {@link UnsolvedReference#ref} and the {@link NamedConcreteElement#name}.
      */
     @Override
@@ -303,7 +290,7 @@ public class XsdElement extends XsdNamedElements {
         return null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdElement(parser, convertNodeMap(node.getAttributes())));
     }
 
@@ -350,6 +337,6 @@ public class XsdElement extends XsdNamedElements {
     }
 
     public String getType(){
-        return elementFieldsMap.getOrDefault(TYPE_TAG, null);
+        return attributesMap.getOrDefault(TYPE_TAG, null);
     }
 }

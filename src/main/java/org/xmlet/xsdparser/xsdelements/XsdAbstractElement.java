@@ -3,6 +3,7 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -22,7 +23,7 @@ public abstract class XsdAbstractElement {
     /**
      * A {@link Map} object containing the keys/values of the attributes that belong to the concrete element instance.
      */
-    protected Map<String, String> elementFieldsMap = new HashMap<>();
+    protected Map<String, String> attributesMap = new HashMap<>();
 
 
     static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
@@ -65,27 +66,17 @@ public abstract class XsdAbstractElement {
     XsdAbstractElement parent;
 
     /**
-     * The {@link XsdParser} instance that parsed this element.
+     * The {@link XsdParserCore} instance that parsed this element.
      */
-    XsdParser parser;
+    XsdParserCore parser;
 
-    protected XsdAbstractElement(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam){
-        setParser(parser);
-        setFields(elementFieldsMapParam);
+    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
+        this.parser = parser;
+        this.attributesMap = attributesMap;
     }
 
-    /**
-     * This method serves as a base to all {@link XsdAbstractElement} concrete instances which need to set their class
-     * specific fields.
-     * @param elementFieldsMapParam The Map object containing the information previously contained in the {@link Node}
-     *                              object.
-     */
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
-        this.elementFieldsMap = elementFieldsMapParam;
-    }
-
-    public Map<String, String> getElementFieldsMap() {
-        return elementFieldsMap;
+    public Map<String, String> getAttributesMap() {
+        return attributesMap;
     }
 
     /**
@@ -134,14 +125,14 @@ public abstract class XsdAbstractElement {
      * @return A wrapper object that contains the parsed XSD object.
      */
     static ReferenceBase xsdParseSkeleton(Node node, XsdAbstractElement element){
-        XsdParser parser = element.getParser();
+        XsdParserCore parser = element.getParser();
         Node child = node.getFirstChild();
 
         while (child != null) {
             if (child.getNodeType() == Node.ELEMENT_NODE) {
                 String nodeName = child.getNodeName();
 
-                BiFunction<XsdParser, Node, ReferenceBase> parserFunction = XsdParser.getParseMappers().get(nodeName);
+                BiFunction<XsdParserCore, Node, ReferenceBase> parserFunction = XsdParserCore.getParseMappers().get(nodeName);
 
                 if (parserFunction != null){
                     XsdAbstractElement childElement = parserFunction.apply(parser, child).getElement();
@@ -162,11 +153,7 @@ public abstract class XsdAbstractElement {
         return wrappedElement;
     }
 
-    private void setParser(XsdParser parser) {
-        this.parser = parser;
-    }
-
-    public XsdParser getParser() {
+    public XsdParserCore getParser() {
         return parser;
     }
 

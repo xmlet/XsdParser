@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotationVisitor;
@@ -37,7 +37,7 @@ public class XsdAnnotation extends XsdIdentifierElements {
      */
     private List<XsdDocumentation> documentations = new ArrayList<>();
 
-    private XsdAnnotation(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdAnnotation(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -68,7 +68,7 @@ public class XsdAnnotation extends XsdIdentifierElements {
         documentations.add(documentation);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdAnnotation(parser, convertNodeMap(node.getAttributes())));
     }
 }

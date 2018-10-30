@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -20,7 +20,7 @@ public class XsdAppInfo extends XsdAnnotationChildren {
     public static final String XSD_TAG = "xsd:appinfo";
     public static final String XS_TAG = "xs:appinfo";
 
-    private XsdAppInfo(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdAppInfo(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
     }
 
@@ -30,7 +30,7 @@ public class XsdAppInfo extends XsdAnnotationChildren {
         visitorParam.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdAnnotationChildrenParse(node, new XsdAppInfo(parser, convertNodeMap(node.getAttributes())));
     }
 }

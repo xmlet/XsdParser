@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdListVisitor;
@@ -37,15 +37,10 @@ public class XsdList extends XsdAnnotatedElements {
      */
     private String itemType;
 
-    private XsdList(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+    private XsdList(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
-        super.setFields(elementFieldsMapParam);
-
-        this.itemType = elementFieldsMap.getOrDefault(ITEM_TYPE_TAG, itemType);
+        this.itemType = attributesMap.getOrDefault(ITEM_TYPE_TAG, itemType);
     }
 
     @Override
@@ -59,7 +54,7 @@ public class XsdList extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdList(parser, convertNodeMap(node.getAttributes())));
     }
 

@@ -1,9 +1,8 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
@@ -18,12 +17,6 @@ public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
     private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
     /**
-     * The name of the restrictions that extends this class. This variable is only used to provide more information to the
-     * user in the event of a {@link ParsingException}.
-     */
-    private String restrictionName;
-
-    /**
      * Indicates if the value is fixed.
      */
     private boolean fixed;
@@ -35,23 +28,16 @@ public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
      */
     private double value;
 
-    XsdDoubleRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName) {
+    XsdDoubleRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName) {
         super(parser, elementFieldsMapParam);
 
-        this.restrictionName = restrictionName;
+        fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
+        value = AttributeValidations.validateRequiredDouble(restrictionName, VALUE_TAG, attributesMap.get(VALUE_TAG));
     }
 
     @Override
     public XsdAnnotatedElementsVisitor getVisitor() {
         return visitor;
-    }
-
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        fixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(FIXED_TAG, "false"));
-        value = AttributeValidations.validateRequiredDouble(restrictionName, VALUE_TAG, elementFieldsMap.get(VALUE_TAG));
     }
 
     /**

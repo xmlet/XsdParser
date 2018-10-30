@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -18,7 +18,7 @@ public class XsdMinInclusive extends XsdDoubleRestrictions {
     public static final String XSD_TAG = "xsd:minInclusive";
     public static final String XS_TAG = "xs:minInclusive";
 
-    private XsdMinInclusive(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    private XsdMinInclusive(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam, XSD_TAG);
     }
 
@@ -28,7 +28,7 @@ public class XsdMinInclusive extends XsdDoubleRestrictions {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return ReferenceBase.createFromXsd(new XsdMinInclusive(parser, convertNodeMap(node.getAttributes())));
     }
 }

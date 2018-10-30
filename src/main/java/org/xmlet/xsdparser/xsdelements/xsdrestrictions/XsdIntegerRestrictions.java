@@ -1,6 +1,6 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
@@ -29,20 +29,15 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
      */
     protected int value;
 
-    XsdIntegerRestrictions(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
+    XsdIntegerRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);
+
+        fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
     }
 
     @Override
     public XsdAnnotatedElementsVisitor getVisitor() {
         return visitor;
-    }
-
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        fixed = AttributeValidations.validateBoolean(elementFieldsMap.getOrDefault(FIXED_TAG, "false"));
     }
 
     /**

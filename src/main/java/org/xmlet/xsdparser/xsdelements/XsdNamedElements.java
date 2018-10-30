@@ -1,6 +1,6 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
@@ -18,8 +18,10 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      */
     String name;
 
-    XsdNamedElements(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    XsdNamedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
+
+        this.name = attributesMap.getOrDefault(NAME_TAG, name);
     }
 
     /**
@@ -29,17 +31,6 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      * @return A copy of the object from which is called upon.
      */
     public abstract XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes);
-
-    /**
-     * Sets the name field with the value present in the Map containing the Node object.
-     * @param elementFieldsMapParam The Map object containing the information previously contained in the Node object.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        this.name = elementFieldsMap.getOrDefault(NAME_TAG, name);
-    }
 
     /**
      * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
@@ -54,7 +45,7 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      * if they are both present.
      */
     private void rule1() {
-        if (name != null && elementFieldsMap.containsKey(REF_TAG)){
+        if (name != null && attributesMap.containsKey(REF_TAG)){
             throw new ParsingException(NAME_TAG + " and " + REF_TAG + " attributes cannot both be present at the same time.");
         }
     }

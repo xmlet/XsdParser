@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -49,19 +49,10 @@ public class XsdExtension extends XsdAnnotatedElements {
      */
     private ReferenceBase base;
 
-    private XsdExtension(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
+    private XsdExtension(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
-    /**
-     * Uses the base attribute value to add an {@link UnsolvedReference} to resolve further in the parsing process.
-     * @param elementFieldsMapParam The Map object containing the information previously present in the Node object.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        String baseValue = elementFieldsMap.getOrDefault(BASE_TAG, null);
+        String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
         if (baseValue != null){
             this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>()));
@@ -73,7 +64,7 @@ public class XsdExtension extends XsdAnnotatedElements {
      * This method should always receive two elements, one to replace the {@link UnsolvedReference} created due to
      * the value present in the base attribute and another if it has an {@link UnsolvedReference} as a child element.
      * @param element A concrete element with a name that will replace the {@link UnsolvedReference} object created in the
-     *                {@link XsdExtension#setFields(Map)} method. The {@link UnsolvedReference} is only replaced if there
+     *                {@link XsdExtension} constructor. The {@link UnsolvedReference} is only replaced if there
      *                is a match between the {@link UnsolvedReference#ref} and the {@link NamedConcreteElement#name}.
      */
     @Override
@@ -115,14 +106,14 @@ public class XsdExtension extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The {@link XsdElement} from which it extends or null if the {@link XsdParser} wasn't able to replace
+     * @return The {@link XsdElement} from which it extends or null if the {@link XsdParserCore} wasn't able to replace
      * the {@link UnsolvedReference} created by the base attribute value.
      */
     public XsdElement getBase() {
         return base instanceof ConcreteElement ? (XsdElement) base.getElement() : null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.getAttributes())));
     }
 

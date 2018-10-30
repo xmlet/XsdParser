@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
@@ -52,25 +52,16 @@ public class XsdGroup extends XsdNamedElements {
      */
     private String maxOccurs;
 
-    private XsdGroup(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    private XsdGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
+
+        this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
+        this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
-    private XsdGroup(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    private XsdGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        this(parser, attributesMap);
         setParent(parent);
-    }
-
-    /**
-     * Sets the occurs fields either with the Map values or with their default values.
-     * @param elementFieldsMapParam The Map object containing the information previously contained in the Node object.
-     */
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, elementFieldsMap.getOrDefault(MIN_OCCURS_TAG, "1"));
-        this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, elementFieldsMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
     /**
@@ -137,7 +128,7 @@ public class XsdGroup extends XsdNamedElements {
      */
     @Override
     public XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
         XsdGroup elementCopy = new XsdGroup(this.parent, this.parser, placeHolderAttributes);
@@ -184,7 +175,7 @@ public class XsdGroup extends XsdNamedElements {
         return XsdMultipleElements.getChildAsSequence(childElement);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.getAttributes())));
     }
 

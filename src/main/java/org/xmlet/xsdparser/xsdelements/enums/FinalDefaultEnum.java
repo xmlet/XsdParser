@@ -17,6 +17,8 @@ public enum FinalDefaultEnum implements XsdEnum<FinalDefaultEnum> {
     UNION("union"),
     ALL ("#all");
 
+    public static FinalDefaultEnum instance = FinalDefaultEnum.DEFAULT;
+
     private final String value;
 
     FinalDefaultEnum(String value) {

@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.exceptions.VisitorNotFoundException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -24,8 +24,9 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
      */
     private String content;
 
-    XsdAnnotationChildren(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    XsdAnnotationChildren(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
+        this.source = attributesMap.getOrDefault(SOURCE_TAG, source);
     }
 
     /**
@@ -35,13 +36,6 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
     @Override
     public XsdAbstractElementVisitor getVisitor() {
         throw new VisitorNotFoundException("AppInfo/Documentation can't have children.");
-    }
-
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam) {
-        super.setFields(elementFieldsMapParam);
-
-        this.source = elementFieldsMap.getOrDefault(SOURCE_TAG, source);
     }
 
     public String getSource() {

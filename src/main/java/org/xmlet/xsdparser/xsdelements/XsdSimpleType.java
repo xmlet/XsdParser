@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.SimpleTypeFinalEnum;
@@ -57,22 +57,17 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     private SimpleTypeFinalEnum finalObj;
 
-    private XsdSimpleType(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
-
-    private XsdSimpleType(XsdAbstractElement parent, XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-        setParent(parent);
-    }
-
-    @Override
-    public void setFields(@NotNull Map<String, String> elementFieldsMapParam){
-        super.setFields(elementFieldsMapParam);
+    private XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
 
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
 
-        this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, elementFieldsMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+    }
+
+    private XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
+        this(parser, elementFieldsMapParam);
+        setParent(parent);
     }
 
     /**
@@ -125,7 +120,7 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     @Override
     public XsdSimpleType clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
         XsdSimpleType copy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes);
@@ -137,7 +132,7 @@ public class XsdSimpleType extends XsdNamedElements {
         return copy;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node){
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
         return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.getAttributes())));
     }
 
@@ -169,7 +164,7 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     public List<XsdRestriction> getAllRestrictions() {
         Map<String, XsdRestriction> restrictions = new HashMap<>();
-        Map<String, String> xsdBuiltinTypes = XsdParser.getXsdTypesToJava();
+        Map<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToJava();
 
         if (restriction != null){
             restrictions.put(xsdBuiltinTypes.get(restriction.getBase()), restriction);

@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
@@ -46,12 +46,12 @@ public class XsdAttributeGroup extends XsdNamedElements {
      */
     private List<ReferenceBase> attributes = new ArrayList<>();
 
-    private XsdAttributeGroup(@NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    private XsdAttributeGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
     }
 
-    private XsdAttributeGroup(XsdAbstractElement parent, @NotNull XsdParser parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    private XsdAttributeGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
+        super(parser, attributesMap);
         setParent(parent);
     }
 
@@ -90,7 +90,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
      */
     @Override
     public XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes) {
-        placeHolderAttributes.putAll(elementFieldsMap);
+        placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
         XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes);
@@ -139,7 +139,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
                     .map(element -> (XsdAttribute) element.getElement());
     }
 
-    public static ReferenceBase parse(@NotNull XsdParser parser, Node node) {
+    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
         return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.getAttributes())));
     }
 

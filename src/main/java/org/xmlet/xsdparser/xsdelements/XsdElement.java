@@ -57,7 +57,7 @@ public class XsdElement extends XsdNamedElements {
      * Specifies the name of an element that can be substituted with this element. Only should be present if this
      * {@link XsdElement} is a top level element, i.e. his parent is a XsdSchema element.
      */
-    private String substitutionGroup;
+    private ReferenceBase substitutionGroup;
 
     /**
      * Specifies a default value for the element. It's only available if the type contents are text only type defined by
@@ -138,8 +138,13 @@ public class XsdElement extends XsdNamedElements {
         String formDefault = AttributeValidations.getFormDefaultValue(parent);
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
+        String substitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, null);
 
-        this.substitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, substitutionGroup);
+        if (substitutionGroup != null){
+            this.substitutionGroup = new UnsolvedReference(substitutionGroup, new XsdElement(this, this.parser, new HashMap<>()));
+            parser.addUnsolvedReference((UnsolvedReference) this.substitutionGroup);
+        }
+
         this.defaultObj = attributesMap.getOrDefault(DEFAULT_TAG, defaultObj);
         this.fixed = attributesMap.getOrDefault(FIXED_TAG, fixed);
         this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefault));
@@ -272,6 +277,16 @@ public class XsdElement extends XsdNamedElements {
             this.type = element;
             elem.setParent(this);
         }
+
+        if (this.substitutionGroup instanceof UnsolvedReference && elem instanceof XsdElement && ((UnsolvedReference) this.substitutionGroup).getRef().equals(element.getName())){
+            XsdElement xsdElement = (XsdElement) elem;
+
+            this.type = xsdElement.type;
+            this.simpleType = xsdElement.simpleType;
+            this.complexType = xsdElement.complexType;
+            this.substitutionGroup = element;
+            elem.setParent(this);
+        }
     }
 
     public XsdComplexType getXsdComplexType() {
@@ -337,6 +352,14 @@ public class XsdElement extends XsdNamedElements {
     }
 
     public String getType(){
+        if (this.type != null && this.type instanceof NamedConcreteElement){
+            return ((NamedConcreteElement) this.type).getName();
+        }
+
         return attributesMap.getOrDefault(TYPE_TAG, null);
+    }
+
+    public ReferenceBase getSubstitutionGroup() {
+        return substitutionGroup;
     }
 }

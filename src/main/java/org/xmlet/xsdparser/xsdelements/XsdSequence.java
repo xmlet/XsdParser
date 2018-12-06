@@ -9,6 +9,7 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdSequenceVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * A class representing the xsd:sequence element. Since it shares the same attributes as {@link XsdAll} or
@@ -72,5 +73,49 @@ public class XsdSequence extends XsdMultipleElements{
     @SuppressWarnings("unused")
     public String getMaxOccurs() {
         return maxOccurs;
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdChoice}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdChoice> getChildrenChoices(){
+        return getElements()
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdChoice)
+                .map(element -> (XsdChoice) element.getElement());
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdElement}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdElement> getChildrenElements(){
+        return getElements()
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdElement)
+                .map(element -> (XsdElement) element.getElement());
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdSequence}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdSequence> getChildrenSequences(){
+        return getElements()
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdSequence)
+                .map(element -> (XsdSequence) element.getElement());
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdGroup}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdGroup> getChildrenGroups(){
+        return getElements()
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdGroup)
+                .map(element -> (XsdGroup) element.getElement());
     }
 }

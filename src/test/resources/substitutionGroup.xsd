@@ -1,0 +1,11 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sap.com/ndb/BiModelCalculation.ecore">
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="navn" substitutionGroup="name"/>
+    <xs:complexType name="custinfo">
+        <xs:sequence>
+            <xs:element ref="name"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="customer" type="custinfo"/>
+    <xs:element name="kunde" substitutionGroup="customer"/>
+</xs:schema>

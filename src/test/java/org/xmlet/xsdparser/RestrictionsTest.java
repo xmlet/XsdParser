@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.*;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import java.net.URL;
@@ -164,13 +165,14 @@ public class RestrictionsTest {
      */
     @Test
     public void testAnnotations() {
-        Optional<XsdElement> annotatedElementOptional = elements.stream().filter(element -> element.getName().equals("annotatedElement")).findFirst();
+        Optional<XsdSchema> schema = schemas.stream().findFirst();
+        Assert.assertTrue(schema.isPresent());
 
-        Assert.assertTrue(annotatedElementOptional.isPresent());
+        Optional<XsdComplexType> annotatedTypeOptional = schema.get().getChildrenComplexTypes().filter(element -> element.getName().equals("annotatedElement")).findFirst();
+        Assert.assertTrue(annotatedTypeOptional.isPresent());
 
-        XsdElement annotatedElement = annotatedElementOptional.get();
-
-        XsdAnnotation annotation = annotatedElement.getAnnotation();
+        XsdComplexType annotatedType = annotatedTypeOptional.get();
+        XsdAnnotation annotation = annotatedType.getAnnotation();
 
         Assert.assertNotNull(annotation);
 
@@ -303,10 +305,83 @@ public class RestrictionsTest {
 
         Assert.assertNotNull(extension);
 
-        XsdElement base = extension.getBase();
+        XsdComplexType base = extension.getBaseAsComplexType();
 
         Assert.assertNotNull(base);
         Assert.assertEquals("annotatedElement", base.getName());
+    }
+
+    @Test
+    public void testSubstitutionGroup(){
+        List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
+
+        Optional<XsdElement> navnOptional = elements.stream().filter(element -> element.getName().equals("navn")).findFirst();
+        Optional<XsdElement> kundeOptional = elements.stream().filter(element -> element.getName().equals("kunde")).findFirst();
+
+        Assert.assertTrue(navnOptional.isPresent());
+        Assert.assertTrue(kundeOptional.isPresent());
+
+        XsdElement navnElement = navnOptional.get();
+        XsdElement kundeElement = kundeOptional.get();
+
+        Assert.assertEquals("xsd:string", navnElement.getType());
+
+        XsdComplexType kundeComplexType = kundeElement.getXsdComplexType();
+
+        Assert.assertNotNull(kundeComplexType);
+        Assert.assertEquals("custinfo", kundeComplexType.getName());
+
+        XsdSequence custinfoSequence = kundeComplexType.getChildAsSequence();
+
+        Assert.assertNotNull(custinfoSequence);
+        List<XsdElement> sequenceElements = custinfoSequence.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertNotNull(sequenceElements);
+        Assert.assertEquals(1, sequenceElements.size());
+
+        XsdElement nameElement = sequenceElements.get(0);
+
+        Assert.assertTrue(navnElement.getSubstitutionGroup() instanceof NamedConcreteElement);
+        Assert.assertTrue(navnElement.getSubstitutionGroup().getElement() instanceof XsdNamedElements);
+        Assert.assertEquals(nameElement.getName(), ((XsdNamedElements)navnElement.getSubstitutionGroup().getElement()).getName());
+    }
+
+    @Test
+    public void testExtensionBase(){
+        List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
+        Optional<XsdSchema> schema = parser.getResultXsdSchemas().findFirst();
+
+        Assert.assertTrue(schema.isPresent());
+        Optional<XsdComplexType> baseTypeExpectedOptional = schema.get().getChildrenComplexTypes().filter(xsdComplexType -> xsdComplexType.getName().equals("baseType")).findFirst();
+        Assert.assertTrue(baseTypeExpectedOptional.isPresent());
+
+        XsdComplexType baseTypeExpected = baseTypeExpectedOptional.get();
+
+        Optional<XsdElement> rootOptional = elements.stream().filter(element -> element.getName().equals("root")).findFirst();
+
+        Assert.assertTrue(rootOptional.isPresent());
+
+        XsdElement root = rootOptional.get();
+
+        XsdComplexType extendedType = root.getXsdComplexType();
+        Assert.assertNotNull(extendedType);
+
+        XsdComplexContent complexContent = extendedType.getComplexContent();
+        Assert.assertNotNull(complexContent);
+
+        XsdExtension extension = complexContent.getXsdExtension();
+        XsdComplexType baseType = extension.getBaseAsComplexType();
+
+        Assert.assertEquals(baseTypeExpected, baseType);
+
+        Assert.assertNotNull(extension);
+
+        XsdSequence sequence = extension.getChildAsSequence();
+        Assert.assertNotNull(sequence);
+
+        Optional<XsdElement> element = sequence.getChildrenElements().findFirst();
+        Assert.assertTrue(element.isPresent());
+        Assert.assertEquals("additionElement", element.get().getName());
     }
 
     /**

@@ -34,12 +34,12 @@
         </xsd:complexType>
     </xsd:element>
 
-    <xsd:element name="annotatedElement">
+    <xsd:complexType name="annotatedElement">
         <xsd:annotation>
             <xsd:appinfo source="source">Some text.</xsd:appinfo>
             <xsd:documentation source="source">Some documentation.</xsd:documentation>
         </xsd:annotation>
-    </xsd:element>
+    </xsd:complexType>
     
     <xsd:element name="restrictedList">
         <xsd:simpleType>
@@ -81,6 +81,34 @@
             </xsd:element>
         </xsd:all>
     </xsd:group>
+
+    <!-- Extension base example -->
+    
+    <xsd:element name="root" type="extendedType" />
+    <xsd:complexType name="baseType">
+        <xsd:attribute name="attributeOne" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="extendedType">
+        <xsd:complexContent>
+            <xsd:extension base="baseType">
+                <xsd:sequence>
+                    <xsd:element name="additionElement" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Substitution Group example -->
+    
+    <xsd:element name="name" type="xsd:string"/>
+    <xsd:element name="navn" substitutionGroup="name"/>
+    <xsd:complexType name="custinfo">
+        <xsd:sequence>
+            <xsd:element ref="name"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="customer" type="custinfo"/>
+    <xsd:element name="kunde" substitutionGroup="customer"/>
 
 </xsd:schema>
 

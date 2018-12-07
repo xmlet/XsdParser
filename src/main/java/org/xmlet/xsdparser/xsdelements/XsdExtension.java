@@ -55,8 +55,14 @@ public class XsdExtension extends XsdAnnotatedElements {
         String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
         if (baseValue != null){
-            this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>()));
-            parser.addUnsolvedReference((UnsolvedReference) this.base);
+            if (XsdParserCore.getXsdTypesToJava().containsKey(baseValue)){
+                HashMap<String, String> attributes = new HashMap<>();
+                attributes.put(NAME_TAG, baseValue);
+                this.base = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
+            } else {
+                this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>()));
+                parser.addUnsolvedReference((UnsolvedReference) this.base);
+            }
         }
     }
 
@@ -74,7 +80,9 @@ public class XsdExtension extends XsdAnnotatedElements {
         XsdNamedElements elem = element.getElement();
         String elemName = elem.getRawName();
 
-        if (this.base instanceof UnsolvedReference && elem instanceof XsdElement && ((UnsolvedReference) this.base).getRef().equals(elemName)){
+        boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
+
+        if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && ((UnsolvedReference) this.base).getRef().equals(elemName)){
             this.base = element;
         }
 
@@ -106,11 +114,48 @@ public class XsdExtension extends XsdAnnotatedElements {
     }
 
     /**
-     * @return The {@link XsdElement} from which it extends or null if the {@link XsdParserCore} wasn't able to replace
-     * the {@link UnsolvedReference} created by the base attribute value.
+     * @return Either a {@link XsdComplexType} or a {@link XsdSimpleType} from which this extension extends or null if
+     * the {@link XsdParserCore} wasn't able to replace the {@link UnsolvedReference} created by the base attribute value.
      */
-    public XsdElement getBase() {
-        return base instanceof ConcreteElement ? (XsdElement) base.getElement() : null;
+    public XsdNamedElements getBase() {
+        if (base instanceof NamedConcreteElement){
+            return ((NamedConcreteElement)base).getElement();
+        }
+
+        return null;
+    }
+
+    /**
+     * @return The {@link XsdComplexType} from which this extension extends or null if the {@link XsdParserCore} wasn't
+     * able to replace the {@link UnsolvedReference} created by the base attribute value.
+     */
+    public XsdComplexType getBaseAsComplexType() {
+        if (base instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = base.getElement();
+
+            if (baseType instanceof XsdComplexType){
+                return (XsdComplexType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return The {@link XsdSimpleType} from which this extension extends or null if the {@link XsdParserCore} wasn't
+     * able to replace the {@link UnsolvedReference} created by the base attribute value.
+     */
+    @SuppressWarnings("unused")
+    public XsdSimpleType getBaseAsSimpleType() {
+        if (base instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = base.getElement();
+
+            if (baseType instanceof XsdSimpleType){
+                return (XsdSimpleType) baseType;
+            }
+        }
+
+        return null;
     }
 
     public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){

@@ -332,6 +332,28 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.0.16
+
+<div align="justify">
+    <ul>
+        <li>
+            Replaces XsdExtension using XsdElement as value for its base attribute with XsdComplexType and XsdSimpleType types. 
+        </li>
+    </ul>
+</div>
+
+
+### 1.0.15
+
+<div align="justify">
+    <ul>
+        <li>
+            Fixes XsdElement substitutionGroup not being used to replace elements contents.
+        </li>
+    </ul>
+</div>
+
+
 ### 1.0.14
 
 <div align="justify">

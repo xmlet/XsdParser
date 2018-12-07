@@ -42,22 +42,15 @@ public class AndroidParseTest {
 
         XsdExtension relativeLayoutExtension = relativeLayoutComplexContent.getXsdExtension();
 
-        XsdElement viewGroup = relativeLayoutExtension.getBase();
+        XsdComplexType viewGroupType = relativeLayoutExtension.getBaseAsComplexType();
+        Assert.assertNotNull(viewGroupType);
 
-        Assert.assertNotNull(viewGroup);
-        Assert.assertEquals("ViewGroup", viewGroup.getName());
-
-        XsdComplexType viewGroupComplexType = viewGroup.getXsdComplexType();
-
-        Assert.assertNotNull(viewGroupComplexType);
-
-        XsdComplexContent viewGroupComplexContent = viewGroupComplexType.getComplexContent();
-
+        XsdComplexContent viewGroupComplexContent = viewGroupType.getComplexContent();
         Assert.assertNotNull(viewGroupComplexContent);
 
         XsdExtension viewGroupExtension = viewGroupComplexContent.getXsdExtension();
 
-        XsdElement view = viewGroupExtension.getBase();
+        XsdComplexType view = viewGroupExtension.getBaseAsComplexType();
 
         Assert.assertNotNull(view);
         Assert.assertEquals("View", view.getName());

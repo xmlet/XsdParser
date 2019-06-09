@@ -3,6 +3,7 @@ package org.xmlet.xsdparser.core;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
+import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
@@ -27,6 +28,22 @@ public class XsdParserJar extends XsdParserCore {
      * @param filePath The filePath of the XSD file to parse. Relative to the Jar structure.
      */
     public XsdParserJar(String jarPath, String filePath){
+        parse(jarPath, filePath);
+    }
+
+    /**
+     * Adds the jar file represented the jarPath to the classpath and proceeds by parsing the file present in the
+     * previous jar with the path filePath.
+     * @param jarPath The path to the jar file.
+     * @param filePath The filePath of the XSD file to parse. Relative to the Jar structure.
+     */
+    public XsdParserJar(String jarPath, String filePath, ParserConfig config){
+        super.updateConfig(config);
+
+        parse(jarPath, filePath);
+    }
+
+    private void parse(String jarPath, String filePath){
         setClassLoader(jarPath);
 
         parseJarFile(classLoader.getResourceAsStream(filePath));

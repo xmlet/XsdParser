@@ -19,9 +19,9 @@ public class AndroidParseTest {
     }
 
     /**
-     * Asserts if the hierarchy is being parsed correctly. The hierarchy is implemented with the {@link XsdExtension#base}
+     * Asserts if the hierarchy is being parsed correctly. The hierarchy is implemented with the base
      * field.
-     * Example: If element A has a {@link XsdExtension} with his {@link XsdExtension#base} with element B that means that
+     * Example: If element A has a {@link XsdExtension} with his base with element B that means that
      * element A extends element B.
      */
     @Test

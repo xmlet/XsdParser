@@ -2,7 +2,9 @@ package org.xmlet.xsdparser.core;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
@@ -30,6 +32,24 @@ public class XsdParser extends XsdParserCore{
      * @param filePath States the path of the XSD file to be parsed.
      */
     public XsdParser(String filePath){
+        parse(filePath);
+    }
+
+    /**
+     * The XsdParser constructor will parse the XSD file with the {@code filepath} and will also parse all the subsequent
+     * XSD files with their path present in xsd:import and xsd:include tags. After parsing all the XSD files present it
+     * resolves the references existent in the XSD language, represented by the ref attribute. When this method finishes
+     * the parse results and remaining unsolved references are accessible by the {@link XsdParser#getResultXsdSchemas()},
+     * {@link XsdParser#getResultXsdElements()} and {@link XsdParser#getUnsolvedReferences()}.
+     * @param filePath States the path of the XSD file to be parsed.
+     */
+    public XsdParser(String filePath, ParserConfig config){
+        super.updateConfig(config);
+
+        parse(filePath);
+    }
+
+    private void parse(String filePath){
         schemaLocations.add(filePath);
         int index = 0;
 
@@ -55,13 +75,7 @@ public class XsdParser extends XsdParserCore{
                 throw new FileNotFoundException();
             }
 
-            Node schemaNode = getSchemaNode(filePath);
-
-            if (isXsdSchema(schemaNode)){
-                XsdSchema.parse(this, schemaNode);
-            } else {
-                throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
-            }
+            XsdSchema.parse(this, getSchemaNode(filePath));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
         }
@@ -81,6 +95,15 @@ public class XsdParser extends XsdParserCore{
 
         doc.getDocumentElement().normalize();
 
-        return doc.getFirstChild();
+        NodeList nodes = doc.getChildNodes();
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            if (isXsdSchema(node)){
+                return node;
+            }
+        }
+
+        throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
     }
 }

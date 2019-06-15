@@ -2,17 +2,17 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.NamespaceInfo;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdSchemaVisitor;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -70,6 +70,8 @@ public class XsdSchema extends XsdAnnotatedElements {
      */
     private String xmlns;
 
+    private Map<String, NamespaceInfo> namespaces = new HashMap<>();
+
     /**
      * The children elements contained in this {@link XsdSchema} element.
      */
@@ -85,6 +87,13 @@ public class XsdSchema extends XsdAnnotatedElements {
         this.targetNamespace = attributesMap.getOrDefault(TARGET_NAMESPACE, targetNamespace);
         this.version = attributesMap.getOrDefault(VERSION, version);
         this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
+
+        for (String key : attributesMap.keySet()){
+            if (key.startsWith(XMLNS) && !attributesMap.get(key).contains("http")){
+                String namespaceId = key.replace(XMLNS + ":", "");
+                namespaces.put(namespaceId, new NamespaceInfo(attributesMap.get(key)));
+            }
+        }
     }
 
     @Override
@@ -103,7 +112,33 @@ public class XsdSchema extends XsdAnnotatedElements {
     }
 
     public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.getAttributes())));
+        ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.getAttributes())));
+        XsdSchema xsdSchema = (XsdSchema) xsdSchemaRef.getElement();
+
+        List<XsdImport> importsList = xsdSchema.getChildrenImports().collect(Collectors.toList());
+
+        Map<String, String> prefixLocations = new HashMap<>();
+
+        xsdSchema.getNamespaces()
+                 .forEach((prefix, namespaceInfo) -> {
+                     Optional<XsdImport> xsdImport = importsList.stream().filter(xsdImportObj -> xsdImportObj.getNamespace().equals(namespaceInfo.getName())).findFirst();
+
+                     if (xsdImport.isPresent()){
+                         prefixLocations.put(prefix, xsdImport.get().getSchemaLocation());
+                     } else {
+                         throw new ParsingException("XsdSchema refers a namespace which was not imported.");
+                     }
+                 });
+
+        xsdSchema.updatePrefixLocations(prefixLocations);
+
+        return xsdSchemaRef;
+    }
+
+    private void updatePrefixLocations(Map<String, String> prefixLocations) {
+        prefixLocations.forEach((prefix, fileLocation) ->
+            namespaces.get(prefix).setFile(prefixLocations.get(fileLocation))
+        );
     }
 
     public void add(XsdInclude element) {
@@ -169,10 +204,6 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     public String getVersion() {
         return version;
-    }
-
-    public String getXmlns() {
-        return xmlns;
     }
 
     /**
@@ -263,5 +294,9 @@ public class XsdSchema extends XsdAnnotatedElements {
         return getXsdElements()
                 .filter(element -> element instanceof XsdAttribute)
                 .map(element -> (XsdAttribute) element);
+    }
+
+    public Map<String, NamespaceInfo> getNamespaces() {
+        return namespaces;
     }
 }

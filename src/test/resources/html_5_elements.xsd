@@ -1,18 +1,13 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <xsd:schema xmlns='http://schemas.microsoft.com/intellisense/html-5'
 			xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+			xmlns:xs='http://www.w3.org/2001/XMLSchema'
 			version="1.0"
-			targetNamespace='http://schemas.microsoft.com/intellisense/html-5'
-			xmlns:vs='http://schemas.microsoft.com/Visual-Studio-Intellisense'
-			vs:clientom="w3c-dom1.tlb"
-			vs:ishtmlschema="true"
-			vs:isserverschema="false"
-			vs:htmlflavor="5.0"
-			vs:cssschema="CSS 2.1"
-			vs:SuccinctFriendlyName="HTML 5">
-		
+			targetNamespace='http://schemas.microsoft.com/intellisense/html-5'>
+
 	<!-- This element must be the first one in the file! -->
-	
+	<xsd:include schemaLocation="./src/test/resources/html_5_types.xsd" />
+
 	<xs:element name="html">
 		<xs:complexType>
 			<xs:choice>
@@ -45,7 +40,7 @@
 	<xsd:element name="base">
 		<xsd:complexType>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="href" type="xsd:anyURI" vs:preferredextensions=".asp;.aspx;.asmx;.asax;.ashx;.asix;.ascx;.htm;.html;.xml;.xsd;.config;.asa;.css;.shtm;.shtml;.php;.jsp" />
+			<xsd:attribute name="href" type="xsd:anyURI" />
 			<xsd:attribute name="target" type="browsingContext" />
 		</xsd:complexType>
 	</xsd:element>
@@ -53,11 +48,11 @@
 	<xsd:element name="link">
 		<xsd:complexType>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="href" type="xsd:anyURI" vs:preferredextensions=".asp;.aspx;.asmx;.asax;.ashx;.asix;.ascx;.htm;.html;.xml;.xsd;.config;.asa;.css;.shtm;.shtml;.php;.jsp" />
+			<xsd:attribute name="href" type="xsd:anyURI" />
 			<xsd:attribute name="hreflang" type="i18LanguageCode" />
 			<xsd:attribute name="rel" type="linkType" />
 			<xsd:attribute name="media" type="mediaType" default="screen" />
-			<xsd:attribute name="type" type="contentType" vs:readonly="true" />
+			<xsd:attribute name="type" type="contentType" />
 			<xsd:attribute name="sizes" />
 		</xsd:complexType>
 	</xsd:element>
@@ -124,7 +119,7 @@
 		<xsd:complexType mixed="true">
 			<xsd:attributeGroup ref="coreAttributeGroup" />
 			<xsd:attribute name="charset" type="xsd:string" />
-			<xsd:attribute name="type" vs:readonly="true" use="required">
+			<xsd:attribute name="type" use="required">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
 						<xsd:enumeration value="text/ecmascript" />
@@ -179,19 +174,19 @@
 				<xsd:group ref="flowContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="onafterprint" vs:omtype="event" />
-			<xsd:attribute name="onbeforeprint" vs:omtype="event" />
-			<xsd:attribute name="onbeforeunload" vs:omtype="event" />
-			<xsd:attribute name="onhashchange" vs:omtype="event" />
-			<xsd:attribute name="onmessage" vs:omtype="event" />
-			<xsd:attribute name="onoffline" vs:omtype="event" />
-			<xsd:attribute name="ononline" vs:omtype="event" />
-			<xsd:attribute name="onpopstate" vs:omtype="event" />
-			<xsd:attribute name="onredo" vs:omtype="event" />
-			<xsd:attribute name="onresize" vs:omtype="event" />
-			<xsd:attribute name="onstorage" vs:omtype="event" />
-			<xsd:attribute name="onundo" vs:omtype="event" />
-			<xsd:attribute name="onunload" vs:omtype="event" />
+			<xsd:attribute name="onafterprint" />
+			<xsd:attribute name="onbeforeprint" />
+			<xsd:attribute name="onbeforeunload" />
+			<xsd:attribute name="onhashchange" />
+			<xsd:attribute name="onmessage" />
+			<xsd:attribute name="onoffline" />
+			<xsd:attribute name="ononline" />
+			<xsd:attribute name="onpopstate" />
+			<xsd:attribute name="onredo" />
+			<xsd:attribute name="onresize" />
+			<xsd:attribute name="onstorage" />
+			<xsd:attribute name="onundo" />
+			<xsd:attribute name="onunload" />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -237,11 +232,11 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="header" vs:disallowedancestor="header footer address" type="simpleFlowContentElement"/>
+	<xsd:element name="header" type="simpleFlowContentElement"/>
 
-	<xsd:element name="footer" vs:disallowedancestor="header footer address" type="simpleFlowContentElement"/>
+	<xsd:element name="footer" type="simpleFlowContentElement"/>
 
-	<xsd:element name="address" vs:disallowedancestor="address" type="simpleFlowContentElement"/>
+	<xsd:element name="address" type="simpleFlowContentElement"/>
 
 	<xsd:element name="p" type="simplePhrasingContentElement" vs:implicitclosure="true"/>
 
@@ -272,7 +267,7 @@
 	<xsd:element name="blockquote">
 		<xsd:complexType mixed="true">
 			<xsd:choice>
-				<xsd:group ref="flowContent" vs:excludeelements="blockquote" />
+				<xsd:group ref="flowContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 			<xsd:attribute name="cite" type="xsd:anyURI" />
@@ -311,7 +306,7 @@
 				<xsd:group ref="flowContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="value" vs:requiredparent="ol" />
+			<xsd:attribute name="value" />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -345,7 +340,7 @@
 
 	<!--================== The Anchor Element ================================-->
 
-	<xsd:element name="a" vs:disallowedancestor="a button" vs:contentmodel="transparent">
+	<xsd:element name="a" vs:contentmodel="transparent">
 		<xsd:complexType mixed="true">
 			<!-- Content Model -->
 			<xsd:choice>
@@ -353,13 +348,13 @@
 			</xsd:choice>
 			<!-- Attributes -->
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="href" type="xsd:anyURI" vs:preferredextensions=".asp;.aspx;.asmx;.asax;.ashx;.asix;.ascx;.htm;.html;.xml;.xsd;.config;.asa;.css;.shtm;.shtml;.php;.jsp" />
-			<xsd:attribute name="target" type="browsingContext" vs:requiredattribute="href" />
-			<xsd:attribute name="ping" vs:requiredattribute="href" />
-			<xsd:attribute name="rel" type="linkType" vs:requiredattribute="href" />
-			<xsd:attribute name="media" vs:requiredattribute="href" />
-			<xsd:attribute name="hreflang" type="i18LanguageCode" vs:requiredattribute="href" />
-			<xsd:attribute name="type" type="simpleContentType" vs:requiredattribute="href" />
+			<xsd:attribute name="href" type="xsd:anyURI" />
+			<xsd:attribute name="target" type="browsingContext" />
+			<xsd:attribute name="ping" />
+			<xsd:attribute name="rel" type="linkType" />
+			<xsd:attribute name="media" />
+			<xsd:attribute name="hreflang" type="i18LanguageCode" />
+			<xsd:attribute name="type" type="simpleContentType" />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -386,7 +381,7 @@
 	<xsd:element name="abbr" type="simplePhrasingContentElement"/>
 
 	<xsd:element name="code" type="simplePhrasingContentElement"/>
-		
+
 	<xsd:element name="var" type="simplePhrasingContentElement"/>
 
 	<xsd:element name="samp" type="simplePhrasingContentElement"/>
@@ -510,7 +505,7 @@
 			 -->
 			<xsd:choice>
 				<xsd:group ref="flowContent" />
-				<xsd:element ref="legend" minOccurs="0" maxOccurs="1" vs:firstchild="true" vs:lastchild="true" />
+				<xsd:element ref="legend" minOccurs="0" maxOccurs="1" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 		</xsd:complexType>
@@ -520,7 +515,7 @@
 		<xsd:complexType>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 			<xsd:attribute name="alt" use="required" />
-			<xsd:attribute name="src" type="xsd:anyURI" use="required" vs:preferredextensions=".jpg;.jpeg;.gif;.bmp;.jpe;.png;.dib;.tif;.wmf;.ras;.eps;.pcx;.pcd;.tga;.ashx;.asix" />
+			<xsd:attribute name="src" type="xsd:anyURI" use="required" />
 			<xsd:attribute name="height" />
 			<xsd:attribute name="width" />
 			<xsd:attribute name="usemap" type="xsd:anyURI" />
@@ -538,7 +533,7 @@
 		<xsd:complexType mixed="true">
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 			<xsd:attribute name="name" type="browsingContext" />
-			<xsd:attribute name="src" type="xsd:anyURI" vs:preferredextensions=".asp;.aspx;.asmx;.asax;.ashx;.asix;.ascx;.htm;.html;.xml;.xsd;.config;.asa;.css;.shtm;.shtml;.php;.jsp" />
+			<xsd:attribute name="src" type="xsd:anyURI" />
 			<xsd:attribute name="height" />
 			<xsd:attribute name="width" />
 			<xsd:attribute name="sandbox">
@@ -563,14 +558,14 @@
 	<xsd:element name="embed" vs:disallowedancestor="button">
 		<xsd:complexType>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="src" type="xsd:anyURI" vs:preferredextensions=".asp;.aspx;.asmx;.asax;.ashx;.asix;.ascx;.htm;.html;.xml;.xsd;.config;.asa;.css;.shtm;.shtml;.php;.jsp" />
+			<xsd:attribute name="src" type="xsd:anyURI" />
 			<xsd:attribute name="height" />
 			<xsd:attribute name="width" />
 			<xsd:attribute name="type" />
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="object" vs:clientom="__object" vs:contentmodel="transparent">
+	<xsd:element name="object" vs:contentmodel="transparent">
 		<xsd:complexType mixed="true">
 			<xsd:choice>
 				<xsd:element ref="param" minOccurs="0" maxOccurs="unbounded" />
@@ -582,7 +577,7 @@
 			<xsd:attribute name="width" />
 			<xsd:attribute name="usemap" type="xsd:anyURI" />
 			<xsd:attribute name="name" type="browsingContext" />
-			<xsd:attribute name="form"  vs:associatedform="true" />
+			<xsd:attribute name="form"  />
 			<xsd:attribute name="classid" />
 		</xsd:complexType>
 	</xsd:element>
@@ -606,7 +601,7 @@
 			</xsd:sequence>
 			 -->
 			<xsd:choice>
-				<xsd:element ref="legend" minOccurs="1" maxOccurs="1" vs:firstchild="true" />
+				<xsd:element ref="legend" minOccurs="1" maxOccurs="1" />
 				<xsd:group ref="flowContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
@@ -641,14 +636,14 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="checked" vs:requiredattribute="type=radio|checkbox" vs:standalone="true">
+			<xsd:attribute name="checked" vs:standalone="true">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
 						<xsd:enumeration value="checked" />
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="radiogroup" vs:requiredattribute="type=radio" />
+			<xsd:attribute name="radiogroup" />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -677,7 +672,7 @@
 	<xsd:element name="legend">
 		<xsd:complexType mixed="true">
 			<xsd:choice>
-				<xsd:group ref="flowContent" vs:requiredparent="figure" />
+				<xsd:group ref="flowContent" />
 				<xsd:group ref="phrasingContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
@@ -697,10 +692,10 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="audio" vs:contentmodel="transparent" vs:disallowedancestor="audio video button">
+	<xsd:element name="audio" vs:disallowedancestor="audio video button">
 		<xsd:complexType mixed="true">
 			<xsd:choice>
-				<xsd:element ref="source" vs:requiredattribute="src" />
+				<xsd:element ref="source" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 			<xsd:attribute name="src" type="xsd:anyURI" />
@@ -735,10 +730,10 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<xsd:element name="video" vs:contentmodel="transparent" vs:disallowedancestor="audio video button">
+	<xsd:element name="video" vs:disallowedancestor="audio video button">
 		<xsd:complexType mixed="true">
 			<xsd:choice>
-				<xsd:element ref="source" vs:requiredattribute="src" />
+				<xsd:element ref="source" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 			<xsd:attribute name="src" type="xsd:anyURI" />
@@ -837,12 +832,12 @@
 	<xsd:element name="fieldset">
 		<xsd:complexType mixed="true">
 			<xsd:choice>
-				<xsd:element ref="legend" minOccurs="1" maxOccurs="1" vs:firstchild="true" />
+				<xsd:element ref="legend" minOccurs="1" maxOccurs="1" />
 				<xsd:group ref="flowContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="disabled" vs:standalone="true" />
-			<xsd:attribute name="form"  vs:associatedform="true" />
+			<xsd:attribute name="disabled" />
+			<xsd:attribute name="form"  />
 			<xsd:attribute name="name" />
 		</xsd:complexType>
 	</xsd:element>
@@ -853,7 +848,7 @@
 				<xsd:group ref="phrasingContent" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
-			<xsd:attribute name="form" vs:associatedform="true" />
+			<xsd:attribute name="form" />
 			<xsd:attribute name="for" />
 		</xsd:complexType>
 	</xsd:element>
@@ -890,10 +885,10 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="accept"  vs:inputtype="file" />
-			<xsd:attribute name="alt"  vs:inputtype="image" />
-			<xsd:attribute name="autocomplete" vs:inputtype="color date datetime datetime-local email month number password range search tel text time url week" />
-			<xsd:attribute name="checked" vs:standalone="true" vs:inputtype="checkbox radio">
+			<xsd:attribute name="accept"  />
+			<xsd:attribute name="alt"  />
+			<xsd:attribute name="autocomplete" />
+			<xsd:attribute name="checked" vs:inputtype="checkbox radio">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
 						<xsd:enumeration value="checked" />
@@ -907,8 +902,8 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="form" vs:associatedform="true" />
-			<xsd:attribute name="formaction" vs:inputtype="submit image" />
+			<xsd:attribute name="form" />
+			<xsd:attribute name="formaction" />
 			<xsd:attribute name="formenctype" vs:inputtype="submit image">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
@@ -928,29 +923,29 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="formnovalidate" vs:inputtype="submit image" vs:standalone="true">
+			<xsd:attribute name="formnovalidate" vs:standalone="true">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
 						<xsd:enumeration value="formnovalidate" />
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="formtarget" type="browsingContext" vs:inputtype="submit image" />
-			<xsd:attribute name="height" vs:inputtype="image" />
-			<xsd:attribute name="list" vs:inputtype="color date datetime datetime-local email month number range search tel text time url week" />
-			<xsd:attribute name="max" vs:inputtype="date datetime datetime-local month number range search time week" />
-			<xsd:attribute name="maxlength" vs:inputtype="email password search tel text time url" />
-			<xsd:attribute name="min" vs:inputtype="date datetime datetime-local month number range search time week" />
-			<xsd:attribute name="multiple" vs:inputtype="email file" />
-			<xsd:attribute name="pattern" vs:inputtype="email password search tel text time url" vs:requiredattribute="title" />
-			<xsd:attribute name="placeholder" vs:inputtype="email password search tel text time url" />
-			<xsd:attribute name="readonly" vs:inputtype="date datetime datetime-local email month number password search tel text time url week" />
-			<xsd:attribute name="required" vs:inputtype="checkbox date datetime datetime-local email file month number password radio search tel text time url week" />
-			<xsd:attribute name="size" vs:inputtype="email password search tel text time url" />
-			<xsd:attribute name="src" type="xsd:anyURI" vs:inputtype="image" />
-			<xsd:attribute name="step" vs:inputtype="date datetime datetime-local month number range search time week" />
-			<xsd:attribute name="width" vs:inputtype="image" />
-			<xsd:attribute name="files" vs:inputtype="file" />
+			<xsd:attribute name="formtarget" type="browsingContext" />
+			<xsd:attribute name="height" />
+			<xsd:attribute name="list" />
+			<xsd:attribute name="max" />
+			<xsd:attribute name="maxlength" />
+			<xsd:attribute name="min" />
+			<xsd:attribute name="multiple" />
+			<xsd:attribute name="pattern" />
+			<xsd:attribute name="placeholder" />
+			<xsd:attribute name="readonly" />
+			<xsd:attribute name="required" />
+			<xsd:attribute name="size" />
+			<xsd:attribute name="src" type="xsd:anyURI" />
+			<xsd:attribute name="step" />
+			<xsd:attribute name="width" />
+			<xsd:attribute name="files" />
 			<xsd:attribute name="value" />
 		</xsd:complexType>
 	</xsd:element>
@@ -976,8 +971,8 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="form" vs:associatedform="true" />
-			<xsd:attribute name="formaction" vs:inputtype="submit image" />
+			<xsd:attribute name="form" />
+			<xsd:attribute name="formaction" />
 			<xsd:attribute name="formenctype" vs:inputtype="submit image">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
@@ -997,14 +992,14 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="formnovalidate" vs:inputtype="submit image" vs:standalone="true">
+			<xsd:attribute name="formnovalidate" vs:standalone="true">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
 						<xsd:enumeration value="formnovalidate" />
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="formtarget" type="browsingContext" vs:inputtype="submit image" />
+			<xsd:attribute name="formtarget" type="browsingContext" />
 
 			<xsd:attribute name="name" />
 			<xsd:attribute name="value" />
@@ -1041,7 +1036,7 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="form" vs:associatedform="true" />
+			<xsd:attribute name="form" />
 			<xsd:attribute name="multiple" vs:standalone="true">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
@@ -1120,7 +1115,7 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="form" vs:associatedform="true" />
+			<xsd:attribute name="form" />
 			<xsd:attribute name="maxlength" />
 			<xsd:attribute name="name" />
 			<xsd:attribute name="placeholder"   />
@@ -1143,7 +1138,7 @@
 			<xsd:attribute name="wrap">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
-						<xsd:enumeration value="hard" vs:requiredattribute="cols" />
+						<xsd:enumeration value="hard" />
 						<xsd:enumeration value="soft" />
 					</xsd:restriction>
 				</xsd:simpleType>
@@ -1169,7 +1164,7 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
-			<xsd:attribute name="form" vs:associatedform="true" />
+			<xsd:attribute name="form" />
 			<xsd:attribute name="keytype">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:NMTOKEN">
@@ -1188,7 +1183,7 @@
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />
 			<xsd:attribute name="for" />
-			<xsd:attribute name="form" vs:associatedform="true" />
+			<xsd:attribute name="form" />
 			<xsd:attribute name="name" />
 		</xsd:complexType>
 	</xsd:element>
@@ -1228,9 +1223,9 @@
 				</xsd:simpleType>
 			</xsd:attribute>
 			<xsd:attribute name="coords" />
-			<xsd:attribute name="href" type="xsd:anyURI" vs:preferredextensions=".asp;.aspx;.asmx;.asax;.ashx;.asix;.ascx;.htm;.html;.xml;.xsd;.config;.asa;.css;.shtm;.shtml;.php;.jsp" />
+			<xsd:attribute name="href" type="xsd:anyURI" />
 			<xsd:attribute name="hreflang" type="i18LanguageCode" />
-			<xsd:attribute name="alt" use="required" vs:requiredattribute="href" />
+			<xsd:attribute name="alt" use="required" />
 			<xsd:attribute name="target" type="browsingContext" />
 			<xsd:attribute name="media" />
 			<xsd:attribute name="rel" type="linkType" />
@@ -1256,10 +1251,10 @@
 	<xsd:element name="table" vs:disallowedancestor="caption">
 		<xsd:complexType>
 			<!--
-				In this order: optionally a caption element, followed by either zero or more colgroup elements, 
-				followed optionally by a thead element, followed optionally by a tfoot element, 
-				followed by either zero or more tbody elements or one or more tr elements, followed optionally 
-				by a tfoot element (but there can only be one tfoot element child in total). 
+				In this order: optionally a caption element, followed by either zero or more colgroup elements,
+				followed optionally by a thead element, followed optionally by a tfoot element,
+				followed by either zero or more tbody elements or one or more tr elements, followed optionally
+				by a tfoot element (but there can only be one tfoot element child in total).
 			-->
 			<xsd:choice>
 				<xsd:element ref="caption" minOccurs="0" maxOccurs="1" />
@@ -1323,7 +1318,7 @@
 	<xsd:element name="tr" vs:implicitclosure="true">
 		<xsd:complexType>
 			<xsd:choice>
-				<xsd:element ref="th" vs:disallowedancestor="tbody tfoot" />
+				<xsd:element ref="th" />
 				<xsd:element ref="td" />
 			</xsd:choice>
 			<xsd:attributeGroup ref="commonAttributeGroup" />

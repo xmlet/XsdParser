@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="BTN">
+        <xs:complexType>
+            <xs:attribute name="attr1"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GRID">
+        <xs:complexType>
+            <xs:attribute name="attr2"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -46,6 +46,12 @@ public class XsdInclude extends XsdAnnotatedElements {
     }
 
     @Override
+    public void accept(XsdAbstractElementVisitor visitorParam) {
+        super.accept(visitorParam);
+        visitorParam.visit(this);
+    }
+
+    @Override
     public XsdAbstractElementVisitor getVisitor() {
         return visitor;
     }

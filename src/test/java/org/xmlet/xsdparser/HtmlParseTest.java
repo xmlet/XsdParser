@@ -26,18 +26,18 @@ public class HtmlParseTest {
         ParserResult html5 = new ParserResult(getFilePath("html_5.xsd"));
         ParserResult partedHtml5 = new ParserResult(getFilePath("html_5_types.xsd"));
         ParserResult html5Jar = new ParserResult("html_5.jar", "html_5_jar.xsd");
-        ParserResult partedHtml5Jar = new ParserResult("html_5.jar", "html_5_types_jar.xsd");
+        //ParserResult partedHtml5Jar = new ParserResult("html_5.jar", "html_5_types_jar.xsd");
 
         parserResults.add(html5);
         parserResults.add(partedHtml5);
         parserResults.add(html5Jar);
-        parserResults.add(partedHtml5Jar);
+        //parserResults.add(partedHtml5Jar);
 
         parserNonPartedResults.add(html5);
         parserNonPartedResults.add(html5Jar);
 
         parserPartedResults.add(partedHtml5);
-        parserPartedResults.add(partedHtml5Jar);
+        //parserPartedResults.add(partedHtml5Jar);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class HtmlParseTest {
             Assert.assertEquals( 2, schema0.getChildrenComplexTypes().count());
             Assert.assertEquals( 8, schema0.getChildrenGroups().count());
             Assert.assertEquals( 0, schema0.getChildrenImports().count());
-            Assert.assertEquals( 0, schema0.getChildrenIncludes().count());
+            Assert.assertEquals( 1, schema0.getChildrenIncludes().count());
 
             XsdSchema schema1 = parserResult.getSchemas().get(1);
 
@@ -79,7 +79,7 @@ public class HtmlParseTest {
             Assert.assertEquals( 0, schema1.getChildrenComplexTypes().count());
             Assert.assertEquals( 0, schema1.getChildrenGroups().count());
             Assert.assertEquals( 0, schema1.getChildrenImports().count());
-            Assert.assertEquals( 0, schema1.getChildrenIncludes().count());
+            Assert.assertEquals( 1, schema1.getChildrenIncludes().count());
         }
     }
 
@@ -160,7 +160,11 @@ public class HtmlParseTest {
 
             Assert.assertEquals(4, unsolvedReferenceList.size());
 
-            List<XsdAbstractElement> parents = unsolvedReferenceList.get(0).getParents();
+            Optional<UnsolvedReferenceItem> unsolvedReferenceOpt = unsolvedReferenceList.stream().filter(ur -> ur.getUnsolvedReference().getRef().equals("i18LanguageCode")).findFirst();
+
+            Assert.assertTrue(unsolvedReferenceOpt.isPresent());
+
+            List<XsdAbstractElement> parents = unsolvedReferenceOpt.get().getParents();
 
             Assert.assertEquals(4, parents.size());
 

@@ -46,13 +46,13 @@ public class XsdParserJar extends XsdParserCore {
     private void parse(String jarPath, String filePath){
         setClassLoader(jarPath);
 
-        parseJarFile(classLoader.getResourceAsStream(filePath));
+        parseJarFile(filePath);
 
         int index = 0;
 
         while (schemaLocations.size() > index){
             String schemaLocation = schemaLocations.get(index);
-            parseJarFile(classLoader.getResourceAsStream(schemaLocation));
+            parseJarFile(schemaLocation);
             ++index;
         }
 
@@ -61,10 +61,13 @@ public class XsdParserJar extends XsdParserCore {
 
     /**
      * Parses the XSD file represented by the received InputStream.
-     * @param inputStream The inputStream of the XSD file.
+     * @param filePath The filePath of the XSD file.
      */
-    private void parseJarFile(InputStream inputStream) {
+    private void parseJarFile(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+        this.currentFile = filePath;
+        InputStream inputStream = classLoader.getResourceAsStream(filePath);
+
         try {
             Node schemaNode = getSchemaNode(inputStream);
 

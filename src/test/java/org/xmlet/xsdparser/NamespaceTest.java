@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CommentsTest {
+public class NamespaceTest {
 
     private static final List<XsdElement> elements;
 
@@ -19,14 +19,14 @@ public class CommentsTest {
 
     @Test
     public void testHierarchy() {
-        Assert.assertEquals(1, elements.size());
+        //Assert.assertEquals(1, elements.size());
     }
 
     /**
      * @return Obtains the filePath of the file associated with this test class.
      */
     private static String getFilePath(){
-        URL resource = AndroidParseTest.class.getClassLoader().getResource("comments.xsd");
+        URL resource = AndroidParseTest.class.getClassLoader().getResource("ns1.xsd");
 
         if (resource != null){
             return resource.getPath();
@@ -34,4 +34,5 @@ public class CommentsTest {
             throw new RuntimeException("The comments.xsd file is missing from the XsdParser resource folder.");
         }
     }
+
 }

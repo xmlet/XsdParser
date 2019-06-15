@@ -70,6 +70,8 @@ public class XsdParser extends XsdParserCore{
      */
     private void parseFile(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+        this.currentFile = filePath;
+
         try {
             if (!new File(filePath).exists()){
                 throw new FileNotFoundException();

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:el="elements_namespace"
+        xmlns:sp="elements_namespace">
+    <xs:import namespace="elements_namespace" schemaLocation="./src/test/resources/ns2.xsd"/>
+    <xs:element name="BTN">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="el:BTN"/>
+                <!--xs:element ref="sp:GRID"/-->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

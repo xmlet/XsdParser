@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.xsdelements.visitors;
 
+import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdAttributeGroup;
@@ -103,7 +104,7 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
     public void replaceUnsolvedAttributes(NamedConcreteElement element){
         if (element.getElement() instanceof XsdAttributeGroup){
             attributeGroups.stream()
-                    .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && ((UnsolvedReference) attributeGroup).getRef().equals(element.getName()))
+                    .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attributeGroup))
                     .findFirst().ifPresent(referenceBase -> {
                 attributeGroups.remove(referenceBase);
                 attributeGroups.add(element);
@@ -115,7 +116,7 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
 
         if (element.getElement() instanceof XsdAttribute ){
             attributes.stream()
-                    .filter(attribute -> attribute instanceof UnsolvedReference && ((UnsolvedReference) attribute).getRef().equals(element.getName()))
+                    .filter(attribute -> attribute instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attribute))
                     .findFirst().ifPresent(referenceBase -> {
                 attributes.remove(referenceBase);
                 attributes.add(element);

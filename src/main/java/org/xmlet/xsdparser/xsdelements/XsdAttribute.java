@@ -187,7 +187,7 @@ public class XsdAttribute extends XsdNamedElements {
 
         XsdAbstractElement element = elementWrapper.getElement();
 
-        if (element instanceof XsdSimpleType && simpleType != null && type.equals(elementWrapper.getName())){
+        if (element instanceof XsdSimpleType && simpleType != null && compareReference(elementWrapper, type)){
             this.simpleType = elementWrapper;
         }
     }

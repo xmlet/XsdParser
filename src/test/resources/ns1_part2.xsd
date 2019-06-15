@@ -3,7 +3,7 @@
         xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="BTN">
         <xs:complexType>
-            <xs:attribute name="attr2"/>
+            <xs:attribute name="attr1"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

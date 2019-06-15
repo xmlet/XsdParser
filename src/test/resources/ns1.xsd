@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:el="elements_namespace"
-        xmlns:sp="elements_namespace">
-    <xs:import namespace="elements_namespace" schemaLocation="./src/test/resources/ns2.xsd"/>
-    <xs:element name="BTN">
+        xmlns:el="EL_Namespace"
+        xmlns:sp="SP_Namespace">
+    <xs:include schemaLocation="./src/test/resources/ns1_part2.xsd"/>
+    <xs:import namespace="EL_Namespace" schemaLocation="./src/test/resources/ns2.xsd"/>
+    <xs:import namespace="SP_Namespace" schemaLocation="./src/test/resources/ns3.xsd"/>
+    <xs:element name="MotherOfBtns">
         <xs:complexType>
             <xs:sequence>
+                <xs:element ref="BTN"/>
                 <xs:element ref="el:BTN"/>
-                <!--xs:element ref="sp:GRID"/-->
+                <xs:element ref="sp:BTN"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

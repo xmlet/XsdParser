@@ -188,10 +188,22 @@ public abstract class XsdAbstractElement {
             elements.stream()
                 .filter(referenceBase -> referenceBase instanceof UnsolvedReference)
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
-                .filter(unsolvedReference -> unsolvedReference.getRef().equals(element.getName()))
+                .filter(unsolvedReference -> compareReference(element, unsolvedReference))
                 .findFirst()
                 .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), element));
         }
+    }
+
+    public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
+        return compareReference(element, reference.getRef());
+    }
+
+    static boolean compareReference(NamedConcreteElement element, String unsolvedRef){
+        if (unsolvedRef.contains(":")){
+            unsolvedRef = unsolvedRef.substring(unsolvedRef.indexOf(":") + 1);
+        }
+
+        return element.getName().equals(unsolvedRef);
     }
 
     /**

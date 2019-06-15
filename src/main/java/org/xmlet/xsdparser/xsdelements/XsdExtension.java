@@ -82,12 +82,12 @@ public class XsdExtension extends XsdAnnotatedElements {
 
         boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
-        if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && ((UnsolvedReference) this.base).getRef().equals(elemName)){
+        if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.base)){
             this.base = element;
         }
 
         if (this.childElement instanceof UnsolvedReference &&
-                elem instanceof XsdGroup && ((UnsolvedReference) this.childElement).getRef().equals(elemName)){
+                elem instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
             this.childElement = element;
         }
 

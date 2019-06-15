@@ -47,7 +47,7 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
             elements.add(elementWrapper);
 
             this.elements.removeIf(element ->
-               element instanceof UnsolvedReference && ((UnsolvedReference) element).getRef().equals(elementWrapper.getName())
+               element instanceof UnsolvedReference && compareReference(elementWrapper, (UnsolvedReference) element)
             );
         }
     }

@@ -137,7 +137,7 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     private void updatePrefixLocations(Map<String, String> prefixLocations) {
         prefixLocations.forEach((prefix, fileLocation) ->
-            namespaces.get(prefix).setFile(prefixLocations.get(fileLocation))
+            namespaces.get(prefix).setFile(fileLocation)
         );
     }
 

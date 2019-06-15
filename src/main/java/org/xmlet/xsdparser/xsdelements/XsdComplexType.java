@@ -168,7 +168,7 @@ public class XsdComplexType extends XsdNamedElements {
         visitor.replaceUnsolvedAttributes(element);
 
         if (this.childElement instanceof UnsolvedReference && this.childElement.getElement() instanceof XsdGroup &&
-                element.getElement() instanceof XsdGroup && ((UnsolvedReference) this.childElement).getRef().equals(element.getName())){
+                element.getElement() instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
             this.childElement = element;
             element.getElement().setParent(this);
         }

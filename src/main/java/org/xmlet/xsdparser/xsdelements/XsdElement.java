@@ -273,12 +273,12 @@ public class XsdElement extends XsdNamedElements {
 
         boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
-        if (this.type instanceof UnsolvedReference && isComplexOrSimpleType && ((UnsolvedReference) this.type).getRef().equals(element.getName())){
+        if (this.type instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.type)){
             this.type = element;
             elem.setParent(this);
         }
 
-        if (this.substitutionGroup instanceof UnsolvedReference && elem instanceof XsdElement && ((UnsolvedReference) this.substitutionGroup).getRef().equals(element.getName())){
+        if (this.substitutionGroup instanceof UnsolvedReference && elem instanceof XsdElement && compareReference(element, (UnsolvedReference) this.substitutionGroup)){
             XsdElement xsdElement = (XsdElement) elem;
 
             this.type = xsdElement.type;

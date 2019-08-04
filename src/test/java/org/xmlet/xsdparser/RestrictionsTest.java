@@ -321,8 +321,8 @@ public class RestrictionsTest {
         Assert.assertTrue(navnOptional.isPresent());
         Assert.assertTrue(kundeOptional.isPresent());
 
-        XsdElement navnElement = navnOptional.get();
-        XsdElement kundeElement = kundeOptional.get();
+        XsdElement navnElement = navnOptional.get().getXsdSubstitutionGroup();
+        XsdElement kundeElement = kundeOptional.get().getXsdSubstitutionGroup();
 
         Assert.assertEquals("xsd:string", navnElement.getType());
 
@@ -341,9 +341,8 @@ public class RestrictionsTest {
 
         XsdElement nameElement = sequenceElements.get(0);
 
-        Assert.assertTrue(navnElement.getSubstitutionGroup() instanceof NamedConcreteElement);
-        Assert.assertTrue(navnElement.getSubstitutionGroup().getElement() instanceof XsdNamedElements);
-        Assert.assertEquals(nameElement.getName(), ((XsdNamedElements)navnElement.getSubstitutionGroup().getElement()).getName());
+        Assert.assertEquals(navnElement.getName(), nameElement.getName());
+        Assert.assertEquals(navnElement.getType(), nameElement.getType());
     }
 
     @Test

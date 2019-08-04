@@ -279,11 +279,6 @@ public class XsdElement extends XsdNamedElements {
         }
 
         if (this.substitutionGroup instanceof UnsolvedReference && elem instanceof XsdElement && compareReference(element, (UnsolvedReference) this.substitutionGroup)){
-            XsdElement xsdElement = (XsdElement) elem;
-
-            this.type = xsdElement.type;
-            this.simpleType = xsdElement.simpleType;
-            this.complexType = xsdElement.complexType;
             this.substitutionGroup = element;
             elem.setParent(this);
         }
@@ -361,5 +356,9 @@ public class XsdElement extends XsdNamedElements {
 
     public ReferenceBase getSubstitutionGroup() {
         return substitutionGroup;
+    }
+
+    public XsdElement getXsdSubstitutionGroup() {
+        return substitutionGroup instanceof ConcreteElement ? (XsdElement) substitutionGroup.getElement() : null;
     }
 }

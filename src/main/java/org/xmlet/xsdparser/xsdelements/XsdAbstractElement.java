@@ -2,7 +2,6 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
@@ -229,8 +228,8 @@ public abstract class XsdAbstractElement {
         StringBuilder stringBuilder = new StringBuilder();
 
         while (child != null) {
-            if (child.getNodeType() == Node.TEXT_NODE) {
-                stringBuilder.append(child.getTextContent());
+            if (child.getNodeType() == Node.TEXT_NODE || child.getNodeType() == Node.CDATA_SECTION_NODE) {
+                stringBuilder.append(child.getTextContent().trim());
             }
 
             child = child.getNextSibling();

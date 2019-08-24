@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <!-- Substitution Group example -->
+    
+    <xsd:element name="name" type="xsd:string"/>
+    <xsd:element name="navn" substitutionGroup="name"/>
+    <xsd:complexType name="custinfo">
+        <xsd:sequence>
+            <xsd:element ref="name"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="customer" type="custinfo"/>
+    <xsd:element name="kunde" substitutionGroup="customer"/>
+
+    <!-- Issue 10 -->
+
+    <xsd:element name="someElement">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[
+			CDATA line 1
+			CDATA line 2
+			]]></xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+                <xsd:pattern value="[0-9]{9}"/>
+            </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:element>
+
+</xsd:schema>
+

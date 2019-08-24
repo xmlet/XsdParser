@@ -1,17 +1,9 @@
 package org.xmlet.xsdparser;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
-import org.xmlet.xsdparser.xsdelements.*;
-import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Each test represents an example of errors that might be present in a XSD file and test for the expected exception.

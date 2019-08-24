@@ -10,7 +10,6 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import java.util.*;
 import java.util.function.BiFunction;

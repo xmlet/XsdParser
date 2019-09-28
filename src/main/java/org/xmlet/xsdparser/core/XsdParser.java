@@ -70,17 +70,32 @@ public class XsdParser extends XsdParserCore{
      */
     private void parseFile(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
-        this.currentFile = filePath;
 
         try {
             if (!new File(filePath).exists()){
-                throw new FileNotFoundException();
+                if (!isAbsolutePath(filePath)){
+                    String parentFile = schemaLocationsMap.get(filePath);
+
+                    filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
+
+                    if (!new File(filePath).exists()) {
+                        throw new FileNotFoundException();
+                    }
+                } else {
+                    throw new FileNotFoundException();
+                }
             }
+
+            this.currentFile = filePath;
 
             XsdSchema.parse(this, getSchemaNode(filePath));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
         }
+    }
+
+    private boolean isAbsolutePath(String filePath) {
+        return filePath.contains(":\\");
     }
 
     /**

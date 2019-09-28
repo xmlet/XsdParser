@@ -4,8 +4,8 @@
         xmlns:el="EL_Namespace"
         xmlns:sp="SP_Namespace">
     <xs:include schemaLocation="./src/test/resources/ns1_part2.xsd"/>
-    <xs:import namespace="EL_Namespace" schemaLocation="./src/test/resources/ns2.xsd"/>
-    <xs:import namespace="SP_Namespace" schemaLocation="./src/test/resources/ns3.xsd"/>
+    <xs:import namespace="EL_Namespace" schemaLocation="./../test-classes/dependency/ns2.xsd"/>
+    <xs:import namespace="SP_Namespace" schemaLocation="dependency/ns3.xsd"/>
     <xs:element name="MotherOfBtns">
         <xs:complexType>
             <xs:sequence>

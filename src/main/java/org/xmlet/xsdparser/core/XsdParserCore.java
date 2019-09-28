@@ -57,6 +57,7 @@ public abstract class XsdParserCore {
      * parsing process only ends when all the files present in this {@link List} are parsed.
      */
     List<String> schemaLocations = new ArrayList<>();
+    Map<String, String> schemaLocationsMap = new HashMap<>();
 
     String currentFile;
 
@@ -307,6 +308,7 @@ public abstract class XsdParserCore {
 
         if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName))){
             schemaLocations.add(schemaLocation);
+            schemaLocationsMap.put(schemaLocation, currentFile);
         }
     }
 

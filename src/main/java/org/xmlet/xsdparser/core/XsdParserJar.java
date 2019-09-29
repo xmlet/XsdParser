@@ -78,6 +78,7 @@ public class XsdParserJar extends XsdParserCore {
             }
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
+            throw new RuntimeException(e);
         }
     }
 

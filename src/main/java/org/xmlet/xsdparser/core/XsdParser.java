@@ -91,6 +91,7 @@ public class XsdParser extends XsdParserCore{
             XsdSchema.parse(this, getSchemaNode(filePath));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
+            throw new RuntimeException(e);
         }
     }
 

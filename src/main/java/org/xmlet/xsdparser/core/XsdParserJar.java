@@ -65,7 +65,7 @@ public class XsdParserJar extends XsdParserCore {
      */
     private void parseJarFile(String filePath) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
-        this.currentFile = filePath;
+        this.currentFile = filePath.replace("\\", "/");
         InputStream inputStream = classLoader.getResourceAsStream(filePath);
 
         try {

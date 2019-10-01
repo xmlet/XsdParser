@@ -79,14 +79,14 @@ public class XsdParser extends XsdParserCore{
                     filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
 
                     if (!new File(filePath).exists()) {
-                        throw new FileNotFoundException();
+                        throw new FileNotFoundException(filePath);
                     }
                 } else {
-                    throw new FileNotFoundException();
+                    throw new FileNotFoundException(filePath);
                 }
             }
 
-            this.currentFile = filePath;
+            this.currentFile = filePath.replace("\\", "/");
 
             XsdSchema.parse(this, getSchemaNode(filePath));
         } catch (SAXException | IOException | ParserConfigurationException e) {

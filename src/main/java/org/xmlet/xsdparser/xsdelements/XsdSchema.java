@@ -7,6 +7,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdSchemaVisitor;
 
@@ -125,8 +126,10 @@ public class XsdSchema extends XsdAnnotatedElements {
 
                     if (xsdImport.isPresent()){
                         prefixLocations.put(prefix, xsdImport.get().getSchemaLocation());
-                    } else {
+                    } else if (namespaceInfo.getFile() == null){
                         toRemoveNamespaces.add(prefix);
+                    } else {
+                        throw new ParsingException("XsdSchema refers to namespace " + namespaceInfo.getName() + " which was not imported.");
                     }
                 });
 

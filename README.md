@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.23</version>
 </dependency>
 ```
 
@@ -477,7 +477,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            Adds attribute type validations and validations of possible values with <i>Enum</> classes.
+            Adds attribute type validations and validations of possible values with <i>Enum</i> classes.
         </li>
     </ul>
 </div>

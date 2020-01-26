@@ -42,6 +42,7 @@ public class XsdParser extends XsdParserCore{
      * the parse results and remaining unsolved references are accessible by the {@link XsdParser#getResultXsdSchemas()},
      * {@link XsdParser#getResultXsdElements()} and {@link XsdParser#getUnsolvedReferences()}.
      * @param filePath States the path of the XSD file to be parsed.
+     * @param config Config for the parser.
      */
     public XsdParser(String filePath, ParserConfig config){
         super.updateConfig(config);

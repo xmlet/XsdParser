@@ -36,6 +36,7 @@ public class XsdParserJar extends XsdParserCore {
      * previous jar with the path filePath.
      * @param jarPath The path to the jar file.
      * @param filePath The filePath of the XSD file to parse. Relative to the Jar structure.
+     * @param config Config for the parser.
      */
     public XsdParserJar(String jarPath, String filePath, ParserConfig config){
         super.updateConfig(config);

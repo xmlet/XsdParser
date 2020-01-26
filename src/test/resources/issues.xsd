@@ -29,5 +29,15 @@
         </xsd:simpleType>
     </xsd:element>
 
+    <!-- Issue 17 -->
+
+    <xsd:annotation>
+        <xsd:appinfo>
+            <xsd:MetaType value="Text"/>
+            <xsd:LogicalType value="Text"/>
+            <xsd:FinFormat value="16x"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
 </xsd:schema>
 

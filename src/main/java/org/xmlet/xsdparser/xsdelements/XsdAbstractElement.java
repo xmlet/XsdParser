@@ -1,15 +1,20 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
+import org.w3c.dom.*;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.StringWriter;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
@@ -224,15 +229,23 @@ public abstract class XsdAbstractElement {
      * @return The textual value contained in the {@link Node} parameter.
      */
     static String xsdRawContentParse(Node node) {
-        Node child = node.getFirstChild();
         StringBuilder stringBuilder = new StringBuilder();
 
-        while (child != null) {
-            if (child.getNodeType() == Node.TEXT_NODE || child.getNodeType() == Node.CDATA_SECTION_NODE) {
-                stringBuilder.append(child.getTextContent().trim());
-            }
+        NodeList children = node.getChildNodes();
 
-            child = child.getNextSibling();
+        try {
+            for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
+                Node child = children.item(childIndex);
+
+                StringWriter writer = new StringWriter();
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.transform(new DOMSource(child), new StreamResult(writer));
+                String output = writer.toString().trim();
+                output = output.substring(output.indexOf('>') + 1).trim();
+                stringBuilder.append(output);
+            }
+        } catch (Exception e){
+            throw new ParsingException(e.getMessage());
         }
 
         return stringBuilder.toString();

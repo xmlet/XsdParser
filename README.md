@@ -332,6 +332,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.0.24
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/17" title="Can't parse the node of xsd:appinfo inside the annotation">Details</a> - 
+            Changes the parse for Xsd:AppInfo and Xsd:Documentation - Now the parser returns the exact contents of these two elements.
+        </li>
+    </ul>
+</div>
+
 ### 1.0.23
 
 <div align="justify">

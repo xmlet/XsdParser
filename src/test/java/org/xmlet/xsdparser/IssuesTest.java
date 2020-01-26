@@ -69,8 +69,10 @@ public class IssuesTest {
         List<XsdDocumentation> documentations = annotation.getDocumentations();
         XsdDocumentation xsdDocumentation = documentations.get(0);
 
-        Assert.assertEquals("CDATA line 1\n" +
-                "\t\t\tCDATA line 2",xsdDocumentation.getContent());
+        Assert.assertEquals("<![CDATA[\r\n" +
+                "\t\t\tCDATA line 1\r\n" +
+                "\t\t\tCDATA line 2\r\n" +
+                "\t\t\t]]>",xsdDocumentation.getContent());
     }
 
     /**

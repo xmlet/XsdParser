@@ -1,21 +1,25 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
-import org.xmlet.xsdparser.xsdelements.visitors.AttributesVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdExtensionVisitor;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.parsers.ParserConfigurationException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
+
+import static org.xmlet.xsdparser.core.XsdParserCore.getParseMappers;
 
 /**
  * A class representing the xsd:extension element.
@@ -26,15 +30,6 @@ public class XsdExtension extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:extension";
     public static final String XS_TAG = "xs:extension";
-
-    /**
-     * {@link XsdExtensionVisitor} instance which restricts the children to {@link XsdGroup} and
-     * {@link XsdMultipleElements} instances.
-     * Can also have {@link XsdAttribute} and {@link XsdAttributeGroup} elements as children as per inheritance of
-     * {@link AttributesVisitor}.
-     * Can also have {@link XsdAnnotation} as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdExtensionVisitor visitor = new XsdExtensionVisitor(this);
 
     /**
      * The child element of the {@link XsdExtension} instance. Either a {@link XsdGroup}, {@link XsdAll},
@@ -48,18 +43,32 @@ public class XsdExtension extends XsdAnnotatedElements {
      */
     private ReferenceBase base;
 
-    private XsdExtension(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdExtension(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
         if (baseValue != null){
+            Map<String, ConfigEntryData> parseMappers = getParseMappers();
+
             if (XsdParserCore.getXsdTypesToJava().containsKey(baseValue)){
+                ConfigEntryData config = parseMappers.getOrDefault(XsdComplexType.XSD_TAG, parseMappers.getOrDefault(XsdComplexType.XS_TAG, null));
+
+                if (config == null){
+                    throw new RuntimeException("Invalid Parsing Configuration for XsdComplexType.");
+                }
+
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, baseValue);
-                this.base = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
+                this.base = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes, config.visitorFunction));
             } else {
-                this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>()));
+                ConfigEntryData config = parseMappers.getOrDefault(XsdElement.XSD_TAG, parseMappers.getOrDefault(XsdElement.XS_TAG, null));
+
+                if (config == null){
+                    throw new RuntimeException("Invalid Parsing Configuration for XsdElement.");
+                }
+
+                this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>(), config.visitorFunction));
                 parser.addUnsolvedReference((UnsolvedReference) this.base);
             }
         }
@@ -90,12 +99,7 @@ public class XsdExtension extends XsdAnnotatedElements {
             this.childElement = element;
         }
 
-        visitor.replaceUnsolvedAttributes(element);
-    }
-
-    @Override
-    public XsdExtensionVisitor getVisitor() {
-        return visitor;
+        ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(element);
     }
 
     @Override
@@ -157,18 +161,18 @@ public class XsdExtension extends XsdAnnotatedElements {
         return null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdExtension(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdExtension(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     @SuppressWarnings("unused")
     public Stream<XsdAttribute> getXsdAttributes() {
-        return visitor.getXsdAttributes();
+        return ((XsdExtensionVisitor)visitor).getXsdAttributes();
     }
 
     @SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
-        return visitor.getXsdAttributeGroup();
+        return ((XsdExtensionVisitor)visitor).getXsdAttributeGroup();
     }
 
     @SuppressWarnings("unused")

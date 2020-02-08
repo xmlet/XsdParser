@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.25</version>
+    <version>1.0.26</version>
 </dependency>
 ```
 
@@ -331,6 +331,18 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.0.26
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/19" title="Register new Xsd Visitors">Details</a> - 
+            Changes the way Visitors work in order to detach elements from visitors. Now the elements and visitors are associated
+            by configuration.
+        </li>
+    </ul>
+</div>
 
 ### 1.0.25
 

@@ -2,19 +2,20 @@ package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
+import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as a
  * {@link Double}. Classes like {@link XsdMaxInclusive} or {@link XsdMinInclusive} should derive from this type.
  */
 public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
-
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
     /**
      * Indicates if the value is fixed.
@@ -28,16 +29,11 @@ public abstract class XsdDoubleRestrictions extends XsdAnnotatedElements {
      */
     private double value;
 
-    XsdDoubleRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName) {
-        super(parser, elementFieldsMapParam);
+    XsdDoubleRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, String restrictionName, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
         value = AttributeValidations.validateRequiredDouble(restrictionName, VALUE_TAG, attributesMap.get(VALUE_TAG));
-    }
-
-    @Override
-    public XsdAnnotatedElementsVisitor getVisitor() {
-        return visitor;
     }
 
     /**

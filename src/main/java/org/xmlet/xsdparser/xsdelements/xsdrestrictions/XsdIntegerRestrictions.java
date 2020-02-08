@@ -2,11 +2,14 @@ package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
+import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as an {@link Integer}.
@@ -14,8 +17,6 @@ import java.util.Map;
  * i.e. xsd:maxLength or xsd:length.
  */
 public class XsdIntegerRestrictions extends XsdAnnotatedElements {
-
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
     /**
      * Indicates if the value is fixed.
@@ -29,15 +30,10 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
      */
     protected int value;
 
-    XsdIntegerRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    XsdIntegerRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
-    }
-
-    @Override
-    public XsdAnnotatedElementsVisitor getVisitor() {
-        return visitor;
     }
 
     /**

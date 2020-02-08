@@ -25,7 +25,7 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
     private String content;
 
     XsdAnnotationChildren(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+        super(parser, attributesMap, null);
         this.source = attributesMap.getOrDefault(SOURCE_TAG, source);
     }
 

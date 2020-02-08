@@ -1,13 +1,13 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:include element.
@@ -20,19 +20,14 @@ public class XsdInclude extends XsdAnnotatedElements {
     public static final String XS_TAG = "xs:include";
 
     /**
-     * {@link XsdAnnotatedElementsVisitor} instance which restricts his children to {@link XsdAnnotation}.
-     */
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
-
-    /**
      * Specifies the URI to the schema for the imported namespace.
      * In this project this attribute is used to specify another file location that contains more element definitions
      * that belong to the same XSD language definition.
      */
     private String schemaLocation;
 
-    private XsdInclude(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdInclude(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.schemaLocation = attributesMap.getOrDefault(SCHEMA_LOCATION, schemaLocation);
 
@@ -41,19 +36,14 @@ public class XsdInclude extends XsdAnnotatedElements {
         }
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdInclude(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdInclude(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     @Override
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
-    }
-
-    @Override
-    public XsdAbstractElementVisitor getVisitor() {
-        return visitor;
     }
 
     @SuppressWarnings("unused")

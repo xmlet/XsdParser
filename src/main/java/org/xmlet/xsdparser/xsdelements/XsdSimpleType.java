@@ -1,19 +1,18 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.SimpleTypeFinalEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleTypeVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import javax.validation.constraints.NotNull;
 import java.security.InvalidParameterException;
 import java.util.*;
+import java.util.function.Function;
 
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdDoubleRestrictions.hasDifferentValue;
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdIntegerRestrictions.hasDifferentValue;
@@ -29,13 +28,6 @@ public class XsdSimpleType extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:simpleType";
     public static final String XS_TAG = "xs:simpleType";
-
-    /**
-     * {@link XsdSimpleTypeVisitor} instance which restricts its children to {@link XsdList}, {@link XsdUnion} or
-     * {@link XsdRestriction} instances. Can also have {@link XsdAnnotation} as children as per inheritance of
-     * {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdSimpleTypeVisitor visitor = new XsdSimpleTypeVisitor(this);
 
     /**
      * A {@link XsdRestriction} instance that is present in the {@link XsdSimpleType} instance.
@@ -57,16 +49,16 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     private SimpleTypeFinalEnum finalObj;
 
-    private XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
 
         this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
-    private XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        this(parser, elementFieldsMapParam);
+    private XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        this(parser, elementFieldsMapParam, visitorFunction);
         setParent(parent);
     }
 
@@ -102,11 +94,6 @@ public class XsdSimpleType extends XsdNamedElements {
     }
 
     @Override
-    public XsdSimpleTypeVisitor getVisitor() {
-        return visitor;
-    }
-
-    @Override
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
@@ -123,7 +110,7 @@ public class XsdSimpleType extends XsdNamedElements {
         placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdSimpleType copy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes);
+        XsdSimpleType copy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         copy.union = this.union;
         copy.list = this.list;
@@ -132,8 +119,8 @@ public class XsdSimpleType extends XsdNamedElements {
         return copy;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdSimpleType(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdSimpleType(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public XsdRestriction getRestriction() {

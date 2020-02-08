@@ -1,13 +1,13 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdListVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:list element.
@@ -18,11 +18,6 @@ public class XsdList extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:list";
     public static final String XS_TAG = "xs:list";
-
-    /**
-     * {@link XsdListVisitor} instance which restricts his children to {@link XsdSimpleType} instances.
-     */
-    private XsdListVisitor visitor = new XsdListVisitor(this);
 
     /**
      * The {@link XsdSimpleType} instance that states the type of the elements that belong to this {@link XsdList}
@@ -37,15 +32,10 @@ public class XsdList extends XsdAnnotatedElements {
      */
     private String itemType;
 
-    private XsdList(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdList(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.itemType = attributesMap.getOrDefault(ITEM_TYPE_TAG, itemType);
-    }
-
-    @Override
-    public XsdListVisitor getVisitor() {
-        return visitor;
     }
 
     @Override
@@ -54,8 +44,8 @@ public class XsdList extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdList(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdList(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public XsdSimpleType getXsdSimpleType() {

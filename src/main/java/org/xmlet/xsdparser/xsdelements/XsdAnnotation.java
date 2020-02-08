@@ -1,15 +1,15 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotationVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:annotation element.
@@ -22,12 +22,6 @@ public class XsdAnnotation extends XsdIdentifierElements {
     public static final String XS_TAG = "xs:annotation";
 
     /**
-     * {@link XsdAnnotationVisitor} instance which limits its children types to {@link XsdAppInfo} and
-     * {@link XsdDocumentation} instances.
-     */
-    private XsdAnnotationVisitor visitor = new XsdAnnotationVisitor(this);
-
-    /**
      * The list of {@link XsdAppInfo} children.
      */
     private List<XsdAppInfo> appInfoList = new ArrayList<>();
@@ -37,13 +31,8 @@ public class XsdAnnotation extends XsdIdentifierElements {
      */
     private List<XsdDocumentation> documentations = new ArrayList<>();
 
-    private XsdAnnotation(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
-
-    @Override
-    public XsdAnnotationVisitor getVisitor() {
-        return visitor;
+    private XsdAnnotation(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
     }
 
     @Override
@@ -68,7 +57,7 @@ public class XsdAnnotation extends XsdIdentifierElements {
         documentations.add(documentation);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdAnnotation(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdAnnotation(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 }

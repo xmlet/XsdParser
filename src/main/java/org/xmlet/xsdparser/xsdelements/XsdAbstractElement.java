@@ -2,6 +2,8 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.w3c.dom.*;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -17,6 +19,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 import java.util.*;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -73,9 +76,21 @@ public abstract class XsdAbstractElement {
      */
     XsdParserCore parser;
 
-    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
+    /**
+     * The visitor instance for this element.
+     */
+    XsdAbstractElementVisitor visitor;
+
+    protected final Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction;
+
+    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction){
         this.parser = parser;
         this.attributesMap = attributesMap;
+        this.visitorFunction = visitorFunction;
+
+        if(visitorFunction != null){
+            this.visitor = visitorFunction.apply(this);
+        }
     }
 
     public Map<String, String> getAttributesMap() {
@@ -86,7 +101,9 @@ public abstract class XsdAbstractElement {
      * Obtains the visitor of a concrete {@link XsdAbstractElement} instance.
      * @return The concrete visitor instance.
      */
-    public abstract XsdAbstractElementVisitor getVisitor();
+    public XsdAbstractElementVisitor getVisitor(){
+        return visitor;
+    }
 
     /**
      * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
@@ -135,10 +152,10 @@ public abstract class XsdAbstractElement {
             if (child.getNodeType() == Node.ELEMENT_NODE) {
                 String nodeName = child.getNodeName();
 
-                BiFunction<XsdParserCore, Node, ReferenceBase> parserFunction = XsdParserCore.getParseMappers().get(nodeName);
+                ConfigEntryData configEntryData = XsdParserCore.getParseMappers().get(nodeName);
 
-                if (parserFunction != null){
-                    XsdAbstractElement childElement = parserFunction.apply(parser, child).getElement();
+                if (configEntryData != null && configEntryData.parserFunction != null){
+                    XsdAbstractElement childElement = configEntryData.parserFunction.apply(new ParseData(parser, child, configEntryData.visitorFunction)).getElement();
 
                     childElement.accept(element.getVisitor());
 

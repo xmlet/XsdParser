@@ -1,18 +1,18 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.NamespaceInfo;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdSchemaVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,13 +20,6 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:schema";
     public static final String XS_TAG = "xs:schema";
-
-    /**
-     * {@link XsdSchemaVisitor} which restricts its children to {@link XsdInclude}, {@link XsdImport},
-     * {@link XsdAnnotation}, {@link XsdSimpleType}, {@link XsdComplexType}, {@link XsdGroup}, {@link XsdAttribute},
-     * {@link XsdAttributeGroup} and {@link XsdElement} instances.
-     */
-    private XsdSchemaVisitor visitor = new XsdSchemaVisitor(this);
 
     /**
      * Specifies if the form attribute for the current {@link XsdSchema} children attributes. The default value is
@@ -77,8 +70,8 @@ public class XsdSchema extends XsdAnnotatedElements {
      */
     private List<XsdAbstractElement> elements = new ArrayList<>();
 
-    private XsdSchema(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
-        super(parser, attributesMap);
+    private XsdSchema(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction){
+        super(parser, attributesMap, visitorFunction);
 
         this.attributeFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, attributesMap.getOrDefault(ATTRIBUTE_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
         this.elementFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, attributesMap.getOrDefault(ELEMENT_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
@@ -111,8 +104,8 @@ public class XsdSchema extends XsdAnnotatedElements {
         return elements.stream().map(ReferenceBase::createFromXsd).collect(Collectors.toList());
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        ReferenceBase xsdSchemaRef = xsdParseSkeleton(node, new XsdSchema(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData) {
+        ReferenceBase xsdSchemaRef = xsdParseSkeleton(parseData.node, new XsdSchema(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
         XsdSchema xsdSchema = (XsdSchema) xsdSchemaRef.getElement();
 
         List<XsdImport> importsList = xsdSchema.getChildrenImports().collect(Collectors.toList());

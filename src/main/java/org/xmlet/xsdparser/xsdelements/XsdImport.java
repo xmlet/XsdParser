@@ -1,13 +1,13 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:import element.
@@ -18,11 +18,6 @@ public class XsdImport extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:import";
     public static final String XS_TAG = "xs:import";
-
-    /**
-     * {@link XsdAnnotatedElementsVisitor} instance which restricts his children to {@link XsdAnnotation}.
-     */
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
     /**
      * Specifies the a namespace to import.
@@ -36,8 +31,8 @@ public class XsdImport extends XsdAnnotatedElements {
      */
     private String schemaLocation;
 
-    private XsdImport(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdImport(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.namespace = attributesMap.getOrDefault(NAMESPACE, namespace);
         this.schemaLocation = attributesMap.getOrDefault(SCHEMA_LOCATION, schemaLocation);
@@ -53,13 +48,8 @@ public class XsdImport extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdAbstractElementVisitor getVisitor() {
-        return visitor;
-    }
-
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdImport(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdImport(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     @SuppressWarnings("unused")

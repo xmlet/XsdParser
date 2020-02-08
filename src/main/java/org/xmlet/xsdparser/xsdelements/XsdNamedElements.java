@@ -3,9 +3,11 @@ package org.xmlet.xsdparser.xsdelements;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * This class serves as a base to concrete {@link XsdAbstractElement} classes that can have a name attribute. This is
@@ -18,8 +20,8 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
      */
     String name;
 
-    XsdNamedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    XsdNamedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.name = attributesMap.getOrDefault(NAME_TAG, name);
     }

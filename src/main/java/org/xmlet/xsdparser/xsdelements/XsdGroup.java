@@ -1,18 +1,17 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdGroupVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:complexType element. Extends {@link XsdNamedElements} because it's one of the
@@ -24,13 +23,6 @@ public class XsdGroup extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:group";
     public static final String XS_TAG = "xs:group";
-
-    /**
-     * {@link XsdGroupVisitor} instance which restricts his children to {@link XsdAll}, {@link XsdChoice} or
-     * {@link XsdSequence} instances.
-     * Can also have {@link XsdAnnotation} children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdGroupVisitor visitor = new XsdGroupVisitor(this);
 
     /**
      * The child element of the {@link XsdGroup} instance. It can be a {@link XsdAll}, {@link XsdChoice} or a
@@ -52,15 +44,15 @@ public class XsdGroup extends XsdNamedElements {
      */
     private String maxOccurs;
 
-    private XsdGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
-    private XsdGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        this(parser, attributesMap);
+    private XsdGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        this(parser, attributesMap, visitorFunction);
         setParent(parent);
     }
 
@@ -101,11 +93,6 @@ public class XsdGroup extends XsdNamedElements {
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdGroupVisitor getVisitor() {
-        return visitor;
-    }
-
     /**
      * @return A list with the child element of the {@link XsdGroup} instance.
      */
@@ -131,7 +118,7 @@ public class XsdGroup extends XsdNamedElements {
         placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdGroup elementCopy = new XsdGroup(this.parent, this.parser, placeHolderAttributes);
+        XsdGroup elementCopy = new XsdGroup(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         if (childElement != null){
             elementCopy.setChildElement(this.childElement);
@@ -175,8 +162,8 @@ public class XsdGroup extends XsdNamedElements {
         return XsdMultipleElements.getChildAsSequence(childElement);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdGroup(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdGroup(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public Integer getMinOccurs() {

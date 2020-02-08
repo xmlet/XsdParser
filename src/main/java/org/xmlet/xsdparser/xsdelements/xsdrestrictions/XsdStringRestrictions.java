@@ -1,19 +1,20 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * This class serves as a base to every different restriction that has its restricting parameter defined as an {@link String}.
  * Classes like {@link XsdPattern} or {@link XsdEnumeration} should extend this class.
  */
 public class XsdStringRestrictions extends XsdAnnotatedElements{
-
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
 
     /**
      * The value of associated with a given restriction. This field has different meanings depending on the concrete
@@ -22,15 +23,10 @@ public class XsdStringRestrictions extends XsdAnnotatedElements{
      */
     private String value;
 
-    XsdStringRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    XsdStringRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
 
         value = attributesMap.getOrDefault(VALUE_TAG, value);
-    }
-
-    @Override
-    public XsdAnnotatedElementsVisitor getVisitor() {
-        return visitor;
     }
 
     /**

@@ -1,16 +1,16 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdUnionVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:union element.
@@ -23,11 +23,6 @@ public class XsdUnion extends XsdAnnotatedElements {
     public static final String XS_TAG = "xs:union";
 
     /**
-     * {@link XsdUnionVisitor} instance which restricts its children to {@link XsdSimpleType} instances.
-     */
-    private XsdUnionVisitor visitor = new XsdUnionVisitor(this);
-
-    /**
      * A List of {@link XsdSimpleType} instances that represent the {@link XsdUnion}.
      */
     private List<XsdSimpleType> simpleTypeList = new ArrayList<>();
@@ -37,15 +32,10 @@ public class XsdUnion extends XsdAnnotatedElements {
      */
     private String memberTypes;
 
-    private XsdUnion(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdUnion(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.memberTypes = attributesMap.getOrDefault(MEMBER_TYPES_TAG, memberTypes);
-    }
-
-    @Override
-    public XsdUnionVisitor getVisitor() {
-        return visitor;
     }
 
     @Override
@@ -63,8 +53,8 @@ public class XsdUnion extends XsdAnnotatedElements {
         return Arrays.asList(memberTypes.split(" "));
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdUnion(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull  ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdUnion(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public void add(XsdSimpleType simpleType) {

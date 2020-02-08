@@ -332,6 +332,20 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.0.25
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/20" title="ClassCastException">Details</a> - 
+            Fixes a bug where a verification was missing while using getComplexType.
+        </li>
+        <li>
+            Changes some of the static fields of XsdAbstractElement to allow avoiding using hardcoded strings while getting attributes.
+        </li>
+    </ul>
+</div>
+
 ### 1.0.24
 
 <div align="justify">

@@ -75,6 +75,47 @@ public class IssuesTest {
                 "\t\t\t]]>",xsdDocumentation.getContent());
     }
 
+    @Test
+    public void testIssue20(){
+        Optional<XsdSchema> issuesSchemaOpt = schemas.stream().findFirst();
+
+        Assert.assertTrue(issuesSchemaOpt.isPresent());
+
+        XsdSchema issuesSchema = issuesSchemaOpt.get();
+
+        Optional<XsdComplexType> fooTypeComplexTypeOpt = issuesSchema.getChildrenComplexTypes().filter(xsdComplexType -> xsdComplexType.getName().equals("fooType")).findFirst();
+        Assert.assertTrue(fooTypeComplexTypeOpt.isPresent());
+
+        XsdSequence fooTypeSequence = fooTypeComplexTypeOpt.get().getChildAsSequence();
+        Assert.assertNotNull(fooTypeSequence);
+
+        Optional<XsdElement> sequenceElementOpt = fooTypeSequence.getChildrenElements().filter(elem -> elem.getName().equals("id")).findFirst();
+        Assert.assertTrue(sequenceElementOpt.isPresent());
+
+        XsdElement sequenceElement = sequenceElementOpt.get();
+
+        XsdComplexType complexType = sequenceElement.getXsdComplexType();
+        Assert.assertNull(complexType);
+
+        XsdSimpleType simpleType = sequenceElement.getXsdSimpleType();
+        Assert.assertNotNull(simpleType);
+    }
+
+    @Test
+    public void testIssue21(){
+        Optional<XsdElement> hoursPerWeekOpt = elements.stream().filter(e -> e.getName().equals("hoursPerWeek")).findFirst();
+
+        Assert.assertTrue(hoursPerWeekOpt.isPresent());
+
+        XsdElement hoursPerWeek = hoursPerWeekOpt.get();
+        String type = hoursPerWeek.getAttributesMap().get(XsdAbstractElement.TYPE_TAG);
+
+        XsdComplexType xsdDoubleComplexType = hoursPerWeek.getXsdComplexType();
+
+        Assert.assertEquals("xsd:double", type);
+        Assert.assertEquals("xsd:double", xsdDoubleComplexType.getRawName());
+    }
+
     /**
      * @return Obtains the filePath of the file associated with this test class.
      */
@@ -87,5 +128,4 @@ public class IssuesTest {
             throw new RuntimeException("The issues.xsd file is missing from the XsdParser resource folder.");
         }
     }
-
 }

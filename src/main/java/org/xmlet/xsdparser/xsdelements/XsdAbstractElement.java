@@ -27,40 +27,39 @@ public abstract class XsdAbstractElement {
     /**
      * A {@link Map} object containing the keys/values of the attributes that belong to the concrete element instance.
      */
-    protected Map<String, String> attributesMap = new HashMap<>();
+    protected Map<String, String> attributesMap;
 
+    public static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
+    public static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
+    public static final String BLOCK_DEFAULT = "blockDefault";
+    public static final String FINAL_DEFAULT = "finalDefault";
+    public static final String TARGET_NAMESPACE = "targetNamespace";
+    public static final String VERSION = "version";
+    public static final String XMLNS = "xmlns";
 
-    static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
-    static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
-    static final String BLOCK_DEFAULT = "blockDefault";
-    static final String FINAL_DEFAULT = "finalDefault";
-    static final String TARGET_NAMESPACE = "targetNamespace";
-    static final String VERSION = "version";
-    static final String XMLNS = "xmlns";
-
-    static final String ID_TAG = "id";
+    public static final String ID_TAG = "id";
     public static final String NAME_TAG = "name";
-    static final String ABSTRACT_TAG = "abstract";
-    static final String DEFAULT_ELEMENT_TAG = "defaultElement";
-    protected static final String FIXED_TAG = "fixed";
-    static final String TYPE_TAG = "type";
-    static final String MIXED_TAG = "mixed";
-    static final String BLOCK_TAG = "block";
-    static final String FINAL_TAG = "final";
-    static final String USE_TAG = "use";
-    static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
-    static final String DEFAULT_TAG = "default";
-    static final String FORM_TAG = "form";
-    static final String NILLABLE_TAG = "nillable";
-    static final String MIN_OCCURS_TAG = "minOccurs";
-    static final String MAX_OCCURS_TAG = "maxOccurs";
-    static final String ITEM_TYPE_TAG = "itemType";
-    static final String BASE_TAG = "base";
-    static final String SOURCE_TAG = "source";
-    static final String XML_LANG_TAG = "xml:lang";
-    static final String MEMBER_TYPES_TAG = "memberTypes";
-    static final String SCHEMA_LOCATION = "schemaLocation";
-    static final String NAMESPACE = "namespace";
+    public static final String ABSTRACT_TAG = "abstract";
+    public static final String DEFAULT_ELEMENT_TAG = "defaultElement";
+    public static final String FIXED_TAG = "fixed";
+    public static final String TYPE_TAG = "type";
+    public static final String MIXED_TAG = "mixed";
+    public static final String BLOCK_TAG = "block";
+    public static final String FINAL_TAG = "final";
+    public static final String USE_TAG = "use";
+    public static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
+    public static final String DEFAULT_TAG = "default";
+    public static final String FORM_TAG = "form";
+    public static final String NILLABLE_TAG = "nillable";
+    public static final String MIN_OCCURS_TAG = "minOccurs";
+    public static final String MAX_OCCURS_TAG = "maxOccurs";
+    public static final String ITEM_TYPE_TAG = "itemType";
+    public static final String BASE_TAG = "base";
+    public static final String SOURCE_TAG = "source";
+    public static final String XML_LANG_TAG = "xml:lang";
+    public static final String MEMBER_TYPES_TAG = "memberTypes";
+    public static final String SCHEMA_LOCATION = "schemaLocation";
+    public static final String NAMESPACE = "namespace";
     public static final String REF_TAG = "ref";
     protected static final String VALUE_TAG = "value";
 

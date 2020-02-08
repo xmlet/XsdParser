@@ -285,16 +285,32 @@ public class XsdElement extends XsdNamedElements {
     }
 
     public XsdComplexType getXsdComplexType() {
-        return complexType == null ? getXsdType() : (XsdComplexType) complexType.getElement();
+        return complexType == null || complexType instanceof UnsolvedReference? getXsdComplexTypeFromType() : (XsdComplexType) complexType.getElement();
     }
 
     public XsdSimpleType getXsdSimpleType(){
-        return simpleType instanceof ConcreteElement ? (XsdSimpleType) simpleType.getElement() : null;
+        return simpleType == null || simpleType instanceof UnsolvedReference ? getXsdSimpleTypeFromType() : (XsdSimpleType) simpleType.getElement();
     }
 
-    private XsdComplexType getXsdType(){
-        if (type instanceof ConcreteElement){
-            return (XsdComplexType) type.getElement();
+    private XsdComplexType getXsdComplexTypeFromType(){
+        if (type != null && type instanceof ConcreteElement){
+            XsdAbstractElement typeElement = type.getElement();
+
+            if (typeElement instanceof XsdComplexType){
+                return (XsdComplexType) typeElement;
+            }
+        }
+
+        return null;
+    }
+
+    private XsdSimpleType getXsdSimpleTypeFromType(){
+        if (type != null && type instanceof ConcreteElement){
+            XsdAbstractElement typeElement = type.getElement();
+
+            if (typeElement instanceof XsdSimpleType){
+                return (XsdSimpleType) typeElement;
+            }
         }
 
         return null;

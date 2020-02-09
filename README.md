@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.26</version>
+    <version>1.0.27</version>
 </dependency>
 ```
 
@@ -331,6 +331,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.0.27
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/21" title="xsd:double parsed as ComplexType">Details</a> - 
+            Adds a new XsdAbstractElement to represent XsdBuiltInDataTypes;
+        </li>
+    </ul>
+</div>
 
 ### 1.0.26
 

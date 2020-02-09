@@ -59,7 +59,6 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
         return name == null ? null : name.replaceAll("[^a-zA-Z0-9]", "_");
     }
 
-    @SuppressWarnings("WeakerAccess")
     public String getRawName() {
         return name;
     }

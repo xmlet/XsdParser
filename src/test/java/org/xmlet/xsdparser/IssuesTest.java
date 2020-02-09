@@ -109,11 +109,22 @@ public class IssuesTest {
 
         XsdElement hoursPerWeek = hoursPerWeekOpt.get();
         String type = hoursPerWeek.getAttributesMap().get(XsdAbstractElement.TYPE_TAG);
-
-        XsdComplexType xsdDoubleComplexType = hoursPerWeek.getXsdComplexType();
+        String typeOfMethod = hoursPerWeek.getType();
 
         Assert.assertEquals("xsd:double", type);
-        Assert.assertEquals("xsd:double", xsdDoubleComplexType.getRawName());
+        Assert.assertEquals("xsd:double", typeOfMethod);
+
+        XsdNamedElements xsdType = hoursPerWeek.getTypeAsXsd();
+        XsdComplexType xsdComplexType = hoursPerWeek.getTypeAsComplexType();
+        XsdSimpleType xsdSimpleType = hoursPerWeek.getTypeAsSimpleType();
+        XsdBuiltInDataType xsdBuiltInDataType = hoursPerWeek.getTypeAsBuiltInDataType();
+
+        Assert.assertEquals("xsd:double", xsdType.getRawName());
+        Assert.assertEquals("xsd:double", xsdBuiltInDataType.getRawName());
+        Assert.assertNull(xsdComplexType);
+        Assert.assertNull(xsdSimpleType);
+
+        Assert.assertEquals(hoursPerWeek, xsdBuiltInDataType.getParent());
     }
 
     /**

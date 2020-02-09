@@ -1,7 +1,6 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.core.utils.ConfigEntryData;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
@@ -12,14 +11,11 @@ import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import static org.xmlet.xsdparser.core.XsdParserCore.getParseMappers;
 
 /**
  * A class representing the xsd:element element. Extends {@link XsdNamedElements} because it's one of the
@@ -122,19 +118,10 @@ public class XsdElement extends XsdNamedElements {
 
         if (typeString != null){
             if (XsdParserCore.getXsdTypesToJava().containsKey(typeString)){
-                Map<String, ConfigEntryData> parseMappers = getParseMappers();
-
-                ConfigEntryData config = parseMappers.getOrDefault(XsdComplexType.XSD_TAG, parseMappers.getOrDefault(XsdComplexType.XS_TAG, null));
-
-                if (config == null){
-                    throw new RuntimeException("Invalid Parsing Configuration for XsdComplexType.");
-                }
-
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, typeString);
-                this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes, config.visitorFunction));
+                this.type = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
             } else {
-
                 this.type = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new HashMap<>(), visitorFunction));
                 parser.addUnsolvedReference((UnsolvedReference) this.type);
             }
@@ -310,6 +297,54 @@ public class XsdElement extends XsdNamedElements {
 
             if (typeElement instanceof XsdSimpleType){
                 return (XsdSimpleType) typeElement;
+            }
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdNamedElements getTypeAsXsd(){
+        if (type instanceof NamedConcreteElement){
+            return ((NamedConcreteElement) this.type).getElement();
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdComplexType getTypeAsComplexType() {
+        if (this.type instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = this.type.getElement();
+
+            if (baseType instanceof XsdComplexType){
+                return (XsdComplexType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdSimpleType getTypeAsSimpleType() {
+        if (this.type instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = this.type.getElement();
+
+            if (baseType instanceof XsdSimpleType){
+                return (XsdSimpleType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdBuiltInDataType getTypeAsBuiltInDataType() {
+        if (this.type instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = this.type.getElement();
+
+            if (baseType instanceof XsdBuiltInDataType){
+                return (XsdBuiltInDataType) baseType;
             }
         }
 

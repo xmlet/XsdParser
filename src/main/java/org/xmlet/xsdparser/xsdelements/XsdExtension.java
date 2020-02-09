@@ -49,19 +49,12 @@ public class XsdExtension extends XsdAnnotatedElements {
         String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
         if (baseValue != null){
-            Map<String, ConfigEntryData> parseMappers = getParseMappers();
-
             if (XsdParserCore.getXsdTypesToJava().containsKey(baseValue)){
-                ConfigEntryData config = parseMappers.getOrDefault(XsdComplexType.XSD_TAG, parseMappers.getOrDefault(XsdComplexType.XS_TAG, null));
-
-                if (config == null){
-                    throw new RuntimeException("Invalid Parsing Configuration for XsdComplexType.");
-                }
-
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, baseValue);
-                this.base = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes, config.visitorFunction));
+                this.base = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
             } else {
+                Map<String, ConfigEntryData> parseMappers = getParseMappers();
                 ConfigEntryData config = parseMappers.getOrDefault(XsdElement.XSD_TAG, parseMappers.getOrDefault(XsdElement.XS_TAG, null));
 
                 if (config == null){
@@ -86,7 +79,6 @@ public class XsdExtension extends XsdAnnotatedElements {
         super.replaceUnsolvedElements(element);
 
         XsdNamedElements elem = element.getElement();
-        String elemName = elem.getRawName();
 
         boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
@@ -155,6 +147,22 @@ public class XsdExtension extends XsdAnnotatedElements {
 
             if (baseType instanceof XsdSimpleType){
                 return (XsdSimpleType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return The {@link XsdBuiltInDataType} from which this extension extends.
+     */
+    @SuppressWarnings("unused")
+    public XsdBuiltInDataType getBaseAsBuiltInDataType() {
+        if (base instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = base.getElement();
+
+            if (baseType instanceof XsdBuiltInDataType){
+                return (XsdBuiltInDataType) baseType;
             }
         }
 

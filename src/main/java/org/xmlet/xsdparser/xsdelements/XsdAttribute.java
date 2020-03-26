@@ -203,6 +203,10 @@ public class XsdAttribute extends XsdNamedElements {
     public String getFixed() {
         return fixed;
     }
+    
+    public String getDefault() {
+        return defaultElement;
+    }
 
     @SuppressWarnings("unused")
     public List<XsdRestriction> getAllRestrictions(){

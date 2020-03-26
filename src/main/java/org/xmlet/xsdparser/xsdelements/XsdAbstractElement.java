@@ -43,7 +43,7 @@ public abstract class XsdAbstractElement {
     public static final String ID_TAG = "id";
     public static final String NAME_TAG = "name";
     public static final String ABSTRACT_TAG = "abstract";
-    public static final String DEFAULT_ELEMENT_TAG = "defaultElement";
+    public static final String DEFAULT_ELEMENT_TAG = "default";
     public static final String FIXED_TAG = "fixed";
     public static final String TYPE_TAG = "type";
     public static final String MIXED_TAG = "mixed";

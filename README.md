@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.27</version>
 </dependency>
 ```
 
@@ -332,6 +332,136 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.0.27
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/21" title="xsd:double parsed as ComplexType">Details</a> - 
+            Adds a new XsdAbstractElement to represent XsdBuiltInDataTypes;
+        </li>
+    </ul>
+</div>
+
+### 1.0.26
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/19" title="Register new Xsd Visitors">Details</a> - 
+            Changes the way Visitors work in order to detach elements from visitors. Now the elements and visitors are associated
+            by configuration.
+        </li>
+    </ul>
+</div>
+
+### 1.0.25
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/20" title="ClassCastException">Details</a> - 
+            Fixes a bug where a verification was missing while using getComplexType.
+        </li>
+        <li>
+            Changes some of the static fields of XsdAbstractElement to allow avoiding using hardcoded strings while getting attributes.
+        </li>
+    </ul>
+</div>
+
+### 1.0.24
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/17" title="Can't parse the node of xsd:appinfo inside the annotation">Details</a> - 
+            Changes the parse for Xsd:AppInfo and Xsd:Documentation - Now the parser returns the exact contents of these two elements.
+        </li>
+    </ul>
+</div>
+
+### 1.0.23
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/11#issuecomment-536988173" title="Issue with Windows file paths">Details</a> - 
+            Merges a pull request from <a href="https://github.com/bargru">bargru</a> to fix an issue with Windows file paths.
+        </li>
+    </ul>
+</div>
+
+### 1.0.22
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/12" title="Exception handling during parsing">Issue 12 - Exception handling during parsing</a> - 
+            Adds proper exception propagation when an exception occurs.
+        </li>
+    </ul>
+</div>
+
+### 1.0.21
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/11" title="Schema Import: Search in relation to the path of the importing XSD file">Issue 11 - Schema Import: Search in relation to the path of the importing XSD file</a> - 
+            Changes XsdParser to support imports with paths relative to the importing file.
+        </li>
+    </ul>
+</div>
+
+### 1.0.20
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/10" title="documentation.getContent()">Issue 10 - documentation.getContent()</a> - 
+            Fixes CDATA nodes not being parsed XSD elements with raw text such as &quot;xsd:documentation&quot; and &quot;xsd:appinfo&quot;.
+        </li>
+    </ul>
+</div>
+
+### 1.0.19
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/9" title="Issue with substitutionGroup">Issue 9 - Issue with substitutionGroup</a> - 
+            Fixed substitutionGroup automatically overwriting XsdElement types. 
+            To access the substitution element types use <i>XsdElement::getXsdSubstitutionGroup()</i> and then access the types.
+        </li>
+    </ul>
+</div>
+
+### 1.0.18
+
+<div align="justify">
+    <ul>
+        <li>
+            Addresses multiple namespace usage while parsing. Also reworks how &quot;xsd:includes&quot; and &quot;xsd:import&quot; work. 
+            <a href="https://github.com/xmlet/XsdParser/issues/4#issuecomment-502373033" title="Reference resolving doesn't work if different namespaces are used">Full explanation here</a>
+        </li>
+    </ul>
+</div>
+
+### 1.0.17
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/7" title="XsdParser::getSchemaNode fails with comments">Issue 7 - XsdParser::getSchemaNode fails with comments</a> - 
+            Added verification to only parse Element nodes.
+        </li>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/8" title="Resolve tags without &quot;xs&quot; and &quot;xsd&quot; namespaces.">Issue 8 - Resolve tags without &quot;xs&quot; and &quot;xsd&quot; namespaces.</a> - 
+            Adds support for configurable namespaces of XSD elements.
+        </li>
+    </ul>
+</div>
+
 ### 1.0.16
 
 <div align="justify">
@@ -395,7 +525,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            Adds attribute type validations and validations of possible values with <i>Enum</> classes.
+            Adds attribute type validations and validations of possible values with <i>Enum</i> classes.
         </li>
     </ul>
 </div>

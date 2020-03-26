@@ -1,16 +1,17 @@
 package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.AttributeValidations;
+import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.enums.WhiteSpaceEnum;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * States how the whiteSpace characters should be treated. The value is defined as an {@link String}.
@@ -20,13 +21,11 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
     public static final String XSD_TAG = "xsd:whiteSpace";
     public static final String XS_TAG = "xs:whiteSpace";
 
-    private XsdAnnotatedElementsVisitor visitor = new XsdAnnotatedElementsVisitor(this);
-
     private boolean fixed;
     private WhiteSpaceEnum value;
 
-    private XsdWhiteSpace(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    private XsdWhiteSpace(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
         value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.PRESERVE, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
@@ -38,17 +37,12 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
         xsdAbstractElementVisitor.visit(this);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return ReferenceBase.createFromXsd(new XsdWhiteSpace(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return ReferenceBase.createFromXsd(new XsdWhiteSpace(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public boolean isFixed() {
         return fixed;
-    }
-
-    @Override
-    public XsdAnnotatedElementsVisitor getVisitor() {
-        return visitor;
     }
 
     public WhiteSpaceEnum getValue() {

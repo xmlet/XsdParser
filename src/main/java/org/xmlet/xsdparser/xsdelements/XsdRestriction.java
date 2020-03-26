@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -23,12 +24,6 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:restriction";
     public static final String XS_TAG = "xs:restriction";
-
-    /**
-     * {@link XsdRestrictionsVisitor} instance which restricts the children elements of {@link XsdRestriction} to all
-     * restricting XSD types. For a full list see {@link XsdRestrictionsVisitor}.
-     */
-    private XsdRestrictionsVisitor visitor = new XsdRestrictionsVisitor(this);
 
     /**
      * The {@link XsdSimpleType} instance of this {@link XsdRestriction} instance.
@@ -100,15 +95,10 @@ public class XsdRestriction extends XsdAnnotatedElements {
      */
     private String base;
 
-    private XsdRestriction(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdRestriction(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.base = attributesMap.getOrDefault(BASE_TAG, base);
-    }
-
-    @Override
-    public XsdRestrictionsVisitor getVisitor() {
-        return visitor;
     }
 
     @Override
@@ -121,21 +111,21 @@ public class XsdRestriction extends XsdAnnotatedElements {
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         super.replaceUnsolvedElements(element);
 
-        visitor.replaceUnsolvedAttributes(element);
+        ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(element);
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdRestriction(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdRestriction(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     @SuppressWarnings("unused")
     public Stream<XsdAttribute> getXsdAttributes() {
-        return visitor.getXsdAttributes();
+        return ((XsdRestrictionsVisitor)visitor).getXsdAttributes();
     }
 
     @SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
-        return visitor.getXsdAttributeGroup();
+        return ((XsdRestrictionsVisitor)visitor).getXsdAttributeGroup();
     }
 
     public XsdSimpleType getSimpleType() {

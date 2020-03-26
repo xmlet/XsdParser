@@ -1,14 +1,13 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAllVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -21,12 +20,6 @@ public class XsdAll extends XsdMultipleElements {
 
     public static final String XSD_TAG = "xsd:all";
     public static final String XS_TAG = "xs:all";
-
-    /**
-     * {@link XsdAllVisitor} instance, which restricts his children elements to {@link XsdElement} instances.
-     * Can also have {@link XsdAnnotation} children elements as per inheritance of {@link XsdAnnotatedElementsVisitor}
-     */
-    private final XsdAllVisitor visitor = new XsdAllVisitor(this);
 
     /**
      * Specifies the minimum number of times this element can occur in the parent element. The value can be any
@@ -42,8 +35,8 @@ public class XsdAll extends XsdMultipleElements {
      */
     private Integer maxOccurs;
 
-    private XsdAll(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
-        super(parser, attributesMap);
+    private XsdAll(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction){
+        super(parser, attributesMap, visitorFunction);
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MAX_OCCURS_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
@@ -55,13 +48,8 @@ public class XsdAll extends XsdMultipleElements {
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdAllVisitor getVisitor() {
-        return visitor;
-    }
-
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdAll(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdAll(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     @SuppressWarnings("unused")

@@ -1,18 +1,17 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeGroupVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -28,12 +27,6 @@ public class XsdAttributeGroup extends XsdNamedElements {
     public static final String XS_TAG = "xs:attributeGroup";
 
     /**
-     * {@link XsdAttributeGroupVisitor} instance which limits its children to {@link XsdAttribute} instances.
-     * Can also have {@link XsdAnnotation} as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private final XsdAttributeGroupVisitor visitor = new XsdAttributeGroupVisitor(this);
-
-    /**
      * A list of {@link XsdAttributeGroup} children instances.
      */
     //This list is populated by the replaceUnsolvedElements and never directly (such as a Visitor method like all else).
@@ -46,12 +39,12 @@ public class XsdAttributeGroup extends XsdNamedElements {
      */
     private List<ReferenceBase> attributes = new ArrayList<>();
 
-    private XsdAttributeGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdAttributeGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
     }
 
-    private XsdAttributeGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdAttributeGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
         setParent(parent);
     }
 
@@ -59,11 +52,6 @@ public class XsdAttributeGroup extends XsdNamedElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
-    }
-
-    @Override
-    public XsdAttributeGroupVisitor getVisitor() {
-        return visitor;
     }
 
     /**
@@ -93,7 +81,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
         placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes);
+        XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         elementCopy.attributes.addAll(this.attributes);
         elementCopy.attributeGroups.addAll(this.attributeGroups);
@@ -139,8 +127,8 @@ public class XsdAttributeGroup extends XsdNamedElements {
                     .map(element -> (XsdAttribute) element.getElement());
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdAttributeGroup(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdAttributeGroup(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public void addAttribute(ReferenceBase attribute) {

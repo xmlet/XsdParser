@@ -1,9 +1,11 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Serves as a base to every {@link XsdAbstractElement} concrete type which can have xsd:annotation as children. Extends
@@ -17,8 +19,8 @@ public abstract class XsdAnnotatedElements extends XsdIdentifierElements {
      */
     private XsdAnnotation annotation;
 
-    protected XsdAnnotatedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
+    protected XsdAnnotatedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
     }
 
     public void setAnnotation(XsdAnnotation annotation){

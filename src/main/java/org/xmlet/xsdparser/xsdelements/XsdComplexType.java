@@ -1,21 +1,20 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.ComplexTypeBlockEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-import org.xmlet.xsdparser.xsdelements.visitors.AttributesVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -28,19 +27,6 @@ public class XsdComplexType extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:complexType";
     public static final String XS_TAG = "xs:complexType";
-
-    /**
-     * {@link XsdComplexTypeVisitor} instance which restricts the children elements to:
-     *      * {@link XsdAll}, {@link XsdSequence} and {@link XsdChoice} (represented by their base class
-     *          {@link XsdMultipleElements});
-     *      * {@link XsdGroup};
-     *      * {@link XsdComplexContent};
-     *      * {@link XsdSimpleContent};
-     * Can also have {@link XsdAttribute} and {@link XsdAttributeGroup} children as per inheritance of
-     *      {@link AttributesVisitor}.
-     * Can also have {@link XsdAnnotation} children as per inheritance of {@link XsdAnnotatedElementsVisitor }.
-     */
-    private XsdComplexTypeVisitor visitor = new XsdComplexTypeVisitor(this);
 
     /**
      * The child element of {@link XsdComplexType}. Can be either a {@link XsdGroup} or a {@link XsdMultipleElements}
@@ -83,8 +69,8 @@ public class XsdComplexType extends XsdNamedElements {
      */
     private XsdSimpleContent simpleContent;
 
-    XsdComplexType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    XsdComplexType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
@@ -95,8 +81,8 @@ public class XsdComplexType extends XsdNamedElements {
         this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
-    XsdComplexType(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        this(parser, elementFieldsMapParam);
+    XsdComplexType(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        this(parser, elementFieldsMapParam, visitorFunction);
         setParent(parent);
     }
 
@@ -126,11 +112,6 @@ public class XsdComplexType extends XsdNamedElements {
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdComplexTypeVisitor getVisitor() {
-        return visitor;
-    }
-
     /**
      * @return The elements of his child as if they belong to the {@link XsdComplexType} instance.
      */
@@ -150,11 +131,11 @@ public class XsdComplexType extends XsdNamedElements {
         placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes);
+        XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         elementCopy.childElement = this.childElement;
-        elementCopy.visitor.setAttributes(this.visitor.getAttributes());
-        elementCopy.visitor.setAttributeGroups(this.visitor.getAttributeGroups());
+        ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributes(((XsdComplexTypeVisitor)this.visitor).getAttributes());
+        ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributeGroups(((XsdComplexTypeVisitor)this.visitor).getAttributeGroups());
 
         elementCopy.complexContent = this.complexContent;
         elementCopy.simpleContent = this.simpleContent;
@@ -165,7 +146,7 @@ public class XsdComplexType extends XsdNamedElements {
     @Override
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         super.replaceUnsolvedElements(element);
-        visitor.replaceUnsolvedAttributes(element);
+        ((XsdComplexTypeVisitor)visitor).replaceUnsolvedAttributes(element);
 
         if (this.childElement instanceof UnsolvedReference && this.childElement.getElement() instanceof XsdGroup &&
                 element.getElement() instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
@@ -183,15 +164,15 @@ public class XsdComplexType extends XsdNamedElements {
     }
 
     List<ReferenceBase> getAttributes() {
-        return visitor.getAttributes();
+        return ((XsdComplexTypeVisitor)visitor).getAttributes();
     }
 
     public Stream<XsdAttribute> getXsdAttributes() {
-        return visitor.getXsdAttributes();
+        return ((XsdComplexTypeVisitor)visitor).getXsdAttributes();
     }
 
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
-        return visitor.getXsdAttributeGroup();
+        return ((XsdComplexTypeVisitor)visitor).getXsdAttributeGroup();
     }
 
     @SuppressWarnings("unused")
@@ -213,8 +194,8 @@ public class XsdComplexType extends XsdNamedElements {
         return elementAbstract;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdComplexType(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdComplexType(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public void setChildElement(ReferenceBase childElement) {

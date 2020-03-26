@@ -1,15 +1,14 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleContentVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:simpleContent element.
@@ -22,13 +21,6 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
     public static final String XS_TAG = "xs:simpleContent";
 
     /**
-     * {@link XsdSimpleContentVisitor} instance which restrict its children to {@link XsdRestriction} and
-     * {@link XsdExtension} instances.
-     * Can also have {@link XsdAnnotation} children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdSimpleContentVisitor visitor = new XsdSimpleContentVisitor(this);
-
-    /**
      * The {@link XsdRestriction} instance that should be applied to the {@link XsdSimpleContent} instance.
      */
     private ReferenceBase restriction;
@@ -38,13 +30,8 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
      */
     private ReferenceBase extension;
 
-    private XsdSimpleContent(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        super(parser, elementFieldsMapParam);
-    }
-
-    @Override
-    public XsdSimpleContentVisitor getVisitor() {
-        return visitor;
+    private XsdSimpleContent(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, elementFieldsMapParam, visitorFunction);
     }
 
     @Override
@@ -63,8 +50,8 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
         return restriction instanceof ConcreteElement ? (XsdRestriction) restriction.getElement() : null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdSimpleContent(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdSimpleContent(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public void setRestriction(ReferenceBase restriction) {

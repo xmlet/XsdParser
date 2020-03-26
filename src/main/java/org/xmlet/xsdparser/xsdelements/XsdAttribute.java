@@ -1,8 +1,8 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -11,14 +11,13 @@ import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:attribute element. It can have a ref attribute and therefore extends from
@@ -31,12 +30,6 @@ public class XsdAttribute extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:attribute";
     public static final String XS_TAG = "xs:attribute";
-
-    /**
-     * {@link XsdAttributeVisitor} instance which restricts the its children to {@link XsdSimpleType}.
-     * Can also have xsd:annotation as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdAttributeVisitor visitor = new XsdAttributeVisitor(this);
 
     /**
      * A {@link XsdSimpleType} instance wrapped in a {@link ReferenceBase} object which indicate any restrictions
@@ -74,8 +67,8 @@ public class XsdAttribute extends XsdNamedElements {
      */
     private UsageEnum use;
 
-    private XsdAttribute(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdAttribute(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         String formDefaultValue = getFormDefaultValue(parent);
 
@@ -86,13 +79,13 @@ public class XsdAttribute extends XsdNamedElements {
         this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
-            this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>()));
+            this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>(), visitorFunction));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
     }
 
-    private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        this(parser, attributesMap);
+    private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        this(parser, attributesMap, visitorFunction);
         setParent(parent);
     }
 
@@ -147,11 +140,6 @@ public class XsdAttribute extends XsdNamedElements {
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdAttributeVisitor getVisitor() {
-        return visitor;
-    }
-
     /**
      * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
      * {@link UnsolvedReference} objects in the reference solving process.
@@ -164,7 +152,7 @@ public class XsdAttribute extends XsdNamedElements {
         placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdAttribute copy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes);
+        XsdAttribute copy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         copy.type = this.type;
         copy.simpleType = this.simpleType;
@@ -227,8 +215,7 @@ public class XsdAttribute extends XsdNamedElements {
         return Collections.emptyList();
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node) {
-        return xsdParseSkeleton(node, new XsdAttribute(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdAttribute(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
-
 }

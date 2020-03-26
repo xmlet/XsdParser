@@ -3,6 +3,8 @@ package org.xmlet.xsdparser.core;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
@@ -36,6 +38,7 @@ public class XsdParserJar extends XsdParserCore {
      * previous jar with the path filePath.
      * @param jarPath The path to the jar file.
      * @param filePath The filePath of the XSD file to parse. Relative to the Jar structure.
+     * @param config Config for the parser.
      */
     public XsdParserJar(String jarPath, String filePath, ParserConfig config){
         super.updateConfig(config);
@@ -72,7 +75,13 @@ public class XsdParserJar extends XsdParserCore {
             Node schemaNode = getSchemaNode(inputStream);
 
             if (isXsdSchema(schemaNode)){
-                XsdSchema.parse(this, schemaNode);
+                ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
+
+                if (xsdSchemaConfig == null){
+                    throw new ParserConfigurationException("XsdSchema not correctly configured.");
+                }
+
+                xsdSchemaConfig.parserFunction.apply(new ParseData(this, schemaNode, xsdSchemaConfig.visitorFunction));
             } else {
                 throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
             }

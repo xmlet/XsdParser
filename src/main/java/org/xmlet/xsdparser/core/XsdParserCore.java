@@ -1,10 +1,7 @@
 package org.xmlet.xsdparser.core;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.utils.DefaultParserConfig;
-import org.xmlet.xsdparser.core.utils.NamespaceInfo;
-import org.xmlet.xsdparser.core.utils.ParserConfig;
-import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
+import org.xmlet.xsdparser.core.utils.*;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
@@ -13,6 +10,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
 import java.util.*;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,7 +23,7 @@ public abstract class XsdParserCore {
      * type supported by this mapper, this way based on the concrete {@link XsdAbstractElement} tag the according parse
      * method can be invoked.
      */
-    static Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> parseMappers;
+    static Map<String, ConfigEntryData> parseMappers;
 
     /**
      * A {@link Map} object that contains the all the XSD types and their respective types in the Java
@@ -287,13 +285,7 @@ public abstract class XsdParserCore {
      * @param unsolvedReference The unsolvedReference to add to the unsolvedElements list.
      */
     public void addUnsolvedReference(UnsolvedReference unsolvedReference){
-        List<UnsolvedReference> unsolved = unsolvedElements.get(currentFile);
-
-        if (unsolved == null){
-            unsolved = new ArrayList<>();
-
-            unsolvedElements.put(currentFile, unsolved);
-        }
+        List<UnsolvedReference> unsolved = unsolvedElements.computeIfAbsent(currentFile, k -> new ArrayList<>());
 
         unsolved.add(unsolvedReference);
     }
@@ -316,18 +308,12 @@ public abstract class XsdParserCore {
         return xsdTypesToJava;
     }
 
-    public static Map<String, BiFunction<XsdParserCore, Node, ReferenceBase>> getParseMappers() {
+    public static Map<String, ConfigEntryData> getParseMappers() {
         return parseMappers;
     }
 
     public void addParsedElement(ReferenceBase wrappedElement) {
-        List<ReferenceBase> elements = parseElements.get(currentFile);
-
-        if (elements == null){
-            elements = new ArrayList<>();
-
-            parseElements.put(currentFile, elements);
-        }
+        List<ReferenceBase> elements = parseElements.computeIfAbsent(currentFile, k -> new ArrayList<>());
 
         elements.add(wrappedElement);
     }

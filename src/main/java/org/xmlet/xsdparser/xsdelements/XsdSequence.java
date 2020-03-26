@@ -1,14 +1,13 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdSequenceVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -21,13 +20,6 @@ public class XsdSequence extends XsdMultipleElements{
 
     public static final String XSD_TAG = "xsd:sequence";
     public static final String XS_TAG = "xs:sequence";
-
-    /**
-     * {@link XsdSequenceVisitor} instance which restricts the children type to {@link XsdElement}, {@link XsdGroup},
-     * {@link XsdSequence} or {@link XsdChoice}.
-     * Can also have {@link XsdAnnotation} as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdSequenceVisitor visitor = new XsdSequenceVisitor(this);
 
     /**
      * Specifies the minimum number of times this element can occur in the parent element. The value can be any
@@ -43,8 +35,8 @@ public class XsdSequence extends XsdMultipleElements{
      */
     private String maxOccurs;
 
-    private XsdSequence(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    private XsdSequence(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
@@ -56,13 +48,8 @@ public class XsdSequence extends XsdMultipleElements{
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdSequenceVisitor getVisitor() {
-        return visitor;
-    }
-
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdSequence(parser, convertNodeMap(node.getAttributes())));
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdSequence(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     @SuppressWarnings("unused")

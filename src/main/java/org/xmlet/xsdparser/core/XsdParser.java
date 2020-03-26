@@ -4,6 +4,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
@@ -42,6 +44,7 @@ public class XsdParser extends XsdParserCore{
      * the parse results and remaining unsolved references are accessible by the {@link XsdParser#getResultXsdSchemas()},
      * {@link XsdParser#getResultXsdElements()} and {@link XsdParser#getUnsolvedReferences()}.
      * @param filePath States the path of the XSD file to be parsed.
+     * @param config Config for the parser.
      */
     public XsdParser(String filePath, ParserConfig config){
         super.updateConfig(config);
@@ -88,7 +91,13 @@ public class XsdParser extends XsdParserCore{
 
             this.currentFile = filePath.replace("\\", "/");
 
-            XsdSchema.parse(this, getSchemaNode(filePath));
+            ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
+
+            if (xsdSchemaConfig == null){
+                throw new ParserConfigurationException("XsdSchema not correctly configured.");
+            }
+
+            xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(filePath), xsdSchemaConfig.visitorFunction));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
             throw new RuntimeException(e);

@@ -1,7 +1,7 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -11,12 +11,11 @@ import org.xmlet.xsdparser.xsdelements.enums.FinalEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAnnotatedElementsVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * A class representing the xsd:element element. Extends {@link XsdNamedElements} because it's one of the
@@ -28,13 +27,6 @@ public class XsdElement extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:element";
     public static final String XS_TAG = "xs:element";
-
-    /**
-     * {@link XsdElementVisitor} which restricts its children to {@link XsdComplexType} and {@link XsdSimpleType}
-     * instances.
-     * Can also have {@link XsdAnnotation} as children as per inheritance of {@link XsdAnnotatedElementsVisitor}.
-     */
-    private XsdElementVisitor visitor = new XsdElementVisitor(this);
 
     /**
      * The {@link XsdComplexType} instance wrapped in a {@link ReferenceBase} object.
@@ -119,8 +111,8 @@ public class XsdElement extends XsdNamedElements {
      */
     private String maxOccurs;
 
-    public XsdElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
-        super(parser, attributesMap);
+    public XsdElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        super(parser, attributesMap, visitorFunction);
 
         String typeString = attributesMap.get(TYPE_TAG);
 
@@ -128,9 +120,9 @@ public class XsdElement extends XsdNamedElements {
             if (XsdParserCore.getXsdTypesToJava().containsKey(typeString)){
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, typeString);
-                this.type = ReferenceBase.createFromXsd(new XsdComplexType(this, this.parser, attributes));
+                this.type = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
             } else {
-                this.type = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new HashMap<>()));
+                this.type = new UnsolvedReference(typeString, new XsdElement(this, this.parser, new HashMap<>(), visitorFunction));
                 parser.addUnsolvedReference((UnsolvedReference) this.type);
             }
         }
@@ -141,7 +133,7 @@ public class XsdElement extends XsdNamedElements {
         String substitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, null);
 
         if (substitutionGroup != null){
-            this.substitutionGroup = new UnsolvedReference(substitutionGroup, new XsdElement(this, this.parser, new HashMap<>()));
+            this.substitutionGroup = new UnsolvedReference(substitutionGroup, new XsdElement(this, this.parser, new HashMap<>(), visitorFunction));
             parser.addUnsolvedReference((UnsolvedReference) this.substitutionGroup);
         }
 
@@ -156,8 +148,8 @@ public class XsdElement extends XsdNamedElements {
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
     }
 
-    public XsdElement(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
-        this(parser, elementFieldsMapParam);
+    public XsdElement(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        this(parser, elementFieldsMapParam, visitorFunction);
         setParent(parent);
     }
 
@@ -232,11 +224,6 @@ public class XsdElement extends XsdNamedElements {
         visitorParam.visit(this);
     }
 
-    @Override
-    public XsdElementVisitor getVisitor() {
-        return visitor;
-    }
-
     /**
      * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
      * {@link UnsolvedReference} objects in the reference solving process.
@@ -249,7 +236,7 @@ public class XsdElement extends XsdNamedElements {
         placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdElement elementCopy = new XsdElement(this.parent, this.parser, placeHolderAttributes);
+        XsdElement elementCopy = new XsdElement(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         elementCopy.simpleType = this.simpleType;
         elementCopy.complexType = this.complexType;
@@ -285,23 +272,87 @@ public class XsdElement extends XsdNamedElements {
     }
 
     public XsdComplexType getXsdComplexType() {
-        return complexType == null ? getXsdType() : (XsdComplexType) complexType.getElement();
+        return complexType == null || complexType instanceof UnsolvedReference? getXsdComplexTypeFromType() : (XsdComplexType) complexType.getElement();
     }
 
     public XsdSimpleType getXsdSimpleType(){
-        return simpleType instanceof ConcreteElement ? (XsdSimpleType) simpleType.getElement() : null;
+        return simpleType == null || simpleType instanceof UnsolvedReference ? getXsdSimpleTypeFromType() : (XsdSimpleType) simpleType.getElement();
     }
 
-    private XsdComplexType getXsdType(){
-        if (type instanceof ConcreteElement){
-            return (XsdComplexType) type.getElement();
+    private XsdComplexType getXsdComplexTypeFromType(){
+        if (type != null && type instanceof ConcreteElement){
+            XsdAbstractElement typeElement = type.getElement();
+
+            if (typeElement instanceof XsdComplexType){
+                return (XsdComplexType) typeElement;
+            }
         }
 
         return null;
     }
 
-    public static ReferenceBase parse(@NotNull XsdParserCore parser, Node node){
-        return xsdParseSkeleton(node, new XsdElement(parser, convertNodeMap(node.getAttributes())));
+    private XsdSimpleType getXsdSimpleTypeFromType(){
+        if (type != null && type instanceof ConcreteElement){
+            XsdAbstractElement typeElement = type.getElement();
+
+            if (typeElement instanceof XsdSimpleType){
+                return (XsdSimpleType) typeElement;
+            }
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdNamedElements getTypeAsXsd(){
+        if (type instanceof NamedConcreteElement){
+            return ((NamedConcreteElement) this.type).getElement();
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdComplexType getTypeAsComplexType() {
+        if (this.type instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = this.type.getElement();
+
+            if (baseType instanceof XsdComplexType){
+                return (XsdComplexType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdSimpleType getTypeAsSimpleType() {
+        if (this.type instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = this.type.getElement();
+
+            if (baseType instanceof XsdSimpleType){
+                return (XsdSimpleType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    public XsdBuiltInDataType getTypeAsBuiltInDataType() {
+        if (this.type instanceof NamedConcreteElement){
+            XsdAbstractElement baseType = this.type.getElement();
+
+            if (baseType instanceof XsdBuiltInDataType){
+                return (XsdBuiltInDataType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    public static ReferenceBase parse(@NotNull ParseData parseData){
+        return xsdParseSkeleton(parseData.node, new XsdElement(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public String getFinal() {

@@ -29,5 +29,39 @@
         </xsd:simpleType>
     </xsd:element>
 
+    <!-- Issue 17 -->
+
+    <xsd:annotation>
+        <xsd:appinfo>
+            <xsd:MetaType value="Text"/>
+            <xsd:LogicalType value="Text"/>
+            <xsd:FinFormat value="16x"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- Issue 20 -->
+
+    <xsd:complexType name="fooType">
+        <xsd:sequence>
+            <xsd:element name="id" type="FooIDType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="FooIDType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(XX|YY|ZZ):[a-zA-Z0-9]{4,10}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- Issue 21 -->
+
+    <xsd:element name="hoursPerWeek" minOccurs="0" maxOccurs="1" type="xsd:double">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                <ccts:DictionaryEntryName>F8C43CF9-9218-E611-80EA-000C292ED0D7</ccts:DictionaryEntryName>
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
 </xsd:schema>
 

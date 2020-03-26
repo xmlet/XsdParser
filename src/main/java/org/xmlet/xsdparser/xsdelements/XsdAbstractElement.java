@@ -1,17 +1,25 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
+import org.w3c.dom.*;
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
+import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.StringWriter;
 import java.util.*;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -22,40 +30,39 @@ public abstract class XsdAbstractElement {
     /**
      * A {@link Map} object containing the keys/values of the attributes that belong to the concrete element instance.
      */
-    protected Map<String, String> attributesMap = new HashMap<>();
+    protected Map<String, String> attributesMap;
 
+    public static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
+    public static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
+    public static final String BLOCK_DEFAULT = "blockDefault";
+    public static final String FINAL_DEFAULT = "finalDefault";
+    public static final String TARGET_NAMESPACE = "targetNamespace";
+    public static final String VERSION = "version";
+    public static final String XMLNS = "xmlns";
 
-    static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
-    static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
-    static final String BLOCK_DEFAULT = "blockDefault";
-    static final String FINAL_DEFAULT = "finalDefault";
-    static final String TARGET_NAMESPACE = "targetNamespace";
-    static final String VERSION = "version";
-    static final String XMLNS = "xmlns";
-
-    static final String ID_TAG = "id";
+    public static final String ID_TAG = "id";
     public static final String NAME_TAG = "name";
-    static final String ABSTRACT_TAG = "abstract";
-    static final String DEFAULT_ELEMENT_TAG = "defaultElement";
-    protected static final String FIXED_TAG = "fixed";
-    static final String TYPE_TAG = "type";
-    static final String MIXED_TAG = "mixed";
-    static final String BLOCK_TAG = "block";
-    static final String FINAL_TAG = "final";
-    static final String USE_TAG = "use";
-    static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
-    static final String DEFAULT_TAG = "default";
-    static final String FORM_TAG = "form";
-    static final String NILLABLE_TAG = "nillable";
-    static final String MIN_OCCURS_TAG = "minOccurs";
-    static final String MAX_OCCURS_TAG = "maxOccurs";
-    static final String ITEM_TYPE_TAG = "itemType";
-    static final String BASE_TAG = "base";
-    static final String SOURCE_TAG = "source";
-    static final String XML_LANG_TAG = "xml:lang";
-    static final String MEMBER_TYPES_TAG = "memberTypes";
-    static final String SCHEMA_LOCATION = "schemaLocation";
-    static final String NAMESPACE = "namespace";
+    public static final String ABSTRACT_TAG = "abstract";
+    public static final String DEFAULT_ELEMENT_TAG = "defaultElement";
+    public static final String FIXED_TAG = "fixed";
+    public static final String TYPE_TAG = "type";
+    public static final String MIXED_TAG = "mixed";
+    public static final String BLOCK_TAG = "block";
+    public static final String FINAL_TAG = "final";
+    public static final String USE_TAG = "use";
+    public static final String SUBSTITUTION_GROUP_TAG = "substitutionGroup";
+    public static final String DEFAULT_TAG = "default";
+    public static final String FORM_TAG = "form";
+    public static final String NILLABLE_TAG = "nillable";
+    public static final String MIN_OCCURS_TAG = "minOccurs";
+    public static final String MAX_OCCURS_TAG = "maxOccurs";
+    public static final String ITEM_TYPE_TAG = "itemType";
+    public static final String BASE_TAG = "base";
+    public static final String SOURCE_TAG = "source";
+    public static final String XML_LANG_TAG = "xml:lang";
+    public static final String MEMBER_TYPES_TAG = "memberTypes";
+    public static final String SCHEMA_LOCATION = "schemaLocation";
+    public static final String NAMESPACE = "namespace";
     public static final String REF_TAG = "ref";
     protected static final String VALUE_TAG = "value";
 
@@ -69,9 +76,21 @@ public abstract class XsdAbstractElement {
      */
     XsdParserCore parser;
 
-    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap){
+    /**
+     * The visitor instance for this element.
+     */
+    XsdAbstractElementVisitor visitor;
+
+    protected final Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction;
+
+    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction){
         this.parser = parser;
         this.attributesMap = attributesMap;
+        this.visitorFunction = visitorFunction;
+
+        if(visitorFunction != null){
+            this.visitor = visitorFunction.apply(this);
+        }
     }
 
     public Map<String, String> getAttributesMap() {
@@ -82,7 +101,9 @@ public abstract class XsdAbstractElement {
      * Obtains the visitor of a concrete {@link XsdAbstractElement} instance.
      * @return The concrete visitor instance.
      */
-    public abstract XsdAbstractElementVisitor getVisitor();
+    public XsdAbstractElementVisitor getVisitor(){
+        return visitor;
+    }
 
     /**
      * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
@@ -131,10 +152,10 @@ public abstract class XsdAbstractElement {
             if (child.getNodeType() == Node.ELEMENT_NODE) {
                 String nodeName = child.getNodeName();
 
-                BiFunction<XsdParserCore, Node, ReferenceBase> parserFunction = XsdParserCore.getParseMappers().get(nodeName);
+                ConfigEntryData configEntryData = XsdParserCore.getParseMappers().get(nodeName);
 
-                if (parserFunction != null){
-                    XsdAbstractElement childElement = parserFunction.apply(parser, child).getElement();
+                if (configEntryData != null && configEntryData.parserFunction != null){
+                    XsdAbstractElement childElement = configEntryData.parserFunction.apply(new ParseData(parser, child, configEntryData.visitorFunction)).getElement();
 
                     childElement.accept(element.getVisitor());
 
@@ -224,15 +245,23 @@ public abstract class XsdAbstractElement {
      * @return The textual value contained in the {@link Node} parameter.
      */
     static String xsdRawContentParse(Node node) {
-        Node child = node.getFirstChild();
         StringBuilder stringBuilder = new StringBuilder();
 
-        while (child != null) {
-            if (child.getNodeType() == Node.TEXT_NODE || child.getNodeType() == Node.CDATA_SECTION_NODE) {
-                stringBuilder.append(child.getTextContent().trim());
-            }
+        NodeList children = node.getChildNodes();
 
-            child = child.getNextSibling();
+        try {
+            for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
+                Node child = children.item(childIndex);
+
+                StringWriter writer = new StringWriter();
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.transform(new DOMSource(child), new StreamResult(writer));
+                String output = writer.toString().trim();
+                output = output.substring(output.indexOf('>') + 1).trim();
+                stringBuilder.append(output);
+            }
+        } catch (Exception e){
+            throw new ParsingException(e.getMessage());
         }
 
         return stringBuilder.toString();

@@ -14,7 +14,6 @@ import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.function.Function;
 
-import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdDoubleRestrictions.hasDifferentValue;
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdIntegerRestrictions.hasDifferentValue;
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdStringRestrictions.hasDifferentValue;
 import static org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdWhiteSpace.hasDifferentValue;

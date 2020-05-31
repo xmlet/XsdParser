@@ -298,7 +298,7 @@ public abstract class XsdParserCore {
     public void addFileToParse(String schemaLocation) {
         String fileName = schemaLocation.substring(schemaLocation.lastIndexOf("/")+1);
 
-        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName))){
+        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName)) && !schemaLocation.startsWith("http")){
             schemaLocations.add(schemaLocation);
             schemaLocationsMap.put(schemaLocation, currentFile);
         }

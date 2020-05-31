@@ -18,7 +18,7 @@ public class IssuesTest {
     private static final XsdParser parser;
 
     static {
-        parser = new XsdParser(getFilePath());
+        parser = new XsdParser(getFilePath("issues.xsd"));
 
         schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         elements = parser.getResultXsdElements().collect(Collectors.toList());
@@ -127,11 +127,18 @@ public class IssuesTest {
         Assert.assertEquals(hoursPerWeek, xsdBuiltInDataType.getParent());
     }
 
+    @Test
+    public void testIssue23(){
+        XsdParser parser = new XsdParser(getFilePath("issue_23.xsd"));
+
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+    }
+
     /**
      * @return Obtains the filePath of the file associated with this test class.
      */
-    private static String getFilePath(){
-        URL resource = HtmlParseTest.class.getClassLoader().getResource("issues.xsd");
+    private static String getFilePath(String fileName){
+        URL resource = HtmlParseTest.class.getClassLoader().getResource(fileName);
 
         if (resource != null){
             return resource.getPath();

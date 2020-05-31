@@ -80,16 +80,16 @@ public class RestrictionsTest {
         Assert.assertNotNull(totalDigits);
         Assert.assertNotNull(fractionDigits);
 
-        Assert.assertEquals(100d, maxExclusive.getValue(), 0);
+        Assert.assertEquals("100", maxExclusive.getValue());
         Assert.assertTrue(maxExclusive.isFixed());
 
-        Assert.assertEquals(0d, minExclusive.getValue(), 0);
+        Assert.assertEquals("0", minExclusive.getValue());
         Assert.assertTrue(minExclusive.isFixed());
 
-        Assert.assertEquals(99d, maxInclusive.getValue(), 0);
+        Assert.assertEquals("99", maxInclusive.getValue());
         Assert.assertFalse(maxInclusive.isFixed());
 
-        Assert.assertEquals(1d, minInclusive.getValue(), 0);
+        Assert.assertEquals("1", minInclusive.getValue());
         Assert.assertFalse(minInclusive.isFixed());
 
         Assert.assertEquals(2d, fractionDigits.getValue(), 0);
@@ -234,10 +234,6 @@ public class RestrictionsTest {
         Assert.assertEquals(5d, maxLength.getValue(), 0);
     }
 
-    /**
-     * Asserts if all the {@link Double} based restrictions, i.e. {@link XsdDoubleRestrictions}, parse their values
-     * properly.
-     */
     @Test
     public void testDoubleRestrictions() {
         Optional<XsdSchema> xsdSchemaOptional = parser.getResultXsdSchemas().findFirst();
@@ -264,8 +260,8 @@ public class RestrictionsTest {
         Assert.assertNotNull(minInclusive);
         Assert.assertNotNull(maxInclusive);
 
-        Assert.assertEquals(99999999999999d, minInclusive.getValue(), 0);
-        Assert.assertEquals(99999999999999.9d, maxInclusive.getValue(), 0);
+        Assert.assertEquals("99999999999999", minInclusive.getValue());
+        Assert.assertEquals("99999999999999.9", maxInclusive.getValue());
     }
 
     @Test

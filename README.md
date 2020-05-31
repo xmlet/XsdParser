@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.27</version>
+    <version>1.0.28</version>
 </dependency>
 ```
 
@@ -331,6 +331,20 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.0.28
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/23" title="xs:restriction with built-in calendar types as base does not validate">Details</a> - 
+            Changes xsd:minInclusive, xsd:maxInclusive, xsd:minExclusive and xsd:maxExclusive to have a String value instead of a Double value.
+        </li>
+        <li>
+            Changes XsdParserCore.addFileToParse to not allow files with paths that start with http, as this isn't supported.
+        </li>
+    </ul>
+</div>
 
 ### 1.0.27
 

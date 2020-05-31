@@ -1,0 +1,1195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    EAG 2012 Schema
+    Version: 0.4
+    Date: 20190619
+    Editor: Archives Portal Europe Foundation, Working Group on Standards
+-->
+<!--
+    Change log:
+
+    20190619
+    0.4     - made <street> optional as sub-element of <location>
+
+    20140625
+    0.3     - added new elements <actingMaintenanceForGroup>, <actingMaintenance>, <placeEntry>
+            - restricted @localType for <nameEntry> to values "authorized", "alternative", "preferred", "abbreviation", "other"
+            - added elements <useDates>, <authorizedForm>, <aternativeForm> to element <nameEntry>
+            - restricted @localType for <part> to values "corpname", "famname", "persname", "surname", "firstname", "birthname", "title", "prefix", "suffix", "alias", "patronymic", "legalform"/>
+            - added elements <objectBinWrap>, <objectXMLWrap>, <placeEntry> to element <resourceRelation>
+            - restricted @localType for <location> to "visitors address" and "postal address"
+-->
+<xs:schema xmlns="http://www.archivesportaleurope.net/Portal/profiles/eag_2012/"
+           targetNamespace="http://www.archivesportaleurope.net/Portal/profiles/eag_2012/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+               schemaLocation="http://www.w3.org/2007/08/xml.xsd"/>
+
+    <xs:element name="eag">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="control" type="control"/>
+                <xs:element name="archguide" type="archguide"/>
+                <xs:element name="relations" type="relations" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="audience" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="external"/>
+                        <xs:enumeration value="internal"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute ref="xml:base"/>
+            <xs:attribute ref="xml:lang"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:attributeGroup name="href">
+        <xs:attribute name="href" type="xs:anyURI"/>
+    </xs:attributeGroup>
+
+    <!-- ###############
+       CONTROL
+   ################ -->
+
+    <xs:complexType name="control">
+        <xs:sequence>
+            <xs:element name="recordId" type="recordId"/>
+            <xs:element name="otherRecordId" type="otherRecordId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="maintenanceAgency" type="maintenanceAgency"/>
+            <xs:element name="maintenanceStatus" type="maintenanceStatus"/>
+            <xs:element name="maintenanceHistory" type="maintenanceHistory"/>
+            <xs:element name="languageDeclarations" type="languageDeclarations" minOccurs="0"/>
+            <xs:element name="conventionDeclaration" type="conventionDeclaration" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="localControl" type="localControl" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="localTypeDeclaration" type="localTypeDeclaration" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="publicationStatus" type="publicationStatus" minOccurs="0"/>
+            <xs:element name="sources" type="sources" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="recordIdType">
+        <xs:restriction base="xs:token">
+            <xs:pattern
+                    value="((AF|AX|AL|DZ|AS|AD|AO|AI|AQ|AG|AR|AM|AW|AU|AT|AZ|BS|BH|BD|BB|BY|BE|BZ|BJ|BM|BT|BO|BA|BW|BV|BR|IO|BN|BG|BF|BI|KH|CM|CA|CV|KY|CF|TD|CL|CN|CX|CC|CO|KM|CG|CD|CK|CR|CI|HR|CU|CY|CZ|DK|DJ|DM|DO|EC|EG|SV|GQ|ER|EE|ET|FK|FO|FJ|FI|FR|GF|PF|TF|GA|GM|GE|DE|GH|GI|GR|GL|GD|GP|GU|GT|GN|GW|GY|HT|HM|VA|HN|HK|HU|IS|IN|ID|IR|IQ|IE|IL|IT|JM|JP|JO|KZ|KE|KI|KP|KR|KW|KG|LA|LV|LB|LS|LR|LY|LI|LT|LU|MO|MK|MG|MW|MY|MV|ML|MT|MH|MQ|MR|MU|YT|MX|FM|MD|MC|MN|MS|MA|MZ|MM|NA|NR|NP|NL|AN|NC|NZ|NI|NE|NG|NU|NF|MP|NO|OM|PK|PW|PS|PA|PG|PY|PE|PH|PN|PL|PT|PR|QA|RE|RO|RU|RW|SH|KN|LC|PM|VC|WS|SM|ST|SA|SN|CS|SC|SL|SG|SK|SI|SB|SO|ZA|GS|ES|LK|SD|SR|SJ|SZ|SE|CH|SY|TW|TJ|TZ|TH|TL|TG|TK|TO|TT|TN|TR|TM|TC|TV|UG|UA|AE|GB|US|UM|UY|UZ|VU|VE|VN|VG|VI|WF|EH|YE|ZM|ZW|RS|ME|EU|EUR|IM|XX)|([a-zA-Z]{1})|([a-zA-Z]{3,4}))(-[a-zA-Z0-9:/\-]{1,11})"
+            />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="recordId">
+        <xs:simpleContent>
+            <xs:extension base="recordIdType">
+                <xs:attributeGroup ref="sourceAttribute"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="otherRecordId">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="localType" type="xs:anyURI"/>
+                <xs:attributeGroup ref="sourceAttribute"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:attributeGroup name="localType">
+        <xs:attribute name="localType" type="xs:anyURI"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="maintenanceAgency">
+        <xs:sequence>
+            <xs:element name="agencyCode" type="agencyCode"/>
+            <xs:element name="agencyName" type="agencyName"/>
+            <xs:element name="otherAgencyCode" type="otherAgencyCode" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="maintenanceStatus">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="cancelled"/>
+                        <xs:enumeration value="deleted"/>
+                        <xs:enumeration value="deletedMerged"/>
+                        <xs:enumeration value="deletedReplaced"/>
+                        <xs:enumeration value="deletedSplit"/>
+                        <xs:enumeration value="derived"/>
+                        <xs:enumeration value="new"/>
+                        <xs:enumeration value="revised"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="maintenanceHistory">
+        <xs:sequence>
+            <xs:element name="maintenanceEvent" type="maintenanceEvent" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="maintenanceEvent">
+        <xs:sequence>
+            <xs:element name="agent" type="agent"/>
+            <xs:element name="agentType" type="agentType"/>
+            <xs:element name="eventDateTime" type="eventDateTime"/>
+            <xs:element name="eventType" type="eventType"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang"/>
+    </xs:complexType>
+
+    <xs:complexType name="eventType">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="created"/>
+                        <xs:enumeration value="revised"/>
+                        <xs:enumeration value="deleted"/>
+                        <xs:enumeration value="cancelled"/>
+                        <xs:enumeration value="derived"/>
+                        <xs:enumeration value="updated"/>
+                        <xs:enumeration value="published"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="eventDateTime" mixed="true">
+        <xs:attribute name="standardDateTime" type="m.data.standardDateTime"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:simpleType name="m.data.standardDateTime">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:date">
+                    <xs:maxInclusive value="2099-12-31"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:gYear">
+                    <xs:maxInclusive value="2099"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:gYearMonth">
+                    <xs:maxInclusive value="2099-12"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:dateTime">
+                    <xs:maxInclusive value="2099-12-31T23:59:59"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:complexType name="agentType">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="human"/>
+                        <xs:enumeration value="machine"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="agent" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="languageDeclarations">
+        <xs:sequence>
+            <xs:element name="languageDeclaration" type="languageDeclaration" maxOccurs="unbounded"
+            />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="languageDeclaration">
+        <xs:sequence>
+            <xs:element name="language" type="language"/>
+            <xs:element name="script" type="script"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="language" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute name="languageCode" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-z]{3}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="script" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="a.scriptCode"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:attributeGroup name="a.scriptCode">
+        <xs:attribute name="scriptCode">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-Z][a-z]{3}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:complexType name="conventionDeclaration">
+        <xs:sequence>
+            <xs:element name="abbreviation" type="abbreviation" minOccurs="0"/>
+            <xs:element name="citation" type="citation" maxOccurs="unbounded"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="abbreviation" mixed="true">
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="citation" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="href"/>
+        <xs:attribute name="lastDateTimeVerified" type="m.data.standardDateTime"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="localControl">
+        <xs:sequence>
+            <xs:element name="term" type="term" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:choice minOccurs="0">
+                <xs:element name="date" type="date"/>
+                <xs:element name="dateRange" type="dateRange"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attributeGroup ref="localType"/>
+    </xs:complexType>
+
+    <xs:complexType name="term">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="simple"/>
+                        <xs:enumeration value="extended"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                <xs:attributeGroup ref="m.entryLanguageAttributes"/>
+                <xs:attribute name="lastDateTimeVerified" type="m.data.standardDateTime"/>
+                <xs:attribute name="vocabularySource" type="xs:anyURI"/>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:attributeGroup name="m.entryLanguageAttributes">
+        <xs:attributeGroup ref="a.scriptCode"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute name="transliteration" type="xs:NMTOKEN"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="date" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute name="localType" type="xs:anyURI"/>
+        <xs:attributeGroup ref="m.dateSingle"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:attributeGroup name="m.dateSingle">
+        <xs:attribute name="standardDate" type="m.data.standardDate"/>
+        <xs:attribute name="notBefore" type="m.data.standardDate"/>
+        <xs:attribute name="notAfter" type="m.data.standardDate"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="dateRange">
+        <xs:sequence>
+            <xs:element name="fromDate" type="fromDate"/>
+            <xs:element name="toDate" type="toDate"/>
+        </xs:sequence>
+        <xs:attribute name="localType" type="xs:anyURI"/>
+    </xs:complexType>
+
+    <xs:complexType name="fromDate" mixed="true">
+        <xs:attributeGroup ref="m.dateSingle"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="toDate" mixed="true">
+        <xs:attributeGroup ref="m.dateSingle"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:simpleType name="m.data.standardDate">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:date">
+                    <xs:maxInclusive value="2099-12-31"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:gYear">
+                    <xs:maxInclusive value="2099"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:gYearMonth">
+                    <xs:maxInclusive value="2099-12"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:complexType name="localTypeDeclaration">
+        <xs:sequence>
+            <xs:element name="citation" type="citation"/>
+            <xs:element name="abbreviation" type="abbreviation" minOccurs="0"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="publicationStatus">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="inProcess"/>
+                        <xs:enumeration value="approved"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="sources">
+        <xs:sequence>
+            <xs:element name="source" type="source" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="source">
+        <xs:sequence>
+            <xs:element name="sourceEntry" type="sourceEntry" minOccurs="0"/>
+            <xs:choice minOccurs="0">
+                <xs:element name="objectXMLWrap" type="objectXMLWrap"/>
+                <xs:element name="objectBinWrap" type="objectBinWrap"/>
+            </xs:choice>
+            <xs:element minOccurs="0" name="descriptiveNote" type="descriptiveNote"/>
+        </xs:sequence>
+        <xs:attribute name="lastDateTimeVerified" type="m.data.standardDateTime"/>
+        <xs:attributeGroup ref="href"/>
+    </xs:complexType>
+
+    <xs:complexType name="sourceEntry" mixed="true">
+        <xs:attributeGroup ref="m.entryLanguageAttributes"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="objectXMLWrap">
+        <xs:group ref="e.anyName"/>
+    </xs:complexType>
+
+    <xs:complexType name="objectBinWrap">
+        <xs:simpleContent>
+            <xs:extension base="xs:base64Binary"> </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:group name="e.anyName">
+        <xs:sequence>
+            <xs:any processContents="skip"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="agencyCode" mixed="true">
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="agencyName" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="otherAgencyCode" mixed="true">
+        <xs:attributeGroup ref="localType"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="descriptiveNote">
+        <xs:sequence>
+            <xs:element name="p" type="p" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="p" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+
+    <!-- ##################
+        ARCHGUIDE
+    ################### -->
+
+
+    <xs:complexType name="archguide">
+        <xs:sequence>
+            <xs:element name="identity" type="identity"/>
+            <xs:element name="desc" type="desc"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="identity">
+        <xs:sequence>
+            <xs:element name="repositorid" type="repositorid" minOccurs="0"/>
+            <xs:element name="otherRepositorId" type="otherRepositorId" minOccurs="0"/>
+            <xs:element name="autform" type="autform" maxOccurs="unbounded"/>
+            <xs:element name="parform" type="parform" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="nonpreform" type="nonpreform" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="repositoryType" type="repositoryType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositorid">
+        <xs:attribute name="countrycode" use="required" type="xs:NMTOKEN"/>
+        <xs:attribute name="repositorycode" type="xs:NMTOKEN"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="otherRepositorId" mixed="true">
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="autform" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="parform" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="nonpreform" mixed="true">
+        <xs:sequence>
+            <xs:element name="useDates" type="useDates"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="useDates">
+        <xs:sequence>
+            <xs:group ref="m.dates"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name="m.dates">
+        <xs:choice>
+            <xs:element name="date" type="date"/>
+            <xs:element name="dateRange" type="dateRange"/>
+            <xs:element name="dateSet" type="dateSet"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="dateSet">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="date" type="date"/>
+                <xs:element name="dateRange" type="dateRange"/>
+            </xs:choice>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="date" type="date"/>
+                <xs:element name="dateRange" type="dateRange"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositoryType">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="National archives"/>
+                        <xs:enumeration value="Regional archives"/>
+                        <xs:enumeration value="County/local authority archives"/>
+                        <xs:enumeration value="Municipal archives"/>
+                        <xs:enumeration value="Specialised government archives"/>
+                        <xs:enumeration value="Private persons and family archives"/>
+                        <xs:enumeration value="Church and religious archives"/>
+                        <xs:enumeration value="Business archives"/>
+                        <xs:enumeration value="University and research archives"/>
+                        <xs:enumeration value="Media archives"/>
+                        <xs:enumeration
+                                value="Archives of political parties, of popular/labour movement and other non-governmental organisations, associations, agencies and foundations"/>
+                        <xs:enumeration
+                                value="Specialised non-governmental archives and archives of other cultural (heritage) institutions"
+                        />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="desc">
+        <xs:sequence>
+            <xs:element name="repositories" type="repositories"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositories">
+        <xs:sequence>
+            <xs:element name="repository" type="repository" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repository">
+        <xs:sequence>
+            <xs:element name="repositoryName" type="repositoryName" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="repositoryRole" type="repositoryRole" minOccurs="0"/>
+            <xs:element name="geogarea" type="geogarea"/>
+            <xs:element name="location" type="location" maxOccurs="unbounded"/>
+            <xs:element name="telephone" type="telephone" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="fax" type="fax" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="email" type="email" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="directions" type="directions" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="repositorhist" type="repositorhist" minOccurs="0"/>
+            <xs:element name="repositorfound" type="repositorfound" minOccurs="0"/>
+            <xs:element name="repositorsup" type="repositorsup" minOccurs="0"/>
+            <xs:element name="buildinginfo" type="buildinginfo" minOccurs="0"/>
+            <xs:element name="adminhierarchy" type="adminhierarchy" minOccurs="0"/>
+            <xs:element name="holdings" type="holdings" minOccurs="0"/>
+            <xs:element name="timetable" type="timetable"/>
+            <xs:element name="access" type="access"/>
+            <xs:element name="accessibility" type="accessibility" maxOccurs="unbounded"/>
+            <xs:element name="services" type="services" minOccurs="0"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositoryName" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="repositoryRole">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="Branch"/>
+                        <xs:enumeration value="Head quarter"/>
+                        <xs:enumeration value="Interim archive"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="geogarea">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="Africa"/>
+                        <xs:enumeration value="Antarctica"/>
+                        <xs:enumeration value="Asia"/>
+                        <xs:enumeration value="Australia"/>
+                        <xs:enumeration value="Europe"/>
+                        <xs:enumeration value="North America"/>
+                        <xs:enumeration value="South America"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="location">
+        <xs:sequence>
+            <xs:element name="country" type="country"/>
+            <xs:element name="firstdem" type="firstdem" minOccurs="0"/>
+            <xs:element name="secondem" type="secondem" minOccurs="0"/>
+            <xs:element name="municipalityPostalcode" type="municipalityPostalcode"/>
+            <xs:element name="localentity" type="localentity" minOccurs="0"/>
+            <xs:element name="street" type="street" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="localType" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="visitors address"/>
+                    <xs:enumeration value="postal address"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="longitude" type="xs:NMTOKEN"/>
+        <xs:attribute name="latitude" type="xs:NMTOKEN"/>
+    </xs:complexType>
+
+    <xs:complexType name="country" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="firstdem" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="secondem" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="municipalityPostalcode" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="localentity" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="street" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="telephone" mixed="true">
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="fax" mixed="true">
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="email" mixed="true">
+        <xs:attributeGroup ref="href"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="webpage" mixed="true">
+        <xs:attributeGroup ref="href"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="directions" mixed="true">
+        <xs:sequence>
+            <xs:element name="citation" type="citation" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="repositorhist">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositorfound">
+        <xs:sequence>
+            <xs:element name="date" type="date"/>
+            <xs:element name="rule" type="rule" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositorsup">
+        <xs:sequence>
+            <xs:element name="date" type="date"/>
+            <xs:element name="rule" type="rule" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rule" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="buildinginfo">
+        <xs:sequence>
+            <xs:element name="building" type="building" minOccurs="0"/>
+            <xs:element name="repositorarea" type="repositorarea" minOccurs="0"/>
+            <xs:element name="lengthshelf" type="lengthshelf" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="building">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="repositorarea">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="lengthshelf">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="num" mixed="true">
+        <xs:attribute name="unit" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="squaremetre"/>
+                    <xs:enumeration value="linearmetre"/>
+                    <xs:enumeration value="site"/>
+                    <xs:enumeration value="book"/>
+                    <xs:enumeration value="title"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="adminhierarchy">
+        <xs:sequence>
+            <xs:element name="adminunit" type="adminunit" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="adminunit" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="holdings">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:group ref="m.dates" minOccurs="0"/>
+            <xs:element name="extent" type="extent" minOccurs="0"/>
+            <xs:element name="actingMaintenanceForGroup" type="actingMaintenanceForGroup" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="extent">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="actingMaintenanceForGroup">
+        <xs:sequence>
+            <xs:element name="actingMaintenanceFor" type="actingMaintenanceFor" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="actingMaintenanceFor">
+        <xs:sequence>
+            <xs:element name="nameEntry" type="nameEntry" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="placeEntry" type="placeEntry" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="nameEntry">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="part" type="part"/>
+            <xs:element name="useDates" type="useDates" minOccurs="0"/>
+            <xs:element name="authorizedForm" type="xs:token" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="alternativeForm" type="xs:token" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="localType">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="authorized"/>
+                    <xs:enumeration value="alternative"/>
+                    <xs:enumeration value="preferred"/>
+                    <xs:enumeration value="abbreviation"/>
+                    <xs:enumeration value="other"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="part" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute name="localType">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="corpname"/>
+                    <xs:enumeration value="famname"/>
+                    <xs:enumeration value="persname"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="placeEntry" mixed="true">
+        <xs:attributeGroup ref="m.entryLanguageAttributes"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+        <xs:attribute name="accuracy" type="xs:NMTOKEN"/>
+        <xs:attribute name="altitude" type="xs:NMTOKEN"/>
+        <xs:attribute name="countryCode">
+            <xs:simpleType>
+                <xs:union>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Z]{2}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Z]{4}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:union>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="latitude" type="xs:NMTOKEN"/>
+        <xs:attribute name="localType" type="xs:anyURI"/>
+        <xs:attribute name="longitude" type="xs:NMTOKEN"/>
+        <xs:attribute name="vocabularySource" type="xs:anyURI"/>
+    </xs:complexType>
+
+    <xs:complexType name="timetable">
+        <xs:sequence>
+            <xs:element name="opening" type="opening" maxOccurs="unbounded"/>
+            <xs:element name="closing" type="closing" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+    </xs:complexType>
+    <xs:complexType name="opening" mixed="true">
+        <xs:attributeGroup ref="href"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="closing" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute name="standardDate" type="m.data.standardDate"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="access">
+        <xs:sequence>
+            <xs:element name="restaccess" type="restaccess" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="termsOfUse" type="termsOfUse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:attributeGroup name="question">
+        <xs:attribute name="question" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="yes"/>
+                    <xs:enumeration value="no"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:complexType name="restaccess" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="termsOfUse" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="href"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="accessibility" mixed="true">
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="question"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="services">
+        <xs:sequence>
+            <xs:element name="searchroom" type="searchroom" minOccurs="0"/>
+            <xs:element name="library" type="library" minOccurs="0"/>
+            <xs:element name="internetAccess" type="internetAccess" minOccurs="0"/>
+            <xs:element name="techservices" type="techservices" minOccurs="0"/>
+            <xs:element name="recreationalServices" type="recreationalServices" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="searchroom">
+        <xs:sequence>
+            <xs:element name="contact" type="contact" minOccurs="0"/>
+            <xs:element name="workPlaces" type="workPlaces" minOccurs="0"/>
+            <xs:element name="computerPlaces" type="computerPlaces" minOccurs="0"/>
+            <xs:element name="microfilmPlaces" type="microfilmPlaces" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="photographAllowance" type="photographAllowance" minOccurs="0"/>
+            <xs:element name="readersTicket" type="readersTicket" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="advancedOrders" type="advancedOrders" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="researchServices" type="researchServices" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contact">
+        <xs:sequence>
+            <xs:element name="telephone" type="telephone" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="email" type="email" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="nameEntry" type="nameEntry" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="workPlaces">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="computerPlaces">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="microfilmPlaces">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="photographAllowance">
+        <xs:simpleContent>
+            <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="depending on the material"/>
+                        <xs:enumeration value="no"/>
+                        <xs:enumeration value="yes"/>
+                        <xs:enumeration value="yes (without flash)"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="readersTicket" mixed="true">
+        <xs:attributeGroup ref="href"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="advancedOrders" mixed="true">
+        <xs:attributeGroup ref="href"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="researchServices">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="library">
+        <xs:sequence>
+            <xs:element name="contact" type="contact" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="monographicpub" type="monographicpub" minOccurs="0"/>
+            <xs:element name="serialpub" type="serialpub" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="monographicpub">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="serialpub">
+        <xs:sequence>
+            <xs:element name="num" type="num"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="internetAccess">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="techservices">
+        <xs:sequence>
+            <xs:element name="restorationlab" type="restorationlab" minOccurs="0"/>
+            <xs:element name="reproductionser" type="reproductionser" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="restorationlab">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:element name="contact" type="contact" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="reproductionser">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:element name="contact" type="contact" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="microformser" type="microformser" minOccurs="0"/>
+            <xs:element name="photographser" type="photographser" minOccurs="0"/>
+            <xs:element name="digitalser" type="digitalser" minOccurs="0"/>
+            <xs:element name="photocopyser" type="photocopyser" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="microformser">
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="photographser">
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="digitalser">
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="photocopyser">
+        <xs:attributeGroup ref="question"/>
+    </xs:complexType>
+
+    <xs:complexType name="recreationalServices">
+        <xs:sequence>
+            <xs:element name="refreshment" type="refreshment" minOccurs="0"/>
+            <xs:element name="exhibition" type="exhibition" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="toursSessions" type="toursSessions" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="otherServices" type="otherServices" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="refreshment">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="exhibition">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="toursSessions">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="otherServices">
+        <xs:sequence>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:element name="webpage" type="webpage" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- ##################
+       RELATIONS
+   ################### -->
+
+
+    <xs:complexType name="relations">
+        <xs:sequence>
+            <xs:element name="resourceRelation" type="resourceRelation" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="eagRelation" type="eagRelation" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="resourceRelation">
+        <xs:sequence>
+            <xs:element name="relationEntry" type="relationEntry" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:group ref="m.dates" minOccurs="0"/>
+            <xs:element name="objectBinWrap" type="objectBinWrap" minOccurs="0"/>
+            <xs:element name="objectXMLWrap" type="objectXMLWrap" minOccurs="0"/>
+            <xs:element name="placeEntry" type="placeEntry" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="resourceRelationType" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="creatorOf"/>
+                    <xs:enumeration value="subjectOf"/>
+                    <xs:enumeration value="other"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="lastDateTimeVerified" type="m.data.standardDateTime"/>
+        <xs:attributeGroup ref="href"/>
+    </xs:complexType>
+
+    <xs:complexType name="relationEntry" mixed="true">
+        <xs:attribute name="localType" type="xs:anyURI"/>
+        <xs:attributeGroup ref="m.entryLanguageAttributes"/>
+        <xs:attributeGroup ref="sourceAttribute"/>
+    </xs:complexType>
+
+    <xs:complexType name="eagRelation">
+        <xs:sequence>
+            <xs:element name="relationEntry" type="relationEntry" minOccurs="0"
+                        maxOccurs="unbounded"/>
+            <xs:element name="descriptiveNote" type="descriptiveNote" minOccurs="0"/>
+            <xs:group ref="m.dates" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="eagRelationType" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:token">
+                    <xs:enumeration value="hierarchical-child"/>
+                    <xs:enumeration value="hierarchical-parent"/>
+                    <xs:enumeration value="temporal-earlier"/>
+                    <xs:enumeration value="temporal-later"/>
+                    <xs:enumeration value="associative"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="lastDateTimeVerified" type="m.data.standardDateTime"/>
+        <xs:attributeGroup ref="href"/>
+    </xs:complexType>
+
+    <xs:attributeGroup name="sourceAttribute">
+        <xs:attribute name="source" type="xs:anyURI"/>
+    </xs:attributeGroup>
+
+</xs:schema>

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -83,8 +84,10 @@ public class XsdAttributeGroup extends XsdNamedElements {
 
         XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        elementCopy.attributes.addAll(this.attributes);
-        elementCopy.attributeGroups.addAll(this.attributeGroups);
+        elementCopy.attributes = this.attributes.stream().map(attributeReference -> ReferenceBase.clone(attributeReference, elementCopy)).collect(Collectors.toList());
+        elementCopy.attributeGroups = this.attributeGroups.stream().map(attributeGroup -> (XsdAttributeGroup) attributeGroup.clone(attributeGroup.getAttributesMap(), elementCopy)).collect(Collectors.toList());
+
+        elementCopy.parent = null;
 
         return elementCopy;
     }
@@ -92,11 +95,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
     @Override
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         if (element.getElement() instanceof  XsdAttributeGroup){
-            XsdAttributeGroup attributeGroup = (XsdAttributeGroup) element.getElement();
-
-            attributeGroup.attributes.forEach(attribute -> attribute.getElement().setParent(attributeGroup));
-
-            this.attributeGroups.add(attributeGroup);
+            this.attributeGroups.add((XsdAttributeGroup) element.getElement());
         }
     }
 

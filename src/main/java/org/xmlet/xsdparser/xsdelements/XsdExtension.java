@@ -86,18 +86,36 @@ public class XsdExtension extends XsdAnnotatedElements {
             this.base = element;
         }
 
-        if (this.childElement instanceof UnsolvedReference &&
-                elem instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
+        if (this.childElement instanceof UnsolvedReference && elem instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
             this.childElement = element;
         }
 
-        ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(element);
+        ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(element, this);
     }
 
     @Override
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    @Override
+    public XsdExtension clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(attributesMap);
+
+        XsdExtension elementCopy = new XsdExtension(this.parser, placeHolderAttributes, visitorFunction);
+
+        elementCopy.childElement = ReferenceBase.clone(this.childElement, elementCopy);
+        elementCopy.base = this.base;
+        elementCopy.parent = null;
+
+        return elementCopy;
     }
 
     /**

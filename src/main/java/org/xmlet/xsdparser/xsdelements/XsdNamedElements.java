@@ -27,14 +27,6 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
     }
 
     /**
-     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
-     * {@link UnsolvedReference} objects in the reference solving process.
-     * @param placeHolderAttributes The additional attributes to add to the clone.
-     * @return A copy of the object from which is called upon.
-     */
-    public abstract XsdNamedElements clone(@NotNull Map<String, String> placeHolderAttributes);
-
-    /**
      * Runs verifications on each concrete element to ensure that the XSD schema rules are verified.
      */
     @Override

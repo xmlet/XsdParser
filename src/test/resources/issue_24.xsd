@@ -1,0 +1,40 @@
+<!--<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" atributeFormDefault="qualified">-->
+<!--    <xsd:complexType name="CT1">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="Nr" type="xsd:string" minOccurs="0" maxOccurs="1"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+<!--    <xsd:complexType name="CT2">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="Nr" type="xsd:string" minOccurs="0" maxOccurs="1"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+<!--</xsd:schema>-->
+
+<!--<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">-->
+<!--    <xsd:complexType name="CT1">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="Nr1" type="xsd:string" minOccurs="0" maxOccurs="1"/>-->
+<!--            <xsd:element name="CT2Element" type="CT2" minOccurs="0" maxOccurs="unbounded" />-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+<!--    <xsd:complexType name="CT2">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="Nr2" type="xsd:string" minOccurs="0" maxOccurs="1"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+<!--</xsd:schema>-->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xsd:complexType name="CT1">
+        <xsd:sequence>
+            <xsd:element name="Nr1" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="CT1Element" type="CT1" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CT2">
+        <xsd:sequence>
+            <xsd:element name="Nr2" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

@@ -3,11 +3,13 @@ package org.xmlet.xsdparser.xsdelements;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * A class representing the xsd:list element.
@@ -42,6 +44,27 @@ public class XsdList extends XsdAnnotatedElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    @Override
+    public XsdList clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(attributesMap);
+
+        XsdList elementCopy = new XsdList(this.parser, placeHolderAttributes, visitorFunction);
+
+        if (this.simpleType != null){
+            elementCopy.simpleType = (XsdSimpleType) this.simpleType.clone(simpleType.getAttributesMap(), elementCopy);
+        }
+
+        elementCopy.parent = null;
+
+        return elementCopy;
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

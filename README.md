@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.28</version>
+    <version>1.0.29</version>
 </dependency>
 ```
 
@@ -331,6 +331,22 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.0.29
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/24" title="Parent releationship strange (or broken?)">Details</a> - 
+            Removes assignment of the XsdElement as parent of the XsdComplexType when the type attribute was being resolved for the XsdElement.
+            This was the cause of some circular reference issues. 
+        </li>
+        <li>
+            Adds XsdAbstractElement.getXsdSchema() which returns the XsdSchema of any given XsdAbstractElement based on the
+            parent of the XsdAbstractElement. Suggested by: <a href="https://github.com/hein4daddel" title="hein4daddel">hein4daddel</a>
+        </li>
+    </ul>
+</div>
 
 ### 1.0.28
 

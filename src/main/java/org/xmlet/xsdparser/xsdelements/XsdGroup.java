@@ -120,8 +120,8 @@ public class XsdGroup extends XsdNamedElements {
 
         XsdGroup elementCopy = new XsdGroup(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        if (childElement != null){
-            elementCopy.setChildElement(this.childElement);
+        if (this.childElement != null){
+            elementCopy.childElement = (XsdMultipleElements) this.childElement.clone(this.childElement.getAttributesMap(), elementCopy);
         }
 
         return elementCopy;

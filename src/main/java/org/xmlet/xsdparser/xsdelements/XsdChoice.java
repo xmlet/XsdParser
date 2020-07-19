@@ -3,6 +3,7 @@ package org.xmlet.xsdparser.xsdelements;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
@@ -46,6 +47,23 @@ public class XsdChoice extends XsdMultipleElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    @Override
+    public XsdChoice clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(attributesMap);
+
+        XsdChoice elementCopy = new XsdChoice(this.getParser(), placeHolderAttributes, visitorFunction);
+
+        elementCopy.setParent(null);
+
+        return elementCopy;
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

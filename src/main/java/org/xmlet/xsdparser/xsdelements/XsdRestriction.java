@@ -4,6 +4,7 @@ import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdRestrictionsVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -111,7 +113,76 @@ public class XsdRestriction extends XsdAnnotatedElements {
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         super.replaceUnsolvedElements(element);
 
-        ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(element);
+        ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(element, this);
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    @Override
+    public XsdRestriction clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(attributesMap);
+
+        XsdRestriction elementCopy = new XsdRestriction(this.parser, placeHolderAttributes, visitorFunction);
+
+        if (this.simpleType != null){
+            elementCopy.simpleType = (XsdSimpleType) this.simpleType.clone(simpleType.getAttributesMap(), elementCopy);
+        }
+
+        if (this.enumeration != null){
+            elementCopy.enumeration = this.enumeration.stream().map(enumeration -> (XsdEnumeration) enumeration.clone(enumeration.getAttributesMap(), elementCopy)).collect(Collectors.toList());
+        }
+
+        if (this.fractionDigits != null){
+            elementCopy.fractionDigits = (XsdFractionDigits) this.fractionDigits.clone(fractionDigits.getAttributesMap(), elementCopy);
+        }
+
+        if (this.length != null){
+            elementCopy.length = (XsdLength) this.length.clone(length.getAttributesMap(), elementCopy);
+        }
+
+        if (this.maxExclusive != null){
+            elementCopy.maxExclusive = (XsdMaxExclusive) this.maxExclusive.clone(maxExclusive.getAttributesMap(), elementCopy);
+        }
+
+        if (this.maxInclusive != null){
+            elementCopy.maxInclusive = (XsdMaxInclusive) this.maxInclusive.clone(maxInclusive.getAttributesMap(), elementCopy);
+        }
+
+        if (this.maxLength != null){
+            elementCopy.maxLength = (XsdMaxLength) this.maxLength.clone(maxLength.getAttributesMap(), elementCopy);
+        }
+
+        if (this.minExclusive != null){
+            elementCopy.minExclusive = (XsdMinExclusive) this.minExclusive.clone(minExclusive.getAttributesMap(), elementCopy);
+        }
+
+        if (this.minInclusive != null){
+            elementCopy.minInclusive = (XsdMinInclusive) this.minInclusive.clone(minInclusive.getAttributesMap(), elementCopy);
+        }
+
+        if (this.minLength != null){
+            elementCopy.minLength = (XsdMinLength) this.minLength.clone(minLength.getAttributesMap(), elementCopy);
+        }
+
+        if (this.pattern != null){
+            elementCopy.pattern = (XsdPattern) this.pattern.clone(pattern.getAttributesMap(), elementCopy);
+        }
+
+        if (this.totalDigits != null){
+            elementCopy.totalDigits = (XsdTotalDigits) this.totalDigits.clone(totalDigits.getAttributesMap(), elementCopy);
+        }
+
+        if (this.whiteSpace != null){
+            elementCopy.whiteSpace = (XsdWhiteSpace) this.whiteSpace.clone(whiteSpace.getAttributesMap(), elementCopy);
+        }
+
+        elementCopy.parent = null;
+
+        return elementCopy;
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

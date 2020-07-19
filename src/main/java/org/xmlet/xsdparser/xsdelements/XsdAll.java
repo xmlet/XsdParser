@@ -3,7 +3,9 @@ package org.xmlet.xsdparser.xsdelements;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -50,6 +52,23 @@ public class XsdAll extends XsdMultipleElements {
 
     public static ReferenceBase parse(@NotNull ParseData parseData){
         return xsdParseSkeleton(parseData.node, new XsdAll(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    @Override
+    public XsdAll clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(attributesMap);
+
+        XsdAll elementCopy = new XsdAll(this.getParser(), placeHolderAttributes, visitorFunction);
+
+        elementCopy.setParent(null);
+
+        return elementCopy;
     }
 
     @SuppressWarnings("unused")

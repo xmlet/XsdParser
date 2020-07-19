@@ -143,7 +143,7 @@ public abstract class XsdParserCore {
                 NamedConcreteElement substitutionElementWrapper;
 
                 if (!unsolvedReference.isTypeRef()){
-                    XsdNamedElements substitutionElement = concreteElement.getElement().clone(oldElementAttributes);
+                    XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(oldElementAttributes, concreteElement.getElement().getParent());
 
                     substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
                 } else {
@@ -182,10 +182,14 @@ public abstract class XsdParserCore {
                                 .map(concreteElement -> (NamedConcreteElement) concreteElement)
                                 .collect(groupingBy(NamedConcreteElement::getName));
 
-                unsolvedElements.getOrDefault(fileName, new ArrayList<>())
+                List<UnsolvedReference> unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
                         .stream()
                         .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
-                        .forEach(unsolvedElement -> replaceUnsolvedReference(concreteElementsMap, unsolvedElement));
+                        .collect(Collectors.toList());
+
+                for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
+                    replaceUnsolvedReference(concreteElementsMap, unsolvedReference);
+                }
             });
     }
 
@@ -206,7 +210,7 @@ public abstract class XsdParserCore {
                 NamedConcreteElement substitutionElementWrapper;
 
                 if (!unsolvedReference.isTypeRef()){
-                    XsdNamedElements substitutionElement = concreteElement.getElement().clone(oldElementAttributes);
+                    XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(oldElementAttributes, concreteElement.getElement().getParent());
 
                     substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
                 } else {

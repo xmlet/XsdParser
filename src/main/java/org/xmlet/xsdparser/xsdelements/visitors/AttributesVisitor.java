@@ -101,16 +101,16 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
      * @param element The resolved element that will be match with the contents of this visitor in order to assert if
      *                there is anything to replace.
      */
-    public void replaceUnsolvedAttributes(NamedConcreteElement element){
+    public void replaceUnsolvedAttributes(NamedConcreteElement element, XsdAbstractElement parent){
         if (element.getElement() instanceof XsdAttributeGroup){
             attributeGroups.stream()
                     .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attributeGroup))
                     .findFirst().ifPresent(referenceBase -> {
                 attributeGroups.remove(referenceBase);
-                attributeGroups.add(element);
-                attributes.addAll(element.getElement().getElements());
+                ReferenceBase attributeGroupCloneReference = ReferenceBase.clone(element, parent);
 
-                element.getElement().setParent(getOwner());
+                attributeGroups.add(attributeGroupCloneReference);
+                attributes.addAll(attributeGroupCloneReference.getElement().getElements());
             });
         }
 
@@ -119,8 +119,7 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
                     .filter(attribute -> attribute instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attribute))
                     .findFirst().ifPresent(referenceBase -> {
                 attributes.remove(referenceBase);
-                attributes.add(element);
-                element.getElement().setParent(getOwner());
+                attributes.add(ReferenceBase.clone(element, parent));
             });
         }
     }

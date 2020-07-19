@@ -134,6 +134,36 @@ public class IssuesTest {
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
     }
 
+    @Test
+    public void testIssue24(){
+        XsdParser parser = new XsdParser(getFilePath("issue_24.xsd"));
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+        for (XsdSchema schema : schemas) {
+            List<XsdComplexType> cts = schema.getChildrenComplexTypes().collect(Collectors.toList());
+            for (XsdComplexType ct : cts) {
+//                System.out.println("----------------------------------------------------------");
+//                System.out.println("ComplexType " + ct.getName() + "#" + System.identityHashCode(ct));
+//                ct.getXsdElements().forEach(e -> System.out.println(" -> children=" + getInfo(e)));
+//                System.out.println(" -> parent=" + getInfo(ct.getParent()));
+//                ct.getParent()
+//                        .getXsdElements()
+//                        .forEach(e -> System.out.println(" -> -> Parent Children =" + getInfo(e)));
+//                System.out.println(" -> grandparent=" + (ct.getParent() != null ? getInfo(ct.getParent().getParent()) : "null"));
+                Assert.assertEquals(schema, ct.getXsdSchema());
+            }
+        }
+    }
+
+    private String getInfo(XsdAbstractElement xae) {
+        if (xae == null) {
+            return "null";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append(xae.getClass().getSimpleName() + "#" + System.identityHashCode(xae) + " " + xae.getAttributesMap());
+            return sb.toString();
+        }
+    }
+
     /**
      * @return Obtains the filePath of the file associated with this test class.
      */

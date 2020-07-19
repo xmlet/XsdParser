@@ -109,13 +109,21 @@ public class XsdSimpleType extends XsdNamedElements {
         placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdSimpleType copy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
+        XsdSimpleType elementCopy = new XsdSimpleType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        copy.union = this.union;
-        copy.list = this.list;
-        copy.restriction = this.restriction;
+        if (this.union != null){
+            elementCopy.union = (XsdUnion) this.union.clone(this.union.getAttributesMap(), elementCopy);
+        }
 
-        return copy;
+        if (this.list != null){
+            elementCopy.list = (XsdList) this.list.clone(this.list.getAttributesMap(), elementCopy);
+        }
+
+        if (this.restriction != null){
+            elementCopy.restriction = (XsdRestriction) this.restriction.clone(this.restriction.getAttributesMap(), elementCopy);
+        }
+
+        return elementCopy;
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

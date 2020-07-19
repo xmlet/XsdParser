@@ -4,9 +4,13 @@ import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -45,6 +49,25 @@ public class XsdComplexContent extends XsdAnnotatedElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    @Override
+    public XsdComplexContent clone(@NotNull Map<String, String> placeHolderAttributes) {
+        placeHolderAttributes.putAll(attributesMap);
+
+        XsdComplexContent elementCopy = new XsdComplexContent(this.parser, placeHolderAttributes, visitorFunction);
+
+        elementCopy.restriction = ReferenceBase.clone(this.restriction, elementCopy);
+        elementCopy.extension = ReferenceBase.clone(this.extension, elementCopy);
+        elementCopy.parent = null;
+
+        return elementCopy;
     }
 
     @SuppressWarnings("unused")

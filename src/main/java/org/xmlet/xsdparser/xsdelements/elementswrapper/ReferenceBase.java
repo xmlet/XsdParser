@@ -49,6 +49,22 @@ public abstract class ReferenceBase {
         }
     }
 
+    public static ReferenceBase clone(ReferenceBase originalReference, XsdAbstractElement parent){
+        if (originalReference == null){
+            return null;
+        }
+
+        if (originalReference instanceof UnsolvedReference){
+            return originalReference;
+        } else {
+            XsdAbstractElement originalElement = originalReference.getElement();
+            XsdAbstractElement cloneElement = originalElement.clone(originalElement.getAttributesMap());
+            cloneElement.setParent(parent);
+
+            return createFromXsd(cloneElement);
+        }
+    }
+
     private static String getName(XsdAbstractElement element){
         return getNodeValue(element, NAME_TAG);
     }

@@ -11,6 +11,8 @@ import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -152,12 +154,13 @@ public class XsdAttribute extends XsdNamedElements {
         placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
 
-        XsdAttribute copy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes, visitorFunction);
+        XsdAttribute elementCopy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        copy.type = this.type;
-        copy.simpleType = this.simpleType;
+        elementCopy.simpleType = ReferenceBase.clone(this.simpleType, elementCopy);
+        elementCopy.type = this.type;
+        elementCopy.parent = null;
 
-        return copy;
+        return elementCopy;
     }
 
     /**

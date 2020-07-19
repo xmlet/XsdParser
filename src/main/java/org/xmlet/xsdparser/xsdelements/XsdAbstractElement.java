@@ -124,6 +124,29 @@ public abstract class XsdAbstractElement {
     }
 
     /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    public XsdAbstractElement clone(@NotNull Map<String, String> placeHolderAttributes){
+        return this;
+    }
+
+    /**
+     * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
+     * {@link UnsolvedReference} objects in the reference solving process.
+     * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @return A copy of the object from which is called upon.
+     */
+    public XsdAbstractElement clone(@NotNull Map<String, String> placeHolderAttributes, XsdAbstractElement parent){
+        XsdAbstractElement clone = clone(placeHolderAttributes);
+        clone.setParent(parent);
+
+        return clone;
+    }
+
+    /**
      * @return All the {@link ConcreteElement} objects present in the concrete implementation of the
      * {@link XsdAbstractElement} class. It doesn't return the {@link UnsolvedReference} objects.
      */
@@ -135,6 +158,28 @@ public abstract class XsdAbstractElement {
         }
 
         return elements.stream().filter(element -> element instanceof ConcreteElement).map(ReferenceBase::getElement);
+    }
+
+    public XsdSchema getXsdSchema(){
+        return getXsdSchema(this, new ArrayList<>());
+    }
+
+    private XsdSchema getXsdSchema(XsdAbstractElement element, List<XsdAbstractElement> hierarchy){
+        if (element == null){
+            throw new ParsingException("The parent is null while searching for the XsdSchema. Please submit an issue with the xsd file being parsed to the project page.");
+        }
+
+        if (hierarchy.contains(element)){
+            throw new ParsingException("There is a circular reference in the Xsd Element tree. Please submit an issue with the xsd file being parsed to the project page.");
+        }
+
+        if (element instanceof XsdSchema){
+            return (XsdSchema) element;
+        }
+
+        hierarchy.add(element);
+
+        return getXsdSchema(element.getParent(), hierarchy);
     }
 
     /**
@@ -210,7 +255,7 @@ public abstract class XsdAbstractElement {
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
                 .filter(unsolvedReference -> compareReference(element, unsolvedReference))
                 .findFirst()
-                .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), element));
+                .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), ReferenceBase.clone(element, oldElement.getParent())));
         }
     }
 

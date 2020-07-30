@@ -68,6 +68,8 @@ public class AttributeValidations {
      */
     static Integer validateNonNegativeInteger(String elementName, String attributeName, String value){
         try {
+            value = value.trim();
+
             int intValue = Integer.parseInt(value);
 
             if (intValue < 0){

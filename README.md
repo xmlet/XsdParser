@@ -332,6 +332,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.0.30
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/25" title="attribute is missing">Details</a> - 
+            Fixes clones not cloning attributes and elements of XsdMultipleElements. 
+        </li>
+    </ul>
+</div>
+
 ### 1.0.29
 
 <div align="justify">

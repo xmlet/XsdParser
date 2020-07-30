@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -134,6 +135,11 @@ public class XsdComplexType extends XsdNamedElements {
 
         XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
+        if (elementCopy.getName() != null && elementCopy.getName().equals("MinimumAgeRecommendedDimension"))
+        {
+            int a =5;
+        }
+
         elementCopy.childElement = ReferenceBase.clone(this.childElement, elementCopy);
 
         if (this.complexContent != null){
@@ -144,19 +150,15 @@ public class XsdComplexType extends XsdNamedElements {
             elementCopy.simpleContent = (XsdSimpleContent) this.simpleContent.clone(this.simpleContent.getAttributesMap(), elementCopy);
         }
 
-        List<ReferenceBase> attributeClones = new ArrayList<>();
-        List<ReferenceBase> attributeGroupClones = new ArrayList<>();
-
-        for(ReferenceBase attributeReference : ((XsdComplexTypeVisitor)this.visitor).getAttributes()){
-            attributeClones.add(ReferenceBase.clone(attributeReference, elementCopy));
+        for(XsdAttribute attribute: getXsdAttributes().collect(Collectors.toList()))
+        {
+            elementCopy.visitor.visit((XsdAttribute) attribute.clone(attribute.attributesMap, elementCopy));
         }
 
-        for(ReferenceBase attributeGroupReference : ((XsdComplexTypeVisitor)this.visitor).getAttributeGroups()){
-            attributeGroupClones.add(ReferenceBase.clone(attributeGroupReference, elementCopy));
+        for(XsdAttributeGroup attributeGroup: getXsdAttributeGroup().collect(Collectors.toList()))
+        {
+            elementCopy.visitor.visit((XsdAttributeGroup) attributeGroup.clone(attributeGroup.attributesMap, elementCopy));
         }
-
-        ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributes(attributeClones);
-        ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributeGroups(attributeGroupClones);
 
         elementCopy.parent = null;
 

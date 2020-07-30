@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.xmlet.xsdparser.core.XsdParserCore.getParseMappers;
@@ -110,6 +111,16 @@ public class XsdExtension extends XsdAnnotatedElements {
         placeHolderAttributes.putAll(attributesMap);
 
         XsdExtension elementCopy = new XsdExtension(this.parser, placeHolderAttributes, visitorFunction);
+
+        for(XsdAttribute attribute: getXsdAttributes().collect(Collectors.toList()))
+        {
+            elementCopy.visitor.visit((XsdAttribute) attribute.clone(attribute.attributesMap, elementCopy));
+        }
+
+        for(XsdAttributeGroup attributeGroup: getXsdAttributeGroup().collect(Collectors.toList()))
+        {
+            elementCopy.visitor.visit((XsdAttributeGroup) attributeGroup.clone(attributeGroup.attributesMap, elementCopy));
+        }
 
         elementCopy.childElement = ReferenceBase.clone(this.childElement, elementCopy);
         elementCopy.base = this.base;

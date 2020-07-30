@@ -26,7 +26,7 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     /**
      * A list of elements that are contained in the concrete implementation of the {@link XsdMultipleElements} instance.
      */
-    private List<ReferenceBase> elements = new ArrayList<>();
+    protected List<ReferenceBase> elements = new ArrayList<>();
 
     XsdMultipleElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

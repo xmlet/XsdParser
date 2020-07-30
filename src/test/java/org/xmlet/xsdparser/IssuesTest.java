@@ -154,6 +154,80 @@ public class IssuesTest {
         }
     }
 
+    @Test
+    public void testIssue25(){
+        XsdParser parser = new XsdParser(getFilePath("issue_25_ToysBaby.xsd"));
+
+        Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
+
+        Assert.assertTrue(mainSchemaOptional.isPresent());
+
+        XsdSchema mainSchema = mainSchemaOptional.get();
+
+        Assert.assertNotNull(mainSchema);
+
+        Optional<XsdElement> toysBabyElementOptional = mainSchema.getChildrenElements().filter(element -> element.getName().equals("ToysBaby")).findFirst();
+
+        Assert.assertTrue(toysBabyElementOptional.isPresent());
+
+        XsdElement toysBabyElement = toysBabyElementOptional.get();
+
+        Assert.assertNotNull(toysBabyElement);
+
+        XsdComplexType toysBabyComplexType = toysBabyElementOptional.get().getXsdComplexType();
+
+        Assert.assertNotNull(toysBabyComplexType);
+
+        XsdSequence toysBabySequence = toysBabyComplexType.getChildAsSequence();
+
+        Assert.assertNotNull(toysBabySequence);
+
+        Optional<XsdElement> ageRecommendationElement = toysBabySequence.getChildrenElements().filter(sequenceElement -> sequenceElement.getName().equals("AgeRecommendation")).findFirst();
+
+        Assert.assertTrue(ageRecommendationElement.isPresent());
+
+        XsdElement ageRecommendation = ageRecommendationElement.get();
+
+        Assert.assertNotNull(ageRecommendation);
+
+        XsdComplexType ageRecommendationComplexType = ageRecommendation.getXsdComplexType();
+
+        Assert.assertNotNull(ageRecommendationComplexType);
+
+        XsdSequence ageRecommendationSequence = ageRecommendationComplexType.getChildAsSequence();
+
+        Assert.assertNotNull(ageRecommendationSequence);
+
+        List<XsdElement> ageRecommendationSequenceElements = ageRecommendationSequence.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertNotNull(ageRecommendationSequenceElements);
+        Assert.assertEquals(4, ageRecommendationSequenceElements.size());
+
+        Optional<XsdElement> minimumManufacturerAgeRecommendedOptional = ageRecommendationSequenceElements.stream().filter(sequenceElement -> sequenceElement.getName().equals("MinimumManufacturerAgeRecommended")).findFirst();
+
+        Assert.assertTrue(minimumManufacturerAgeRecommendedOptional.isPresent());
+
+        XsdElement minimumManufacturerAgeRecommended = minimumManufacturerAgeRecommendedOptional.get();
+
+        Assert.assertNotNull(minimumManufacturerAgeRecommended);
+
+        XsdComplexType minimumManufacturerAgeRecommendedXsdComplexType = minimumManufacturerAgeRecommended.getXsdComplexType();
+
+        Assert.assertNotNull(minimumManufacturerAgeRecommendedXsdComplexType);
+
+        XsdSimpleContent minimumManufacturerAgeRecommendedXsdSimpleContent = minimumManufacturerAgeRecommendedXsdComplexType.getSimpleContent();
+
+        Assert.assertNotNull(minimumManufacturerAgeRecommendedXsdSimpleContent);
+
+        XsdExtension minimumManufacturerAgeRecommendedXsdExtension = minimumManufacturerAgeRecommendedXsdSimpleContent.getXsdExtension();
+
+        Assert.assertNotNull(minimumManufacturerAgeRecommendedXsdExtension);
+
+        List<XsdAttribute> attributes = minimumManufacturerAgeRecommendedXsdExtension.getXsdAttributes().collect(Collectors.toList());
+
+        Assert.assertEquals(1, attributes.size());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

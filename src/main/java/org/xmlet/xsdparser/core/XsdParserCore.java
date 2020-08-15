@@ -92,6 +92,16 @@ public abstract class XsdParserCore {
     }
 
     private void resolveOtherNamespaceRefs() {
+        List<XsdSchema> schemas = getResultXsdSchemas().collect(Collectors.toList());
+
+        for(XsdSchema schema : schemas){
+            List<XsdImport> imports = schema.getChildrenImports().collect(Collectors.toList());
+
+            for(XsdImport xsdImport : imports){
+                schema.resolveNameSpace(xsdImport.getNamespace(), xsdImport.getSchemaLocation());
+            }
+        }
+
         parseElements
                 .keySet()
                 .forEach(fileName -> {
@@ -117,9 +127,16 @@ public abstract class XsdParserCore {
                                 if (foundNamespaceId.isPresent()){
                                     String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
 
-                                    String importedFileName = importedFileLocation.substring(importedFileLocation.lastIndexOf("/")+1);
+                                    String importedFileName = importedFileLocation;
 
-                                    List<ReferenceBase> importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(importedFileName)).findFirst().get()));
+                                    if(!isAbsolutePath(importedFileName)) {
+                                        String parentFile = schemaLocationsMap.get(importedFileName);
+
+                                        importedFileName = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(importedFileName);
+                                    }
+
+                                    String finalImportedFileName = importedFileName;
+                                    List<ReferenceBase> importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(finalImportedFileName)).findFirst().get()));
 
                                     Map<String, List<NamedConcreteElement>> concreteElementsMap =
                                             importedElements.stream()
@@ -307,6 +324,13 @@ public abstract class XsdParserCore {
             schemaLocationsMap.put(schemaLocation, currentFile);
         }
     }
+//
+//    /**
+//     * @param schemaLocation A new file path of another XSD file to parse.
+//     */
+//    public void addImportedLocation(String namespace, String schemaLocation) {
+//        int a = 5;
+//    }
 
     public static Map<String, String> getXsdTypesToJava() {
         return xsdTypesToJava;
@@ -325,5 +349,9 @@ public abstract class XsdParserCore {
     void updateConfig(ParserConfig config) {
         xsdTypesToJava = config.getXsdTypesToJava();
         parseMappers = config.getParseMappers();
+    }
+
+    protected boolean isAbsolutePath(String filePath) {
+        return filePath.matches(".*:.*");
     }
 }

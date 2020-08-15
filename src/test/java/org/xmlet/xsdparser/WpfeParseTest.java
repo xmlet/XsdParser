@@ -25,7 +25,7 @@ public class WpfeParseTest {
 
     @Test
     public void testElementCount(){
-        Assert.assertEquals(89, elements.size());
+        Assert.assertEquals(90, elements.size());
     }
 
     /**

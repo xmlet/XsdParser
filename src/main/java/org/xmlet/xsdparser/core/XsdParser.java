@@ -100,10 +100,6 @@ public class XsdParser extends XsdParserCore{
         }
     }
 
-    private boolean isAbsolutePath(String filePath) {
-        return filePath.matches(".*:.*");
-    }
-
     /**
      * This function uses DOM to obtain a list of nodes from a XSD file.
      * @param filePath The path to the XSD file.

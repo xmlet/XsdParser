@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.30</version>
+    <version>1.0.31</version>
 </dependency>
 ```
 
@@ -331,6 +331,18 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.0.31
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/26" title="Target namespaces">Details</a> - 
+            Adds support for xsd:includes elements with schema locations with http or https locations. Previously it only supported local XSD files.
+            Fixes the usage of xsd:import to properly resolve namespace references.
+        </li>
+    </ul>
+</div>
 
 ### 1.0.30
 

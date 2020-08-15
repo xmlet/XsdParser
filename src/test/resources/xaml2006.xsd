@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is not the original xaml2006.xsd. I couldn't find it so I created the parts that allow my parse to work.-->
+
+<xs:schema targetNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
+           elementFormDefault="qualified"
+           xmlns="http://schemas.microsoft.com/client/2007"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Code"/>
+    <xs:attribute name="Class"/>
+    <xs:attribute name="Key"/>
+    <xs:attribute name="Name"/>
+    <xs:attribute name="Language"/>
+</xs:schema>

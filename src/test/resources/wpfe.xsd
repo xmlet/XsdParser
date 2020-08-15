@@ -4,7 +4,7 @@
            xmlns="http://schemas.microsoft.com/client/2007"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <!--xs:import namespace="http://schemas.microsoft.com/winfx/2006/xaml" schemaLocation="xaml2006.xsd" /-->
+  <xs:import namespace="http://schemas.microsoft.com/winfx/2006/xaml" schemaLocation="xaml2006.xsd" />
   <xs:element name="TransformGroup" type="dTransformGroup"/>
   <xs:element name="RotateTransform" type="dRotateTransform"/>
   <xs:element name="ScaleTransform" type="dScaleTransform"/>

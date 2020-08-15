@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class IssuesTest {
 
@@ -166,6 +167,21 @@ public class IssuesTest {
         XsdParser parser = new XsdParser(getFilePath("issue_26_ToysBaby_Includes.xsd"));
 
         testToysBaby(parser);
+    }
+
+    @Test
+    public void testIssue26_CustomerTypes(){
+        XsdParser parser = new XsdParser(getFilePath("issue_26_CustomerTypes.xsd"));
+
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+
+        for(XsdSchema schema : schemas){
+            Stream<XsdElement> elems = schema.getChildrenElements();
+
+            int b = 5;
+        }
+
+        int a = 5;
     }
 
     private void testToysBaby(XsdParser parser){

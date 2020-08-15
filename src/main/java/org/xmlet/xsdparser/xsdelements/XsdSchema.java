@@ -82,7 +82,8 @@ public class XsdSchema extends XsdAnnotatedElements {
         this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
 
         for (String key : attributesMap.keySet()){
-            if (key.startsWith(XMLNS) && !attributesMap.get(key).contains("http")){
+//            if (key.startsWith(XMLNS) && !attributesMap.get(key).contains("http")){
+            if (key.startsWith(XMLNS) && !key.equals("xmlns:xs") && !key.equals("xmlns:xsd")/*&& !attributesMap.get(key).contains("http")*/){
                 String namespaceId = key.replace(XMLNS + ":", "");
                 namespaces.put(namespaceId, new NamespaceInfo(attributesMap.get(key)));
             }
@@ -119,7 +120,7 @@ public class XsdSchema extends XsdAnnotatedElements {
                      if (xsdImport.isPresent()){
                          prefixLocations.put(prefix, xsdImport.get().getSchemaLocation());
                      } else {
-                         throw new ParsingException("XsdSchema refers a namespace which was not imported.");
+//                         throw new ParsingException("XsdSchema refers a namespace which was not imported.");
                      }
                  });
 
@@ -287,6 +288,16 @@ public class XsdSchema extends XsdAnnotatedElements {
         return getXsdElements()
                 .filter(element -> element instanceof XsdAttribute)
                 .map(element -> (XsdAttribute) element);
+    }
+
+    public void resolveNameSpace(String namespace, String schemaLocation){
+        if (namespaces.containsKey(namespace)){
+            NamespaceInfo namespaceInfo = namespaces.get(namespace);
+
+            if (namespaceInfo.getFile() == null){
+                namespaceInfo.setFile(schemaLocation);
+            }
+        }
     }
 
     public Map<String, NamespaceInfo> getNamespaces() {

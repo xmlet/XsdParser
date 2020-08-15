@@ -75,16 +75,12 @@ public class XsdParser extends XsdParserCore{
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
         try {
-            if (!new File(filePath).exists()){
-                if (!isAbsolutePath(filePath)){
-                    String parentFile = schemaLocationsMap.get(filePath);
+            if (!new File(filePath).exists() && !isAbsolutePath(filePath)){
+                String parentFile = schemaLocationsMap.get(filePath);
 
-                    filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
+                filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
 
-                    if (!new File(filePath).exists()) {
-                        throw new FileNotFoundException(filePath);
-                    }
-                } else {
+                if (!new File(filePath).exists()) {
                     throw new FileNotFoundException(filePath);
                 }
             }
@@ -105,7 +101,7 @@ public class XsdParser extends XsdParserCore{
     }
 
     private boolean isAbsolutePath(String filePath) {
-        return filePath.contains(":\\");
+        return filePath.matches(".*:.*");
     }
 
     /**

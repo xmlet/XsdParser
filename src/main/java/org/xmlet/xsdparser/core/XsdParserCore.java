@@ -57,7 +57,7 @@ public abstract class XsdParserCore {
     List<String> schemaLocations = new ArrayList<>();
     Map<String, String> schemaLocationsMap = new HashMap<>();
 
-    String currentFile;
+    protected String currentFile;
 
     static {
         DefaultParserConfig config = new DefaultParserConfig();
@@ -302,7 +302,7 @@ public abstract class XsdParserCore {
     public void addFileToParse(String schemaLocation) {
         String fileName = schemaLocation.substring(schemaLocation.lastIndexOf("/")+1);
 
-        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName)) && !schemaLocation.startsWith("http")){
+        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName))){
             schemaLocations.add(schemaLocation);
             schemaLocationsMap.put(schemaLocation, currentFile);
         }

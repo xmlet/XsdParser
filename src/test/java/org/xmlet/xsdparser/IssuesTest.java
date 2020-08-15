@@ -158,6 +158,17 @@ public class IssuesTest {
     public void testIssue25(){
         XsdParser parser = new XsdParser(getFilePath("issue_25_ToysBaby.xsd"));
 
+        testToysBaby(parser);
+    }
+
+    @Test
+    public void testIssue26_Includes(){
+        XsdParser parser = new XsdParser(getFilePath("issue_26_ToysBaby_Includes.xsd"));
+
+        testToysBaby(parser);
+    }
+
+    private void testToysBaby(XsdParser parser){
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
 
         Assert.assertTrue(mainSchemaOptional.isPresent());
@@ -227,6 +238,7 @@ public class IssuesTest {
 
         Assert.assertEquals(1, attributes.size());
     }
+
 
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {

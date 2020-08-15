@@ -133,7 +133,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         }
 
         if (this.enumeration != null){
-            elementCopy.enumeration = this.enumeration.stream().map(enumeration -> (XsdEnumeration) enumeration.clone(enumeration.getAttributesMap(), elementCopy)).collect(Collectors.toList());
+            elementCopy.enumeration = this.enumeration.stream().map(enumerationObj -> (XsdEnumeration) enumerationObj.clone(enumerationObj.getAttributesMap(), elementCopy)).collect(Collectors.toList());
         }
 
         if (this.fractionDigits != null){

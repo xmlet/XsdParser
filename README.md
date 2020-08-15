@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.31</version>
+    <version>1.0.32</version>
 </dependency>
 ```
 
@@ -331,6 +331,19 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.0.32
+
+<div align="justify">
+    <ul>
+        <li>
+            Fixes some XML Injection vulnerabilities.
+        </li>
+        <li>
+            Code cleanup and adjustments for SonarCloud validation.
+        </li>
+    </ul>
+</div>
 
 ### 1.0.31
 

@@ -110,7 +110,7 @@ public class XsdParser extends XsdParserCore{
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
      */
     private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(filePath);
+        Document doc = getDocumentBuilder().parse(filePath);
 
         doc.getDocumentElement().normalize();
 

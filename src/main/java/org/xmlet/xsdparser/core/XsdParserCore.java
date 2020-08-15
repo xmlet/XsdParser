@@ -8,9 +8,10 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -109,7 +110,7 @@ public abstract class XsdParserCore {
                             parseElements.get(fileName)
                                     .stream()
                                     .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdSchema)
-                                    .map(referenceBase -> (((XsdSchema) referenceBase.getElement())))
+                                    .map(referenceBase -> (XsdSchema) referenceBase.getElement())
                                     .findFirst()
                                     .get();
 
@@ -324,13 +325,6 @@ public abstract class XsdParserCore {
             schemaLocationsMap.put(schemaLocation, currentFile);
         }
     }
-//
-//    /**
-//     * @param schemaLocation A new file path of another XSD file to parse.
-//     */
-//    public void addImportedLocation(String namespace, String schemaLocation) {
-//        int a = 5;
-//    }
 
     public static Map<String, String> getXsdTypesToJava() {
         return xsdTypesToJava;
@@ -346,12 +340,24 @@ public abstract class XsdParserCore {
         elements.add(wrappedElement);
     }
 
-    void updateConfig(ParserConfig config) {
+    static void updateConfig(ParserConfig config) {
         xsdTypesToJava = config.getXsdTypesToJava();
         parseMappers = config.getParseMappers();
     }
 
     protected boolean isAbsolutePath(String filePath) {
         return filePath.matches(".*:.*");
+    }
+
+    protected DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+        documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        documentBuilderFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        documentBuilderFactory.setXIncludeAware(false);
+        documentBuilderFactory.setExpandEntityReferences(false);
+
+        return documentBuilderFactory.newDocumentBuilder();
     }
 }

@@ -11,8 +11,6 @@ import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdAttributeVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -80,7 +78,7 @@ public class XsdAttribute extends XsdNamedElements {
         this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefaultValue));
         this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
-        if (type != null && !XsdParser.getXsdTypesToJava().containsKey(type)){
+        if (type != null && !XsdParserCore.getXsdTypesToJava().containsKey(type)){
             this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>(), visitorFunction));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }

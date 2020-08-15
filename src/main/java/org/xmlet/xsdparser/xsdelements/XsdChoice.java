@@ -89,21 +89,7 @@ public class XsdChoice extends XsdMultipleElements {
      */
     @SuppressWarnings("unused")
     public Stream<XsdChoice> getChildrenChoices(){
-        return getElements()
-                .stream()
-                .filter(element -> element.getElement() instanceof XsdChoice)
-                .map(element -> (XsdChoice) element.getElement());
-    }
-
-    /**
-     * @return The children elements that are of the type {@link XsdElement}.
-     */
-    @SuppressWarnings("unused")
-    public Stream<XsdElement> getChildrenElements(){
-        return getElements()
-                .stream()
-                .filter(element -> element.getElement() instanceof XsdElement)
-                .map(element -> (XsdElement) element.getElement());
+        return getXsdElements().filter(element -> element instanceof XsdChoice).map(element -> (XsdChoice) element);
     }
 
     /**
@@ -111,10 +97,7 @@ public class XsdChoice extends XsdMultipleElements {
      */
     @SuppressWarnings("unused")
     public Stream<XsdSequence> getChildrenSequences(){
-        return getElements()
-                .stream()
-                .filter(element -> element.getElement() instanceof XsdSequence)
-                .map(element -> (XsdSequence) element.getElement());
+        return getXsdElements().filter(element -> element instanceof XsdSequence).map(element -> (XsdSequence) element);
     }
 
     /**
@@ -122,9 +105,6 @@ public class XsdChoice extends XsdMultipleElements {
      */
     @SuppressWarnings("unused")
     public Stream<XsdGroup> getChildrenGroups(){
-        return getElements()
-                .stream()
-                .filter(element -> element.getElement() instanceof XsdGroup)
-                .map(element -> (XsdGroup) element.getElement());
+        return getXsdElements().filter(element -> element instanceof XsdGroup).map(element -> (XsdGroup) element);
     }
 }

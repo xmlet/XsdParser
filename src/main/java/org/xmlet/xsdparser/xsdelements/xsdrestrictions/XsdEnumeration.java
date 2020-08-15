@@ -3,8 +3,6 @@ package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
-import org.xmlet.xsdparser.xsdelements.XsdRestriction;
-import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
@@ -12,7 +10,6 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Represents a value that a given XSD type is allowed to take. The value is defined as a {@link String}.

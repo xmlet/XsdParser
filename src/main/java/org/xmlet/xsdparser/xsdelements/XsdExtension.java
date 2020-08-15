@@ -6,12 +6,11 @@ import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdExtensionVisitor;
 
 import javax.validation.constraints.NotNull;
-import javax.xml.parsers.ParserConfigurationException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +58,7 @@ public class XsdExtension extends XsdAnnotatedElements {
                 ConfigEntryData config = parseMappers.getOrDefault(XsdElement.XSD_TAG, parseMappers.getOrDefault(XsdElement.XS_TAG, null));
 
                 if (config == null){
-                    throw new RuntimeException("Invalid Parsing Configuration for XsdElement.");
+                    throw new ParsingException("Invalid Parsing Configuration for XsdElement.");
                 }
 
                 this.base = new UnsolvedReference(baseValue, new XsdElement(this, this.parser, new HashMap<>(), config.visitorFunction));

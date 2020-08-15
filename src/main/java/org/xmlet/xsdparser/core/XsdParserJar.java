@@ -9,7 +9,6 @@ import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,7 +91,7 @@ public class XsdParserJar extends XsdParserCore {
     }
 
     private Node getSchemaNode(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream);
+        Document doc = getDocumentBuilder().parse(inputStream);
 
         doc.getDocumentElement().normalize();
 

@@ -72,6 +72,14 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
                 .map(ReferenceBase::getElement);
     }
 
+    /**
+     * @return The children elements that are of the type {@link XsdElement}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdElement> getChildrenElements() {
+        return getXsdElements().filter(element -> element instanceof XsdElement).map(element -> (XsdElement) element);
+    }
+
     public void addElement(XsdAbstractElement element){
         this.elements.add(ReferenceBase.createFromXsd(element));
     }

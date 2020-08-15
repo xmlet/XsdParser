@@ -17,7 +17,7 @@ public abstract class XsdIdentifierElements extends XsdAbstractElement {
      */
     private String id;
 
-    XsdIdentifierElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+    XsdIdentifierElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
         this.id = attributesMap.getOrDefault(ID_TAG, id);
     }

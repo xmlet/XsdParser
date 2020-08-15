@@ -1,6 +1,9 @@
 package org.xmlet.xsdparser.xsdelements.visitors;
 
-import org.xmlet.xsdparser.xsdelements.*;
+import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
+import org.xmlet.xsdparser.xsdelements.XsdComplexType;
+import org.xmlet.xsdparser.xsdelements.XsdElement;
+import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 
 /**

@@ -12,7 +12,6 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -134,11 +133,6 @@ public class XsdComplexType extends XsdNamedElements {
         placeHolderAttributes.remove(REF_TAG);
 
         XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
-
-        if (elementCopy.getName() != null && elementCopy.getName().equals("MinimumAgeRecommendedDimension"))
-        {
-            int a =5;
-        }
 
         elementCopy.childElement = ReferenceBase.clone(this.childElement, elementCopy);
 

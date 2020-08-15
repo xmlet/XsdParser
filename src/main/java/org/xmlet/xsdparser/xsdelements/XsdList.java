@@ -9,7 +9,6 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * A class representing the xsd:list element.

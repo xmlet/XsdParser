@@ -7,7 +7,6 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
-import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
@@ -82,7 +81,6 @@ public class XsdSchema extends XsdAnnotatedElements {
         this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
 
         for (String key : attributesMap.keySet()){
-//            if (key.startsWith(XMLNS) && !attributesMap.get(key).contains("http")){
             if (key.startsWith(XMLNS) && !key.equals("xmlns:xs") && !key.equals("xmlns:xsd")/*&& !attributesMap.get(key).contains("http")*/){
                 String namespaceId = key.replace(XMLNS + ":", "");
                 namespaces.put(namespaceId, new NamespaceInfo(attributesMap.get(key)));
@@ -114,15 +112,10 @@ public class XsdSchema extends XsdAnnotatedElements {
         Map<String, String> prefixLocations = new HashMap<>();
 
         xsdSchema.getNamespaces()
-                 .forEach((prefix, namespaceInfo) -> {
-                     Optional<XsdImport> xsdImport = importsList.stream().filter(xsdImportObj -> xsdImportObj.getNamespace().equals(namespaceInfo.getName())).findFirst();
-
-                     if (xsdImport.isPresent()){
-                         prefixLocations.put(prefix, xsdImport.get().getSchemaLocation());
-                     } else {
-//                         throw new ParsingException("XsdSchema refers a namespace which was not imported.");
-                     }
-                 });
+                 .forEach((prefix, namespaceInfo) -> importsList.stream()
+                         .filter(xsdImportObj -> xsdImportObj.getNamespace().equals(namespaceInfo.getName()))
+                         .findFirst()
+                         .ifPresent(anImport -> prefixLocations.put(prefix, anImport.getSchemaLocation())));
 
         xsdSchema.updatePrefixLocations(prefixLocations);
 

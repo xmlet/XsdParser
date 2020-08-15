@@ -5,12 +5,10 @@ import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 /**
  * A class representing the xsd:all element. Since it shares the same attributes as {@link XsdChoice} or {@link XsdSequence}
@@ -83,13 +81,5 @@ public class XsdAll extends XsdMultipleElements {
     @SuppressWarnings("unused")
     public Integer getMaxOccurs() {
         return maxOccurs;
-    }
-
-    /**
-     * @return The children elements that are of the type {@link XsdElement}.
-     */
-    @SuppressWarnings("unused")
-    public Stream<XsdElement> getChildrenElements() {
-        return getXsdElements().filter(element -> element instanceof XsdElement).map(element -> (XsdElement) element);
     }
 }

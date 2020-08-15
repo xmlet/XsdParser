@@ -130,10 +130,10 @@ public class XsdElement extends XsdNamedElements {
         String formDefault = AttributeValidations.getFormDefaultValue(parent);
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
-        String substitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, null);
+        String localSubstitutionGroup = attributesMap.getOrDefault(SUBSTITUTION_GROUP_TAG, null);
 
-        if (substitutionGroup != null){
-            this.substitutionGroup = new UnsolvedReference(substitutionGroup, new XsdElement(this, this.parser, new HashMap<>(), visitorFunction));
+        if (localSubstitutionGroup != null){
+            this.substitutionGroup = new UnsolvedReference(localSubstitutionGroup, new XsdElement(this, this.parser, new HashMap<>(), visitorFunction));
             parser.addUnsolvedReference((UnsolvedReference) this.substitutionGroup);
         }
 
@@ -288,7 +288,7 @@ public class XsdElement extends XsdNamedElements {
     }
 
     private XsdComplexType getXsdComplexTypeFromType(){
-        if (type != null && type instanceof ConcreteElement){
+        if (type instanceof ConcreteElement){
             XsdAbstractElement typeElement = type.getElement();
 
             if (typeElement instanceof XsdComplexType){
@@ -300,7 +300,7 @@ public class XsdElement extends XsdNamedElements {
     }
 
     private XsdSimpleType getXsdSimpleTypeFromType(){
-        if (type != null && type instanceof ConcreteElement){
+        if (type instanceof ConcreteElement){
             XsdAbstractElement typeElement = type.getElement();
 
             if (typeElement instanceof XsdSimpleType){
@@ -406,7 +406,7 @@ public class XsdElement extends XsdNamedElements {
     }
 
     public String getType(){
-        if (this.type != null && this.type instanceof NamedConcreteElement){
+        if (this.type instanceof NamedConcreteElement){
             return ((NamedConcreteElement) this.type).getName();
         }
 

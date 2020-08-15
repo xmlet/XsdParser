@@ -1,6 +1,8 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.w3c.dom.*;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ConfigEntryData;
 import org.xmlet.xsdparser.core.utils.ParseData;
@@ -12,13 +14,13 @@ import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.XMLConstants;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 import java.util.*;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -83,7 +85,7 @@ public abstract class XsdAbstractElement {
 
     protected final Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction;
 
-    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction){
+    protected XsdAbstractElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction){
         this.parser = parser;
         this.attributesMap = attributesMap;
         this.visitorFunction = visitorFunction;
@@ -299,7 +301,11 @@ public abstract class XsdAbstractElement {
                 Node child = children.item(childIndex);
 
                 StringWriter writer = new StringWriter();
-                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                TransformerFactory factory = TransformerFactory.newInstance();
+                factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+                factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+
+                Transformer transformer = factory.newTransformer();
                 transformer.transform(new DOMSource(child), new StreamResult(writer));
                 String output = writer.toString().trim();
                 output = output.substring(output.indexOf('>') + 1).trim();

@@ -19,7 +19,7 @@ public abstract class XsdAnnotatedElements extends XsdIdentifierElements {
      */
     private XsdAnnotation annotation;
 
-    protected XsdAnnotatedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+    protected XsdAnnotatedElements(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);
     }
 

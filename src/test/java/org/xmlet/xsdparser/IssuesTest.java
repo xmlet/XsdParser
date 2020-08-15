@@ -133,6 +133,8 @@ public class IssuesTest {
         XsdParser parser = new XsdParser(getFilePath("issue_23.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+
+        Assert.assertTrue(true);
     }
 
     @Test
@@ -177,11 +179,9 @@ public class IssuesTest {
 
         for(XsdSchema schema : schemas){
             Stream<XsdElement> elems = schema.getChildrenElements();
-
-            int b = 5;
         }
 
-        int a = 5;
+        Assert.assertTrue(true);
     }
 
     private void testToysBaby(XsdParser parser){

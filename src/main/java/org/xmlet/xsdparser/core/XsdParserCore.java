@@ -126,18 +126,27 @@ public abstract class XsdParserCore {
                                 Optional<String> foundNamespaceId = ns.keySet().stream().filter(namespaceId -> namespaceId.equals(unsolvedElementNamespace)).findFirst();
 
                                 if (foundNamespaceId.isPresent()){
-                                    String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
+                                    NamespaceInfo namespaceInfo = ns.get(foundNamespaceId.get());
+                                    List<ReferenceBase> importedElements = null;
+                                    XsdSchema unsolvedElementSchema = unsolvedElement.getElement().getXsdSchema();
 
-                                    String importedFileName = importedFileLocation;
-
-                                    if(!isAbsolutePath(importedFileName)) {
-                                        String parentFile = schemaLocationsMap.get(importedFileName);
-
-                                        importedFileName = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(importedFileName);
+                                    if (unsolvedElementSchema.getTargetNamespace() != null && unsolvedElementSchema.getTargetNamespace().equals(namespaceInfo.getName())){
+                                        importedElements = unsolvedElementSchema.getElements();
                                     }
+                                    else {
+                                        String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
 
-                                    String finalImportedFileName = importedFileName;
-                                    List<ReferenceBase> importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(finalImportedFileName)).findFirst().get()));
+                                        String importedFileName = importedFileLocation;
+
+                                        if(!isAbsolutePath(importedFileName)) {
+                                            String parentFile = schemaLocationsMap.get(importedFileName);
+
+                                            importedFileName = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(importedFileName);
+                                        }
+
+                                        String finalImportedFileName = importedFileName;
+                                        importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(finalImportedFileName)).findFirst().get()));
+                                    }
 
                                     Map<String, List<NamedConcreteElement>> concreteElementsMap =
                                             importedElements.stream()

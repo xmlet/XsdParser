@@ -332,6 +332,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.0.33
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/26" title="Target namespaces">Details</a>
+            Adds safeguard to usage of prefixes of a namespace inside itself.
+        </li>
+    </ul>
+</div>
+
 ### 1.0.32
 
 <div align="justify">

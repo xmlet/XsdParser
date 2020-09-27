@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,7 +34,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
     //This list is populated by the replaceUnsolvedElements and never directly (such as a Visitor method like all else).
     //The UnsolvedReference is placed in the XsdParser queue by the default implementation of the Visitor#visit(XsdAttributeGroup element)
     //The reference solving process then sends the XsdAttributeGroup to this class.
-    private List<XsdAttributeGroup> attributeGroups = new ArrayList<>();
+    private List<ReferenceBase> attributeGroups = new ArrayList<>();
 
     /**
      * A list of {@link XsdAttribute} children instances.
@@ -64,7 +65,9 @@ public class XsdAttributeGroup extends XsdNamedElements {
     public List<ReferenceBase> getElements() {
         List<ReferenceBase> allAttributes = new ArrayList<>();
 
-        attributeGroups.forEach(attributeGroup -> allAttributes.addAll(attributeGroup.getElements()));
+        getXsdAttributeGroups().forEach(attributeGroup -> {
+            allAttributes.addAll(attributeGroup.getElements());
+        });
 
         allAttributes.addAll(attributes);
 
@@ -84,9 +87,10 @@ public class XsdAttributeGroup extends XsdNamedElements {
 
         XsdAttributeGroup elementCopy = new XsdAttributeGroup(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        elementCopy.attributes = this.attributes.stream().map(attributeReference -> ReferenceBase.clone(attributeReference, elementCopy)).collect(Collectors.toList());
-        elementCopy.attributeGroups = this.attributeGroups.stream().map(attributeGroup -> (XsdAttributeGroup) attributeGroup.clone(attributeGroup.getAttributesMap(), elementCopy)).collect(Collectors.toList());
+        elementCopy.attributes = this.attributes.stream().map(attributeReference -> ReferenceBase.clone(parser, attributeReference, elementCopy)).collect(Collectors.toList());
+        elementCopy.attributeGroups = this.attributeGroups.stream().map(attributeGroupReference -> ReferenceBase.clone(parser, attributeGroupReference, elementCopy)).collect(Collectors.toList());
 
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
         return elementCopy;
@@ -95,21 +99,44 @@ public class XsdAttributeGroup extends XsdNamedElements {
     @Override
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         if (element.getElement() instanceof  XsdAttributeGroup){
-            this.attributeGroups.add((XsdAttributeGroup) element.getElement());
+            Optional<ReferenceBase> attributeGroupUnsolvedReference = attributeGroups.stream().filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && ((UnsolvedReference) attributeGroup).getRef().equals(element.getName())).findFirst();
+            if (attributeGroupUnsolvedReference.isPresent()){
+                attributeGroups.remove(attributeGroupUnsolvedReference.get());
+
+                attributeGroups.add(element);
+            }
         }
     }
 
-    @SuppressWarnings("unused")
-    public List<XsdAttributeGroup> getAttributeGroups() {
-        return attributeGroups;
+    public Stream<XsdAttributeGroup> getXsdAttributeGroups() {
+        return attributeGroups
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdAttributeGroup)
+                .map(element -> (XsdAttributeGroup) element.getElement());
+    }
+
+    public Stream<XsdAttributeGroup> getAllXsdAttributeGroups() {
+        List<XsdAttributeGroup> a = new ArrayList<>();
+
+        for(XsdAttributeGroup attributeGroup: attributeGroups
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdAttributeGroup)
+                .map(element -> (XsdAttributeGroup) element.getElement())
+                .collect(Collectors.toList())){
+
+            a.add(attributeGroup);
+
+            a.addAll(attributeGroup.getAllXsdAttributeGroups().collect(Collectors.toList()));
+        }
+
+        return a.stream();
     }
 
     /**
      * @return All the attributes of this attributeGroup and other attributeGroups contained within.
      */
-    @SuppressWarnings("unused")
-    public Stream<XsdAttribute> getAllAttributes(){
-        return getElements()
+    public Stream<XsdAttribute> getXsdAttributes(){
+        return attributes
                 .stream()
                 .filter(element -> element.getElement() instanceof XsdAttribute)
                 .map(element -> (XsdAttribute) element.getElement());
@@ -132,5 +159,9 @@ public class XsdAttributeGroup extends XsdNamedElements {
 
     public void addAttribute(ReferenceBase attribute) {
         attributes.add(attribute);
+    }
+
+    public void addAttributeGroup(ReferenceBase attributeGroup) {
+        attributeGroups.add(attributeGroup);
     }
 }

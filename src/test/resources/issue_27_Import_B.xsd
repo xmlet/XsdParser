@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://NamespaceTest.com/Issue_27_B" xmlns="http://foo" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:C="http://NamespaceTest.com/Issue_27_C">
+    <xs:import namespace="http://NamespaceTest.com/Issue_27_C" schemaLocation="issue_27_Import_C.xsd"/>
+
+    <xs:element name="B">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="C:C"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

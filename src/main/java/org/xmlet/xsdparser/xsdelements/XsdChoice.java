@@ -62,7 +62,7 @@ public class XsdChoice extends XsdMultipleElements {
         XsdChoice elementCopy = new XsdChoice(this.getParser(), placeHolderAttributes, visitorFunction);
 
         for(ReferenceBase element: getElements()){
-            elementCopy.elements.add(ReferenceBase.clone(element, elementCopy));
+            elementCopy.elements.add(ReferenceBase.clone(parser, element, elementCopy));
         }
 
         elementCopy.setParent(null);

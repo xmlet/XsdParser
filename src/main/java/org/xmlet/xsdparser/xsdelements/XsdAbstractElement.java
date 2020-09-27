@@ -10,6 +10,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParentAvailableException;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
@@ -82,6 +83,17 @@ public abstract class XsdAbstractElement {
      * The visitor instance for this element.
      */
     XsdAbstractElementVisitor visitor;
+
+    /**
+     * Indicates the source from this object was cloned, if applicable.
+     */
+    XsdAbstractElement cloneOf;
+
+    /**
+     * Indicates if this element has the Parent available. This was created as a way of indicating that the parent of the
+     * current element isn't present to avoid circular memory dependencies.
+     */
+    public boolean parentAvailable;
 
     protected final Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction;
 
@@ -163,12 +175,25 @@ public abstract class XsdAbstractElement {
     }
 
     public XsdSchema getXsdSchema(){
-        return getXsdSchema(this, new ArrayList<>());
+        XsdSchema schema = null;
+
+        try {
+            schema = getXsdSchema(this, new ArrayList<>());
+        }
+         catch (ParentAvailableException e){
+            return null;
+         }
+
+        if (schema == null){
+            throw new ParsingException("The parent is null while searching for the XsdSchema. Please submit an issue with the xsd file being parsed to the project page.");
+        }
+
+        return schema;
     }
 
-    private XsdSchema getXsdSchema(XsdAbstractElement element, List<XsdAbstractElement> hierarchy){
+    public static XsdSchema getXsdSchema(XsdAbstractElement element, List<XsdAbstractElement> hierarchy){
         if (element == null){
-            throw new ParsingException("The parent is null while searching for the XsdSchema. Please submit an issue with the xsd file being parsed to the project page.");
+            return null;
         }
 
         if (hierarchy.contains(element)){
@@ -181,7 +206,7 @@ public abstract class XsdAbstractElement {
 
         hierarchy.add(element);
 
-        return getXsdSchema(element.getParent(), hierarchy);
+        return getXsdSchema(element.getParent(true), hierarchy);
     }
 
     /**
@@ -257,7 +282,7 @@ public abstract class XsdAbstractElement {
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
                 .filter(unsolvedReference -> compareReference(element, unsolvedReference))
                 .findFirst()
-                .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), ReferenceBase.clone(element, oldElement.getParent())));
+                .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent())));
         }
     }
 
@@ -277,11 +302,46 @@ public abstract class XsdAbstractElement {
      * @return The parent of the current {@link XsdAbstractElement} object.
      */
     public XsdAbstractElement getParent() {
+        return getParent(false);
+    }
+
+    /**
+     * @return The parent of the current {@link XsdAbstractElement} object.
+     */
+    public XsdAbstractElement getParent(boolean enforceParentAvailability) {
+        if (!this.parentAvailable){
+            if (enforceParentAvailability){
+                throw new ParentAvailableException("The parent of this element isn't available to avoid circular memory dependencies.");
+            }
+            else {
+                return null;
+            }
+        }
+
         return parent;
+    }
+
+    /**
+     * @return The source of the clone of the current {@link XsdAbstractElement} object.
+     */
+    public XsdAbstractElement getCloneOf() {
+        return cloneOf;
+    }
+
+    /**
+     * Sets source of the clone of the current {@link XsdAbstractElement} object.
+     */
+    public void setCloneOf(XsdAbstractElement cloneOf) {
+        this.cloneOf = cloneOf;
     }
 
     public void setParent(XsdAbstractElement parent) {
         this.parent = parent;
+        this.parentAvailable = true;
+    }
+
+    public void setParentAvailable(boolean parentAvailable) {
+        this.parentAvailable = parentAvailable;
     }
 
     /**

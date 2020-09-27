@@ -239,17 +239,24 @@ public class XsdElement extends XsdNamedElements {
         XsdElement elementCopy = new XsdElement(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
         if (this.simpleType != null){
-            elementCopy.simpleType = ReferenceBase.clone(this.simpleType, elementCopy);
+            elementCopy.simpleType = ReferenceBase.clone(parser, this.simpleType, elementCopy);
         }
 
         if (this.complexType != null){
-            elementCopy.complexType = ReferenceBase.clone(this.complexType, elementCopy);
+            elementCopy.complexType = ReferenceBase.clone(parser, this.complexType, elementCopy);
         }
 
         if (this.type != null){
-            elementCopy.type = ReferenceBase.clone(this.type, elementCopy);
+            if (this.type instanceof ConcreteElement){
+                elementCopy.type = ReferenceBase.clone(parser, this.type, elementCopy);
+            }
+            else {
+                elementCopy.type = new UnsolvedReference(((UnsolvedReference)this.type).getRef(), new XsdElement(elementCopy, this.parser, new HashMap<>(), visitorFunction));
+                parser.addUnsolvedReference((UnsolvedReference) elementCopy.type);
+            }
         }
 
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
         return elementCopy;

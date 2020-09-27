@@ -60,8 +60,9 @@ public class XsdComplexContent extends XsdAnnotatedElements {
 
         XsdComplexContent elementCopy = new XsdComplexContent(this.parser, placeHolderAttributes, visitorFunction);
 
-        elementCopy.restriction = ReferenceBase.clone(this.restriction, elementCopy);
-        elementCopy.extension = ReferenceBase.clone(this.extension, elementCopy);
+        elementCopy.restriction = ReferenceBase.clone(parser, this.restriction, elementCopy);
+        elementCopy.extension = ReferenceBase.clone(parser, this.extension, elementCopy);
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
         return elementCopy;

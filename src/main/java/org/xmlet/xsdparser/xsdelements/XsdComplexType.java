@@ -12,10 +12,10 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -134,7 +134,7 @@ public class XsdComplexType extends XsdNamedElements {
 
         XsdComplexType elementCopy = new XsdComplexType(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        elementCopy.childElement = ReferenceBase.clone(this.childElement, elementCopy);
+        elementCopy.childElement = ReferenceBase.clone(parser, this.childElement, elementCopy);
 
         if (this.complexContent != null){
             elementCopy.complexContent = (XsdComplexContent) this.complexContent.clone(this.complexContent.getAttributesMap(), elementCopy);
@@ -144,16 +144,23 @@ public class XsdComplexType extends XsdNamedElements {
             elementCopy.simpleContent = (XsdSimpleContent) this.simpleContent.clone(this.simpleContent.getAttributesMap(), elementCopy);
         }
 
-        for(XsdAttribute attribute: getXsdAttributes().collect(Collectors.toList()))
+        List<ReferenceBase> clonedAttributes = new ArrayList<>();
+        List<ReferenceBase> clonedAttributeGroups = new ArrayList<>();
+
+        for(ReferenceBase attribute: ((XsdComplexTypeVisitor) visitor).getAttributes())
         {
-            elementCopy.visitor.visit((XsdAttribute) attribute.clone(attribute.attributesMap, elementCopy));
+            clonedAttributes.add(ReferenceBase.clone(parser, attribute, elementCopy));
         }
 
-        for(XsdAttributeGroup attributeGroup: getXsdAttributeGroup().collect(Collectors.toList()))
+        for(ReferenceBase attributeGroup: ((XsdComplexTypeVisitor) visitor).getAttributeGroups())
         {
-            elementCopy.visitor.visit((XsdAttributeGroup) attributeGroup.clone(attributeGroup.attributesMap, elementCopy));
+            clonedAttributeGroups.add(ReferenceBase.clone(parser, attributeGroup, elementCopy));
         }
 
+        ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributes(clonedAttributes);
+        ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributeGroups(clonedAttributeGroups);
+
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
         return elementCopy;
@@ -162,7 +169,7 @@ public class XsdComplexType extends XsdNamedElements {
     @Override
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         super.replaceUnsolvedElements(element);
-        ((XsdComplexTypeVisitor)visitor).replaceUnsolvedAttributes(element, this);
+        ((XsdComplexTypeVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
 
         if (this.childElement instanceof UnsolvedReference && this.childElement.getElement() instanceof XsdGroup &&
                 element.getElement() instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
@@ -187,7 +194,15 @@ public class XsdComplexType extends XsdNamedElements {
     }
 
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
-        return ((XsdComplexTypeVisitor)visitor).getXsdAttributeGroup();
+        return ((XsdComplexTypeVisitor)visitor).getXsdAttributeGroups();
+    }
+
+    public Stream<XsdAttributeGroup> getAllXsdAttributeGroups() {
+        return ((XsdComplexTypeVisitor)visitor).getAllXsdAttributeGroups();
+    }
+
+    public Stream<XsdAttribute> getAllXsdAttributes() {
+        return ((XsdComplexTypeVisitor)visitor).getAllAttributes().stream();
     }
 
     @SuppressWarnings("unused")

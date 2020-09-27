@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.xsdelements.visitors;
 
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
@@ -11,6 +12,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -88,10 +90,28 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
      * @return All the {@link XsdAttributeGroup} objects that are fully resolved by this visitor. The
      * {@link XsdAttributeGroup} objects wrapped in {@link UnsolvedReference} objects are not returned.
      */
-    public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
+    public Stream<XsdAttributeGroup> getXsdAttributeGroups() {
         return attributeGroups.stream()
                 .filter(attributeGroup -> attributeGroup instanceof ConcreteElement)
                 .map(attributeGroup -> (XsdAttributeGroup) attributeGroup.getElement());
+    }
+
+    public Stream<XsdAttributeGroup> getAllXsdAttributeGroups() {
+        List<XsdAttributeGroup> allXsdAttributeGroups = new ArrayList<>();
+
+        for(XsdAttributeGroup attributeGroup: attributeGroups
+                .stream()
+                .filter(element -> element.getElement() instanceof XsdAttributeGroup)
+                .map(element -> (XsdAttributeGroup) element.getElement())
+                .collect(Collectors.toList())){
+
+            allXsdAttributeGroups.add(attributeGroup);
+
+            allXsdAttributeGroups.addAll(attributeGroup.getAllXsdAttributeGroups().collect(Collectors.toList()));
+        }
+
+
+        return allXsdAttributeGroups.stream();
     }
 
     /**
@@ -101,16 +121,15 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
      * @param element The resolved element that will be match with the contents of this visitor in order to assert if
      *                there is anything to replace.
      */
-    public void replaceUnsolvedAttributes(NamedConcreteElement element, XsdAbstractElement parent){
+    public void replaceUnsolvedAttributes(XsdParserCore parser, NamedConcreteElement element, XsdAbstractElement parent){
         if (element.getElement() instanceof XsdAttributeGroup){
             attributeGroups.stream()
                     .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attributeGroup))
                     .findFirst().ifPresent(referenceBase -> {
                 attributeGroups.remove(referenceBase);
-                ReferenceBase attributeGroupCloneReference = ReferenceBase.clone(element, parent);
+                ReferenceBase attributeGroupCloneReference = ReferenceBase.clone(parser, element, parent);
 
                 attributeGroups.add(attributeGroupCloneReference);
-                attributes.addAll(attributeGroupCloneReference.getElement().getElements());
             });
         }
 
@@ -119,8 +138,25 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
                     .filter(attribute -> attribute instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attribute))
                     .findFirst().ifPresent(referenceBase -> {
                 attributes.remove(referenceBase);
-                attributes.add(ReferenceBase.clone(element, parent));
+                attributes.add(ReferenceBase.clone(parser, element, parent));
             });
         }
+    }
+
+    public List<XsdAttribute> getAllAttributes() {
+        List<XsdAttribute> allAttributes = new ArrayList<>();
+
+        getXsdAttributeGroups().forEach(attributeGroup -> {
+            allAttributes.addAll(
+                    attributeGroup.getElements()
+                            .stream()
+                            .filter(attributeReference -> attributeReference instanceof ConcreteElement && attributeReference.getElement() instanceof XsdAttribute)
+                            .map(attributeReference -> (XsdAttribute) attributeReference.getElement())
+                            .collect(Collectors.toList()));
+        });
+
+        allAttributes.addAll(getXsdAttributes().collect(Collectors.toList()));
+
+        return allAttributes;
     }
 }

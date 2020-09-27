@@ -1,6 +1,5 @@
 package org.xmlet.xsdparser.xsdelements;
 
-import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
@@ -11,6 +10,7 @@ import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.enums.UsageEnum;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
+import org.xmlet.xsdparser.xsdelements.visitors.XsdSimpleTypeVisitor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -79,7 +79,7 @@ public class XsdAttribute extends XsdNamedElements {
         this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null && !XsdParserCore.getXsdTypesToJava().containsKey(type)){
-            this.simpleType = new UnsolvedReference(type, new XsdAttribute(this, parser, new HashMap<>(), visitorFunction));
+            this.simpleType = new UnsolvedReference(type, new XsdSimpleType(this, parser, new HashMap<>(), elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
     }
@@ -154,8 +154,9 @@ public class XsdAttribute extends XsdNamedElements {
 
         XsdAttribute elementCopy = new XsdAttribute(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 
-        elementCopy.simpleType = ReferenceBase.clone(this.simpleType, elementCopy);
+        elementCopy.simpleType = ReferenceBase.clone(parser, this.simpleType, elementCopy);
         elementCopy.type = this.type;
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
         return elementCopy;

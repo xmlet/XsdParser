@@ -113,7 +113,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     public void replaceUnsolvedElements(NamedConcreteElement element) {
         super.replaceUnsolvedElements(element);
 
-        ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(element, this);
+        ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
     }
 
     /**
@@ -196,7 +196,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
     @SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
-        return ((XsdRestrictionsVisitor)visitor).getXsdAttributeGroup();
+        return ((XsdRestrictionsVisitor)visitor).getXsdAttributeGroups();
     }
 
     public XsdSimpleType getSimpleType() {

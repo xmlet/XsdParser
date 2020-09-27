@@ -34,4 +34,11 @@ public class XsdAttributeGroupVisitor extends XsdAnnotatedElementsVisitor {
 
         owner.addAttribute(ReferenceBase.createFromXsd(element));
     }
+
+    @Override
+    public void visit(XsdAttributeGroup element) {
+        super.visit(element);
+
+        owner.addAttributeGroup(ReferenceBase.createFromXsd(element));
+    }
 }

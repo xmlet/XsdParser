@@ -6,7 +6,7 @@
 			targetNamespace='http://schemas.microsoft.com/intellisense/html-5'>
 
 	<!-- This element must be the first one in the file! -->
-	<xsd:include schemaLocation="./src/test/resources/html_5_types.xsd" />
+	<xsd:include schemaLocation="/html_5_types.xsd" />
 
 	<xs:element name="html">
 		<xs:complexType>

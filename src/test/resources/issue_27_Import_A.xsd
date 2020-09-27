@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://foo" id="main" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:B="http://NamespaceTest.com/Issue_27_B">
+    <xs:import namespace="http://NamespaceTest.com/Issue_27_B" schemaLocation="issue_27_Import_B.xsd"/>
+
+    <xs:element name="A" type="AType"/>
+    <xs:complexType name="AType">
+        <xs:all>
+            <xs:element ref="B:B"/>
+            <xs:element ref="B:C"/>
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

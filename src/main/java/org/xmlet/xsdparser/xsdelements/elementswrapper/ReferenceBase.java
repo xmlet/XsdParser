@@ -1,7 +1,11 @@
 package org.xmlet.xsdparser.xsdelements.elementswrapper;
 
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.REF_TAG;
 import static org.xmlet.xsdparser.xsdelements.XsdNamedElements.NAME_TAG;
@@ -49,19 +53,38 @@ public abstract class ReferenceBase {
         }
     }
 
-    public static ReferenceBase clone(ReferenceBase originalReference, XsdAbstractElement parent){
+    public static ReferenceBase clone(XsdParserCore parser, ReferenceBase originalReference, XsdAbstractElement parent){
         if (originalReference == null){
             return null;
         }
 
-        if (originalReference instanceof UnsolvedReference){
-            return originalReference;
-        } else {
-            XsdAbstractElement originalElement = originalReference.getElement();
-            XsdAbstractElement cloneElement = originalElement.clone(originalElement.getAttributesMap());
-            cloneElement.setParent(parent);
+        XsdAbstractElement originalElement = originalReference.getElement();
 
-            return createFromXsd(cloneElement);
+        if (originalReference instanceof UnsolvedReference){
+            Map<String, String> originalElementAttributesMap = originalElement.getAttributesMap();
+            HashMap<String, String> clonedOriginalElementAttributesMap = new HashMap<>(originalElementAttributesMap);
+            clonedOriginalElementAttributesMap.put(REF_TAG, ((UnsolvedReference) originalReference).getRef());
+
+            XsdNamedElements clonedElement = (XsdNamedElements) originalElement.clone(clonedOriginalElementAttributesMap);
+            clonedElement.getAttributesMap().put(REF_TAG, ((UnsolvedReference) originalReference).getRef());
+            clonedElement.setCloneOf(originalElement);
+            clonedElement.setParent(parent);
+
+            UnsolvedReference unsolvedClonedElement = new UnsolvedReference(clonedElement);
+
+            parser.addUnsolvedReference(unsolvedClonedElement);
+
+            return unsolvedClonedElement;
+        }
+        else {
+            originalReference.getElement().setParentAvailable(false);
+
+            return  originalReference;
+
+//            XsdAbstractElement cloneElement = originalElement.clone(originalElement.getAttributesMap());
+//            cloneElement.setParent(parent);
+//
+//            return createFromXsd(cloneElement);
         }
     }
 

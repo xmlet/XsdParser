@@ -1,0 +1,27 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+            xmlns="http://mytestns.org/a"
+            xmlns:b="http://mytestns.org/b"
+            targetNamespace="http://mytestns.org/a"
+>
+    <xsd:import namespace="http://mytestns.org/b"
+                schemaLocation="issue_28b.xsd"
+    />
+    <!-- with absolute filename its ok
+    <xsd:import namespace="http://mytestns.org/b"
+                schemaLocation="file:///c:/Users/hh/.../issue_28/issue_28b.xsd"
+    />
+    -->
+
+    <xsd:complexType name="CTA1">
+        <xsd:sequence>
+            <xsd:element name="ElementA1" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CTA2">
+        <xsd:sequence>
+            <xsd:element name="ElementA2" type="b:CTB2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

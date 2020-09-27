@@ -11,7 +11,7 @@ public class UnsolvedReference extends ReferenceBase {
     private String ref;
     private boolean isTypeRef;
 
-    UnsolvedReference(XsdNamedElements element){
+    public UnsolvedReference(XsdNamedElements element){
         super(element);
         this.ref = getRef(element);
         this.isTypeRef = false;

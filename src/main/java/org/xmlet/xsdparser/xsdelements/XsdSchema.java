@@ -10,7 +10,10 @@ import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,6 +64,8 @@ public class XsdSchema extends XsdAnnotatedElements {
      * the schema components of the namespace can be used with unqualified references.
      */
     private String xmlns;
+
+    private String filePath;
 
     private Map<String, NamespaceInfo> namespaces = new HashMap<>();
 
@@ -295,5 +300,13 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     public Map<String, NamespaceInfo> getNamespaces() {
         return namespaces;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

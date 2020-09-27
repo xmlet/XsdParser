@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.0.32</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -331,6 +331,40 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.1.0
+
+<div align="justify">
+    <ul>
+        <li>
+            Fixed cloning. Reference resolving now properly clones the referred element and all its children, also cloning
+            the possible unsolved references of the clone. This has two effects:
+            <ul>
+                <li>
+                    The reference solving process is now more accurate - The referred element unsolved references are also resolved. Previously if an element resolved 10 references
+                    the 10 references would have unsolved references and the base element which was the source of the cloned 
+                    objects would have the references solved.
+                </li>
+                <li>
+                    To avoid eating up memory I had to implement a temporary solution which will cause the getParent call to
+                    return null in certain elements which were children of cloned elements.
+                </li>
+            </ul>
+            <li>
+                <a href="https://github.com/xmlet/XsdParser/issues/25" title="attribute is missing">Details</a>
+                This should be finally solved due to the more accurate reference solving process.
+            </li>
+            <li>
+                <a href="https://github.com/xmlet/XsdParser/issues/27" title="Transitive includes not supported">Details</a>
+                Solved due to the more accurate reference solving process.
+            </li>
+            <li>
+                <a href="https://github.com/xmlet/XsdParser/issues/28" title="error with xsd: import using subdirectories in schemaLocation">Details</a>
+                Minor correction to fix the problem.
+            </li>
+        </li>
+    </ul>
+</div>
 
 ### 1.0.33
 

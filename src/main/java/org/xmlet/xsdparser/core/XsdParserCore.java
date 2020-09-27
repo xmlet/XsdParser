@@ -7,6 +7,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParentAvailableException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,7 +36,7 @@ public abstract class XsdParserCore {
     /**
      * A {@link List} which contains all the top elements parsed by this class.
      */
-    private Map<String, List<ReferenceBase>> parseElements = new HashMap<>();
+    public Map<String, List<ReferenceBase>> parseElements = new HashMap<>();
 
     /**
      * A {@link List} of {@link UnsolvedReference} elements that weren't solved. This list is consulted after all the
@@ -116,51 +117,76 @@ public abstract class XsdParserCore {
 
                     Map<String, NamespaceInfo> ns = xsdSchema.getNamespaces();
 
-                    unsolvedElements
+                    List<UnsolvedReference> unsolvedReferenceList = unsolvedElements
                             .getOrDefault(fileName, new ArrayList<>())
                             .stream()
                             .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
-                            .forEach(unsolvedElement -> {
-                                String unsolvedElementNamespace = unsolvedElement.getRef().substring(0, unsolvedElement.getRef().indexOf(":"));
+                            .collect(Collectors.toList());
 
-                                Optional<String> foundNamespaceId = ns.keySet().stream().filter(namespaceId -> namespaceId.equals(unsolvedElementNamespace)).findFirst();
+                    long startingUnsolvedReferenceListSize = unsolvedReferenceList.size();
+                    long currentUnsolvedReferenceListSize;
+                    boolean solveMore = true;
 
-                                if (foundNamespaceId.isPresent()){
-                                    NamespaceInfo namespaceInfo = ns.get(foundNamespaceId.get());
-                                    List<ReferenceBase> importedElements = null;
-                                    XsdSchema unsolvedElementSchema = unsolvedElement.getElement().getXsdSchema();
+                    do {
+                        for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
+                            String unsolvedElementNamespace = unsolvedReference.getRef().substring(0, unsolvedReference.getRef().indexOf(":"));
 
-                                    if (unsolvedElementSchema.getTargetNamespace() != null && unsolvedElementSchema.getTargetNamespace().equals(namespaceInfo.getName())){
-                                        importedElements = unsolvedElementSchema.getElements();
-                                    }
-                                    else {
-                                        String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
+                            Optional<String> foundNamespaceId = ns.keySet().stream().filter(namespaceId -> namespaceId.equals(unsolvedElementNamespace)).findFirst();
 
-                                        String importedFileName = importedFileLocation;
+                            if (foundNamespaceId.isPresent()) {
+                                NamespaceInfo namespaceInfo = ns.get(foundNamespaceId.get());
+                                List<ReferenceBase> importedElements;
+                                XsdSchema unsolvedElementSchema = unsolvedReference.getElement().getXsdSchema();
 
-                                        if(!isAbsolutePath(importedFileName)) {
-                                            String parentFile = schemaLocationsMap.get(importedFileName);
+                                if (unsolvedElementSchema != null && unsolvedElementSchema.getTargetNamespace() != null && unsolvedElementSchema.getTargetNamespace().equals(namespaceInfo.getName())) {
+                                    importedElements = unsolvedElementSchema.getElements();
+                                } else {
+                                    String importedFileLocation = ns.get(foundNamespaceId.get()).getFile();
 
-                                            importedFileName = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(importedFileName);
+                                    String importedFileName = importedFileLocation;
+
+                                    if (isRelativePath(importedFileName)) {
+                                        String parentFile = schemaLocationsMap.get(importedFileName);
+
+                                        if (parentFile == null){
+                                            parentFile = fileName;
                                         }
 
-                                        String finalImportedFileName = importedFileName;
-                                        importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(finalImportedFileName)).findFirst().get()));
+                                        importedFileName = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(importedFileName);
                                     }
 
-                                    Map<String, List<NamedConcreteElement>> concreteElementsMap =
-                                            importedElements.stream()
-                                                    .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                                    .map(concreteElement -> (NamedConcreteElement) concreteElement)
-                                                    .collect(groupingBy(NamedConcreteElement::getName));
-
-                                    replaceUnsolvedImportedReference(concreteElementsMap, unsolvedElement);
+                                    String finalImportedFileName = importedFileName;
+                                    importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(finalImportedFileName)).findFirst().get()));
                                 }
-                            });
+
+                                Map<String, List<NamedConcreteElement>> concreteElementsMap =
+                                        importedElements.stream()
+                                                .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
+                                                .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                                                .collect(groupingBy(NamedConcreteElement::getName));
+
+                                replaceUnsolvedImportedReference(concreteElementsMap, unsolvedReference, fileName);
+                            }
+                        }
+
+                        unsolvedReferenceList = unsolvedElements
+                                .getOrDefault(fileName, new ArrayList<>())
+                                .stream()
+                                .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
+                                .collect(Collectors.toList());
+
+                        currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
+
+                        if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize){
+                            solveMore = false;
+                        }
+
+                        startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
+                    } while(solveMore);
                 });
     }
 
-    private void replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
+    private void replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
 
         if (concreteElements != null){
@@ -179,45 +205,96 @@ public abstract class XsdParserCore {
 
                 unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
+
+            unsolvedElements.get(fileName).remove(unsolvedReference);
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
     }
 
     private void resolveInnerRefs() {
-        parseElements
-            .keySet()
-            .forEach(fileName -> {
-                List<String> includedFiles =
-                        parseElements.get(fileName)
+        ArrayList<Boolean> doneList = new ArrayList<>();
+        ArrayList<String> fileNameList = new ArrayList<>(parseElements.keySet());
+
+        for (int i = 0; i < fileNameList.size(); i++) {
+            doneList.add(false);
+        }
+
+        while (doneList.contains(Boolean.FALSE)){
+            for (int i = 0; i < fileNameList.size(); i++) {
+                String fileName = fileNameList.get(i);
+
+                if (!doneList.get(i)){
+                    List<String> includedFiles =
+                            parseElements.get(fileName)
                                     .stream()
                                     .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
                                     .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
                                     .collect(Collectors.toList());
 
-                List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
+                    includedFiles.addAll(getResultXsdSchemas().filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName))).map(XsdSchema::getFilePath).distinct().collect(Collectors.toList()));
 
-                includedFiles.forEach(includedFile ->{
-                    String includedFilename = includedFile.substring(includedFile.lastIndexOf("/")+1);
+                    List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
 
-                    includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
-                });
+                    includedFiles.forEach(includedFile ->{
+                        String includedFilename = includedFile.substring(includedFile.lastIndexOf("/")+1);
 
-                Map<String, List<NamedConcreteElement>> concreteElementsMap =
-                        includedElements.stream()
-                                .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                .map(concreteElement -> (NamedConcreteElement) concreteElement)
-                                .collect(groupingBy(NamedConcreteElement::getName));
+                        includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
+                    });
 
-                List<UnsolvedReference> unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
-                        .stream()
-                        .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
-                        .collect(Collectors.toList());
+                    Map<String, List<NamedConcreteElement>> concreteElementsMap =
+                            includedElements.stream()
+                                    .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
+                                    .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                                    .collect(groupingBy(NamedConcreteElement::getName));
 
-                for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
-                    replaceUnsolvedReference(concreteElementsMap, unsolvedReference);
+                    List<UnsolvedReference> unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
+                            .stream()
+                            .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
+                            .collect(Collectors.toList());
+
+                    long startingUnsolvedReferenceListSize = unsolvedReferenceList.size();
+                    long currentUnsolvedReferenceListSize = 0;
+                    boolean solveMore = true;
+                    boolean doneSomething = false;
+
+                    do {
+                        unsolvedReferenceList = unsolvedReferenceList.stream().filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference())).collect(Collectors.toList());
+
+                        for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
+                            doneSomething = true;
+
+                            replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
+                        }
+
+                        unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
+                                .stream()
+                                .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
+                                .collect(Collectors.toList());
+
+                        currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
+
+                        if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize){
+                            solveMore = false;
+                        }
+
+                        startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
+                    } while(solveMore);
+
+                    doneList.set(i, true);
+
+                    if (doneSomething){
+                        for(String includedFile: includedFiles){
+                            int idx = fileNameList.indexOf(includedFile);
+
+                            if (idx != -1){
+                                doneList.set(idx, false);
+                            }
+                        }
+                    }
                 }
-            });
+            }
+        }
     }
 
     /**
@@ -227,11 +304,11 @@ public abstract class XsdParserCore {
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference The unsolved reference to solve.
      */
-    private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference) {
+    private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
         if (concreteElements != null){
-            Map<String, String> oldElementAttributes = unsolvedReference.getElement().getAttributesMap();
+            Map<String, String> oldElementAttributes = new HashMap<>(unsolvedReference.getElement().getAttributesMap());
 
             for (NamedConcreteElement concreteElement : concreteElements) {
                 NamedConcreteElement substitutionElementWrapper;
@@ -246,6 +323,8 @@ public abstract class XsdParserCore {
 
                 unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
+
+            unsolvedElements.get(fileName).remove(unsolvedReference);
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
@@ -316,7 +395,25 @@ public abstract class XsdParserCore {
      * @param unsolvedReference The unsolvedReference to add to the unsolvedElements list.
      */
     public void addUnsolvedReference(UnsolvedReference unsolvedReference){
-        List<UnsolvedReference> unsolved = unsolvedElements.computeIfAbsent(currentFile, k -> new ArrayList<>());
+        XsdSchema schema;
+
+        try {
+            schema = XsdAbstractElement.getXsdSchema(unsolvedReference.getElement(), new ArrayList<>());
+        } catch(ParentAvailableException e){
+            schema = null;
+        }
+
+        String localCurrentFile = currentFile;
+
+        if (schema != null){
+            String schemaFilePath = schema.getFilePath();
+
+            if (!localCurrentFile.equals(schemaFilePath)){
+                localCurrentFile = schemaFilePath;
+            }
+        }
+
+        List<UnsolvedReference> unsolved = unsolvedElements.computeIfAbsent(localCurrentFile, k -> new ArrayList<>());
 
         unsolved.add(unsolvedReference);
     }
@@ -354,8 +451,8 @@ public abstract class XsdParserCore {
         parseMappers = config.getParseMappers();
     }
 
-    protected boolean isAbsolutePath(String filePath) {
-        return filePath.matches(".*:.*");
+    protected boolean isRelativePath(String filePath) {
+        return !filePath.matches(".*:.*");
     }
 
     protected DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {

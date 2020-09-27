@@ -8,6 +8,7 @@ import org.xmlet.xsdparser.core.utils.ConfigEntryData;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -75,7 +76,7 @@ public class XsdParser extends XsdParserCore{
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
 
         try {
-            if (!new File(filePath).exists() && !isAbsolutePath(filePath)){
+            if (!new File(filePath).exists() && isRelativePath(filePath)){
                 String parentFile = schemaLocationsMap.get(filePath);
 
                 filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
@@ -93,7 +94,8 @@ public class XsdParser extends XsdParserCore{
                 throw new ParserConfigurationException("XsdSchema not correctly configured.");
             }
 
-            xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(filePath), xsdSchemaConfig.visitorFunction));
+            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(filePath), xsdSchemaConfig.visitorFunction));
+            ((XsdSchema)schemaReference.getElement()).setFilePath(filePath);
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
             throw new RuntimeException(e);

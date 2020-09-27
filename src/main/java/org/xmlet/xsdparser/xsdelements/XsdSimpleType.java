@@ -48,7 +48,7 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     private SimpleTypeFinalEnum finalObj;
 
-    private XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+    XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
 
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
@@ -56,7 +56,7 @@ public class XsdSimpleType extends XsdNamedElements {
         this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
-    private XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+    XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         this(parser, elementFieldsMapParam, visitorFunction);
         setParent(parent);
     }

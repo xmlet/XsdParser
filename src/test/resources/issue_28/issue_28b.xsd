@@ -1,0 +1,11 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+            xmlns="http://mytestns.org/b"
+            targetNamespace="http://mytestns.org/b"
+>
+    <xsd:complexType name="CTB2">
+        <xsd:sequence>
+            <xsd:element name="ElementB2" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

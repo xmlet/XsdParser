@@ -26,18 +26,18 @@ public class HtmlParseTest {
         ParserResult html5 = new ParserResult(getFilePath("html_5.xsd"));
         ParserResult partedHtml5 = new ParserResult(getFilePath("html_5_types.xsd"));
         ParserResult html5Jar = new ParserResult("html_5.jar", "html_5_jar.xsd");
-        //ParserResult partedHtml5Jar = new ParserResult("html_5.jar", "html_5_types_jar.xsd");
+//        ParserResult partedHtml5Jar = new ParserResult("html_5.jar", "html_5_types_jar.xsd");
 
         parserResults.add(html5);
         parserResults.add(partedHtml5);
         parserResults.add(html5Jar);
-        //parserResults.add(partedHtml5Jar);
+//        parserResults.add(partedHtml5Jar);
 
         parserNonPartedResults.add(html5);
         parserNonPartedResults.add(html5Jar);
 
         parserPartedResults.add(partedHtml5);
-        //parserPartedResults.add(partedHtml5Jar);
+//        parserPartedResults.add(partedHtml5Jar);
     }
 
     @Test
@@ -58,28 +58,27 @@ public class HtmlParseTest {
 
         for(ParserResult parserResult : parserPartedResults){
             XsdSchema schema0 = parserResult.getSchemas().get(0);
-
-            Assert.assertEquals( 0, schema0.getChildrenElements().count());
-            Assert.assertEquals( 5, schema0.getChildrenSimpleTypes().count());
-            Assert.assertEquals( 1, schema0.getChildrenAnnotations().count());
-            Assert.assertEquals( 11, schema0.getChildrenAttributeGroups().count());
-            Assert.assertEquals( 0, schema0.getChildrenAttributes().count());
-            Assert.assertEquals( 2, schema0.getChildrenComplexTypes().count());
-            Assert.assertEquals( 8, schema0.getChildrenGroups().count());
-            Assert.assertEquals( 0, schema0.getChildrenImports().count());
-            Assert.assertEquals( 1, schema0.getChildrenIncludes().count());
-
             XsdSchema schema1 = parserResult.getSchemas().get(1);
 
-            Assert.assertEquals( 104, schema1.getChildrenElements().count());
-            Assert.assertEquals( 0, schema1.getChildrenSimpleTypes().count());
-            Assert.assertEquals( 0, schema1.getChildrenAnnotations().count());
-            Assert.assertEquals( 0, schema1.getChildrenAttributeGroups().count());
+            Assert.assertEquals( 0, schema1.getChildrenElements().count());
+            Assert.assertEquals( 5, schema1.getChildrenSimpleTypes().count());
+            Assert.assertEquals( 1, schema1.getChildrenAnnotations().count());
+            Assert.assertEquals( 11, schema1.getChildrenAttributeGroups().count());
             Assert.assertEquals( 0, schema1.getChildrenAttributes().count());
-            Assert.assertEquals( 0, schema1.getChildrenComplexTypes().count());
-            Assert.assertEquals( 0, schema1.getChildrenGroups().count());
+            Assert.assertEquals( 2, schema1.getChildrenComplexTypes().count());
+            Assert.assertEquals( 8, schema1.getChildrenGroups().count());
             Assert.assertEquals( 0, schema1.getChildrenImports().count());
             Assert.assertEquals( 1, schema1.getChildrenIncludes().count());
+
+            Assert.assertEquals( 104, schema0.getChildrenElements().count());
+            Assert.assertEquals( 0, schema0.getChildrenSimpleTypes().count());
+            Assert.assertEquals( 0, schema0.getChildrenAnnotations().count());
+            Assert.assertEquals( 0, schema0.getChildrenAttributeGroups().count());
+            Assert.assertEquals( 0, schema0.getChildrenAttributes().count());
+            Assert.assertEquals( 0, schema0.getChildrenComplexTypes().count());
+            Assert.assertEquals( 0, schema0.getChildrenGroups().count());
+            Assert.assertEquals( 0, schema0.getChildrenImports().count());
+            Assert.assertEquals( 1, schema0.getChildrenIncludes().count());
         }
     }
 
@@ -138,13 +137,17 @@ public class HtmlParseTest {
     @Test
     public void testFirstElementAttributes() {
         for(ParserResult parserResult : parserResults){
-            XsdElement htmlElement = parserResult.getElements().get(0);
+            Optional<XsdElement> htmlElementOptional = parserResult.getElements().stream().filter(element -> element.getName().equals("html")).findFirst();
+
+            Assert.assertTrue(htmlElementOptional.isPresent());
+
+            XsdElement htmlElement = htmlElementOptional.get();
 
             Assert.assertEquals("html", htmlElement.getName());
 
             XsdComplexType firstElementChild = htmlElement.getXsdComplexType();
 
-            List<XsdAttribute> elementAttributes = firstElementChild.getXsdAttributes().collect(Collectors.toList());
+            List<XsdAttribute> elementAttributes = firstElementChild.getAllXsdAttributes().collect(Collectors.toList());
 
             Assert.assertEquals(84, elementAttributes.size());
         }
@@ -164,29 +167,14 @@ public class HtmlParseTest {
 
             Assert.assertTrue(unsolvedReferenceOpt.isPresent());
 
-            List<XsdAbstractElement> parents = unsolvedReferenceOpt.get().getParents();
-
+            List<XsdAbstractElement> parents = unsolvedReferenceOpt.get().getParentsExcludingClones();
             Assert.assertEquals(4, parents.size());
 
-            XsdAbstractElement parent1 = parents.get(0);
-            XsdAbstractElement parent2 = parents.get(1);
-            XsdAbstractElement parent3 = parents.get(2);
-            XsdAbstractElement parent4 = parents.get(3);
+            long hreflangCount = parents.stream().distinct().filter(parent -> parent instanceof XsdAttribute && ((XsdAttribute) parent).getName().equals("hreflang")).count();
+            long langCount = parents.stream().distinct().filter(parent -> parent instanceof XsdAttribute && ((XsdAttribute) parent).getName().equals("lang")).count();
 
-            Assert.assertEquals(XsdAttribute.class, parent1.getClass());
-            Assert.assertEquals(XsdAttribute.class, parent2.getClass());
-            Assert.assertEquals(XsdAttribute.class, parent3.getClass());
-            Assert.assertEquals(XsdAttribute.class, parent4.getClass());
-
-            XsdAttribute parent1Attr = (XsdAttribute) parent1;
-            XsdAttribute parent2Attr = (XsdAttribute) parent2;
-            XsdAttribute parent3Attr = (XsdAttribute) parent3;
-            XsdAttribute parent4Attr = (XsdAttribute) parent4;
-
-            Assert.assertEquals("lang", parent1Attr.getName());
-            Assert.assertEquals("hreflang", parent2Attr.getName());
-            Assert.assertEquals("hreflang", parent3Attr.getName());
-            Assert.assertEquals("hreflang", parent4Attr.getName());
+            Assert.assertEquals(hreflangCount, 3);
+            Assert.assertEquals(langCount, 1);
         }
     }
 
@@ -257,12 +245,11 @@ public class HtmlParseTest {
     @Test
     public void testClassAttribute(){
         for (ParserResult parserResult : parserResults) {
-            parserResult.getElements().forEach(element ->
-                    Assert.assertTrue(element.getXsdComplexType()
-                            .getXsdAttributeGroup()
-                            .anyMatch(attributeGroup ->
-                                    attributeGroup.getAllAttributes()
-                                            .anyMatch(attribute -> attribute.getName().equals("class"))))
+            parserResult.getElements().forEach(element ->{
+                    List<XsdAttributeGroup> attributeGroups = element.getXsdComplexType().getAllXsdAttributeGroups().collect(Collectors.toList());
+
+                    Assert.assertTrue(attributeGroups.stream().anyMatch(attributeGroup -> attributeGroup.getXsdAttributes().anyMatch(attribute -> attribute.getName().equals("class"))));
+                }
             );
         }
     }
@@ -273,13 +260,15 @@ public class HtmlParseTest {
     @Test
     public void testClassParent(){
         for (ParserResult parserResult : parserResults){
-            Optional<XsdAttribute> classAttribute = parserResult.getElements().get(0).getXsdComplexType().getXsdAttributes().filter(attribute -> attribute.getName() != null && attribute.getName().equals("class")).findFirst();
+            XsdElement html = parserResult.getElements().stream().filter(element -> element.getName().equals("html")).findFirst().get();
+            List<XsdAttribute> htmlComplexTypeAttributes = html.getXsdComplexType().getAllXsdAttributes().collect(Collectors.toList());
+            Optional<XsdAttribute>  classAttribute = htmlComplexTypeAttributes.stream().filter(attribute -> attribute.getName() != null && attribute.getName().equals("class")).findFirst();
 
             Assert.assertTrue(classAttribute.isPresent());
 
             XsdAttribute classAttributeXsd = classAttribute.get();
 
-            Assert.assertEquals("classAttributeGroup", ((XsdAttributeGroup)classAttributeXsd.getParent()).getName());
+            Assert.assertTrue(!classAttributeXsd.parentAvailable || ((XsdAttributeGroup) classAttributeXsd.getParent()).getName().equals("classAttributeGroup"));
         }
     }
 

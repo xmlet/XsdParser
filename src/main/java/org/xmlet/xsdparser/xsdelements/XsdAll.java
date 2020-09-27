@@ -65,9 +65,10 @@ public class XsdAll extends XsdMultipleElements {
         XsdAll elementCopy = new XsdAll(this.getParser(), placeHolderAttributes, visitorFunction);
 
         for(ReferenceBase element: getElements()){
-            elementCopy.elements.add(ReferenceBase.clone(element, elementCopy));
+            elementCopy.elements.add(ReferenceBase.clone(parser, element, elementCopy));
         }
 
+        elementCopy.cloneOf = this;
         elementCopy.setParent(null);
 
         return elementCopy;

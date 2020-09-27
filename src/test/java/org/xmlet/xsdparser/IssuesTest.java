@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.*;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 
 import java.net.URL;
 import java.util.List;
@@ -158,7 +159,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue25(){
+    public void testIssue25ToysBaby(){
         XsdParser parser = new XsdParser(getFilePath("issue_25_ToysBaby.xsd"));
 
         testToysBaby(parser);
@@ -255,6 +256,248 @@ public class IssuesTest {
         Assert.assertEquals(1, attributes.size());
     }
 
+    @Test
+    public void testIssue25AutoAccessory(){
+        XsdParser parser = new XsdParser(getFilePath("issue_25_AutoAccessory.xsd"));
+
+        XsdSchema amz = parser.getResultXsdSchemas().filter(schema -> schema.getId() == null).findFirst().get();
+        Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
+
+        Assert.assertTrue(mainSchemaOptional.isPresent());
+
+        XsdSchema mainSchema = mainSchemaOptional.get();
+
+        Assert.assertNotNull(mainSchema);
+
+        Optional<XsdElement> toysBabyElementOptional = mainSchema.getChildrenElements().filter(element -> element.getName().equals("AutoAccessory")).findFirst();
+
+        Assert.assertTrue(toysBabyElementOptional.isPresent());
+
+        XsdElement toysBabyElement = toysBabyElementOptional.get();
+
+        Assert.assertNotNull(toysBabyElement);
+
+        XsdComplexType toysBabyComplexType = toysBabyElementOptional.get().getXsdComplexType();
+
+        Assert.assertNotNull(toysBabyComplexType);
+
+        XsdSequence toysBabySequence = toysBabyComplexType.getChildAsSequence();
+
+        Assert.assertNotNull(toysBabySequence);
+
+        Optional<XsdElement> ageRecommendationElement = toysBabySequence.getChildrenElements().filter(sequenceElement -> sequenceElement.getName().equals("ProductType")).findFirst();
+
+        Assert.assertTrue(ageRecommendationElement.isPresent());
+
+        XsdElement ageRecommendation = ageRecommendationElement.get();
+
+        Assert.assertNotNull(ageRecommendation);
+
+        XsdComplexType ageRecommendationComplexType = ageRecommendation.getXsdComplexType();
+
+        Assert.assertNotNull(ageRecommendationComplexType);
+
+        XsdChoice ageRecommendationSequence = ageRecommendationComplexType.getChildAsChoice();
+
+        Assert.assertNotNull(ageRecommendationSequence);
+
+        XsdElement autoAccessoryMiscElement = ageRecommendationSequence.getChildrenElements().filter(element -> element.getName().equals("AutoAccessoryMisc")).findFirst().get();
+
+        XsdElement amperage = autoAccessoryMiscElement.getXsdComplexType().getChildAsSequence().getChildrenElements().filter(element -> element.getName().equals("Amperage")).findFirst().get();
+
+        List<ReferenceBase> x = parser.parseElements.get("https://raw.githubusercontent.com/xmlet/XsdParser/master/src/test/resources/issue_25_amzn-base.xsd");
+
+//        x.stream().findFirst((ReferenceBase a) -> ((NamedConcreteElement) a).getName().equals("")).
+
+
+        Optional<XsdElement> a = mainSchema.getChildrenElements().filter(element -> element.getName().equals("AutoAccessoryMisc")).findFirst();
+        Stream<XsdElement> b = a.get().getXsdComplexType().getChildAsSequence().getChildrenElements();
+        XsdElement Amperage = b.filter(c -> c.getName().equals("Amperage")).findFirst().get();
+
+        Assert.assertNotNull(amperage.getTypeAsComplexType());
+    }
+
+    @Test
+    public void testIssue27Attributes(){
+        XsdParser parser = new XsdParser(getFilePath("issue_27_attributes.xsd"));
+
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+
+        Assert.assertEquals(1, schemas.size());
+
+        XsdSchema schema = schemas.get(0);
+
+        List<XsdElement> schemaElements = schema.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, schemaElements.size());
+
+        XsdElement elementA = schemaElements.get(0);
+
+        XsdComplexType complexTypeA = elementA.getTypeAsComplexType();
+
+        Assert.assertNotNull(complexTypeA);
+
+        XsdSimpleContent simpleContentA = complexTypeA.getSimpleContent();
+
+        Assert.assertNotNull(simpleContentA);
+
+        XsdExtension xsdExtensionA = simpleContentA.getXsdExtension();
+
+        Assert.assertNotNull(xsdExtensionA);
+
+        List<XsdAttribute> xsdExtensionAttributes = xsdExtensionA.getXsdAttributes().collect(Collectors.toList());
+
+        Assert.assertEquals(2, xsdExtensionAttributes.size());
+
+        XsdAttribute attributeA = xsdExtensionAttributes.get(0);
+        XsdAttribute attributeB = xsdExtensionAttributes.get(1);
+
+        Assert.assertEquals("AttributeA", attributeA.getName());
+        Assert.assertEquals("AttributeB", attributeB.getName());
+    }
+
+    @Test
+    public void testIssue27TransitiveIncludes(){
+        XsdParser parser = new XsdParser(getFilePath("issue_27_Includes_A.xsd"));
+
+        Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
+
+        Assert.assertTrue(mainSchemaOptional.isPresent());
+
+        XsdSchema mainSchema = mainSchemaOptional.get();
+
+        List<XsdElement> schemaElements = mainSchema.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, schemaElements.size());
+
+        Optional<XsdElement> optionalElementA = schemaElements.stream().filter(element -> element.getName() != null && element.getName().equals("A")).findFirst();
+
+        Assert.assertTrue(optionalElementA.isPresent());
+
+        XsdElement elementA = optionalElementA.get();
+
+        XsdComplexType complexTypeA = elementA.getTypeAsComplexType();
+
+        Assert.assertNotNull(complexTypeA);
+
+        XsdAll allA = complexTypeA.getChildAsAll();
+
+        Assert.assertNotNull(allA);
+
+        List<XsdElement> allAChildren = allA.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, allAChildren.size());
+
+        XsdElement elementB = allAChildren.get(0);
+
+        Assert.assertEquals("B", elementB.getName());
+
+        XsdComplexType complexTypeB = elementB.getTypeAsComplexType();
+
+        Assert.assertNotNull(complexTypeB);
+
+        XsdChoice choiceB = complexTypeB.getChildAsChoice();
+
+        Assert.assertNotNull(choiceB);
+
+        List<XsdElement> choiceBChildren = choiceB.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, choiceBChildren.size());
+
+        XsdElement elementC = choiceBChildren.get(0);
+
+        Assert.assertEquals("C", elementC.getName());
+
+        XsdComplexType complexTypeC = elementC.getTypeAsComplexType();
+
+        Assert.assertNotNull(complexTypeC);
+
+        XsdSequence sequenceC = complexTypeC.getChildAsSequence();
+
+        Assert.assertNotNull(sequenceC);
+
+        List<XsdElement> sequenceCChildren = sequenceC.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, sequenceCChildren.size());
+
+        XsdElement elementD = sequenceCChildren.get(0);
+
+        Assert.assertEquals("D", elementD.getName());
+    }
+
+    @Test
+    public void testIssue27TransitiveImports(){
+        XsdParser parser = new XsdParser(getFilePath("issue_27_Import_A.xsd"));
+
+        Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
+
+        Assert.assertTrue(mainSchemaOptional.isPresent());
+
+        XsdSchema mainSchema = mainSchemaOptional.get();
+
+        List<XsdElement> schemaElements = mainSchema.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, schemaElements.size());
+
+        Optional<XsdElement> optionalElementA = schemaElements.stream().filter(element -> element.getName() != null && element.getName().equals("A")).findFirst();
+
+        Assert.assertTrue(optionalElementA.isPresent());
+
+        XsdElement elementA = optionalElementA.get();
+
+        XsdComplexType complexTypeA = elementA.getTypeAsComplexType();
+
+        Assert.assertNotNull(complexTypeA);
+
+        XsdAll allA = complexTypeA.getChildAsAll();
+
+        Assert.assertNotNull(allA);
+
+        List<XsdElement> allAChildren = allA.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, allAChildren.size());
+
+        XsdElement elementB = allAChildren.get(0);
+
+        Assert.assertEquals("B", elementB.getName());
+
+        XsdComplexType complexTypeB = elementB.getXsdComplexType();
+
+        Assert.assertNotNull(complexTypeB);
+
+        XsdChoice choiceB = complexTypeB.getChildAsChoice();
+
+        Assert.assertNotNull(choiceB);
+
+        List<XsdElement> choiceBChildren = choiceB.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, choiceBChildren.size());
+
+        XsdElement elementC = choiceBChildren.get(0);
+
+        Assert.assertEquals("C", elementC.getName());
+
+        XsdComplexType complexTypeC = elementC.getTypeAsComplexType();
+
+        Assert.assertNotNull(complexTypeC);
+
+        XsdSequence sequenceC = complexTypeC.getChildAsSequence();
+
+        Assert.assertNotNull(sequenceC);
+
+        List<XsdElement> sequenceCChildren = sequenceC.getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(1, sequenceCChildren.size());
+
+        XsdElement elementD = sequenceCChildren.get(0);
+
+        Assert.assertEquals("D", elementD.getName());
+    }
+
+    @Test
+    public void testIssue28(){
+        XsdParser parser = new XsdParser(getFilePath("issue_28.xsd"));
+    }
 
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {

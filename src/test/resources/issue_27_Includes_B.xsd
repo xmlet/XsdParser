@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://foo" xmlns="http://foo" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="issue_27_Includes_C.xsd"/>
+
+    <xs:element name="B" type="BType"/>
+    <xs:complexType name="BType">
+        <xs:choice>
+            <xs:element ref="C"/>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>

@@ -6,6 +6,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents an instance of an {@link UnsolvedReference} that the {@link XsdParser} wasn't able to solve. It contains
@@ -40,5 +41,14 @@ public class UnsolvedReferenceItem {
 
     public List<XsdAbstractElement> getParents() {
         return parents;
+    }
+
+    public List<XsdAbstractElement> getParentsExcludingClones() {
+        return parents.stream().filter(parent -> parent.getCloneOf() == null).distinct().collect(Collectors.toList());
+    }
+
+    @SuppressWarnings("unused")
+    public List<XsdAbstractElement> getParentsWithClones() {
+        return parents.stream().filter(parent -> parent.getCloneOf() != null).distinct().collect(Collectors.toList());
     }
 }

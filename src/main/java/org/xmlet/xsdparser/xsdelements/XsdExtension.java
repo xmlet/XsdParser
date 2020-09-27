@@ -90,7 +90,7 @@ public class XsdExtension extends XsdAnnotatedElements {
             this.childElement = element;
         }
 
-        ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(element, this);
+        ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
     }
 
     @Override
@@ -121,8 +121,9 @@ public class XsdExtension extends XsdAnnotatedElements {
             elementCopy.visitor.visit((XsdAttributeGroup) attributeGroup.clone(attributeGroup.attributesMap, elementCopy));
         }
 
-        elementCopy.childElement = ReferenceBase.clone(this.childElement, elementCopy);
+        elementCopy.childElement = ReferenceBase.clone(parser, this.childElement, elementCopy);
         elementCopy.base = this.base;
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
         return elementCopy;
@@ -208,7 +209,7 @@ public class XsdExtension extends XsdAnnotatedElements {
 
     @SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
-        return ((XsdExtensionVisitor)visitor).getXsdAttributeGroup();
+        return ((XsdExtensionVisitor)visitor).getXsdAttributeGroups();
     }
 
     @SuppressWarnings("unused")

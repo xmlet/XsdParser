@@ -1,0 +1,61 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"  xmlns="http://mytestns.org/">
+    <xsd:complexType name="customer">
+        <xsd:sequence>
+            <xsd:element name="firstname" type="xsd:string"/>
+            <xsd:element name="lastname" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Norwegian_customer_Sequence">
+        <xsd:complexContent>
+            <xsd:restriction base="customer">
+                <xsd:sequence>
+                    <xsd:element name="firstname" type="xsd:string"/>
+                    <xsd:element name="lastname" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string" fixed="Norway"/>
+                </xsd:sequence>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Norwegian_customer_All">
+        <xsd:complexContent>
+            <xsd:restriction base="c">
+                <xsd:all>
+                    <xsd:element name="firstname" type="xsd:string"/>
+                    <xsd:element name="lastname" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string" fixed="Norway"/>
+                </xsd:all>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Norwegian_customer_Choice">
+        <xsd:complexContent>
+            <xsd:restriction base="c">
+                <xsd:choice>
+                    <xsd:element name="firstname" type="xsd:string"/>
+                    <xsd:element name="lastname" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string" fixed="Norway"/>
+                </xsd:choice>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Norwegian_customer_Group">
+        <xsd:complexContent>
+            <xsd:restriction base="c">
+                <xsd:group ref="group2" />
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:group name="group2">
+        <xsd:all>
+            <xsd:element name="firstname" type="xsd:string"/>
+            <xsd:element name="lastname" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string" fixed="Norway"/>
+        </xsd:all>
+    </xsd:group>
+</xsd:schema>

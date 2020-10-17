@@ -499,6 +499,65 @@ public class IssuesTest {
         XsdParser parser = new XsdParser(getFilePath("issue_28.xsd"));
     }
 
+    @Test
+    public void testIssue30(){
+        XsdParser parser = new XsdParser(getFilePath("issue_30.xsd"));
+
+        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
+
+        Assert.assertTrue(optionalXsdSchema.isPresent());
+
+        XsdSchema schema = optionalXsdSchema.get();
+
+        List<XsdComplexType> complexTypeStream = schema.getChildrenComplexTypes().collect(Collectors.toList());
+
+        Optional<XsdComplexType> optionalXsdComplexTypeAll = complexTypeStream.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("Norwegian_customer_All")).findFirst();
+        Optional<XsdComplexType> optionalXsdComplexTypeChoice = complexTypeStream.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("Norwegian_customer_Choice")).findFirst();
+        Optional<XsdComplexType> optionalXsdComplexTypeGroup = complexTypeStream.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("Norwegian_customer_Group")).findFirst();
+        Optional<XsdComplexType> optionalXsdComplexTypeSequence = complexTypeStream.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("Norwegian_customer_Sequence")).findFirst();
+
+        Assert.assertTrue(optionalXsdComplexTypeAll.isPresent());
+        Assert.assertTrue(optionalXsdComplexTypeChoice.isPresent());
+        Assert.assertTrue(optionalXsdComplexTypeGroup.isPresent());
+        Assert.assertTrue(optionalXsdComplexTypeSequence.isPresent());
+
+        XsdComplexType xsdComplexTypeAll = optionalXsdComplexTypeAll.get();
+        XsdComplexType xsdComplexTypeChoice = optionalXsdComplexTypeChoice.get();
+        XsdComplexType xsdComplexTypeGroup = optionalXsdComplexTypeGroup.get();
+        XsdComplexType xsdComplexTypeSequence = optionalXsdComplexTypeSequence.get();
+
+        XsdRestriction xsdRestrictionAll = xsdComplexTypeAll.getComplexContent().getXsdRestriction();
+        XsdRestriction xsdRestrictionChoice = xsdComplexTypeChoice.getComplexContent().getXsdRestriction();
+        XsdRestriction xsdRestrictionGroup = xsdComplexTypeGroup.getComplexContent().getXsdRestriction();
+        XsdRestriction xsdRestrictionSequence = xsdComplexTypeSequence.getComplexContent().getXsdRestriction();
+
+        Assert.assertNotNull(xsdRestrictionAll);
+        Assert.assertNotNull(xsdRestrictionChoice);
+        Assert.assertNotNull(xsdRestrictionGroup);
+        Assert.assertNotNull(xsdRestrictionSequence);
+
+        XsdAll xsdAll = xsdRestrictionAll.getAll();
+        XsdChoice xsdChoice = xsdRestrictionChoice.getChoice();
+        XsdGroup xsdGroup = xsdRestrictionGroup.getGroup();
+        XsdSequence xsdSequence = xsdRestrictionSequence.getSequence();
+
+        Assert.assertNotNull(xsdAll);
+        Assert.assertNotNull(xsdChoice);
+        Assert.assertNotNull(xsdGroup);
+        Assert.assertNotNull(xsdSequence);
+
+        Assert.assertEquals(3, xsdAll.getElements().size());
+        Assert.assertEquals(3, xsdChoice.getElements().size());
+        Assert.assertEquals(3, xsdSequence.getElements().size());
+        Assert.assertEquals(1, xsdGroup.getElements().size());
+
+        XsdAll xsdGroupAll = xsdGroup.getChildAsAll();
+
+        Assert.assertNotNull(xsdGroupAll);
+
+        Assert.assertEquals(3, xsdGroupAll.getElements().size());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.visitors;
 
 import org.xmlet.xsdparser.xsdelements.*;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 /**
@@ -128,5 +129,33 @@ public class XsdRestrictionsVisitor extends AttributesVisitor {
         super.visit(element);
 
         owner.setSimpleType(element);
+    }
+
+    @Override
+    public void visit(XsdAll element) {
+        super.visit(element);
+
+        owner.setAll(element);
+    }
+
+    @Override
+    public void visit(XsdChoice element) {
+        super.visit(element);
+
+        owner.setChoice(element);
+    }
+
+    @Override
+    public void visit(XsdSequence element) {
+        super.visit(element);
+
+        owner.setSequence(element);
+    }
+
+    @Override
+    public void visit(XsdGroup element) {
+        super.visit(element);
+
+        owner.setGroup(ReferenceBase.createFromXsd(element));
     }
 }

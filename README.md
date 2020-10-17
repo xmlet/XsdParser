@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -331,6 +331,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.1.2
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/30" title="No child elements in XsdRestriction">Details</a>
+            Adds support for XsdAll, XsdChoice, XsdGroup and XsdSequence inside a XsdRestriction.
+        </li>
+    </ul>
+</div>
 
 ### 1.1.0
 

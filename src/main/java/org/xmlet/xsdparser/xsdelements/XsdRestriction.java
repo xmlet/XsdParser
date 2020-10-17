@@ -2,6 +2,7 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
@@ -92,6 +93,14 @@ public class XsdRestriction extends XsdAnnotatedElements {
      */
     private XsdWhiteSpace whiteSpace;
 
+    private ReferenceBase group;
+
+    private XsdAll all;
+
+    private XsdChoice choice;
+
+    private XsdSequence sequence;
+
     /**
      * The name of the type where this instance restrictions should be applied.
      */
@@ -114,6 +123,11 @@ public class XsdRestriction extends XsdAnnotatedElements {
         super.replaceUnsolvedElements(element);
 
         ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
+
+        if (this.group instanceof UnsolvedReference && this.group.getElement() instanceof XsdGroup &&
+                element.getElement() instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.group)){
+            this.group = element;
+        }
     }
 
     /**
@@ -178,6 +192,22 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
         if (this.whiteSpace != null){
             elementCopy.whiteSpace = (XsdWhiteSpace) this.whiteSpace.clone(whiteSpace.getAttributesMap(), elementCopy);
+        }
+
+        if (this.all != null){
+            elementCopy.all = (XsdAll) this.all.clone(this.all.getAttributesMap(), elementCopy);
+        }
+
+        if (this.choice != null){
+            elementCopy.choice = (XsdChoice) this.choice.clone(this.choice.getAttributesMap(), elementCopy);
+        }
+
+        if (this.sequence != null){
+            elementCopy.sequence = (XsdSequence) this.sequence.clone(this.sequence.getAttributesMap(), elementCopy);
+        }
+
+        if (this.group != null){
+            elementCopy.group = ReferenceBase.clone(this.parser, this.group, elementCopy);
         }
 
         elementCopy.parent = null;
@@ -309,5 +339,37 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
     public void setSimpleType(XsdSimpleType simpleType) {
         this.simpleType = simpleType;
+    }
+
+    public XsdGroup getGroup() {
+        return group instanceof ConcreteElement ? (XsdGroup) group.getElement() : null;
+    }
+
+    public void setGroup(ReferenceBase group) {
+        this.group = group;
+    }
+
+    public XsdAll getAll() {
+        return all;
+    }
+
+    public void setAll(XsdAll all) {
+        this.all = all;
+    }
+
+    public XsdChoice getChoice() {
+        return choice;
+    }
+
+    public void setChoice(XsdChoice choice) {
+        this.choice = choice;
+    }
+
+    public XsdSequence getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(XsdSequence sequence) {
+        this.sequence = sequence;
     }
 }

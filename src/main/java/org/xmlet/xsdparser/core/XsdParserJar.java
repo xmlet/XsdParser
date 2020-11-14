@@ -2,11 +2,13 @@ package org.xmlet.xsdparser.core;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xmlet.xsdparser.core.utils.ConfigEntryData;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -71,19 +73,27 @@ public class XsdParserJar extends XsdParserCore {
         InputStream inputStream = classLoader.getResourceAsStream(filePath);
 
         try {
-            Node schemaNode = getSchemaNode(inputStream);
+//            Node schemaNode = getSchemaNode(inputStream);
+//
+//            if (isXsdSchema(schemaNode)){
+//                ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
+//
+//                if (xsdSchemaConfig == null){
+//                    throw new ParserConfigurationException("XsdSchema not correctly configured.");
+//                }
+//
+//                xsdSchemaConfig.parserFunction.apply(new ParseData(this, schemaNode, xsdSchemaConfig.visitorFunction));
+//            } else {
+//                throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
+//            }
 
-            if (isXsdSchema(schemaNode)){
-                ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
+            ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
 
-                if (xsdSchemaConfig == null){
-                    throw new ParserConfigurationException("XsdSchema not correctly configured.");
-                }
-
-                xsdSchemaConfig.parserFunction.apply(new ParseData(this, schemaNode, xsdSchemaConfig.visitorFunction));
-            } else {
-                throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
+            if (xsdSchemaConfig == null){
+                throw new ParserConfigurationException("XsdSchema not correctly configured.");
             }
+
+            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(inputStream), xsdSchemaConfig.visitorFunction));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
             throw new RuntimeException(e);
@@ -95,7 +105,16 @@ public class XsdParserJar extends XsdParserCore {
 
         doc.getDocumentElement().normalize();
 
-        return doc.getFirstChild();
+        NodeList nodes = doc.getChildNodes();
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            if (isXsdSchema(node)){
+                return node;
+            }
+        }
+
+        throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
     }
 
     /**

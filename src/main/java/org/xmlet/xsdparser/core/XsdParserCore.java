@@ -236,7 +236,7 @@ public abstract class XsdParserCore {
 
                     List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
 
-                    includedFiles.forEach(includedFile ->{
+                    includedFiles.stream().filter(Objects::nonNull).forEach(includedFile ->{
                         String includedFilename = includedFile.substring(includedFile.lastIndexOf("/")+1);
 
                         includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));

@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 
@@ -331,6 +331,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.1.3
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/33" title="File Path Bug Fixes">Details</a>
+            File path bug fixes by <a href="https://github.com/Wael-Fathallah" title="Wael-Fathallah">Wael-Fathallah</a>. 
+        </li>
+    </ul>
+</div>
 
 ### 1.1.2
 

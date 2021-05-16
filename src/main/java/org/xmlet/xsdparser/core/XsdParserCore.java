@@ -454,10 +454,19 @@ public abstract class XsdParserCore {
      * @param schemaLocation A new file path of another XSD file to parse.
      */
     public void addFileToParse(String schemaLocation) {
-        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd")){
-            schemaLocations.add(schemaLocation);
-            schemaLocationsMap.put(schemaLocation, currentFile);
+      String fullSchemaLocation = currentFile.substring(0, currentFile.lastIndexOf('/') + 1) + schemaLocation;
+      boolean urlSchemaLoction = false;
+  
+      if (!schemaLocations.contains((urlSchemaLoction = schemaLocation.startsWith("http")) ? schemaLocation
+          : (fullSchemaLocation = cleanPath(fullSchemaLocation))) && schemaLocation.endsWith(".xsd")) {
+        if (urlSchemaLoction) {
+          schemaLocations.add(schemaLocation);
+          schemaLocationsMap.put(schemaLocation, currentFile);
+        } else {
+          schemaLocations.add(fullSchemaLocation);
+          schemaLocationsMap.put(fullSchemaLocation, currentFile);
         }
+      }
     }
 
     public static Map<String, String> getXsdTypesToJava() {

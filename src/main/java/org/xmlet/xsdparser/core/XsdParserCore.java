@@ -156,8 +156,16 @@ public abstract class XsdParserCore {
                                     }
 
                                     String finalImportedFileName = importedFileName;
-                                    importedElements = parseElements.getOrDefault(importedFileLocation, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(finalImportedFileName)).findFirst().get()));
+                                    importedElements = parseElements.getOrDefault(importedFileLocation,
+                                        parseElements.get(parseElements.keySet()
+                                                                       .stream()
+                                                                       .filter(k -> cleanPath(k).endsWith(cleanPath(finalImportedFileName)))
+                                                                       .findFirst()
+                                                                       .orElse(null)));
+                                
                                 }
+                                
+                                
 
                                 Map<String, List<NamedConcreteElement>> concreteElementsMap =
                                         importedElements.stream()
@@ -212,6 +220,28 @@ public abstract class XsdParserCore {
         }
     }
 
+    /**
+     * Clean the path by useless ../ 
+     * example /A/B/../B/C into /A/B/C
+     */
+    private String cleanPath(String pathValue) {
+      List<String> source = Arrays.asList(pathValue.split("/"));
+      List<String> results = new ArrayList<>(source);
+      int index = 0;
+      for (String value : source) {
+        if (value.equals("..")) {
+          results.remove(index);
+          if (index > 0) {
+            results.remove(index - 1);
+            index--;
+          }
+        } else {
+          index++;
+        }
+      }
+      return results.stream().map(Object::toString).collect(Collectors.joining("/"));
+    }
+    
     private void resolveInnerRefs() {
         ArrayList<Boolean> doneList = new ArrayList<>();
         ArrayList<String> fileNameList = new ArrayList<>(parseElements.keySet());
@@ -424,12 +454,19 @@ public abstract class XsdParserCore {
      * @param schemaLocation A new file path of another XSD file to parse.
      */
     public void addFileToParse(String schemaLocation) {
-        String fileName = schemaLocation.substring(schemaLocation.lastIndexOf("/")+1);
-
-        if (!schemaLocations.contains(schemaLocation) && schemaLocation.endsWith(".xsd") && schemaLocations.stream().noneMatch(sl -> sl.endsWith(fileName))){
-            schemaLocations.add(schemaLocation);
-            schemaLocationsMap.put(schemaLocation, currentFile);
+      String fullSchemaLocation = currentFile.substring(0, currentFile.lastIndexOf('/') + 1) + schemaLocation;
+      boolean urlSchemaLoction = false;
+  
+      if (!schemaLocations.contains((urlSchemaLoction = schemaLocation.startsWith("http")) ? schemaLocation
+          : (fullSchemaLocation = cleanPath(fullSchemaLocation))) && schemaLocation.endsWith(".xsd")) {
+        if (urlSchemaLoction) {
+          schemaLocations.add(schemaLocation);
+          schemaLocationsMap.put(schemaLocation, currentFile);
+        } else {
+          schemaLocations.add(fullSchemaLocation);
+          schemaLocationsMap.put(fullSchemaLocation, currentFile);
         }
+      }
     }
 
     public static Map<String, String> getXsdTypesToJava() {

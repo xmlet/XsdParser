@@ -47,6 +47,6 @@ public class XsdEnumeration extends XsdStringRestrictions {
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){
-        return ReferenceBase.createFromXsd(new XsdEnumeration(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
+        return xsdParseSkeleton(parseData.node, new XsdEnumeration(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 }

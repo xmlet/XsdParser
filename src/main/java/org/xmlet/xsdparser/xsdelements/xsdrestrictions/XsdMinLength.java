@@ -54,6 +54,6 @@ public class XsdMinLength extends XsdIntegerRestrictions {
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){
-        return ReferenceBase.createFromXsd(new XsdMinLength(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
+        return xsdParseSkeleton(parseData.node, new XsdMinLength(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 }

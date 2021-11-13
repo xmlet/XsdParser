@@ -1,0 +1,34 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"  xmlns="http://mytestns.org/">
+    <xsd:simpleType name="Authorisation1Code">
+        <xsd:annotation>
+            <xsd:documentation source="Name" xml:lang="EN">Authorisation1Code</xsd:documentation>
+            <xsd:documentation source="Definition" xml:lang="EN">Specifies the level of approval depending on a number of factors, including payment type, threshold amount or local country or operations practice.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AUTH">
+                <xsd:annotation>
+                    <xsd:documentation source="Name" xml:lang="EN">PreAuthorisedFile</xsd:documentation>
+                    <xsd:documentation source="Definition" xml:lang="EN">Indicates a file has been pre authorised or approved within the originating customer environment and no further approval is required.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FDET">
+                <xsd:annotation>
+                    <xsd:documentation source="Name" xml:lang="EN">FileLevelAuthorisationDetails</xsd:documentation>
+                    <xsd:documentation source="Definition" xml:lang="EN">Indicates that a file requires additional file level approval, with the ability to view both the payment information block and supporting customer credit transaction detail.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FSUM">
+                <xsd:annotation>
+                    <xsd:documentation source="Name" xml:lang="EN">FileLevelAuthorisationSummary</xsd:documentation>
+                    <xsd:documentation source="Definition" xml:lang="EN">Indicates that a file requires additional file level approval, with the ability to view only the payment information block level information.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ILEV">
+                <xsd:annotation>
+                    <xsd:documentation source="Name" xml:lang="EN">InstructionLevelAuthorisation</xsd:documentation>
+                    <xsd:documentation source="Definition" xml:lang="EN">Indicates that a file requires all customer transactions to be authorised or approved.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

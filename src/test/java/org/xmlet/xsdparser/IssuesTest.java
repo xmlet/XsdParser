@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
 import java.net.URL;
 import java.util.List;
@@ -556,6 +557,92 @@ public class IssuesTest {
         Assert.assertNotNull(xsdGroupAll);
 
         Assert.assertEquals(3, xsdGroupAll.getElements().size());
+    }
+
+    @Test
+    public void testIssue34(){
+        XsdParser parser = new XsdParser(getFilePath("issue_34.xsd"));
+
+        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
+
+        Assert.assertTrue(optionalXsdSchema.isPresent());
+
+        XsdSchema schema = optionalXsdSchema.get();
+
+        List<XsdSimpleType> simpleTypeList = schema.getChildrenSimpleTypes().collect(Collectors.toList());
+
+        Optional<XsdSimpleType> optionalAuthorization1Code = simpleTypeList.stream().filter(simpleType -> simpleType.getName().equals("Authorisation1Code")).findFirst();
+
+        Assert.assertTrue(optionalAuthorization1Code.isPresent());
+
+        XsdSimpleType xsdSimpleType = optionalAuthorization1Code.get();
+
+        XsdRestriction xsdRestriction = xsdSimpleType.getRestriction();
+
+        Assert.assertNotNull(xsdRestriction);
+
+        List<XsdEnumeration> xsdEnumerationList = xsdRestriction.getEnumeration();
+
+        Assert.assertEquals(4, xsdEnumerationList.size());
+
+        Optional<XsdEnumeration> optionalAuthEnumeration = xsdEnumerationList.stream().filter(xsdEnumeration -> xsdEnumeration.getValue().equals("AUTH")).findFirst();
+
+        Assert.assertTrue(optionalAuthEnumeration.isPresent());
+
+        XsdEnumeration authEnumeration = optionalAuthEnumeration.get();
+
+        XsdAnnotation xsdAnnotation = authEnumeration.getAnnotation();
+
+        Assert.assertNotNull(xsdAnnotation);
+
+        List<XsdDocumentation> authDocumentations = xsdAnnotation.getDocumentations();
+
+        Assert.assertEquals(2, authDocumentations.size());
+
+        Optional<XsdDocumentation> optionalAuthNameDocumentation = authDocumentations.stream().filter(authDocumentation -> authDocumentation.getSource().equals("Name")).findFirst();
+        Optional<XsdDocumentation> optionalAuthDefinitionDocumentation = authDocumentations.stream().filter(authDocumentation -> authDocumentation.getSource().equals("Definition")).findFirst();
+
+        Assert.assertTrue(optionalAuthNameDocumentation.isPresent());
+        Assert.assertTrue(optionalAuthDefinitionDocumentation.isPresent());
+
+        XsdDocumentation authNameDocumentation = optionalAuthNameDocumentation.get();
+        XsdDocumentation authDefinitionDocumentation = optionalAuthDefinitionDocumentation.get();
+
+        Assert.assertEquals("PreAuthorisedFile", authNameDocumentation.getContent());
+        Assert.assertEquals("Indicates a file has been pre authorised or approved within the originating customer environment and no further approval is required.", authDefinitionDocumentation.getContent());
+    }
+
+    @Test
+    public void testIssue35(){
+        XsdParser parser = new XsdParser(getFilePath("issue_35.xsd"));
+
+        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
+
+        Assert.assertTrue(optionalXsdSchema.isPresent());
+
+        XsdSchema schema = optionalXsdSchema.get();
+
+        List<XsdSimpleType> simpleTypeList = schema.getChildrenSimpleTypes().collect(Collectors.toList());
+
+        Optional<XsdSimpleType> optionalmax35TextCh = simpleTypeList.stream().filter(simpleType -> simpleType.getName().equals("Max35Text_CH_camt052")).findFirst();
+
+        Assert.assertTrue(optionalmax35TextCh.isPresent());
+
+        XsdSimpleType xsdSimpleType = optionalmax35TextCh.get();
+
+        XsdRestriction xsdRestriction = xsdSimpleType.getRestriction();
+
+        Assert.assertNotNull(xsdRestriction);
+
+        XsdSimpleType max35TextSimpleType = xsdRestriction.getSimpleType();
+
+        Assert.assertNotNull(max35TextSimpleType);
+        Assert.assertEquals("Max35Text", max35TextSimpleType.getName());
+
+        XsdRestriction max35TextRestriction = max35TextSimpleType.getRestriction();
+
+        Assert.assertNotNull(max35TextRestriction);
+        Assert.assertEquals("xsd:string", max35TextRestriction.getBase());
     }
 
     private String getInfo(XsdAbstractElement xae) {

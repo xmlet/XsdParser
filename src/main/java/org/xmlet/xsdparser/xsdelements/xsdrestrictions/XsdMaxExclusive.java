@@ -58,7 +58,7 @@ public class XsdMaxExclusive extends XsdStringRestrictions {
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){
-        return ReferenceBase.createFromXsd(new XsdMaxExclusive(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
+        return xsdParseSkeleton(parseData.node, new XsdMaxExclusive(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 
     public boolean isFixed() {

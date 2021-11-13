@@ -50,6 +50,6 @@ public class XsdFractionDigits extends XsdIntegerRestrictions {
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){
-        return ReferenceBase.createFromXsd(new XsdFractionDigits(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
+        return xsdParseSkeleton(parseData.node, new XsdFractionDigits(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }
 }

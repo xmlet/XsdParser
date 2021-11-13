@@ -1,22 +1,27 @@
 package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdRestrictionsVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.xmlet.xsdparser.core.XsdParserCore.getParseMappers;
 
 /**
  * A class representing the xsd:restriction element.
@@ -31,7 +36,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     /**
      * The {@link XsdSimpleType} instance of this {@link XsdRestriction} instance.
      */
-    private XsdSimpleType simpleType;
+    private ReferenceBase simpleType;
 
     /**
      * A List of {@link XsdEnumeration} items, that represent a set of possible values for a given type.
@@ -110,6 +115,29 @@ public class XsdRestriction extends XsdAnnotatedElements {
         super(parser, attributesMap, visitorFunction);
 
         this.base = attributesMap.getOrDefault(BASE_TAG, base);
+
+        if (this.base != null){
+            if (XsdParserCore.getXsdTypesToJava().containsKey(this.base)){
+                HashMap<String, String> attributes = new HashMap<>();
+                attributes.put(NAME_TAG, this.base);
+                this.simpleType = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
+            } else {
+                Map<String, ConfigEntryData> parseMappers = getParseMappers();
+                ConfigEntryData config = parseMappers.getOrDefault(XsdElement.XSD_TAG, parseMappers.getOrDefault(XsdElement.XS_TAG, null));
+
+                if (config == null){
+                    throw new ParsingException("Invalid Parsing Configuration for XsdElement.");
+                }
+
+                this.simpleType = new UnsolvedReference(this.base, new XsdElement(this, this.parser, new HashMap<>(), config.visitorFunction));
+                parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
+            }
+        }
+    }
+
+    public XsdRestriction(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
+        this(parser, elementFieldsMapParam, visitorFunction);
+        setParent(parent);
     }
 
     @Override
@@ -123,6 +151,10 @@ public class XsdRestriction extends XsdAnnotatedElements {
         super.replaceUnsolvedElements(element);
 
         ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
+
+        if (this.simpleType instanceof UnsolvedReference && element.getElement() instanceof XsdSimpleType && compareReference(element, (UnsolvedReference) this.simpleType)){
+            this.simpleType = element;
+        }
 
         if (this.group instanceof UnsolvedReference && this.group.getElement() instanceof XsdGroup &&
                 element.getElement() instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.group)){
@@ -143,7 +175,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         XsdRestriction elementCopy = new XsdRestriction(this.parser, placeHolderAttributes, visitorFunction);
 
         if (this.simpleType != null){
-            elementCopy.simpleType = (XsdSimpleType) this.simpleType.clone(simpleType.getAttributesMap(), elementCopy);
+            elementCopy.simpleType = ReferenceBase.clone(this.parser, this.simpleType, elementCopy);
         }
 
         if (this.enumeration != null){
@@ -230,7 +262,19 @@ public class XsdRestriction extends XsdAnnotatedElements {
     }
 
     public XsdSimpleType getSimpleType() {
-        return simpleType;
+        return simpleType == null || simpleType instanceof UnsolvedReference ? getXsdSimpleTypeFromType() : (XsdSimpleType) simpleType.getElement();
+    }
+
+    private XsdSimpleType getXsdSimpleTypeFromType(){
+        if (simpleType instanceof ConcreteElement){
+            XsdAbstractElement typeElement = simpleType.getElement();
+
+            if (typeElement instanceof XsdSimpleType){
+                return (XsdSimpleType) typeElement;
+            }
+        }
+
+        return null;
     }
 
     public String getBase() {
@@ -338,7 +382,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     }
 
     public void setSimpleType(XsdSimpleType simpleType) {
-        this.simpleType = simpleType;
+        this.simpleType = ReferenceBase.createFromXsd(simpleType);
     }
 
     public XsdGroup getGroup() {

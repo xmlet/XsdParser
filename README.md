@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.5</version>
 </dependency>
 ```
 
@@ -331,6 +331,21 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.1.5
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/34" title="XsdAnnotation not filled in for XsdEnumeration">Issue 34</a> 
+            Fixed an issue where restrictions contents weren't being parsed. 
+        </li>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/34" title="Embedded simple types fails">Issue 35</a> 
+            Fixed an issue where XsdSimpleType wasn't being filled in XsdRestriction.
+        </li>
+    </ul>
+</div>
 
 ### 1.1.4
 

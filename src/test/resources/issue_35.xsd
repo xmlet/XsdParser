@@ -1,0 +1,15 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"  xmlns="http://mytestns.org/">
+    <xsd:simpleType name="Max35Text">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Max35Text_CH_camt052">
+        <xsd:restriction base="Max35Text">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="35"/>
+            <xsd:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

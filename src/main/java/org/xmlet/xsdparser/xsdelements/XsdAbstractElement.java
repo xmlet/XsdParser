@@ -216,7 +216,7 @@ public abstract class XsdAbstractElement {
      * @param element The concrete element that will be populated and returned.
      * @return A wrapper object that contains the parsed XSD object.
      */
-    static ReferenceBase xsdParseSkeleton(Node node, XsdAbstractElement element){
+    public static ReferenceBase xsdParseSkeleton(Node node, XsdAbstractElement element){
         XsdParserCore parser = element.getParser();
         Node child = node.getFirstChild();
 

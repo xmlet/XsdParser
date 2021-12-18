@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:href='../elts/us-roles-2021-01-31.xsd#ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:href='../elts/us-roles-2021-01-31.xsd#ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossLineItems' xlink:label='loc_BusinessInterruptionLossLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:label='loc_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_BusinessInterruptionLossLineItems' xlink:to='loc_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossAxis' xlink:label='loc_BusinessInterruptionLossAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossDomain' xlink:label='loc_BusinessInterruptionLossDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_BusinessInterruptionLossAxis' xlink:to='loc_BusinessInterruptionLossDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossAxis' xlink:label='loc_BusinessInterruptionLossAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossDomain' xlink:label='loc_BusinessInterruptionLossDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_BusinessInterruptionLossAxis' xlink:to='loc_BusinessInterruptionLossDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossLineItems' xlink:label='loc_BusinessInterruptionLossLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossesNatureOfEvent' xlink:label='loc_BusinessInterruptionLossesNatureOfEvent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GainOnBusinessInterruptionInsuranceRecovery' xlink:label='loc_GainOnBusinessInterruptionInsuranceRecovery' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesMember' xlink:label='loc_SalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradingRevenueMember' xlink:label='loc_TradingRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CostOfSalesMember' xlink:label='loc_CostOfSalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipalOrProprietaryTransactionsMember' xlink:label='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetManagementIncomeMember' xlink:label='loc_AssetManagementIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIncomeMember' xlink:label='loc_OtherIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestIncomeMember' xlink:label='loc_InterestIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentIncomeMember' xlink:label='loc_InvestmentIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingIncomeLossMember' xlink:label='loc_OperatingIncomeLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherOperatingIncomeExpenseMember' xlink:label='loc_OtherOperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestExpenseMember' xlink:label='loc_InterestExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingExpenseMember' xlink:label='loc_OperatingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherExpenseMember' xlink:label='loc_OtherExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonoperatingIncomeExpenseMember' xlink:label='loc_NonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherNonoperatingIncomeExpenseMember' xlink:label='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCurrencyGainLossMember' xlink:label='loc_ForeignCurrencyGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SaleOfSubsidiaryGainLossMember' xlink:label='loc_SaleOfSubsidiaryGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingGeneralAndAdministrativeExpensesMember' xlink:label='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingAndMarketingExpenseMember' xlink:label='loc_SellingAndMarketingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeExpenseMember' xlink:label='loc_GeneralAndAdministrativeExpenseMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BusinessInterruptionLossLineItems' xlink:to='loc_BusinessInterruptionLossesNatureOfEvent' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BusinessInterruptionLossLineItems' xlink:to='loc_GainOnBusinessInterruptionInsuranceRecovery' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SalesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_TradingRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_CostOfSalesMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_AssetManagementIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InvestmentIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingIncomeLossMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherOperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_NonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_ForeignCurrencyGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SaleOfSubsidiaryGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_SellingAndMarketingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_GeneralAndAdministrativeExpenseMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:label='loc_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessInterruptionLossAxis' xlink:label='loc_BusinessInterruptionLossAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:to='loc_BusinessInterruptionLossAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfBusinessInsuranceRecoveriesTable' xlink:to='loc_IncomeStatementLocationAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemLineItems' xlink:label='loc_UnusualOrInfrequentItemLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemTable' xlink:label='loc_UnusualOrInfrequentItemTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_UnusualOrInfrequentItemLineItems' xlink:to='loc_UnusualOrInfrequentItemTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemAxis' xlink:label='loc_UnusualOrInfrequentItemAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemDomain' xlink:label='loc_UnusualOrInfrequentItemDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_UnusualOrInfrequentItemAxis' xlink:to='loc_UnusualOrInfrequentItemDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemAxis' xlink:label='loc_UnusualOrInfrequentItemAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemDomain' xlink:label='loc_UnusualOrInfrequentItemDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_UnusualOrInfrequentItemAxis' xlink:to='loc_UnusualOrInfrequentItemDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemDomain' xlink:label='loc_UnusualOrInfrequentItemDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NaturalDisastersAndOtherCasualtyEventsMember' xlink:label='loc_NaturalDisastersAndOtherCasualtyEventsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemLineItems' xlink:label='loc_UnusualOrInfrequentItemLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemNatureOfEventOrTransaction' xlink:label='loc_UnusualOrInfrequentItemNatureOfEventOrTransaction' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemNetGainLossAbstract' xlink:label='loc_UnusualOrInfrequentItemNetGainLossAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemEarningsPerShareImpactGross' xlink:label='loc_UnusualOrInfrequentItemEarningsPerShareImpactGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemEarningsPerShareImpactNet' xlink:label='loc_UnusualOrInfrequentItemEarningsPerShareImpactNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentTaxEffect' xlink:label='loc_UnusualOrInfrequentTaxEffect' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemNetOfInsuranceProceedsAbstract' xlink:label='loc_UnusualOrInfrequentItemNetOfInsuranceProceedsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemGainGross' xlink:label='loc_UnusualOrInfrequentItemGainGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DiscontinuedApplicationOfSpecializedAccountingForRegulatedOperations' xlink:label='loc_DiscontinuedApplicationOfSpecializedAccountingForRegulatedOperations' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemNetGainLoss' xlink:label='loc_UnusualOrInfrequentItemNetGainLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemLossGross' xlink:label='loc_UnusualOrInfrequentItemLossGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemInsuranceProceeds' xlink:label='loc_UnusualOrInfrequentItemInsuranceProceeds' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemNetOfInsuranceProceeds' xlink:label='loc_UnusualOrInfrequentItemNetOfInsuranceProceeds' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemDomain' xlink:to='loc_NaturalDisastersAndOtherCasualtyEventsMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemLineItems' xlink:to='loc_UnusualOrInfrequentItemNatureOfEventOrTransaction' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemLineItems' xlink:to='loc_UnusualOrInfrequentItemNetGainLossAbstract' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemLineItems' xlink:to='loc_UnusualOrInfrequentItemEarningsPerShareImpactGross' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemLineItems' xlink:to='loc_UnusualOrInfrequentItemEarningsPerShareImpactNet' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemLineItems' xlink:to='loc_UnusualOrInfrequentTaxEffect' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetGainLossAbstract' xlink:to='loc_UnusualOrInfrequentItemNetOfInsuranceProceedsAbstract' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetGainLossAbstract' xlink:to='loc_UnusualOrInfrequentItemGainGross' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetGainLossAbstract' xlink:to='loc_DiscontinuedApplicationOfSpecializedAccountingForRegulatedOperations' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetGainLossAbstract' xlink:to='loc_UnusualOrInfrequentItemNetGainLoss' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetOfInsuranceProceedsAbstract' xlink:to='loc_UnusualOrInfrequentItemLossGross' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetOfInsuranceProceedsAbstract' xlink:to='loc_UnusualOrInfrequentItemInsuranceProceeds' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnusualOrInfrequentItemNetOfInsuranceProceedsAbstract' xlink:to='loc_UnusualOrInfrequentItemNetOfInsuranceProceeds' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExtraordinaryAndUnusualItemsUnusualOrInfrequentItemTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemTable' xlink:label='loc_UnusualOrInfrequentItemTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnusualOrInfrequentItemAxis' xlink:label='loc_UnusualOrInfrequentItemAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_UnusualOrInfrequentItemTable' xlink:to='loc_UnusualOrInfrequentItemAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.; (c) 2020-2021 XBRL US, Inc. All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+<xs:schema targetNamespace='http://fasb.org/dqcrules/2021-01-31' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:dqcrules='http://fasb.org/dqcrules/2021-01-31' xmlns:us-gaap='http://fasb.org/us-gaap/2021-01-31' xmlns:dei='http://xbrl.sec.gov/dei/2021' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xbrli='http://www.xbrl.org/2003/instance' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.xbrl.org/2003/linkbase'>
+<xs:import namespace='http://www.xbrl.org/2003/instance' schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd'/>
+<xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+<xs:import namespace='http://fasb.org/us-gaap/2021-01-31' schemaLocation='../elts/us-gaap-2021-01-31.xsd'/>
+<xs:import namespace='http://xbrl.sec.gov/dei/2021' schemaLocation='https://xbrl.sec.gov/dei/2021/dei-2021.xsd'/>
+<xs:import namespace='http://fasb.org/us-roles/2021-01-31' schemaLocation='../elts/us-roles-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules-0001/2021-01-31' schemaLocation='dqcrules-0001-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules-0004/2021-01-31' schemaLocation='dqcrules-0004-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules-0008/2021-01-31' schemaLocation='dqcrules-0008-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules-0009/2021-01-31' schemaLocation='dqcrules-0009-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules-0015/2021-01-31' schemaLocation='dqcrules-0015-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules-0048/2021-01-31' schemaLocation='dqcrules-0048-2021-01-31.xsd'/>
+<xs:annotation>
+<xs:appinfo>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/dqcNote' id='dqcn'>
+<link:definition>DQC Rule Note</link:definition>
+<link:usedOn>link:reference</link:usedOn>
+</link:roleType>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/ruleExclusions' id='dqcre'>
+<link:definition>Exclusions to the DQC rule</link:definition>
+<link:usedOn>link:reference</link:usedOn>
+</link:roleType>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/ruleID' id='dqcrid'>
+<link:definition>DQC Rule Identification Number</link:definition>
+<link:usedOn>link:reference</link:usedOn>
+</link:roleType>
+<link:arcroleType arcroleURI='http://fasb.org/dqcrules/arcrole/rule-concept' cyclesAllowed='undirected' id='rule-concept'>
+<link:definition>
+Rule-Concept
+</link:definition>
+<link:usedOn>link:definitionArc</link:usedOn>
+</link:arcroleType>
+<link:arcroleType arcroleURI='http://fasb.org/dqcrules/arcrole/concept-equivalents' cyclesAllowed='undirected' id='concept-equivalents'>
+<link:definition>
+Concept-Equivalents
+</link:definition>
+<link:usedOn>link:definitionArc</link:usedOn>
+</link:arcroleType>
+<link:arcroleType arcroleURI='http://fasb.org/dqcrules/arcrole/greaterThan-concept' cyclesAllowed='undirected' id='greaterThan-concept'>
+<link:definition>
+Greater Than-Concept
+</link:definition>
+<link:usedOn>link:definitionArc</link:usedOn>
+</link:arcroleType>
+</xs:appinfo>
+</xs:annotation>
+<xs:element id='dqcrules_ruleId' name='ruleId' substitutionGroup='link:part' type='dqcrules:ruleIdItemType'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Rule identification as published by XBRL US.
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='dqcrules_ruleName' name='ruleName' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Short name for rule, for example, “Negative Values.”
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='dqcrules_ruleDocumentation' name='ruleDocumentation' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Definition of the rule.
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='dqcrules_ruleElementId' name='ruleElementId' substitutionGroup='link:part' type='dqcrules:elementIdItemType'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Element ID to facilitate identification from rule applications.
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='dqcrules_allowableSubString' name='allowableSubString' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+REGEX pattern used in an element extension name that may put the element on the exclusion list.
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:simpleType name='ruleIdItemType'>
+<xs:restriction base='xs:token'>
+<xs:pattern value='DQC.[0-9]{4}'/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name='elementIdItemType'>
+<xs:restriction base='xs:token'>
+<xs:pattern value='DQC.US.[0-9]{4}.[0-9]{1,8}'/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

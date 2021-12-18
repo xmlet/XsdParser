@@ -1,0 +1,1991 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+<link:linkbase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:link="http://www.xbrl.org/2003/linkbase" xsi:schemaLocation="http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd">
+<link:roleRef xlink:type="simple" roleURI="http://fasb.org/us-gaap/role/tin/taxonomyImplementationNote" xlink:href="../elts/us-roles-2021-01-31.xsd#tin"/>
+<link:arcroleRef xlink:type="simple" arcroleURI="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation" xlink:href="../elts/us-arcroles-2021-01-31.xsd#concept-extensibleEnumerationLineItemLocation"/>
+<link:arcroleRef xlink:type="simple" arcroleURI="http://fasb.org/us-gaap/arcrole/identification" xlink:href="../elts/us-arcroles-2021-01-31.xsd#identification"/>
+<link:definitionLink xlink:type="extended"
+xlink:role="http://fasb.org/us-gaap/role/tin/taxonomyImplementationNote">
+<link:loc xlink:type="locator"
+xlink:label="loc_DisposalGroupNotDiscontinuedOperationGainLossOnDisposal"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DisposalGroupNotDiscontinuedOperationGainLossOnDisposal"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DisposalGroupNotDiscontinuedOperationGainLossOnDisposalStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DisposalGroupNotDiscontinuedOperationGainLossOnDisposalStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanAmortizationOfGainsLosses"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanAmortizationOfGainsLosses"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanAmortizationOfPriorServiceCostCredit"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanAmortizationOfPriorServiceCostCredit"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfPriorServiceCostCreditStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfPriorServiceCostCreditStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanExpectedReturnOnPlanAssets"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanExpectedReturnOnPlanAssets"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditExpectedReturnLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditExpectedReturnLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DefinedBenefitPlanInterestCost"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanInterestCost"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditInterestCostStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditInterestCostStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanRecognizedNetGainLossDueToCurtailments"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanRecognizedNetGainLossDueToCurtailments"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditCurtailmentGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditCurtailmentGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashAndCashEquivalentsAtCarryingValue"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAndCashEquivalentsAtCarryingValue"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashAndCashEquivalentsCurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAndCashEquivalentsCurrentAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashAndCashEquivalentsNoncurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAndCashEquivalentsNoncurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashAndCashEquivalentsNoncurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAndCashEquivalentsNoncurrentAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityGainLossIncludedInEarnings"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityGainLossIncludedInEarnings"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationLiabilityGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationLiabilityGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityGainLossIncludedInOtherComprehensiveIncome"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityGainLossIncludedInOtherComprehensiveIncome"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCashAndCashEquivalents"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAndCashEquivalents"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashAndCashEquivalentsAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAndCashEquivalentsAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DefinedBenefitPlanOtherCosts"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanOtherCosts"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditOtherCostCreditStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditOtherCostCreditStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetsAndLiabilitiesMeasuredOnRecurringBasisGainLossIncludedInEarnings"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetsAndLiabilitiesMeasuredOnRecurringBasisGainLossIncludedInEarnings"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetGainLossIncludedInEarnings1"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetGainLossIncludedInEarnings1"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationAssetGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetGainLossIncludedInOtherComprehensiveIncomeLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetGainLossIncludedInOtherComprehensiveIncomeLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationAssetGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanRecognizedNetGainLossDueToSettlements1"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanRecognizedNetGainLossDueToSettlements1"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditSettlementGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditSettlementGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanRecognizedNetGainLossDueToSettlementsAndCurtailments1"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanRecognizedNetGainLossDueToSettlementsAndCurtailments1"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditSettlementAndCurtailmentGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditSettlementAndCurtailmentGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisUnobservableInputsReconciliationGainLossIncludedInEarnings"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisUnobservableInputsReconciliationGainLossIncludedInEarnings"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationNetDerivativeAssetLiabilityGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationNetDerivativeAssetLiabilityGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisUnobservableInputsReconciliationGainLossIncludedInOtherComprehensiveIncomeLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisUnobservableInputsReconciliationGainLossIncludedInOtherComprehensiveIncomeLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationNetDerivativeAssetLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationNetDerivativeAssetLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetsMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetsMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueLiabilitiesMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueLiabilitiesMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanAmortizationOfTransitionAssetObligation"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanAmortizationOfTransitionAssetObligation"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfTransitionAssetObligationStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfTransitionAssetObligationStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FinanceLeaseRightOfUseAsset"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseRightOfUseAsset"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeaseRightOfUseAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseRightOfUseAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_OperatingLeaseRightOfUseAsset"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseRightOfUseAsset"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OperatingLeaseRightOfUseAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseRightOfUseAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanActuarialGainLossImmediateRecognitionAsComponentInNetPeriodicBenefitCostCredit"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanActuarialGainLossImmediateRecognitionAsComponentInNetPeriodicBenefitCostCredit"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditImmediateRecognitionOfActuarialGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditImmediateRecognitionOfActuarialGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCashCurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashCurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashCurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashCurrentAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCashEquivalentsCurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashEquivalentsCurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashEquivalentsCurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashEquivalentsCurrentAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCashNoncurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashNoncurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashNoncurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashNoncurrentAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCashEquivalentsNoncurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashEquivalentsNoncurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashEquivalentsNoncurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashEquivalentsNoncurrentAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCash"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCash"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestrictedCashEquivalents"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashEquivalents"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RestrictedCashEquivalentsAssetStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestrictedCashEquivalentsAssetStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_SalesTypeLeaseLeaseIncome"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesTypeLeaseLeaseIncome"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SalesTypeLeaseIncomeComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesTypeLeaseIncomeComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_OperatingLeaseLeaseIncome"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLeaseIncome"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OperatingLeaseIncomeComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseIncomeComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DirectFinancingLeaseLeaseIncome"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectFinancingLeaseLeaseIncome"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DirectFinancingLeaseIncomeComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectFinancingLeaseIncomeComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FinanceLeaseLiability"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseLiability"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeaseLiabilityStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseLiabilityStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FinanceLeaseLiabilityCurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseLiabilityCurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeaseLiabilityCurrentStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseLiabilityCurrentStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FinanceLeaseLiabilityNoncurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseLiabilityNoncurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeaseLiabilityNoncurrentStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeaseLiabilityNoncurrentStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_OperatingLeaseLiability"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLiability"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OperatingLeaseLiabilityStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLiabilityStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_OperatingLeaseLiabilityCurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLiabilityCurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OperatingLeaseLiabilityCurrentStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLiabilityCurrentStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_OperatingLeaseLiabilityNoncurrent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLiabilityNoncurrent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OperatingLeaseLiabilityNoncurrentStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLeaseLiabilityNoncurrentStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditExcludingServiceCostStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanNetPeriodicBenefitCostCreditExcludingServiceCostStatementOfIncomeOrComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_HostingArrangementServiceContractImplementationCostImpairment"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_HostingArrangementServiceContractImplementationCostImpairment"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_HostingArrangementServiceContractImplementationCostImpairmentStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_HostingArrangementServiceContractImplementationCostImpairmentStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossOci"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossOci"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossOci"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinancingReceivableAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancingReceivableAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinancingReceivableAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancingReceivableAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AccountsReceivableNoncurrentAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountsReceivableNoncurrentAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AccountsReceivableNoncurrentAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountsReceivableNoncurrentAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesHeldToMaturityAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesHeldToMaturityAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesHeldToMaturityAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesHeldToMaturityAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_NetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_NetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_NetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_NetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SalesTypeLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesTypeLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SalesTypeLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesTypeLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DirectFinancingLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectFinancingLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DirectFinancingLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectFinancingLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinancialAssetAmortizedCostAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialAssetAmortizedCostAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinancialAssetAmortizedCostAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialAssetAmortizedCostAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesAvailableForSaleAccruedInterestAfterAllowanceForCreditLoss"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesAvailableForSaleAccruedInterestAfterAllowanceForCreditLoss"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesAvailableForSaleAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesAvailableForSaleAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairment"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairment"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairmentStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairmentStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EntertainmentLicenseAgreementForProgramMaterialAmortizationExpense"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EntertainmentLicenseAgreementForProgramMaterialAmortizationExpense"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EntertainmentLicenseAgreementForProgramMaterialExpenseAmortizationStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EntertainmentLicenseAgreementForProgramMaterialExpenseAmortizationStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FilmMonetizedInFilmGroupAmortizationExpense"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupAmortizationExpense"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FilmMonetizedInFilmGroupAmortizationExpenseStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupAmortizationExpenseStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FilmMonetizedOnItsOwnAndFilmGroupImpairment"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAndFilmGroupImpairment"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FilmMonetizedOnItsOwnAndFilmGroupImpairmentStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAndFilmGroupImpairmentStatementOfIncomeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FilmMonetizedOnItsOwnAmortizationExpense"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAmortizationExpense"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FilmMonetizedOnItsOwnAmortizationExpenseStatementOfIncomeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAmortizationExpenseStatementOfIncomeExtensibleList"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DisposalGroupNotDiscontinuedOperationGainLossOnDisposal"
+xlink:to="loc_DisposalGroupNotDiscontinuedOperationGainLossOnDisposalStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_DefinedBenefitPlanAmortizationOfGainsLosses"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DefinedBenefitPlanAmortizationOfPriorServiceCostCredit"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfPriorServiceCostCreditStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_DefinedBenefitPlanExpectedReturnOnPlanAssets"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditExpectedReturnLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_DefinedBenefitPlanInterestCost"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditInterestCostStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DefinedBenefitPlanRecognizedNetGainLossDueToCurtailments"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditCurtailmentGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_RestrictedCashAndCashEquivalentsAtCarryingValue"
+xlink:to="loc_RestrictedCashAndCashEquivalentsCurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashAndCashEquivalentsNoncurrent"
+xlink:to="loc_RestrictedCashAndCashEquivalentsNoncurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityGainLossIncludedInEarnings"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationLiabilityGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisLiabilityGainLossIncludedInOtherComprehensiveIncome"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashAndCashEquivalents"
+xlink:to="loc_RestrictedCashAndCashEquivalentsAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_DefinedBenefitPlanOtherCosts"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditOtherCostCreditStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueAssetsAndLiabilitiesMeasuredOnRecurringBasisGainLossIncludedInEarnings"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetGainLossIncludedInEarnings1"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetGainLossIncludedInOtherComprehensiveIncomeLoss"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DefinedBenefitPlanRecognizedNetGainLossDueToSettlements1"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditSettlementGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DefinedBenefitPlanRecognizedNetGainLossDueToSettlementsAndCurtailments1"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditSettlementAndCurtailmentGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisUnobservableInputsReconciliationGainLossIncludedInEarnings"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationNetDerivativeAssetLiabilityGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisUnobservableInputsReconciliationGainLossIncludedInOtherComprehensiveIncomeLoss"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationNetDerivativeAssetLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueAssetsMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"
+xlink:to="loc_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueLiabilitiesMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"
+xlink:to="loc_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueNetDerivativeAssetLiabilityMeasuredOnRecurringBasisChangeInUnrealizedGainLoss"
+xlink:to="loc_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DefinedBenefitPlanAmortizationOfTransitionAssetObligation"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditAmortizationOfTransitionAssetObligationStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinanceLeaseRightOfUseAsset"
+xlink:to="loc_FinanceLeaseRightOfUseAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_OperatingLeaseRightOfUseAsset"
+xlink:to="loc_OperatingLeaseRightOfUseAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DefinedBenefitPlanActuarialGainLossImmediateRecognitionAsComponentInNetPeriodicBenefitCostCredit"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditImmediateRecognitionOfActuarialGainLossStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashCurrent"
+xlink:to="loc_RestrictedCashCurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashEquivalentsCurrent"
+xlink:to="loc_RestrictedCashEquivalentsCurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashNoncurrent"
+xlink:to="loc_RestrictedCashNoncurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashEquivalentsNoncurrent"
+xlink:to="loc_RestrictedCashEquivalentsNoncurrentAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCash"
+xlink:to="loc_RestrictedCashAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RestrictedCashEquivalents"
+xlink:to="loc_RestrictedCashEquivalentsAssetStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_SalesTypeLeaseLeaseIncome"
+xlink:to="loc_SalesTypeLeaseIncomeComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_OperatingLeaseLeaseIncome"
+xlink:to="loc_OperatingLeaseIncomeComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_DirectFinancingLeaseLeaseIncome"
+xlink:to="loc_DirectFinancingLeaseIncomeComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinanceLeaseLiability"
+xlink:to="loc_FinanceLeaseLiabilityStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinanceLeaseLiabilityCurrent"
+xlink:to="loc_FinanceLeaseLiabilityCurrentStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinanceLeaseLiabilityNoncurrent"
+xlink:to="loc_FinanceLeaseLiabilityNoncurrentStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_OperatingLeaseLiability"
+xlink:to="loc_OperatingLeaseLiabilityStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_OperatingLeaseLiabilityCurrent"
+xlink:to="loc_OperatingLeaseLiabilityCurrentStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_OperatingLeaseLiabilityNoncurrent"
+xlink:to="loc_OperatingLeaseLiabilityNoncurrentStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_NetPeriodicDefinedBenefitsExpenseReversalOfExpenseExcludingServiceCostComponent"
+xlink:to="loc_DefinedBenefitPlanNetPeriodicBenefitCostCreditExcludingServiceCostStatementOfIncomeOrComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_HostingArrangementServiceContractImplementationCostImpairment"
+xlink:to="loc_HostingArrangementServiceContractImplementationCostImpairmentStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLoss"
+xlink:to="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:to="loc_FairValueAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:to="loc_FairValueAssetRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:to="loc_FairValueLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossOci"
+xlink:to="loc_FairValueRecurringBasisUnobservableInputReconciliationAssetLiabilityGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossOci"
+xlink:to="loc_FairValueNetDerivativeAssetLiabilityRecurringBasisStillHeldUnrealizedGainLossStatementOfOtherComprehensiveIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FinancingReceivableAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_FinancingReceivableAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_AccountsReceivableNoncurrentAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_AccountsReceivableNoncurrentAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DebtSecuritiesHeldToMaturityAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_DebtSecuritiesHeldToMaturityAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_NetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_NetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_SalesTypeLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_SalesTypeLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DirectFinancingLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_DirectFinancingLeaseNetInvestmentInLeaseAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_FinancialAssetAmortizedCostAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_FinancialAssetAmortizedCostAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_DebtSecuritiesAvailableForSaleAccruedInterestAfterAllowanceForCreditLoss"
+xlink:to="loc_DebtSecuritiesAvailableForSaleAccruedInterestAfterAllowanceForCreditLossStatementOfFinancialPositionExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairment"
+xlink:to="loc_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairmentStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_EntertainmentLicenseAgreementForProgramMaterialAmortizationExpense"
+xlink:to="loc_EntertainmentLicenseAgreementForProgramMaterialExpenseAmortizationStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FilmMonetizedInFilmGroupAmortizationExpense"
+xlink:to="loc_FilmMonetizedInFilmGroupAmortizationExpenseStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FilmMonetizedOnItsOwnAndFilmGroupImpairment"
+xlink:to="loc_FilmMonetizedOnItsOwnAndFilmGroupImpairmentStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FilmMonetizedOnItsOwnAmortizationExpense"
+xlink:to="loc_FilmMonetizedOnItsOwnAmortizationExpenseStatementOfIncomeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation"
+order="10"/>
+</link:definitionLink>
+<link:definitionLink xlink:type="extended"
+xlink:role="http://fasb.org/us-gaap/role/tin/taxonomyImplementationNote">
+<link:loc xlink:type="locator"
+xlink:label="loc_ErrorCorrectionsAndPriorPeriodAdjustmentsRestatementByRestatementPeriodAndAmountAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ErrorCorrectionsAndPriorPeriodAdjustmentsRestatementByRestatementPeriodAndAmountAxis"/>
+<link:loc xlink:type="locator" xlink:label="loc_ErrorCorrectionTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ErrorCorrectionTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RelatedPartyTransactionsByRelatedPartyAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RelatedPartyTransactionsByRelatedPartyAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanPlanAssetsEmployerRelatedPartyTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPlanAssetsEmployerRelatedPartyTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_StatementBusinessSegmentsAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AdditionalLiabilityLongDurationInsuranceSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AdditionalLiabilityLongDurationInsuranceSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredSaleInducementCostSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredSaleInducementCostSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DiscontinuedOperationNameOfSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DiscontinuedOperationNameOfSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DisposalGroupNotDiscontinuedOperationNameOfSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DisposalGroupNotDiscontinuedOperationNameOfSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairmentSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairmentSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FilmMonetizedOnItsOwnAndFilmGroupImpairmentSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAndFilmGroupImpairmentSegmentExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_GoodwillNameOfSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillNameOfSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_HostingArrangementServiceContractImplementationCostImpairmentSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_HostingArrangementServiceContractImplementationCostImpairmentSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LiabilityForFuturePolicyBenefitSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitSegmentExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_MarketRiskBenefitSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PolicyholderAccountBalanceSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PolicyholderAccountBalanceSegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PresentValueOfFutureInsuranceProfitSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PresentValueOfFutureInsuranceProfitSegmentExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ReportingUnitNameOfSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitNameOfSegmentExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RestructuringNameOfSegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringNameOfSegmentExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_SegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SeparateAccountLiabilitySegmentExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SeparateAccountLiabilitySegmentExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ShortDurationInsuranceContractsSegmentsExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortDurationInsuranceContractsSegmentsExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_StatementGeographicalAxis"
+xlink:href="https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_StatementGeographicalAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AdditionalLiabilityLongDurationInsuranceGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AdditionalLiabilityLongDurationInsuranceGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredSaleInducementCostGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredSaleInducementCostGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LiabilityForFuturePolicyBenefitGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MarketRiskBenefitGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PolicyholderAccountBalanceGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PolicyholderAccountBalanceGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PresentValueOfFutureInsuranceProfitGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PresentValueOfFutureInsuranceProfitGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RevenueFromContractWithCustomerGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerGeographicalExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecSchedule1229InvestmentInMortgageLoansOnRealEstateLocationOfPropertyExtensibleList"
+xlink:href="https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SecSchedule1229InvestmentInMortgageLoansOnRealEstateLocationOfPropertyExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SeparateAccountLiabilityGeographicalExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SeparateAccountLiabilityGeographicalExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_MajorCustomersAxis"
+xlink:href="https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MajorCustomersAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AdditionalLiabilityLongDurationInsuranceCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AdditionalLiabilityLongDurationInsuranceCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitMajorCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitMajorCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredSaleInducementCostCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredSaleInducementCostCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LiabilityForFuturePolicyBenefitCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitCustomerExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_MarketRiskBenefitCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PolicyholderAccountBalanceCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PolicyholderAccountBalanceCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PresentValueOfFutureInsuranceProfitCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PresentValueOfFutureInsuranceProfitCustomerExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SeparateAccountLiabilityCustomerExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SeparateAccountLiabilityCustomerExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueByFairValueHierarchyLevelAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AlternativeInvestmentFairValueByFairValueHierarchyLevelAndNavExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AlternativeInvestmentFairValueByFairValueHierarchyLevelAndNavExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_BusinessCombinationContingentConsiderationLiabilityFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessCombinationContingentConsiderationLiabilityFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_CashSurrenderValueFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_CashSurrenderValueFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ConvertibleDebtFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ConvertibleDebtFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtAndEquitySecuritiesFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtAndEquitySecuritiesFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtInstrumentFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtInstrumentFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesAvailableForSaleFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesAvailableForSaleFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesTradingFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesTradingFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanPlanAssetsFairValueByHierarchyAndNavExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPlanAssetsFairValueByHierarchyAndNavExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetLiabilityNetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetLiabilityNetFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeLiabilityFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeLiabilityFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EquitySecuritiesFvNiFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesFvNiFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeasedAssetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeasedAssetFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LoansHeldForSaleFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LoansHeldForSaleFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LongTermDebtFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LongTermDebtFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MortgagesHeldForSaleFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MortgagesHeldForSaleFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_NonConvertibleDebtFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_NonConvertibleDebtFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OtherRealEstateOwnedFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherRealEstateOwnedFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ServicingAssetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingAssetFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ServicingLiabilityFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingLiabilityFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_WarrantsAndRightsOutstandingFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_WarrantsAndRightsOutstandingFairValueByFairValueHierarchyLevelExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AdjustmentsForChangeInAccountingPrincipleAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AdjustmentsForChangeInAccountingPrincipleAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ChangeInAccountingPrincipleTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ChangeInAccountingPrincipleTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AdjustmentsForNewAccountingPronouncementsAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AdjustmentsForNewAccountingPronouncementsAxis"/>
+<link:loc xlink:type="locator" xlink:label="loc_AccountingStandardsUpdateExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountingStandardsUpdateExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FinancialInstrumentAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis"/>
+<link:loc xlink:type="locator" xlink:label="loc_AlternativeInvestmentTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AlternativeInvestmentTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_BusinessCombinationContingentConsiderationLiabilityTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessCombinationContingentConsiderationLiabilityTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DebtInstrumentTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtInstrumentTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesAvailableForSaleTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesAvailableForSaleTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesHeldToMaturityTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesHeldToMaturityTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DebtSecuritiesTradingTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesTradingTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetLiabilityNetTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetLiabilityNetTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DerivativeAssetTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_DerivativeLiabilityTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeLiabilityTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeAssetLiabilityNetTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeAssetLiabilityNetTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeAssetTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeAssetTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeLiabilityTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeLiabilityTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_EquitySecuritiesFvNiTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesFvNiTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_FinanceLeasedAssetTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeasedAssetTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_LoansHeldForSaleTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LoansHeldForSaleTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_OtherRealEstateOwnedTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherRealEstateOwnedTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ServicingAssetTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingAssetTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ServicingLiabilityTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingLiabilityTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_WarrantsAndRightsOutstandingTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_WarrantsAndRightsOutstandingTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_CounterpartyNameAxis"
+xlink:href="https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetCounterpartyNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetCounterpartyNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeLiabilityCounterpartyNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeLiabilityCounterpartyNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecuritiesBorrowedCounterpartyNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesBorrowedCounterpartyNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecuritiesLoanedCounterpartyNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoanedCounterpartyNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecuritiesPurchasedUnderAgreementsToResellCounterpartyNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesPurchasedUnderAgreementsToResellCounterpartyNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecuritiesSoldUnderAgreementsToRepurchaseCounterpartyNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesSoldUnderAgreementsToRepurchaseCounterpartyNameExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ValuationTechniqueAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationTechniqueAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AlternativeInvestmentValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AlternativeInvestmentValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_BusinessCombinationContingentConsiderationLiabilityValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessCombinationContingentConsiderationLiabilityValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_CashSurrenderValueValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_CashSurrenderValueValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtInstrumentValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtInstrumentValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesAvailableForSaleValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesAvailableForSaleValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesTradingValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesTradingValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanPlanAssetsValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPlanAssetsValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetLiabilityNetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetLiabilityNetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeLiabilityValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeLiabilityValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeAssetLiabilityNetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeAssetLiabilityNetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeAssetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeAssetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeLiabilityValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeLiabilityValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EquitySecuritiesFvNiValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesFvNiValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeasedAssetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeasedAssetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LoansHeldForSaleValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LoansHeldForSaleValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LongTermDebtValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LongTermDebtValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OtherRealEstateOwnedValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherRealEstateOwnedValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RetainedInvestmentDeconsolidatedSubsidiaryValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetainedInvestmentDeconsolidatedSubsidiaryValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RetainedInvestmentDerecognizedAssetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetainedInvestmentDerecognizedAssetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ServicingAssetValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingAssetValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ServicingLiabilityValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingLiabilityValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_WarrantsAndRightsOutstandingValuationTechniqueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_WarrantsAndRightsOutstandingValuationTechniqueExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_CollectiveBargainingArrangementAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_CollectiveBargainingArrangementAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MultiemployerPlanPensionInsignificantCollectiveBargainingArrangementExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MultiemployerPlanPensionInsignificantCollectiveBargainingArrangementExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MultiemployerPlanPensionSignificantCollectiveBargainingArrangementExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MultiemployerPlanPensionSignificantCollectiveBargainingArrangementExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RelatedPartyTransactionAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RelatedPartyTransactionAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanPlanAssetsEmployerRelatedPartyTransactionTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPlanAssetsEmployerRelatedPartyTransactionTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_CollateralAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_CollateralAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AccountsReceivableRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountsReceivableRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DirectFinancingLeaseNetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectFinancingLeaseNetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinancingReceivableRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancingReceivableRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_NetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_NetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SalesTypeLeaseNetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesTypeLeaseNetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecuritiesBorrowedRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesBorrowedRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SecuritiesPurchasedUnderAgreementsToResellRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesPurchasedUnderAgreementsToResellRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RetirementPlanSponsorLocationAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetirementPlanSponsorLocationAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanSponsorLocationExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanSponsorLocationExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedContributionPlanSponsorLocationExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedContributionPlanSponsorLocationExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MultiemployerPlanSponsorLocationExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MultiemployerPlanSponsorLocationExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RetirementPlanTaxStatusAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetirementPlanTaxStatusAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanTaxStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanTaxStatusExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedContributionPlanTaxStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedContributionPlanTaxStatusExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RetirementPlanFundingStatusAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetirementPlanFundingStatusAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanFundingStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanFundingStatusExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_TimingOfTransferOfGoodOrServiceAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RevenueFromContractWithCustomerTimingOfTransferOfGoodOrServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerTimingOfTransferOfGoodOrServiceExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ContractWithCustomerBasisOfPricingAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RevenueFromContractWithCustomerBasisOfPricingExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerBasisOfPricingExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ContractWithCustomerSalesChannelAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RevenueFromContractWithCustomerSalesChannelExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerSalesChannelExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ContractWithCustomerDurationAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RevenueFromContractWithCustomerDurationExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerDurationExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RetirementPlanTypeAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetirementPlanTypeAxis"/>
+<link:loc xlink:type="locator" xlink:label="loc_DefinedBenefitPlanTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanTypeExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedContributionPlanTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedContributionPlanTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_MultiemployerPlanTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MultiemployerPlanTypeExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RetirementPlanNameAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetirementPlanNameAxis"/>
+<link:loc xlink:type="locator" xlink:label="loc_DefinedBenefitPlanPlanNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPlanNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedContributionPlanPlanNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedContributionPlanPlanNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MultiemployerPlanPensionInsignificantNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MultiemployerPlanPensionInsignificantNameExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MultiemployerPlanPensionSignificantNameExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MultiemployerPlanPensionSignificantNameExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ProductOrServiceAxis"
+xlink:href="https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AdditionalLiabilityLongDurationInsuranceProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AdditionalLiabilityLongDurationInsuranceProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredPolicyAcquisitionCostProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredPolicyAcquisitionCostProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DeferredSaleInducementCostProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredSaleInducementCostProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LiabilityForFuturePolicyBenefitProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MarketRiskBenefitProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PolicyholderAccountBalanceProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PolicyholderAccountBalanceProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_PresentValueOfFutureInsuranceProfitProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PresentValueOfFutureInsuranceProfitProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RevenueFromContractWithCustomerProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_SeparateAccountLiabilityProductAndServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_SeparateAccountLiabilityProductAndServiceExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ShortDurationInsuranceContractsProductsAndServicesExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortDurationInsuranceContractsProductsAndServicesExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_TypeOfCostGoodOrServiceExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfCostGoodOrServiceExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_TypeOfRevenueExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfRevenueExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_MeasurementInputTypeAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MeasurementInputTypeAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_AlternativeInvestmentMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_AlternativeInvestmentMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_BusinessCombinationContingentConsiderationLiabilityMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessCombinationContingentConsiderationLiabilityMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_CashSurrenderValueMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_CashSurrenderValueMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtInstrumentMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtInstrumentMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesAvailableForSaleMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesAvailableForSaleMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DebtSecuritiesTradingMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesTradingMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DefinedBenefitPlanPlanAssetsMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPlanAssetsMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetLiabilityNetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetLiabilityNetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeAssetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeAssetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_DerivativeLiabilityMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeLiabilityMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeAssetLiabilityNetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeAssetLiabilityNetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeAssetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeAssetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EmbeddedDerivativeLiabilityMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeLiabilityMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_EquitySecuritiesFvNiMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesFvNiMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_FinanceLeasedAssetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_FinanceLeasedAssetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LoansHeldForSaleMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LoansHeldForSaleMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_LongTermDebtMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_LongTermDebtMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_OtherRealEstateOwnedMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherRealEstateOwnedMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RetainedInvestmentDeconsolidatedSubsidiaryMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetainedInvestmentDeconsolidatedSubsidiaryMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_RetainedInvestmentDerecognizedAssetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RetainedInvestmentDerecognizedAssetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ServicingAssetMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingAssetMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ServicingLiabilityMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingLiabilityMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_WarrantsAndRightsOutstandingMeasurementInputExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_WarrantsAndRightsOutstandingMeasurementInputExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_GranteeStatusAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_GranteeStatusAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_ShareBasedPaymentArrangementGranteeStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ShareBasedPaymentArrangementGranteeStatusExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_PledgedStatusAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_PledgedStatusAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_MarketableSecuritiesPledgedStatusExtensibleEnumeration"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketableSecuritiesPledgedStatusExtensibleEnumeration"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_VariableInterestEntityAssetCurrentPledgedStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableInterestEntityAssetCurrentPledgedStatusExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_VariableInterestEntityAssetNoncurrentPledgedStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableInterestEntityAssetNoncurrentPledgedStatusExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_VariableInterestEntityAssetPledgedStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableInterestEntityAssetPledgedStatusExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_RecourseStatusAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_RecourseStatusAxis"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_VariableInterestEntityLiabilityCurrentRecourseStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableInterestEntityLiabilityCurrentRecourseStatusExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_VariableInterestEntityLiabilityNoncurrentRecourseStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableInterestEntityLiabilityNoncurrentRecourseStatusExtensibleList"/>
+<link:loc xlink:type="locator"
+xlink:label="loc_VariableInterestEntityLiabilityRecourseStatusExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableInterestEntityLiabilityRecourseStatusExtensibleList"/>
+<link:loc xlink:type="locator" xlink:label="loc_ReclassificationTypeAxis"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ReclassificationTypeAxis"/>
+<link:loc xlink:type="locator" xlink:label="loc_ReclassificationTypeExtensibleList"
+xlink:href="../elts/us-gaap-2021-01-31.xsd#us-gaap_ReclassificationTypeExtensibleList"/>
+<link:definitionArc xlink:type="arc"
+xlink:from="loc_ErrorCorrectionsAndPriorPeriodAdjustmentsRestatementByRestatementPeriodAndAmountAxis"
+xlink:to="loc_ErrorCorrectionTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RelatedPartyTransactionsByRelatedPartyAxis"
+xlink:to="loc_DefinedBenefitPlanPlanAssetsEmployerRelatedPartyTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_AdditionalLiabilityLongDurationInsuranceSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_DeferredSaleInducementCostSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_DiscontinuedOperationNameOfSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_DisposalGroupNotDiscontinuedOperationNameOfSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_EntertainmentLicenseAgreementForProgramMaterialNotInFilmGroupImpairmentSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_FilmMonetizedOnItsOwnAndFilmGroupImpairmentSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_GoodwillNameOfSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_HostingArrangementServiceContractImplementationCostImpairmentSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_LiabilityForFuturePolicyBenefitSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_MarketRiskBenefitSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="120"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_PolicyholderAccountBalanceSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="130"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_PresentValueOfFutureInsuranceProfitSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="140"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_ReportingUnitNameOfSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="150"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_RestructuringNameOfSegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="160"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_SegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="170"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_SeparateAccountLiabilitySegmentExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="180"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementBusinessSegmentsAxis"
+xlink:to="loc_ShortDurationInsuranceContractsSegmentsExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="190"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_AdditionalLiabilityLongDurationInsuranceGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_DeferredSaleInducementCostGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_LiabilityForFuturePolicyBenefitGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_MarketRiskBenefitGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_PolicyholderAccountBalanceGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_PresentValueOfFutureInsuranceProfitGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_RevenueFromContractWithCustomerGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_SecSchedule1229InvestmentInMortgageLoansOnRealEstateLocationOfPropertyExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_StatementGeographicalAxis"
+xlink:to="loc_SeparateAccountLiabilityGeographicalExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_AdditionalLiabilityLongDurationInsuranceCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitMajorCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_DeferredSaleInducementCostCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_LiabilityForFuturePolicyBenefitCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_MarketRiskBenefitCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_PolicyholderAccountBalanceCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_PresentValueOfFutureInsuranceProfitCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MajorCustomersAxis"
+xlink:to="loc_SeparateAccountLiabilityCustomerExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_AlternativeInvestmentFairValueByFairValueHierarchyLevelAndNavExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_BusinessCombinationContingentConsiderationLiabilityFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_CashSurrenderValueFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_ConvertibleDebtFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DebtAndEquitySecuritiesFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DebtInstrumentFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DebtSecuritiesAvailableForSaleFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DebtSecuritiesFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DebtSecuritiesTradingFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DefinedBenefitPlanPlanAssetsFairValueByHierarchyAndNavExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DerivativeAssetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DerivativeAssetLiabilityNetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="120"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_DerivativeLiabilityFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="130"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_EquitySecuritiesFvNiFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="140"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_FinanceLeasedAssetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="150"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_LoansHeldForSaleFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="160"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_LongTermDebtFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="170"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_MortgagesHeldForSaleFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="180"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_NonConvertibleDebtFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="190"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_OtherRealEstateOwnedFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="200"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_ServicingAssetFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="210"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_ServicingLiabilityFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="220"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FairValueByFairValueHierarchyLevelAxis"
+xlink:to="loc_WarrantsAndRightsOutstandingFairValueByFairValueHierarchyLevelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="230"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_AdjustmentsForChangeInAccountingPrincipleAxis"
+xlink:to="loc_ChangeInAccountingPrincipleTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_AdjustmentsForNewAccountingPronouncementsAxis"
+xlink:to="loc_AccountingStandardsUpdateExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_AlternativeInvestmentTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_BusinessCombinationContingentConsiderationLiabilityTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DebtInstrumentTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DebtSecuritiesAvailableForSaleTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DebtSecuritiesHeldToMaturityTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DebtSecuritiesTradingTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DerivativeAssetLiabilityNetTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DerivativeAssetTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_DerivativeLiabilityTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_EmbeddedDerivativeAssetLiabilityNetTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_EmbeddedDerivativeAssetTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_EmbeddedDerivativeLiabilityTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="120"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_EquitySecuritiesFvNiTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="130"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_FinanceLeasedAssetTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="140"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_LoansHeldForSaleTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="150"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_OtherRealEstateOwnedTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="160"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_ServicingAssetTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="170"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_ServicingLiabilityTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="180"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_FinancialInstrumentAxis"
+xlink:to="loc_WarrantsAndRightsOutstandingTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="190"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CounterpartyNameAxis"
+xlink:to="loc_DerivativeAssetCounterpartyNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CounterpartyNameAxis"
+xlink:to="loc_DerivativeLiabilityCounterpartyNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CounterpartyNameAxis"
+xlink:to="loc_SecuritiesBorrowedCounterpartyNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CounterpartyNameAxis"
+xlink:to="loc_SecuritiesLoanedCounterpartyNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CounterpartyNameAxis"
+xlink:to="loc_SecuritiesPurchasedUnderAgreementsToResellCounterpartyNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CounterpartyNameAxis"
+xlink:to="loc_SecuritiesSoldUnderAgreementsToRepurchaseCounterpartyNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_AlternativeInvestmentValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_BusinessCombinationContingentConsiderationLiabilityValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_CashSurrenderValueValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DebtInstrumentValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DebtSecuritiesAvailableForSaleValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DebtSecuritiesTradingValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DefinedBenefitPlanPlanAssetsValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DerivativeAssetLiabilityNetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DerivativeAssetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_DerivativeLiabilityValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_EmbeddedDerivativeAssetLiabilityNetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_EmbeddedDerivativeAssetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="120"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_EmbeddedDerivativeLiabilityValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="130"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_EquitySecuritiesFvNiValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="140"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_FinanceLeasedAssetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="150"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_LoansHeldForSaleValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="160"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_LongTermDebtValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="170"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_OtherRealEstateOwnedValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="180"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_RetainedInvestmentDeconsolidatedSubsidiaryValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="190"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_RetainedInvestmentDerecognizedAssetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="200"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_ServicingAssetValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="210"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_ServicingLiabilityValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="220"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ValuationTechniqueAxis"
+xlink:to="loc_WarrantsAndRightsOutstandingValuationTechniqueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="230"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollectiveBargainingArrangementAxis"
+xlink:to="loc_MultiemployerPlanPensionInsignificantCollectiveBargainingArrangementExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollectiveBargainingArrangementAxis"
+xlink:to="loc_MultiemployerPlanPensionSignificantCollectiveBargainingArrangementExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RelatedPartyTransactionAxis"
+xlink:to="loc_DefinedBenefitPlanPlanAssetsEmployerRelatedPartyTransactionTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_AccountsReceivableRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_DirectFinancingLeaseNetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_FinancingReceivableRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_NetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_SalesTypeLeaseNetInvestmentInLeaseRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_SecuritiesBorrowedRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_CollateralAxis"
+xlink:to="loc_SecuritiesPurchasedUnderAgreementsToResellRepaymentThroughOperationOrSaleOfCollateralCollateralExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanSponsorLocationAxis"
+xlink:to="loc_DefinedBenefitPlanSponsorLocationExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanSponsorLocationAxis"
+xlink:to="loc_DefinedContributionPlanSponsorLocationExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanSponsorLocationAxis"
+xlink:to="loc_MultiemployerPlanSponsorLocationExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanTaxStatusAxis"
+xlink:to="loc_DefinedBenefitPlanTaxStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanTaxStatusAxis"
+xlink:to="loc_DefinedContributionPlanTaxStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanFundingStatusAxis"
+xlink:to="loc_DefinedBenefitPlanFundingStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_TimingOfTransferOfGoodOrServiceAxis"
+xlink:to="loc_RevenueFromContractWithCustomerTimingOfTransferOfGoodOrServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ContractWithCustomerBasisOfPricingAxis"
+xlink:to="loc_RevenueFromContractWithCustomerBasisOfPricingExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ContractWithCustomerSalesChannelAxis"
+xlink:to="loc_RevenueFromContractWithCustomerSalesChannelExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ContractWithCustomerDurationAxis"
+xlink:to="loc_RevenueFromContractWithCustomerDurationExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanTypeAxis"
+xlink:to="loc_DefinedBenefitPlanTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanTypeAxis"
+xlink:to="loc_DefinedContributionPlanTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanTypeAxis"
+xlink:to="loc_MultiemployerPlanTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanNameAxis"
+xlink:to="loc_DefinedBenefitPlanPlanNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanNameAxis"
+xlink:to="loc_DefinedContributionPlanPlanNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanNameAxis"
+xlink:to="loc_MultiemployerPlanPensionInsignificantNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RetirementPlanNameAxis"
+xlink:to="loc_MultiemployerPlanPensionSignificantNameExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_AdditionalLiabilityLongDurationInsuranceProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostAndPresentValueOfFutureInsuranceProfitProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_DeferredPolicyAcquisitionCostProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_DeferredSaleInducementCostProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_LiabilityForFuturePolicyBenefitProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_MarketRiskBenefitProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_PolicyholderAccountBalanceProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_PresentValueOfFutureInsuranceProfitProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_RevenueFromContractWithCustomerProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_SeparateAccountLiabilityProductAndServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_ShortDurationInsuranceContractsProductsAndServicesExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_TypeOfCostGoodOrServiceExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="120"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ProductOrServiceAxis"
+xlink:to="loc_TypeOfRevenueExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="130"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_AlternativeInvestmentMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_BusinessCombinationContingentConsiderationLiabilityMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_CashSurrenderValueMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DebtInstrumentMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DebtSecuritiesAvailableForSaleMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="50"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DebtSecuritiesTradingMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="60"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DefinedBenefitPlanPlanAssetsMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="70"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DerivativeAssetLiabilityNetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="80"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DerivativeAssetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="90"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_DerivativeLiabilityMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="100"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_EmbeddedDerivativeAssetLiabilityNetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="110"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_EmbeddedDerivativeAssetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="120"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_EmbeddedDerivativeLiabilityMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="130"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_EquitySecuritiesFvNiMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="140"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_FinanceLeasedAssetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="150"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_LoansHeldForSaleMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="160"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_LongTermDebtMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="170"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_OtherRealEstateOwnedMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="180"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_RetainedInvestmentDeconsolidatedSubsidiaryMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="190"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_RetainedInvestmentDerecognizedAssetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="200"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_ServicingAssetMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="210"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_ServicingLiabilityMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="220"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_MeasurementInputTypeAxis"
+xlink:to="loc_WarrantsAndRightsOutstandingMeasurementInputExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="230"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_GranteeStatusAxis"
+xlink:to="loc_ShareBasedPaymentArrangementGranteeStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_PledgedStatusAxis"
+xlink:to="loc_MarketableSecuritiesPledgedStatusExtensibleEnumeration"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_PledgedStatusAxis"
+xlink:to="loc_VariableInterestEntityAssetCurrentPledgedStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_PledgedStatusAxis"
+xlink:to="loc_VariableInterestEntityAssetNoncurrentPledgedStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_PledgedStatusAxis"
+xlink:to="loc_VariableInterestEntityAssetPledgedStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="40"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RecourseStatusAxis"
+xlink:to="loc_VariableInterestEntityLiabilityCurrentRecourseStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RecourseStatusAxis"
+xlink:to="loc_VariableInterestEntityLiabilityNoncurrentRecourseStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="20"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_RecourseStatusAxis"
+xlink:to="loc_VariableInterestEntityLiabilityRecourseStatusExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="30"/>
+<link:definitionArc xlink:type="arc" xlink:from="loc_ReclassificationTypeAxis"
+xlink:to="loc_ReclassificationTypeExtensibleList"
+xlink:arcrole="http://fasb.org/us-gaap/arcrole/identification"
+order="10"/>
+</link:definitionLink>
+</link:linkbase>

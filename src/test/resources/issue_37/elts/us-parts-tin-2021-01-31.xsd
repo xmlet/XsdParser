@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at http://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+  
+<xs:schema attributeFormDefault='unqualified' elementFormDefault='qualified' targetNamespace='http://fasb.org/tin-part/2021-01-31' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:tin-part='http://fasb.org/tin-part/2021-01-31' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+<xs:element id='tin-part_PublishDate' name='PublishDate' substitutionGroup='link:part' type='xs:gYearMonth'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Publish date for Taxonomy Implementation Note in [YYYY-MM] format
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_Source' name='Source' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Source for Taxonomy Implementation Note. Examples include: Taxonomy Implementation Guide [TIG]; Accounting Standards Update [ASU]
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_TinModificationDescription' name='TinModificationDescription' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Description of modification to TIN
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_SourceName' name='SourceName' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>Source name, example: Subsequent Events</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_SourceVersion' name='SourceVersion' substitutionGroup='link:part' type='xs:decimal'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>Source version</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_Positive_XBRL_Value' name='Positive_XBRL_Value' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+XBRL value to be entered as positive, when reported amount is present; examples include facts reported as [Gain] [Increase] [Accumulated Earnings]
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_Negative_XBRL_Value' name='Negative_XBRL_Value' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+XBRL value to be entered as negative, when reported amount is present; examples include facts reported as [Loss] [Decrease] [Accumulated Deficit]
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_Note' name='Note' substitutionGroup='link:part' type='xs:string'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>Taxonomy implementation note</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_AlternateElement' name='AlternateElement' substitutionGroup='link:part' type='tin-part:elementListItemType'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>Potential alternate element name(s)</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_AlternateElementForPeriodOfAndAfterAdoption' name='AlternateElementForPeriodOfAndAfterAdoption' substitutionGroup='link:part' type='tin-part:elementListItemType'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Potential alternate element names(s) for period of and after adoption
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_AlternateElementForPeriodsPriorToAdoption' name='AlternateElementForPeriodsPriorToAdoption' substitutionGroup='link:part' type='tin-part:elementListItemType'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Potential alternate element names(s) for periods prior to adoption
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_TransitionOption' name='TransitionOption' substitutionGroup='link:part' type='tin-part:TransitionOptionList'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>
+Transition options for new ASU. Enumerated values include: 'Retrospective', 'Prospective', 'Modified Retrospective', or 'Modified Prospective'
+</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_URI' name='URI' substitutionGroup='link:part' type='xs:anyURI'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>URI link to guidance, such as FAQs</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_Source_ASU_Number' name='Source_ASU_Number' substitutionGroup='link:part' type='tin-part:AsuNumber'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>Accounting Standards Update issued number</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_inlineURI' name='inlineURI' substitutionGroup='link:part' type='xs:anyURI'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>URI link to Inline Taxonomy Implementation Guide inline document</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_pdfURI' name='pdfURI' substitutionGroup='link:part' type='xs:anyURI'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>URI link to PDF Taxonomy Implementation Guide pdf document</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element id='tin-part_elementCreationTaxonomyVersion' name='elementCreationTaxonomyVersion' substitutionGroup='link:part' type='xs:gYear'>
+<xs:annotation>
+<xs:documentation xml:lang='en'>Taxonomy version year element was created in [YYYY] format</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:simpleType name='TransitionOptionList'>
+<xs:restriction base='xs:string'>
+<xs:enumeration value='Retrospective'/>
+<xs:enumeration value='Prospective'/>
+<xs:enumeration value='Modified Retrospective'/>
+<xs:enumeration value='Modified Prospective'/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name='AsuNumber'>
+<xs:restriction base='xs:string'>
+<xs:pattern value='[0-9]{4}-[0-9]{2}'/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name='elementListItemType'>
+<xs:restriction base='xs:token'>
+<xs:pattern value='\s*(([\i-[:]][\c-[:]]*:)?[\i-[:]][\c-[:]]*(\s+([\i-[:]][\c-[:]]*:)?[\i-[:]][\c-[:]]*)*)?\s*'/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

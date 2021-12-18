@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/ReorganizationsFreshStartAdjustmentsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#ReorganizationsFreshStartAdjustmentsTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ReorganizationsFreshStartAdjustmentsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11LineItems' xlink:label='loc_ReorganizationChapter11LineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FreshStartAdjustmentsTable' xlink:label='loc_FreshStartAdjustmentsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_FreshStartAdjustmentsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ReorganizationsFreshStartAdjustmentsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidatedEntitiesAxis' xlink:label='loc_ConsolidatedEntitiesAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidatedEntitiesDomain' xlink:label='loc_ConsolidatedEntitiesDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:label='loc_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfFreshStartAdjustmentDomain' xlink:label='loc_TypeOfFreshStartAdjustmentDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ConsolidatedEntitiesAxis' xlink:to='loc_ConsolidatedEntitiesDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:to='loc_TypeOfFreshStartAdjustmentDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ReorganizationsFreshStartAdjustmentsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidatedEntitiesAxis' xlink:label='loc_ConsolidatedEntitiesAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidatedEntitiesDomain' xlink:label='loc_ConsolidatedEntitiesDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:label='loc_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfFreshStartAdjustmentDomain' xlink:label='loc_TypeOfFreshStartAdjustmentDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ConsolidatedEntitiesAxis' xlink:to='loc_ConsolidatedEntitiesDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:to='loc_TypeOfFreshStartAdjustmentDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ReorganizationsFreshStartAdjustmentsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidatedEntitiesDomain' xlink:label='loc_ConsolidatedEntitiesDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11DebtorInPossessionMember' xlink:label='loc_ReorganizationChapter11DebtorInPossessionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfFreshStartAdjustmentDomain' xlink:label='loc_TypeOfFreshStartAdjustmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11PredecessorBeforeAdjustmentMember' xlink:label='loc_ReorganizationChapter11PredecessorBeforeAdjustmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11PlanEffectAdjustmentMember' xlink:label='loc_ReorganizationChapter11PlanEffectAdjustmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11FreshStartAdjustmentMember' xlink:label='loc_ReorganizationChapter11FreshStartAdjustmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11LineItems' xlink:label='loc_ReorganizationChapter11LineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Cash' xlink:label='loc_Cash' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReceivablesNetCurrent' xlink:label='loc_ReceivablesNetCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNet' xlink:label='loc_InventoryNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsHeldForSaleNotPartOfDisposalGroupCurrent' xlink:label='loc_AssetsHeldForSaleNotPartOfDisposalGroupCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherAssetsCurrent' xlink:label='loc_OtherAssetsCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsCurrent' xlink:label='loc_AssetsCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PropertyPlantAndEquipmentNet' xlink:label='loc_PropertyPlantAndEquipmentNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Goodwill' xlink:label='loc_Goodwill' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Assets' xlink:label='loc_Assets' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermBorrowings' xlink:label='loc_ShortTermBorrowings' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeniorNotesCurrent' xlink:label='loc_SeniorNotesCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountsPayableCurrent' xlink:label='loc_AccountsPayableCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherLiabilitiesCurrent' xlink:label='loc_OtherLiabilitiesCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesCurrent' xlink:label='loc_LiabilitiesCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesSubjectToCompromise' xlink:label='loc_LiabilitiesSubjectToCompromise' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeniorLongTermNotes' xlink:label='loc_SeniorLongTermNotes' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedLongTermDebt' xlink:label='loc_SubordinatedLongTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockValue' xlink:label='loc_PreferredStockValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockValue' xlink:label='loc_CommonStockValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdditionalPaidInCapital' xlink:label='loc_AdditionalPaidInCapital' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RetainedEarningsAccumulatedDeficit' xlink:label='loc_RetainedEarningsAccumulatedDeficit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquity' xlink:label='loc_StockholdersEquity' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesAndStockholdersEquity' xlink:label='loc_LiabilitiesAndStockholdersEquity' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReorganizationChapter11DebtorInPossessionAllEntities' xlink:label='loc_ReorganizationChapter11DebtorInPossessionAllEntities' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DischargeOfDebtMember' xlink:label='loc_DischargeOfDebtMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ExchangeOfStockForStockMember' xlink:label='loc_ExchangeOfStockForStockMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidatedEntitiesDomain' xlink:to='loc_ReorganizationChapter11DebtorInPossessionMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfFreshStartAdjustmentDomain' xlink:to='loc_ReorganizationChapter11PredecessorBeforeAdjustmentMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfFreshStartAdjustmentDomain' xlink:to='loc_ReorganizationChapter11PlanEffectAdjustmentMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfFreshStartAdjustmentDomain' xlink:to='loc_ReorganizationChapter11FreshStartAdjustmentMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_Cash' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_ReceivablesNetCurrent' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_InventoryNet' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_AssetsHeldForSaleNotPartOfDisposalGroupCurrent' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_OtherAssetsCurrent' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_AssetsCurrent' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_PropertyPlantAndEquipmentNet' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_Goodwill' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_Assets' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_ShortTermBorrowings' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_SeniorNotesCurrent' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_AccountsPayableCurrent' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_OtherLiabilitiesCurrent' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_LiabilitiesCurrent' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_LiabilitiesSubjectToCompromise' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_SeniorLongTermNotes' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_SubordinatedLongTermDebt' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_PreferredStockValue' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_CommonStockValue' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_AdditionalPaidInCapital' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_RetainedEarningsAccumulatedDeficit' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_StockholdersEquity' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_LiabilitiesAndStockholdersEquity' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11LineItems' xlink:to='loc_ReorganizationChapter11DebtorInPossessionAllEntities' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11PlanEffectAdjustmentMember' xlink:to='loc_DischargeOfDebtMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReorganizationChapter11PlanEffectAdjustmentMember' xlink:to='loc_ExchangeOfStockForStockMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ReorganizationsFreshStartAdjustmentsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FreshStartAdjustmentsTable' xlink:label='loc_FreshStartAdjustmentsTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidatedEntitiesAxis' xlink:label='loc_ConsolidatedEntitiesAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:label='loc_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_FreshStartAdjustmentsTable' xlink:to='loc_ConsolidatedEntitiesAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_FreshStartAdjustmentsTable' xlink:to='loc_FreshStartAdjustmentsTypeOfFreshStartAdjustmentAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

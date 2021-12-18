@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+2010-2020 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.; (c) 2020-2021 XBRL US, Inc. All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+<xs:schema targetNamespace='http://fasb.org/dqcrules-0004/2021-01-31' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:dqcrules-0004='http://fasb.org/dqcrules-0004/2021-01-31' xmlns:dqcrules='http://fasb.org/dqcrules/2021-01-31' xmlns:us-gaap='http://fasb.org/us-gaap/2021-01-31' xmlns:dei='http://xbrl.sec.gov/dei/2021' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:ref='http://www.xbrl.org/2006/ref' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xbrli='http://www.xbrl.org/2003/instance' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns='http://www.xbrl.org/2003/linkbase'
+xsi:schemaLocation='http://www.xbrl.org/2006/ref http://www.xbrl.org/2006/ref-2006-02-27.xsd http://fasb.org/dqcrules/2021-01-31 dqcrules-2021-01-31.xsd'>
+<xs:import namespace='http://www.xbrl.org/2003/instance' schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd'/>
+<xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+<xs:import namespace='http://www.xbrl.org/2006/ref' schemaLocation='http://www.xbrl.org/2006/ref-2006-02-27.xsd' />
+<xs:import namespace='http://xbrl.org/2005/xbrldt' schemaLocation='http://www.xbrl.org/2005/xbrldt-2005.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules/2021-01-31' schemaLocation='dqcrules-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/us-roles/2021-01-31' schemaLocation='../elts/us-roles-2021-01-31.xsd'/>
+<xs:annotation>
+<xs:appinfo>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/0004' id='dqc_0004'>
+<link:definition>DQC.US.0004</link:definition>
+<link:usedOn>link:calculationLink</link:usedOn>
+<link:usedOn>link:definitionLink</link:usedOn>
+<link:usedOn>link:referenceLink</link:usedOn>
+</link:roleType>
+<link:roleType id='dqc_0004_Addl_Calcs' roleURI='http://fasb.org/us-gaap/role/dqc/0004_Addl_Calcs'>
+<link:definition>DQC.US.0004 Additional Calculations</link:definition>
+<link:usedOn>link:calculationLink</link:usedOn>
+</link:roleType>
+<link:linkbase id='lnk'>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/0004' xlink:href='#dqc_0004' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/0004_Addl_Calcs' xlink:type='simple' xlink:href='#dqc_0004_Addl_Calcs'/>
+<link:arcroleRef arcroleURI='http://fasb.org/dqcrules/arcrole/concept-equivalents' xlink:href='dqcrules-2021-01-31.xsd#concept-equivalents' xlink:type='simple'/>
+<link:arcroleRef arcroleURI='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:href='dqcrules-2021-01-31.xsd#rule-concept' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:href='dqcrules-2021-01-31.xsd#dqcn' xlink:type='simple' />
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleExclusions' xlink:href='dqcrules-2021-01-31.xsd#dqcre' xlink:type='simple' />
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleID' xlink:href='dqcrules-2021-01-31.xsd#dqcrid' xlink:type='simple' />
+<labelLink xlink:type='extended' xlink:role='http://www.xbrl.org/2003/role/link'>
+<loc xlink:type='locator' xlink:href='#dqcrules-0004_Dqc_0004' xlink:label='loc_dqcrules_Dqc_0004'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0004' xlink:to='lbl_dqcrules_Dqc_0004'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0004' xml:lang='en-US'>DQC.US.0004 [Abstract]</label>
+<loc xlink:type='locator' xlink:href='#dqcrules-0004_Dqc_0004_ListOfElements' xlink:label='loc_dqcrules_Dqc_0004_ListOfElements'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0004_ListOfElements' xlink:to='lbl_dqcrules_Dqc_0004_ListOfElements'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0004_ListOfElements' xml:lang='en-US'>DQC.US.0004.Element Values Are Equal [Abstract]</label>
+<loc xlink:type='locator' xlink:href='#dqcrules-0004_Dqc_0004_ConsolidationItemsAxis' xlink:label='loc_dqcrules_Dqc_0004_ConsolidationItemsAxis'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0004_ConsolidationItemsAxis' xlink:to='lbl_dqcrules_Dqc_0004_ConsolidationItemsAxis'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0004_ConsolidationItemsAxis' xml:lang='en-US'>DQC.US.0004.Does not run when ConsolidationItemsAxis is used [Abstract]</label>
+<loc xlink:type='locator' xlink:href='#dqcrules-0004_Dqc_0004_NoDefault' xlink:label='loc_dqcrules_Dqc_0004_NoDefault'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0004_NoDefault' xlink:to='lbl_dqcrules_Dqc_0004_NoDefault'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0004_NoDefault' xml:lang='en-US'>DQC.US.0004.Value not in default [Abstract]</label>
+</labelLink>
+<link:definitionLink xlink:role='http://fasb.org/us-gaap/role/dqc/0004' xlink:type='extended'>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_ListOfElements' xlink:label='loc_Dqc_0004_ListOfElements' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Assets' xlink:label='loc_Assets' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesAndStockholdersEquity' xlink:label='loc_LiabilitiesAndStockholdersEquity' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/concept-equivalents' xlink:from='loc_Assets' xlink:to='loc_LiabilitiesAndStockholdersEquity' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsCurrent' xlink:label='loc_AssetsCurrent' xlink:type='locator'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_AssetsCurrent' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsNoncurrent' xlink:label='loc_AssetsNoncurrent' xlink:type='locator'/>
+<link:definitionArc order='3.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_AssetsNoncurrent' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='locator'/>
+<link:definitionArc order='4.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='locator'/>
+<link:definitionArc order='5.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:type='locator'/>
+<link:definitionArc order='6.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations_1' xlink:type='locator'/>
+<link:definitionArc order='22.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations_1' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:type='locator'/>
+<link:definitionArc order='7.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:type='locator'/>
+<link:definitionArc order='8.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations_1' xlink:type='locator'/>
+<link:definitionArc order='24.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations_1' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:type='locator'/>
+<link:definitionArc order='9.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:type='locator'/>
+<link:definitionArc order='10.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations_1' xlink:type='locator'/>
+<link:definitionArc order='26.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations_1' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:type='locator'/>
+<link:definitionArc order='11.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTax' xlink:label='loc_ComprehensiveIncomeNetOfTax' xlink:type='locator'/>
+<link:definitionArc order='12.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_ComprehensiveIncomeNetOfTax' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:type='locator'/>
+<link:definitionArc order='13.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:type='locator'/>
+<link:definitionArc order='14.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Liabilities' xlink:label='loc_Liabilities' xlink:type='locator'/>
+<link:definitionArc order='15.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_Liabilities' xlink:type='arc'/>
+<link:definitionArc order='16.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_LiabilitiesAndStockholdersEquity' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesCurrent' xlink:label='loc_LiabilitiesCurrent' xlink:type='locator'/>
+<link:definitionArc order='17.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_LiabilitiesCurrent' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesNoncurrent' xlink:label='loc_LiabilitiesNoncurrent' xlink:type='locator'/>
+<link:definitionArc order='18.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_LiabilitiesNoncurrent' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInContinuingOperations' xlink:type='locator'/>
+<link:definitionArc order='19.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInContinuingOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInDiscontinuedOperations' xlink:label='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:type='locator'/>
+<link:definitionArc order='20.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivities' xlink:label='loc_NetCashProvidedByUsedInFinancingActivities' xlink:type='locator'/>
+<link:definitionArc order='21.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInFinancingActivities' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivities' xlink:label='loc_NetCashProvidedByUsedInInvestingActivities' xlink:type='locator'/>
+<link:definitionArc order='23.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInInvestingActivities' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivities' xlink:label='loc_NetCashProvidedByUsedInOperatingActivities' xlink:type='locator'/>
+<link:definitionArc order='25.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_NetCashProvidedByUsedInOperatingActivities' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLossNetOfTax' xlink:label='loc_OtherComprehensiveIncomeLossNetOfTax' xlink:type='locator'/>
+<link:definitionArc order='27.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_OtherComprehensiveIncomeLossNetOfTax' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProfitLoss' xlink:label='loc_ProfitLoss' xlink:type='locator'/>
+<link:definitionArc order='28.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_ProfitLoss' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ListOfElements' xlink:to='loc_Assets' xlink:type='arc'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_NoDefault' xlink:label='loc_Dqc_0004_NoDefault' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_NoDefault' xlink:to='loc_LiabilitiesAndStockholdersEquity' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:type='locator'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_NoDefault' xlink:to='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:type='arc'/>
+<link:definitionArc order='3.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_NoDefault' xlink:to='loc_Liabilities' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:label='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:type='locator'/>
+<link:definitionArc order='4.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_NoDefault' xlink:to='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:type='arc'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004' xlink:label='loc_Dqc_0004' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004' xlink:to='loc_Dqc_0004_ListOfElements' xlink:type='arc'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_NoDefault' xlink:label='loc_Dqc_0004_NoDefault1' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004' xlink:label='loc_Dqc_00041' xlink:type='locator'/>
+<link:definitionArc order='3.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_00041' xlink:to='loc_Dqc_0004_NoDefault1' xlink:type='arc'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_ConsolidationItemsAxis' xlink:label='loc_Dqc_0004_ConsolidationItemsAxis' xlink:type='locator'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_00041' xlink:to='loc_Dqc_0004_ConsolidationItemsAxis' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ConsolidationItemsAxis' xlink:to='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquity' xlink:label='loc_StockholdersEquity' xlink:type='locator'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ConsolidationItemsAxis' xlink:to='loc_StockholdersEquity' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinorityInterest' xlink:label='loc_MinorityInterest' xlink:type='locator'/>
+<link:definitionArc order='3.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0004_ConsolidationItemsAxis' xlink:to='loc_MinorityInterest' xlink:type='arc'/>
+</link:definitionLink>
+<link:calculationLink xlink:type='extended' xlink:role='http://fasb.org/us-gaap/role/dqc/0004'>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesAndStockholdersEquity' xlink:label='loc_LiabilitiesAndStockholdersEquity'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquity' xlink:label='loc_StockholdersEquity'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:to='loc_StockholdersEquity' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinorityInterest' xlink:label='loc_MinorityInterest'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:to='loc_MinorityInterest' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Liabilities' xlink:label='loc_Liabilities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='loc_Liabilities' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesCurrent' xlink:label='loc_LiabilitiesCurrent'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_Liabilities' xlink:to='loc_LiabilitiesCurrent' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesNoncurrent' xlink:label='loc_LiabilitiesNoncurrent'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_Liabilities' xlink:to='loc_LiabilitiesNoncurrent' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:label='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' order='3.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProfitLoss' xlink:label='loc_ProfitLoss'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='loc_ProfitLoss' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLossNetOfTax' xlink:label='loc_OtherComprehensiveIncomeLossNetOfTax'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='loc_OtherComprehensiveIncomeLossNetOfTax' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivities' xlink:label='loc_NetCashProvidedByUsedInOperatingActivities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='loc_NetCashProvidedByUsedInOperatingActivities' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInOperatingActivities' xlink:to='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInOperatingActivities' xlink:to='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivities' xlink:label='loc_NetCashProvidedByUsedInInvestingActivities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='loc_NetCashProvidedByUsedInInvestingActivities' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInInvestingActivities' xlink:to='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInInvestingActivities' xlink:to='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivities' xlink:label='loc_NetCashProvidedByUsedInFinancingActivities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='loc_NetCashProvidedByUsedInFinancingActivities' order='3.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInFinancingActivities' xlink:to='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInFinancingActivities' xlink:to='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInDiscontinuedOperations' xlink:label='loc_NetCashProvidedByUsedInDiscontinuedOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:to='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' order='1.0' weight='1.0'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:to='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' order='2.0' weight='1.0'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:to='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' order='3.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Assets' xlink:label='loc_Assets'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsCurrent' xlink:label='loc_AssetsCurrent'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_Assets' xlink:to='loc_AssetsCurrent' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsNoncurrent' xlink:label='loc_AssetsNoncurrent'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_Assets' xlink:to='loc_AssetsNoncurrent' order='2.0' weight='1.0'/>
+</link:calculationLink>
+<link:calculationLink xlink:type='extended' xlink:role='http://fasb.org/us-gaap/role/dqc/0004_Addl_Calcs'>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTax' xlink:label='loc_ComprehensiveIncomeNetOfTax'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='loc_ComprehensiveIncomeNetOfTax' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' order='1.0' weight='-1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInContinuingOperations'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations' xlink:to='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInContinuingOperations1'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations1' xlink:to='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations' xlink:to='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' order='3.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivities' xlink:label='loc_NetCashProvidedByUsedInOperatingActivities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='loc_NetCashProvidedByUsedInOperatingActivities' order='1.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivities' xlink:label='loc_NetCashProvidedByUsedInInvestingActivities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='loc_NetCashProvidedByUsedInInvestingActivities' order='2.0' weight='1.0'/>
+<link:loc xlink:type='locator' xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivities' xlink:label='loc_NetCashProvidedByUsedInFinancingActivities'/>
+<link:calculationArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='loc_NetCashProvidedByUsedInFinancingActivities' order='3.0' weight='1.0'/>
+</link:calculationLink>
+<link:referenceLink xlink:role='http://fasb.org/us-gaap/role/dqc/0004' xlink:type='extended' xmlns:xlink='http://www.w3.org/1999/xlink'>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004' xlink:label='loc_dqc_0004' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_ListOfElements' xlink:label='loc_dqc_0004_ListOfElements' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Assets' xlink:label='loc_Assets' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsCurrent' xlink:label='loc_AssetsCurrent' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsNoncurrent' xlink:label='loc_AssetsNoncurrent' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:label='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTax' xlink:label='loc_ComprehensiveIncomeNetOfTax' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Liabilities' xlink:label='loc_Liabilities' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesAndStockholdersEquity' xlink:label='loc_LiabilitiesAndStockholdersEquity' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesCurrent' xlink:label='loc_LiabilitiesCurrent' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilitiesNoncurrent' xlink:label='loc_LiabilitiesNoncurrent' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInContinuingOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInDiscontinuedOperations' xlink:label='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInFinancingActivities' xlink:label='loc_NetCashProvidedByUsedInFinancingActivities' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInInvestingActivities' xlink:label='loc_NetCashProvidedByUsedInInvestingActivities' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInOperatingActivities' xlink:label='loc_NetCashProvidedByUsedInOperatingActivities' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLossNetOfTax' xlink:label='loc_OtherComprehensiveIncomeLossNetOfTax' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProfitLoss' xlink:label='loc_ProfitLoss' xlink:type='locator'/>
+<link:reference xlink:label='dqc_0004' xlink:role='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:type='resource'>
+<ref:Publisher>XBRL US</ref:Publisher>
+<dqcrules:ruleId>DQC.0004</dqcrules:ruleId>
+<dqcrules:ruleName>Element Values Are Equal</dqcrules:ruleName>
+<dqcrules:ruleDocumentation>This rule tests that the values reported between element relationships that are identified as an accounting constant are consistent within the filing. For example Assets equals Liability and Equity. The rule checks that the components of the calculation are present before checking the calculation. In some cases the components may not be present but their children are. In these cases the value can be derived by adding values across a dimension. The rule executes across all dimensions defined in the filing. If Assets Liabilities and Equity are defined for three separate legal entities the rule will check all three legal entities.The table below lists the defined calculations and the components that must be present for the rule to run. If a component is not required and the value is not present it is treated as having a value of zero. In evaluating equivalents the values are assessed based on the lowest decimal value. For example, if a value of 3 million with decimals of -6 is compared to a value of 3,100,000 with decimals of -5 then the values will be considered to be equivalent as both values will be rounded to a million (decimals of -6).</dqcrules:ruleDocumentation>
+<ref:URI>https://xbrl.us/data-rule/Dqc_0004/</ref:URI>
+</link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_dqc_0004_ListOfElements' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_dqc_0004' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Assets' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_AssetsCurrent' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_AssetsNoncurrent' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTax' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Liabilities' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesCurrent' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesNoncurrent' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInFinancingActivities' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInInvestingActivities' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInOperatingActivities' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_OtherComprehensiveIncomeLossNetOfTax' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ProfitLoss' xlink:to='dqc_0004' xlink:type='arc'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_ConsolidationItemsAxis' xlink:label='loc_dqc_0004_ConsolidationItemsAxis' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:label='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockholdersEquity' xlink:label='loc_StockholdersEquity' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinorityInterest' xlink:label='loc_MinorityInterest' xlink:type='locator'/>
+<link:reference xlink:label='dqc_0004_ConsolidationItemsAxis' xlink:role='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:type='resource'>
+<ref:Publisher>XBRL US</ref:Publisher>
+<dqcrules:ruleId>DQC.0004</dqcrules:ruleId>
+<dqcrules:ruleName>Element Values Are Equal</dqcrules:ruleName>
+<dqcrules:ruleDocumentation>This rule tests that the values reported between element relationships that are identified as an accounting constant are consistent within the filing. For example Assets equals Liability and Equity. The rule checks that the components of the calculation are present before checking the calculation. In some cases the components may not be present but their children are. In these cases the value can be derived by adding values across a dimension. The rule executes across all dimensions defined in the filing. If Assets Liabilities and Equity are defined for three separate legal entities the rule will check all three legal entities.The table below lists the defined calculations and the components that must be present for the rule to run. If a component is not required and the value is not present it is treated as having a value of zero. In evaluating equivalents the values are assessed based on the lowest decimal value. For example, if a value of 3 million with decimals of -6 is compared to a value of 3,100,000 with decimals of -5 then the values will be considered to be equivalent as both values will be rounded to a million (decimals of -6). This rule does not run when the consolidation item axis is used on the facts used in the equation. This is because items often classified as liabilities are eliminated through the equity section in a consolidated schedule.</dqcrules:ruleDocumentation>
+<ref:URI>https://xbrl.us/data-rule/Dqc_0004/</ref:URI>
+</link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_dqc_0004_ConsolidationItemsAxis' xlink:to='dqc_0004_ConsolidationItemsAxis' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:to='dqc_0004_ConsolidationItemsAxis' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_StockholdersEquity' xlink:to='dqc_0004_ConsolidationItemsAxis' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_MinorityInterest' xlink:to='dqc_0004_ConsolidationItemsAxis' xlink:type='arc'/>
+<link:loc xlink:href='#dqcrules-0004_Dqc_0004_NoDefault' xlink:label='loc_dqc_0004_NoDefault' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:label='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:type='locator'/>
+<link:reference xlink:label='dqc_0004_NoDefault' xlink:role='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:type='resource'>
+<ref:Publisher>XBRL US</ref:Publisher>
+<dqcrules:ruleId>DQC.0004</dqcrules:ruleId>
+<dqcrules:ruleName>Element Values Are Equal</dqcrules:ruleName>
+<dqcrules:ruleDocumentation>This rule tests that the values reported between element relationships that are identified as an accounting constant are consistent within the filing. For example Assets equals Liability and Equity. The rule checks that the components of the calculation are present before checking the calculation. In some cases the components may not be present but their children are. In these cases the value can be derived by adding values across a dimension. The rule executes across all dimensions defined in the filing. If Assets Liabilities and Equity are defined for three separate legal entities the rule will check all three legal entities.The table below lists the defined calculations and the components that must be present for the rule to run. If a component is not required and the value is not present it is treated as having a value of zero. In evaluating equivalents the values are assessed based on the lowest decimal value. For example, if a value of 3 million with decimals of -6 is compared to a value of 3,100,000 with decimals of -5 then the values will be considered to be equivalent as both values will be rounded to a million (decimals of -6). If StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest is not available in the default then different logic applies to derive a value.</dqcrules:ruleDocumentation>
+<ref:URI>https://xbrl.us/data-rule/Dqc_0004/</ref:URI>
+</link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_dqc_0004_NoDefault' xlink:to='dqc_0004_NoDefault' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='dqc_0004_NoDefault' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:to='dqc_0004_NoDefault' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Liabilities' xlink:to='dqc_0004_NoDefault' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:to='dqc_0004_NoDefault' xlink:type='arc'/>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_16' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.16</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9280' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9280</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9281' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9281</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9282' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9282</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9283' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9283</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9284' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9284</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9285' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9285</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9286' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9286</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9287' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9287</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9288' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9288</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9289' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9289</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9290' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9290</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0004_9291' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0004.9291</dqcrules:ruleElementId></link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Assets' xlink:to='DQC_US_0004_16' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='DQC_US_0004_16' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Assets' xlink:to='DQC_US_0004_9280' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_AssetsCurrent' xlink:to='DQC_US_0004_9280' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_AssetsNoncurrent' xlink:to='DQC_US_0004_9280' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Liabilities' xlink:to='DQC_US_0004_9281' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesCurrent' xlink:to='DQC_US_0004_9281' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesNoncurrent' xlink:to='DQC_US_0004_9281' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:to='DQC_US_0004_9282' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_StockholdersEquity' xlink:to='DQC_US_0004_9282' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_MinorityInterest' xlink:to='DQC_US_0004_9282' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_LiabilitiesAndStockholdersEquity' xlink:to='DQC_US_0004_9283' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest' xlink:to='DQC_US_0004_9283' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Liabilities' xlink:to='DQC_US_0004_9283' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests' xlink:to='DQC_US_0004_9283' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='DQC_US_0004_9284' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ProfitLoss' xlink:to='DQC_US_0004_9284' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_OtherComprehensiveIncomeLossNetOfTax' xlink:to='DQC_US_0004_9284' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTaxIncludingPortionAttributableToNoncontrollingInterest' xlink:to='DQC_US_0004_9285' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTaxAttributableToNoncontrollingInterest' xlink:to='DQC_US_0004_9285' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_ComprehensiveIncomeNetOfTax' xlink:to='DQC_US_0004_9285' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='DQC_US_0004_9286' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashAndCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='DQC_US_0004_9286' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInOperatingActivities' xlink:to='DQC_US_0004_9286' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInInvestingActivities' xlink:to='DQC_US_0004_9286' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInFinancingActivities' xlink:to='DQC_US_0004_9286' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInFinancingActivities' xlink:to='DQC_US_0004_9287' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:to='DQC_US_0004_9287' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:to='DQC_US_0004_9287' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInInvestingActivities' xlink:to='DQC_US_0004_9288' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:to='DQC_US_0004_9288' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:to='DQC_US_0004_9288' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInOperatingActivities' xlink:to='DQC_US_0004_9289' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:to='DQC_US_0004_9289' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:to='DQC_US_0004_9289' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInDiscontinuedOperations' xlink:to='DQC_US_0004_9290' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInOperatingActivitiesDiscontinuedOperations' xlink:to='DQC_US_0004_9290' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInInvestingActivitiesDiscontinuedOperations' xlink:to='DQC_US_0004_9290' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashProvidedByUsedInFinancingActivitiesDiscontinuedOperations' xlink:to='DQC_US_0004_9290' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations' xlink:to='DQC_US_0004_9291' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInOperatingActivitiesContinuingOperations' xlink:to='DQC_US_0004_9291' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInInvestingActivitiesContinuingOperations' xlink:to='DQC_US_0004_9291' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInFinancingActivitiesContinuingOperations' xlink:to='DQC_US_0004_9291' xlink:type='arc'/>
+</link:referenceLink>
+</link:linkbase>
+</xs:appinfo>
+</xs:annotation>
+<xs:element name='Dqc_0004' id='dqcrules-0004_Dqc_0004' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+<xs:element name='Dqc_0004_ListOfElements' id='dqcrules-0004_Dqc_0004_ListOfElements' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+<xs:element name='Dqc_0004_ConsolidationItemsAxis' id='dqcrules-0004_Dqc_0004_ConsolidationItemsAxis' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+<xs:element name='Dqc_0004_NoDefault' id='dqcrules-0004_Dqc_0004_NoDefault' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+</xs:schema>

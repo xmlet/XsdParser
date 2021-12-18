@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:href='../elts/us-roles-2021-01-31.xsd#StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:href='../elts/us-roles-2021-01-31.xsd#StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:href='../elts/us-roles-2021-01-31.xsd#StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:href='../elts/us-roles-2021-01-31.xsd#StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockLineItems' xlink:label='loc_ConversionOfStockLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockTable' xlink:label='loc_ConversionOfStockTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockByUniqueDescriptionAxis' xlink:label='loc_ConversionOfStockByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockNameDomain' xlink:label='loc_ConversionOfStockNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ConversionOfStockByUniqueDescriptionAxis' xlink:to='loc_ConversionOfStockNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockByUniqueDescriptionAxis' xlink:label='loc_ConversionOfStockByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockNameDomain' xlink:label='loc_ConversionOfStockNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ConversionOfStockByUniqueDescriptionAxis' xlink:to='loc_ConversionOfStockNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockLineItems' xlink:label='loc_ConversionOfStockLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockDescription' xlink:label='loc_ConversionOfStockDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockTypeOfStockConverted' xlink:label='loc_ConversionOfStockTypeOfStockConverted' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockSharesConverted1' xlink:label='loc_ConversionOfStockSharesConverted1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockAmountConverted1' xlink:label='loc_ConversionOfStockAmountConverted1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockNewIssuance' xlink:label='loc_ConversionOfStockNewIssuance' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockSharesIssued1' xlink:label='loc_ConversionOfStockSharesIssued1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockAmountIssued1' xlink:label='loc_ConversionOfStockAmountIssued1' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockTypeOfStockConverted' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockSharesConverted1' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockAmountConverted1' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockNewIssuance' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockSharesIssued1' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConversionOfStockLineItems' xlink:to='loc_ConversionOfStockAmountIssued1' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresConversionOfStockTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockTable' xlink:label='loc_ConversionOfStockTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConversionOfStockByUniqueDescriptionAxis' xlink:label='loc_ConversionOfStockByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ConversionOfStockTable' xlink:to='loc_ConversionOfStockByUniqueDescriptionAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionLineItems' xlink:label='loc_DebtConversionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionTable' xlink:label='loc_DebtConversionTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionByUniqueDescriptionAxis' xlink:label='loc_DebtConversionByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionNameDomain' xlink:label='loc_DebtConversionNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_DebtConversionByUniqueDescriptionAxis' xlink:to='loc_DebtConversionNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionByUniqueDescriptionAxis' xlink:label='loc_DebtConversionByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionNameDomain' xlink:label='loc_DebtConversionNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_DebtConversionByUniqueDescriptionAxis' xlink:to='loc_DebtConversionNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionLineItems' xlink:label='loc_DebtConversionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionDescription' xlink:label='loc_DebtConversionDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtTypeOfDebt' xlink:label='loc_DebtConversionOriginalDebtTypeOfDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtAmount1' xlink:label='loc_DebtConversionOriginalDebtAmount1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtDueDateOfDebtYear' xlink:label='loc_DebtConversionOriginalDebtDueDateOfDebtYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtDueDateOfDebtMonthAndYear' xlink:label='loc_DebtConversionOriginalDebtDueDateOfDebtMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtDueDateOfDebtDayMonthAndYear' xlink:label='loc_DebtConversionOriginalDebtDueDateOfDebtDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtIssuanceDateOfDebtYear' xlink:label='loc_DebtConversionOriginalDebtIssuanceDateOfDebtYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtIssuanceDateOfDebtMonthAndYear' xlink:label='loc_DebtConversionOriginalDebtIssuanceDateOfDebtMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtIssuanceDateOfDebtDayMonthAndYear' xlink:label='loc_DebtConversionOriginalDebtIssuanceDateOfDebtDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionOriginalDebtInterestRateOfDebt' xlink:label='loc_DebtConversionOriginalDebtInterestRateOfDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentType' xlink:label='loc_DebtConversionConvertedInstrumentType' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentAmount1' xlink:label='loc_DebtConversionConvertedInstrumentAmount1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentSharesIssued1' xlink:label='loc_DebtConversionConvertedInstrumentSharesIssued1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentWarrantsOrOptionsIssued1' xlink:label='loc_DebtConversionConvertedInstrumentWarrantsOrOptionsIssued1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentExpirationOrDueDateYear' xlink:label='loc_DebtConversionConvertedInstrumentExpirationOrDueDateYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentExpirationOrDueDateMonthAndYear' xlink:label='loc_DebtConversionConvertedInstrumentExpirationOrDueDateMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentExpirationOrDueDateDayMonthAndYear' xlink:label='loc_DebtConversionConvertedInstrumentExpirationOrDueDateDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentIssuanceDateYear' xlink:label='loc_DebtConversionConvertedInstrumentIssuanceDateYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentIssuanceDateMonthAndYear' xlink:label='loc_DebtConversionConvertedInstrumentIssuanceDateMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentIssuanceDateDayMonthAndYear' xlink:label='loc_DebtConversionConvertedInstrumentIssuanceDateDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionConvertedInstrumentRate' xlink:label='loc_DebtConversionConvertedInstrumentRate' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtTypeOfDebt' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtAmount1' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtDueDateOfDebtYear' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtDueDateOfDebtMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtDueDateOfDebtDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtIssuanceDateOfDebtYear' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtIssuanceDateOfDebtMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtIssuanceDateOfDebtDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionOriginalDebtInterestRateOfDebt' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentType' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentAmount1' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentSharesIssued1' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentWarrantsOrOptionsIssued1' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentExpirationOrDueDateYear' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentExpirationOrDueDateMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentExpirationOrDueDateDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentIssuanceDateYear' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentIssuanceDateMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentIssuanceDateDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DebtConversionLineItems' xlink:to='loc_DebtConversionConvertedInstrumentRate' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDebtConversionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionTable' xlink:label='loc_DebtConversionTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtConversionByUniqueDescriptionAxis' xlink:label='loc_DebtConversionByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DebtConversionTable' xlink:to='loc_DebtConversionByUniqueDescriptionAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableLineItems' xlink:label='loc_DividendsPayableLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableTable' xlink:label='loc_DividendsPayableTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementClassOfStockAxis' xlink:label='loc_StatementClassOfStockAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ClassOfStockDomain' xlink:label='loc_ClassOfStockDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsAxis' xlink:label='loc_DividendsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsDomain' xlink:label='loc_DividendsDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_StatementClassOfStockAxis' xlink:to='loc_ClassOfStockDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_DividendsAxis' xlink:to='loc_DividendsDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementClassOfStockAxis' xlink:label='loc_StatementClassOfStockAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ClassOfStockDomain' xlink:label='loc_ClassOfStockDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsAxis' xlink:label='loc_DividendsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsDomain' xlink:label='loc_DividendsDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_StatementClassOfStockAxis' xlink:to='loc_ClassOfStockDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_DividendsAxis' xlink:to='loc_DividendsDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ClassOfStockDomain' xlink:label='loc_ClassOfStockDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonClassAMember' xlink:label='loc_CommonClassAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonClassBMember' xlink:label='loc_CommonClassBMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonClassCMember' xlink:label='loc_CommonClassCMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CumulativePreferredStockMember' xlink:label='loc_CumulativePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncumulativePreferredStockMember' xlink:label='loc_NoncumulativePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RedeemablePreferredStockMember' xlink:label='loc_RedeemablePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonredeemablePreferredStockMember' xlink:label='loc_NonredeemablePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConvertiblePreferredStockMember' xlink:label='loc_ConvertiblePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredClassAMember' xlink:label='loc_PreferredClassAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredClassBMember' xlink:label='loc_PreferredClassBMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesAPreferredStockMember' xlink:label='loc_SeriesAPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesBPreferredStockMember' xlink:label='loc_SeriesBPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesCPreferredStockMember' xlink:label='loc_SeriesCPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesDPreferredStockMember' xlink:label='loc_SeriesDPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesEPreferredStockMember' xlink:label='loc_SeriesEPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesFPreferredStockMember' xlink:label='loc_SeriesFPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesGPreferredStockMember' xlink:label='loc_SeriesGPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesHPreferredStockMember' xlink:label='loc_SeriesHPreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonredeemableConvertiblePreferredStockMember' xlink:label='loc_NonredeemableConvertiblePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RedeemableConvertiblePreferredStockMember' xlink:label='loc_RedeemableConvertiblePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContingentConvertiblePreferredStockMember' xlink:label='loc_ContingentConvertiblePreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableLineItems' xlink:label='loc_DividendsPayableLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableNature' xlink:label='loc_DividendsPayableNature' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableCurrentAndNoncurrent' xlink:label='loc_DividendsPayableCurrentAndNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableAmountPerShare' xlink:label='loc_DividendsPayableAmountPerShare' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableDateDeclaredYear' xlink:label='loc_DividendsPayableDateDeclaredYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableDateDeclaredMonthAndYear' xlink:label='loc_DividendsPayableDateDeclaredMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableDateDeclaredDayMonthAndYear' xlink:label='loc_DividendsPayableDateDeclaredDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableDateOfRecordDayMonthAndYear' xlink:label='loc_DividendsPayableDateOfRecordDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableDateToBePaidYear' xlink:label='loc_DividendsPayableDateToBePaidYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableDateToBePaidMonthAndYear' xlink:label='loc_DividendsPayableDateToBePaidMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendPayableDateToBePaidDayMonthAndYear' xlink:label='loc_DividendPayableDateToBePaidDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsDomain' xlink:label='loc_DividendsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendDeclaredMember' xlink:label='loc_DividendDeclaredMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendPaidMember' xlink:label='loc_DividendPaidMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_CommonClassAMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_CommonClassBMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_CommonClassCMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_CumulativePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_NoncumulativePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_RedeemablePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_NonredeemablePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_ConvertiblePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_PreferredClassAMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_PreferredClassBMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesAPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesBPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesCPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesDPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesEPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesFPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesGPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ClassOfStockDomain' xlink:to='loc_SeriesHPreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConvertiblePreferredStockMember' xlink:to='loc_NonredeemableConvertiblePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConvertiblePreferredStockMember' xlink:to='loc_RedeemableConvertiblePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConvertiblePreferredStockMember' xlink:to='loc_ContingentConvertiblePreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableNature' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableCurrentAndNoncurrent' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableAmountPerShare' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableDateDeclaredYear' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableDateDeclaredMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableDateDeclaredDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableDateOfRecordDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableDateToBePaidYear' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendsPayableDateToBePaidMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsPayableLineItems' xlink:to='loc_DividendPayableDateToBePaidDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsDomain' xlink:to='loc_DividendDeclaredMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DividendsDomain' xlink:to='loc_DividendPaidMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresDividendsPayableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsPayableTable' xlink:label='loc_DividendsPayableTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementClassOfStockAxis' xlink:label='loc_StatementClassOfStockAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DividendsAxis' xlink:label='loc_DividendsAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DividendsPayableTable' xlink:to='loc_StatementClassOfStockAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DividendsPayableTable' xlink:to='loc_DividendsAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsLineItems' xlink:label='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsTable' xlink:label='loc_NoncashOrPartNoncashAcquisitionsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:label='loc_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNameDomain' xlink:label='loc_NoncashOrPartNoncashAcquisitionNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:to='loc_NoncashOrPartNoncashAcquisitionNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:label='loc_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNameDomain' xlink:label='loc_NoncashOrPartNoncashAcquisitionNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:to='loc_NoncashOrPartNoncashAcquisitionNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumedAbstract' xlink:label='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:label='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:label='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumed1' xlink:label='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumed1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionAccountsReceivableAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionAccountsReceivableAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionInvestmentsAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionInvestmentsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionInventoryAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionInventoryAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionFixedAssetsAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionFixedAssetsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionIntangibleAssetsAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionIntangibleAssetsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionOtherAssetsAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionOtherAssetsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionPayablesAssumed1' xlink:label='loc_NoncashOrPartNoncashAcquisitionPayablesAssumed1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionEmployeeBenefitLiabilitiesAssumed1' xlink:label='loc_NoncashOrPartNoncashAcquisitionEmployeeBenefitLiabilitiesAssumed1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionDebtAssumed1' xlink:label='loc_NoncashOrPartNoncashAcquisitionDebtAssumed1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionOtherLiabilitiesAssumed1' xlink:label='loc_NoncashOrPartNoncashAcquisitionOtherLiabilitiesAssumed1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumed1' xlink:label='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumed1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsLineItems' xlink:label='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionDescription' xlink:label='loc_NoncashOrPartNoncashAcquisitionDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionInterestAcquired1' xlink:label='loc_NoncashOrPartNoncashAcquisitionInterestAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationSharesIssued1' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationSharesIssued1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationWarrantsIssued1' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationWarrantsIssued1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationOptionsIssued1' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationOptionsIssued1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateYear' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateMonthAndYear' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateDayMonthAndYear' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateDayMonthAndYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationRate' xlink:label='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationRate' xlink:type='locator' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumed1' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionAccountsReceivableAcquired1' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionInvestmentsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionInventoryAcquired1' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionFixedAssetsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionIntangibleAssetsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionOtherAssetsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquiredAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionValueOfAssetsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionPayablesAssumed1' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionEmployeeBenefitLiabilitiesAssumed1' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionDebtAssumed1' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionOtherLiabilitiesAssumed1' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumedAbstract' xlink:to='loc_NoncashOrPartNoncashAcquisitionValueOfLiabilitiesAssumed1' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionInterestAcquired1' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNetNonmonetaryAssetsAcquiredLiabilitiesAssumedAbstract' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationSharesIssued1' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationWarrantsIssued1' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationOptionsIssued1' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateYear' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationDueDateDayMonthAndYear' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashAcquisitionsLineItems' xlink:to='loc_NoncashOrPartNoncashAcquisitionNoncashFinancialOrEquityInstrumentConsiderationRate' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashAcquisitionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsTable' xlink:label='loc_NoncashOrPartNoncashAcquisitionsTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:label='loc_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_NoncashOrPartNoncashAcquisitionsTable' xlink:to='loc_NoncashOrPartNoncashAcquisitionsByUniqueDescriptionAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresLineItems' xlink:label='loc_NoncashOrPartNoncashDivestituresLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresTable' xlink:label='loc_NoncashOrPartNoncashDivestituresTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_NoncashOrPartNoncashDivestituresLineItems' xlink:to='loc_NoncashOrPartNoncashDivestituresTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:label='loc_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestitureNameDomain' xlink:label='loc_NoncashOrPartNoncashDivestitureNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:to='loc_NoncashOrPartNoncashDivestitureNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:label='loc_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestitureNameDomain' xlink:label='loc_NoncashOrPartNoncashDivestitureNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:to='loc_NoncashOrPartNoncashDivestitureNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresLineItems' xlink:label='loc_NoncashOrPartNoncashDivestituresLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestitureDescription' xlink:label='loc_NoncashOrPartNoncashDivestitureDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestitureAmountOfConsiderationReceived1' xlink:label='loc_NoncashOrPartNoncashDivestitureAmountOfConsiderationReceived1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestitureTypeOfConsiderationReceived' xlink:label='loc_NoncashOrPartNoncashDivestitureTypeOfConsiderationReceived' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashDivestituresLineItems' xlink:to='loc_NoncashOrPartNoncashDivestitureDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashDivestituresLineItems' xlink:to='loc_NoncashOrPartNoncashDivestitureAmountOfConsiderationReceived1' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_NoncashOrPartNoncashDivestituresLineItems' xlink:to='loc_NoncashOrPartNoncashDivestitureTypeOfConsiderationReceived' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresNoncashOrPartNoncashDivestituresTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresTable' xlink:label='loc_NoncashOrPartNoncashDivestituresTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:label='loc_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_NoncashOrPartNoncashDivestituresTable' xlink:to='loc_NoncashOrPartNoncashDivestituresByUniqueNameAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsLineItems' xlink:label='loc_OtherSignificantNoncashTransactionsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsTable' xlink:label='loc_OtherSignificantNoncashTransactionsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_OtherSignificantNoncashTransactionsLineItems' xlink:to='loc_OtherSignificantNoncashTransactionsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:label='loc_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionNameDomain' xlink:label='loc_OtherSignificantNoncashTransactionNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:to='loc_OtherSignificantNoncashTransactionNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:label='loc_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionNameDomain' xlink:label='loc_OtherSignificantNoncashTransactionNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:to='loc_OtherSignificantNoncashTransactionNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsLineItems' xlink:label='loc_OtherSignificantNoncashTransactionsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionDescription' xlink:label='loc_OtherSignificantNoncashTransactionDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionConsiderationReceived' xlink:label='loc_OtherSignificantNoncashTransactionConsiderationReceived' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionValueOfConsiderationReceived1' xlink:label='loc_OtherSignificantNoncashTransactionValueOfConsiderationReceived1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionConsiderationGiven' xlink:label='loc_OtherSignificantNoncashTransactionConsiderationGiven' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionValueOfConsiderationGiven1' xlink:label='loc_OtherSignificantNoncashTransactionValueOfConsiderationGiven1' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherSignificantNoncashTransactionsLineItems' xlink:to='loc_OtherSignificantNoncashTransactionDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherSignificantNoncashTransactionsLineItems' xlink:to='loc_OtherSignificantNoncashTransactionConsiderationReceived' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherSignificantNoncashTransactionsLineItems' xlink:to='loc_OtherSignificantNoncashTransactionValueOfConsiderationReceived1' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherSignificantNoncashTransactionsLineItems' xlink:to='loc_OtherSignificantNoncashTransactionConsiderationGiven' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherSignificantNoncashTransactionsLineItems' xlink:to='loc_OtherSignificantNoncashTransactionValueOfConsiderationGiven1' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsSupplementalDisclosuresOtherSignificantNoncashTransactionsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsTable' xlink:label='loc_OtherSignificantNoncashTransactionsTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:label='loc_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OtherSignificantNoncashTransactionsTable' xlink:to='loc_OtherSignificantNoncashTransactionsByUniqueDescriptionAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

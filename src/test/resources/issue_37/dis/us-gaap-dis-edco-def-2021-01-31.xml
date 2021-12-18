@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:href='../elts/us-roles-2021-01-31.xsd#ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:href='../elts/us-roles-2021-01-31.xsd#ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:label='loc_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentEffectsOnEarningsPerShareTable' xlink:label='loc_ImpairmentEffectsOnEarningsPerShareTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:to='loc_ImpairmentEffectsOnEarningsPerShareTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueByAssetClassAxis' xlink:label='loc_FairValueByAssetClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:label='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FairValueByAssetClassAxis' xlink:to='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueByAssetClassAxis' xlink:label='loc_FairValueByAssetClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:label='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FairValueByAssetClassAxis' xlink:to='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:label='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PropertyPlantAndEquipmentMember' xlink:label='loc_PropertyPlantAndEquipmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefinitelivedIntangibleAssetsMember' xlink:label='loc_IndefinitelivedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMember' xlink:label='loc_FiniteLivedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillMember' xlink:label='loc_GoodwillMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:label='loc_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentEffectOnEarningsPerSharePretax' xlink:label='loc_ImpairmentEffectOnEarningsPerSharePretax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentEffectOnEarningsPerShareAfterTax' xlink:label='loc_ImpairmentEffectOnEarningsPerShareAfterTax' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:to='loc_PropertyPlantAndEquipmentMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:to='loc_IndefinitelivedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:to='loc_FiniteLivedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FairValueAssetsMeasuredOnRecurringBasisUnobservableInputReconciliationByAssetClassDomain' xlink:to='loc_GoodwillMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:to='loc_ImpairmentEffectOnEarningsPerSharePretax' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairmentEffectsOnEarningsPerShareLineItems' xlink:to='loc_ImpairmentEffectOnEarningsPerShareAfterTax' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsImpairmentEffectsOnEarningsPerShareTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentEffectsOnEarningsPerShareTable' xlink:label='loc_ImpairmentEffectsOnEarningsPerShareTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FairValueByAssetClassAxis' xlink:label='loc_FairValueByAssetClassAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ImpairmentEffectsOnEarningsPerShareTable' xlink:to='loc_FairValueByAssetClassAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:label='loc_ScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_ScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:to='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:to='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectOnFutureCashFlowsAmount' xlink:label='loc_EffectOnFutureCashFlowsAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectOnFutureEarningsAmount' xlink:label='loc_EffectOnFutureEarningsAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialPeriodInWhichEffectsAreExpectedToBeRealized' xlink:label='loc_InitialPeriodInWhichEffectsAreExpectedToBeRealized' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectOnFutureEarningsOffsetAmount' xlink:label='loc_EffectOnFutureEarningsOffsetAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectOnFutureEarningsAndCashFlowsOffsetDescription' xlink:label='loc_EffectOnFutureEarningsAndCashFlowsOffsetDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectOnFutureEarningsAndCashFlowsIncomeStatementLineItemImpacted' xlink:label='loc_EffectOnFutureEarningsAndCashFlowsIncomeStatementLineItemImpacted' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReducedDepreciationMember' xlink:label='loc_ReducedDepreciationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReducedEmployeeExpensesMember' xlink:label='loc_ReducedEmployeeExpensesMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_EffectOnFutureCashFlowsAmount' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_EffectOnFutureEarningsAmount' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_InitialPeriodInWhichEffectsAreExpectedToBeRealized' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_EffectOnFutureEarningsOffsetAmount' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_EffectOnFutureEarningsAndCashFlowsOffsetDescription' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanLineItems' xlink:to='loc_EffectOnFutureEarningsAndCashFlowsIncomeStatementLineItemImpacted' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:to='loc_ReducedDepreciationMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EffectsOnFutureEarningsAndCashFlowsByTypeOfEffectDomain' xlink:to='loc_ReducedEmployeeExpensesMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:label='loc_ScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:label='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfEffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanTable' xlink:to='loc_EffectsOnFutureEarningsAndCashFlowsResultingFromExitPlanAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCostAndReserveLineItems' xlink:label='loc_RestructuringCostAndReserveLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfRestructuringAndRelatedCostsTable' xlink:label='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionAxis' xlink:label='loc_BusinessAcquisitionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionAcquireeDomain' xlink:label='loc_BusinessAcquisitionAcquireeDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLocationAxis' xlink:label='loc_OtherComprehensiveIncomeLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLocationDomain' xlink:label='loc_OtherComprehensiveIncomeLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringPlanAxis' xlink:label='loc_RestructuringPlanAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringPlanDomain' xlink:label='loc_RestructuringPlanDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCostAndReserveAxis' xlink:label='loc_RestructuringCostAndReserveAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfRestructuringDomain' xlink:label='loc_TypeOfRestructuringDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_BusinessAcquisitionAxis' xlink:to='loc_BusinessAcquisitionAcquireeDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_OtherComprehensiveIncomeLocationAxis' xlink:to='loc_OtherComprehensiveIncomeLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_RestructuringPlanAxis' xlink:to='loc_RestructuringPlanDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_RestructuringCostAndReserveAxis' xlink:to='loc_TypeOfRestructuringDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionAxis' xlink:label='loc_BusinessAcquisitionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionAcquireeDomain' xlink:label='loc_BusinessAcquisitionAcquireeDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLocationAxis' xlink:label='loc_OtherComprehensiveIncomeLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLocationDomain' xlink:label='loc_OtherComprehensiveIncomeLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringPlanAxis' xlink:label='loc_RestructuringPlanAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringPlanDomain' xlink:label='loc_RestructuringPlanDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCostAndReserveAxis' xlink:label='loc_RestructuringCostAndReserveAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfRestructuringDomain' xlink:label='loc_TypeOfRestructuringDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_BusinessAcquisitionAxis' xlink:to='loc_BusinessAcquisitionAcquireeDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_OtherComprehensiveIncomeLocationAxis' xlink:to='loc_OtherComprehensiveIncomeLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_RestructuringPlanAxis' xlink:to='loc_RestructuringPlanDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_RestructuringCostAndReserveAxis' xlink:to='loc_TypeOfRestructuringDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionAcquireeDomain' xlink:label='loc_BusinessAcquisitionAcquireeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeriesOfIndividuallyImmaterialBusinessAcquisitionsMember' xlink:label='loc_SeriesOfIndividuallyImmaterialBusinessAcquisitionsMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingSegmentsMember' xlink:label='loc_OperatingSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IntersegmentEliminationMember' xlink:label='loc_IntersegmentEliminationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaterialReconcilingItemsMember' xlink:label='loc_MaterialReconcilingItemsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateNonSegmentMember' xlink:label='loc_CorporateNonSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesMember' xlink:label='loc_SalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradingRevenueMember' xlink:label='loc_TradingRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CostOfSalesMember' xlink:label='loc_CostOfSalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipalOrProprietaryTransactionsMember' xlink:label='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetManagementIncomeMember' xlink:label='loc_AssetManagementIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIncomeMember' xlink:label='loc_OtherIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestIncomeMember' xlink:label='loc_InterestIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentIncomeMember' xlink:label='loc_InvestmentIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingIncomeLossMember' xlink:label='loc_OperatingIncomeLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherOperatingIncomeExpenseMember' xlink:label='loc_OtherOperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestExpenseMember' xlink:label='loc_InterestExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingExpenseMember' xlink:label='loc_OperatingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherExpenseMember' xlink:label='loc_OtherExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonoperatingIncomeExpenseMember' xlink:label='loc_NonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherNonoperatingIncomeExpenseMember' xlink:label='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCurrencyGainLossMember' xlink:label='loc_ForeignCurrencyGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SaleOfSubsidiaryGainLossMember' xlink:label='loc_SaleOfSubsidiaryGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingGeneralAndAdministrativeExpensesMember' xlink:label='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLocationDomain' xlink:label='loc_OtherComprehensiveIncomeLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeMember' xlink:label='loc_OtherComprehensiveIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringChargesAbstract' xlink:label='loc_RestructuringChargesAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessExitCosts1' xlink:label='loc_BusinessExitCosts1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeveranceCosts1' xlink:label='loc_SeveranceCosts1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherRestructuringCosts' xlink:label='loc_OtherRestructuringCosts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCharges' xlink:label='loc_RestructuringCharges' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCostAndReserveLineItems' xlink:label='loc_RestructuringCostAndReserveLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedActivitiesDescription' xlink:label='loc_RestructuringAndRelatedActivitiesDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedActivitiesInitiationDate' xlink:label='loc_RestructuringAndRelatedActivitiesInitiationDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedActivitiesCompletionDate' xlink:label='loc_RestructuringAndRelatedActivitiesCompletionDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionPlannedRestructuringActivitiesDescription' xlink:label='loc_BusinessAcquisitionPlannedRestructuringActivitiesDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostLineItems' xlink:label='loc_RestructuringAndRelatedCostLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveLineItems' xlink:label='loc_RestructuringReserveLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringNameOfSegmentExtensibleList' xlink:label='loc_RestructuringNameOfSegmentExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCostsAbstract' xlink:label='loc_RestructuringCostsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PaymentsForRestructuring' xlink:label='loc_PaymentsForRestructuring' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCosts' xlink:label='loc_RestructuringCosts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveAbstract' xlink:label='loc_RestructuringReserveAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveRollForward' xlink:label='loc_RestructuringReserveRollForward' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveAdjustmentDescription' xlink:label='loc_RestructuringReserveAdjustmentDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedActivitiesLiabilityNotRecognized' xlink:label='loc_RestructuringAndRelatedActivitiesLiabilityNotRecognized' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveCurrent' xlink:label='loc_RestructuringReserveCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveNoncurrent' xlink:label='loc_RestructuringReserveNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserve' xlink:label='loc_RestructuringReserve' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveSettledWithoutCash2' xlink:label='loc_RestructuringReserveSettledWithoutCash2' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveTranslationAdjustment' xlink:label='loc_RestructuringReserveTranslationAdjustment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveAccrualAdjustment1' xlink:label='loc_RestructuringReserveAccrualAdjustment1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveTranslationAndOtherAdjustment' xlink:label='loc_RestructuringReserveTranslationAndOtherAdjustment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReservePeriodIncreaseDecrease' xlink:label='loc_RestructuringReservePeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostDescription' xlink:label='loc_RestructuringAndRelatedCostDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostIncurredCost' xlink:label='loc_RestructuringAndRelatedCostIncurredCost' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostExpectedCostRemaining1' xlink:label='loc_RestructuringAndRelatedCostExpectedCostRemaining1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostCaptionThatIncludesRestructuringCharges' xlink:label='loc_RestructuringAndRelatedCostCaptionThatIncludesRestructuringCharges' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringReserveAcceleratedDepreciation' xlink:label='loc_RestructuringReserveAcceleratedDepreciation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RecapitalizationCosts' xlink:label='loc_RecapitalizationCosts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostExpectedCostAbstract' xlink:label='loc_RestructuringAndRelatedCostExpectedCostAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostPositionsEliminatedAbstract' xlink:label='loc_RestructuringAndRelatedCostPositionsEliminatedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostCostIncurredToDate1' xlink:label='loc_RestructuringAndRelatedCostCostIncurredToDate1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostExpectedCost1' xlink:label='loc_RestructuringAndRelatedCostExpectedCost1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostNumberOfPositionsEliminated' xlink:label='loc_RestructuringAndRelatedCostNumberOfPositionsEliminated' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostNumberOfPositionsEliminatedPeriodPercent' xlink:label='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedPeriodPercent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDate' xlink:label='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDatePercent' xlink:label='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDatePercent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringAndRelatedCostExpectedNumberOfPositionsEliminated' xlink:label='loc_RestructuringAndRelatedCostExpectedNumberOfPositionsEliminated' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AllOtherSegmentsMember' xlink:label='loc_AllOtherSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateMember' xlink:label='loc_CorporateMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateAndOtherMember' xlink:label='loc_CorporateAndOtherMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingAndMarketingExpenseMember' xlink:label='loc_SellingAndMarketingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeExpenseMember' xlink:label='loc_GeneralAndAdministrativeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfRestructuringDomain' xlink:label='loc_TypeOfRestructuringDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FacilityClosingMember' xlink:label='loc_FacilityClosingMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SpinoffMember' xlink:label='loc_SpinoffMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EmployeeSeveranceMember' xlink:label='loc_EmployeeSeveranceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OneTimeTerminationBenefitsMember' xlink:label='loc_OneTimeTerminationBenefitsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SpecialTerminationBenefitsMember' xlink:label='loc_SpecialTerminationBenefitsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EmployeeRelocationMember' xlink:label='loc_EmployeeRelocationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractTerminationMember' xlink:label='loc_ContractTerminationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherRestructuringMember' xlink:label='loc_OtherRestructuringMember' xlink:type='locator' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BusinessAcquisitionAcquireeDomain' xlink:to='loc_SeriesOfIndividuallyImmaterialBusinessAcquisitionsMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_OperatingSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_IntersegmentEliminationMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_MaterialReconcilingItemsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_CorporateNonSegmentMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SalesMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_TradingRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_CostOfSalesMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_AssetManagementIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InvestmentIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingIncomeLossMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherOperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_NonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_ForeignCurrencyGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SaleOfSubsidiaryGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherComprehensiveIncomeLocationDomain' xlink:to='loc_OtherComprehensiveIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringChargesAbstract' xlink:to='loc_BusinessExitCosts1' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringChargesAbstract' xlink:to='loc_SeveranceCosts1' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringChargesAbstract' xlink:to='loc_OtherRestructuringCosts' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringChargesAbstract' xlink:to='loc_RestructuringCharges' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_RestructuringAndRelatedActivitiesDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_RestructuringAndRelatedActivitiesInitiationDate' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_RestructuringAndRelatedActivitiesCompletionDate' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_BusinessAcquisitionPlannedRestructuringActivitiesDescription' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_RestructuringAndRelatedCostLineItems' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_RestructuringReserveLineItems' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostAndReserveLineItems' xlink:to='loc_RestructuringNameOfSegmentExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostsAbstract' xlink:to='loc_RestructuringChargesAbstract' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostsAbstract' xlink:to='loc_PaymentsForRestructuring' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringCostsAbstract' xlink:to='loc_RestructuringCosts' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveLineItems' xlink:to='loc_RestructuringReserveAbstract' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveLineItems' xlink:to='loc_RestructuringReserveRollForward' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveLineItems' xlink:to='loc_RestructuringReserveAdjustmentDescription' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveLineItems' xlink:to='loc_RestructuringAndRelatedActivitiesLiabilityNotRecognized' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveAbstract' xlink:to='loc_RestructuringReserveCurrent' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveAbstract' xlink:to='loc_RestructuringReserveNoncurrent' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveAbstract' xlink:to='loc_RestructuringReserve' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveRollForward' xlink:to='loc_RestructuringReserveSettledWithoutCash2' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveRollForward' xlink:to='loc_RestructuringReserveTranslationAdjustment' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveRollForward' xlink:to='loc_RestructuringReserveAccrualAdjustment1' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveRollForward' xlink:to='loc_RestructuringReserveTranslationAndOtherAdjustment' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringReserveRollForward' xlink:to='loc_RestructuringReservePeriodIncreaseDecrease' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringAndRelatedCostDescription' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringAndRelatedCostIncurredCost' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringAndRelatedCostExpectedCostRemaining1' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringAndRelatedCostCaptionThatIncludesRestructuringCharges' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringReserveAcceleratedDepreciation' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RecapitalizationCosts' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringAndRelatedCostExpectedCostAbstract' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringCostsAbstract' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostLineItems' xlink:to='loc_RestructuringAndRelatedCostPositionsEliminatedAbstract' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostExpectedCostAbstract' xlink:to='loc_RestructuringAndRelatedCostCostIncurredToDate1' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostExpectedCostAbstract' xlink:to='loc_RestructuringAndRelatedCostExpectedCost1' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostPositionsEliminatedAbstract' xlink:to='loc_RestructuringAndRelatedCostNumberOfPositionsEliminated' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostNumberOfPositionsEliminated' xlink:to='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedPeriodPercent' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostPositionsEliminatedAbstract' xlink:to='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDate' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDate' xlink:to='loc_RestructuringAndRelatedCostNumberOfPositionsEliminatedInceptionToDatePercent' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RestructuringAndRelatedCostPositionsEliminatedAbstract' xlink:to='loc_RestructuringAndRelatedCostExpectedNumberOfPositionsEliminated' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_AllOtherSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateAndOtherMember' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_SellingAndMarketingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_GeneralAndAdministrativeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_FacilityClosingMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_SpinoffMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_EmployeeSeveranceMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_OneTimeTerminationBenefitsMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_SpecialTerminationBenefitsMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_EmployeeRelocationMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_ContractTerminationMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfRestructuringDomain' xlink:to='loc_OtherRestructuringMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/ExitOrDisposalCostObligationsScheduleOfRestructuringAndRelatedCostsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfRestructuringAndRelatedCostsTable' xlink:label='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BusinessAcquisitionAxis' xlink:label='loc_BusinessAcquisitionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringCostAndReserveAxis' xlink:label='loc_RestructuringCostAndReserveAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RestructuringPlanAxis' xlink:label='loc_RestructuringPlanAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherComprehensiveIncomeLocationAxis' xlink:label='loc_OtherComprehensiveIncomeLocationAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_ConsolidationItemsAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_StatementBusinessSegmentsAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_BusinessAcquisitionAxis' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_RestructuringCostAndReserveAxis' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_RestructuringPlanAxis' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_IncomeStatementLocationAxis' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRestructuringAndRelatedCostsTable' xlink:to='loc_OtherComprehensiveIncomeLocationAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

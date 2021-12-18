@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesInsuranceA1' xlink:href='../elts/us-roles-2021-01-31.xsd#fs-insa1' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesInsuranceA1' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AociLiabilityForFuturePolicyBenefitBeforeTax' xlink:label='loc_AociLiabilityForFuturePolicyBenefitBeforeTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AociLiabilityForFuturePolicyBenefitExpectedNetPremiumBeforeTax' xlink:label='loc_AociLiabilityForFuturePolicyBenefitExpectedNetPremiumBeforeTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AociLiabilityForFuturePolicyBenefitExpectedFuturePolicyBenefitBeforeTax' xlink:label='loc_AociLiabilityForFuturePolicyBenefitExpectedFuturePolicyBenefitBeforeTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitInterestExpense' xlink:label='loc_LiabilityForFuturePolicyBenefitInterestExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitExpectedNetPremiumInterestIncome' xlink:label='loc_LiabilityForFuturePolicyBenefitExpectedNetPremiumInterestIncome' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LiabilityForFuturePolicyBenefitExpectedFuturePolicyBenefitInterestExpense' xlink:label='loc_LiabilityForFuturePolicyBenefitExpectedFuturePolicyBenefitInterestExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitBeforeReinsuranceAndCumulativeIncreaseDecreaseFromInstrumentSpecificCreditRiskChange' xlink:label='loc_MarketRiskBenefitBeforeReinsuranceAndCumulativeIncreaseDecreaseFromInstrumentSpecificCreditRiskChange' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitAfterIncreaseDecreaseFromInstrumentSpecificCreditRisk' xlink:label='loc_MarketRiskBenefitAfterIncreaseDecreaseFromInstrumentSpecificCreditRisk' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitAssetAmount' xlink:label='loc_MarketRiskBenefitAssetAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketRiskBenefitLiabilityAmount' xlink:label='loc_MarketRiskBenefitLiabilityAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AociMarketRiskBenefitInstrumentSpecificCreditRiskBeforeTax' xlink:label='loc_AociMarketRiskBenefitInstrumentSpecificCreditRiskBeforeTax' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_AociLiabilityForFuturePolicyBenefitBeforeTax' xlink:to='loc_AociLiabilityForFuturePolicyBenefitExpectedNetPremiumBeforeTax' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_AociLiabilityForFuturePolicyBenefitBeforeTax' xlink:to='loc_AociLiabilityForFuturePolicyBenefitExpectedFuturePolicyBenefitBeforeTax' xlink:type='arc' />
+    <link:calculationArc order='10' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_LiabilityForFuturePolicyBenefitInterestExpense' xlink:to='loc_LiabilityForFuturePolicyBenefitExpectedNetPremiumInterestIncome' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_LiabilityForFuturePolicyBenefitInterestExpense' xlink:to='loc_LiabilityForFuturePolicyBenefitExpectedFuturePolicyBenefitInterestExpense' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_MarketRiskBenefitBeforeReinsuranceAndCumulativeIncreaseDecreaseFromInstrumentSpecificCreditRiskChange' xlink:to='loc_MarketRiskBenefitAfterIncreaseDecreaseFromInstrumentSpecificCreditRisk' xlink:type='arc' />
+    <link:calculationArc order='10' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_MarketRiskBenefitAfterIncreaseDecreaseFromInstrumentSpecificCreditRisk' xlink:to='loc_MarketRiskBenefitAssetAmount' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_MarketRiskBenefitAfterIncreaseDecreaseFromInstrumentSpecificCreditRisk' xlink:to='loc_MarketRiskBenefitLiabilityAmount' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_MarketRiskBenefitBeforeReinsuranceAndCumulativeIncreaseDecreaseFromInstrumentSpecificCreditRiskChange' xlink:to='loc_AociMarketRiskBenefitInstrumentSpecificCreditRiskBeforeTax' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

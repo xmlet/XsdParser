@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/SECScheduleArticle12-17Reinsurance' xlink:href='../elts/us-roles-2021-01-31.xsd#sec-reins' xlink:type='simple' />
+  <link:presentationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/SECScheduleArticle12-17Reinsurance' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LifeInsuranceInForceNetAbstract' xlink:label='loc_LifeInsuranceInForceNetAbstract' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LifeInsuranceInForceGross' xlink:label='loc_LifeInsuranceInForceGross' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LifeInsuranceInForceCeded' xlink:label='loc_LifeInsuranceInForceCeded' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LifeInsuranceInForceAssumed' xlink:label='loc_LifeInsuranceInForceAssumed' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LifeInsuranceInForceNet' xlink:label='loc_LifeInsuranceInForceNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInsuranceProductLineMember' xlink:label='loc_OtherInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherShortdurationInsuranceProductLineMember' xlink:label='loc_OtherShortdurationInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherLongdurationInsuranceProductLineMember' xlink:label='loc_OtherLongdurationInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:label='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectPremiumsEarned' xlink:label='loc_DirectPremiumsEarned' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CededPremiumsEarned' xlink:label='loc_CededPremiumsEarned' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssumedPremiumsEarned' xlink:label='loc_AssumedPremiumsEarned' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PremiumsEarnedNet' xlink:label='loc_PremiumsEarnedNet' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductsAndServicesDomain' xlink:label='loc_ProductsAndServicesDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableAnnuityMember' xlink:label='loc_VariableAnnuityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_VariableLifeMember' xlink:label='loc_VariableLifeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UniversalLifeMember' xlink:label='loc_UniversalLifeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NontraditionalLongDurationContractsMember' xlink:label='loc_NontraditionalLongDurationContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GroupPoliciesMember' xlink:label='loc_GroupPoliciesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndividualPoliciesMember' xlink:label='loc_IndividualPoliciesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LifeAndAnnuityInsuranceProductLineMember' xlink:label='loc_LifeAndAnnuityInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LifeInsuranceSegmentMember' xlink:label='loc_LifeInsuranceSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentsSegmentMember' xlink:label='loc_InvestmentsSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AccidentAndHealthInsuranceSegmentMember' xlink:label='loc_AccidentAndHealthInsuranceSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HealthInsuranceProductLineMember' xlink:label='loc_HealthInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialGuaranteeInsuranceSegmentMember' xlink:label='loc_FinancialGuaranteeInsuranceSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PropertyLiabilityAndCasualtyInsuranceSegmentMember' xlink:label='loc_PropertyLiabilityAndCasualtyInsuranceSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PropertyInsuranceProductLineMember' xlink:label='loc_PropertyInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SuretySegmentMember' xlink:label='loc_SuretySegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TitleInsuranceSegmentMember' xlink:label='loc_TitleInsuranceSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PropertyAndCasualtyPersonalInsuranceProductLineMember' xlink:label='loc_PropertyAndCasualtyPersonalInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PropertyAndCasualtyCommercialInsuranceProductLineMember' xlink:label='loc_PropertyAndCasualtyCommercialInsuranceProductLineMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesAbstract' xlink:label='loc_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesAbstract' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesTextBlock' xlink:label='loc_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesTextBlock' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentTable' xlink:label='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:label='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LifeInsuranceInForcePercentageAssumedToNet' xlink:label='loc_LifeInsuranceInForcePercentageAssumedToNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PremiumsPercentageAssumedToNet' xlink:label='loc_PremiumsPercentageAssumedToNet' xlink:type='locator' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_LifeInsuranceInForceNetAbstract' xlink:to='loc_LifeInsuranceInForceGross' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_LifeInsuranceInForceNetAbstract' xlink:to='loc_LifeInsuranceInForceCeded' xlink:type='arc' />
+    <link:presentationArc order='30' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_LifeInsuranceInForceNetAbstract' xlink:to='loc_LifeInsuranceInForceAssumed' xlink:type='arc' />
+    <link:presentationArc order='40' preferredLabel='http://www.xbrl.org/2003/role/totalLabel' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_LifeInsuranceInForceNetAbstract' xlink:to='loc_LifeInsuranceInForceNet' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_OtherInsuranceProductLineMember' xlink:to='loc_OtherShortdurationInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_OtherInsuranceProductLineMember' xlink:to='loc_OtherLongdurationInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:to='loc_DirectPremiumsEarned' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:to='loc_CededPremiumsEarned' xlink:type='arc' />
+    <link:presentationArc order='30' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:to='loc_AssumedPremiumsEarned' xlink:type='arc' />
+    <link:presentationArc order='40' preferredLabel='http://www.xbrl.org/2003/role/totalLabel' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:to='loc_PremiumsEarnedNet' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductOrServiceAxis' xlink:to='loc_ProductsAndServicesDomain' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_VariableAnnuityMember' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_VariableLifeMember' xlink:type='arc' />
+    <link:presentationArc order='30' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_UniversalLifeMember' xlink:type='arc' />
+    <link:presentationArc order='40' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_NontraditionalLongDurationContractsMember' xlink:type='arc' />
+    <link:presentationArc order='50' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_GroupPoliciesMember' xlink:type='arc' />
+    <link:presentationArc order='60' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_IndividualPoliciesMember' xlink:type='arc' />
+    <link:presentationArc order='70' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_LifeAndAnnuityInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='80' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_LifeInsuranceSegmentMember' xlink:type='arc' />
+    <link:presentationArc order='90' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_InvestmentsSegmentMember' xlink:type='arc' />
+    <link:presentationArc order='100' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_AccidentAndHealthInsuranceSegmentMember' xlink:type='arc' />
+    <link:presentationArc order='110' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_HealthInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='120' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_FinancialGuaranteeInsuranceSegmentMember' xlink:type='arc' />
+    <link:presentationArc order='130' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_PropertyLiabilityAndCasualtyInsuranceSegmentMember' xlink:type='arc' />
+    <link:presentationArc order='140' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_PropertyInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='150' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_SuretySegmentMember' xlink:type='arc' />
+    <link:presentationArc order='160' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_TitleInsuranceSegmentMember' xlink:type='arc' />
+    <link:presentationArc order='170' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ProductsAndServicesDomain' xlink:to='loc_OtherInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_PropertyLiabilityAndCasualtyInsuranceSegmentMember' xlink:to='loc_PropertyAndCasualtyPersonalInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_PropertyLiabilityAndCasualtyInsuranceSegmentMember' xlink:to='loc_PropertyAndCasualtyCommercialInsuranceProductLineMember' xlink:type='arc' />
+    <link:presentationArc order='10' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesAbstract' xlink:to='loc_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesTextBlock' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_SupplementalScheduleOfReinsurancePremiumsForInsuranceCompaniesTextBlock' xlink:to='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentTable' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:to='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentNetAmountAbstract' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:to='loc_LifeInsuranceInForceNetAbstract' xlink:type='arc' />
+    <link:presentationArc order='30' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:to='loc_LifeInsuranceInForcePercentageAssumedToNet' xlink:type='arc' />
+    <link:presentationArc order='40' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:to='loc_PremiumsPercentageAssumedToNet' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentTable' xlink:to='loc_ProductOrServiceAxis' xlink:type='arc' />
+    <link:presentationArc order='20' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentTable' xlink:to='loc_ReinsurancePremiumsForInsuranceCompaniesByProductSegmentLineItems' xlink:type='arc' />
+  </link:presentationLink>
+</link:linkbase>

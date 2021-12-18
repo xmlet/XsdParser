@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.; (c) 2020-2021 XBRL US, Inc. All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+<xs:schema targetNamespace='http://fasb.org/dqcrules-0009/2021-01-31' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:dqcrules-0009='http://fasb.org/dqcrules-0009/2021-01-31' xmlns:dqcrules='http://fasb.org/dqcrules/2021-01-31' xmlns:us-gaap='http://fasb.org/us-gaap/2021-01-31' xmlns:dei='http://xbrl.sec.gov/dei/2021' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:ref='http://www.xbrl.org/2006/ref' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xbrli='http://www.xbrl.org/2003/instance' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns='http://www.xbrl.org/2003/linkbase'
+xsi:schemaLocation='http://www.xbrl.org/2006/ref http://www.xbrl.org/2006/ref-2006-02-27.xsd http://fasb.org/dqcrules/2021-01-31 dqcrules-2021-01-31.xsd'>
+<xs:import namespace='http://www.xbrl.org/2003/instance' schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd'/>
+<xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+<xs:import namespace='http://www.xbrl.org/2006/ref' schemaLocation='http://www.xbrl.org/2006/ref-2006-02-27.xsd' />
+<xs:import namespace='http://xbrl.org/2005/xbrldt' schemaLocation='http://www.xbrl.org/2005/xbrldt-2005.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules/2021-01-31' schemaLocation='dqcrules-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/us-roles/2021-01-31' schemaLocation='../elts/us-roles-2021-01-31.xsd'/>
+<xs:annotation>
+<xs:appinfo>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/0009' id='dqc_0009'>
+<link:definition>DQC.US.0009</link:definition>
+<link:usedOn>link:definitionLink</link:usedOn>
+<link:usedOn>link:referenceLink</link:usedOn>
+</link:roleType>
+<link:linkbase id='lnk'>
+<link:arcroleRef arcroleURI='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:href='dqcrules-2021-01-31.xsd#greaterThan-concept' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/0009' xlink:href='#dqc_0009' xlink:type='simple'/>
+<link:arcroleRef arcroleURI='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:href='dqcrules-2021-01-31.xsd#rule-concept' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:href='dqcrules-2021-01-31.xsd#dqcn' xlink:type='simple' />
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleExclusions' xlink:href='dqcrules-2021-01-31.xsd#dqcre' xlink:type='simple' />
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleID' xlink:href='dqcrules-2021-01-31.xsd#dqcrid' xlink:type='simple' />
+<labelLink xlink:type='extended' xlink:role='http://www.xbrl.org/2003/role/link'>
+<loc xlink:type='locator' xlink:href='#dqcrules-0009_Dqc_0009' xlink:label='loc_dqcrules_Dqc_0009'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0009' xlink:to='lbl_dqcrules_Dqc_0009'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0009' xml:lang='en-US'>DQC.US.0009 [Abstract]</label>
+<loc xlink:type='locator' xlink:href='#dqcrules-0009_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:label='loc_dqcrules_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='lbl_dqcrules_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xml:lang='en-US'>DQC.US.0009.Element A must be less than or equal to Element B [Abstract]</label>
+</labelLink>
+<link:definitionLink xlink:role='http://fasb.org/us-gaap/role/dqc/0009' xlink:type='extended'>
+<link:loc xlink:href='#dqcrules-0009_Dqc_0009' xlink:label='loc_dqcrules_Dqc_0009' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0009_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:label='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_dqcrules_Dqc_0009' xlink:to='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockSharesOutstanding' xlink:label='loc_CommonStockSharesOutstanding' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_CommonStockSharesOutstanding' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockSharesIssued' xlink:label='loc_CommonStockSharesIssued' xlink:type='locator'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_CommonStockSharesIssued' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:label='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockSharesOutstanding' xlink:label='loc_PreferredStockSharesOutstanding' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:label='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:label='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:label='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:label='loc_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockSharesAuthorized' xlink:label='loc_CommonStockSharesAuthorized' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanBenefitObligation' xlink:label='loc_DefinedBenefitPlanBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockSharesIssued' xlink:label='loc_PreferredStockSharesIssued' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockSharesAuthorized' xlink:label='loc_PreferredStockSharesAuthorized' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanFairValueOfPlanAssets' xlink:label='loc_DefinedBenefitPlanFairValueOfPlanAssets' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UndistributedEarningsOfForeignSubsidiaries' xlink:label='loc_UndistributedEarningsOfForeignSubsidiaries' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_CommonStockSharesIssued' xlink:to='loc_CommonStockSharesOutstanding' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_CommonStockSharesAuthorized' xlink:to='loc_CommonStockSharesIssued' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_DefinedBenefitPlanBenefitObligation' xlink:to='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_PreferredStockSharesAuthorized' xlink:to='loc_PreferredStockSharesIssued' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_PreferredStockSharesIssued' xlink:to='loc_PreferredStockSharesOutstanding' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_DefinedBenefitPlanFairValueOfPlanAssets' xlink:to='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_UndistributedEarningsOfForeignSubsidiaries' xlink:to='loc_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:type='arc'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:to='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/greaterThan-concept' xlink:from='loc_DefinedBenefitPlanBenefitObligation' xlink:to='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='3.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_PreferredStockSharesOutstanding' xlink:type='arc'/>
+<link:definitionArc order='4.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:type='arc'/>
+<link:definitionArc order='5.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='6.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='7.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:type='arc'/>
+<link:definitionArc order='8.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_CommonStockSharesAuthorized' xlink:type='arc'/>
+<link:definitionArc order='9.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DefinedBenefitPlanBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='10.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_PreferredStockSharesIssued' xlink:type='arc'/>
+<link:definitionArc order='11.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_PreferredStockSharesAuthorized' xlink:type='arc'/>
+<link:definitionArc order='12.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DefinedBenefitPlanFairValueOfPlanAssets' xlink:type='arc'/>
+<link:definitionArc order='13.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:type='arc'/>
+<link:definitionArc order='14.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='loc_UndistributedEarningsOfForeignSubsidiaries' xlink:type='arc'/>
+</link:definitionLink>
+<link:referenceLink xlink:role='http://fasb.org/us-gaap/role/dqc/0009' xlink:type='extended'>
+<link:loc xlink:href='#dqcrules-0009_Dqc_0009' xlink:label='loc_Dqc_0009' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0009_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:label='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockSharesOutstanding' xlink:label='loc_CommonStockSharesOutstanding' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockSharesIssued' xlink:label='loc_CommonStockSharesIssued' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockSharesOutstanding' xlink:label='loc_PreferredStockSharesOutstanding' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:label='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:label='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:label='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:label='loc_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommonStockSharesAuthorized' xlink:label='loc_CommonStockSharesAuthorized' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanBenefitObligation' xlink:label='loc_DefinedBenefitPlanBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockSharesIssued' xlink:label='loc_PreferredStockSharesIssued' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockSharesAuthorized' xlink:label='loc_PreferredStockSharesAuthorized' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanFairValueOfPlanAssets' xlink:label='loc_DefinedBenefitPlanFairValueOfPlanAssets' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:label='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UndistributedEarningsOfForeignSubsidiaries' xlink:label='loc_UndistributedEarningsOfForeignSubsidiaries' xlink:type='locator'/>
+<link:reference xlink:label='dqc_0009' xlink:role='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:type='resource'>
+<ref:Publisher>XBRL US</ref:Publisher>
+<dqcrules:ruleId>DQC.0009</dqcrules:ruleId>
+<dqcrules:ruleName>Element A must be less than or equal to Element B.</dqcrules:ruleName>
+<dqcrules:ruleDocumentation>This rule tests that the fact value for certain elements are less than or equal to the fact value of other elements. XBRL facts reported are expected to follow accounting logic. Consequently, certain reported values are expected to have a mathematical relationship to other reported values.</dqcrules:ruleDocumentation>
+<ref:URI>https://xbrl.us/data-rule/dqc_0009/</ref:URI>
+</link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Dqc_0009' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesOutstanding' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesIssued' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesOutstanding' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesAuthorized' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanBenefitObligation' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesIssued' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesAuthorized' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanFairValueOfPlanAssets' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_UndistributedEarningsOfForeignSubsidiaries' xlink:to='dqc_0009' xlink:type='arc'/>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_24' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.24</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_15' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.15</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_21' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.21</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_46' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.46</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_19' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.19</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_23' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.23</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_41' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.41</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_22' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.22</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_40' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.40</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_42' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.42</dqcrules:ruleElementId></link:reference>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0009_47' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0009.47</dqcrules:ruleElementId></link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesOutstanding' xlink:to='DQC_US_0009_24' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesOutstanding' xlink:to='DQC_US_0009_15' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesIssued' xlink:to='DQC_US_0009_21' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:to='DQC_US_0009_46' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesOutstanding' xlink:to='DQC_US_0009_19' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesOutstanding' xlink:to='DQC_US_0009_23' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateFairValueOfPlanAssets' xlink:to='DQC_US_0009_41' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesIssued' xlink:to='DQC_US_0009_22' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateAccumulatedBenefitObligation' xlink:to='DQC_US_0009_40' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanPensionPlansWithAccumulatedBenefitObligationsInExcessOfPlanAssetsAggregateProjectedBenefitObligation' xlink:to='DQC_US_0009_42' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DeferredTaxLiabilityNotRecognizedAmountOfUnrecognizedDeferredTaxLiabilityUndistributedEarningsOfForeignSubsidiaries' xlink:to='DQC_US_0009_47' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesIssued' xlink:to='DQC_US_0009_24' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesAuthorized' xlink:to='DQC_US_0009_15' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CommonStockSharesAuthorized' xlink:to='DQC_US_0009_21' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanBenefitObligation' xlink:to='DQC_US_0009_46' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesIssued' xlink:to='DQC_US_0009_19' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesAuthorized' xlink:to='DQC_US_0009_23' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanFairValueOfPlanAssets' xlink:to='DQC_US_0009_41' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_PreferredStockSharesAuthorized' xlink:to='DQC_US_0009_22' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanAccumulatedBenefitObligation' xlink:to='DQC_US_0009_40' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_DefinedBenefitPlanBenefitObligation' xlink:to='DQC_US_0009_42' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_UndistributedEarningsOfForeignSubsidiaries' xlink:to='DQC_US_0009_47' xlink:type='arc'/>
+</link:referenceLink>
+</link:linkbase>
+</xs:appinfo>
+</xs:annotation>
+<xs:element name='Dqc_0009' id='dqcrules-0009_Dqc_0009' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+<xs:element name='Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' id='dqcrules-0009_Dqc_0009_ElementAMustBeLessThanOrEqualToElementB' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+</xs:schema>

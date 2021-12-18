@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/MiscellaneousIndustries' xlink:href='../elts/us-roles-2021-01-31.xsd#oi' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/MiscellaneousIndustries' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmCosts' xlink:label='loc_FilmCosts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnCapitalizedCost' xlink:label='loc_FilmMonetizedOnItsOwnCapitalizedCost' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnCapitalizedCostDevelopmentAndPreproduction' xlink:label='loc_FilmMonetizedOnItsOwnCapitalizedCostDevelopmentAndPreproduction' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnCapitalizedCostProduction' xlink:label='loc_FilmMonetizedOnItsOwnCapitalizedCostProduction' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnCapitalizedCostCompletedAndNotReleased' xlink:label='loc_FilmMonetizedOnItsOwnCapitalizedCostCompletedAndNotReleased' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnCapitalizedCostReleased' xlink:label='loc_FilmMonetizedOnItsOwnCapitalizedCostReleased' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupCapitalizedCost' xlink:label='loc_FilmMonetizedInFilmGroupCapitalizedCost' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupCapitalizedCostDevelopmentAndPreproduction' xlink:label='loc_FilmMonetizedInFilmGroupCapitalizedCostDevelopmentAndPreproduction' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupCapitalizedCostProduction' xlink:label='loc_FilmMonetizedInFilmGroupCapitalizedCostProduction' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupCapitalizedCostCompletedAndNotReleased' xlink:label='loc_FilmMonetizedInFilmGroupCapitalizedCostCompletedAndNotReleased' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupCapitalizedCostReleased' xlink:label='loc_FilmMonetizedInFilmGroupCapitalizedCostReleased' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAndFilmMonetizedInFilmGroupAmortizationExpense' xlink:label='loc_FilmMonetizedOnItsOwnAndFilmMonetizedInFilmGroupAmortizationExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedOnItsOwnAmortizationExpense' xlink:label='loc_FilmMonetizedOnItsOwnAmortizationExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FilmMonetizedInFilmGroupAmortizationExpense' xlink:label='loc_FilmMonetizedInFilmGroupAmortizationExpense' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmCosts' xlink:to='loc_FilmMonetizedOnItsOwnCapitalizedCost' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedOnItsOwnCapitalizedCost' xlink:to='loc_FilmMonetizedOnItsOwnCapitalizedCostDevelopmentAndPreproduction' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedOnItsOwnCapitalizedCost' xlink:to='loc_FilmMonetizedOnItsOwnCapitalizedCostProduction' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedOnItsOwnCapitalizedCost' xlink:to='loc_FilmMonetizedOnItsOwnCapitalizedCostCompletedAndNotReleased' xlink:type='arc' />
+    <link:calculationArc order='40' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedOnItsOwnCapitalizedCost' xlink:to='loc_FilmMonetizedOnItsOwnCapitalizedCostReleased' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmCosts' xlink:to='loc_FilmMonetizedInFilmGroupCapitalizedCost' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedInFilmGroupCapitalizedCost' xlink:to='loc_FilmMonetizedInFilmGroupCapitalizedCostDevelopmentAndPreproduction' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedInFilmGroupCapitalizedCost' xlink:to='loc_FilmMonetizedInFilmGroupCapitalizedCostProduction' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedInFilmGroupCapitalizedCost' xlink:to='loc_FilmMonetizedInFilmGroupCapitalizedCostCompletedAndNotReleased' xlink:type='arc' />
+    <link:calculationArc order='40' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedInFilmGroupCapitalizedCost' xlink:to='loc_FilmMonetizedInFilmGroupCapitalizedCostReleased' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedOnItsOwnAndFilmMonetizedInFilmGroupAmortizationExpense' xlink:to='loc_FilmMonetizedOnItsOwnAmortizationExpense' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_FilmMonetizedOnItsOwnAndFilmMonetizedInFilmGroupAmortizationExpense' xlink:to='loc_FilmMonetizedInFilmGroupAmortizationExpense' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

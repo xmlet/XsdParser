@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:href='../elts/us-roles-2021-01-31.xsd#FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:to='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BalanceSheetLocationAxis' xlink:label='loc_BalanceSheetLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BalanceSheetLocationDomain' xlink:label='loc_BalanceSheetLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_BalanceSheetLocationAxis' xlink:to='loc_BalanceSheetLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:to='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BalanceSheetLocationAxis' xlink:label='loc_BalanceSheetLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BalanceSheetLocationDomain' xlink:label='loc_BalanceSheetLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_BalanceSheetLocationAxis' xlink:to='loc_BalanceSheetLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:to='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BalanceSheetLocationDomain' xlink:label='loc_BalanceSheetLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherAssetsMember' xlink:label='loc_OtherAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherLiabilitiesMember' xlink:label='loc_OtherLiabilitiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentsMember' xlink:label='loc_OtherInvestmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractHolderFundsMember' xlink:label='loc_ContractHolderFundsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountsPayableAndAccruedLiabilitiesMember' xlink:label='loc_AccountsPayableAndAccruedLiabilitiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrepaidExpensesAndOtherCurrentAssetsMember' xlink:label='loc_PrepaidExpensesAndOtherCurrentAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MortgageBackedSecuritiesMember' xlink:label='loc_MortgageBackedSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MortgageBackedSecuritiesIssuedByUSGovernmentSponsoredEnterprisesMember' xlink:label='loc_MortgageBackedSecuritiesIssuedByUSGovernmentSponsoredEnterprisesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MortgageBackedSecuritiesIssuedByPrivateEnterprisesMember' xlink:label='loc_MortgageBackedSecuritiesIssuedByPrivateEnterprisesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CollateralizedMortgageObligationsMember' xlink:label='loc_CollateralizedMortgageObligationsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValueOfSecuritiesSoldOrRepledged' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValueOfSecuritiesSoldOrRepledged' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommercialLoanMember' xlink:label='loc_CommercialLoanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AutomobileLoanMember' xlink:label='loc_AutomobileLoanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResidentialMortgageMember' xlink:label='loc_ResidentialMortgageMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConsumerLoanMember' xlink:label='loc_ConsumerLoanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecondMortgageMember' xlink:label='loc_SecondMortgageMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CreditCardReceivablesMember' xlink:label='loc_CreditCardReceivablesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommercialRealEstateMember' xlink:label='loc_CommercialRealEstateMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetBackedSecuritiesMember' xlink:label='loc_AssetBackedSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherCurrentAssetsMember' xlink:label='loc_OtherCurrentAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherNoncurrentAssetsMember' xlink:label='loc_OtherNoncurrentAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherCurrentLiabilitiesMember' xlink:label='loc_OtherCurrentLiabilitiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherNoncurrentLiabilitiesMember' xlink:label='loc_OtherNoncurrentLiabilitiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FixedRateResidentialMortgageMember' xlink:label='loc_FixedRateResidentialMortgageMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdjustableRateResidentialMortgageMember' xlink:label='loc_AdjustableRateResidentialMortgageMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HomeEquityMember' xlink:label='loc_HomeEquityMember' xlink:type='locator' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BalanceSheetLocationDomain' xlink:to='loc_OtherAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BalanceSheetLocationDomain' xlink:to='loc_OtherLiabilitiesMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BalanceSheetLocationDomain' xlink:to='loc_OtherInvestmentsMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BalanceSheetLocationDomain' xlink:to='loc_ContractHolderFundsMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BalanceSheetLocationDomain' xlink:to='loc_AccountsPayableAndAccruedLiabilitiesMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_BalanceSheetLocationDomain' xlink:to='loc_PrepaidExpensesAndOtherCurrentAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MortgageBackedSecuritiesMember' xlink:to='loc_MortgageBackedSecuritiesIssuedByUSGovernmentSponsoredEnterprisesMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MortgageBackedSecuritiesMember' xlink:to='loc_MortgageBackedSecuritiesIssuedByPrivateEnterprisesMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MortgageBackedSecuritiesMember' xlink:to='loc_CollateralizedMortgageObligationsMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:to='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValue' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeLineItems' xlink:to='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeFairValueOfSecuritiesSoldOrRepledged' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_CommercialLoanMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_AutomobileLoanMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_ResidentialMortgageMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_ConsumerLoanMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_SecondMortgageMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_CreditCardReceivablesMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_CommercialRealEstateMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_AssetBackedSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeSecuritiesTypeDomain' xlink:to='loc_MortgageBackedSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherAssetsMember' xlink:to='loc_OtherCurrentAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherAssetsMember' xlink:to='loc_OtherNoncurrentAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherLiabilitiesMember' xlink:to='loc_OtherCurrentLiabilitiesMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherLiabilitiesMember' xlink:to='loc_OtherNoncurrentLiabilitiesMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResidentialMortgageMember' xlink:to='loc_FixedRateResidentialMortgageMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResidentialMortgageMember' xlink:to='loc_AdjustableRateResidentialMortgageMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResidentialMortgageMember' xlink:to='loc_HomeEquityMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersCustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:label='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BalanceSheetLocationAxis' xlink:label='loc_BalanceSheetLocationAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:to='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_CustomerSecuritiesForWhichEntityHasRightToSellOrRepledgeTable' xlink:to='loc_BalanceSheetLocationAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:label='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:label='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:to='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FinancialInstrumentAxis' xlink:to='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FinancialInstrumentAxis' xlink:to='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:label='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndPledgedAsCollateralFairValueAbstract' xlink:label='loc_SecurityOwnedAndPledgedAsCollateralFairValueAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndPledgedAsCollateralAssociatedLiabilitiesFairValue' xlink:label='loc_SecurityOwnedAndPledgedAsCollateralAssociatedLiabilitiesFairValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FixedIncomeSecuritiesMember' xlink:label='loc_FixedIncomeSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesMember' xlink:label='loc_EquitySecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeContractMember' xlink:label='loc_ForeignExchangeContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentsOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty' xlink:label='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentsOwnedAndPledgedAsCollateralAmountNotEligibleToBeRepledgedByCounterparty' xlink:label='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralAmountNotEligibleToBeRepledgedByCounterparty' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndPledgedAsCollateralFairValue' xlink:label='loc_SecurityOwnedAndPledgedAsCollateralFairValue' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:to='loc_SecurityOwnedAndPledgedAsCollateralFairValueAbstract' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralLineItems' xlink:to='loc_SecurityOwnedAndPledgedAsCollateralAssociatedLiabilitiesFairValue' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_FixedIncomeSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_EquitySecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_ForeignExchangeContractMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndPledgedAsCollateralFairValueAbstract' xlink:to='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralAmountEligibleToBeRepledgedByCounterparty' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndPledgedAsCollateralFairValueAbstract' xlink:to='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralAmountNotEligibleToBeRepledgedByCounterparty' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndPledgedAsCollateralFairValueAbstract' xlink:to='loc_SecurityOwnedAndPledgedAsCollateralFairValue' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersFinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:label='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_FinancialInstrumentsOwnedAndPledgedAsCollateralTable' xlink:to='loc_FinancialInstrumentAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableLineItems' xlink:label='loc_OtherInvestmentNotReadilyMarketableLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableTable' xlink:label='loc_OtherInvestmentNotReadilyMarketableTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_OtherInvestmentNotReadilyMarketableLineItems' xlink:to='loc_OtherInvestmentNotReadilyMarketableTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableAxis' xlink:label='loc_OtherInvestmentNotReadilyMarketableAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableNameDomain' xlink:label='loc_OtherInvestmentNotReadilyMarketableNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_OtherInvestmentNotReadilyMarketableAxis' xlink:to='loc_OtherInvestmentNotReadilyMarketableNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableAxis' xlink:label='loc_OtherInvestmentNotReadilyMarketableAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableNameDomain' xlink:label='loc_OtherInvestmentNotReadilyMarketableNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_OtherInvestmentNotReadilyMarketableAxis' xlink:to='loc_OtherInvestmentNotReadilyMarketableNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableLineItems' xlink:label='loc_OtherInvestmentNotReadilyMarketableLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableDescription' xlink:label='loc_OtherInvestmentNotReadilyMarketableDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableQuotedValue' xlink:label='loc_OtherInvestmentNotReadilyMarketableQuotedValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableFairValue' xlink:label='loc_OtherInvestmentNotReadilyMarketableFairValue' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInvestmentNotReadilyMarketableLineItems' xlink:to='loc_OtherInvestmentNotReadilyMarketableDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInvestmentNotReadilyMarketableLineItems' xlink:to='loc_OtherInvestmentNotReadilyMarketableQuotedValue' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInvestmentNotReadilyMarketableLineItems' xlink:to='loc_OtherInvestmentNotReadilyMarketableFairValue' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersOtherInvestmentNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableTable' xlink:label='loc_OtherInvestmentNotReadilyMarketableTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInvestmentNotReadilyMarketableAxis' xlink:label='loc_OtherInvestmentNotReadilyMarketableAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OtherInvestmentNotReadilyMarketableTable' xlink:to='loc_OtherInvestmentNotReadilyMarketableAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipleTransactionRevenueLineItems' xlink:label='loc_PrincipleTransactionRevenueLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipleTransactionRevenueTable' xlink:label='loc_PrincipleTransactionRevenueTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_PrincipleTransactionRevenueLineItems' xlink:to='loc_PrincipleTransactionRevenueTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductsAndServicesDomain' xlink:label='loc_ProductsAndServicesDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FinancialInstrumentAxis' xlink:to='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ProductOrServiceAxis' xlink:to='loc_ProductsAndServicesDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductsAndServicesDomain' xlink:label='loc_ProductsAndServicesDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FinancialInstrumentAxis' xlink:to='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ProductOrServiceAxis' xlink:to='loc_ProductsAndServicesDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FixedIncomeSecuritiesMember' xlink:label='loc_FixedIncomeSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesMember' xlink:label='loc_EquitySecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeContractMember' xlink:label='loc_ForeignExchangeContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipleTransactionRevenueLineItems' xlink:label='loc_PrincipleTransactionRevenueLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipalTransactionsRevenue' xlink:label='loc_PrincipalTransactionsRevenue' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_FixedIncomeSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_EquitySecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_ForeignExchangeContractMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_PrincipleTransactionRevenueLineItems' xlink:to='loc_PrincipalTransactionsRevenue' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersPrincipleTransactionRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipleTransactionRevenueTable' xlink:label='loc_PrincipleTransactionRevenueTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_PrincipleTransactionRevenueTable' xlink:to='loc_ProductOrServiceAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_PrincipleTransactionRevenueTable' xlink:to='loc_FinancialInstrumentAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:label='loc_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:to='loc_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseCarryingAmounts' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseCarryingAmounts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMarketValue' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMarketValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseRepurchaseLiability' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseRepurchaseLiability' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseInterestRate' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseInterestRate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_USTreasurySecuritiesMember' xlink:label='loc_USTreasurySecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_USGovernmentCorporationsAndAgenciesSecuritiesMember' xlink:label='loc_USGovernmentCorporationsAndAgenciesSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_USGovernmentAgenciesDebtSecuritiesMember' xlink:label='loc_USGovernmentAgenciesDebtSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_USGovernmentSponsoredEnterprisesDebtSecuritiesMember' xlink:label='loc_USGovernmentSponsoredEnterprisesDebtSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LoansMember' xlink:label='loc_LoansMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommercialPaperMember' xlink:label='loc_CommercialPaperMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BankersAcceptanceMember' xlink:label='loc_BankersAcceptanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CertificatesOfDepositMember' xlink:label='loc_CertificatesOfDepositMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SeniorNotesMember' xlink:label='loc_SeniorNotesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DollarRollsMember' xlink:label='loc_DollarRollsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DollarRollsFixedCouponMember' xlink:label='loc_DollarRollsFixedCouponMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DollarRollsYieldMaintenanceMember' xlink:label='loc_DollarRollsYieldMaintenanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOvernightAndOnDemandMember' xlink:label='loc_MaturityOvernightAndOnDemandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOvernightMember' xlink:label='loc_MaturityOvernightMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOnDemandMember' xlink:label='loc_MaturityOnDemandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityUpTo30DaysMember' xlink:label='loc_MaturityUpTo30DaysMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Maturity30To90DaysMember' xlink:label='loc_Maturity30To90DaysMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOver90DaysMember' xlink:label='loc_MaturityOver90DaysMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseCarryingAmounts' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMarketValue' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseRepurchaseLiability' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseLineItems' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseInterestRate' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_USTreasurySecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_USGovernmentCorporationsAndAgenciesSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_USGovernmentAgenciesDebtSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_USGovernmentSponsoredEnterprisesDebtSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_LoansMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_CommercialPaperMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_BankersAcceptanceMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_CertificatesOfDepositMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_SeniorNotesMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseTypeDomain' xlink:to='loc_DollarRollsMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DollarRollsMember' xlink:to='loc_DollarRollsFixedCouponMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DollarRollsMember' xlink:to='loc_DollarRollsYieldMaintenanceMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MaturityOvernightAndOnDemandMember' xlink:to='loc_MaturityOvernightMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MaturityOvernightAndOnDemandMember' xlink:to='loc_MaturityOnDemandMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_MaturityOvernightAndOnDemandMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_MaturityUpTo30DaysMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_Maturity30To90DaysMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_MaturityOver90DaysMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:label='loc_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfAssetsSoldUnderAgreementsToRepurchaseTable' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepurchaseAgreementCounterpartyLineItems' xlink:label='loc_RepurchaseAgreementCounterpartyLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfRepurchaseAgreementCounterpartyTable' xlink:label='loc_ScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_RepurchaseAgreementCounterpartyLineItems' xlink:to='loc_ScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis' xlink:label='loc_CounterpartyNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RepurchaseAgreementCounterpartyNameDomain' xlink:label='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_CounterpartyNameAxis' xlink:to='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis' xlink:label='loc_CounterpartyNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RepurchaseAgreementCounterpartyNameDomain' xlink:label='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_CounterpartyNameAxis' xlink:to='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RepurchaseAgreementCounterpartyNameDomain' xlink:label='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndividuallyImmaterialCounterpartiesMember' xlink:label='loc_IndividuallyImmaterialCounterpartiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepurchaseAgreementCounterpartyLineItems' xlink:label='loc_RepurchaseAgreementCounterpartyLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepurchaseAgreementCounterpartyAmountAtRisk' xlink:label='loc_RepurchaseAgreementCounterpartyAmountAtRisk' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepurchaseAgreementCounterpartyWeightedAverageMaturityOfAgreements1' xlink:label='loc_RepurchaseAgreementCounterpartyWeightedAverageMaturityOfAgreements1' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:to='loc_IndividuallyImmaterialCounterpartiesMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RepurchaseAgreementCounterpartyLineItems' xlink:to='loc_RepurchaseAgreementCounterpartyAmountAtRisk' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RepurchaseAgreementCounterpartyLineItems' xlink:to='loc_RepurchaseAgreementCounterpartyWeightedAverageMaturityOfAgreements1' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfRepurchaseAgreementCounterpartyTable' xlink:label='loc_ScheduleOfRepurchaseAgreementCounterpartyTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis' xlink:label='loc_CounterpartyNameAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfRepurchaseAgreementCounterpartyTable' xlink:to='loc_CounterpartyNameAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResaleAgreementCounterpartyLineItems' xlink:label='loc_ResaleAgreementCounterpartyLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfResaleAgreementCounterpartyTable' xlink:label='loc_ScheduleOfResaleAgreementCounterpartyTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_ResaleAgreementCounterpartyLineItems' xlink:to='loc_ScheduleOfResaleAgreementCounterpartyTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis' xlink:label='loc_CounterpartyNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RepurchaseAgreementCounterpartyNameDomain' xlink:label='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_CounterpartyNameAxis' xlink:to='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis' xlink:label='loc_CounterpartyNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RepurchaseAgreementCounterpartyNameDomain' xlink:label='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_CounterpartyNameAxis' xlink:to='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RepurchaseAgreementCounterpartyNameDomain' xlink:label='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndividuallyImmaterialCounterpartiesMember' xlink:label='loc_IndividuallyImmaterialCounterpartiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResaleAgreementCounterpartyLineItems' xlink:label='loc_ResaleAgreementCounterpartyLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResaleAgreementCounterpartyAmountAtRisk' xlink:label='loc_ResaleAgreementCounterpartyAmountAtRisk' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResaleAgreementCounterpartyWeightedAverageMaturityOfAgreements1' xlink:label='loc_ResaleAgreementCounterpartyWeightedAverageMaturityOfAgreements1' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RepurchaseAgreementCounterpartyNameDomain' xlink:to='loc_IndividuallyImmaterialCounterpartiesMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResaleAgreementCounterpartyLineItems' xlink:to='loc_ResaleAgreementCounterpartyAmountAtRisk' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResaleAgreementCounterpartyLineItems' xlink:to='loc_ResaleAgreementCounterpartyWeightedAverageMaturityOfAgreements1' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersScheduleOfResaleAgreementCounterpartyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfResaleAgreementCounterpartyTable' xlink:label='loc_ScheduleOfResaleAgreementCounterpartyTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CounterpartyNameAxis' xlink:label='loc_CounterpartyNameAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfResaleAgreementCounterpartyTable' xlink:to='loc_CounterpartyNameAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionLineItems' xlink:label='loc_SecuritiesFinancingTransactionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionTable' xlink:label='loc_SecuritiesFinancingTransactionTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesFinancingTransactionTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionAxis' xlink:label='loc_SecuritiesFinancingTransactionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionTypeDomain' xlink:label='loc_SecuritiesFinancingTransactionTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_SecuritiesFinancingTransactionAxis' xlink:to='loc_SecuritiesFinancingTransactionTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionAxis' xlink:label='loc_SecuritiesFinancingTransactionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionTypeDomain' xlink:label='loc_SecuritiesFinancingTransactionTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_SecuritiesFinancingTransactionAxis' xlink:to='loc_SecuritiesFinancingTransactionTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionTypeDomain' xlink:label='loc_SecuritiesFinancingTransactionTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionFairValueMember' xlink:label='loc_SecuritiesFinancingTransactionFairValueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionCostMember' xlink:label='loc_SecuritiesFinancingTransactionCostMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionLineItems' xlink:label='loc_SecuritiesFinancingTransactionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesPurchasedUnderAgreementsToResell' xlink:label='loc_SecuritiesPurchasedUnderAgreementsToResell' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesSoldUnderAgreementsToRepurchase' xlink:label='loc_SecuritiesSoldUnderAgreementsToRepurchase' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesBorrowed' xlink:label='loc_SecuritiesBorrowed' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesReceivedAsCollateral' xlink:label='loc_SecuritiesReceivedAsCollateral' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CollateralSecuritiesRepledgedDeliveredOrUsed' xlink:label='loc_CollateralSecuritiesRepledgedDeliveredOrUsed' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesForReverseRepurchaseAgreements' xlink:label='loc_SecuritiesForReverseRepurchaseAgreements' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoaned' xlink:label='loc_SecuritiesLoaned' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionTypeDomain' xlink:to='loc_SecuritiesFinancingTransactionFairValueMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionTypeDomain' xlink:to='loc_SecuritiesFinancingTransactionCostMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesPurchasedUnderAgreementsToResell' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesSoldUnderAgreementsToRepurchase' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesBorrowed' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesReceivedAsCollateral' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_CollateralSecuritiesRepledgedDeliveredOrUsed' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesForReverseRepurchaseAgreements' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesFinancingTransactionLineItems' xlink:to='loc_SecuritiesLoaned' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecuritiesFinancingTransactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionTable' xlink:label='loc_SecuritiesFinancingTransactionTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesFinancingTransactionAxis' xlink:label='loc_SecuritiesFinancingTransactionAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_SecuritiesFinancingTransactionTable' xlink:to='loc_SecuritiesFinancingTransactionAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:to='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:to='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:to='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeMember' xlink:label='loc_DerivativeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForwardContractsMember' xlink:label='loc_ForwardContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OptionMember' xlink:label='loc_OptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwapMember' xlink:label='loc_SwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_WarrantMember' xlink:label='loc_WarrantMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FutureMember' xlink:label='loc_FutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OptionOnSecuritiesMember' xlink:label='loc_OptionOnSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedDerivativeMember' xlink:label='loc_EnergyRelatedDerivativeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ExchangeTradedOptionsMember' xlink:label='loc_ExchangeTradedOptionsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeForwardMember' xlink:label='loc_ForeignExchangeForwardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TotalReturnSwapMember' xlink:label='loc_TotalReturnSwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_VarianceSwapMember' xlink:label='loc_VarianceSwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateSwaptionMember' xlink:label='loc_InterestRateSwaptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CreditDefaultSwaptionMember' xlink:label='loc_CreditDefaultSwaptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalSupportAgreementMember' xlink:label='loc_CapitalSupportAgreementMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DJIAIndexFutureMember' xlink:label='loc_DJIAIndexFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NASDAQIndexFutureMember' xlink:label='loc_NASDAQIndexFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EurodollarFutureMember' xlink:label='loc_EurodollarFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EuriborFutureMember' xlink:label='loc_EuriborFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BondFutureMember' xlink:label='loc_BondFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SingleStockFutureMember' xlink:label='loc_SingleStockFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeFutureMember' xlink:label='loc_ForeignExchangeFutureMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BondOptionMember' xlink:label='loc_BondOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockOptionMember' xlink:label='loc_StockOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommodityOptionMember' xlink:label='loc_CommodityOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CreditDefaultOptionMember' xlink:label='loc_CreditDefaultOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateCapMember' xlink:label='loc_InterestRateCapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateFloorMember' xlink:label='loc_InterestRateFloorMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwaptionMember' xlink:label='loc_SwaptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeOptionMember' xlink:label='loc_ForeignExchangeOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CreditSpreadOptionMember' xlink:label='loc_CreditSpreadOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesMember' xlink:label='loc_EquitySecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PreferredStockMember' xlink:label='loc_PreferredStockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DebtSecuritiesMember' xlink:label='loc_DebtSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_USGovernmentDebtSecuritiesMember' xlink:label='loc_USGovernmentDebtSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateDebtSecuritiesMember' xlink:label='loc_CorporateDebtSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetBackedSecuritiesMember' xlink:label='loc_AssetBackedSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrustPreferredSecuritiesSubjectToMandatoryRedemptionMember' xlink:label='loc_TrustPreferredSecuritiesSubjectToMandatoryRedemptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityOwned' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityOwned' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedFairValueSecuritySoldNotYetPurchased' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecuritySoldNotYetPurchased' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySwapMember' xlink:label='loc_EquitySwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CurrencySwapMember' xlink:label='loc_CurrencySwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateSwapMember' xlink:label='loc_InterestRateSwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_BasisSwapMember' xlink:label='loc_BasisSwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CreditDefaultSwapMember' xlink:label='loc_CreditDefaultSwapMember' xlink:type='locator' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_ForwardContractsMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_OptionMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_SwapMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_WarrantMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_FutureMember' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_OptionOnSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_EnergyRelatedDerivativeMember' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_ExchangeTradedOptionsMember' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_ForeignExchangeForwardMember' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_TotalReturnSwapMember' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_VarianceSwapMember' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_InterestRateSwaptionMember' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_CreditDefaultSwaptionMember' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeMember' xlink:to='loc_CapitalSupportAgreementMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_DJIAIndexFutureMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_NASDAQIndexFutureMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_EurodollarFutureMember' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_EuriborFutureMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_BondFutureMember' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_SingleStockFutureMember' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FutureMember' xlink:to='loc_ForeignExchangeFutureMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_BondOptionMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_StockOptionMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_CommodityOptionMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_CreditDefaultOptionMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_InterestRateCapMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_InterestRateFloorMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_SwaptionMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_ForeignExchangeOptionMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OptionMember' xlink:to='loc_CreditSpreadOptionMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_EquitySecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_PreferredStockMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_DebtSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_USGovernmentDebtSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_CorporateDebtSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_AssetBackedSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_DerivativeMember' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityNameDomain' xlink:to='loc_TrustPreferredSecuritiesSubjectToMandatoryRedemptionMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:to='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecurityOwned' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueLineItems' xlink:to='loc_SecurityOwnedAndSoldNotYetPurchasedFairValueSecuritySoldNotYetPurchased' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SwapMember' xlink:to='loc_EquitySwapMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SwapMember' xlink:to='loc_CurrencySwapMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SwapMember' xlink:to='loc_InterestRateSwapMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SwapMember' xlink:to='loc_BasisSwapMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SwapMember' xlink:to='loc_CreditDefaultSwapMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:label='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueTable' xlink:to='loc_SecurityOwnedAndSoldNotYetPurchasedAtFairValueAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableLineItems' xlink:label='loc_SecurityOwnedNotReadilyMarketableLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableTable' xlink:label='loc_SecurityOwnedNotReadilyMarketableTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_SecurityOwnedNotReadilyMarketableLineItems' xlink:to='loc_SecurityOwnedNotReadilyMarketableTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableAxis' xlink:label='loc_SecurityOwnedNotReadilyMarketableAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableNameDomain' xlink:label='loc_SecurityOwnedNotReadilyMarketableNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_SecurityOwnedNotReadilyMarketableAxis' xlink:to='loc_SecurityOwnedNotReadilyMarketableNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableAxis' xlink:label='loc_SecurityOwnedNotReadilyMarketableAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableNameDomain' xlink:label='loc_SecurityOwnedNotReadilyMarketableNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_SecurityOwnedNotReadilyMarketableAxis' xlink:to='loc_SecurityOwnedNotReadilyMarketableNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableLineItems' xlink:label='loc_SecurityOwnedNotReadilyMarketableLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableDescription' xlink:label='loc_SecurityOwnedNotReadilyMarketableDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableQuotedValue' xlink:label='loc_SecurityOwnedNotReadilyMarketableQuotedValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableFairValue' xlink:label='loc_SecurityOwnedNotReadilyMarketableFairValue' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedNotReadilyMarketableLineItems' xlink:to='loc_SecurityOwnedNotReadilyMarketableDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedNotReadilyMarketableLineItems' xlink:to='loc_SecurityOwnedNotReadilyMarketableQuotedValue' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecurityOwnedNotReadilyMarketableLineItems' xlink:to='loc_SecurityOwnedNotReadilyMarketableFairValue' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSecurityOwnedNotReadilyMarketableTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableTable' xlink:label='loc_SecurityOwnedNotReadilyMarketableTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecurityOwnedNotReadilyMarketableAxis' xlink:label='loc_SecurityOwnedNotReadilyMarketableAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_SecurityOwnedNotReadilyMarketableTable' xlink:to='loc_SecurityOwnedNotReadilyMarketableAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingLineItems' xlink:label='loc_SubordinatedBorrowingLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingTable' xlink:label='loc_SubordinatedBorrowingTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_SubordinatedBorrowingLineItems' xlink:to='loc_SubordinatedBorrowingTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingAxis' xlink:label='loc_SubordinatedBorrowingAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingNameDomain' xlink:label='loc_SubordinatedBorrowingNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_SubordinatedBorrowingAxis' xlink:to='loc_SubordinatedBorrowingNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingAxis' xlink:label='loc_SubordinatedBorrowingAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingNameDomain' xlink:label='loc_SubordinatedBorrowingNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_SubordinatedBorrowingAxis' xlink:to='loc_SubordinatedBorrowingNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingLineItems' xlink:label='loc_SubordinatedBorrowingLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingInterestRate' xlink:label='loc_SubordinatedBorrowingInterestRate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingDueDate' xlink:label='loc_SubordinatedBorrowingDueDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedDebt' xlink:label='loc_SubordinatedDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:label='loc_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SubordinatedBorrowingLineItems' xlink:to='loc_SubordinatedBorrowingInterestRate' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SubordinatedBorrowingLineItems' xlink:to='loc_SubordinatedBorrowingDueDate' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SubordinatedBorrowingLineItems' xlink:to='loc_SubordinatedDebt' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SubordinatedBorrowingLineItems' xlink:to='loc_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersSubordinatedBorrowingTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingTable' xlink:label='loc_SubordinatedBorrowingTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedBorrowingAxis' xlink:label='loc_SubordinatedBorrowingAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_SubordinatedBorrowingTable' xlink:to='loc_SubordinatedBorrowingAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:label='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:label='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:to='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FinancialInstrumentAxis' xlink:to='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FinancialInstrumentAxis' xlink:to='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:label='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FixedIncomeSecuritiesMember' xlink:label='loc_FixedIncomeSecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySecuritiesMember' xlink:label='loc_EquitySecuritiesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeContractMember' xlink:label='loc_ForeignExchangeContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOvernightAndOnDemandMember' xlink:label='loc_MaturityOvernightAndOnDemandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOvernightMember' xlink:label='loc_MaturityOvernightMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOnDemandMember' xlink:label='loc_MaturityOnDemandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityUpTo30DaysMember' xlink:label='loc_MaturityUpTo30DaysMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Maturity30To90DaysMember' xlink:label='loc_Maturity30To90DaysMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaturityOver90DaysMember' xlink:label='loc_MaturityOver90DaysMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:label='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialAssetsSoldUnderAgreementsToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:label='loc_FinancialAssetsSoldUnderAgreementsToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoanedIncludingNotSubjectToMasterNettingArrangementAndAssetsOtherThanSecuritiesTransferred' xlink:label='loc_SecuritiesLoanedIncludingNotSubjectToMasterNettingArrangementAndAssetsOtherThanSecuritiesTransferred' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangement' xlink:label='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementReconciliationAbstract' xlink:label='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementReconciliationAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:label='loc_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuredBorrowingsGrossDifferenceAmount' xlink:label='loc_SecuredBorrowingsGrossDifferenceAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:label='loc_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesSoldUnderAgreementsToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:label='loc_SecuritiesSoldUnderAgreementsToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoanedGrossIncludingNotSubjectToMasterNettingArrangement' xlink:label='loc_SecuritiesLoanedGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:label='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepurchaseAgreementsSecuritiesLendingTransactionsAndRepurchaseToMaturityTransactionsAccountedForAsSecuredBorrowingsDescriptionOfPotentialRisks' xlink:label='loc_RepurchaseAgreementsSecuritiesLendingTransactionsAndRepurchaseToMaturityTransactionsAccountedForAsSecuredBorrowingsDescriptionOfPotentialRisks' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_FixedIncomeSecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_EquitySecuritiesMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransfersAndServicingOfFinancialInstrumentsTypesOfFinancialInstrumentsDomain' xlink:to='loc_ForeignExchangeContractMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MaturityOvernightAndOnDemandMember' xlink:to='loc_MaturityOvernightMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_MaturityOvernightAndOnDemandMember' xlink:to='loc_MaturityOnDemandMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_MaturityOvernightAndOnDemandMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_MaturityUpTo30DaysMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_Maturity30To90DaysMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodDomain' xlink:to='loc_MaturityOver90DaysMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:to='loc_FinancialAssetsSoldUnderAgreementsToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:to='loc_SecuritiesLoanedIncludingNotSubjectToMasterNettingArrangementAndAssetsOtherThanSecuritiesTransferred' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:to='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementReconciliationAbstract' xlink:to='loc_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementReconciliationAbstract' xlink:to='loc_SecuredBorrowingsGrossDifferenceAmount' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:to='loc_SecuritiesSoldUnderAgreementsToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:to='loc_SecuritiesLoanedGrossIncludingNotSubjectToMasterNettingArrangement' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:to='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:to='loc_SecuredBorrowingsGrossIncludingNotSubjectToMasterNettingArrangementReconciliationAbstract' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:to='loc_RepurchaseAgreementsSecuritiesLendingTransactionsAndRepurchaseToMaturityTransactionsAccountedForAsSecuredBorrowingsDescriptionOfPotentialRisks' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsLineItems' xlink:to='loc_SecuritiesLoanedAndSecuritiesSoldUnderAgreementToRepurchaseGrossIncludingNotSubjectToMasterNettingArrangementAbstract' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:label='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialInstrumentAxis' xlink:label='loc_FinancialInstrumentAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:label='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:to='loc_FinancialInstrumentAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TransferOfCertainFinancialAssetsAccountedForAsSecuredBorrowingsTable' xlink:to='loc_AssetsSoldUnderAgreementsToRepurchaseMaturityPeriodsAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeInstrumentRiskAxis' xlink:label='loc_DerivativeInstrumentRiskAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeContractTypeDomain' xlink:label='loc_DerivativeContractTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermDebtTypeAxis' xlink:label='loc_ShortTermDebtTypeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermDebtTypeDomain' xlink:label='loc_ShortTermDebtTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_DerivativeInstrumentRiskAxis' xlink:to='loc_DerivativeContractTypeDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ShortTermDebtTypeAxis' xlink:to='loc_ShortTermDebtTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeInstrumentRiskAxis' xlink:label='loc_DerivativeInstrumentRiskAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeContractTypeDomain' xlink:label='loc_DerivativeContractTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermDebtTypeAxis' xlink:label='loc_ShortTermDebtTypeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermDebtTypeDomain' xlink:label='loc_ShortTermDebtTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_DerivativeInstrumentRiskAxis' xlink:to='loc_DerivativeContractTypeDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ShortTermDebtTypeAxis' xlink:to='loc_ShortTermDebtTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommodityContractMember' xlink:label='loc_CommodityContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CommodityOptionMember' xlink:label='loc_CommodityOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeContractTypeDomain' xlink:label='loc_DerivativeContractTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateContractMember' xlink:label='loc_InterestRateContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignExchangeContractMember' xlink:label='loc_ForeignExchangeContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CrossCurrencyInterestRateContractMember' xlink:label='loc_CrossCurrencyInterestRateContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TreasuryLockMember' xlink:label='loc_TreasuryLockMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquityContractMember' xlink:label='loc_EquityContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedDerivativeMember' xlink:label='loc_EnergyRelatedDerivativeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CreditRiskContractMember' xlink:label='loc_CreditRiskContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EmbeddedDerivativeFinancialInstrumentsMember' xlink:label='loc_EmbeddedDerivativeFinancialInstrumentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CoalContractMember' xlink:label='loc_CoalContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherContractMember' xlink:label='loc_OtherContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EquitySwapMember' xlink:label='loc_EquitySwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StockOptionMember' xlink:label='loc_StockOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateFloorMember' xlink:label='loc_InterestRateFloorMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateCapMember' xlink:label='loc_InterestRateCapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateSwapMember' xlink:label='loc_InterestRateSwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestRateSwaptionMember' xlink:label='loc_InterestRateSwaptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermDebtTypeDomain' xlink:label='loc_ShortTermDebtTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinancialAssetsSoldUnderAgreementToRepurchaseMember' xlink:label='loc_FinancialAssetsSoldUnderAgreementToRepurchaseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecuritiesLoanedMember' xlink:label='loc_SecuritiesLoanedMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SaleAndTotalReturnSwapMember' xlink:label='loc_SaleAndTotalReturnSwapMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesAmountDerecognized' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesAmountDerecognized' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesCashProceedsReceivedForAssetsDerecognizedAmount' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesCashProceedsReceivedForAssetsDerecognizedAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesFairValueOfDerecognizedAssets' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesFairValueOfDerecognizedAssets' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeFairValueOfDerivativeLiability' xlink:label='loc_DerivativeFairValueOfDerivativeLiability' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeFairValueOfDerivativeAsset' xlink:label='loc_DerivativeFairValueOfDerivativeAsset' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesDescriptionOfChangeInAmount' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesDescriptionOfChangeInAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesDescriptionOfArrangements' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesDescriptionOfArrangements' xlink:type='locator' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CommodityContractMember' xlink:to='loc_CommodityOptionMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_InterestRateContractMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_ForeignExchangeContractMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_CrossCurrencyInterestRateContractMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_TreasuryLockMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_EquityContractMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_CommodityContractMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_EnergyRelatedDerivativeMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_CreditRiskContractMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_EmbeddedDerivativeFinancialInstrumentsMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_CoalContractMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DerivativeContractTypeDomain' xlink:to='loc_OtherContractMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EquityContractMember' xlink:to='loc_EquitySwapMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EquityContractMember' xlink:to='loc_StockOptionMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InterestRateContractMember' xlink:to='loc_InterestRateFloorMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InterestRateContractMember' xlink:to='loc_InterestRateCapMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InterestRateContractMember' xlink:to='loc_InterestRateSwapMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InterestRateContractMember' xlink:to='loc_InterestRateSwaptionMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ShortTermDebtTypeDomain' xlink:to='loc_FinancialAssetsSoldUnderAgreementToRepurchaseMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ShortTermDebtTypeDomain' xlink:to='loc_SecuritiesLoanedMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ShortTermDebtTypeDomain' xlink:to='loc_SaleAndTotalReturnSwapMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_TransferOfFinancialAssetsAccountedForAsSalesAmountDerecognized' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_TransferOfFinancialAssetsAccountedForAsSalesCashProceedsReceivedForAssetsDerecognizedAmount' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_TransferOfFinancialAssetsAccountedForAsSalesFairValueOfDerecognizedAssets' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_DerivativeFairValueOfDerivativeLiability' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_DerivativeFairValueOfDerivativeAsset' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_TransferOfFinancialAssetsAccountedForAsSalesDescriptionOfChangeInAmount' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesLineItems' xlink:to='loc_TransferOfFinancialAssetsAccountedForAsSalesDescriptionOfArrangements' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealersTransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:label='loc_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermDebtTypeAxis' xlink:label='loc_ShortTermDebtTypeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DerivativeInstrumentRiskAxis' xlink:label='loc_DerivativeInstrumentRiskAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:to='loc_ShortTermDebtTypeAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TransferOfFinancialAssetsAccountedForAsSalesTable' xlink:to='loc_DerivativeInstrumentRiskAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

@@ -76,7 +76,7 @@ public abstract class XsdParserCore {
     boolean isXsdSchema(Node node){
         String schemaNodeName = node.getNodeName();
 
-        return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG);
+        return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG) || schemaNodeName.equals(XsdSchema.TAG);
     }
 
     /**
@@ -500,6 +500,7 @@ public abstract class XsdParserCore {
         documentBuilderFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
         documentBuilderFactory.setXIncludeAware(false);
         documentBuilderFactory.setExpandEntityReferences(false);
+        documentBuilderFactory.setNamespaceAware(true);
 
         return documentBuilderFactory.newDocumentBuilder();
     }

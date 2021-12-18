@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/InventoryInventoryCurrentTable' xlink:href='../elts/us-roles-2021-01-31.xsd#InventoryInventoryCurrentTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/InventoryInventoryCurrentTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryLineItems' xlink:label='loc_InventoryLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryCurrentTable' xlink:label='loc_InventoryCurrentTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_InventoryLineItems' xlink:to='loc_InventoryCurrentTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/InventoryInventoryCurrentTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PublicUtilitiesInventoryAxis' xlink:label='loc_PublicUtilitiesInventoryAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PublicUtilitiesInventoryTypeDomain' xlink:label='loc_PublicUtilitiesInventoryTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_PublicUtilitiesInventoryAxis' xlink:to='loc_PublicUtilitiesInventoryTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/InventoryInventoryCurrentTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PublicUtilitiesInventoryAxis' xlink:label='loc_PublicUtilitiesInventoryAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PublicUtilitiesInventoryTypeDomain' xlink:label='loc_PublicUtilitiesInventoryTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_PublicUtilitiesInventoryAxis' xlink:to='loc_PublicUtilitiesInventoryTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/InventoryInventoryCurrentTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AgriculturalRelatedInventoryAbstract' xlink:label='loc_AgriculturalRelatedInventoryAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AgriculturalRelatedInventoryPlantMaterial' xlink:label='loc_AgriculturalRelatedInventoryPlantMaterial' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AgriculturalRelatedInventoryGrowingCrops' xlink:label='loc_AgriculturalRelatedInventoryGrowingCrops' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AgriculturalRelatedInventoryFeedAndSupplies' xlink:label='loc_AgriculturalRelatedInventoryFeedAndSupplies' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AgriculturalRelatedInventory' xlink:label='loc_AgriculturalRelatedInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AirlineRelatedInventoryGrossAbstract' xlink:label='loc_AirlineRelatedInventoryGrossAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AirlineRelatedInventoryAircraftFuel' xlink:label='loc_AirlineRelatedInventoryAircraftFuel' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AirlineRelatedInventoryAircraftParts' xlink:label='loc_AirlineRelatedInventoryAircraftParts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AirlineRelatedInventory' xlink:label='loc_AirlineRelatedInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryAbstract' xlink:label='loc_EnergyRelatedInventoryAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryPetroleum' xlink:label='loc_EnergyRelatedInventoryPetroleum' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryNaturalGasLiquids' xlink:label='loc_EnergyRelatedInventoryNaturalGasLiquids' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryNaturalGasInStorage' xlink:label='loc_EnergyRelatedInventoryNaturalGasInStorage' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryGasStoredUnderground' xlink:label='loc_EnergyRelatedInventoryGasStoredUnderground' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryPropaneGas' xlink:label='loc_EnergyRelatedInventoryPropaneGas' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryCoal' xlink:label='loc_EnergyRelatedInventoryCoal' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryChemicals' xlink:label='loc_EnergyRelatedInventoryChemicals' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventoryOtherFossilFuel' xlink:label='loc_EnergyRelatedInventoryOtherFossilFuel' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CrudeOilAndNaturalGasLiquids' xlink:label='loc_CrudeOilAndNaturalGasLiquids' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryCrudeOilProductsAndMerchandise' xlink:label='loc_InventoryCrudeOilProductsAndMerchandise' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EnergyRelatedInventory' xlink:label='loc_EnergyRelatedInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeCostsInInventoryAbstract' xlink:label='loc_GeneralAndAdministrativeCostsInInventoryAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeCostsInInventoryAmountIncurred' xlink:label='loc_GeneralAndAdministrativeCostsInInventoryAmountIncurred' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeCostsInInventoryAmountRemaining' xlink:label='loc_GeneralAndAdministrativeCostsInInventoryAmountRemaining' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryAdjustmentsAbstract' xlink:label='loc_InventoryAdjustmentsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryValuationReserves' xlink:label='loc_InventoryValuationReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryLIFOReserve' xlink:label='loc_InventoryLIFOReserve' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryAdjustments' xlink:label='loc_InventoryAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryLineItems' xlink:label='loc_InventoryLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillingsAbstract' xlink:label='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillingsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNetCombiningWorkInProgressAndRawMaterialsAlternativeAbstract' xlink:label='loc_InventoryNetCombiningWorkInProgressAndRawMaterialsAlternativeAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNetClassificationByIndustryAlternativeAbstract' xlink:label='loc_InventoryNetClassificationByIndustryAlternativeAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:label='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LIFOMethodRelatedItemsAbstract' xlink:label='loc_LIFOMethodRelatedItemsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRelatedText' xlink:label='loc_InventoryRelatedText' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryClassificationByIndustryGrossAbstract' xlink:label='loc_InventoryClassificationByIndustryGrossAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RetailRelatedInventoryAbstract' xlink:label='loc_RetailRelatedInventoryAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryCombiningWorkInProcessAndRawMaterialsAlternativeGrossAbstract' xlink:label='loc_InventoryCombiningWorkInProcessAndRawMaterialsAlternativeGrossAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryWorkInProgressAndRawMaterialsAbstract' xlink:label='loc_InventoryWorkInProgressAndRawMaterialsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryFinishedGoodsAndWorkInProcessAbstract' xlink:label='loc_InventoryFinishedGoodsAndWorkInProcessAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryFinishedGoods' xlink:label='loc_InventoryFinishedGoods' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryWorkInProcess' xlink:label='loc_InventoryWorkInProcess' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryFinishedGoodsAndWorkInProcess' xlink:label='loc_InventoryFinishedGoodsAndWorkInProcess' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryFinishedGoodsAndWorkInProcessNetOfReservesAbstract' xlink:label='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReservesAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryFinishedGoodsNetOfReserves' xlink:label='loc_InventoryFinishedGoodsNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryWorkInProcessNetOfReserves' xlink:label='loc_InventoryWorkInProcessNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryFinishedGoodsAndWorkInProcessNetOfReserves' xlink:label='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryGrossAbstract' xlink:label='loc_InventoryGrossAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterialsAndSuppliesAbstract' xlink:label='loc_InventoryRawMaterialsAndSuppliesAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryAbstract' xlink:label='loc_OtherInventoryAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryForLongTermContractsOrPrograms' xlink:label='loc_InventoryForLongTermContractsOrPrograms' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryGross' xlink:label='loc_InventoryGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryLIFOReserveEffectOnIncomeNetAbstract' xlink:label='loc_InventoryLIFOReserveEffectOnIncomeNetAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryLIFOReservePeriodCharge' xlink:label='loc_InventoryLIFOReservePeriodCharge' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EffectOfLIFOInventoryLiquidationOnIncome' xlink:label='loc_EffectOfLIFOInventoryLiquidationOnIncome' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryLIFOReserveEffectOnIncomeNet' xlink:label='loc_InventoryLIFOReserveEffectOnIncomeNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNetAbstract' xlink:label='loc_InventoryNetAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNet' xlink:label='loc_InventoryNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProgressPaymentsNettedAgainstInventoryForLongTermContractsOrPrograms' xlink:label='loc_ProgressPaymentsNettedAgainstInventoryForLongTermContractsOrPrograms' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillings' xlink:label='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillings' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterialsAndSuppliesNetOfReservesAbstract' xlink:label='loc_InventoryRawMaterialsAndSuppliesNetOfReservesAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryWorkInProcessAndRawMaterialsNetOfReserves' xlink:label='loc_InventoryWorkInProcessAndRawMaterialsNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterialsAndPurchasedPartsNetOfReserves' xlink:label='loc_InventoryRawMaterialsAndPurchasedPartsNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryPartsAndComponentsNetOfReserves' xlink:label='loc_InventoryPartsAndComponentsNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryNetOfReserves' xlink:label='loc_OtherInventoryNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterials' xlink:label='loc_InventoryRawMaterials' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryOreStockpilesOnLeachPads' xlink:label='loc_InventoryOreStockpilesOnLeachPads' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventorySupplies' xlink:label='loc_OtherInventorySupplies' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterialsAndSupplies' xlink:label='loc_InventoryRawMaterialsAndSupplies' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterialsNetOfReserves' xlink:label='loc_InventoryRawMaterialsNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventorySuppliesNetOfReserves' xlink:label='loc_InventorySuppliesNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryRawMaterialsAndSuppliesNetOfReserves' xlink:label='loc_InventoryRawMaterialsAndSuppliesNetOfReserves' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryWorkInProcessAndRawMaterials' xlink:label='loc_InventoryWorkInProcessAndRawMaterials' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PercentageOfLIFOInventory' xlink:label='loc_PercentageOfLIFOInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LIFOInventoryAmount' xlink:label='loc_LIFOInventoryAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PercentageOfFIFOInventory' xlink:label='loc_PercentageOfFIFOInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FIFOInventoryAmount' xlink:label='loc_FIFOInventoryAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PercentageOfWeightedAverageCostInventory' xlink:label='loc_PercentageOfWeightedAverageCostInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_WeightedAverageCostInventoryAmount' xlink:label='loc_WeightedAverageCostInventoryAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ExcessOfReplacementOrCurrentCostsOverStatedLIFOValue' xlink:label='loc_ExcessOfReplacementOrCurrentCostsOverStatedLIFOValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LIFOInventoryRelatedText' xlink:label='loc_LIFOInventoryRelatedText' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryMaterialsSuppliesAndMerchandiseUnderConsignment' xlink:label='loc_OtherInventoryMaterialsSuppliesAndMerchandiseUnderConsignment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryWarehouse' xlink:label='loc_OtherInventoryWarehouse' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryScrap' xlink:label='loc_OtherInventoryScrap' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoriesSpareParts' xlink:label='loc_OtherInventoriesSpareParts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryDemo' xlink:label='loc_OtherInventoryDemo' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryPurchasedGoods' xlink:label='loc_OtherInventoryPurchasedGoods' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryInventoryAtOffSitePremises' xlink:label='loc_OtherInventoryInventoryAtOffSitePremises' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryInTransit' xlink:label='loc_OtherInventoryInTransit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventoryCapitalizedCosts' xlink:label='loc_OtherInventoryCapitalizedCosts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherInventory' xlink:label='loc_OtherInventory' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RetailRelatedInventoryMerchandise' xlink:label='loc_RetailRelatedInventoryMerchandise' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RetailRelatedInventoryPackagingAndOtherSupplies' xlink:label='loc_RetailRelatedInventoryPackagingAndOtherSupplies' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RetailRelatedInventory' xlink:label='loc_RetailRelatedInventory' xlink:type='locator' />
+    <link:definitionArc order='60.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AgriculturalRelatedInventoryAbstract' xlink:to='loc_AgriculturalRelatedInventoryPlantMaterial' xlink:type='arc' />
+    <link:definitionArc order='61.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AgriculturalRelatedInventoryAbstract' xlink:to='loc_AgriculturalRelatedInventoryGrowingCrops' xlink:type='arc' />
+    <link:definitionArc order='62.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AgriculturalRelatedInventoryAbstract' xlink:to='loc_AgriculturalRelatedInventoryFeedAndSupplies' xlink:type='arc' />
+    <link:definitionArc order='63.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AgriculturalRelatedInventoryAbstract' xlink:to='loc_AgriculturalRelatedInventory' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AirlineRelatedInventoryGrossAbstract' xlink:to='loc_AirlineRelatedInventoryAircraftFuel' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AirlineRelatedInventoryGrossAbstract' xlink:to='loc_AirlineRelatedInventoryAircraftParts' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AirlineRelatedInventoryGrossAbstract' xlink:to='loc_AirlineRelatedInventory' xlink:type='arc' />
+    <link:definitionArc order='48.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryPetroleum' xlink:type='arc' />
+    <link:definitionArc order='49.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryNaturalGasLiquids' xlink:type='arc' />
+    <link:definitionArc order='50.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryNaturalGasInStorage' xlink:type='arc' />
+    <link:definitionArc order='51.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryGasStoredUnderground' xlink:type='arc' />
+    <link:definitionArc order='52.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryPropaneGas' xlink:type='arc' />
+    <link:definitionArc order='53.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryCoal' xlink:type='arc' />
+    <link:definitionArc order='54.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryChemicals' xlink:type='arc' />
+    <link:definitionArc order='55.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventoryOtherFossilFuel' xlink:type='arc' />
+    <link:definitionArc order='56.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_CrudeOilAndNaturalGasLiquids' xlink:type='arc' />
+    <link:definitionArc order='57.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_InventoryCrudeOilProductsAndMerchandise' xlink:type='arc' />
+    <link:definitionArc order='58.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_EnergyRelatedInventoryAbstract' xlink:to='loc_EnergyRelatedInventory' xlink:type='arc' />
+    <link:definitionArc order='78.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GeneralAndAdministrativeCostsInInventoryAbstract' xlink:to='loc_GeneralAndAdministrativeCostsInInventoryAmountIncurred' xlink:type='arc' />
+    <link:definitionArc order='79.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GeneralAndAdministrativeCostsInInventoryAbstract' xlink:to='loc_GeneralAndAdministrativeCostsInInventoryAmountRemaining' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryAdjustmentsAbstract' xlink:to='loc_InventoryValuationReserves' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryAdjustmentsAbstract' xlink:to='loc_InventoryLIFOReserve' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryAdjustmentsAbstract' xlink:to='loc_InventoryAdjustments' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillingsAbstract' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_InventoryNetCombiningWorkInProgressAndRawMaterialsAlternativeAbstract' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_InventoryNetClassificationByIndustryAlternativeAbstract' xlink:type='arc' />
+    <link:definitionArc order='64.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:type='arc' />
+    <link:definitionArc order='77.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_GeneralAndAdministrativeCostsInInventoryAbstract' xlink:type='arc' />
+    <link:definitionArc order='80.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_LIFOMethodRelatedItemsAbstract' xlink:type='arc' />
+    <link:definitionArc order='93.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLineItems' xlink:to='loc_InventoryRelatedText' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryClassificationByIndustryGrossAbstract' xlink:to='loc_AirlineRelatedInventoryGrossAbstract' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryClassificationByIndustryGrossAbstract' xlink:to='loc_RetailRelatedInventoryAbstract' xlink:type='arc' />
+    <link:definitionArc order='47.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryClassificationByIndustryGrossAbstract' xlink:to='loc_EnergyRelatedInventoryAbstract' xlink:type='arc' />
+    <link:definitionArc order='59.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryClassificationByIndustryGrossAbstract' xlink:to='loc_AgriculturalRelatedInventoryAbstract' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryCombiningWorkInProcessAndRawMaterialsAlternativeGrossAbstract' xlink:to='loc_InventoryWorkInProgressAndRawMaterialsAbstract' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryFinishedGoodsAndWorkInProcessAbstract' xlink:to='loc_InventoryFinishedGoods' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryFinishedGoodsAndWorkInProcessAbstract' xlink:to='loc_InventoryWorkInProcess' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryFinishedGoodsAndWorkInProcessAbstract' xlink:to='loc_InventoryFinishedGoodsAndWorkInProcess' xlink:type='arc' />
+    <link:definitionArc order='66.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReservesAbstract' xlink:to='loc_InventoryFinishedGoodsNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='67.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReservesAbstract' xlink:to='loc_InventoryWorkInProcessNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='68.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReservesAbstract' xlink:to='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryGrossAbstract' xlink:to='loc_InventoryFinishedGoodsAndWorkInProcessAbstract' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryGrossAbstract' xlink:to='loc_InventoryRawMaterialsAndSuppliesAbstract' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryGrossAbstract' xlink:to='loc_OtherInventoryAbstract' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryGrossAbstract' xlink:to='loc_InventoryForLongTermContractsOrPrograms' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryGrossAbstract' xlink:to='loc_InventoryGross' xlink:type='arc' />
+    <link:definitionArc order='89.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLIFOReserveEffectOnIncomeNetAbstract' xlink:to='loc_InventoryLIFOReservePeriodCharge' xlink:type='arc' />
+    <link:definitionArc order='90.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLIFOReserveEffectOnIncomeNetAbstract' xlink:to='loc_EffectOfLIFOInventoryLiquidationOnIncome' xlink:type='arc' />
+    <link:definitionArc order='91.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryLIFOReserveEffectOnIncomeNetAbstract' xlink:to='loc_InventoryLIFOReserveEffectOnIncomeNet' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetAbstract' xlink:to='loc_InventoryGrossAbstract' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetAbstract' xlink:to='loc_InventoryAdjustmentsAbstract' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetAbstract' xlink:to='loc_InventoryNet' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillingsAbstract' xlink:to='loc_InventoryNetAbstract' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillingsAbstract' xlink:to='loc_ProgressPaymentsNettedAgainstInventoryForLongTermContractsOrPrograms' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillingsAbstract' xlink:to='loc_InventoryNetOfAllowancesCustomerAdvancesAndProgressBillings' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetClassificationByIndustryAlternativeAbstract' xlink:to='loc_InventoryClassificationByIndustryGrossAbstract' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetCombiningWorkInProgressAndRawMaterialsAlternativeAbstract' xlink:to='loc_InventoryCombiningWorkInProcessAndRawMaterialsAlternativeGrossAbstract' xlink:type='arc' />
+    <link:definitionArc order='65.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:to='loc_InventoryFinishedGoodsAndWorkInProcessNetOfReservesAbstract' xlink:type='arc' />
+    <link:definitionArc order='69.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:to='loc_InventoryRawMaterialsAndSuppliesNetOfReservesAbstract' xlink:type='arc' />
+    <link:definitionArc order='73.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:to='loc_InventoryWorkInProcessAndRawMaterialsNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='74.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:to='loc_InventoryRawMaterialsAndPurchasedPartsNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='75.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:to='loc_InventoryPartsAndComponentsNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='76.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryNetItemsNetOfReserveAlternativeAbstract' xlink:to='loc_OtherInventoryNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesAbstract' xlink:to='loc_InventoryRawMaterials' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesAbstract' xlink:to='loc_InventoryOreStockpilesOnLeachPads' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesAbstract' xlink:to='loc_OtherInventorySupplies' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesAbstract' xlink:to='loc_InventoryRawMaterialsAndSupplies' xlink:type='arc' />
+    <link:definitionArc order='70.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesNetOfReservesAbstract' xlink:to='loc_InventoryRawMaterialsNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='71.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesNetOfReservesAbstract' xlink:to='loc_InventorySuppliesNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='72.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryRawMaterialsAndSuppliesNetOfReservesAbstract' xlink:to='loc_InventoryRawMaterialsAndSuppliesNetOfReserves' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InventoryWorkInProgressAndRawMaterialsAbstract' xlink:to='loc_InventoryWorkInProcessAndRawMaterials' xlink:type='arc' />
+    <link:definitionArc order='81.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_PercentageOfLIFOInventory' xlink:type='arc' />
+    <link:definitionArc order='82.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_LIFOInventoryAmount' xlink:type='arc' />
+    <link:definitionArc order='83.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_PercentageOfFIFOInventory' xlink:type='arc' />
+    <link:definitionArc order='84.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_FIFOInventoryAmount' xlink:type='arc' />
+    <link:definitionArc order='85.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_PercentageOfWeightedAverageCostInventory' xlink:type='arc' />
+    <link:definitionArc order='86.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_WeightedAverageCostInventoryAmount' xlink:type='arc' />
+    <link:definitionArc order='87.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_ExcessOfReplacementOrCurrentCostsOverStatedLIFOValue' xlink:type='arc' />
+    <link:definitionArc order='88.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_InventoryLIFOReserveEffectOnIncomeNetAbstract' xlink:type='arc' />
+    <link:definitionArc order='92.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_LIFOMethodRelatedItemsAbstract' xlink:to='loc_LIFOInventoryRelatedText' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryMaterialsSuppliesAndMerchandiseUnderConsignment' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryWarehouse' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryScrap' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoriesSpareParts' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryDemo' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryPurchasedGoods' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryInventoryAtOffSitePremises' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryInTransit' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventoryCapitalizedCosts' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OtherInventoryAbstract' xlink:to='loc_OtherInventory' xlink:type='arc' />
+    <link:definitionArc order='44.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RetailRelatedInventoryAbstract' xlink:to='loc_RetailRelatedInventoryMerchandise' xlink:type='arc' />
+    <link:definitionArc order='45.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RetailRelatedInventoryAbstract' xlink:to='loc_RetailRelatedInventoryPackagingAndOtherSupplies' xlink:type='arc' />
+    <link:definitionArc order='46.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RetailRelatedInventoryAbstract' xlink:to='loc_RetailRelatedInventory' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/InventoryInventoryCurrentTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InventoryCurrentTable' xlink:label='loc_InventoryCurrentTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PublicUtilitiesInventoryAxis' xlink:label='loc_PublicUtilitiesInventoryAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_InventoryCurrentTable' xlink:to='loc_PublicUtilitiesInventoryAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

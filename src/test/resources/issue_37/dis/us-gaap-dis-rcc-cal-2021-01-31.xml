@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomers' xlink:href='../elts/us-roles-2021-01-31.xsd#rcc' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomers' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetAccumulatedAllowanceForCreditLoss' xlink:label='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetAccumulatedAllowanceForCreditLossCurrent' xlink:label='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLossCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetAccumulatedAllowanceForCreditLossNoncurrent' xlink:label='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLossNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetNet' xlink:label='loc_ContractWithCustomerAssetNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetNetCurrent' xlink:label='loc_ContractWithCustomerAssetNetCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetNetNoncurrent' xlink:label='loc_ContractWithCustomerAssetNetNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetGross' xlink:label='loc_ContractWithCustomerAssetGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetGrossCurrent' xlink:label='loc_ContractWithCustomerAssetGrossCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerAssetGrossNoncurrent' xlink:label='loc_ContractWithCustomerAssetGrossNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableAllowanceForCreditLoss' xlink:label='loc_ContractWithCustomerReceivableAllowanceForCreditLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableAllowanceForCreditLossCurrent' xlink:label='loc_ContractWithCustomerReceivableAllowanceForCreditLossCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableAllowanceForCreditLossNoncurrent' xlink:label='loc_ContractWithCustomerReceivableAllowanceForCreditLossNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableAfterAllowanceForCreditLoss' xlink:label='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableAfterAllowanceForCreditLossCurrent' xlink:label='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLossCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableAfterAllowanceForCreditLossNoncurrent' xlink:label='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLossNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableBeforeAllowanceForCreditLoss' xlink:label='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableBeforeAllowanceForCreditLossCurrent' xlink:label='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLossCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerReceivableBeforeAllowanceForCreditLossNoncurrent' xlink:label='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLossNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Revenues' xlink:label='loc_Revenues' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax' xlink:label='loc_RevenueFromContractWithCustomerIncludingAssessedTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueNotFromContractWithCustomer' xlink:label='loc_RevenueNotFromContractWithCustomer' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLossCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerAssetAccumulatedAllowanceForCreditLossNoncurrent' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerAssetNet' xlink:to='loc_ContractWithCustomerAssetNetCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerAssetNet' xlink:to='loc_ContractWithCustomerAssetNetNoncurrent' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerAssetGross' xlink:to='loc_ContractWithCustomerAssetGrossCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerAssetGross' xlink:to='loc_ContractWithCustomerAssetGrossNoncurrent' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerReceivableAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerReceivableAllowanceForCreditLossCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerReceivableAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerReceivableAllowanceForCreditLossNoncurrent' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLossCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerReceivableAfterAllowanceForCreditLossNoncurrent' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLossCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLoss' xlink:to='loc_ContractWithCustomerReceivableBeforeAllowanceForCreditLossNoncurrent' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_Revenues' xlink:to='loc_RevenueFromContractWithCustomerIncludingAssessedTax' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_Revenues' xlink:to='loc_RevenueNotFromContractWithCustomer' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

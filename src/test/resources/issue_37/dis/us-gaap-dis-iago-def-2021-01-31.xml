@@ -1,0 +1,797 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:label='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:label='loc_ScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:to='loc_ScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:label='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinitelivedIntangibleAssetsAcquired1' xlink:label='loc_FinitelivedIntangibleAssetsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFiniteLivedIntangibleAssetResidualValue' xlink:label='loc_AcquiredFiniteLivedIntangibleAssetResidualValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFiniteLivedIntangibleAssetsWeightedAverageUsefulLife' xlink:label='loc_AcquiredFiniteLivedIntangibleAssetsWeightedAverageUsefulLife' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFiniteLivedIntangibleAssetWeightedAveragePeriodBeforeRenewalOrExtension' xlink:label='loc_AcquiredFiniteLivedIntangibleAssetWeightedAveragePeriodBeforeRenewalOrExtension' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AboveMarketLeasesMember' xlink:label='loc_AboveMarketLeasesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFilmLibrariesMember' xlink:label='loc_AcquiredFilmLibrariesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ArtisticRelatedIntangibleAssetsMember' xlink:label='loc_ArtisticRelatedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CertificationMarksMember' xlink:label='loc_CertificationMarksMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CoalSupplyAgreementsMember' xlink:label='loc_CoalSupplyAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CollectiveMarksMember' xlink:label='loc_CollectiveMarksMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComputerSoftwareIntangibleAssetMember' xlink:label='loc_ComputerSoftwareIntangibleAssetMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConstructionPermitsMember' xlink:label='loc_ConstructionPermitsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractBasedIntangibleAssetsMember' xlink:label='loc_ContractBasedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractualRightsMember' xlink:label='loc_ContractualRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CoreDepositsMember' xlink:label='loc_CoreDepositsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerContractsMember' xlink:label='loc_CustomerContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerListsMember' xlink:label='loc_CustomerListsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerRelationshipsMember' xlink:label='loc_CustomerRelationshipsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerRelatedIntangibleAssetsMember' xlink:label='loc_CustomerRelatedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DistributionRightsMember' xlink:label='loc_DistributionRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EmploymentContractsMember' xlink:label='loc_EmploymentContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FranchiseRightsMember' xlink:label='loc_FranchiseRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InProcessResearchAndDevelopmentMember' xlink:label='loc_InProcessResearchAndDevelopmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InsuranceContractsAcquiredInBusinessCombinationMember' xlink:label='loc_InsuranceContractsAcquiredInBusinessCombinationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IntellectualPropertyMember' xlink:label='loc_IntellectualPropertyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternetDomainNamesMember' xlink:label='loc_InternetDomainNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LeaseAgreementsMember' xlink:label='loc_LeaseAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LeasesAcquiredInPlaceMarketAdjustmentMember' xlink:label='loc_LeasesAcquiredInPlaceMarketAdjustmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LeasesAcquiredInPlaceMember' xlink:label='loc_LeasesAcquiredInPlaceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LicensingAgreementsMember' xlink:label='loc_LicensingAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketingRelatedIntangibleAssetsMember' xlink:label='loc_MarketingRelatedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MediaContentMember' xlink:label='loc_MediaContentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncompeteAgreementsMember' xlink:label='loc_NoncompeteAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OffMarketFavorableLeaseMember' xlink:label='loc_OffMarketFavorableLeaseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingAndBroadcastRightsMember' xlink:label='loc_OperatingAndBroadcastRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OrderOrProductionBacklogMember' xlink:label='loc_OrderOrProductionBacklogMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIntangibleAssetsMember' xlink:label='loc_OtherIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RoyaltyAgreementsMember' xlink:label='loc_RoyaltyAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ServiceAgreementsMember' xlink:label='loc_ServiceAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ServiceMarksMember' xlink:label='loc_ServiceMarksMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingContractsMember' xlink:label='loc_ServicingContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StandstillAgreementsMember' xlink:label='loc_StandstillAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeDressMember' xlink:label='loc_TradeDressMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransmissionServiceAgreementMember' xlink:label='loc_TransmissionServiceAgreementMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UseRightsMember' xlink:label='loc_UseRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CopyrightsMember' xlink:label='loc_CopyrightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PatentsMember' xlink:label='loc_PatentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeSecretsMember' xlink:label='loc_TradeSecretsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksAndTradeNamesMember' xlink:label='loc_TrademarksAndTradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TechnologyBasedIntangibleAssetsMember' xlink:label='loc_TechnologyBasedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DatabasesMember' xlink:label='loc_DatabasesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DevelopedTechnologyRightsMember' xlink:label='loc_DevelopedTechnologyRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PatentedTechnologyMember' xlink:label='loc_PatentedTechnologyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnpatentedTechnologyMember' xlink:label='loc_UnpatentedTechnologyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeNamesMember' xlink:label='loc_TradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksMember' xlink:label='loc_TrademarksMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FinitelivedIntangibleAssetsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:to='loc_AcquiredFiniteLivedIntangibleAssetResidualValue' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:to='loc_AcquiredFiniteLivedIntangibleAssetsWeightedAverageUsefulLife' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AcquiredFiniteLivedIntangibleAssetsLineItems' xlink:to='loc_AcquiredFiniteLivedIntangibleAssetWeightedAveragePeriodBeforeRenewalOrExtension' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_AboveMarketLeasesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_AcquiredFilmLibrariesMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ArtisticRelatedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CertificationMarksMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CoalSupplyAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CollectiveMarksMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ComputerSoftwareIntangibleAssetMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ConstructionPermitsMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ContractBasedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ContractualRightsMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CoreDepositsMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerContractsMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerListsMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerRelationshipsMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerRelatedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_DistributionRightsMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_EmploymentContractsMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_FranchiseRightsMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_InProcessResearchAndDevelopmentMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_InsuranceContractsAcquiredInBusinessCombinationMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_IntellectualPropertyMember' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_InternetDomainNamesMember' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LeaseAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LeasesAcquiredInPlaceMarketAdjustmentMember' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LeasesAcquiredInPlaceMember' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LicensingAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_MarketingRelatedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_MediaContentMember' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_NoncompeteAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OffMarketFavorableLeaseMember' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OperatingAndBroadcastRightsMember' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OrderOrProductionBacklogMember' xlink:type='arc' />
+    <link:definitionArc order='44.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OtherIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='45.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_RoyaltyAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='46.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ServiceAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='47.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ServiceMarksMember' xlink:type='arc' />
+    <link:definitionArc order='48.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ServicingContractsMember' xlink:type='arc' />
+    <link:definitionArc order='49.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_StandstillAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='50.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TradeDressMember' xlink:type='arc' />
+    <link:definitionArc order='51.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TransmissionServiceAgreementMember' xlink:type='arc' />
+    <link:definitionArc order='52.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_UseRightsMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_CopyrightsMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_PatentsMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_TradeSecretsMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_TrademarksAndTradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_TechnologyBasedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_DatabasesMember' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_DevelopedTechnologyRightsMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_PatentedTechnologyMember' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_UnpatentedTechnologyMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TrademarksMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:label='loc_ScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfAcquiredFiniteLivedIntangibleAssetByMajorClassTable' xlink:to='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredIndefiniteLivedIntangibleAssetsLineItems' xlink:label='loc_AcquiredIndefiniteLivedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:label='loc_ScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_AcquiredIndefiniteLivedIntangibleAssetsLineItems' xlink:to='loc_ScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredIndefiniteLivedIntangibleAssetsLineItems' xlink:label='loc_AcquiredIndefiniteLivedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefinitelivedIntangibleAssetsAcquired' xlink:label='loc_IndefinitelivedIntangibleAssetsAcquired' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractualRightsMember' xlink:label='loc_ContractualRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FranchiseRightsMember' xlink:label='loc_FranchiseRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LicensingAgreementsMember' xlink:label='loc_LicensingAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIntangibleAssetsMember' xlink:label='loc_OtherIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeDressMember' xlink:label='loc_TradeDressMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeSecretsMember' xlink:label='loc_TradeSecretsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksAndTradeNamesMember' xlink:label='loc_TrademarksAndTradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnclassifiedIndefinitelivedIntangibleAssetsMember' xlink:label='loc_UnclassifiedIndefinitelivedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeNamesMember' xlink:label='loc_TradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksMember' xlink:label='loc_TrademarksMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_AcquiredIndefiniteLivedIntangibleAssetsLineItems' xlink:to='loc_IndefinitelivedIntangibleAssetsAcquired' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ContractualRightsMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_FranchiseRightsMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LicensingAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OtherIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TradeDressMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TradeSecretsMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TrademarksAndTradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_UnclassifiedIndefinitelivedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TrademarksMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:label='loc_ScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfAcquiredIndefiniteLivedIntangibleAssetsByMajorClassTable' xlink:to='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsLineItems' xlink:label='loc_FiniteLivedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:label='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingSegmentsMember' xlink:label='loc_OperatingSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IntersegmentEliminationMember' xlink:label='loc_IntersegmentEliminationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaterialReconcilingItemsMember' xlink:label='loc_MaterialReconcilingItemsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateNonSegmentMember' xlink:label='loc_CorporateNonSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsLineItems' xlink:label='loc_FiniteLivedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsRollForward' xlink:label='loc_FiniteLivedIntangibleAssetsRollForward' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetsLineItems' xlink:label='loc_ImpairedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetUsefulLife' xlink:label='loc_FiniteLivedIntangibleAssetUsefulLife' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsAmortizationMethod' xlink:label='loc_FiniteLivedIntangibleAssetsAmortizationMethod' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsCostIncurredToRenewOrExtend' xlink:label='loc_FiniteLivedIntangibleAssetsCostIncurredToRenewOrExtend' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetWeightedAveragePeriodBeforeNextRenewalOrExtension' xlink:label='loc_FiniteLivedIntangibleAssetWeightedAveragePeriodBeforeNextRenewalOrExtension' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsIntentOrAbilityToRenewOrExtendArrangement' xlink:label='loc_FiniteLivedIntangibleAssetsIntentOrAbilityToRenewOrExtendArrangement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsRemainingAmortizationPeriod1' xlink:label='loc_FiniteLivedIntangibleAssetsRemainingAmortizationPeriod1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AboveMarketLeasesMember' xlink:label='loc_AboveMarketLeasesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AcquiredFilmLibrariesMember' xlink:label='loc_AcquiredFilmLibrariesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ArtisticRelatedIntangibleAssetsMember' xlink:label='loc_ArtisticRelatedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CertificationMarksMember' xlink:label='loc_CertificationMarksMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CoalSupplyAgreementsMember' xlink:label='loc_CoalSupplyAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CollectiveMarksMember' xlink:label='loc_CollectiveMarksMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ComputerSoftwareIntangibleAssetMember' xlink:label='loc_ComputerSoftwareIntangibleAssetMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ConstructionPermitsMember' xlink:label='loc_ConstructionPermitsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractBasedIntangibleAssetsMember' xlink:label='loc_ContractBasedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractualRightsMember' xlink:label='loc_ContractualRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CoreDepositsMember' xlink:label='loc_CoreDepositsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerContractsMember' xlink:label='loc_CustomerContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerListsMember' xlink:label='loc_CustomerListsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerRelationshipsMember' xlink:label='loc_CustomerRelationshipsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CustomerRelatedIntangibleAssetsMember' xlink:label='loc_CustomerRelatedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DistributionRightsMember' xlink:label='loc_DistributionRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EmploymentContractsMember' xlink:label='loc_EmploymentContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FranchiseRightsMember' xlink:label='loc_FranchiseRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InProcessResearchAndDevelopmentMember' xlink:label='loc_InProcessResearchAndDevelopmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InsuranceContractsAcquiredInBusinessCombinationMember' xlink:label='loc_InsuranceContractsAcquiredInBusinessCombinationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IntellectualPropertyMember' xlink:label='loc_IntellectualPropertyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternetDomainNamesMember' xlink:label='loc_InternetDomainNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LeaseAgreementsMember' xlink:label='loc_LeaseAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LeasesAcquiredInPlaceMarketAdjustmentMember' xlink:label='loc_LeasesAcquiredInPlaceMarketAdjustmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LeasesAcquiredInPlaceMember' xlink:label='loc_LeasesAcquiredInPlaceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LicensingAgreementsMember' xlink:label='loc_LicensingAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MarketingRelatedIntangibleAssetsMember' xlink:label='loc_MarketingRelatedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MediaContentMember' xlink:label='loc_MediaContentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NoncompeteAgreementsMember' xlink:label='loc_NoncompeteAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OffMarketFavorableLeaseMember' xlink:label='loc_OffMarketFavorableLeaseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingAndBroadcastRightsMember' xlink:label='loc_OperatingAndBroadcastRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OrderOrProductionBacklogMember' xlink:label='loc_OrderOrProductionBacklogMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIntangibleAssetsMember' xlink:label='loc_OtherIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RoyaltyAgreementsMember' xlink:label='loc_RoyaltyAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ServiceAgreementsMember' xlink:label='loc_ServiceAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ServiceMarksMember' xlink:label='loc_ServiceMarksMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ServicingContractsMember' xlink:label='loc_ServicingContractsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StandstillAgreementsMember' xlink:label='loc_StandstillAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeDressMember' xlink:label='loc_TradeDressMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransmissionServiceAgreementMember' xlink:label='loc_TransmissionServiceAgreementMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UseRightsMember' xlink:label='loc_UseRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:label='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsForeignCurrencyTranslationGainLoss' xlink:label='loc_FiniteLivedIntangibleAssetsForeignCurrencyTranslationGainLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsPurchaseAccountingAdjustments' xlink:label='loc_FiniteLivedIntangibleAssetsPurchaseAccountingAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustments' xlink:label='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsNet' xlink:label='loc_FiniteLivedIntangibleAssetsNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FinitelivedIntangibleAssetsAcquired1' xlink:label='loc_FinitelivedIntangibleAssetsAcquired1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AmortizationOfIntangibleAssets' xlink:label='loc_AmortizationOfIntangibleAssets' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentOfIntangibleAssetsFinitelived' xlink:label='loc_ImpairmentOfIntangibleAssetsFinitelived' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsPeriodIncreaseDecrease' xlink:label='loc_FiniteLivedIntangibleAssetsPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetDescription' xlink:label='loc_ImpairedIntangibleAssetDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetFactsAndCircumstancesLeadingToImpairment' xlink:label='loc_ImpairedIntangibleAssetFactsAndCircumstancesLeadingToImpairment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetMethodForFairValueDetermination' xlink:label='loc_ImpairedIntangibleAssetMethodForFairValueDetermination' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetIncomeStatementClassification' xlink:label='loc_ImpairedIntangibleAssetIncomeStatementClassification' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetSegmentClassification' xlink:label='loc_ImpairedIntangibleAssetSegmentClassification' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CopyrightsMember' xlink:label='loc_CopyrightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PatentsMember' xlink:label='loc_PatentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeSecretsMember' xlink:label='loc_TradeSecretsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksAndTradeNamesMember' xlink:label='loc_TrademarksAndTradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TechnologyBasedIntangibleAssetsMember' xlink:label='loc_TechnologyBasedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AllOtherSegmentsMember' xlink:label='loc_AllOtherSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateMember' xlink:label='loc_CorporateMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateAndOtherMember' xlink:label='loc_CorporateAndOtherMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MaximumMember' xlink:label='loc_MaximumMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MinimumMember' xlink:label='loc_MinimumMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_WeightedAverageMember' xlink:label='loc_WeightedAverageMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DatabasesMember' xlink:label='loc_DatabasesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DevelopedTechnologyRightsMember' xlink:label='loc_DevelopedTechnologyRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PatentedTechnologyMember' xlink:label='loc_PatentedTechnologyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnpatentedTechnologyMember' xlink:label='loc_UnpatentedTechnologyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeNamesMember' xlink:label='loc_TradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksMember' xlink:label='loc_TrademarksMember' xlink:type='locator' />
+    <link:definitionArc order='53.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_OperatingSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='54.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_IntersegmentEliminationMember' xlink:type='arc' />
+    <link:definitionArc order='55.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_MaterialReconcilingItemsMember' xlink:type='arc' />
+    <link:definitionArc order='56.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_CorporateNonSegmentMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetsRollForward' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetsLineItems' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetUsefulLife' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetsAmortizationMethod' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetsCostIncurredToRenewOrExtend' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetWeightedAveragePeriodBeforeNextRenewalOrExtension' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetsIntentOrAbilityToRenewOrExtendArrangement' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsLineItems' xlink:to='loc_FiniteLivedIntangibleAssetsRemainingAmortizationPeriod1' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_AboveMarketLeasesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_AcquiredFilmLibrariesMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ArtisticRelatedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CertificationMarksMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CoalSupplyAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CollectiveMarksMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ComputerSoftwareIntangibleAssetMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ConstructionPermitsMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ContractBasedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ContractualRightsMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CoreDepositsMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerContractsMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerListsMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerRelationshipsMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_CustomerRelatedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_DistributionRightsMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_EmploymentContractsMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_FranchiseRightsMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_InProcessResearchAndDevelopmentMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_InsuranceContractsAcquiredInBusinessCombinationMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_IntellectualPropertyMember' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_InternetDomainNamesMember' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LeaseAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LeasesAcquiredInPlaceMarketAdjustmentMember' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LeasesAcquiredInPlaceMember' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LicensingAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_MarketingRelatedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_MediaContentMember' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_NoncompeteAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OffMarketFavorableLeaseMember' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OperatingAndBroadcastRightsMember' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OrderOrProductionBacklogMember' xlink:type='arc' />
+    <link:definitionArc order='44.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OtherIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='45.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_RoyaltyAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='46.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ServiceAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='47.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ServiceMarksMember' xlink:type='arc' />
+    <link:definitionArc order='48.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ServicingContractsMember' xlink:type='arc' />
+    <link:definitionArc order='49.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_StandstillAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='50.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TradeDressMember' xlink:type='arc' />
+    <link:definitionArc order='51.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TransmissionServiceAgreementMember' xlink:type='arc' />
+    <link:definitionArc order='52.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_UseRightsMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_FiniteLivedIntangibleAssetsForeignCurrencyTranslationGainLoss' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_FiniteLivedIntangibleAssetsPurchaseAccountingAdjustments' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustments' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsRollForward' xlink:to='loc_FiniteLivedIntangibleAssetsNet' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsRollForward' xlink:to='loc_FinitelivedIntangibleAssetsAcquired1' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsRollForward' xlink:to='loc_AmortizationOfIntangibleAssets' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsRollForward' xlink:to='loc_ImpairmentOfIntangibleAssetsFinitelived' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsRollForward' xlink:to='loc_FiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_FiniteLivedIntangibleAssetsRollForward' xlink:to='loc_FiniteLivedIntangibleAssetsPeriodIncreaseDecrease' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetDescription' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetFactsAndCircumstancesLeadingToImpairment' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetMethodForFairValueDetermination' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetIncomeStatementClassification' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetSegmentClassification' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_CopyrightsMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_PatentsMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_TradeSecretsMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_TrademarksAndTradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IntellectualPropertyMember' xlink:to='loc_TechnologyBasedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='57.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_AllOtherSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='58.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateMember' xlink:type='arc' />
+    <link:definitionArc order='59.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateAndOtherMember' xlink:type='arc' />
+    <link:definitionArc order='60.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MaximumMember' xlink:type='arc' />
+    <link:definitionArc order='61.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MinimumMember' xlink:type='arc' />
+    <link:definitionArc order='62.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_WeightedAverageMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_DatabasesMember' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_DevelopedTechnologyRightsMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_PatentedTechnologyMember' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TechnologyBasedIntangibleAssetsMember' xlink:to='loc_UnpatentedTechnologyMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TrademarksMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:label='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:to='loc_FiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:to='loc_ConsolidationItemsAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:to='loc_StatementBusinessSegmentsAxis' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfFiniteLivedIntangibleAssetsTable' xlink:to='loc_RangeAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillLineItems' xlink:label='loc_GoodwillLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfGoodwillTable' xlink:label='loc_ScheduleOfGoodwillTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ScheduleOfGoodwillTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitAxis' xlink:label='loc_ReportingUnitAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitDomain' xlink:label='loc_ReportingUnitDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ReportingUnitAxis' xlink:to='loc_ReportingUnitDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitAxis' xlink:label='loc_ReportingUnitAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitDomain' xlink:label='loc_ReportingUnitDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ReportingUnitAxis' xlink:to='loc_ReportingUnitDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingSegmentsMember' xlink:label='loc_OperatingSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IntersegmentEliminationMember' xlink:label='loc_IntersegmentEliminationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaterialReconcilingItemsMember' xlink:label='loc_MaterialReconcilingItemsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateNonSegmentMember' xlink:label='loc_CorporateNonSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillLineItems' xlink:label='loc_GoodwillLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillRollForward' xlink:label='loc_GoodwillRollForward' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairedAccumulatedImpairmentLossAbstract' xlink:label='loc_GoodwillImpairedAccumulatedImpairmentLossAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairedAbstract' xlink:label='loc_GoodwillImpairedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillChangeInGoodwillAllocationDescription' xlink:label='loc_GoodwillChangeInGoodwillAllocationDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillNotAllocatedReason' xlink:label='loc_GoodwillNotAllocatedReason' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillNotAllocatedAmount' xlink:label='loc_GoodwillNotAllocatedAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairmentLossNetOfTax' xlink:label='loc_GoodwillImpairmentLossNetOfTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillNameOfSegmentExtensibleList' xlink:label='loc_GoodwillNameOfSegmentExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitPercentageOfFairValueInExcessOfCarryingAmount' xlink:label='loc_ReportingUnitPercentageOfFairValueInExcessOfCarryingAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitAmountOfFairValueInExcessOfCarryingAmount' xlink:label='loc_ReportingUnitAmountOfFairValueInExcessOfCarryingAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitZeroOrNegativeCarryingAmountNumber' xlink:label='loc_ReportingUnitZeroOrNegativeCarryingAmountNumber' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitZeroOrNegativeCarryingAmountName' xlink:label='loc_ReportingUnitZeroOrNegativeCarryingAmountName' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitZeroOrNegativeCarryingAmountAmountOfAllocatedGoodwill' xlink:label='loc_ReportingUnitZeroOrNegativeCarryingAmountAmountOfAllocatedGoodwill' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitNameOfSegmentExtensibleList' xlink:label='loc_ReportingUnitNameOfSegmentExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NumberOfReportingUnits' xlink:label='loc_NumberOfReportingUnits' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_Goodwill' xlink:label='loc_Goodwill' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillAcquiredDuringPeriod' xlink:label='loc_GoodwillAcquiredDuringPeriod' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairmentLoss' xlink:label='loc_GoodwillImpairmentLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillSubsequentRecognitionOfDeferredTaxAsset' xlink:label='loc_GoodwillSubsequentRecognitionOfDeferredTaxAsset' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillOtherIncreaseDecrease' xlink:label='loc_GoodwillOtherIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillWrittenOffRelatedToSaleOfBusinessUnit' xlink:label='loc_GoodwillWrittenOffRelatedToSaleOfBusinessUnit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:label='loc_GoodwillTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillTransfers' xlink:label='loc_GoodwillTransfers' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillPeriodIncreaseDecrease' xlink:label='loc_GoodwillPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairedFactsAndCircumstancesLeadingToImpairment' xlink:label='loc_GoodwillImpairedFactsAndCircumstancesLeadingToImpairment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairedMethodForFairValueDetermination' xlink:label='loc_GoodwillImpairedMethodForFairValueDetermination' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillGross' xlink:label='loc_GoodwillGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillImpairedAccumulatedImpairmentLoss' xlink:label='loc_GoodwillImpairedAccumulatedImpairmentLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillForeignCurrencyTranslationGainLoss' xlink:label='loc_GoodwillForeignCurrencyTranslationGainLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillPurchaseAccountingAdjustments' xlink:label='loc_GoodwillPurchaseAccountingAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GoodwillTranslationAndPurchaseAccountingAdjustments' xlink:label='loc_GoodwillTranslationAndPurchaseAccountingAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesMember' xlink:label='loc_SalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradingRevenueMember' xlink:label='loc_TradingRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CostOfSalesMember' xlink:label='loc_CostOfSalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipalOrProprietaryTransactionsMember' xlink:label='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetManagementIncomeMember' xlink:label='loc_AssetManagementIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIncomeMember' xlink:label='loc_OtherIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestIncomeMember' xlink:label='loc_InterestIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentIncomeMember' xlink:label='loc_InvestmentIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingIncomeLossMember' xlink:label='loc_OperatingIncomeLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherOperatingIncomeExpenseMember' xlink:label='loc_OtherOperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestExpenseMember' xlink:label='loc_InterestExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingExpenseMember' xlink:label='loc_OperatingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherExpenseMember' xlink:label='loc_OtherExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GainLossOnDerivativeInstrumentsMember' xlink:label='loc_GainLossOnDerivativeInstrumentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GainLossOnInvestmentsMember1' xlink:label='loc_GainLossOnInvestmentsMember1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentIncomeExpenseMember' xlink:label='loc_InvestmentIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonoperatingIncomeExpenseMember' xlink:label='loc_NonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherNonoperatingIncomeExpenseMember' xlink:label='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCurrencyGainLossMember' xlink:label='loc_ForeignCurrencyGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SaleOfSubsidiaryGainLossMember' xlink:label='loc_SaleOfSubsidiaryGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingGeneralAndAdministrativeExpensesMember' xlink:label='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AllOtherSegmentsMember' xlink:label='loc_AllOtherSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateMember' xlink:label='loc_CorporateMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateAndOtherMember' xlink:label='loc_CorporateAndOtherMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingAndMarketingExpenseMember' xlink:label='loc_SellingAndMarketingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeExpenseMember' xlink:label='loc_GeneralAndAdministrativeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MaximumMember' xlink:label='loc_MaximumMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MinimumMember' xlink:label='loc_MinimumMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_WeightedAverageMember' xlink:label='loc_WeightedAverageMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_OperatingSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_IntersegmentEliminationMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_MaterialReconcilingItemsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_CorporateNonSegmentMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillRollForward' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillImpairedAccumulatedImpairmentLossAbstract' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillImpairedAbstract' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillChangeInGoodwillAllocationDescription' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillNotAllocatedReason' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillNotAllocatedAmount' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillImpairmentLossNetOfTax' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_GoodwillNameOfSegmentExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ReportingUnitPercentageOfFairValueInExcessOfCarryingAmount' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ReportingUnitAmountOfFairValueInExcessOfCarryingAmount' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ReportingUnitZeroOrNegativeCarryingAmountNumber' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ReportingUnitZeroOrNegativeCarryingAmountName' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ReportingUnitZeroOrNegativeCarryingAmountAmountOfAllocatedGoodwill' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_ReportingUnitNameOfSegmentExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillLineItems' xlink:to='loc_NumberOfReportingUnits' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_Goodwill' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillAcquiredDuringPeriod' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillImpairmentLoss' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillSubsequentRecognitionOfDeferredTaxAsset' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillOtherIncreaseDecrease' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillWrittenOffRelatedToSaleOfBusinessUnit' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillTransfers' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillRollForward' xlink:to='loc_GoodwillPeriodIncreaseDecrease' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillImpairedAbstract' xlink:to='loc_GoodwillImpairedFactsAndCircumstancesLeadingToImpairment' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillImpairedAbstract' xlink:to='loc_GoodwillImpairedMethodForFairValueDetermination' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillImpairedAccumulatedImpairmentLossAbstract' xlink:to='loc_GoodwillGross' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillImpairedAccumulatedImpairmentLossAbstract' xlink:to='loc_GoodwillImpairedAccumulatedImpairmentLoss' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_GoodwillForeignCurrencyTranslationGainLoss' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_GoodwillPurchaseAccountingAdjustments' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_GoodwillTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_GoodwillTranslationAndPurchaseAccountingAdjustments' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SalesMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_TradingRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_CostOfSalesMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_AssetManagementIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InvestmentIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingIncomeLossMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherOperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_GainLossOnDerivativeInstrumentsMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_GainLossOnInvestmentsMember1' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InvestmentIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_NonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_ForeignCurrencyGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SaleOfSubsidiaryGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_AllOtherSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateAndOtherMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_SellingAndMarketingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_GeneralAndAdministrativeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MaximumMember' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MinimumMember' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_WeightedAverageMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfGoodwillTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfGoodwillTable' xlink:label='loc_ScheduleOfGoodwillTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReportingUnitAxis' xlink:label='loc_ReportingUnitAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfGoodwillTable' xlink:to='loc_ConsolidationItemsAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfGoodwillTable' xlink:to='loc_StatementBusinessSegmentsAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfGoodwillTable' xlink:to='loc_IncomeStatementLocationAxis' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfGoodwillTable' xlink:to='loc_RangeAxis' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfGoodwillTable' xlink:to='loc_ReportingUnitAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:label='loc_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:to='loc_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ConsolidationItemsAxis' xlink:to='loc_ConsolidationItemsDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:to='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_StatementBusinessSegmentsAxis' xlink:to='loc_SegmentDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsDomain' xlink:label='loc_ConsolidationItemsDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingSegmentsMember' xlink:label='loc_OperatingSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IntersegmentEliminationMember' xlink:label='loc_IntersegmentEliminationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MaterialReconcilingItemsMember' xlink:label='loc_MaterialReconcilingItemsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateNonSegmentMember' xlink:label='loc_CorporateNonSegmentMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetsLineItems' xlink:label='loc_ImpairedIntangibleAssetsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetDescription' xlink:label='loc_ImpairedIntangibleAssetDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetFactsAndCircumstancesLeadingToImpairment' xlink:label='loc_ImpairedIntangibleAssetFactsAndCircumstancesLeadingToImpairment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetMethodForFairValueDetermination' xlink:label='loc_ImpairedIntangibleAssetMethodForFairValueDetermination' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetIncomeStatementClassification' xlink:label='loc_ImpairedIntangibleAssetIncomeStatementClassification' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairedIntangibleAssetSegmentClassification' xlink:label='loc_ImpairedIntangibleAssetSegmentClassification' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsRollForward' xlink:label='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsExcludingGoodwill' xlink:label='loc_IndefiniteLivedIntangibleAssetsExcludingGoodwill' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefinitelivedIntangibleAssetsAcquired' xlink:label='loc_IndefinitelivedIntangibleAssetsAcquired' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ImpairmentOfIntangibleAssetsIndefinitelivedExcludingGoodwill' xlink:label='loc_ImpairmentOfIntangibleAssetsIndefinitelivedExcludingGoodwill' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsWrittenOffRelatedToSaleOfBusinessUnit' xlink:label='loc_IndefiniteLivedIntangibleAssetsWrittenOffRelatedToSaleOfBusinessUnit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:label='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsPeriodIncreaseDecrease' xlink:label='loc_IndefiniteLivedIntangibleAssetsPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:label='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractualRightsMember' xlink:label='loc_ContractualRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FranchiseRightsMember' xlink:label='loc_FranchiseRightsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LicensingAgreementsMember' xlink:label='loc_LicensingAgreementsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIntangibleAssetsMember' xlink:label='loc_OtherIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeDressMember' xlink:label='loc_TradeDressMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeSecretsMember' xlink:label='loc_TradeSecretsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksAndTradeNamesMember' xlink:label='loc_TrademarksAndTradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnclassifiedIndefinitelivedIntangibleAssetsMember' xlink:label='loc_UnclassifiedIndefinitelivedIntangibleAssetsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsForeignCurrencyTranslationGainLoss' xlink:label='loc_IndefiniteLivedIntangibleAssetsForeignCurrencyTranslationGainLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsPurchaseAccountingAdjustments' xlink:label='loc_IndefiniteLivedIntangibleAssetsPurchaseAccountingAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustments' xlink:label='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustments' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SegmentDomain' xlink:label='loc_SegmentDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AllOtherSegmentsMember' xlink:label='loc_AllOtherSegmentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateMember' xlink:label='loc_CorporateMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CorporateAndOtherMember' xlink:label='loc_CorporateAndOtherMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradeNamesMember' xlink:label='loc_TradeNamesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TrademarksMember' xlink:label='loc_TrademarksMember' xlink:type='locator' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_OperatingSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_IntersegmentEliminationMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_MaterialReconcilingItemsMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ConsolidationItemsDomain' xlink:to='loc_CorporateNonSegmentMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetDescription' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetFactsAndCircumstancesLeadingToImpairment' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetMethodForFairValueDetermination' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetIncomeStatementClassification' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ImpairedIntangibleAssetsLineItems' xlink:to='loc_ImpairedIntangibleAssetSegmentClassification' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:to='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsByMajorClassLineItems' xlink:to='loc_ImpairedIntangibleAssetsLineItems' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:to='loc_IndefiniteLivedIntangibleAssetsExcludingGoodwill' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:to='loc_IndefinitelivedIntangibleAssetsAcquired' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:to='loc_ImpairmentOfIntangibleAssetsIndefinitelivedExcludingGoodwill' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:to='loc_IndefiniteLivedIntangibleAssetsWrittenOffRelatedToSaleOfBusinessUnit' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:to='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsRollForward' xlink:to='loc_IndefiniteLivedIntangibleAssetsPeriodIncreaseDecrease' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_ContractualRightsMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_FranchiseRightsMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_LicensingAgreementsMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_OtherIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TradeDressMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TradeSecretsMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_TrademarksAndTradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsMajorClassNameDomain' xlink:to='loc_UnclassifiedIndefinitelivedIntangibleAssetsMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_IndefiniteLivedIntangibleAssetsForeignCurrencyTranslationGainLoss' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_IndefiniteLivedIntangibleAssetsPurchaseAccountingAdjustments' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustmentsAbstract' xlink:to='loc_IndefiniteLivedIntangibleAssetsTranslationAndPurchaseAccountingAdjustments' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_AllOtherSegmentsMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentDomain' xlink:to='loc_CorporateAndOtherMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TradeNamesMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TrademarksAndTradeNamesMember' xlink:to='loc_TrademarksMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:label='loc_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:label='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ConsolidationItemsAxis' xlink:label='loc_ConsolidationItemsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StatementBusinessSegmentsAxis' xlink:label='loc_StatementBusinessSegmentsAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:to='loc_IndefiniteLivedIntangibleAssetsByMajorClassAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:to='loc_ConsolidationItemsAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfIndefiniteLivedIntangibleAssetsTable' xlink:to='loc_StatementBusinessSegmentsAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:label='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:label='loc_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:to='loc_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:label='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetTransactionDomain' xlink:label='loc_ResearchAndDevelopmentAssetTransactionDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:to='loc_ResearchAndDevelopmentAssetTransactionDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:label='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetTransactionDomain' xlink:label='loc_ResearchAndDevelopmentAssetTransactionDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeStatementLocationAxis' xlink:to='loc_IncomeStatementLocationDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:to='loc_ResearchAndDevelopmentAssetTransactionDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationDomain' xlink:label='loc_IncomeStatementLocationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesMember' xlink:label='loc_SalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TradingRevenueMember' xlink:label='loc_TradingRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CostOfSalesMember' xlink:label='loc_CostOfSalesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PrincipalOrProprietaryTransactionsMember' xlink:label='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetManagementIncomeMember' xlink:label='loc_AssetManagementIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherIncomeMember' xlink:label='loc_OtherIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestIncomeMember' xlink:label='loc_InterestIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentIncomeMember' xlink:label='loc_InvestmentIncomeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingIncomeLossMember' xlink:label='loc_OperatingIncomeLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherOperatingIncomeExpenseMember' xlink:label='loc_OtherOperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InterestExpenseMember' xlink:label='loc_InterestExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingExpenseMember' xlink:label='loc_OperatingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherExpenseMember' xlink:label='loc_OtherExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GainLossOnDerivativeInstrumentsMember' xlink:label='loc_GainLossOnDerivativeInstrumentsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GainLossOnInvestmentsMember1' xlink:label='loc_GainLossOnInvestmentsMember1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentIncomeExpenseMember' xlink:label='loc_InvestmentIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonoperatingIncomeExpenseMember' xlink:label='loc_NonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OtherNonoperatingIncomeExpenseMember' xlink:label='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCurrencyGainLossMember' xlink:label='loc_ForeignCurrencyGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SaleOfSubsidiaryGainLossMember' xlink:label='loc_SaleOfSubsidiaryGainLossMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingGeneralAndAdministrativeExpensesMember' xlink:label='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:label='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationFairValueAcquired' xlink:label='loc_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationFairValueAcquired' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff' xlink:label='loc_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SellingAndMarketingExpenseMember' xlink:label='loc_SellingAndMarketingExpenseMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralAndAdministrativeExpenseMember' xlink:label='loc_GeneralAndAdministrativeExpenseMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SalesMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_TradingRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_CostOfSalesMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_PrincipalOrProprietaryTransactionsMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_AssetManagementIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InvestmentIncomeMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingIncomeLossMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherOperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InterestExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OperatingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_GainLossOnDerivativeInstrumentsMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_GainLossOnInvestmentsMember1' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_InvestmentIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_NonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_OtherNonoperatingIncomeExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_ForeignCurrencyGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SaleOfSubsidiaryGainLossMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeStatementLocationDomain' xlink:to='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:to='loc_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationFairValueAcquired' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationLineItems' xlink:to='loc_ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_SellingAndMarketingExpenseMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SellingGeneralAndAdministrativeExpensesMember' xlink:to='loc_GeneralAndAdministrativeExpenseMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IntangibleAssetsGoodwillAndOtherScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:label='loc_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:label='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeStatementLocationAxis' xlink:label='loc_IncomeStatementLocationAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:to='loc_ResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationByTransactionAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ScheduleOfResearchAndDevelopmentAssetsAcquiredOtherThanThroughBusinessCombinationTable' xlink:to='loc_IncomeStatementLocationAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

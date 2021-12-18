@@ -3,6 +3,7 @@ package org.xmlet.xsdparser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
@@ -643,6 +644,15 @@ public class IssuesTest {
 
         Assert.assertNotNull(max35TextRestriction);
         Assert.assertEquals("xsd:string", max35TextRestriction.getBase());
+    }
+
+    @Test
+    public void testIssue37(){
+        XsdParser parser = new XsdParser(getFilePath("issue_37/entire/us-gaap-entryPoint-all-2021-01-31.xsd"));
+
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+        List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
+        List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
     }
 
     private String getInfo(XsdAbstractElement xae) {

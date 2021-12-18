@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/AssetRetirementObligations' xlink:href='../elts/us-roles-2021-01-31.xsd#aro' xlink:type='simple' />
+  <link:presentationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/AssetRetirementObligations' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationDisclosureAbstract' xlink:label='loc_AssetRetirementObligationDisclosureAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationDisclosureTextBlock' xlink:label='loc_AssetRetirementObligationDisclosureTextBlock' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationAbstract' xlink:label='loc_AssetRetirementObligationAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationsDescription' xlink:label='loc_AssetRetirementObligationsDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationLegallyRestrictedAssetsFairValue' xlink:label='loc_AssetRetirementObligationLegallyRestrictedAssetsFairValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationsSignificantChanges' xlink:label='loc_AssetRetirementObligationsSignificantChanges' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationsLiabilityNotRecognized' xlink:label='loc_AssetRetirementObligationsLiabilityNotRecognized' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:label='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationCashPaidToSettle' xlink:label='loc_AssetRetirementObligationCashPaidToSettle' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TableTextBlockSupplementAbstract' xlink:label='loc_TableTextBlockSupplementAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationCurrent' xlink:label='loc_AssetRetirementObligationCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationsNoncurrentAbstract' xlink:label='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligation' xlink:label='loc_AssetRetirementObligation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationLiabilitiesIncurred' xlink:label='loc_AssetRetirementObligationLiabilitiesIncurred' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationLiabilitiesSettled' xlink:label='loc_AssetRetirementObligationLiabilitiesSettled' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationAccretionExpense' xlink:label='loc_AssetRetirementObligationAccretionExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationRevisionOfEstimate' xlink:label='loc_AssetRetirementObligationRevisionOfEstimate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationForeignCurrencyTranslationGainLoss' xlink:label='loc_AssetRetirementObligationForeignCurrencyTranslationGainLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationPeriodIncreaseDecrease' xlink:label='loc_AssetRetirementObligationPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligation' xlink:label='loc_AssetRetirementObligation_1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MineReclamationAndClosingLiabilityNoncurrent' xlink:label='loc_MineReclamationAndClosingLiabilityNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OilAndGasReclamationLiabilityNoncurrent' xlink:label='loc_OilAndGasReclamationLiabilityNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DecommissioningLiabilityNoncurrent' xlink:label='loc_DecommissioningLiabilityNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SpentNuclearFuelObligationNoncurrent' xlink:label='loc_SpentNuclearFuelObligationNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AccruedCappingClosurePostClosureAndEnvironmentalCostsNoncurrent' xlink:label='loc_AccruedCappingClosurePostClosureAndEnvironmentalCostsNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetRetirementObligationsNoncurrent' xlink:label='loc_AssetRetirementObligationsNoncurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfAssetRetirementObligationsTableTextBlock' xlink:label='loc_ScheduleOfAssetRetirementObligationsTableTextBlock' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ScheduleOfChangeInAssetRetirementObligationTableTextBlock' xlink:label='loc_ScheduleOfChangeInAssetRetirementObligationTableTextBlock' xlink:type='locator' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureAbstract' xlink:to='loc_AssetRetirementObligationDisclosureTextBlock' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationAbstract' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationsDescription' xlink:type='arc' />
+    <link:presentationArc order='30' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationLegallyRestrictedAssetsFairValue' xlink:type='arc' />
+    <link:presentationArc order='40' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationsSignificantChanges' xlink:type='arc' />
+    <link:presentationArc order='50' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationsLiabilityNotRecognized' xlink:type='arc' />
+    <link:presentationArc order='60' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:type='arc' />
+    <link:presentationArc order='70' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureTextBlock' xlink:to='loc_AssetRetirementObligationCashPaidToSettle' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationDisclosureAbstract' xlink:to='loc_TableTextBlockSupplementAbstract' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationAbstract' xlink:to='loc_AssetRetirementObligationCurrent' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationAbstract' xlink:to='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:type='arc' />
+    <link:presentationArc order='30' preferredLabel='http://www.xbrl.org/2003/role/totalLabel' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationAbstract' xlink:to='loc_AssetRetirementObligation' xlink:type='arc' />
+    <link:presentationArc order='10' preferredLabel='http://www.xbrl.org/2003/role/periodStartLabel' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligation' xlink:type='arc' />
+    <link:presentationArc order='20' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligationLiabilitiesIncurred' xlink:type='arc' />
+    <link:presentationArc order='30' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligationLiabilitiesSettled' xlink:type='arc' />
+    <link:presentationArc order='40' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligationAccretionExpense' xlink:type='arc' />
+    <link:presentationArc order='50' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligationRevisionOfEstimate' xlink:type='arc' />
+    <link:presentationArc order='60' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligationForeignCurrencyTranslationGainLoss' xlink:type='arc' />
+    <link:presentationArc order='70' preferredLabel='http://www.xbrl.org/2003/role/totalLabel' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligationPeriodIncreaseDecrease' xlink:type='arc' />
+    <link:presentationArc order='80' preferredLabel='http://www.xbrl.org/2003/role/periodEndLabel' use='optional' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationRollForwardAnalysisRollForward' xlink:to='loc_AssetRetirementObligation_1' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:to='loc_MineReclamationAndClosingLiabilityNoncurrent' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:to='loc_OilAndGasReclamationLiabilityNoncurrent' xlink:type='arc' />
+    <link:presentationArc order='30' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:to='loc_DecommissioningLiabilityNoncurrent' xlink:type='arc' />
+    <link:presentationArc order='40' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:to='loc_SpentNuclearFuelObligationNoncurrent' xlink:type='arc' />
+    <link:presentationArc order='50' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:to='loc_AccruedCappingClosurePostClosureAndEnvironmentalCostsNoncurrent' xlink:type='arc' />
+    <link:presentationArc order='60' preferredLabel='http://www.xbrl.org/2003/role/totalLabel' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_AssetRetirementObligationsNoncurrentAbstract' xlink:to='loc_AssetRetirementObligationsNoncurrent' xlink:type='arc' />
+    <link:presentationArc order='10' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_TableTextBlockSupplementAbstract' xlink:to='loc_ScheduleOfAssetRetirementObligationsTableTextBlock' xlink:type='arc' />
+    <link:presentationArc order='20' xlink:arcrole='http://www.xbrl.org/2003/arcrole/parent-child' xlink:from='loc_TableTextBlockSupplementAbstract' xlink:to='loc_ScheduleOfChangeInAssetRetirementObligationTableTextBlock' xlink:type='arc' />
+  </link:presentationLink>
+</link:linkbase>

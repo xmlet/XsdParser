@@ -25,16 +25,16 @@ public class HtmlParseTest {
     static{
         ParserResult html5 = new ParserResult(getFilePath("html_5.xsd"));
         ParserResult partedHtml5 = new ParserResult(getFilePath("html_5_types.xsd"));
-        ParserResult html5Jar = new ParserResult("html_5.jar", "html_5_jar.xsd");
+//        ParserResult html5Jar = new ParserResult("html_5.jar", "html_5_jar.xsd");
 //        ParserResult partedHtml5Jar = new ParserResult("html_5.jar", "html_5_types_jar.xsd");
 
         parserResults.add(html5);
         parserResults.add(partedHtml5);
-        parserResults.add(html5Jar);
+//        parserResults.add(html5Jar);
 //        parserResults.add(partedHtml5Jar);
 
         parserNonPartedResults.add(html5);
-        parserNonPartedResults.add(html5Jar);
+//        parserNonPartedResults.add(html5Jar);
 
         parserPartedResults.add(partedHtml5);
 //        parserPartedResults.add(partedHtml5Jar);

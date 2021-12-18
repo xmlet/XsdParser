@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<xs:schema elementFormDefault='qualified' targetNamespace='http://fasb.org/us-arcroles/2021-01-31' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:us-arcroles='http://fasb.org/us-arcroles/2021-01-31' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <xs:annotation>
+    <xs:appinfo>
+      <link:arcroleType arcroleURI='http://fasb.org/us-gaap/arcrole/alt-concept-supersededConceptForPeriodOfAndAfterAdoption' cyclesAllowed='undirected' id='alt-concept-supersededConceptForPeriodOfAndAfterAdoption'>
+        <link:definition>Taxonomy Implementation Note: Alternative Concept for Superseded Concept For Period Of And After Adoption</link:definition>
+        <link:usedOn>link:definitionArc</link:usedOn>
+      </link:arcroleType>
+      <link:arcroleType arcroleURI='http://fasb.org/us-gaap/arcrole/concept-extensibleEnumerationLineItemLocation' cyclesAllowed='undirected' id='concept-extensibleEnumerationLineItemLocation'>
+        <link:definition>Taxonomy Implementation Note: When the element representing the concept is not separately disclosed in the financial statements, the extensible enumeration element is used to identify which particular element in the financial statements includes the value for that concept</link:definition>
+        <link:usedOn>link:definitionArc</link:usedOn>
+      </link:arcroleType>
+     <link:arcroleType arcroleURI='http://fasb.org/us-gaap/arcrole/identification' cyclesAllowed='undirected' id='identification'>
+        <link:definition>Taxonomy Implementation Note: Identifies Extensible Enumeration elements to be used when value is not disaggregated by the Axis</link:definition>
+        <link:usedOn>link:definitionArc</link:usedOn>
+      </link:arcroleType>	  
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

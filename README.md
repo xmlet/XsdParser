@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.1.5</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -331,6 +331,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.0
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/37" title="Trying to parse us-gaap taxonomy xsd, parser throws 'namespace for prefix 'xlink' has not been declared'">Issue 37</a> 
+            <b>Possible Breaking Change</b> - Changed DocumentBuilderFactory to be NameSpaceAware. Namespaces will now be validated.
+        </li>
+    </ul>
+</div>
 
 ### 1.1.5
 

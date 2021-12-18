@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/InvestmentHoldings' xlink:href='../elts/us-roles-2021-01-31.xsd#schedoi-hold' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/InvestmentHoldings' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentOwnedUnrecognizedUnrealizedAppreciationDepreciationNet' xlink:label='loc_InvestmentOwnedUnrecognizedUnrealizedAppreciationDepreciationNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentOwnedUnrecognizedUnrealizedAppreciation' xlink:label='loc_InvestmentOwnedUnrecognizedUnrealizedAppreciation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentOwnedUnrecognizedUnrealizedDepreciation' xlink:label='loc_InvestmentOwnedUnrecognizedUnrealizedDepreciation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentsInAndAdvancesToAffiliatesAtFairValuePeriodIncreaseDecrease' xlink:label='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValuePeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossAdditions' xlink:label='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossAdditions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossReductions' xlink:label='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossReductions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssetsNet' xlink:label='loc_AssetsNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentOwnedAtFairValue' xlink:label='loc_InvestmentOwnedAtFairValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentSoldNotYetPurchasedAtFairValue' xlink:label='loc_InvestmentSoldNotYetPurchasedAtFairValue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NonInvestmentAssetsLessNonInvestmentLiabilities' xlink:label='loc_NonInvestmentAssetsLessNonInvestmentLiabilities' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxBasisOfInvestmentsUnrealizedAppreciationDepreciationNet' xlink:label='loc_TaxBasisOfInvestmentsUnrealizedAppreciationDepreciationNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxBasisOfInvestmentsGrossUnrealizedAppreciation' xlink:label='loc_TaxBasisOfInvestmentsGrossUnrealizedAppreciation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxBasisOfInvestmentsGrossUnrealizedDepreciation' xlink:label='loc_TaxBasisOfInvestmentsGrossUnrealizedDepreciation' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InvestmentOwnedUnrecognizedUnrealizedAppreciationDepreciationNet' xlink:to='loc_InvestmentOwnedUnrecognizedUnrealizedAppreciation' xlink:type='arc' />
+    <link:calculationArc order='20' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InvestmentOwnedUnrecognizedUnrealizedAppreciationDepreciationNet' xlink:to='loc_InvestmentOwnedUnrecognizedUnrealizedDepreciation' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValuePeriodIncreaseDecrease' xlink:to='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossAdditions' xlink:type='arc' />
+    <link:calculationArc order='20' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValuePeriodIncreaseDecrease' xlink:to='loc_InvestmentsInAndAdvancesToAffiliatesAtFairValueGrossReductions' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_AssetsNet' xlink:to='loc_InvestmentOwnedAtFairValue' xlink:type='arc' />
+    <link:calculationArc order='20' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_AssetsNet' xlink:to='loc_InvestmentSoldNotYetPurchasedAtFairValue' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_AssetsNet' xlink:to='loc_NonInvestmentAssetsLessNonInvestmentLiabilities' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_TaxBasisOfInvestmentsUnrealizedAppreciationDepreciationNet' xlink:to='loc_TaxBasisOfInvestmentsGrossUnrealizedAppreciation' xlink:type='arc' />
+    <link:calculationArc order='20' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_TaxBasisOfInvestmentsUnrealizedAppreciationDepreciationNet' xlink:to='loc_TaxBasisOfInvestmentsGrossUnrealizedDepreciation' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

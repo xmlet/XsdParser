@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<xs:schema attributeFormDefault='unqualified' elementFormDefault='qualified' targetNamespace='http://fasb.org/codification-part/2021-01-31' xmlns:codification-part='http://fasb.org/codification-part/2021-01-31' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+  <xs:element id='codification-part_Topic' name='Topic' substitutionGroup='link:part' type='xs:string' />
+  <xs:element id='codification-part_SubTopic' name='SubTopic' substitutionGroup='link:part' type='xs:string' />
+  <xs:element id='codification-part_Glossary' name='Glossary' substitutionGroup='link:part' type='xs:string' />
+  <xs:element id='codification-part_URI' name='URI' substitutionGroup='link:part' type='xs:anyURI' />
+</xs:schema>

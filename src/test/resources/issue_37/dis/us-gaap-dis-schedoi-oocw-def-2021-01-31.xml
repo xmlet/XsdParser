@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/OpenOptionContractsWritten' xlink:href='../elts/us-roles-2021-01-31.xsd#schedoi-oocw' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/OpenOptionContractsWritten' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenLineItems' xlink:label='loc_OpenOptionContractsWrittenLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTable' xlink:label='loc_OpenOptionContractsWrittenTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/OpenOptionContractsWritten' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentSecondaryCategorizationAxis' xlink:label='loc_InvestmentSecondaryCategorizationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentsBySecondaryCategorizationDomain' xlink:label='loc_InvestmentsBySecondaryCategorizationDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.sec.gov/dei/2021/dei-2021.xsd#dei_LegalEntityAxis' xlink:label='loc_LegalEntityAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.sec.gov/dei/2021/dei-2021.xsd#dei_EntityDomain' xlink:label='loc_EntityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTypeAxis' xlink:label='loc_OpenOptionContractsWrittenTypeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTypeDomain' xlink:label='loc_OpenOptionContractsWrittenTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_InvestmentSecondaryCategorizationAxis' xlink:to='loc_InvestmentsBySecondaryCategorizationDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_LegalEntityAxis' xlink:to='loc_EntityDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_OpenOptionContractsWrittenTypeAxis' xlink:to='loc_OpenOptionContractsWrittenTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/OpenOptionContractsWritten' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentSecondaryCategorizationAxis' xlink:label='loc_InvestmentSecondaryCategorizationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentsBySecondaryCategorizationDomain' xlink:label='loc_InvestmentsBySecondaryCategorizationDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.sec.gov/dei/2021/dei-2021.xsd#dei_LegalEntityAxis' xlink:label='loc_LegalEntityAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.sec.gov/dei/2021/dei-2021.xsd#dei_EntityDomain' xlink:label='loc_EntityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTypeAxis' xlink:label='loc_OpenOptionContractsWrittenTypeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTypeDomain' xlink:label='loc_OpenOptionContractsWrittenTypeDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_InvestmentSecondaryCategorizationAxis' xlink:to='loc_InvestmentsBySecondaryCategorizationDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_LegalEntityAxis' xlink:to='loc_EntityDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_OpenOptionContractsWrittenTypeAxis' xlink:to='loc_OpenOptionContractsWrittenTypeDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/OpenOptionContractsWritten' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTypeDomain' xlink:label='loc_OpenOptionContractsWrittenTypeDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CallOptionMember' xlink:label='loc_CallOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PutOptionMember' xlink:label='loc_PutOptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenLineItems' xlink:label='loc_OpenOptionContractsWrittenLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenNumberOfContracts' xlink:label='loc_OpenOptionContractsWrittenNumberOfContracts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenNumberOfShares' xlink:label='loc_OpenOptionContractsWrittenNumberOfShares' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenExercisePrice' xlink:label='loc_OpenOptionContractsWrittenExercisePrice' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenExpirationDates' xlink:label='loc_OpenOptionContractsWrittenExpirationDates' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenPremiums' xlink:label='loc_OpenOptionContractsWrittenPremiums' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenAtFairValue' xlink:label='loc_OpenOptionContractsWrittenAtFairValue' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenTypeDomain' xlink:to='loc_CallOptionMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenTypeDomain' xlink:to='loc_PutOptionMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenNumberOfContracts' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenNumberOfShares' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenExercisePrice' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenExpirationDates' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenPremiums' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OpenOptionContractsWrittenLineItems' xlink:to='loc_OpenOptionContractsWrittenAtFairValue' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/OpenOptionContractsWritten' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTable' xlink:label='loc_OpenOptionContractsWrittenTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenOptionContractsWrittenTypeAxis' xlink:label='loc_OpenOptionContractsWrittenTypeAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentSecondaryCategorizationAxis' xlink:label='loc_InvestmentSecondaryCategorizationAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.sec.gov/dei/2021/dei-2021.xsd#dei_LegalEntityAxis' xlink:label='loc_LegalEntityAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OpenOptionContractsWrittenTable' xlink:to='loc_OpenOptionContractsWrittenTypeAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OpenOptionContractsWrittenTable' xlink:to='loc_InvestmentSecondaryCategorizationAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OpenOptionContractsWrittenTable' xlink:to='loc_LegalEntityAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

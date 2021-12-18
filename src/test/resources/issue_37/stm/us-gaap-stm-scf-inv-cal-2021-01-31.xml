@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsIndirectInvestmentBasedOperations' xlink:href='../elts/us-roles-2021-01-31.xsd#scf-inv' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/statement/StatementOfCashFlowsIndirectInvestmentBasedOperations' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromRepaymentsOfShortTermDebt' xlink:label='loc_ProceedsFromRepaymentsOfShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromShortTermDebt' xlink:label='loc_ProceedsFromShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromLinesOfCredit' xlink:label='loc_ProceedsFromLinesOfCredit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromBankDebt' xlink:label='loc_ProceedsFromBankDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromIssuanceOfCommercialPaper' xlink:label='loc_ProceedsFromIssuanceOfCommercialPaper' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromSubordinatedShortTermDebt' xlink:label='loc_ProceedsFromSubordinatedShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromNotesPayable' xlink:label='loc_ProceedsFromNotesPayable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromConstructionLoansPayable' xlink:label='loc_ProceedsFromConstructionLoansPayable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromOtherShortTermDebt' xlink:label='loc_ProceedsFromOtherShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfShortTermDebt' xlink:label='loc_RepaymentsOfShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfLinesOfCredit' xlink:label='loc_RepaymentsOfLinesOfCredit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfBankDebt' xlink:label='loc_RepaymentsOfBankDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfCommercialPaper' xlink:label='loc_RepaymentsOfCommercialPaper' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfSubordinatedShortTermDebt' xlink:label='loc_RepaymentsOfSubordinatedShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfNotesPayable' xlink:label='loc_RepaymentsOfNotesPayable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfConstructionLoansPayable' xlink:label='loc_RepaymentsOfConstructionLoansPayable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RepaymentsOfOtherShortTermDebt' xlink:label='loc_RepaymentsOfOtherShortTermDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromDebtNetOfIssuanceCosts' xlink:label='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromIssuanceOfLongTermDebtAndCapitalSecuritiesNet' xlink:label='loc_ProceedsFromIssuanceOfLongTermDebtAndCapitalSecuritiesNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdditionsToContractHoldersFunds' xlink:label='loc_AdditionsToContractHoldersFunds' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromAnnuitiesAndInvestmentCertificates' xlink:label='loc_ProceedsFromAnnuitiesAndInvestmentCertificates' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromOtherDebt' xlink:label='loc_ProceedsFromOtherDebt' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ProceedsFromDepositsAppliedToDebtRetirements' xlink:label='loc_ProceedsFromDepositsAppliedToDebtRetirements' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PaymentsOfFinancingCosts' xlink:label='loc_PaymentsOfFinancingCosts' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromRepaymentsOfShortTermDebt' xlink:to='loc_ProceedsFromShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromLinesOfCredit' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromBankDebt' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromIssuanceOfCommercialPaper' xlink:type='arc' />
+    <link:calculationArc order='40' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromSubordinatedShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='50' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromNotesPayable' xlink:type='arc' />
+    <link:calculationArc order='60' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromConstructionLoansPayable' xlink:type='arc' />
+    <link:calculationArc order='70' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromShortTermDebt' xlink:to='loc_ProceedsFromOtherShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='20' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromRepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfLinesOfCredit' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfBankDebt' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfCommercialPaper' xlink:type='arc' />
+    <link:calculationArc order='40' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfSubordinatedShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='50' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfNotesPayable' xlink:type='arc' />
+    <link:calculationArc order='60' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfConstructionLoansPayable' xlink:type='arc' />
+    <link:calculationArc order='70' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_RepaymentsOfShortTermDebt' xlink:to='loc_RepaymentsOfOtherShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromIssuanceOfCommercialPaper' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromBankDebt' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromSubordinatedShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='40' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromLinesOfCredit' xlink:type='arc' />
+    <link:calculationArc order='50' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromNotesPayable' xlink:type='arc' />
+    <link:calculationArc order='60' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromOtherShortTermDebt' xlink:type='arc' />
+    <link:calculationArc order='70' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromConstructionLoansPayable' xlink:type='arc' />
+    <link:calculationArc order='80' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromIssuanceOfLongTermDebtAndCapitalSecuritiesNet' xlink:type='arc' />
+    <link:calculationArc order='90' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_AdditionsToContractHoldersFunds' xlink:type='arc' />
+    <link:calculationArc order='100' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromAnnuitiesAndInvestmentCertificates' xlink:type='arc' />
+    <link:calculationArc order='110' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromOtherDebt' xlink:type='arc' />
+    <link:calculationArc order='120' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_ProceedsFromDepositsAppliedToDebtRetirements' xlink:type='arc' />
+    <link:calculationArc order='130' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_ProceedsFromDebtNetOfIssuanceCosts' xlink:to='loc_PaymentsOfFinancingCosts' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

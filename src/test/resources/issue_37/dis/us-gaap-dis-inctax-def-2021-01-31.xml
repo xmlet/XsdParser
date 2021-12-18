@@ -1,0 +1,813 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesValuationAllowanceTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesValuationAllowanceTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesTaxCreditCarryforwardTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesTaxCreditCarryforwardTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesOperatingLossCarryforwardsTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesOperatingLossCarryforwardsTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxHolidayTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesIncomeTaxHolidayTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxExaminationTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesIncomeTaxExaminationTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxContingencyTable' xlink:href='../elts/us-roles-2021-01-31.xsd#IncomeTaxesIncomeTaxContingencyTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxContingencyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxContingencyLineItems' xlink:label='loc_IncomeTaxContingencyLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxContingencyTable' xlink:label='loc_IncomeTaxContingencyTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_IncomeTaxContingencyLineItems' xlink:to='loc_IncomeTaxContingencyTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxContingencyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_TaxPeriodAxis' xlink:to='loc_TaxPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxContingencyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_TaxPeriodAxis' xlink:to='loc_TaxPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxContingencyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DomesticCountryMember' xlink:label='loc_DomesticCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCountryMember' xlink:label='loc_ForeignCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAndLocalJurisdictionMember' xlink:label='loc_StateAndLocalJurisdictionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternalRevenueServiceIRSMember' xlink:label='loc_InternalRevenueServiceIRSMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HerMajestysRevenueAndCustomsHMRCMember' xlink:label='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueHongKongMember' xlink:label='loc_InlandRevenueHongKongMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueSingaporeIRASMember' xlink:label='loc_InlandRevenueSingaporeIRASMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaliforniaFranchiseTaxBoardMember' xlink:label='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AustralianTaxationOfficeMember' xlink:label='loc_AustralianTaxationOfficeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:label='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CanadaRevenueAgencyMember' xlink:label='loc_CanadaRevenueAgencyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwissFederalTaxAdministrationFTAMember' xlink:label='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OfficeOfTheTaxCommissionerBermudaMember' xlink:label='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdministrationOfTheTreasuryBelgiumMember' xlink:label='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:label='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FederalMinistryOfFinanceGermanyMember' xlink:label='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueCommissionersIrelandMember' xlink:label='loc_RevenueCommissionersIrelandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfFinanceIndiaMember' xlink:label='loc_MinistryOfFinanceIndiaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IsraelTaxAuthorityMember' xlink:label='loc_IsraelTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:label='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NationalTaxAgencyJapanMember' xlink:label='loc_NationalTaxAgencyJapanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LuxembourgInlandRevenueMember' xlink:label='loc_LuxembourgInlandRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaymanIslandsTaxInformationAuthorityMember' xlink:label='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MexicanTaxAuthorityMember' xlink:label='loc_MexicanTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAndCustomsAdministrationNetherlandsMember' xlink:label='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewJerseyDivisionOfTaxationMember' xlink:label='loc_NewJerseyDivisionOfTaxationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:label='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAdministrationOfTaxationChinaMember' xlink:label='loc_StateAdministrationOfTaxationChinaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAuthoritySpainMember' xlink:label='loc_TaxAuthoritySpainMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxContingencyLineItems' xlink:label='loc_IncomeTaxContingencyLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpenseAbstract' xlink:label='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpenseAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccruedAbstract' xlink:label='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccruedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:label='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsThatWouldImpactEffectiveTaxRate' xlink:label='loc_UnrecognizedTaxBenefitsThatWouldImpactEffectiveTaxRate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OpenTaxYear' xlink:label='loc_OpenTaxYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefits' xlink:label='loc_UnrecognizedTaxBenefits' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncreasesResultingFromPriorPeriodTaxPositions' xlink:label='loc_UnrecognizedTaxBenefitsIncreasesResultingFromPriorPeriodTaxPositions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsDecreasesResultingFromPriorPeriodTaxPositions' xlink:label='loc_UnrecognizedTaxBenefitsDecreasesResultingFromPriorPeriodTaxPositions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncreasesResultingFromCurrentPeriodTaxPositions' xlink:label='loc_UnrecognizedTaxBenefitsIncreasesResultingFromCurrentPeriodTaxPositions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsDecreasesResultingFromCurrentPeriodTaxPositions' xlink:label='loc_UnrecognizedTaxBenefitsDecreasesResultingFromCurrentPeriodTaxPositions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncreasesResultingFromSettlementsWithTaxingAuthorities' xlink:label='loc_UnrecognizedTaxBenefitsIncreasesResultingFromSettlementsWithTaxingAuthorities' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsDecreasesResultingFromSettlementsWithTaxingAuthorities' xlink:label='loc_UnrecognizedTaxBenefitsDecreasesResultingFromSettlementsWithTaxingAuthorities' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncreasesResultingFromAcquisition' xlink:label='loc_UnrecognizedTaxBenefitsIncreasesResultingFromAcquisition' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsDecreasesResultingFromAcquisition' xlink:label='loc_UnrecognizedTaxBenefitsDecreasesResultingFromAcquisition' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsReductionsResultingFromLapseOfApplicableStatuteOfLimitations' xlink:label='loc_UnrecognizedTaxBenefitsReductionsResultingFromLapseOfApplicableStatuteOfLimitations' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsDecreasesResultingFromForeignCurrencyTranslation' xlink:label='loc_UnrecognizedTaxBenefitsDecreasesResultingFromForeignCurrencyTranslation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncreasesResultingFromForeignCurrencyTranslation' xlink:label='loc_UnrecognizedTaxBenefitsIncreasesResultingFromForeignCurrencyTranslation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsPeriodIncreaseDecrease' xlink:label='loc_UnrecognizedTaxBenefitsPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2006Member' xlink:label='loc_TaxYear2006Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2007Member' xlink:label='loc_TaxYear2007Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2008Member' xlink:label='loc_TaxYear2008Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2009Member' xlink:label='loc_TaxYear2009Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2010Member' xlink:label='loc_TaxYear2010Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2011Member' xlink:label='loc_TaxYear2011Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2012Member' xlink:label='loc_TaxYear2012Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2013Member' xlink:label='loc_TaxYear2013Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2014Member' xlink:label='loc_TaxYear2014Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2015Member' xlink:label='loc_TaxYear2015Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2016Member' xlink:label='loc_TaxYear2016Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2017Member' xlink:label='loc_TaxYear2017Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2018Member' xlink:label='loc_TaxYear2018Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2019Member' xlink:label='loc_TaxYear2019Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2020Member' xlink:label='loc_TaxYear2020Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2021Member' xlink:label='loc_TaxYear2021Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EarliestTaxYearMember' xlink:label='loc_EarliestTaxYearMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LatestTaxYearMember' xlink:label='loc_LatestTaxYearMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAccrued' xlink:label='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAccrued' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsInterestOnIncomeTaxesAccrued' xlink:label='loc_UnrecognizedTaxBenefitsInterestOnIncomeTaxesAccrued' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccrued' xlink:label='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccrued' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncomeTaxPenaltiesExpense' xlink:label='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsInterestOnIncomeTaxesExpense' xlink:label='loc_UnrecognizedTaxBenefitsInterestOnIncomeTaxesExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpense' xlink:label='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpense' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_DomesticCountryMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_ForeignCountryMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_StateAndLocalJurisdictionMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InternalRevenueServiceIRSMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueHongKongMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueSingaporeIRASMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AustralianTaxationOfficeMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CanadaRevenueAgencyMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_RevenueCommissionersIrelandMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfFinanceIndiaMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_IsraelTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NationalTaxAgencyJapanMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_LuxembourgInlandRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MexicanTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewJerseyDivisionOfTaxationMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_StateAdministrationOfTaxationChinaMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAuthoritySpainMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxContingencyLineItems' xlink:to='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpenseAbstract' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxContingencyLineItems' xlink:to='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccruedAbstract' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxContingencyLineItems' xlink:to='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxContingencyLineItems' xlink:to='loc_UnrecognizedTaxBenefitsThatWouldImpactEffectiveTaxRate' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxContingencyLineItems' xlink:to='loc_OpenTaxYear' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefits' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsIncreasesResultingFromPriorPeriodTaxPositions' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsDecreasesResultingFromPriorPeriodTaxPositions' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsIncreasesResultingFromCurrentPeriodTaxPositions' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsDecreasesResultingFromCurrentPeriodTaxPositions' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsIncreasesResultingFromSettlementsWithTaxingAuthorities' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsDecreasesResultingFromSettlementsWithTaxingAuthorities' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsIncreasesResultingFromAcquisition' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsDecreasesResultingFromAcquisition' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsReductionsResultingFromLapseOfApplicableStatuteOfLimitations' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsDecreasesResultingFromForeignCurrencyTranslation' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsIncreasesResultingFromForeignCurrencyTranslation' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ReconciliationOfUnrecognizedTaxBenefitsExcludingAmountsPertainingToExaminedTaxReturnsRollForward' xlink:to='loc_UnrecognizedTaxBenefitsPeriodIncreaseDecrease' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2006Member' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2007Member' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2008Member' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2009Member' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2010Member' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2011Member' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2012Member' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2013Member' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2014Member' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2015Member' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2016Member' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2017Member' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2018Member' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2019Member' xlink:type='arc' />
+    <link:definitionArc order='44.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2020Member' xlink:type='arc' />
+    <link:definitionArc order='45.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2021Member' xlink:type='arc' />
+    <link:definitionArc order='46.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_EarliestTaxYearMember' xlink:type='arc' />
+    <link:definitionArc order='47.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_LatestTaxYearMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccruedAbstract' xlink:to='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAccrued' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccruedAbstract' xlink:to='loc_UnrecognizedTaxBenefitsInterestOnIncomeTaxesAccrued' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccruedAbstract' xlink:to='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestAccrued' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpenseAbstract' xlink:to='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesExpense' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpenseAbstract' xlink:to='loc_UnrecognizedTaxBenefitsInterestOnIncomeTaxesExpense' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpenseAbstract' xlink:to='loc_UnrecognizedTaxBenefitsIncomeTaxPenaltiesAndInterestExpense' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxContingencyTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxContingencyTable' xlink:label='loc_IncomeTaxContingencyTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxContingencyTable' xlink:to='loc_IncomeTaxAuthorityAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxContingencyTable' xlink:to='loc_IncomeTaxAuthorityNameAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxContingencyTable' xlink:to='loc_TaxPeriodAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxExaminationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationLineItems' xlink:label='loc_IncomeTaxExaminationLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationTable' xlink:label='loc_IncomeTaxExaminationTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxExaminationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxExaminationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxExaminationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DomesticCountryMember' xlink:label='loc_DomesticCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCountryMember' xlink:label='loc_ForeignCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAndLocalJurisdictionMember' xlink:label='loc_StateAndLocalJurisdictionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternalRevenueServiceIRSMember' xlink:label='loc_InternalRevenueServiceIRSMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HerMajestysRevenueAndCustomsHMRCMember' xlink:label='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueHongKongMember' xlink:label='loc_InlandRevenueHongKongMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueSingaporeIRASMember' xlink:label='loc_InlandRevenueSingaporeIRASMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaliforniaFranchiseTaxBoardMember' xlink:label='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AustralianTaxationOfficeMember' xlink:label='loc_AustralianTaxationOfficeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:label='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CanadaRevenueAgencyMember' xlink:label='loc_CanadaRevenueAgencyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwissFederalTaxAdministrationFTAMember' xlink:label='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OfficeOfTheTaxCommissionerBermudaMember' xlink:label='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdministrationOfTheTreasuryBelgiumMember' xlink:label='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:label='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FederalMinistryOfFinanceGermanyMember' xlink:label='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueCommissionersIrelandMember' xlink:label='loc_RevenueCommissionersIrelandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfFinanceIndiaMember' xlink:label='loc_MinistryOfFinanceIndiaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IsraelTaxAuthorityMember' xlink:label='loc_IsraelTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:label='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NationalTaxAgencyJapanMember' xlink:label='loc_NationalTaxAgencyJapanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LuxembourgInlandRevenueMember' xlink:label='loc_LuxembourgInlandRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaymanIslandsTaxInformationAuthorityMember' xlink:label='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MexicanTaxAuthorityMember' xlink:label='loc_MexicanTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAndCustomsAdministrationNetherlandsMember' xlink:label='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewJerseyDivisionOfTaxationMember' xlink:label='loc_NewJerseyDivisionOfTaxationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:label='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAdministrationOfTaxationChinaMember' xlink:label='loc_StateAdministrationOfTaxationChinaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAuthoritySpainMember' xlink:label='loc_TaxAuthoritySpainMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationLineItems' xlink:label='loc_IncomeTaxExaminationLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationDescription' xlink:label='loc_IncomeTaxExaminationDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationYearUnderExamination' xlink:label='loc_IncomeTaxExaminationYearUnderExamination' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationLikelihoodOfUnfavorableSettlement' xlink:label='loc_IncomeTaxExaminationLikelihoodOfUnfavorableSettlement' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationEstimateOfPossibleLoss' xlink:label='loc_IncomeTaxExaminationEstimateOfPossibleLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationPenaltiesAndInterestExpenseAbstract' xlink:label='loc_IncomeTaxExaminationPenaltiesAndInterestExpenseAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationPenaltiesAndInterestAccruedAbstract' xlink:label='loc_IncomeTaxExaminationPenaltiesAndInterestAccruedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationIncreaseDecreaseInLiabilityFromPriorYear' xlink:label='loc_IncomeTaxExaminationIncreaseDecreaseInLiabilityFromPriorYear' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationLiabilityRefundAdjustmentFromSettlementWithTaxingAuthority' xlink:label='loc_IncomeTaxExaminationLiabilityRefundAdjustmentFromSettlementWithTaxingAuthority' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationPenaltiesAccrued' xlink:label='loc_IncomeTaxExaminationPenaltiesAccrued' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationInterestAccrued' xlink:label='loc_IncomeTaxExaminationInterestAccrued' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationPenaltiesAndInterestAccrued' xlink:label='loc_IncomeTaxExaminationPenaltiesAndInterestAccrued' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationInterestExpense' xlink:label='loc_IncomeTaxExaminationInterestExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationPenaltiesExpense' xlink:label='loc_IncomeTaxExaminationPenaltiesExpense' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationPenaltiesAndInterestExpense' xlink:label='loc_IncomeTaxExaminationPenaltiesAndInterestExpense' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MaximumMember' xlink:label='loc_MaximumMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MinimumMember' xlink:label='loc_MinimumMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_DomesticCountryMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_ForeignCountryMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_StateAndLocalJurisdictionMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InternalRevenueServiceIRSMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueHongKongMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueSingaporeIRASMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AustralianTaxationOfficeMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CanadaRevenueAgencyMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_RevenueCommissionersIrelandMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfFinanceIndiaMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_IsraelTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NationalTaxAgencyJapanMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_LuxembourgInlandRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MexicanTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewJerseyDivisionOfTaxationMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_StateAdministrationOfTaxationChinaMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAuthoritySpainMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationYearUnderExamination' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationLikelihoodOfUnfavorableSettlement' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationEstimateOfPossibleLoss' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationPenaltiesAndInterestExpenseAbstract' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationPenaltiesAndInterestAccruedAbstract' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationIncreaseDecreaseInLiabilityFromPriorYear' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationLineItems' xlink:to='loc_IncomeTaxExaminationLiabilityRefundAdjustmentFromSettlementWithTaxingAuthority' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationPenaltiesAndInterestAccruedAbstract' xlink:to='loc_IncomeTaxExaminationPenaltiesAccrued' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationPenaltiesAndInterestAccruedAbstract' xlink:to='loc_IncomeTaxExaminationInterestAccrued' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationPenaltiesAndInterestAccruedAbstract' xlink:to='loc_IncomeTaxExaminationPenaltiesAndInterestAccrued' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationPenaltiesAndInterestExpenseAbstract' xlink:to='loc_IncomeTaxExaminationInterestExpense' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationPenaltiesAndInterestExpenseAbstract' xlink:to='loc_IncomeTaxExaminationPenaltiesExpense' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxExaminationPenaltiesAndInterestExpenseAbstract' xlink:to='loc_IncomeTaxExaminationPenaltiesAndInterestExpense' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MaximumMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MinimumMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxExaminationTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxExaminationTable' xlink:label='loc_IncomeTaxExaminationTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxExaminationTable' xlink:to='loc_IncomeTaxAuthorityAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxExaminationTable' xlink:to='loc_IncomeTaxAuthorityNameAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxExaminationTable' xlink:to='loc_RangeAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxHolidayTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayLineItems' xlink:label='loc_IncomeTaxHolidayLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayTable' xlink:label='loc_IncomeTaxHolidayTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_IncomeTaxHolidayLineItems' xlink:to='loc_IncomeTaxHolidayTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxHolidayTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxHolidayTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxHolidayTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DomesticCountryMember' xlink:label='loc_DomesticCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCountryMember' xlink:label='loc_ForeignCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAndLocalJurisdictionMember' xlink:label='loc_StateAndLocalJurisdictionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternalRevenueServiceIRSMember' xlink:label='loc_InternalRevenueServiceIRSMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HerMajestysRevenueAndCustomsHMRCMember' xlink:label='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueHongKongMember' xlink:label='loc_InlandRevenueHongKongMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueSingaporeIRASMember' xlink:label='loc_InlandRevenueSingaporeIRASMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaliforniaFranchiseTaxBoardMember' xlink:label='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AustralianTaxationOfficeMember' xlink:label='loc_AustralianTaxationOfficeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:label='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CanadaRevenueAgencyMember' xlink:label='loc_CanadaRevenueAgencyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwissFederalTaxAdministrationFTAMember' xlink:label='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OfficeOfTheTaxCommissionerBermudaMember' xlink:label='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdministrationOfTheTreasuryBelgiumMember' xlink:label='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:label='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FederalMinistryOfFinanceGermanyMember' xlink:label='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueCommissionersIrelandMember' xlink:label='loc_RevenueCommissionersIrelandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfFinanceIndiaMember' xlink:label='loc_MinistryOfFinanceIndiaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IsraelTaxAuthorityMember' xlink:label='loc_IsraelTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:label='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NationalTaxAgencyJapanMember' xlink:label='loc_NationalTaxAgencyJapanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LuxembourgInlandRevenueMember' xlink:label='loc_LuxembourgInlandRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaymanIslandsTaxInformationAuthorityMember' xlink:label='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MexicanTaxAuthorityMember' xlink:label='loc_MexicanTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAndCustomsAdministrationNetherlandsMember' xlink:label='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewJerseyDivisionOfTaxationMember' xlink:label='loc_NewJerseyDivisionOfTaxationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:label='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAdministrationOfTaxationChinaMember' xlink:label='loc_StateAdministrationOfTaxationChinaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAuthoritySpainMember' xlink:label='loc_TaxAuthoritySpainMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayLineItems' xlink:label='loc_IncomeTaxHolidayLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayDescription' xlink:label='loc_IncomeTaxHolidayDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayTerminationDate' xlink:label='loc_IncomeTaxHolidayTerminationDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayAggregateDollarAmount' xlink:label='loc_IncomeTaxHolidayAggregateDollarAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayIncomeTaxBenefitsPerShare' xlink:label='loc_IncomeTaxHolidayIncomeTaxBenefitsPerShare' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_DomesticCountryMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_ForeignCountryMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_StateAndLocalJurisdictionMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InternalRevenueServiceIRSMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueHongKongMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueSingaporeIRASMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AustralianTaxationOfficeMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CanadaRevenueAgencyMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_RevenueCommissionersIrelandMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfFinanceIndiaMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_IsraelTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NationalTaxAgencyJapanMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_LuxembourgInlandRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MexicanTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewJerseyDivisionOfTaxationMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_StateAdministrationOfTaxationChinaMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAuthoritySpainMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxHolidayLineItems' xlink:to='loc_IncomeTaxHolidayDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxHolidayLineItems' xlink:to='loc_IncomeTaxHolidayTerminationDate' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxHolidayLineItems' xlink:to='loc_IncomeTaxHolidayAggregateDollarAmount' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxHolidayLineItems' xlink:to='loc_IncomeTaxHolidayIncomeTaxBenefitsPerShare' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesIncomeTaxHolidayTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxHolidayTable' xlink:label='loc_IncomeTaxHolidayTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxHolidayTable' xlink:to='loc_IncomeTaxAuthorityAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_IncomeTaxHolidayTable' xlink:to='loc_IncomeTaxAuthorityNameAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesOperatingLossCarryforwardsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsLineItems' xlink:label='loc_OperatingLossCarryforwardsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsTable' xlink:label='loc_OperatingLossCarryforwardsTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_OperatingLossCarryforwardsLineItems' xlink:to='loc_OperatingLossCarryforwardsTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesOperatingLossCarryforwardsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_TaxPeriodAxis' xlink:to='loc_TaxPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesOperatingLossCarryforwardsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityAxis' xlink:to='loc_IncomeTaxAuthorityDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_TaxPeriodAxis' xlink:to='loc_TaxPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesOperatingLossCarryforwardsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityDomain' xlink:label='loc_IncomeTaxAuthorityDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DomesticCountryMember' xlink:label='loc_DomesticCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ForeignCountryMember' xlink:label='loc_ForeignCountryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAndLocalJurisdictionMember' xlink:label='loc_StateAndLocalJurisdictionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternalRevenueServiceIRSMember' xlink:label='loc_InternalRevenueServiceIRSMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HerMajestysRevenueAndCustomsHMRCMember' xlink:label='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueHongKongMember' xlink:label='loc_InlandRevenueHongKongMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueSingaporeIRASMember' xlink:label='loc_InlandRevenueSingaporeIRASMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaliforniaFranchiseTaxBoardMember' xlink:label='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AustralianTaxationOfficeMember' xlink:label='loc_AustralianTaxationOfficeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:label='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CanadaRevenueAgencyMember' xlink:label='loc_CanadaRevenueAgencyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwissFederalTaxAdministrationFTAMember' xlink:label='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OfficeOfTheTaxCommissionerBermudaMember' xlink:label='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdministrationOfTheTreasuryBelgiumMember' xlink:label='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:label='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FederalMinistryOfFinanceGermanyMember' xlink:label='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueCommissionersIrelandMember' xlink:label='loc_RevenueCommissionersIrelandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfFinanceIndiaMember' xlink:label='loc_MinistryOfFinanceIndiaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IsraelTaxAuthorityMember' xlink:label='loc_IsraelTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:label='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NationalTaxAgencyJapanMember' xlink:label='loc_NationalTaxAgencyJapanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LuxembourgInlandRevenueMember' xlink:label='loc_LuxembourgInlandRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaymanIslandsTaxInformationAuthorityMember' xlink:label='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MexicanTaxAuthorityMember' xlink:label='loc_MexicanTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAndCustomsAdministrationNetherlandsMember' xlink:label='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewJerseyDivisionOfTaxationMember' xlink:label='loc_NewJerseyDivisionOfTaxationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:label='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAdministrationOfTaxationChinaMember' xlink:label='loc_StateAdministrationOfTaxationChinaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAuthoritySpainMember' xlink:label='loc_TaxAuthoritySpainMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsLineItems' xlink:label='loc_OperatingLossCarryforwardsLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwards' xlink:label='loc_OperatingLossCarryforwards' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsExpirationDate' xlink:label='loc_OperatingLossCarryforwardsExpirationDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsLimitationsOnUse' xlink:label='loc_OperatingLossCarryforwardsLimitationsOnUse' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxAssetsOperatingLossCarryforwards' xlink:label='loc_DeferredTaxAssetsOperatingLossCarryforwards' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsValuationAllowance' xlink:label='loc_OperatingLossCarryforwardsValuationAllowance' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2006Member' xlink:label='loc_TaxYear2006Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2007Member' xlink:label='loc_TaxYear2007Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2008Member' xlink:label='loc_TaxYear2008Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2009Member' xlink:label='loc_TaxYear2009Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2010Member' xlink:label='loc_TaxYear2010Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2011Member' xlink:label='loc_TaxYear2011Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2012Member' xlink:label='loc_TaxYear2012Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2013Member' xlink:label='loc_TaxYear2013Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2014Member' xlink:label='loc_TaxYear2014Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2015Member' xlink:label='loc_TaxYear2015Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2016Member' xlink:label='loc_TaxYear2016Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2017Member' xlink:label='loc_TaxYear2017Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2018Member' xlink:label='loc_TaxYear2018Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2019Member' xlink:label='loc_TaxYear2019Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2020Member' xlink:label='loc_TaxYear2020Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2021Member' xlink:label='loc_TaxYear2021Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EarliestTaxYearMember' xlink:label='loc_EarliestTaxYearMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LatestTaxYearMember' xlink:label='loc_LatestTaxYearMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_DomesticCountryMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_ForeignCountryMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityDomain' xlink:to='loc_StateAndLocalJurisdictionMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InternalRevenueServiceIRSMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueHongKongMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueSingaporeIRASMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AustralianTaxationOfficeMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CanadaRevenueAgencyMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_RevenueCommissionersIrelandMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfFinanceIndiaMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_IsraelTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NationalTaxAgencyJapanMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_LuxembourgInlandRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MexicanTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewJerseyDivisionOfTaxationMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_StateAdministrationOfTaxationChinaMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAuthoritySpainMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OperatingLossCarryforwardsLineItems' xlink:to='loc_OperatingLossCarryforwards' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OperatingLossCarryforwardsLineItems' xlink:to='loc_OperatingLossCarryforwardsExpirationDate' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OperatingLossCarryforwardsLineItems' xlink:to='loc_OperatingLossCarryforwardsLimitationsOnUse' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OperatingLossCarryforwardsLineItems' xlink:to='loc_DeferredTaxAssetsOperatingLossCarryforwards' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_OperatingLossCarryforwardsLineItems' xlink:to='loc_OperatingLossCarryforwardsValuationAllowance' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2006Member' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2007Member' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2008Member' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2009Member' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2010Member' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2011Member' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2012Member' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2013Member' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2014Member' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2015Member' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2016Member' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2017Member' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2018Member' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2019Member' xlink:type='arc' />
+    <link:definitionArc order='44.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2020Member' xlink:type='arc' />
+    <link:definitionArc order='45.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2021Member' xlink:type='arc' />
+    <link:definitionArc order='46.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_EarliestTaxYearMember' xlink:type='arc' />
+    <link:definitionArc order='47.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_LatestTaxYearMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesOperatingLossCarryforwardsTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OperatingLossCarryforwardsTable' xlink:label='loc_OperatingLossCarryforwardsTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityAxis' xlink:label='loc_IncomeTaxAuthorityAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OperatingLossCarryforwardsTable' xlink:to='loc_IncomeTaxAuthorityAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OperatingLossCarryforwardsTable' xlink:to='loc_IncomeTaxAuthorityNameAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_OperatingLossCarryforwardsTable' xlink:to='loc_TaxPeriodAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:label='loc_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:label='loc_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_RangeAxis' xlink:to='loc_RangeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleAmountOfUnrecordedBenefit' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleAmountOfUnrecordedBenefit' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsNatureOfEvent' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsNatureOfEvent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncreaseInUnrecognizedTaxBenefitsIsReasonablyPossible' xlink:label='loc_IncreaseInUnrecognizedTaxBenefitsIsReasonablyPossible' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DecreaseInUnrecognizedTaxBenefitsIsReasonablyPossible' xlink:label='loc_DecreaseInUnrecognizedTaxBenefitsIsReasonablyPossible' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleEstimatedRangeNotPossible' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleEstimatedRangeNotPossible' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleOtherInformation' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleOtherInformation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SettlementWithTaxingAuthorityMember' xlink:label='loc_SettlementWithTaxingAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeMember' xlink:label='loc_RangeMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MaximumMember' xlink:label='loc_MaximumMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MinimumMember' xlink:label='loc_MinimumMember' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleAmountOfUnrecordedBenefit' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsNatureOfEvent' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_IncreaseInUnrecognizedTaxBenefitsIsReasonablyPossible' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_DecreaseInUnrecognizedTaxBenefitsIsReasonablyPossible' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleEstimatedRangeNotPossible' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleLineItems' xlink:to='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleOtherInformation' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleNatureOfUncertaintyDomain' xlink:to='loc_SettlementWithTaxingAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MaximumMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RangeMember' xlink:to='loc_MinimumMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesSignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:label='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:label='loc_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RangeAxis' xlink:label='loc_RangeAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:to='loc_ReasonablyPossibleSignificantChangeInUnrecognizedTaxBenefitsByItemAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_SignificantChangeInUnrecognizedTaxBenefitsIsReasonablyPossibleTable' xlink:to='loc_RangeAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesTaxCreditCarryforwardTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardLineItems' xlink:label='loc_TaxCreditCarryforwardLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardTable' xlink:label='loc_TaxCreditCarryforwardTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_TaxCreditCarryforwardTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesTaxCreditCarryforwardTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardAxis' xlink:label='loc_TaxCreditCarryforwardAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardNameDomain' xlink:label='loc_TaxCreditCarryforwardNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_TaxCreditCarryforwardAxis' xlink:to='loc_TaxCreditCarryforwardNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_TaxPeriodAxis' xlink:to='loc_TaxPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesTaxCreditCarryforwardTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardAxis' xlink:label='loc_TaxCreditCarryforwardAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardNameDomain' xlink:label='loc_TaxCreditCarryforwardNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_IncomeTaxAuthorityNameAxis' xlink:to='loc_IncomeTaxAuthorityNameDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_TaxCreditCarryforwardAxis' xlink:to='loc_TaxCreditCarryforwardNameDomain' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_TaxPeriodAxis' xlink:to='loc_TaxPeriodDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesTaxCreditCarryforwardTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameDomain' xlink:label='loc_IncomeTaxAuthorityNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InternalRevenueServiceIRSMember' xlink:label='loc_InternalRevenueServiceIRSMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_HerMajestysRevenueAndCustomsHMRCMember' xlink:label='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueHongKongMember' xlink:label='loc_InlandRevenueHongKongMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InlandRevenueSingaporeIRASMember' xlink:label='loc_InlandRevenueSingaporeIRASMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaliforniaFranchiseTaxBoardMember' xlink:label='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AustralianTaxationOfficeMember' xlink:label='loc_AustralianTaxationOfficeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:label='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CanadaRevenueAgencyMember' xlink:label='loc_CanadaRevenueAgencyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SwissFederalTaxAdministrationFTAMember' xlink:label='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_OfficeOfTheTaxCommissionerBermudaMember' xlink:label='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdministrationOfTheTreasuryBelgiumMember' xlink:label='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:label='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FederalMinistryOfFinanceGermanyMember' xlink:label='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueCommissionersIrelandMember' xlink:label='loc_RevenueCommissionersIrelandMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfFinanceIndiaMember' xlink:label='loc_MinistryOfFinanceIndiaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IsraelTaxAuthorityMember' xlink:label='loc_IsraelTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:label='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NationalTaxAgencyJapanMember' xlink:label='loc_NationalTaxAgencyJapanMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LuxembourgInlandRevenueMember' xlink:label='loc_LuxembourgInlandRevenueMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CaymanIslandsTaxInformationAuthorityMember' xlink:label='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MexicanTaxAuthorityMember' xlink:label='loc_MexicanTaxAuthorityMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAndCustomsAdministrationNetherlandsMember' xlink:label='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewJerseyDivisionOfTaxationMember' xlink:label='loc_NewJerseyDivisionOfTaxationMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:label='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_StateAdministrationOfTaxationChinaMember' xlink:label='loc_StateAdministrationOfTaxationChinaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxAuthoritySpainMember' xlink:label='loc_TaxAuthoritySpainMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardLineItems' xlink:label='loc_TaxCreditCarryforwardLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardDescription' xlink:label='loc_TaxCreditCarryforwardDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardAmount' xlink:label='loc_TaxCreditCarryforwardAmount' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardExpirationDate' xlink:label='loc_TaxCreditCarryforwardExpirationDate' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardLimitationsOnUse' xlink:label='loc_TaxCreditCarryforwardLimitationsOnUse' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxAssetsTaxCreditCarryforwards' xlink:label='loc_DeferredTaxAssetsTaxCreditCarryforwards' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardValuationAllowance' xlink:label='loc_TaxCreditCarryforwardValuationAllowance' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardNameDomain' xlink:label='loc_TaxCreditCarryforwardNameDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GeneralBusinessMember' xlink:label='loc_GeneralBusinessMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ResearchMember' xlink:label='loc_ResearchMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InvestmentCreditMember' xlink:label='loc_InvestmentCreditMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalLossCarryforwardMember' xlink:label='loc_CapitalLossCarryforwardMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodDomain' xlink:label='loc_TaxPeriodDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2006Member' xlink:label='loc_TaxYear2006Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2007Member' xlink:label='loc_TaxYear2007Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2008Member' xlink:label='loc_TaxYear2008Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2009Member' xlink:label='loc_TaxYear2009Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2010Member' xlink:label='loc_TaxYear2010Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2011Member' xlink:label='loc_TaxYear2011Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2012Member' xlink:label='loc_TaxYear2012Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2013Member' xlink:label='loc_TaxYear2013Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2014Member' xlink:label='loc_TaxYear2014Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2015Member' xlink:label='loc_TaxYear2015Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2016Member' xlink:label='loc_TaxYear2016Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2017Member' xlink:label='loc_TaxYear2017Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2018Member' xlink:label='loc_TaxYear2018Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2019Member' xlink:label='loc_TaxYear2019Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2020Member' xlink:label='loc_TaxYear2020Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxYear2021Member' xlink:label='loc_TaxYear2021Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EarliestTaxYearMember' xlink:label='loc_EarliestTaxYearMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LatestTaxYearMember' xlink:label='loc_LatestTaxYearMember' xlink:type='locator' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InternalRevenueServiceIRSMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_HerMajestysRevenueAndCustomsHMRCMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueHongKongMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_InlandRevenueSingaporeIRASMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaliforniaFranchiseTaxBoardMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AustralianTaxationOfficeMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SecretariatOfTheFederalRevenueBureauOfBrazilMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CanadaRevenueAgencyMember' xlink:type='arc' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_SwissFederalTaxAdministrationFTAMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_OfficeOfTheTaxCommissionerBermudaMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_AdministrationOfTheTreasuryBelgiumMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfTheEconomyFinanceAndIndustryFranceMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_FederalMinistryOfFinanceGermanyMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_RevenueCommissionersIrelandMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfFinanceIndiaMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_IsraelTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='21.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MinistryOfEconomicAffairsAndFinanceItalyMember' xlink:type='arc' />
+    <link:definitionArc order='22.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NationalTaxAgencyJapanMember' xlink:type='arc' />
+    <link:definitionArc order='23.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_LuxembourgInlandRevenueMember' xlink:type='arc' />
+    <link:definitionArc order='24.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_CaymanIslandsTaxInformationAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='25.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_MexicanTaxAuthorityMember' xlink:type='arc' />
+    <link:definitionArc order='26.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAndCustomsAdministrationNetherlandsMember' xlink:type='arc' />
+    <link:definitionArc order='27.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewJerseyDivisionOfTaxationMember' xlink:type='arc' />
+    <link:definitionArc order='28.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_NewYorkStateDivisionOfTaxationAndFinanceMember' xlink:type='arc' />
+    <link:definitionArc order='29.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_StateAdministrationOfTaxationChinaMember' xlink:type='arc' />
+    <link:definitionArc order='30.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_IncomeTaxAuthorityNameDomain' xlink:to='loc_TaxAuthoritySpainMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_TaxCreditCarryforwardDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_TaxCreditCarryforwardAmount' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_TaxCreditCarryforwardExpirationDate' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_TaxCreditCarryforwardLimitationsOnUse' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_DeferredTaxAssetsTaxCreditCarryforwards' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardLineItems' xlink:to='loc_TaxCreditCarryforwardValuationAllowance' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardNameDomain' xlink:to='loc_GeneralBusinessMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardNameDomain' xlink:to='loc_ResearchMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardNameDomain' xlink:to='loc_InvestmentCreditMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxCreditCarryforwardNameDomain' xlink:to='loc_CapitalLossCarryforwardMember' xlink:type='arc' />
+    <link:definitionArc order='31.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2006Member' xlink:type='arc' />
+    <link:definitionArc order='32.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2007Member' xlink:type='arc' />
+    <link:definitionArc order='33.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2008Member' xlink:type='arc' />
+    <link:definitionArc order='34.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2009Member' xlink:type='arc' />
+    <link:definitionArc order='35.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2010Member' xlink:type='arc' />
+    <link:definitionArc order='36.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2011Member' xlink:type='arc' />
+    <link:definitionArc order='37.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2012Member' xlink:type='arc' />
+    <link:definitionArc order='38.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2013Member' xlink:type='arc' />
+    <link:definitionArc order='39.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2014Member' xlink:type='arc' />
+    <link:definitionArc order='40.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2015Member' xlink:type='arc' />
+    <link:definitionArc order='41.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2016Member' xlink:type='arc' />
+    <link:definitionArc order='42.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2017Member' xlink:type='arc' />
+    <link:definitionArc order='43.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2018Member' xlink:type='arc' />
+    <link:definitionArc order='44.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2019Member' xlink:type='arc' />
+    <link:definitionArc order='45.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2020Member' xlink:type='arc' />
+    <link:definitionArc order='46.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_TaxYear2021Member' xlink:type='arc' />
+    <link:definitionArc order='47.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_EarliestTaxYearMember' xlink:type='arc' />
+    <link:definitionArc order='48.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TaxPeriodDomain' xlink:to='loc_LatestTaxYearMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesTaxCreditCarryforwardTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardTable' xlink:label='loc_TaxCreditCarryforwardTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxCreditCarryforwardAxis' xlink:label='loc_TaxCreditCarryforwardAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncomeTaxAuthorityNameAxis' xlink:label='loc_IncomeTaxAuthorityNameAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TaxPeriodAxis' xlink:label='loc_TaxPeriodAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TaxCreditCarryforwardTable' xlink:to='loc_TaxCreditCarryforwardAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TaxCreditCarryforwardTable' xlink:to='loc_IncomeTaxAuthorityNameAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_TaxCreditCarryforwardTable' xlink:to='loc_TaxPeriodAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesValuationAllowanceTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceLineItems' xlink:label='loc_ValuationAllowanceLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceTable' xlink:label='loc_ValuationAllowanceTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_ValuationAllowanceLineItems' xlink:to='loc_ValuationAllowanceTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesValuationAllowanceTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceByDeferredTaxAssetAxis' xlink:label='loc_ValuationAllowanceByDeferredTaxAssetAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxAssetDomain' xlink:label='loc_DeferredTaxAssetDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ValuationAllowanceByDeferredTaxAssetAxis' xlink:to='loc_DeferredTaxAssetDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesValuationAllowanceTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceByDeferredTaxAssetAxis' xlink:label='loc_ValuationAllowanceByDeferredTaxAssetAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxAssetDomain' xlink:label='loc_DeferredTaxAssetDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ValuationAllowanceByDeferredTaxAssetAxis' xlink:to='loc_DeferredTaxAssetDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesValuationAllowanceTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceLineItems' xlink:label='loc_ValuationAllowanceLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceCommentary' xlink:label='loc_ValuationAllowanceCommentary' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DeferredTaxAssetsValuationAllowance' xlink:label='loc_DeferredTaxAssetsValuationAllowance' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceDeferredTaxAssetExplanationOfChange' xlink:label='loc_ValuationAllowanceDeferredTaxAssetExplanationOfChange' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceDeferredTaxAssetChangeInAmount' xlink:label='loc_ValuationAllowanceDeferredTaxAssetChangeInAmount' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ValuationAllowanceLineItems' xlink:to='loc_ValuationAllowanceCommentary' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ValuationAllowanceLineItems' xlink:to='loc_DeferredTaxAssetsValuationAllowance' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ValuationAllowanceLineItems' xlink:to='loc_ValuationAllowanceDeferredTaxAssetExplanationOfChange' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ValuationAllowanceLineItems' xlink:to='loc_ValuationAllowanceDeferredTaxAssetChangeInAmount' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/IncomeTaxesValuationAllowanceTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceTable' xlink:label='loc_ValuationAllowanceTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ValuationAllowanceByDeferredTaxAssetAxis' xlink:label='loc_ValuationAllowanceByDeferredTaxAssetAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_ValuationAllowanceTable' xlink:to='loc_ValuationAllowanceByDeferredTaxAssetAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

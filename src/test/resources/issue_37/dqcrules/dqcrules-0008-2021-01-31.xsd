@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.; (c) 2020-2021 XBRL US, Inc. All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+<xs:schema targetNamespace='http://fasb.org/dqcrules-0008/2021-01-31' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:dqcrules-0008='http://fasb.org/dqcrules-0008/2021-01-31' xmlns:dqcrules='http://fasb.org/dqcrules/2021-01-31' xmlns:us-gaap='http://fasb.org/us-gaap/2021-01-31' xmlns:dei='http://xbrl.sec.gov/dei/2021' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:ref='http://www.xbrl.org/2006/ref' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xbrli='http://www.xbrl.org/2003/instance' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns='http://www.xbrl.org/2003/linkbase'
+xsi:schemaLocation='http://www.xbrl.org/2006/ref http://www.xbrl.org/2006/ref-2006-02-27.xsd http://fasb.org/dqcrules/2021-01-31 dqcrules-2021-01-31.xsd'>
+<xs:import namespace='http://www.xbrl.org/2003/instance' schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd'/>
+<xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+<xs:import namespace='http://www.xbrl.org/2006/ref' schemaLocation='http://www.xbrl.org/2006/ref-2006-02-27.xsd' />
+<xs:import namespace='http://xbrl.org/2005/xbrldt' schemaLocation='http://www.xbrl.org/2005/xbrldt-2005.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules/2021-01-31' schemaLocation='dqcrules-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/us-roles/2021-01-31' schemaLocation='../elts/us-roles-2021-01-31.xsd'/>
+<xs:annotation>
+<xs:appinfo>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/0008' id='dqc_0008'>
+<link:definition>DQC.US.0008</link:definition>
+<link:usedOn>link:definitionLink</link:usedOn>
+<link:usedOn>link:referenceLink</link:usedOn>
+</link:roleType>
+<link:linkbase id='lnk'>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/0008' xlink:type='simple' xlink:href='#dqc_0008'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:href='dqcrules-2021-01-31.xsd#dqcn' xlink:type='simple' />
+<link:arcroleRef arcroleURI='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:href='dqcrules-2021-01-31.xsd#rule-concept' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleExclusions' xlink:href='dqcrules-2021-01-31.xsd#dqcre' xlink:type='simple' />
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleID' xlink:href='dqcrules-2021-01-31.xsd#dqcrid' xlink:type='simple' />
+<labelLink xlink:type='extended' xlink:role='http://www.xbrl.org/2003/role/link'>
+<loc xlink:type='locator' xlink:href='#dqcrules-0008_Dqc_0008' xlink:label='loc_dqcrules_Dqc_0008'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0008' xlink:to='lbl_dqcrules_Dqc_0008'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0008' xml:lang='en-US'>DQC.US.0008 [Abstract]</label>
+<loc xlink:type='locator' xlink:href='#dqcrules-0008_Dqc_0008_ReversalOfElementCalculations' xlink:label='loc_dqcrules_Dqc_0008_ReversalOfElementCalculations'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0008_ReversalOfElementCalculations' xlink:to='lbl_dqcrules_Dqc_0008_ReversalOfElementCalculations'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0008_ReversalOfElementCalculations' xml:lang='en-US'>DQC.US.0008.Reversal of Element Calculations [Abstract]</label>
+</labelLink>
+<link:definitionLink xlink:type='extended' xlink:role='http://fasb.org/us-gaap/role/dqc/0008'>
+<link:loc xlink:type='locator' xlink:href='#dqcrules-0008_Dqc_0008' xlink:label='loc_dqcrules_Dqc_0008'/>
+<link:loc xlink:type='locator' xlink:href='#dqcrules-0008_Dqc_0008_ReversalOfElementCalculations' xlink:label='loc_Dqc_0008_ReversalOfElementCalculations'/>
+<link:definitionArc xlink:type='arc' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_dqcrules_Dqc_0008' xlink:to='loc_Dqc_0008_ReversalOfElementCalculations' order='1.0'/>
+</link:definitionLink>
+<link:referenceLink xlink:role='http://fasb.org/us-gaap/role/dqc/0008' xlink:type='extended'>
+<link:loc xlink:href='#dqcrules-0008_Dqc_0008' xlink:label='loc_Dqc_0008' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0008_Dqc_0008_ReversalOfElementCalculations' xlink:label='loc_Dqc_0008_ReversalOfElementCalculations' xlink:type='locator'/>
+<link:reference xlink:label='dqc_0008' xlink:role='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:type='resource'>
+<ref:Publisher>XBRL US</ref:Publisher>
+<dqcrules:ruleId>DQC.0008</dqcrules:ruleId>
+<dqcrules:ruleName>Reversed Calculation</dqcrules:ruleName>
+<dqcrules:ruleDocumentation>This rule evaluates whether a calculation relationship in the company’s extension is a reversal of the calculation defined in the base taxonomy used for the filing. The rule checks if the element representing the calculation total and the element representing the component are a reversal of those same elements defined in the base taxonomy with the same calculation weight. This rule only compares the defined relationship between two elements joined by a single calculation arc in a company’s calculation relationship and checks if the opposite of that relationship exists in the base taxonomy. Both elements in the calculation relationship must have a balance attribute of either debit or credit.</dqcrules:ruleDocumentation>
+<ref:URI>https://xbrl.us/data-rule/dqc_0008/</ref:URI>
+</link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Dqc_0008_ReversalOfElementCalculations' xlink:to='dqc_0008' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Dqc_0008' xlink:to='dqc_0008' xlink:type='arc'/>
+</link:referenceLink>
+</link:linkbase>
+</xs:appinfo>
+</xs:annotation>
+<xs:element name='Dqc_0008' id='dqcrules-0008_Dqc_0008' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+<xs:element name='Dqc_0008_ReversalOfElementCalculations' id='dqcrules-0008_Dqc_0008_ReversalOfElementCalculations' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+</xs:schema>

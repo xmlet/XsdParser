@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.; (c) 2020-2021 XBRL US, Inc. All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+-->
+<xs:schema targetNamespace='http://fasb.org/dqcrules-0048/2021-01-31' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:dqcrules-0048='http://fasb.org/dqcrules-0048/2021-01-31' xmlns:dqcrules='http://fasb.org/dqcrules/2021-01-31' xmlns:us-gaap='http://fasb.org/us-gaap/2021-01-31' xmlns:dei='http://xbrl.sec.gov/dei/2021' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:ref='http://www.xbrl.org/2006/ref' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xbrli='http://www.xbrl.org/2003/instance' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns='http://www.xbrl.org/2003/linkbase'
+xsi:schemaLocation='http://www.xbrl.org/2006/ref http://www.xbrl.org/2006/ref-2006-02-27.xsd http://fasb.org/dqcrules/2021-01-31 dqcrules-2021-01-31.xsd'>
+<xs:import namespace='http://www.xbrl.org/2003/instance' schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd'/>
+<xs:import namespace='http://www.xbrl.org/2003/linkbase' schemaLocation='http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd' />
+<xs:import namespace='http://www.xbrl.org/2006/ref' schemaLocation='http://www.xbrl.org/2006/ref-2006-02-27.xsd' />
+<xs:import namespace='http://xbrl.org/2005/xbrldt' schemaLocation='http://www.xbrl.org/2005/xbrldt-2005.xsd'/>
+<xs:import namespace='http://fasb.org/dqcrules/2021-01-31' schemaLocation='dqcrules-2021-01-31.xsd'/>
+<xs:import namespace='http://fasb.org/us-roles/2021-01-31' schemaLocation='../elts/us-roles-2021-01-31.xsd'/>
+<xs:annotation>
+<xs:appinfo>
+<link:roleType roleURI='http://fasb.org/us-gaap/role/dqc/0048' id='dqc_0048'>
+<link:definition>DQC.US.0048</link:definition>
+<link:usedOn>link:definitionLink</link:usedOn>
+<link:usedOn>link:referenceLink</link:usedOn>
+</link:roleType>
+<link:linkbase id='lnk'>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/0048' xlink:href='#dqc_0048' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:href='dqcrules-2021-01-31.xsd#dqcn' xlink:type='simple' />
+<link:arcroleRef arcroleURI='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:href='dqcrules-2021-01-31.xsd#rule-concept' xlink:type='simple'/>
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleExclusions' xlink:href='dqcrules-2021-01-31.xsd#dqcre' xlink:type='simple' />
+<link:roleRef roleURI='http://fasb.org/us-gaap/role/dqc/ruleID' xlink:href='dqcrules-2021-01-31.xsd#dqcrid' xlink:type='simple' />
+<labelLink xlink:type='extended' xlink:role='http://www.xbrl.org/2003/role/link'>
+<loc xlink:type='locator' xlink:href='#dqcrules-0048_Dqc_0048' xlink:label='loc_dqcrules_Dqc_0048'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0048' xlink:to='lbl_dqcrules_Dqc_0048'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0048' xml:lang='en-US'>DQC.US.0048 [Abstract]</label>
+<loc xlink:type='locator' xlink:href='#dqcrules-0048_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:label='loc_dqcrules_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement'/>
+<labelArc xlink:type='arc' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-label' xlink:from='loc_dqcrules_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:to='lbl_dqcrules_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement'/>
+<label xlink:type='resource' xlink:role='http://www.xbrl.org/2003/role/label' xlink:label='lbl_dqcrules_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xml:lang='en-US'>DQC.US.0048.Required Calculation Parent in the Cash Flow Statement [Abstract]</label>
+</labelLink>
+<link:definitionLink xlink:role='http://fasb.org/us-gaap/role/dqc/0048' xlink:type='extended'>
+<link:loc xlink:href='#dqcrules-0048_Dqc_0048' xlink:label='loc_dqcrules_Dqc_0048' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0048_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:label='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_dqcrules_Dqc_0048' xlink:to='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:label='lbl_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:type='locator'/>
+<link:definitionArc order='1.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:to='lbl_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='lbl_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='locator'/>
+<link:definitionArc order='2.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:to='lbl_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='arc'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInContinuingOperations' xlink:label='lbl_NetCashProvidedByUsedInContinuingOperations' xlink:type='locator'/>
+<link:definitionArc order='3.0' xlink:arcrole='http://fasb.org/dqcrules/arcrole/rule-concept' xlink:from='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:to='lbl_NetCashProvidedByUsedInContinuingOperations' xlink:type='arc'/>
+</link:definitionLink>
+<link:referenceLink xlink:role='http://fasb.org/us-gaap/role/dqc/0048' xlink:type='extended'>
+<link:loc xlink:href='#dqcrules-0048_Dqc_0048' xlink:label='loc_Dqc_0048' xlink:type='locator'/>
+<link:loc xlink:href='#dqcrules-0048_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:label='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:label='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:label='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:type='locator'/>
+<link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetCashProvidedByUsedInContinuingOperations' xlink:label='loc_NetCashProvidedByUsedInContinuingOperations' xlink:type='locator'/>
+<link:reference xlink:label='dqc_0048' xlink:role='http://fasb.org/us-gaap/role/dqc/dqcNote' xlink:type='resource'>
+<ref:Publisher>XBRL US</ref:Publisher>
+<dqcrules:ruleId>DQC.0048</dqcrules:ruleId>
+<dqcrules:ruleName>Required Calculation Parent Element in the Cash Flow Statement</dqcrules:ruleName>
+<dqcrules:ruleDocumentation>This rule tests that at least one of the change in cash elements named in this rule appears as the ultimate parent (root node) in at least one calculation linkbase tree.</dqcrules:ruleDocumentation>
+<ref:URI>https://xbrl.us/data-rule/dqc_0048/</ref:URI>
+</link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' xlink:to='dqc_0048' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_Dqc_0048' xlink:to='dqc_0048' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:to='dqc_0048' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='dqc_0048' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations' xlink:to='dqc_0048' xlink:type='arc'/>
+<link:reference xlink:type='resource' xlink:label='DQC_US_0048_7482' xlink:role='http://fasb.org/us-gaap/role/dqc/ruleID'><dqcrules:ruleElementId>DQC.US.0048.7482</dqcrules:ruleElementId></link:reference>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect' xlink:to='DQC_US_0048_7482' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseExcludingExchangeRateEffect' xlink:to='DQC_US_0048_7482' xlink:type='arc'/>
+<link:referenceArc order='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/concept-reference' xlink:from='loc_NetCashProvidedByUsedInContinuingOperations' xlink:to='DQC_US_0048_7482' xlink:type='arc'/>
+</link:referenceLink>
+</link:linkbase>
+</xs:appinfo>
+</xs:annotation>
+<xs:element name='Dqc_0048' id='dqcrules-0048_Dqc_0048' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+<xs:element name='Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' id='dqcrules-0048_Dqc_0048_RequiredCalculationParentElementInCashFlowStatement' type='xbrli:stringItemType' substitutionGroup='xbrli:item' abstract='true' nillable='true' xbrli:periodType='duration'/>
+</xs:schema>

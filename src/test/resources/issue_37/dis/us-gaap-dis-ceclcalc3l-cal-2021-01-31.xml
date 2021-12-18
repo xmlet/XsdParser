@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/CreditLossesCalc3' xlink:href='../elts/us-roles-2021-01-31.xsd#ceclcalc3l' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/CreditLossesCalc3' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:label='loc_NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesTypeLeaseNetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:label='loc_SalesTypeLeaseNetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectFinancingLeaseNetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:label='loc_DirectFinancingLeaseNetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:to='loc_SalesTypeLeaseNetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:to='loc_DirectFinancingLeaseNetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

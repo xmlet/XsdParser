@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:href='../elts/us-roles-2021-01-31.xsd#RevenuefromContractswithCustomersRevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/all' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#all' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-default' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#dimension-domain' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/domain-member' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#domain-member' xlink:type='simple' />
+  <link:arcroleRef arcroleURI='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:href='http://www.xbrl.org/2005/xbrldt-2005.xsd#hypercube-dimension' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:href='../elts/us-roles-2021-01-31.xsd#RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:href='../elts/us-roles-2021-01-31.xsd#RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:type='simple' />
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:href='../elts/us-roles-2021-01-31.xsd#RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:type='simple' />
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostLineItems' xlink:label='loc_CapitalizedContractCostLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostTable' xlink:label='loc_CapitalizedContractCostTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_CapitalizedContractCostLineItems' xlink:to='loc_CapitalizedContractCostTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostAxis' xlink:label='loc_CapitalizedContractCostAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostDomain' xlink:label='loc_CapitalizedContractCostDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_CapitalizedContractCostAxis' xlink:to='loc_CapitalizedContractCostDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostAxis' xlink:label='loc_CapitalizedContractCostAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostDomain' xlink:label='loc_CapitalizedContractCostDomain' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_CapitalizedContractCostAxis' xlink:to='loc_CapitalizedContractCostDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostLineItems' xlink:label='loc_CapitalizedContractCostLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostNetAbstract' xlink:label='loc_CapitalizedContractCostNetAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostNetClassifiedAbstract' xlink:label='loc_CapitalizedContractCostNetClassifiedAbstract' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostAmortization' xlink:label='loc_CapitalizedContractCostAmortization' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostImpairmentLoss' xlink:label='loc_CapitalizedContractCostImpairmentLoss' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostGross' xlink:label='loc_CapitalizedContractCostGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostAccumulatedAmortization' xlink:label='loc_CapitalizedContractCostAccumulatedAmortization' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostAccumulatedImpairment' xlink:label='loc_CapitalizedContractCostAccumulatedImpairment' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostNet' xlink:label='loc_CapitalizedContractCostNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostNetCurrent' xlink:label='loc_CapitalizedContractCostNetCurrent' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostNetNoncurrent' xlink:label='loc_CapitalizedContractCostNetNoncurrent' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostLineItems' xlink:to='loc_CapitalizedContractCostNetAbstract' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostLineItems' xlink:to='loc_CapitalizedContractCostNetClassifiedAbstract' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostLineItems' xlink:to='loc_CapitalizedContractCostAmortization' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostLineItems' xlink:to='loc_CapitalizedContractCostImpairmentLoss' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostNetAbstract' xlink:to='loc_CapitalizedContractCostGross' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostNetAbstract' xlink:to='loc_CapitalizedContractCostAccumulatedAmortization' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostNetAbstract' xlink:to='loc_CapitalizedContractCostAccumulatedImpairment' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostNetAbstract' xlink:to='loc_CapitalizedContractCostNet' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostNetClassifiedAbstract' xlink:to='loc_CapitalizedContractCostNetCurrent' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_CapitalizedContractCostNetClassifiedAbstract' xlink:to='loc_CapitalizedContractCostNetNoncurrent' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersCapitalizedContractCostTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostTable' xlink:label='loc_CapitalizedContractCostTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CapitalizedContractCostAxis' xlink:label='loc_CapitalizedContractCostAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_CapitalizedContractCostTable' xlink:to='loc_CapitalizedContractCostAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DisaggregationOfRevenueLineItems' xlink:label='loc_DisaggregationOfRevenueLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DisaggregationOfRevenueTable' xlink:label='loc_DisaggregationOfRevenueTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_DisaggregationOfRevenueLineItems' xlink:to='loc_DisaggregationOfRevenueTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingAxis' xlink:label='loc_ContractWithCustomerBasisOfPricingAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingDomain' xlink:label='loc_ContractWithCustomerBasisOfPricingDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationAxis' xlink:label='loc_ContractWithCustomerDurationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationDomain' xlink:label='loc_ContractWithCustomerDurationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelAxis' xlink:label='loc_ContractWithCustomerSalesChannelAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelDomain' xlink:label='loc_ContractWithCustomerSalesChannelDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MajorCustomersAxis' xlink:label='loc_MajorCustomersAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_NameOfMajorCustomerDomain' xlink:label='loc_NameOfMajorCustomerDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_StatementGeographicalAxis' xlink:label='loc_StatementGeographicalAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SegmentGeographicalDomain' xlink:label='loc_SegmentGeographicalDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductsAndServicesDomain' xlink:label='loc_ProductsAndServicesDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceAxis' xlink:label='loc_TimingOfTransferOfGoodOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceDomain' xlink:label='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:type='locator' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ContractWithCustomerBasisOfPricingAxis' xlink:to='loc_ContractWithCustomerBasisOfPricingDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ContractWithCustomerDurationAxis' xlink:to='loc_ContractWithCustomerDurationDomain' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ContractWithCustomerSalesChannelAxis' xlink:to='loc_ContractWithCustomerSalesChannelDomain' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_MajorCustomersAxis' xlink:to='loc_NameOfMajorCustomerDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_StatementGeographicalAxis' xlink:to='loc_SegmentGeographicalDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_ProductOrServiceAxis' xlink:to='loc_ProductsAndServicesDomain' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_TimingOfTransferOfGoodOrServiceAxis' xlink:to='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingAxis' xlink:label='loc_ContractWithCustomerBasisOfPricingAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingDomain' xlink:label='loc_ContractWithCustomerBasisOfPricingDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationAxis' xlink:label='loc_ContractWithCustomerDurationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationDomain' xlink:label='loc_ContractWithCustomerDurationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelAxis' xlink:label='loc_ContractWithCustomerSalesChannelAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelDomain' xlink:label='loc_ContractWithCustomerSalesChannelDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MajorCustomersAxis' xlink:label='loc_MajorCustomersAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_NameOfMajorCustomerDomain' xlink:label='loc_NameOfMajorCustomerDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_StatementGeographicalAxis' xlink:label='loc_StatementGeographicalAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SegmentGeographicalDomain' xlink:label='loc_SegmentGeographicalDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductsAndServicesDomain' xlink:label='loc_ProductsAndServicesDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceAxis' xlink:label='loc_TimingOfTransferOfGoodOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceDomain' xlink:label='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:type='locator' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ContractWithCustomerBasisOfPricingAxis' xlink:to='loc_ContractWithCustomerBasisOfPricingDomain' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ContractWithCustomerDurationAxis' xlink:to='loc_ContractWithCustomerDurationDomain' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ContractWithCustomerSalesChannelAxis' xlink:to='loc_ContractWithCustomerSalesChannelDomain' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_MajorCustomersAxis' xlink:to='loc_NameOfMajorCustomerDomain' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_StatementGeographicalAxis' xlink:to='loc_SegmentGeographicalDomain' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_ProductOrServiceAxis' xlink:to='loc_ProductsAndServicesDomain' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_TimingOfTransferOfGoodOrServiceAxis' xlink:to='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingDomain' xlink:label='loc_ContractWithCustomerBasisOfPricingDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_FixedPriceContractMember' xlink:label='loc_FixedPriceContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimeAndMaterialsContractMember' xlink:label='loc_TimeAndMaterialsContractMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationDomain' xlink:label='loc_ContractWithCustomerDurationDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ShortTermContractWithCustomerMember' xlink:label='loc_ShortTermContractWithCustomerMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_LongTermContractWithCustomerMember' xlink:label='loc_LongTermContractWithCustomerMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelDomain' xlink:label='loc_ContractWithCustomerSalesChannelDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesChannelDirectlyToConsumerMember' xlink:label='loc_SalesChannelDirectlyToConsumerMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SalesChannelThroughIntermediaryMember' xlink:label='loc_SalesChannelThroughIntermediaryMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DisaggregationOfRevenueLineItems' xlink:label='loc_DisaggregationOfRevenueLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax' xlink:label='loc_RevenueFromContractWithCustomerIncludingAssessedTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ExciseAndSalesTaxes' xlink:label='loc_ExciseAndSalesTaxes' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:label='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerProductAndServiceExtensibleList' xlink:label='loc_RevenueFromContractWithCustomerProductAndServiceExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerGeographicalExtensibleList' xlink:label='loc_RevenueFromContractWithCustomerGeographicalExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerBasisOfPricingExtensibleList' xlink:label='loc_RevenueFromContractWithCustomerBasisOfPricingExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerDurationExtensibleList' xlink:label='loc_RevenueFromContractWithCustomerDurationExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerTimingOfTransferOfGoodOrServiceExtensibleList' xlink:label='loc_RevenueFromContractWithCustomerTimingOfTransferOfGoodOrServiceExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueFromContractWithCustomerSalesChannelExtensibleList' xlink:label='loc_RevenueFromContractWithCustomerSalesChannelExtensibleList' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SegmentGeographicalDomain' xlink:label='loc_SegmentGeographicalDomain' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_AsiaMember' xlink:label='loc_AsiaMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_AsiaPacificMember' xlink:label='loc_AsiaPacificMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_AfricaMember' xlink:label='loc_AfricaMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_AmericasMember' xlink:label='loc_AmericasMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_CentralAmericaMember' xlink:label='loc_CentralAmericaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EMEAMember' xlink:label='loc_EMEAMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_EuropeMember' xlink:label='loc_EuropeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_EuropeanUnionMember' xlink:label='loc_EuropeanUnionMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_LatinAmericaMember' xlink:label='loc_LatinAmericaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_MiddleEastMember' xlink:label='loc_MiddleEastMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_NorthAmericaMember' xlink:label='loc_NorthAmericaMember' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_SouthAmericaMember' xlink:label='loc_SouthAmericaMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceDomain' xlink:label='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferredAtPointInTimeMember' xlink:label='loc_TransferredAtPointInTimeMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TransferredOverTimeMember' xlink:label='loc_TransferredOverTimeMember' xlink:type='locator' />
+    <link:definitionArc order='13.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ContractWithCustomerBasisOfPricingDomain' xlink:to='loc_FixedPriceContractMember' xlink:type='arc' />
+    <link:definitionArc order='14.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ContractWithCustomerBasisOfPricingDomain' xlink:to='loc_TimeAndMaterialsContractMember' xlink:type='arc' />
+    <link:definitionArc order='15.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ContractWithCustomerDurationDomain' xlink:to='loc_ShortTermContractWithCustomerMember' xlink:type='arc' />
+    <link:definitionArc order='16.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ContractWithCustomerDurationDomain' xlink:to='loc_LongTermContractWithCustomerMember' xlink:type='arc' />
+    <link:definitionArc order='19.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ContractWithCustomerSalesChannelDomain' xlink:to='loc_SalesChannelDirectlyToConsumerMember' xlink:type='arc' />
+    <link:definitionArc order='20.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_ContractWithCustomerSalesChannelDomain' xlink:to='loc_SalesChannelThroughIntermediaryMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DisaggregationOfRevenueLineItems' xlink:to='loc_RevenueFromContractWithCustomerIncludingAssessedTax' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DisaggregationOfRevenueLineItems' xlink:to='loc_ExciseAndSalesTaxes' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_DisaggregationOfRevenueLineItems' xlink:to='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:to='loc_RevenueFromContractWithCustomerProductAndServiceExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:to='loc_RevenueFromContractWithCustomerGeographicalExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:to='loc_RevenueFromContractWithCustomerBasisOfPricingExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:to='loc_RevenueFromContractWithCustomerDurationExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:to='loc_RevenueFromContractWithCustomerTimingOfTransferOfGoodOrServiceExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueFromContractWithCustomerExcludingAssessedTax' xlink:to='loc_RevenueFromContractWithCustomerSalesChannelExtensibleList' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_AsiaMember' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_AsiaPacificMember' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_AfricaMember' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_AmericasMember' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_CentralAmericaMember' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_EMEAMember' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_EuropeMember' xlink:type='arc' />
+    <link:definitionArc order='8.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_EuropeanUnionMember' xlink:type='arc' />
+    <link:definitionArc order='9.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_LatinAmericaMember' xlink:type='arc' />
+    <link:definitionArc order='10.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_MiddleEastMember' xlink:type='arc' />
+    <link:definitionArc order='11.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_NorthAmericaMember' xlink:type='arc' />
+    <link:definitionArc order='12.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_SegmentGeographicalDomain' xlink:to='loc_SouthAmericaMember' xlink:type='arc' />
+    <link:definitionArc order='17.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:to='loc_TransferredAtPointInTimeMember' xlink:type='arc' />
+    <link:definitionArc order='18.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TimingOfTransferOfGoodOrServiceDomain' xlink:to='loc_TransferredOverTimeMember' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersDisaggregationOfRevenueTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DisaggregationOfRevenueTable' xlink:label='loc_DisaggregationOfRevenueTable' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_ProductOrServiceAxis' xlink:label='loc_ProductOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_StatementGeographicalAxis' xlink:label='loc_StatementGeographicalAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerBasisOfPricingAxis' xlink:label='loc_ContractWithCustomerBasisOfPricingAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerDurationAxis' xlink:label='loc_ContractWithCustomerDurationAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TimingOfTransferOfGoodOrServiceAxis' xlink:label='loc_TimingOfTransferOfGoodOrServiceAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_ContractWithCustomerSalesChannelAxis' xlink:label='loc_ContractWithCustomerSalesChannelAxis' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_MajorCustomersAxis' xlink:label='loc_MajorCustomersAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_ProductOrServiceAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_StatementGeographicalAxis' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_ContractWithCustomerBasisOfPricingAxis' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_ContractWithCustomerDurationAxis' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_TimingOfTransferOfGoodOrServiceAxis' xlink:type='arc' />
+    <link:definitionArc order='6.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_ContractWithCustomerSalesChannelAxis' xlink:type='arc' />
+    <link:definitionArc order='7.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_DisaggregationOfRevenueTable' xlink:to='loc_MajorCustomersAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:label='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:label='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:to='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdjustmentsForNewAccountingPronouncementsAxis' xlink:label='loc_AdjustmentsForNewAccountingPronouncementsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfAdoptionMember' xlink:label='loc_TypeOfAdoptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:label='loc_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:label='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_AdjustmentsForNewAccountingPronouncementsAxis' xlink:to='loc_TypeOfAdoptionMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-default' xlink:from='loc_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:to='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdjustmentsForNewAccountingPronouncementsAxis' xlink:label='loc_AdjustmentsForNewAccountingPronouncementsAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfAdoptionMember' xlink:label='loc_TypeOfAdoptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:label='loc_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:label='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:type='locator' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_AdjustmentsForNewAccountingPronouncementsAxis' xlink:to='loc_TypeOfAdoptionMember' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/dimension-domain' xlink:from='loc_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:to='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_TypeOfAdoptionMember' xlink:label='loc_TypeOfAdoptionMember' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AccountingStandardsUpdate201409Member' xlink:label='loc_AccountingStandardsUpdate201409Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:label='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DifferenceBetweenRevenueGuidanceInEffectBeforeAndAfterTopic606Member' xlink:label='loc_DifferenceBetweenRevenueGuidanceInEffectBeforeAndAfterTopic606Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CalculatedUnderRevenueGuidanceInEffectBeforeTopic606Member' xlink:label='loc_CalculatedUnderRevenueGuidanceInEffectBeforeTopic606Member' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:label='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueInitialApplicationPeriodCumulativeEffectTransitionDescription' xlink:label='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionDescription' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueInitialApplicationPeriodCumulativeEffectTransitionExplanationOfChange' xlink:label='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionExplanationOfChange' xlink:type='locator' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_TypeOfAdoptionMember' xlink:to='loc_AccountingStandardsUpdate201409Member' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:to='loc_DifferenceBetweenRevenueGuidanceInEffectBeforeAndAfterTopic606Member' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_InitialApplicationPeriodCumulativeEffectTransitionDomain' xlink:to='loc_CalculatedUnderRevenueGuidanceInEffectBeforeTopic606Member' xlink:type='arc' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:to='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionDescription' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionLineItems' xlink:to='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionExplanationOfChange' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:label='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:label='loc_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AdjustmentsForNewAccountingPronouncementsAxis' xlink:label='loc_AdjustmentsForNewAccountingPronouncementsAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:to='loc_InitialApplicationPeriodCumulativeEffectTransitionAxis' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_RevenueInitialApplicationPeriodCumulativeEffectTransitionTable' xlink:to='loc_AdjustmentsForNewAccountingPronouncementsAxis' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='locator' />
+    <link:definitionArc order='1.0' xbrldt:closed='true' xbrldt:contextElement='segment' xlink:arcrole='http://xbrl.org/int/dim/arcrole/all' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:to='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionExplanation' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionExplanation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionPeriod1' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionPeriod1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionYear1' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionYear1' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligation' xlink:label='loc_RevenueRemainingPerformanceObligation' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationPercentage' xlink:label='loc_RevenueRemainingPerformanceObligationPercentage' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:to='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionExplanation' xlink:type='arc' />
+    <link:definitionArc order='2.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:to='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionPeriod1' xlink:type='arc' />
+    <link:definitionArc order='3.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:to='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionYear1' xlink:type='arc' />
+    <link:definitionArc order='4.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:to='loc_RevenueRemainingPerformanceObligation' xlink:type='arc' />
+    <link:definitionArc order='5.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/domain-member' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionLineItems' xlink:to='loc_RevenueRemainingPerformanceObligationPercentage' xlink:type='arc' />
+  </link:definitionLink>
+  <link:definitionLink xlink:role='http://fasb.org/us-gaap/role/disclosure/RevenuefromContractswithCustomersRevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='extended'>
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionStartDateAxis' xlink:label='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionStartDateAxis' xlink:type='locator' />
+    <link:definitionArc order='1.0' xlink:arcrole='http://xbrl.org/int/dim/arcrole/hypercube-dimension' xlink:from='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionTable' xlink:to='loc_RevenueRemainingPerformanceObligationExpectedTimingOfSatisfactionStartDateAxis' xlink:type='arc' />
+  </link:definitionLink>
+</link:linkbase>

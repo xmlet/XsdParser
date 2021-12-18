@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<link:linkbase xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:xbrldt='http://xbrl.org/2005/xbrldt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'>
+  <link:roleRef roleURI='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealers' xlink:href='../elts/us-roles-2021-01-31.xsd#fs-bd' xlink:type='simple' />
+  <link:calculationLink xlink:role='http://fasb.org/us-gaap/role/disclosure/FinancialServicesBrokersAndDealers' xlink:type='extended'>
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_NetCapitalUnderCommodityExchangeActComputation' xlink:label='loc_NetCapitalUnderCommodityExchangeActComputation' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_RequiredNetCapitalUnderCommodityExchangeAct1' xlink:label='loc_RequiredNetCapitalUnderCommodityExchangeAct1' xlink:type='locator' />
+    <link:loc xlink:href='https://xbrl.fasb.org/srt/2021/elts/srt-2021-01-31.xsd#srt_NetCapitalExcessShortageUnderCommodityExchangeAct' xlink:label='loc_NetCapitalExcessShortageUnderCommodityExchangeAct' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InsuranceServicesRevenue' xlink:label='loc_InsuranceServicesRevenue' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PremiumsEarnedNet' xlink:label='loc_PremiumsEarnedNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_IncreaseDecreaseInUnearnedPremiumsNet' xlink:label='loc_IncreaseDecreaseInUnearnedPremiumsNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PremiumsWrittenNet' xlink:label='loc_PremiumsWrittenNet' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_CededPremiumsWritten' xlink:label='loc_CededPremiumsWritten' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_PremiumsWrittenGross' xlink:label='loc_PremiumsWrittenGross' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_DirectPremiumsWritten' xlink:label='loc_DirectPremiumsWritten' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_AssumedPremiumsWritten' xlink:label='loc_AssumedPremiumsWritten' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InsuranceInvestmentIncome' xlink:label='loc_InsuranceInvestmentIncome' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_GainLossOnSaleOfInsuranceBlock' xlink:label='loc_GainLossOnSaleOfInsuranceBlock' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InsuranceAgencyManagementFee' xlink:label='loc_InsuranceAgencyManagementFee' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_InsuranceCommissionsAndFees' xlink:label='loc_InsuranceCommissionsAndFees' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:label='loc_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedLiabilitiesAdditions' xlink:label='loc_SubordinatedLiabilitiesAdditions' xlink:type='locator' />
+    <link:loc xlink:href='../elts/us-gaap-2021-01-31.xsd#us-gaap_SubordinatedLiabilitiesExtinguished' xlink:label='loc_SubordinatedLiabilitiesExtinguished' xlink:type='locator' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCapitalUnderCommodityExchangeActComputation' xlink:to='loc_RequiredNetCapitalUnderCommodityExchangeAct1' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_NetCapitalUnderCommodityExchangeActComputation' xlink:to='loc_NetCapitalExcessShortageUnderCommodityExchangeAct' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InsuranceServicesRevenue' xlink:to='loc_PremiumsEarnedNet' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_PremiumsEarnedNet' xlink:to='loc_IncreaseDecreaseInUnearnedPremiumsNet' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_PremiumsEarnedNet' xlink:to='loc_PremiumsWrittenNet' xlink:type='arc' />
+    <link:calculationArc order='10' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_PremiumsWrittenNet' xlink:to='loc_CededPremiumsWritten' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_PremiumsWrittenNet' xlink:to='loc_PremiumsWrittenGross' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_PremiumsWrittenGross' xlink:to='loc_DirectPremiumsWritten' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_PremiumsWrittenGross' xlink:to='loc_AssumedPremiumsWritten' xlink:type='arc' />
+    <link:calculationArc order='20' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InsuranceServicesRevenue' xlink:to='loc_InsuranceInvestmentIncome' xlink:type='arc' />
+    <link:calculationArc order='30' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InsuranceServicesRevenue' xlink:to='loc_GainLossOnSaleOfInsuranceBlock' xlink:type='arc' />
+    <link:calculationArc order='40' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InsuranceServicesRevenue' xlink:to='loc_InsuranceAgencyManagementFee' xlink:type='arc' />
+    <link:calculationArc order='50' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_InsuranceServicesRevenue' xlink:to='loc_InsuranceCommissionsAndFees' xlink:type='arc' />
+    <link:calculationArc order='10' weight='1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:to='loc_SubordinatedLiabilitiesAdditions' xlink:type='arc' />
+    <link:calculationArc order='20' weight='-1.0' xlink:arcrole='http://www.xbrl.org/2003/arcrole/summation-item' xlink:from='loc_SubordinatedLiabilitiesPeriodIncreaseDecrease' xlink:to='loc_SubordinatedLiabilitiesExtinguished' xlink:type='arc' />
+  </link:calculationLink>
+</link:linkbase>

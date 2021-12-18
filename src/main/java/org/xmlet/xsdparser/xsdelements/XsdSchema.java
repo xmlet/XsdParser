@@ -22,6 +22,7 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:schema";
     public static final String XS_TAG = "xs:schema";
+    public static final String TAG = "schema";
 
     /**
      * Specifies if the form attribute for the current {@link XsdSchema} children attributes. The default value is

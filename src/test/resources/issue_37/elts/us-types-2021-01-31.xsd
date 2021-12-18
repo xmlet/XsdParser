@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+(c) 2010-2021 Financial Accounting Foundation; (c) 2007-2010 XBRL US, Inc.  All Rights Reserved.
+Notice: Authorized Uses are Set Forth at https://xbrl.fasb.org/terms/TaxonomiesTermsConditions.html
+  -->
+<xs:schema elementFormDefault='qualified' targetNamespace='http://fasb.org/us-types/2021-01-31' xmlns:dtr-types='http://www.xbrl.org/dtr/type/2020-01-21' xmlns:enum2='http://xbrl.org/2020/extensible-enumerations-2.0' xmlns:link='http://www.xbrl.org/2003/linkbase' xmlns:us-types='http://fasb.org/us-types/2021-01-31' xmlns:xbrli='http://www.xbrl.org/2003/instance' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <xs:annotation>
+    <xs:documentation>
+                This file is the schema file for us-types (us-types).
+                
+                The DTS starting with this schema file will not contain any linkbases.
+            </xs:documentation>
+  </xs:annotation>
+  <xs:import namespace='http://www.xbrl.org/2003/instance' schemaLocation='http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd' />
+  <xs:complexType abstract='false' name='yesNoItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Yes' />
+        <xs:enumeration value='No' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='threeDigitItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:pattern value='[0-9]{3}' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='zoneStatusItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Green' />
+        <xs:enumeration value='Yellow' />
+        <xs:enumeration value='Orange' />
+        <xs:enumeration value='Red' />
+        <xs:enumeration value='Other' />
+        <xs:enumeration value='NA' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='interestRateItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Floating' />
+        <xs:enumeration value='Fixed' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='nineDigitItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:pattern value='[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='MalpracticeInsurance-OccurrenceOrClaims-madeItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Occurrence' />
+        <xs:enumeration value='Claims-made' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='fundedStatusItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Less than 65 percent' />
+        <xs:enumeration value='Between 65 and less than 80 percent' />
+        <xs:enumeration value='At least 80 percent' />
+        <xs:enumeration value='NA' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='fundingImprovementAndRehabilitationPlanItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='No' />
+        <xs:enumeration value='Pending' />
+        <xs:enumeration value='Implemented' />
+        <xs:enumeration value='Other' />
+        <xs:enumeration value='NA' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='investmentOnLoanForShortSalesItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Investment on Loan' />
+        <xs:enumeration value='Entire Investment on Loan' />
+        <xs:enumeration value='Partial Investment on Loan' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='investmentPledgedItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Investment Pledged' />
+        <xs:enumeration value='Entire Investment Pledged' />
+        <xs:enumeration value='Partial Investment Pledged' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='restrictedInvestmentItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Restricted Investment' />
+        <xs:enumeration value='Restricted Investment Exempt from Registration' />
+        <xs:enumeration value='Restricted Investment Not Exempt from Registration' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='surchargeItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='No' />
+        <xs:enumeration value='Yes' />
+        <xs:enumeration value='NA' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='authorizedUnlimitedItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Unlimited' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='distributionsReceivedApproach'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Cumulative earnings' />
+        <xs:enumeration value='Nature of distribution' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='forfeitureMethod'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Estimating expected forfeitures' />
+        <xs:enumeration value='Recognizing forfeitures when they occur' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='giltiPolicyType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Tax as incurred' />
+        <xs:enumeration value='Deferred tax recognized' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='combinedComponentType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Topic 842' />
+        <xs:enumeration value='Topic 606' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='advertisingExpenseMethodItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Expensed as incurred' />
+        <xs:enumeration value='Expensed first time advertising takes place' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='transitionOptionType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Retrospective' />
+        <xs:enumeration value='Prospective' />
+        <xs:enumeration value='Modified Retrospective' />
+        <xs:enumeration value='Modified Prospective' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='financialDesignationType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Predecessor' />
+        <xs:enumeration value='Successor' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='contractApplicationItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Applied to all contracts' />
+        <xs:enumeration value='Applied only to contracts not completed' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='capitalizationPolicyType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Capitalization' />
+        <xs:enumeration value='Prospective capitalization' />
+        <xs:enumeration value='No capitalization' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='accruedInterestWriteOffMethodItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Reversing interest income' />
+        <xs:enumeration value='Recognizing credit loss expense' />
+        <xs:enumeration value='Reversing interest income and recognizing credit loss expense' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='includedExcludedItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Included' />
+        <xs:enumeration value='Excluded' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='surchargeMethodGSIB'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Method 1' />
+        <xs:enumeration value='Method 2' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType abstract='false' name='controlOfRightsItemType'>
+    <xs:simpleContent>
+      <xs:restriction base='xbrli:tokenItemType'>
+        <xs:enumeration value='Issuer' />
+        <xs:enumeration value='Holder' />
+        <xs:attributeGroup ref='xbrli:nonNumericItemAttrs' />
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

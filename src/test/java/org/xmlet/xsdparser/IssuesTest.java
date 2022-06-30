@@ -388,7 +388,7 @@ public class IssuesTest {
 
         List<XsdElement> allAChildren = allA.getChildrenElements().collect(Collectors.toList());
 
-        Assert.assertEquals(1, allAChildren.size());
+        Assert.assertEquals(2, allAChildren.size());
 
         XsdElement elementB = allAChildren.get(0);
 
@@ -653,6 +653,15 @@ public class IssuesTest {
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
         List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
+    }
+
+    @Test
+    public void testPersons(){
+        XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
+
+        List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
+        
+        Assert.assertEquals(0, unsolvedReferences.size());
     }
 
     private String getInfo(XsdAbstractElement xae) {

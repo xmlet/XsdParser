@@ -262,7 +262,23 @@ public abstract class XsdParserCore {
                                     .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
                                     .collect(Collectors.toList());
 
+                    Set<String> transitiveIncludes = new HashSet<>();
+
+                    for(String includedFile : includedFiles){
+                        parseElements.keySet()
+                                .stream()
+                                .filter(fileNameAux -> fileNameAux.endsWith(includedFile))
+                                .findFirst()
+                                .ifPresent(fullIncludedFileName -> transitiveIncludes.addAll(parseElements.get(fullIncludedFileName)
+                                .stream()
+                                .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
+                                .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
+                                .collect(Collectors.toList())));
+                    }
+
+                    includedFiles.addAll((transitiveIncludes));
                     includedFiles.addAll(getResultXsdSchemas().filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName))).map(XsdSchema::getFilePath).distinct().collect(Collectors.toList()));
+                    includedFiles = includedFiles.stream().distinct().collect(Collectors.toList());
 
                     List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
 

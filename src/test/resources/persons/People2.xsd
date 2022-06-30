@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2022 rel. 2 (x64) (http://www.altova.com) by Aeroxchange, Ltd. (Aeroxchange, Ltd.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">   
+    <xs:attribute name="type">
+		<xs:annotation>
+			<xs:documentation>Type of Phone</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Home">
+					<xs:annotation>
+						<xs:documentation>Home Phone Number</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="Work"/>
+				<xs:enumeration value="Mobile"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+    <xs:element name="First">
+		<xs:annotation>
+			<xs:documentation>First name of the person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

@@ -6,6 +6,7 @@
     <xs:complexType name="AType">
         <xs:all>
             <xs:element ref="B"/>
+            <xs:element ref="C"/>
         </xs:all>
     </xs:complexType>
 </xs:schema>

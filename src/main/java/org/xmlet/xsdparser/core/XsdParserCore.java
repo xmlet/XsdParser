@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -101,6 +102,11 @@ public abstract class XsdParserCore {
 
             for(XsdImport xsdImport : imports){
                 schema.resolveNameSpace(xsdImport.getNamespace(), xsdImport.getSchemaLocation());
+            }
+            Map<String, NamespaceInfo> ns = schema.getNamespaces();
+            
+            for(Entry<String, NamespaceInfo> e: ns.entrySet()) {
+            	schema.resolveNameSpace(e.getKey(), schema.getFilePath().substring(schema.getFilePath().lastIndexOf("/")+1));
             }
         }
 

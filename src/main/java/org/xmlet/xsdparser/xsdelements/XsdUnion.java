@@ -23,6 +23,7 @@ public class XsdUnion extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:union";
     public static final String XS_TAG = "xs:union";
+    public static final String TAG = "union";
 
     /**
      * A List of {@link XsdSimpleType} instances that represent the {@link XsdUnion}.

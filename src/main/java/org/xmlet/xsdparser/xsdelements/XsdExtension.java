@@ -30,6 +30,7 @@ public class XsdExtension extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:extension";
     public static final String XS_TAG = "xs:extension";
+    public static final String TAG = "extension";
 
     /**
      * The child element of the {@link XsdExtension} instance. Either a {@link XsdGroup}, {@link XsdAll},

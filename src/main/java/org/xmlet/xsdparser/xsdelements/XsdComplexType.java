@@ -28,6 +28,7 @@ public class XsdComplexType extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:complexType";
     public static final String XS_TAG = "xs:complexType";
+    public static final String TAG = "complexType";
 
     /**
      * The child element of {@link XsdComplexType}. Can be either a {@link XsdGroup} or a {@link XsdMultipleElements}

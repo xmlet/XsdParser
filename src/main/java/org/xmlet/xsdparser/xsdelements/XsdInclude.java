@@ -18,6 +18,7 @@ public class XsdInclude extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:include";
     public static final String XS_TAG = "xs:include";
+    public static final String TAG = "include";
 
     /**
      * Specifies the URI to the schema for the imported namespace.

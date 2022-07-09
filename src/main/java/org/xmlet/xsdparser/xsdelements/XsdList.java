@@ -19,6 +19,7 @@ public class XsdList extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:list";
     public static final String XS_TAG = "xs:list";
+    public static final String TAG = "list";
 
     /**
      * The {@link XsdSimpleType} instance that states the type of the elements that belong to this {@link XsdList}

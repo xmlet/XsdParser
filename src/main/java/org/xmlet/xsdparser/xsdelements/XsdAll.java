@@ -20,6 +20,7 @@ public class XsdAll extends XsdMultipleElements {
 
     public static final String XSD_TAG = "xsd:all";
     public static final String XS_TAG = "xs:all";
+    public static final String TAG = "all";
 
     /**
      * Specifies the minimum number of times this element can occur in the parent element. The value can be any

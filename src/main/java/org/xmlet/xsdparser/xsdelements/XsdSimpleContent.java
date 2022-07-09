@@ -20,6 +20,7 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:simpleContent";
     public static final String XS_TAG = "xs:simpleContent";
+    public static final String TAG = "simpleContent";
 
     /**
      * The {@link XsdRestriction} instance that should be applied to the {@link XsdSimpleContent} instance.

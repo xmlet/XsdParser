@@ -23,6 +23,7 @@ public class XsdGroup extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:group";
     public static final String XS_TAG = "xs:group";
+    public static final String TAG = "group";
 
     /**
      * The child element of the {@link XsdGroup} instance. It can be a {@link XsdAll}, {@link XsdChoice} or a

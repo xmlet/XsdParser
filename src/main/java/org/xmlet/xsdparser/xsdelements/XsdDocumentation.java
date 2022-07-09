@@ -19,6 +19,7 @@ public class XsdDocumentation extends XsdAnnotationChildren {
 
     public static final String XSD_TAG = "xsd:documentation";
     public static final String XS_TAG = "xs:documentation";
+    public static final String TAG = "documentation";
 
     /**
      * Specifies the language used in the {@link XsdAnnotationChildren#content}

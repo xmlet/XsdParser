@@ -20,6 +20,7 @@ public class XsdAnnotation extends XsdIdentifierElements {
 
     public static final String XSD_TAG = "xsd:annotation";
     public static final String XS_TAG = "xs:annotation";
+    public static final String TAG = "annotation";
 
     /**
      * The list of {@link XsdAppInfo} children.

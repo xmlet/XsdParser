@@ -27,6 +27,7 @@ public class XsdElement extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:element";
     public static final String XS_TAG = "xs:element";
+    public static final String TAG = "element";
 
     /**
      * The {@link XsdComplexType} instance wrapped in a {@link ReferenceBase} object.

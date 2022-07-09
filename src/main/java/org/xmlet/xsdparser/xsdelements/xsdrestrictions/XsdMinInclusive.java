@@ -21,6 +21,7 @@ public class XsdMinInclusive extends XsdStringRestrictions {
 
     public static final String XSD_TAG = "xsd:minInclusive";
     public static final String XS_TAG = "xs:minInclusive";
+    public static final String TAG = "minInclusive";
 
     /**
      * Indicates if the value is fixed.

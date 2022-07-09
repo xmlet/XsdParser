@@ -27,6 +27,7 @@ public class XsdSimpleType extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:simpleType";
     public static final String XS_TAG = "xs:simpleType";
+    public static final String TAG = "simpleType";
 
     /**
      * A {@link XsdRestriction} instance that is present in the {@link XsdSimpleType} instance.

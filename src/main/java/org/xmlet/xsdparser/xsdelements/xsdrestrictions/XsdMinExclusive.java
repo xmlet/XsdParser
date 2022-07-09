@@ -22,6 +22,7 @@ public class XsdMinExclusive extends XsdStringRestrictions {
 
     public static final String XSD_TAG = "xsd:minExclusive";
     public static final String XS_TAG = "xs:minExclusive";
+    public static final String TAG = "minExclusive";
 
     /**
      * Indicates if the value is fixed.

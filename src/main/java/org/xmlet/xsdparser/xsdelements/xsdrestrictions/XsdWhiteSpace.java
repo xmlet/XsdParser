@@ -21,6 +21,7 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:whiteSpace";
     public static final String XS_TAG = "xs:whiteSpace";
+    public static final String TAG = "whiteSpace";
 
     private boolean fixed;
     private WhiteSpaceEnum value;

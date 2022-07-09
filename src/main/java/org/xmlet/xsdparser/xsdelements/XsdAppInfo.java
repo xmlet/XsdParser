@@ -19,6 +19,8 @@ public class XsdAppInfo extends XsdAnnotationChildren {
 
     public static final String XSD_TAG = "xsd:appinfo";
     public static final String XS_TAG = "xs:appinfo";
+    public static final String TAG = "appinfo";
+    
 
     private XsdAppInfo(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam) {
         super(parser, elementFieldsMapParam);

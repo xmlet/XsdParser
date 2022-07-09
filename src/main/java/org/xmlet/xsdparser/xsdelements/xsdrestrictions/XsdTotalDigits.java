@@ -19,6 +19,7 @@ public class XsdTotalDigits extends XsdIntegerRestrictions {
 
     public static final String XSD_TAG = "xsd:totalDigits";
     public static final String XS_TAG = "xs:totalDigits";
+    public static final String TAG = "totalDigits";
 
     private XsdTotalDigits(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

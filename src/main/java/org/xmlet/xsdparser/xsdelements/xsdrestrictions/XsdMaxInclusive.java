@@ -21,6 +21,7 @@ public class XsdMaxInclusive extends XsdStringRestrictions {
 
     public static final String XSD_TAG = "xsd:maxInclusive";
     public static final String XS_TAG = "xs:maxInclusive";
+    public static final String TAG = "maxInclusive";
 
     /**
      * Indicates if the value is fixed.

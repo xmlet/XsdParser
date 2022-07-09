@@ -23,6 +23,7 @@ public class XsdMinLength extends XsdIntegerRestrictions {
 
     public static final String XSD_TAG = "xsd:minLength";
     public static final String XS_TAG = "xs:minLength";
+    public static final String TAG = "minLength";
 
     private XsdMinLength(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

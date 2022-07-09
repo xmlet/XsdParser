@@ -22,6 +22,7 @@ public class XsdMaxExclusive extends XsdStringRestrictions {
 
     public static final String XSD_TAG = "xsd:maxExclusive";
     public static final String XS_TAG = "xs:maxExclusive";
+    public static final String TAG = "maxExclusive";
 
     /**
      * Indicates if the value is fixed.

@@ -32,6 +32,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:restriction";
     public static final String XS_TAG = "xs:restriction";
+    public static final String TAG = "restriction";
 
     /**
      * The {@link XsdSimpleType} instance of this {@link XsdRestriction} instance.

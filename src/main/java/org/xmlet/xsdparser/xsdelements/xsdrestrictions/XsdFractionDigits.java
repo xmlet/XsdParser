@@ -19,6 +19,7 @@ public class XsdFractionDigits extends XsdIntegerRestrictions {
 
     public static final String XSD_TAG = "xsd:fractionDigits";
     public static final String XS_TAG = "xs:fractionDigits";
+    public static final String TAG = "fractionDigits";
 
     private XsdFractionDigits(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

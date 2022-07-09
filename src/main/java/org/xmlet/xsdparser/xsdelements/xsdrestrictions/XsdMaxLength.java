@@ -23,6 +23,7 @@ public class XsdMaxLength extends XsdIntegerRestrictions {
 
     public static final String XSD_TAG = "xsd:maxLength";
     public static final String XS_TAG = "xs:maxLength";
+    public static final String TAG = "maxLength";
 
     private XsdMaxLength(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

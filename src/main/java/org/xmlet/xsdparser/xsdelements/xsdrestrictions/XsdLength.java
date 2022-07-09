@@ -21,6 +21,7 @@ public class XsdLength extends XsdIntegerRestrictions {
 
     public static final String XSD_TAG = "xsd:length";
     public static final String XS_TAG = "xs:length";
+    public static final String TAG = "length";
 
     private XsdLength(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

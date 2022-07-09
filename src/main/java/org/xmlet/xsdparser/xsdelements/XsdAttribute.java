@@ -30,6 +30,7 @@ public class XsdAttribute extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:attribute";
     public static final String XS_TAG = "xs:attribute";
+    public static final String TAG = "attribute";
 
     /**
      * A {@link XsdSimpleType} instance wrapped in a {@link ReferenceBase} object which indicate any restrictions

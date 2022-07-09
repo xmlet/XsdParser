@@ -21,6 +21,7 @@ public class XsdChoice extends XsdMultipleElements {
 
     public static final String XSD_TAG = "xsd:choice";
     public static final String XS_TAG = "xs:choice";
+    public static final String TAG = "choice";
 
     /**
      * Specifies the minimum number of times this element can occur in the parent element. The value can be any

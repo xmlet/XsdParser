@@ -20,6 +20,7 @@ public class XsdComplexContent extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:complexContent";
     public static final String XS_TAG = "xs:complexContent";
+    public static final String TAG = "complexContent";
 
     /**
      * A {@link XsdRestriction} object wrapped in a {@link ReferenceBase} object.

@@ -21,6 +21,7 @@ public class XsdSequence extends XsdMultipleElements{
 
     public static final String XSD_TAG = "xsd:sequence";
     public static final String XS_TAG = "xs:sequence";
+    public static final String TAG = "sequence";
 
     /**
      * Specifies the minimum number of times this element can occur in the parent element. The value can be any

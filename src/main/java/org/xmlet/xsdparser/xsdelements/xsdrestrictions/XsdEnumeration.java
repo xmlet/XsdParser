@@ -18,6 +18,7 @@ public class XsdEnumeration extends XsdStringRestrictions {
 
     public static final String XSD_TAG = "xsd:enumeration";
     public static final String XS_TAG = "xs:enumeration";
+    public static final String TAG = "enumeration";
 
     private XsdEnumeration(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);

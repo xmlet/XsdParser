@@ -27,6 +27,7 @@ public class XsdAttributeGroup extends XsdNamedElements {
 
     public static final String XSD_TAG = "xsd:attributeGroup";
     public static final String XS_TAG = "xs:attributeGroup";
+    public static final String TAG = "attributeGroup";
 
     /**
      * A list of {@link XsdAttributeGroup} children instances.

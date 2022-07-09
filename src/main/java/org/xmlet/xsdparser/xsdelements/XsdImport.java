@@ -18,6 +18,7 @@ public class XsdImport extends XsdAnnotatedElements {
 
     public static final String XSD_TAG = "xsd:import";
     public static final String XS_TAG = "xs:import";
+    public static final String TAG = "import";
 
     /**
      * Specifies the a namespace to import.

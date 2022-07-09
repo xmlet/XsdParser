@@ -161,7 +161,7 @@ public class HtmlParseTest {
         for(ParserResult parserResult : parserResults){
             List<UnsolvedReferenceItem> unsolvedReferenceList = parserResult.getUnsolved();
 
-            Assert.assertEquals(4, unsolvedReferenceList.size());
+            Assert.assertEquals(3, unsolvedReferenceList.size());
 
             Optional<UnsolvedReferenceItem> unsolvedReferenceOpt = unsolvedReferenceList.stream().filter(ur -> ur.getUnsolvedReference().getRef().equals("i18LanguageCode")).findFirst();
 

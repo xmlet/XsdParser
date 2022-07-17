@@ -332,6 +332,21 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.3
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/39" title="Upgrade jacoco to version 0.8.4 as needed for OpenJDK 11">Issue 39</a>
+            <a href="https://github.com/xmlet/XsdParser/issues/40" title="testDocumentationWithCDATA fails">Issue 40</a>
+            <br/>
+            Upgrades jacoco plugin from 0.8.1 to 0.8.4.
+            <br/>
+            Made the project compatible with Java 11.
+        </li>
+    </ul>
+</div>
+
 ### 1.2.0
 
 <div align="justify">

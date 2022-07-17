@@ -656,6 +656,15 @@ public class IssuesTest {
     }
 
     @Test
+    public void testIssue43(){
+        XsdParser parser = new XsdParser(getFilePath("issue_43/BICEPS_MessageModel.xsd"));
+
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+        List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
+        List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
+    }
+
+    @Test
     public void testPersons(){
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
 

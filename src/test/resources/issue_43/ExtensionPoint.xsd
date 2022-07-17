@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+	<xsd:element name="Extension" type="tns:ExtensionType"/>
+	<xsd:complexType name="ExtensionType">
+		<xsd:sequence>
+			<xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:attribute name="MustUnderstand" type="xsd:boolean" default="false">
+		<xsd:annotation>
+			<xsd:documentation>In cases where an extension modifies the meaning of the element that contains it, a MustUnderstand attribute is senseful. This means that the data cannot safely be processed unless the application knows the meaning of the extension. A MustUnderstand marked extension could be look like this:
+
+tns:Extension xmlns:tns="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:ext="http://concrete-extension-namespace"
+  ext:AdditionalInfo tns:MustUnderstand="true"
+    ...
+
+
+Extensions are not required to provide a MustUnderstand attribute. If no MustUnderstand attribute is present, false is assumed. The MustUnderstand attribute is conceptually borrowed from SOAP header's "mustUnderstand" attribute.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:schema>

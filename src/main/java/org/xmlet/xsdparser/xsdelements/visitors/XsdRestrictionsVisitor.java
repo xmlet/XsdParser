@@ -125,13 +125,6 @@ public class XsdRestrictionsVisitor extends AttributesVisitor {
     }
 
     @Override
-    public void visit(XsdSimpleType element) {
-        super.visit(element);
-
-        owner.setSimpleType(element);
-    }
-
-    @Override
     public void visit(XsdAll element) {
         super.visit(element);
 

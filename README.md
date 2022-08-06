@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.4</version>
 </dependency>
 ```
 
@@ -332,14 +332,23 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.4
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/44" title="I can't get the base ComplexType of a Restriction inside a complexContent ">Details</a> - Changes XsdRestriction to support XsdComplexTypes related with the base attribute.
+        </li>
+    </ul>
+</div>
+
 ### 1.2.3
 
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/39" title="Upgrade jacoco to version 0.8.4 as needed for OpenJDK 11">Issue 39</a>
-            <a href="https://github.com/xmlet/XsdParser/issues/40" title="testDocumentationWithCDATA fails">Issue 40</a>
-            <br/>
+            <a href="https://github.com/xmlet/XsdParser/issues/39" title="Upgrade jacoco to version 0.8.4 as needed for OpenJDK 11">Details</a> /
+            <a href="https://github.com/xmlet/XsdParser/issues/40" title="testDocumentationWithCDATA fails">Details</a>
             Upgrades jacoco plugin from 0.8.1 to 0.8.4.
             <br/>
             Made the project compatible with Java 11.
@@ -352,7 +361,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/37" title="Trying to parse us-gaap taxonomy xsd, parser throws 'namespace for prefix 'xlink' has not been declared'">Issue 37</a> 
+            <a href="https://github.com/xmlet/XsdParser/issues/37" title="Trying to parse us-gaap taxonomy xsd, parser throws 'namespace for prefix 'xlink' has not been declared'">Details</a> 
             <b>Possible Breaking Change</b> - Changed DocumentBuilderFactory to be NameSpaceAware. Namespaces will now be validated.
         </li>
     </ul>
@@ -363,7 +372,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/pull/34" title="XsdAnnotation not filled in for XsdEnumeration">Issue 34</a> 
+            <a href="https://github.com/xmlet/XsdParser/pull/34" title="XsdAnnotation not filled in for XsdEnumeration">Details</a> 
             Fixed an issue where restrictions contents weren't being parsed. 
         </li>
         <li>
@@ -570,7 +579,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/12" title="Exception handling during parsing">Issue 12 - Exception handling during parsing</a> - 
+            <a href="https://github.com/xmlet/XsdParser/issues/12" title="Exception handling during parsing">Details</a> - 
             Adds proper exception propagation when an exception occurs.
         </li>
     </ul>
@@ -581,7 +590,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/11" title="Schema Import: Search in relation to the path of the importing XSD file">Issue 11 - Schema Import: Search in relation to the path of the importing XSD file</a> - 
+            <a href="https://github.com/xmlet/XsdParser/issues/11" title="Schema Import: Search in relation to the path of the importing XSD file">Details</a> - 
             Changes XsdParser to support imports with paths relative to the importing file.
         </li>
     </ul>
@@ -592,7 +601,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/10" title="documentation.getContent()">Issue 10 - documentation.getContent()</a> - 
+            <a href="https://github.com/xmlet/XsdParser/issues/10" title="documentation.getContent()">Details</a> - 
             Fixes CDATA nodes not being parsed XSD elements with raw text such as &quot;xsd:documentation&quot; and &quot;xsd:appinfo&quot;.
         </li>
     </ul>
@@ -603,7 +612,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/9" title="Issue with substitutionGroup">Issue 9 - Issue with substitutionGroup</a> - 
+            <a href="https://github.com/xmlet/XsdParser/issues/9" title="Issue with substitutionGroup">Details</a> - 
             Fixed substitutionGroup automatically overwriting XsdElement types. 
             To access the substitution element types use <i>XsdElement::getXsdSubstitutionGroup()</i> and then access the types.
         </li>
@@ -626,11 +635,11 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/7" title="XsdParser::getSchemaNode fails with comments">Issue 7 - XsdParser::getSchemaNode fails with comments</a> - 
+            <a href="https://github.com/xmlet/XsdParser/issues/7" title="XsdParser::getSchemaNode fails with comments">Details</a> - 
             Added verification to only parse Element nodes.
         </li>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/8" title="Resolve tags without &quot;xs&quot; and &quot;xsd&quot; namespaces.">Issue 8 - Resolve tags without &quot;xs&quot; and &quot;xsd&quot; namespaces.</a> - 
+            <a href="https://github.com/xmlet/XsdParser/issues/8" title="Resolve tags without &quot;xs&quot; and &quot;xsd&quot; namespaces.">Details</a> - 
             Adds support for configurable namespaces of XSD elements.
         </li>
     </ul>

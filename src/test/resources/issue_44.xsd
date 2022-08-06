@@ -1,0 +1,25 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"  xmlns="http://mytestns.org/">
+
+    <xsd:complexType name="CT">
+    </xsd:complexType>
+
+    <xsd:simpleType name="ST">
+    </xsd:simpleType>
+
+    <xsd:complexType name="R1_Container">
+        <xsd:complexContent>
+            <xsd:restriction base="CT" >
+
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="R2_Container">
+        <xsd:complexContent>
+            <xsd:restriction base="ST" >
+
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+</xsd:schema>

@@ -635,7 +635,7 @@ public class IssuesTest {
 
         Assert.assertNotNull(xsdRestriction);
 
-        XsdSimpleType max35TextSimpleType = xsdRestriction.getSimpleType();
+        XsdSimpleType max35TextSimpleType = xsdRestriction.getBaseAsSimpleType();
 
         Assert.assertNotNull(max35TextSimpleType);
         Assert.assertEquals("Max35Text", max35TextSimpleType.getName());
@@ -656,12 +656,55 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue43(){
-        XsdParser parser = new XsdParser(getFilePath("issue_43/BICEPS_MessageModel.xsd"));
+    public void testIssue44(){
+        XsdParser parser = new XsdParser(getFilePath("issue_44.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
-        List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
-        List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
+
+        Optional<XsdSchema> schemaOptional = schemas.stream().findFirst();
+
+        Assert.assertTrue(schemaOptional.isPresent());
+
+        XsdSchema schema = schemaOptional.get();
+
+        Assert.assertNotNull(schema);
+
+        List<XsdComplexType> xsdComplexTypes = schema.getChildrenComplexTypes().collect(Collectors.toList());
+
+        Optional<XsdComplexType> r1ContainerOptional = xsdComplexTypes.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("R1_Container")).findFirst();
+        Optional<XsdComplexType> r2ContainerOptional = xsdComplexTypes.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("R2_Container")).findFirst();
+
+        Assert.assertTrue(r1ContainerOptional.isPresent());
+        Assert.assertTrue(r2ContainerOptional.isPresent());
+
+        XsdComplexType r1Container = r1ContainerOptional.get();
+        XsdComplexType r2Container = r2ContainerOptional.get();
+
+        Assert.assertNotNull(r1Container);
+        Assert.assertNotNull(r2Container);
+
+        XsdComplexContent r1ComplexContent = r1Container.getComplexContent();
+        XsdComplexContent r2ComplexContent = r2Container.getComplexContent();
+
+        Assert.assertNotNull(r1ComplexContent);
+        Assert.assertNotNull(r2ComplexContent);
+
+        XsdRestriction ctRestriction = r1ComplexContent.getXsdRestriction();
+        XsdRestriction stRestriction = r2ComplexContent.getXsdRestriction();
+
+        Assert.assertNotNull(ctRestriction);
+        Assert.assertNotNull(stRestriction);
+
+        XsdSimpleType ctRestrictionSimpleType = ctRestriction.getBaseAsSimpleType();
+        XsdComplexType ctRestrictionComplexType = ctRestriction.getBaseAsComplexType();
+
+        XsdSimpleType stRestrictionSimpleType = stRestriction.getBaseAsSimpleType();
+        XsdComplexType stRestrictionComplexType = stRestriction.getBaseAsComplexType();
+
+        Assert.assertNull(ctRestrictionSimpleType);
+        Assert.assertNotNull(ctRestrictionComplexType);
+        Assert.assertNotNull(stRestrictionSimpleType);
+        Assert.assertNull(stRestrictionComplexType);
     }
 
     @Test

@@ -68,8 +68,8 @@ public class ParserApp {
         String jarXsdPath = "XSD file path, relative to the jar root.";
         XsdParserJar parserInstance2 = new XsdParserJar(jarPath, jarXsdPath);
 
-        Stream<XsdElement> elementsStream = parserInstance1.getResultXsdElements(filePath);
-        Stream<XsdSchema> schemasStream = parserInstance1.getResultXsdSchemas(filePath);
+        Stream<XsdElement> elementsStream = parserInstance1.getResultXsdElements();
+        Stream<XsdSchema> schemasStream = parserInstance1.getResultXsdSchemas();
     }
 }
 ```

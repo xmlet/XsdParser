@@ -1,0 +1,16 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"  xmlns="http://mytestns.org/" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <xsd:import schemaLocation="issue_49_xmlns.xsd" namespace="http://www.w3.org/XML/1998/namespace">
+
+    </xsd:import>
+
+    <xsd:complexType name="NameType">
+        <xsd:annotation>
+            <xsd:documentation>Type for name.  Used for names in units, quantities, and prefixes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:token">
+                <xsd:attribute ref="xml:lang"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

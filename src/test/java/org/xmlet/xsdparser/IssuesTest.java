@@ -708,6 +708,43 @@ public class IssuesTest {
     }
 
     @Test
+    public void testIssue49(){
+        XsdParser parser = new XsdParser(getFilePath("issue_49.xsd"));
+
+        List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+
+        Optional<XsdSchema> schemaOptional = schemas.stream().findFirst();
+
+        Assert.assertTrue(schemaOptional.isPresent());
+
+        XsdSchema schema = schemaOptional.get();
+
+        Assert.assertNotNull(schema);
+
+        List<XsdComplexType> xsdComplexTypes = schema.getChildrenComplexTypes().collect(Collectors.toList());
+
+        Optional<XsdComplexType> nameTypeOptional = xsdComplexTypes.stream().filter(xsdComplexType -> xsdComplexType.getName().equals("NameType")).findFirst();
+
+        Assert.assertTrue(nameTypeOptional.isPresent());
+
+        XsdComplexType nameTypeComplexType = nameTypeOptional.get();
+
+        Assert.assertNotNull(nameTypeComplexType);
+
+        XsdSimpleContent nameTypeSimpleContent = nameTypeComplexType.getSimpleContent();
+
+        Assert.assertNotNull(nameTypeSimpleContent);
+
+        XsdExtension xsdTokenExtension = nameTypeSimpleContent.getXsdExtension();
+
+        Assert.assertNotNull(xsdTokenExtension);
+
+        List<XsdAttribute> xsdExtensionAttributesList = xsdTokenExtension.getXsdAttributes().collect(Collectors.toList());
+
+        Assert.assertEquals(1, xsdExtensionAttributesList.size());
+    }
+
+    @Test
     public void testPersons(){
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
 

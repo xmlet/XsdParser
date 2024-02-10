@@ -135,13 +135,14 @@ public class RestrictionsTest {
         XsdLength xsdLength = restriction.getLength();
         XsdMaxLength xsdMaxLength = restriction.getMaxLength();
         XsdMinLength xsdMinLength = restriction.getMinLength();
-        XsdPattern xsdPattern = restriction.getPattern();
+        List<XsdPattern> xsdPattern = restriction.getPattern();
         XsdWhiteSpace xsdWhiteSpace = restriction.getWhiteSpace();
 
         Assert.assertNotNull(xsdLength);
         Assert.assertNotNull(xsdMaxLength);
         Assert.assertNotNull(xsdMinLength);
         Assert.assertNotNull(xsdPattern);
+        Assert.assertEquals(2, xsdPattern.size());
         Assert.assertNotNull(xsdWhiteSpace);
 
         Assert.assertEquals(10d, xsdLength.getValue(), 0);
@@ -153,7 +154,8 @@ public class RestrictionsTest {
         Assert.assertEquals(10d, xsdLength.getValue(), 0);
         Assert.assertTrue(xsdLength.isFixed());
 
-        Assert.assertEquals(".*", xsdPattern.getValue());
+        Assert.assertEquals(".*", xsdPattern.get(0).getValue());
+        Assert.assertEquals("\\d{2}", xsdPattern.get(1).getValue());
 
         Assert.assertEquals("preserve", xsdWhiteSpace.getValue().getValue());
         Assert.assertFalse(xsdWhiteSpace.isFixed());

@@ -332,6 +332,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.5
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/51" title="Multiple pattern are not supported ">Details</a> - Changes XsdRestriction to support multiple pattern instead of one.
+        </li>
+    </ul>
+</div>
+
 ### 1.2.4
 
 <div align="justify">

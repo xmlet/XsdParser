@@ -195,7 +195,6 @@ public class XsdSimpleType extends XsdNamedElements {
      * @param newRestriction The new restriction.
      */
     private void updateExistingRestriction(XsdRestriction existing, XsdRestriction newRestriction) {
-        XsdPattern pattern = newRestriction.getPattern();
         XsdMaxExclusive maxExclusive = newRestriction.getMaxExclusive();
         XsdMaxInclusive maxInclusive = newRestriction.getMaxInclusive();
         XsdMaxLength maxLength = newRestriction.getMaxLength();
@@ -207,9 +206,6 @@ public class XsdSimpleType extends XsdNamedElements {
         XsdTotalDigits totalDigits = newRestriction.getTotalDigits();
         XsdWhiteSpace whiteSpace = newRestriction.getWhiteSpace();
 
-        if (pattern != null){
-            existing.setPattern(pattern);
-        }
 
         if (maxExclusive != null){
             existing.setMaxExclusive(maxExclusive);
@@ -252,6 +248,29 @@ public class XsdSimpleType extends XsdNamedElements {
         }
 
         updateExistingRestrictionEnumerations(existing, newRestriction);
+        updateExistingRestricionPatterns(existing, newRestriction);
+    }
+
+    /**
+     * Updates the existing {@link XsdRestriction} with the restrictions of the new {@link XsdRestriction} instance.
+     * @param existing The existing {@link XsdRestriction} instance.
+     * @param newRestriction The new {@link XsdRestriction} instance.
+     */
+    private void updateExistingRestricionPatterns(XsdRestriction existing, XsdRestriction newRestriction) {
+        List<XsdPattern> existingPattern = existing.getPattern();
+        List<XsdPattern> newRestrictionPattern = newRestriction.getPattern();
+
+        if (existingPattern == null){
+            existing.setPattern(newRestrictionPattern);
+        } else {
+            if (newRestrictionPattern != null){
+                for (XsdPattern patternElem : newRestrictionPattern){
+                    if (existingPattern.stream().noneMatch(existingPatternElem -> existingPatternElem.getValue().equals(patternElem.getValue()))){
+                        existingPattern.add(patternElem);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -283,8 +302,7 @@ public class XsdSimpleType extends XsdNamedElements {
      * @return True if an overlap between the restrictions occur, false if it doesn't occur.
      */
     private boolean existsRestrictionOverlap(XsdRestriction existing, XsdRestriction newRestriction) {
-        return hasDifferentValue(existing.getPattern(), newRestriction.getPattern()) ||
-               hasDifferentValue(existing.getWhiteSpace(), newRestriction.getWhiteSpace()) ||
+        return hasDifferentValue(existing.getWhiteSpace(), newRestriction.getWhiteSpace()) ||
                hasDifferentValue(existing.getTotalDigits(), newRestriction.getTotalDigits()) ||
                hasDifferentValue(existing.getFractionDigits(), newRestriction.getFractionDigits()) ||
                hasDifferentValue(existing.getMaxExclusive(), newRestriction.getMaxExclusive()) ||

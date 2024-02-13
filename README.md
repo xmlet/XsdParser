@@ -44,7 +44,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
 </dependency>
 ```
 
@@ -337,7 +337,10 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/51" title="Multiple pattern are not supported ">Details</a> - Changes XsdRestriction to support multiple pattern instead of one.
+            <a href="https://github.com/xmlet/XsdParser/issues/51" title="Multiple pattern are not supported">Details</a> - Changes XsdRestriction to support multiple patterns instead of one. Fixes by <a href="https://github.com/darthweiter" title="Daniel Radtke">Daniel Radtke</a>.        
+        </li>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/50" title="Null Pointer Exception Parsing OCX Schema">Details</a> - Adds fallback when searching for XsdSchema while solving Unsolved References. Fixes by <a href="https://github.com/skfcz" title="Daniel Radtke">Carsten Zerbst</a>.
         </li>
     </ul>
 </div>

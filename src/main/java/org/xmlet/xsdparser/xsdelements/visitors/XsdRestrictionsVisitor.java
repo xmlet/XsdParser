@@ -107,7 +107,7 @@ public class XsdRestrictionsVisitor extends AttributesVisitor {
     public void visit(XsdPattern element) {
         super.visit(element);
 
-        owner.setPattern(element);
+        owner.add(element);
     }
 
     @Override

@@ -27,6 +27,7 @@
                         <xsd:maxLength value="10" fixed="true"/>
                         <xsd:minLength value="10" fixed="true"/>
                         <xsd:pattern value=".*"/>
+                        <xsd:pattern value="\d{2}"/>
                         <xsd:whiteSpace value="preserve" fixed="false"/>
                     </xsd:restriction>
                 </xsd:simpleType>

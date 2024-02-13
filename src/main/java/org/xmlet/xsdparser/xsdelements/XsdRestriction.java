@@ -85,9 +85,9 @@ public class XsdRestriction extends XsdAnnotatedElements {
     private XsdMinLength minLength;
 
     /**
-     * A {@link XsdPattern} instance that specifies a regex pattern that a String type should follow.
+     * A List of{@link XsdPattern} items, that represent a set of pattern that a String type should follow.
      */
-    private XsdPattern pattern;
+    private List<XsdPattern> pattern = new ArrayList<>();
 
     /**
      * A {@link XsdTotalDigits} instance that specifies the total number of digits that a numeric type is allowed to have.
@@ -217,7 +217,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
         }
 
         if (this.pattern != null){
-            elementCopy.pattern = (XsdPattern) this.pattern.clone(pattern.getAttributesMap(), elementCopy);
+            elementCopy.pattern = this.pattern.stream().map(patternObj -> (XsdPattern) patternObj.clone(patternObj.getAttributesMap(), elementCopy)).collect(Collectors.toList());
         }
 
         if (this.totalDigits != null){
@@ -389,12 +389,16 @@ public class XsdRestriction extends XsdAnnotatedElements {
         this.minLength = minLength;
     }
 
-    public XsdPattern getPattern() {
+    public List<XsdPattern> getPattern() {
         return pattern;
     }
 
-    public void setPattern(XsdPattern pattern) {
+    public void setPattern(List<XsdPattern> pattern) {
         this.pattern = pattern;
+    }
+
+    public void add(XsdPattern patternMember) {
+        pattern.add(patternMember);
     }
 
     public XsdTotalDigits getTotalDigits() {

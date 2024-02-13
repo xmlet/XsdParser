@@ -144,6 +144,10 @@ public abstract class XsdParserCore {
                                 List<ReferenceBase> importedElements;
                                 XsdSchema unsolvedElementSchema = unsolvedReference.getElement().getXsdSchema();
 
+                                if (unsolvedElementSchema == null){
+                                    unsolvedElementSchema = xsdSchema;
+                                }
+
                                 if (unsolvedElementSchema != null && unsolvedElementSchema.getTargetNamespace() != null && unsolvedElementSchema.getTargetNamespace().equals(namespaceInfo.getName())) {
                                     importedElements = unsolvedElementSchema.getElements();
                                 } else {

@@ -8,6 +8,7 @@ import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -742,6 +743,17 @@ public class IssuesTest {
         List<XsdAttribute> xsdExtensionAttributesList = xsdTokenExtension.getXsdAttributes().collect(Collectors.toList());
 
         Assert.assertEquals(1, xsdExtensionAttributesList.size());
+    }
+
+    @Test()
+    public void testIssue50(){
+
+        // ensure the OCX Schema is parserd without null pointer exception
+
+        File xsdFileIn = new File("src/test/resources/issue_50/OCX_Schema.xsd");
+
+        XsdParser parser = new XsdParser(xsdFileIn.getAbsolutePath());
+
     }
 
     @Test

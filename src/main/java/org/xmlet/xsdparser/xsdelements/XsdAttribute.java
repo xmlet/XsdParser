@@ -208,6 +208,11 @@ public class XsdAttribute extends XsdNamedElements {
     }
 
     @SuppressWarnings("unused")
+    public String getDefaultValue() {
+        return defaultElement;
+    }
+
+    @SuppressWarnings("unused")
     public List<XsdRestriction> getAllRestrictions(){
         XsdSimpleType simpleTypeObj = getXsdSimpleType();
 

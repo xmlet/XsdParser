@@ -1,0 +1,15 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://mytestns.org/issue53" targetNamespace="http://mytestns.org/issue53">
+    <xsd:complexType name="SequenceWithGroup">
+        <xsd:sequence>
+            <xsd:element name="elem1" type="xsd:string" />
+            <xsd:group ref="myGroup" />
+            <xsd:element name="elem2" type="xsd:integer" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:group name="myGroup">
+        <xsd:choice>
+            <xsd:element name="choice1" type="xsd:string" />
+            <xsd:element name="choice2" type="xsd:string" />
+        </xsd:choice>
+    </xsd:group>
+</xsd:schema>

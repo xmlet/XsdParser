@@ -33,28 +33,6 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     }
 
     /**
-     * Replaces possible {@link UnsolvedReference} objects in the {@link XsdMultipleElements#elements} if any of their
-     * {@link UnsolvedReference#ref} field matches the {@link NamedConcreteElement#name} field.
-     * @param elementWrapper A {@link NamedConcreteElement} with a name that will replace an {@link UnsolvedReference}
-     *                       object, if a match between the {@link NamedConcreteElement#name} attribute and the
-     *                       {@link UnsolvedReference#ref} attribute.
-     */
-    @Override
-    public void replaceUnsolvedElements(NamedConcreteElement elementWrapper) {
-        if (elementWrapper.getElement() instanceof XsdElement){
-            super.replaceUnsolvedElements(elementWrapper);
-        }
-
-        if (elementWrapper.getElement() instanceof XsdGroup){
-            elements.add(elementWrapper);
-
-            this.elements.removeIf(element ->
-               element instanceof UnsolvedReference && compareReference(elementWrapper, (UnsolvedReference) element)
-            );
-        }
-    }
-
-    /**
      * @return All the elements received in the parsing process.
      */
     @Override

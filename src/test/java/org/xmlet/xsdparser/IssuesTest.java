@@ -756,6 +756,27 @@ public class IssuesTest {
 
     }
 
+    @Test()
+    public void testIssue53(){
+        XsdParser parser = new XsdParser(getFilePath("issue_53.xsd"));
+
+        XsdSchema schema = parser.getResultXsdSchemas().findFirst().get();
+        XsdComplexType type = (XsdComplexType) schema.getXsdElements().findFirst().get();
+        XsdSequence seq = type.getChildAsSequence();
+
+        List<ReferenceBase> elements = seq.getElements();
+        Assert.assertEquals(3, elements.size());
+        XsdAbstractElement elem1 = elements.get(0).getElement();
+        Assert.assertEquals(XsdElement.class, elem1.getClass());
+        Assert.assertEquals("elem1", ((XsdElement)elem1).getName());
+        XsdAbstractElement myGroup = elements.get(1).getElement();
+        Assert.assertEquals(XsdGroup.class, myGroup.getClass());
+        Assert.assertEquals("myGroup", ((XsdGroup)myGroup).getName());
+        XsdAbstractElement elem2 = elements.get(2).getElement();
+        Assert.assertEquals(XsdElement.class, elem2.getClass());
+        Assert.assertEquals("elem2", ((XsdElement)elem2).getName());
+    }
+
     @Test
     public void testPersons(){
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));

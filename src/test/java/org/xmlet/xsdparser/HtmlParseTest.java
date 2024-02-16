@@ -57,8 +57,14 @@ public class HtmlParseTest {
         }
 
         for(ParserResult parserResult : parserPartedResults){
-            XsdSchema schema0 = parserResult.getSchemas().get(0);
-            XsdSchema schema1 = parserResult.getSchemas().get(1);
+            Optional<XsdSchema> schema0Optional = parserResult.getSchemas().stream().filter(xsdSchema -> xsdSchema.getFilePath().endsWith("html_5_elements.xsd")).findFirst();
+            Optional<XsdSchema> schema1Optional = parserResult.getSchemas().stream().filter(xsdSchema -> xsdSchema.getFilePath().endsWith("html_5_types.xsd")).findFirst();
+
+            Assert.assertTrue(schema0Optional.isPresent());
+            Assert.assertTrue(schema1Optional.isPresent());
+
+            XsdSchema schema0 = schema0Optional.get();
+            XsdSchema schema1 = schema1Optional.get();
 
             Assert.assertEquals( 0, schema1.getChildrenElements().count());
             Assert.assertEquals( 5, schema1.getChildrenSimpleTypes().count());

@@ -332,6 +332,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.6
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/53" title="Order of xsd:element and xsd:group not respected">Details</a> - Changes XsdMultipleElements to maintain order of elements inside Choice/Sequence/All. Fixes by <a href="https://github.com/SimonCockx" title="SimonCockx">Simon Cockx</a>.        
+        </li>
+    </ul>
+</div>
+
 ### 1.2.5
 
 <div align="justify">

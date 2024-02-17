@@ -74,6 +74,9 @@ public class XsdUnion extends XsdAnnotatedElements {
 
     @SuppressWarnings("unused")
     public List<String> getMemberTypesList() {
+        if(this.memberTypes == null) {
+            return new ArrayList<>();
+        }
         return Arrays.asList(memberTypes.split(" "));
     }
 

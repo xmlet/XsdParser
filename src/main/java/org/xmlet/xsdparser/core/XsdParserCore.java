@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
+import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.NAME_TAG;
 
 public abstract class XsdParserCore {
 
@@ -92,6 +93,107 @@ public abstract class XsdParserCore {
     void resolveRefs() {
         resolveInnerRefs();
         resolveOtherNamespaceRefs();
+        resolveUnion();
+    }
+
+    private void resolveUnion() {
+        Map<String, XsdSchema> schemasByFileName = new HashMap<>();
+        getResultXsdSchemas().forEach(schema -> schemasByFileName.put(schema.getFilePath(), schema));
+        for (List<ReferenceBase> parsedElements : parseElements.values()) {
+            for (ReferenceBase referenceBase : parsedElements) {
+                if (referenceBase.getElement() instanceof XsdSimpleType) {
+                    XsdSimpleType simpleType = (XsdSimpleType) referenceBase.getElement();
+                    XsdUnion union = simpleType.getUnion();
+                    if (union != null) {
+                        XsdSchema schema = union.getXsdSchema();
+                        List<String> originalMemberTypes = new ArrayList<>(union.getMemberTypesList());
+                        for (String memberType : originalMemberTypes) {
+                            String[] split = memberType.split(":");
+                            int length = split.length;
+                            String fileName = null;
+                            String ref = null;
+                            if (length == 1) {
+                                fileName = schema.getFilePath();
+                                ref = split[0];
+                            }
+                            if (length == 2) {
+                                // with namespace
+                                NamespaceInfo nsInfo = schema.getNamespaces().get(split[0]);
+                                if (nsInfo != null) {
+                                    fileName = nsInfo.getFile();
+                                    ref = split[1];
+                                }
+                            }
+                            if (fileName != null && ref != null) {
+                                List<XsdAbstractElement> includesAndImports = new ArrayList<>();
+                                XsdAbstractElement element = get(schema, ref);
+                                if (element != null) {
+                                    if (length == 1) {
+                                        schema.getChildrenIncludes().forEach(inc -> includesAndImports.add(0, inc));
+                                    }
+                                    if (length == 2) {
+                                        schema.getChildrenImports().forEach(imp -> includesAndImports.add(0, imp));
+                                    }
+                                }
+                                while (!includesAndImports.isEmpty()) {
+                                    XsdAbstractElement file = includesAndImports.remove(0);
+                                    String schemaLocation = null;
+                                    if (file instanceof XsdInclude) {
+                                        XsdInclude include = (XsdInclude) file;
+                                        schemaLocation = include.getSchemaLocation();
+                                    }
+                                    if (file instanceof XsdImport) {
+                                        XsdImport xsdImport = (XsdImport) file;
+                                        schemaLocation = xsdImport.getSchemaLocation();
+                                    }
+                                    XsdSchema resolvedSchema = getSchema(schemasByFileName, schemaLocation);
+                                    if (resolvedSchema != null) {
+                                        element = get(resolvedSchema, ref);
+                                    }
+                                    if (element == null) {
+                                        resolvedSchema
+                                                .getChildrenIncludes()
+                                                .forEach(inc -> includesAndImports.add(0, inc));
+                                    } else {
+                                        includesAndImports.clear();
+                                    }
+                                }
+                                if (element instanceof XsdSimpleType) {
+                                    union.add((XsdSimpleType) element);
+                                }
+                                if (element != null && !(element instanceof XsdSimpleType)) {
+                                    throw new RuntimeException("type not supported right now");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private XsdSchema getSchema(Map<String, XsdSchema> schemaMap, String fileName) {
+        return schemaMap.entrySet().stream()
+                .filter(stringXsdSchemaEntry -> stringXsdSchemaEntry.getKey().endsWith(fileName))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse(null);
+    }
+
+    private XsdAbstractElement get(XsdSchema schema, String name) {
+        if (name == null || schema == null) {
+            return null;
+        }
+        return schema
+                .getXsdElements()
+                .filter(
+                        st -> {
+                            Map<String, String> attributes = st.getAttributesMap();
+                            String nameAttributeValue = attributes.get(NAME_TAG);
+                            return name.equals(nameAttributeValue);
+                        })
+                .findFirst()
+                .orElse(null);
     }
 
     private void resolveOtherNamespaceRefs() {

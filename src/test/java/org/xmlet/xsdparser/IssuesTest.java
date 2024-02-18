@@ -1,5 +1,11 @@
 package org.xmlet.xsdparser;
 
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
@@ -7,13 +13,6 @@ import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class IssuesTest {
 
@@ -171,7 +170,7 @@ public class IssuesTest {
     @Test
     public void testIssue26_Includes(){
         XsdParser parser = new XsdParser(getFilePath("issue_26_ToysBaby_Includes.xsd"));
-
+    List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         testToysBaby(parser);
     }
 
@@ -776,6 +775,26 @@ public class IssuesTest {
         Assert.assertEquals(XsdElement.class, elem2.getClass());
         Assert.assertEquals("elem2", ((XsdElement)elem2).getName());
     }
+
+  @Test
+  public void testIssue55_ResolveUnion() {
+    XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
+    XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
+
+    Assert.assertNotNull(schema);
+    XsdUnion result =
+        schema
+            .getXsdElements()
+            .filter(XsdSimpleType.class::isInstance)
+            .map(e -> (XsdSimpleType) e)
+            .filter(ct -> ct.getName().endsWith("VolumeAndVolumeRateUnitOfMeasure"))
+            .findFirst()
+            .map(XsdSimpleType::getUnion)
+            .orElse(null);
+    Assert.assertNotNull(result);
+    Assert.assertEquals(2, result.getUnionElements().size());
+    Assert.assertTrue(result.getUnsolvedMemberTypesList().isEmpty());
+  }
 
     @Test
     public void testPersons(){

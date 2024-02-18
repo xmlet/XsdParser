@@ -332,6 +332,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.7
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/55" title="Union member types are not resolved">Details</a> Fixes by <a href="https://github.com/darthweiter" title="Daniel Radtke">Daniel Radtke</a>.<br> - Changes XsdUnion to return correct memberTypes and unsolved memberTypes. <br>- Changes XsdParserCore to resolve known union memberTypes.        
+        </li>
+    </ul>
+</div>
+
 ### 1.2.6
 
 <div align="justify">

@@ -1,16 +1,6 @@
 package org.xmlet.xsdparser.core;
 
-import static java.util.stream.Collectors.groupingBy;
-import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.NAME_TAG;
-
-import java.util.*;
-import java.util.Map.Entry;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.utils.*;
 import org.xmlet.xsdparser.xsdelements.*;
@@ -19,6 +9,17 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParentAvailableException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.groupingBy;
+import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.NAME_TAG;
 
 public abstract class XsdParserCore {
 

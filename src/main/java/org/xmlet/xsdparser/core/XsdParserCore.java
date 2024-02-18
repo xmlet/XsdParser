@@ -1,5 +1,16 @@
 package org.xmlet.xsdparser.core;
 
+import static java.util.stream.Collectors.groupingBy;
+import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.NAME_TAG;
+
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.utils.*;
 import org.xmlet.xsdparser.xsdelements.*;
@@ -8,17 +19,6 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParentAvailableException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.groupingBy;
-import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.NAME_TAG;
 
 public abstract class XsdParserCore {
 
@@ -96,89 +96,107 @@ public abstract class XsdParserCore {
         resolveUnion();
     }
 
-    private void resolveUnion() {
-        Map<String, XsdSchema> schemasByFileName = new HashMap<>();
-        getResultXsdSchemas().forEach(schema -> schemasByFileName.put(schema.getFilePath(), schema));
-        for (List<ReferenceBase> parsedElements : parseElements.values()) {
-            for (ReferenceBase referenceBase : parsedElements) {
-                if (referenceBase.getElement() instanceof XsdSimpleType) {
-                    XsdSimpleType simpleType = (XsdSimpleType) referenceBase.getElement();
-                    XsdUnion union = simpleType.getUnion();
-                    if (union != null) {
-                        XsdSchema schema = union.getXsdSchema();
-                        List<String> originalMemberTypes = new ArrayList<>(union.getMemberTypesList());
-                        for (String memberType : originalMemberTypes) {
-                            String[] split = memberType.split(":");
-                            int length = split.length;
-                            String fileName = null;
-                            String ref = null;
-                            if (length == 1) {
-                                fileName = schema.getFilePath();
-                                ref = split[0];
-                            }
-                            if (length == 2) {
-                                // with namespace
-                                NamespaceInfo nsInfo = schema.getNamespaces().get(split[0]);
-                                if (nsInfo != null) {
-                                    fileName = nsInfo.getFile();
-                                    ref = split[1];
-                                }
-                            }
-                            if (fileName != null && ref != null) {
-                                List<XsdAbstractElement> includesAndImports = new ArrayList<>();
-                                XsdAbstractElement element = get(schema, ref);
-                                if (element != null) {
-                                    if (length == 1) {
-                                        schema.getChildrenIncludes().forEach(inc -> includesAndImports.add(0, inc));
-                                    }
-                                    if (length == 2) {
-                                        schema.getChildrenImports().forEach(imp -> includesAndImports.add(0, imp));
-                                    }
-                                }
-                                while (!includesAndImports.isEmpty()) {
-                                    XsdAbstractElement file = includesAndImports.remove(0);
-                                    String schemaLocation = null;
-                                    if (file instanceof XsdInclude) {
-                                        XsdInclude include = (XsdInclude) file;
-                                        schemaLocation = include.getSchemaLocation();
-                                    }
-                                    if (file instanceof XsdImport) {
-                                        XsdImport xsdImport = (XsdImport) file;
-                                        schemaLocation = xsdImport.getSchemaLocation();
-                                    }
-                                    XsdSchema resolvedSchema = getSchema(schemasByFileName, schemaLocation);
-                                    if (resolvedSchema != null) {
-                                        element = get(resolvedSchema, ref);
-                                    }
-                                    if (element == null) {
-                                        resolvedSchema
-                                                .getChildrenIncludes()
-                                                .forEach(inc -> includesAndImports.add(0, inc));
-                                    } else {
-                                        includesAndImports.clear();
-                                    }
-                                }
-                                if (element instanceof XsdSimpleType) {
-                                    union.add((XsdSimpleType) element);
-                                }
-                                if (element != null && !(element instanceof XsdSimpleType)) {
-                                    throw new RuntimeException("type not supported right now");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+  private void resolveMemberTypes(XsdUnion union) {
+    if (union != null) {
+      List<String> originalMemberTypes = union.getMemberTypesList();
+      for (String memberType : originalMemberTypes) {
+        XsdSchema schema = union.getXsdSchema();
+          String ref = null;
+          String[] split = memberType.split(":");
+          int length = split.length;
+        if (length == 1) {
+          ref = split[0];
+        }
+        if (length == 2 && schema != null) {
+          NamespaceInfo nsInfo = schema.getNamespaces().get(split[0]);
+          if (nsInfo != null) {
+            ref = split[1];
+            schema = getSchema(nsInfo.getFile());
+          } else {
+            schema = null;
+          }
+        }
+        if (ref != null) {
+          XsdAbstractElement element = findElement(schema, ref);
+          if (element instanceof XsdSimpleType) {
+            union.add((XsdSimpleType) element);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Returns the first matching {@link XsdAbstractElement} from the {@link XsdSchema} and all {@link XsdInclude}'s with the given name.
+   *
+   * @param schema The initial {@link XsdSchema} to look up the file.
+   * @param name The name of the element which is searched.
+   * @return The first {@link XsdAbstractElement} with the given name or null if no element was found.
+   */
+  private XsdAbstractElement findElement(XsdSchema schema, String name) {
+    if (schema == null || name == null) {
+      return null;
+    }
+    XsdAbstractElement element = get(schema, name);
+    if (element == null) {
+      List<XsdInclude> includesFromSchema =
+          schema.getChildrenIncludes().collect(Collectors.toList());
+      while (!includesFromSchema.isEmpty()) {
+        XsdSchema resolvedSchema = getSchema(getSchemaLocation(includesFromSchema.remove(0)));
+        if (resolvedSchema != null) {
+          element = get(resolvedSchema, name);
+          if (element == null) {
+            resolvedSchema.getChildrenIncludes().forEach(inc -> includesFromSchema.add(0, inc));
+          } else {
+            includesFromSchema.clear();
+          }
+        }
+      }
+    }
+    return element;
+  }
+
+  /**
+   * Get the SchemaLocation of an {@link XsdImport} or {@link XsdInclude}.
+   *
+   * @param importOrInclude A XsdAbtractElement to get the SchemaLocation.
+   * @return the SchemaLocation or null
+   */
+  private static String getSchemaLocation(XsdAbstractElement importOrInclude) {
+    String schemaLocation = null;
+    if (importOrInclude instanceof XsdInclude) {
+      XsdInclude include = (XsdInclude) importOrInclude;
+      schemaLocation = include.getSchemaLocation();
+    }
+    if (importOrInclude instanceof XsdImport) {
+      XsdImport xsdImport = (XsdImport) importOrInclude;
+      schemaLocation = xsdImport.getSchemaLocation();
+    }
+    return schemaLocation;
+  }
+
+  private void resolveUnion() {
+    for (List<ReferenceBase> parsedElements : parseElements.values()) {
+      parsedElements.stream()
+          .map(ReferenceBase::getElement)
+          .filter(XsdSimpleType.class::isInstance)
+          .map(el -> (XsdSimpleType) el)
+          .map(XsdSimpleType::getUnion)
+          .filter(Objects::nonNull)
+          .forEach(this::resolveMemberTypes);
         }
     }
 
-    private XsdSchema getSchema(Map<String, XsdSchema> schemaMap, String fileName) {
-        return schemaMap.entrySet().stream()
-                .filter(stringXsdSchemaEntry -> stringXsdSchemaEntry.getKey().endsWith(fileName))
-                .findFirst()
-                .map(Map.Entry::getValue)
-                .orElse(null);
-    }
+  private XsdSchema getSchema(String fileName) {
+    return getResultXsdSchemas()
+        .collect(Collectors.toMap(XsdSchema::getFilePath, Function.identity()))
+        .entrySet()
+        .stream()
+        .filter(stringXsdSchemaEntry -> stringXsdSchemaEntry.getKey().endsWith(fileName))
+        .findFirst()
+        .map(Map.Entry::getValue)
+        .orElse(null);
+  }
 
     private XsdAbstractElement get(XsdSchema schema, String name) {
         if (name == null || schema == null) {

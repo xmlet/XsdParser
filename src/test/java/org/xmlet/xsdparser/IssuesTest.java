@@ -1,11 +1,5 @@
 package org.xmlet.xsdparser;
 
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
@@ -13,6 +7,13 @@ import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
+
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class IssuesTest {
 
@@ -170,7 +171,7 @@ public class IssuesTest {
     @Test
     public void testIssue26_Includes(){
         XsdParser parser = new XsdParser(getFilePath("issue_26_ToysBaby_Includes.xsd"));
-    List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
+
         testToysBaby(parser);
     }
 

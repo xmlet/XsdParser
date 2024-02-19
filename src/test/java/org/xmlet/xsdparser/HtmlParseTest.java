@@ -239,7 +239,7 @@ public class HtmlParseTest {
             Assert.assertNull(restriction.getMinExclusive());
             Assert.assertNull(restriction.getMinInclusive());
             Assert.assertNull(restriction.getMinLength());
-            Assert.assertEquals(0, restriction.getPattern().size());
+            Assert.assertEquals(0, restriction.getPatterns().size());
             Assert.assertNull(restriction.getTotalDigits());
             Assert.assertNull(restriction.getWhiteSpace());
         }

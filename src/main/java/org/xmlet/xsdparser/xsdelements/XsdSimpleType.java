@@ -257,8 +257,8 @@ public class XsdSimpleType extends XsdNamedElements {
      * @param newRestriction The new {@link XsdRestriction} instance.
      */
     private void updateExistingRestricionPatterns(XsdRestriction existing, XsdRestriction newRestriction) {
-        List<XsdPattern> existingPattern = existing.getPattern();
-        List<XsdPattern> newRestrictionPattern = newRestriction.getPattern();
+        List<XsdPattern> existingPattern = existing.getPatterns();
+        List<XsdPattern> newRestrictionPattern = newRestriction.getPatterns();
 
         if (existingPattern == null){
             existing.setPattern(newRestrictionPattern);

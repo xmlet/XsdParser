@@ -1,0 +1,4 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://mytestns.org/issue58" targetNamespace="http://mytestns.org/issue58">
+    <xsd:include schemaLocation="b.xsd"/>
+    <xsd:element name="elem" type="Foo"/>
+</xsd:schema>

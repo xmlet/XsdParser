@@ -777,6 +777,16 @@ public class IssuesTest {
         Assert.assertEquals("elem2", ((XsdElement)elem2).getName());
     }
 
+    @Test()
+    public void testIssue58(){
+        XsdParser parser = new XsdParser(getFilePath("issue_58/a.xsd"));
+
+        XsdElement elem = parser.getResultXsdElements().findFirst().get();
+        XsdNamedElements type = elem.getTypeAsXsd();
+        Assert.assertNotNull(type);
+        Assert.assertEquals("Foo", type.getName());
+    }
+
     @Test
     public void testPersons(){
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));

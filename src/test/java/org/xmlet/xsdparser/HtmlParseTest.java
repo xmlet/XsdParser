@@ -95,12 +95,12 @@ public class HtmlParseTest {
     public void testElementCount() {
         for(ParserResult parserResult : parserNonPartedResults) {
             Assert.assertEquals(104, parserResult.getElements().size());
-            Assert.assertEquals(1, parserResult.getSchemas().size());
+            Assert.assertEquals(2, parserResult.getSchemas().size());
         }
 
         for(ParserResult parserResult : parserPartedResults) {
             Assert.assertEquals(104, parserResult.getElements().size());
-            Assert.assertEquals(2, parserResult.getSchemas().size());
+            Assert.assertEquals(3, parserResult.getSchemas().size());
         }
     }
 

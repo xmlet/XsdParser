@@ -82,7 +82,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue20(){
-        Optional<XsdSchema> issuesSchemaOpt = schemas.stream().findFirst();
+        Optional<XsdSchema> issuesSchemaOpt = schemas.stream().filter(schema -> schema.getFilePath().endsWith("issues.xsd")).findFirst();
 
         Assert.assertTrue(issuesSchemaOpt.isPresent());
 
@@ -326,7 +326,7 @@ public class IssuesTest {
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
-        Assert.assertEquals(1, schemas.size());
+        Assert.assertEquals(2, schemas.size());
 
         XsdSchema schema = schemas.get(0);
 
@@ -565,7 +565,7 @@ public class IssuesTest {
     public void testIssue34(){
         XsdParser parser = new XsdParser(getFilePath("issue_34.xsd"));
 
-        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
+        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().filter(schema -> schema.getFilePath().endsWith("issue_34.xsd")).findFirst();
 
         Assert.assertTrue(optionalXsdSchema.isPresent());
 
@@ -618,7 +618,7 @@ public class IssuesTest {
     public void testIssue35(){
         XsdParser parser = new XsdParser(getFilePath("issue_35.xsd"));
 
-        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
+        Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().filter(schema -> schema.getFilePath().endsWith("issue_35.xsd")).findFirst();
 
         Assert.assertTrue(optionalXsdSchema.isPresent());
 
@@ -662,7 +662,7 @@ public class IssuesTest {
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
-        Optional<XsdSchema> schemaOptional = schemas.stream().findFirst();
+        Optional<XsdSchema> schemaOptional = schemas.stream().filter(schema -> schema.getFilePath().endsWith("issue_44.xsd")).findFirst();
 
         Assert.assertTrue(schemaOptional.isPresent());
 

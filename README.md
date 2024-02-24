@@ -45,7 +45,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.6</version>
+    <version>1.2.8</version>
 </dependency>
 ```
 
@@ -339,7 +339,11 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
     <ul>
         <li>
             <a href="https://github.com/xmlet/XsdParser/issues/55" title="feature request: union with memberTypes are resolved">Details</a> - Adds resolving Unsolved Elements on XsdUnion member types. Fixes by <a href="https://github.com/darthweiter" title="Daniel Radtke">Daniel Radtke</a>.         
+        </li>
+        <li>
             <a href="https://github.com/xmlet/XsdParser/issues/58" title="References are not resolved from transitive dependencies (of more than one level)">Details</a> - Adds support for transitive includes. Fixes by <a href="https://github.com/SimonCockx" title="SimonCockx">Simon Cockx</a>.
+        </li>
+        <li>
             <a href="https://github.com/xmlet/XsdParser/issues/60" title="Unsolved References are not correct">Details</a> - Applies a quick fix when the Parser returns still with UnsolvedReferences, even when all the references are solved. With the help of <a href="https://github.com/darthweiter" title="Daniel Radtke">Daniel Radtke</a>.
         </li>
     </ul>

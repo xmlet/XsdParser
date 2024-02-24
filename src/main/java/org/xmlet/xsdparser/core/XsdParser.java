@@ -54,6 +54,7 @@ public class XsdParser extends XsdParserCore{
     }
 
     private void parse(String filePath){
+        schemaLocations.add(XML_NAMESPACE);
         schemaLocations.add(filePath);
         int index = 0;
 

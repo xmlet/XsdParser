@@ -83,6 +83,11 @@ public class XsdAttribute extends XsdNamedElements {
             this.simpleType = new UnsolvedReference(type, new XsdSimpleType(this, parser, new HashMap<>(), elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
             parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
         }
+        if(XsdParserCore.getXsdTypesToJava().containsKey(type)) {
+            HashMap<String, String> attributes = new HashMap<>();
+            attributes.put(NAME_TAG, type);
+            this.simpleType = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
+        }
     }
 
     private XsdAttribute(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {

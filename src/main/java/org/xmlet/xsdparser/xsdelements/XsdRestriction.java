@@ -13,10 +13,7 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdRestrictionsVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -389,7 +386,25 @@ public class XsdRestriction extends XsdAnnotatedElements {
         this.minLength = minLength;
     }
 
-    public List<XsdPattern> getPattern() {
+    /**
+     * @return Returns the first pattern, if available.
+     */
+    public XsdPattern getPattern() {
+        if (pattern != null){
+            Optional<XsdPattern> optionalXsdPattern = pattern.stream().findFirst();
+
+            if (optionalXsdPattern.isPresent()){
+                return optionalXsdPattern.get();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return Returns the list of XsdPatterns.
+     */
+    public List<XsdPattern> getPatterns() {
         return pattern;
     }
 

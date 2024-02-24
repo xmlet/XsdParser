@@ -135,7 +135,7 @@ public class RestrictionsTest {
         XsdLength xsdLength = restriction.getLength();
         XsdMaxLength xsdMaxLength = restriction.getMaxLength();
         XsdMinLength xsdMinLength = restriction.getMinLength();
-        List<XsdPattern> xsdPattern = restriction.getPattern();
+        List<XsdPattern> xsdPattern = restriction.getPatterns();
         XsdWhiteSpace xsdWhiteSpace = restriction.getWhiteSpace();
 
         Assert.assertNotNull(xsdLength);

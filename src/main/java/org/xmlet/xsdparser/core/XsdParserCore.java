@@ -103,6 +103,7 @@ public abstract class XsdParserCore {
     }
 
     private void out() {
+        computeUnsolved();
         unsolvedElements.values().stream().flatMap(List::stream).forEach(this::storeUnsolvedItem);
     }
 

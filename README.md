@@ -1,3 +1,4 @@
+
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.xmlet/xsdParser.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.xmlet%7CxsdParser%7C1.0.7%7Cjar)
 [![Build](https://sonarcloud.io/api/project_badges/measure?project=com.github.xmlet%3AxsdParser&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.github.xmlet%3AxsdParser&metric=coverage)](https://sonarcloud.io/component_measures/domain/Coverage?id=com.github.xmlet%3AxsdParser)
@@ -321,7 +322,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
     <br />
     <a href="https://sonarcloud.io/dashboard?id=com.github.xmlet%3AxsdParser">Sonarcloud Statistics</a>
 </div>
-  
+
 ## Important remarks
 
 <div align="justify">
@@ -337,7 +338,7 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 <div align="justify">
     <ul>
         <li>
-            <a href="https://github.com/xmlet/XsdParser/issues/55" title="Union member types are not resolved">Details</a> Fixes by <a href="https://github.com/darthweiter" title="Daniel Radtke">Daniel Radtke</a>.<br> - Changes XsdUnion to return correct memberTypes and unsolved memberTypes. <br>- Changes XsdParserCore to resolve known union memberTypes.        
+            <a href="https://github.com/xmlet/XsdParser/issues/57" title="Modification not backward compatible in XsdRestriction (xsdParser 1.2.5+)">Details</a> - Reverts XsdRestriction getPattern to keep the previous behaviour. Added a new method getPatterns with the new behaviour.        
         </li>
     </ul>
 </div>

@@ -30,7 +30,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testSubstitutionGroup(){
+    public void testSubstitutionGroup() {
         List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
 
         Optional<XsdElement> navnOptional = elements.stream().filter(element -> element.getName().equals("navn")).findFirst();
@@ -64,7 +64,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testDocumentationWithCDATA(){
+    public void testDocumentationWithCDATA() {
         Optional<XsdElement> someElementOpt = elements.stream().filter(e -> e.getName().equals("someElement")).findFirst();
 
         Assert.assertTrue(someElementOpt.isPresent());
@@ -77,11 +77,11 @@ public class IssuesTest {
         Assert.assertEquals("<![CDATA[\r\n" +
                 "\t\t\tCDATA line 1\r\n" +
                 "\t\t\tCDATA line 2\r\n" +
-                "\t\t\t]]>",xsdDocumentation.getContent());
+                "\t\t\t]]>", xsdDocumentation.getContent());
     }
 
     @Test
-    public void testIssue20(){
+    public void testIssue20() {
         Optional<XsdSchema> issuesSchemaOpt = schemas.stream().findFirst();
 
         Assert.assertTrue(issuesSchemaOpt.isPresent());
@@ -107,7 +107,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue21(){
+    public void testIssue21() {
         Optional<XsdElement> hoursPerWeekOpt = elements.stream().filter(e -> e.getName().equals("hoursPerWeek")).findFirst();
 
         Assert.assertTrue(hoursPerWeekOpt.isPresent());
@@ -133,7 +133,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue23(){
+    public void testIssue23() {
         XsdParser parser = new XsdParser(getFilePath("issue_23.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
@@ -142,7 +142,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue24(){
+    public void testIssue24() {
         XsdParser parser = new XsdParser(getFilePath("issue_24.xsd"));
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         for (XsdSchema schema : schemas) {
@@ -162,33 +162,33 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue25ToysBaby(){
+    public void testIssue25ToysBaby() {
         XsdParser parser = new XsdParser(getFilePath("issue_25_ToysBaby.xsd"));
 
         testToysBaby(parser);
     }
 
     @Test
-    public void testIssue26_Includes(){
+    public void testIssue26_Includes() {
         XsdParser parser = new XsdParser(getFilePath("issue_26_ToysBaby_Includes.xsd"));
 
         testToysBaby(parser);
     }
 
     @Test
-    public void testIssue26_CustomerTypes(){
+    public void testIssue26_CustomerTypes() {
         XsdParser parser = new XsdParser(getFilePath("issue_26_CustomerTypes.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
-        for(XsdSchema schema : schemas){
+        for (XsdSchema schema : schemas) {
             Stream<XsdElement> elems = schema.getChildrenElements();
         }
 
         Assert.assertTrue(true);
     }
 
-    private void testToysBaby(XsdParser parser){
+    private void testToysBaby(XsdParser parser) {
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
 
         Assert.assertTrue(mainSchemaOptional.isPresent());
@@ -260,7 +260,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue25AutoAccessory(){
+    public void testIssue25AutoAccessory() {
         XsdParser parser = new XsdParser(getFilePath("issue_25_AutoAccessory.xsd"));
 
         XsdSchema amz = parser.getResultXsdSchemas().filter(schema -> schema.getId() == null).findFirst().get();
@@ -321,7 +321,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue27Attributes(){
+    public void testIssue27Attributes() {
         XsdParser parser = new XsdParser(getFilePath("issue_27_attributes.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
@@ -360,7 +360,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue27TransitiveIncludes(){
+    public void testIssue27TransitiveIncludes() {
         XsdParser parser = new XsdParser(getFilePath("issue_27_Includes_A.xsd"));
 
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
@@ -429,7 +429,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue27TransitiveImports(){
+    public void testIssue27TransitiveImports() {
         XsdParser parser = new XsdParser(getFilePath("issue_27_Import_A.xsd"));
 
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
@@ -498,12 +498,12 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue28(){
+    public void testIssue28() {
         XsdParser parser = new XsdParser(getFilePath("issue_28.xsd"));
     }
 
     @Test
-    public void testIssue30(){
+    public void testIssue30() {
         XsdParser parser = new XsdParser(getFilePath("issue_30.xsd"));
 
         Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
@@ -562,7 +562,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue34(){
+    public void testIssue34() {
         XsdParser parser = new XsdParser(getFilePath("issue_34.xsd"));
 
         Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
@@ -615,7 +615,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue35(){
+    public void testIssue35() {
         XsdParser parser = new XsdParser(getFilePath("issue_35.xsd"));
 
         Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
@@ -648,7 +648,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue37(){
+    public void testIssue37() {
         XsdParser parser = new XsdParser(getFilePath("issue_37/entire/us-gaap-entryPoint-all-2021-01-31.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
@@ -657,7 +657,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue44(){
+    public void testIssue44() {
         XsdParser parser = new XsdParser(getFilePath("issue_44.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
@@ -709,7 +709,7 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssue49(){
+    public void testIssue49() {
         XsdParser parser = new XsdParser(getFilePath("issue_49.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
@@ -746,7 +746,7 @@ public class IssuesTest {
     }
 
     @Test()
-    public void testIssue50(){
+    public void testIssue50() {
 
         // ensure the OCX Schema is parserd without null pointer exception
 
@@ -757,7 +757,7 @@ public class IssuesTest {
     }
 
     @Test()
-    public void testIssue53(){
+    public void testIssue53() {
         XsdParser parser = new XsdParser(getFilePath("issue_53.xsd"));
 
         XsdSchema schema = parser.getResultXsdSchemas().findFirst().get();
@@ -768,41 +768,41 @@ public class IssuesTest {
         Assert.assertEquals(3, elements.size());
         XsdAbstractElement elem1 = elements.get(0).getElement();
         Assert.assertEquals(XsdElement.class, elem1.getClass());
-        Assert.assertEquals("elem1", ((XsdElement)elem1).getName());
+        Assert.assertEquals("elem1", ((XsdElement) elem1).getName());
         XsdAbstractElement myGroup = elements.get(1).getElement();
         Assert.assertEquals(XsdGroup.class, myGroup.getClass());
-        Assert.assertEquals("myGroup", ((XsdGroup)myGroup).getName());
+        Assert.assertEquals("myGroup", ((XsdGroup) myGroup).getName());
         XsdAbstractElement elem2 = elements.get(2).getElement();
         Assert.assertEquals(XsdElement.class, elem2.getClass());
-        Assert.assertEquals("elem2", ((XsdElement)elem2).getName());
+        Assert.assertEquals("elem2", ((XsdElement) elem2).getName());
     }
 
-  @Test
-  public void testIssue55_ResolveUnion() {
-    XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
-    XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
+    @Test
+    public void testIssue55_ResolveUnion() {
+        XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
+        XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
 
-    Assert.assertNotNull(schema);
-    XsdUnion result =
-        schema
-            .getXsdElements()
-            .filter(XsdSimpleType.class::isInstance)
-            .map(e -> (XsdSimpleType) e)
-            .filter(ct -> ct.getName().endsWith("VolumeAndVolumeRateUnitOfMeasure"))
-            .findFirst()
-            .map(XsdSimpleType::getUnion)
-            .orElse(null);
-    Assert.assertNotNull(result);
-    Assert.assertEquals(2, result.getUnionElements().size());
-    Assert.assertTrue(result.getUnsolvedMemberTypesList().isEmpty());
-  }
+        Assert.assertNotNull(schema);
+        XsdUnion result =
+                schema
+                        .getXsdElements()
+                        .filter(XsdSimpleType.class::isInstance)
+                        .map(e -> (XsdSimpleType) e)
+                        .filter(ct -> ct.getName().endsWith("VolumeAndVolumeRateUnitOfMeasure"))
+                        .findFirst()
+                        .map(XsdSimpleType::getUnion)
+                        .orElse(null);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getUnionElements().size());
+        Assert.assertTrue(result.getUnsolvedMemberTypesList().isEmpty());
+    }
 
     @Test
-    public void testPersons(){
+    public void testPersons() {
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
 
         List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
-        
+
         Assert.assertEquals(0, unsolvedReferences.size());
     }
 
@@ -819,10 +819,10 @@ public class IssuesTest {
     /**
      * @return Obtains the filePath of the file associated with this test class.
      */
-    private static String getFilePath(String fileName){
+    private static String getFilePath(String fileName) {
         URL resource = HtmlParseTest.class.getClassLoader().getResource(fileName);
 
-        if (resource != null){
+        if (resource != null) {
             return resource.getPath();
         } else {
             throw new RuntimeException("The issues.xsd file is missing from the XsdParser resource folder.");

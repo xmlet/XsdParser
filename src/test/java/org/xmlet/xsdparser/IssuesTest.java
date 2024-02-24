@@ -714,7 +714,7 @@ public class IssuesTest {
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
-        Optional<XsdSchema> schemaOptional = schemas.stream().findFirst();
+        Optional<XsdSchema> schemaOptional = schemas.stream().filter(schema -> schema.getFilePath().endsWith("issue_49.xsd")).findFirst();
 
         Assert.assertTrue(schemaOptional.isPresent());
 

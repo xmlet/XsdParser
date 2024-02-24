@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+  <xs:include schemaLocation="SDMXRegistryBase.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+    schemaLocation="SDMXStructure.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Structure Registry Module</xs:appinfo>
+    <xs:documentation>The structure registry module defines the constructs that are used for the
+      maintenance and discovery of structural metadata in a registry.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="SubmitStructureRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitStructureRequestType describes the structure of a structure
+        submission. Structural components are provided either in-line or referenced via a SDMX-ML
+        Structure message external to the registry. A default action and external reference
+        resolution action are all provided for each of the contained components, but can be
+        overridden on a per component basis.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="StructureLocation" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>StructureLocation provides the location of a SDMX-ML Structure
+              message, external to the repository that can be retrieved by the repository submission
+              service.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="structure:Structures">
+          <xs:annotation>
+            <xs:documentation>Structures allows for the inline definition of structural components
+              for submission.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="SubmittedStructure" type="SubmittedStructureType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>SubmittedStructure contains a reference to one of the structural
+            maintainable artefacts detailed in the external SDMX-ML Structure message or in-line and
+            provides an override for the default action. This should only be used if the action to
+            be performed on the referenced structural object is different than the default action.
+            For example, one may want to append all structural components of a structure message,
+            save one codelist. This codelist could be referenced in a submitted structure element
+            and given an action of Informational.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="action" type="common:ActionType" default="Append">
+      <xs:annotation>
+        <xs:documentation>The action attribute indicates the default action (append-add,
+          replace-update, delete, or no action-informational) to be taken on all structural
+          components in either the external SDMX-ML Structure message or the in-line components. The
+          default action is Append. The Replace action is not applicable to final structures in the
+          repository, and will produce an error condition, as these can be versioned but not
+          modified. To submit a later version of a structural object, the object should include the
+          incremented version number.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="externalDependencies" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>The externalDependencies attribute indicates the default resolution of
+          external dependencies. This should be set to true if the repository is expected to use
+          external reference URLs in the structural components to retrieve any externally referenced
+          objects that is used by a non-external object.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SubmittedStructureType">
+    <xs:annotation>
+      <xs:documentation>SubmittedStructureType generally references a submitted structural object.
+        When used in a submit structure request, its purpose is to override the default action or
+        external dependency resolution behavior. If neither of these indicators are set, then it
+        will be ignored. In a submit structure response, it is used to reference a submitted object
+        for the purpose of providing a status for the submission. In this case, the action attribute
+        should be populated in order to echo the requested action.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MaintainableObject" type="common:MaintainableReferenceType"/>
+    </xs:sequence>
+    <xs:attribute name="action" type="common:ActionType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The action attribute will indicate the action to be taken on the
+          referenced structural object. This should be provided when this structure is used in a
+          submit structure response.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="externalDependencies" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>The externalDependencies attribute should be set to true if the repository
+          is expected to use external reference URLs in the structural components to retrieve
+          objects on which the referenced object has dependencies. (Thus, if a key family referenced
+          here is being submitted to the repository, and the structure message has URLs which point
+          to the locations of the codelists it uses, then this attribute should be set to true).
+          This should not be provided when this structure is used in a submit structure response.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SubmitStructureResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitStructureResponseType describes the structure of a response to a
+        structure submission. For each submitted structure, a Result will be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubmissionResult" type="SubmissionResultType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>SubmissionResult provides a status for each submitted structural
+            object.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SubmissionResultType">
+    <xs:annotation>
+      <xs:documentation>SubmissionResultType provides the status of the structural object submission
+        request. It will identify the object submitted, report back the action requested, and convey
+        the status and any error messages which are relevant to the submission.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubmittedStructure" type="SubmittedStructureType">
+        <xs:annotation>
+          <xs:documentation>SubmittedStructure provides a reference to the submitted structural
+            object and echoes back the action requested for it.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StatusMessage" type="StatusMessageType">
+        <xs:annotation>
+          <xs:documentation>StatusMessage provides that status for the submission of the structural
+            object, and if necessary, any error or warning information.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

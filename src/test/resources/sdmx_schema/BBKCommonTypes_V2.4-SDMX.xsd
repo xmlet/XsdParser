@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.bundesbank.de/statistik/bbk/commontypes/v2"
+	xmlns:ECBCommonTypes="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+	targetNamespace="http://www.bundesbank.de/statistik/bbk/commontypes/v2"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+		schemaLocation="ECBCommonTypes_V2.4-SDMX.xsd"/>
+	<xs:simpleType name="BBK_NotApplicable">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOT_APPL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_LEI">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{18}\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_LEI_NA">
+		<xs:union memberTypes="BBK_LEI BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_511">
+		<xs:restriction base="xs:token">
+			<xs:pattern
+				value="[\p{IsBasicLatin} | \p{IsLatin-1Supplement} | \p{IsLatinExtended-A} | \p{IsLatinExtended-B}]{1,511}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_PRT_MSSG">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_YYYY_MM">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-2]\d{3}(([0][1-9])|([1][0-2]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_BLZ">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_CP_ID">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[\p{IsBasicLatin} | \p{IsLatin-1Supplement} | \p{IsLatinExtended-A} | \p{IsLatinExtended-B}]{1,60}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_CP_ID_NA">
+		<xs:union memberTypes="BBK_CP_ID BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_RSTRCTD_ID_60_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_RSTRCTD_ID_60 BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_LTN_EXT_255_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_LTN_EXT_255 BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_FLL_YYYY_MM_DD_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_FLL_YYYY_MM_DD BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ALL_2D_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_ALL_2D BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ALL_6D_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_ALL_6D BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_NN_NGTV_2D_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_NN_NGTV_2D BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_0TO1_6D_NA">
+		<xs:union memberTypes="ECBCommonTypes:ECBSDD_0TO1_6D BBK_NotApplicable"/>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_BG_9_10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(BG)\d{10}|(BG)\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D_1L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_D_7D_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0|1|3|4|5|9)\d{7}[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_VAR_LEN">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_FI_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(FI)\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}(#)\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D-2D-6D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}(-)\d{2}(-)\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_FB5D_OR_FB3D_1L_2D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(FB)\d{6}|(FB)\d{3}[A-Z]\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_HU_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(HU)\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2L_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2}\d{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_11">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_MAX_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_LV_11D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(LV)\d{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_14_OR_9">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{14}|\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_MAX_6D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_PL_10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(PL)\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_SE_12">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(SE)\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_BAK">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}|\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_7_8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{7,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6D_L_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,6}[A-Za-z]\d{0,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1_TO_8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1D_TO_10D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_0_9">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0]\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9_10_13">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{13}|\d{10}|\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9_13">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{13}|\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_11D_OR_L_OR_8_D_OR_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([A-Z0-9]{11})|([A-Z0-9]{8})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_3D_3D_4D_2D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}.\d{3}.\d{3}/\d{4}-\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_CHE_3D_3D_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(CHE)-\d{3}\.\d{3}\.\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_18_L_OR_D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{18}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_COP_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(C|O|P)\d{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_S13_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(S13)\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_CYIF_4D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(CYIF)\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_PF_4D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(PF)\d{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8_OR_10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{10}|\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1_TO_4">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9D_OR_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D_DASH">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{7}[-]?\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1L_9D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D_OR_SC6D_or_NL6D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d{8})|((SC)\d{6}|((NL)\d{6}))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_10D_OR_9DK">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{10}|\d{9}(K)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_7">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D_3D_2D_2D_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}-\d{3}.\d{2}.\d{2}-[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_0_OR_1_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0|1]\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_21D_OR_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{21}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_10D_OR_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1D_12D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9]\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1L_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1L_6D_C_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]\d{6}[C]\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_A_J_D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-J]\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_LVAF_6_OR_LVIF_6_OR_LV_11">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(LVAF)\d{6}|(LVIF)\d{6}|(LV)\d{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_4D_1L_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2,4}[A-Z]\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_P_S_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}(P|S)\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_3L_6D_3D_OR_L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{3}-\d{6}-[A-Z0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_RO_10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(RO)\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_J_D_D_D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(J)\d{2}/\d{1,9}/\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_SI_8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(SI)\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_SK_8D_3L_2D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(SK)\d{8}[A-Z]{3}\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}-\d{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_10D_DASH">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}(-?)\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_13">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_DE_9D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DE\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1_TO_10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_VAR_LEN_D_DASH">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d+(-\d+)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2L_1_TO_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2}\d{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_FR_10L_OR_10D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(FR)[A-Z0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8DL">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_GV_4D_OR_LA_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(GV)\d{4}|(LA)\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_LT_INV_CD">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]\d{3}|(SF)\d{3}|[A-Z]{3}-\d{2}/\d{2}|[A-Z]{3}-[A-Z]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_LV_FON_CD">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="(LV)\d{11}|(LVAF)\d{3}(A|B|\d{1})\d{2}|(LVB)\d{6}|(LVIF)\d{3}(A|B|C|D|E|F|\d{1})\d{2}|(LVVF)\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_3L_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}[A-Z]{1,3}\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_RO_10D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(RO)\d{1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D_OR_8D_1L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}[a-z]{0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_A_Z_D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_4D_TO_6D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_GB_VAT_CD">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(GB)\d{9}|(GB)\d{12}|(GBGD)\d{3}|(GBHA)\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_CH_11D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(CH)\d{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_CH_3D_1D_3D_3D_1D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(CH)-\d{3}\.\d{1}\.\d{3}\.\d{3}\-\d{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_1_OR_9_D_1_6">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9]\d{1,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6D_4D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}[2-9]\d{3}-?\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_STRING_255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_HRA_HRB_PR_VR_GnR">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="((G(n|N)R)|(HRA)|(HRB)|(PR)|(VR))\d{1,6}[A-Z&#196;&#220;&#214;]{0,3}-[A-Z]\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_L_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{0,1}\d{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_4D_TO_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_8D_1D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}-\d{8}-\d{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_3D_3D_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2} \d{3} \d{3} \d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_3D_3D_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3} \d{3} \d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_13D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_5D_4D_2D_2D_4D_2D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,2}-\d{3,5}|\d{1}-\d{4}-\d{2}|\d{2}-\d{2}-\d{4}-\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_12D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_5D_OR_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{5,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_7D_OR_BC_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{7}|(BC)\d{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_3D_3D_K_OR_8D_K">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}.\d{3}.\d{3}-[K0-9]|\d{8}-[K0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9D_1D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}-\d{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_2D_3D_3D_1D_3D_3D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}.\d{3}.\d{3}.\d{1}-\d{3}.\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_IE_1D_TO_9D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(IE)[A-Z0-9]{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6D_1L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_HCX_6D_2D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[HCX]\d{6}-\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_L_L_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z][A-Z]\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_3D_2D_5D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}-\d{2}-\d{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_FL_4D_3D_3D_1D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(FL)-\d{4}.\d{3}.\d{3}-\d{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6D_1L_2">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}-[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_10D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_11D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_8D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_9D_1L">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BBK_ID_6D_OR_7D">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

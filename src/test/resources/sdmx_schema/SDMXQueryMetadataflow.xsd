@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Metadata Flow Query Module</xs:appinfo>
+    <xs:documentation>The metadata flow query module provides the construct of a query for a
+      metadata flow.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="MetadataflowQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataflowQueryType defines the structure of a metadataflow query. The
+        parameters for the query are contained in the MetadataflowWhere element. The References
+        element is used to indicate how objects that reference or are referenced from the matched
+        metadataflow should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="MetadataflowWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataflowWhere" type="MetadataflowWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>MetadataflowWhere contains the parameters for a metadataflow query. All
+        parameters must be matched for an object to satisfy the query. In addition to querying based
+        on the basic maintainable properties, it is also possible to search for a metadataflow based
+        on the metadata structure definition it defines the usage of.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataflowWhereType">
+    <xs:annotation>
+      <xs:documentation>MetadataflowWhereType contains the parameters of a metadataflow query. All
+        supplied parameters must be matched in order for an object to satisfy the query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureUsageWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+          <xs:element name="Structure" type="common:MetadataStructureReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>MetadataStructureReference is used to indicate which metadata
+                structure definition the metadataflow must define a usage for in order to constitute
+                a match.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:MaintainableTypeCodelistType" use="optional"
+          fixed="Metadataflow"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

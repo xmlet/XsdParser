@@ -1,0 +1,6 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://mytestns.org/issue60_B" targetNamespace="http://mytestns.org/issue60_B">
+    <xsd:include schemaLocation="c.xsd"/>
+    <xsd:include schemaLocation="d.xsd"/>
+    <xsd:complexType name="Bar">
+    </xsd:complexType>
+</xsd:schema>

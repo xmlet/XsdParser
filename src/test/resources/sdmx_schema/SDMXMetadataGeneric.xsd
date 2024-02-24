@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/generic"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/generic"
+  elementFormDefault="qualified">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Generic Metadata Namespace Module</xs:appinfo>
+    <xs:documentation>The generic metadata namespace module describes a generic format for the
+      reporting of reference metadata, regardless of the underlying metadata structure definition.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="MetadataSetType">
+    <xs:annotation>
+      <xs:documentation>MetadataSetType describes the structure for a metadata set, which contains a
+        collection of reported metadata against a set of values for a given full or partial target
+        identifier, as described in a metadata structure definition. The metadata set may contain
+        reported metadata for multiple report structures defined in a metadata structure definition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>DataProviderReference provides a references to an organisation with
+                the role of data provider that is providing this metadata set.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Report" type="ReportType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Report contains the details of a the reported metadata, including
+                the identification of the target and the report attributes.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="common:SetAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:complexType name="ReportType">
+    <xs:annotation>
+      <xs:documentation>ReportType contains a set of report attributes and identifies a target
+        objects] to which they apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element name="Target" type="TargetType">
+            <xs:annotation>
+              <xs:documentation>Target contains a set of target reference values which when taken
+                together, identify the object or objects to which the reported metadata apply.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:unique name="ReportType.Target.UniqueReference">
+              <xs:selector xpath="*"/>
+              <xs:field xpath="@id"/>
+            </xs:unique>
+          </xs:element>
+          <xs:element name="AttributeSet" type="AttributeSetType">
+            <xs:annotation>
+              <xs:documentation>AttributeSet contains the reported metadata attribute values for the
+                reported metadata.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required">
+          <xs:annotation>
+            <xs:documentation>The id attribute holds the identifier of the report structure as
+              defined in the metadata structure definition. This identifies the report structure
+              which defines the structure of metadata that is being reported.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TargetType">
+    <xs:annotation>
+      <xs:documentation>TargetType defines the structure of a target. It contains a set of target
+        reference values which when taken together, identify the object or objects to which the
+        reported metadata apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReferenceValue" type="ReferenceValueType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ReferenceValue contains a value for a target reference object reference.
+            When this is taken with its sibling elements, they identify the object or objects to
+            which the reported metadata apply. The content of this will either be a reference to an
+            identifiable object, a data key, a reference to a data set, or a report period.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="common:IDType" use="required">
+      <xs:annotation>
+        <xs:documentation>The id attribute holds the identifier of the metadata target as defined in
+          the metadata structure definition. This identifies the metadata target of the report
+          structure that identifies the target object(s) of the reported metadata.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ReferenceValueType">
+    <xs:annotation>
+      <xs:documentation>ReferenceValueType defines the structure of a target object reference value.
+        A target reference value will either be a reference to an identifiable object, a data key, a
+        reference to a data set, or a report period.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="ObjectReference" type="common:ObjectReferenceType">
+        <xs:annotation>
+          <xs:documentation>ObjectReference provides a reference to an identifiable object in the
+            SDMX information model. An identifiable object target will utilize this option as the
+            representation of the target reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataKey" type="common:DataKeyType">
+        <xs:annotation>
+          <xs:documentation>ObjectReference provides a set of dimension references and values for
+            those dimension for the purpose of reporting metadata against a set of data. A key
+            descriptor values target will utilize this option as the representation of the target
+            reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataSetReference" type="common:SetReferenceType">
+        <xs:annotation>
+          <xs:documentation>DataSetReference provides a reference to a data set for the purpose of
+            reporting metadata against the data. A data set target will utilize this option as the
+            representation of the target reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConstraintContentReference" type="common:AttachmentConstraintReferenceType">
+        <xs:annotation>
+          <xs:documentation>ConstraintContentReference provides a reference to an attachment
+            constraint for the purpose of reporting metadata against the data identified in the key
+            sets and/or cube regions identified by the constraint. A constraint target will utilize
+            this option as the representation of the target reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportPeriod" type="common:ObservationalTimePeriodType">
+        <xs:annotation>
+          <xs:documentation>ReportPeriod provides a report period for the purpose of qualifying the
+            target reporting period of reported metadata. A report period target will utilize this
+            option as the representation of the target reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="id" type="common:IDType" use="required">
+      <xs:annotation>
+        <xs:documentation>The id attribute holds the identifier of the target reference object as
+          defined in the metadata structure definition. This identifies the target reference of the
+          metadata target that identifes one of the target references, that when taken together,
+          identify the target of the reported metadata.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeSetType">
+    <xs:annotation>
+      <xs:documentation>AttributeSetType defines the structure for a collection of reported metadata
+        attributes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReportedAttribute" type="ReportedAttributeType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ReportedAttribute provides the details of a reported attribute,
+            including a value and/or child reported attributes.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReportedAttributeType">
+    <xs:annotation>
+      <xs:documentation>ReportedAttributeType defines the structure for a reported metadata
+        attribute. A value for the attribute can be supplied as either a single value, or
+        multi-lingual text values (either structured or unstructured). An optional set of child
+        metadata attributes is also available if the metadata attribute definition defines nested
+        metadata attributes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:choice minOccurs="0">
+            <xs:element ref="common:Text" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Text is used to supply parallel multi-lingual textual values for
+                  the reported metadata attribute. This will be used if the text format of the
+                  metadata attribute has a type of string and the multi-lingual value is set to
+                  true.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element ref="common:StructuredText" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>StructuredText is used to supply parallel multi-lingual structured
+                  (as XHTML) textual values for the reported metadata attribute. This will be used
+                  if the text format of the metadata attribute has a type of XHTML and the
+                  multi-lingual value is set to true.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="AttributeSet" type="AttributeSetType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>AttributeSet contains the reported metadata attribute values for the
+                child metadata attributes.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required">
+          <xs:annotation>
+            <xs:documentation>The id attribute identifies the metadata attribute that the value is
+              being reported for.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The value attribute holds any simple value for the metadata
+              attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

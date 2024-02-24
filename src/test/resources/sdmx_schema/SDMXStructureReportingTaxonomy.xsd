@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Reporting Taxonomy Structure Module</xs:appinfo>
+    <xs:documentation>The reporting taxonomy structure module defines the structure of reporting
+      taxonomy and reporting category constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="ReportingTaxonomyType">
+    <xs:annotation>
+      <xs:documentation>ReportingTaxonomyType describes the structure of a reporting taxonomy, which
+        is a scheme which defines the composition structure of a data report where each component
+        can be described by an independent structure or structure usage description.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="ReportingCategory"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ReportingCategory" type="ReportingCategoryType" substitutionGroup="Item">
+    <xs:annotation>
+      <xs:documentation>ReportingCateogry defines a reporting category, which is used to group
+        structure usages into useful sub-packages.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:unique name="ReportingCategory_UnqiueReportingCategory">
+      <xs:selector xpath="structure:ReportingCategory"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="ReportingCategoryBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ReportingCategoryBaseType is an abstract base type that serves as the basis
+        for the ReportingCategoryType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:choice minOccurs="0">
+            <xs:sequence maxOccurs="unbounded">
+              <xs:element ref="ReportingCategory"/>
+            </xs:sequence>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ReportingCategoryType">
+    <xs:annotation>
+      <xs:documentation>ReportingCategoryType describes the structure of a reporting category, which
+        groups structure usages into useful sub-packages. Sub ordinate reporting categories can be
+        nested within the category definition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReportingCategoryBaseType">
+        <xs:choice>
+          <xs:element name="StructuralMetadata" type="common:StructureReferenceType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>StructuralMetadata provides a reference for data structure
+                definition and metadata structure definition references which are grouped in the
+                reporting category. It is assumed that all structural metadata objects referenced
+                from a category will be of the same type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProvisioningMetadata" type="common:StructureUsageReferenceType"
+            minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>ProvisioningMetadata provides a reference for dataflow and
+                metadataflow references which are grouped in the reporting category. It is assumed
+                that all provisioning metadata objects referenced from a category will be of the
+                same type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+</xs:schema>

@@ -787,6 +787,22 @@ public class IssuesTest {
         Assert.assertEquals("Foo", type.getName());
     }
 
+    @Test()
+    public void testIssue60(){
+        XsdParser parser = new XsdParser(getFilePath("issue_60/a.xsd"));
+
+        XsdElement elem1 = parser.getResultXsdElements().filter(e -> e.getName().equals("elem1")).findFirst().get();
+        XsdElement elem2 = parser.getResultXsdElements().filter(e -> e.getName().equals("elem2")).findFirst().get();
+
+        XsdNamedElements type1 = elem1.getTypeAsXsd();
+        Assert.assertNotNull(type1);
+        Assert.assertEquals("Beer", type1.getName());
+
+        XsdNamedElements type2 = elem2.getTypeAsXsd();
+        Assert.assertNotNull(type2);
+        Assert.assertEquals("Pong", type2.getName());
+    }
+
     @Test
     public void testIssue55_ResolveUnion() {
         XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+  <xs:include schemaLocation="SDMXRegistryBase.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+    schemaLocation="SDMXStructure.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Registration Registry Module</xs:appinfo>
+    <xs:documentation>The registration registry module defines the constructs that are used for the
+      maintenance and discovery of data and reference metadata in a registry.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="SubmitRegistrationsRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationsRequestType defines the payload of a request message used
+        to submit addtions, updates, or deletions of data/metadata set registrations.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegistrationRequest" type="RegistrationRequestType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>RegistrationRequest provides the details of a requested registration and
+            the action to take on it. A reference to a provision agreement that exists in the
+            registry must be provide along with a simple and/or queryable data source. The id should
+            only be provided when updating or deleting a registration.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RegistrationRequestType">
+    <xs:annotation>
+      <xs:documentation>RegistrationRequestType describes the structure of a single registration
+        request. It contains the details of a registation and an action field to indicate the action
+        to be taken on the contained registration.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Registration" type="RegistrationType">
+        <xs:annotation>
+          <xs:documentation>Registration contains the details of the data/metadata set registration
+            to be added, updated, or deleted.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="action" type="common:ActionType" use="required">
+      <xs:annotation>
+        <xs:documentation>The action attribute indicates whether this is an addition, a
+          modification, or a deletion of a registration.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SubmitRegistrationsResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationsResponseType describes the structure of a registration
+        response. For each submitted registration in the request, a registration status is provided.
+        The status elements should be provided in the same order as the submitted registrations,
+        although each status will echo the request to ensure accurate processing of the responses.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegistrationStatus" type="RegistrationStatusType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>RegistrationStatus provided the status details for the submitted
+            registration. It echoes the original submission and provides status information about
+            the request.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RegistrationStatusType">
+    <xs:annotation>
+      <xs:documentation>RegistrationStatusType describes the structure of a registration status.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Registration" type="RegistrationType">
+        <xs:annotation>
+          <xs:documentation>Registration, at the very least echoes the submitted registration. It
+            the request was to create a new registration and it was successful, an id must be
+            supplied.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StatusMessage" type="StatusMessageType">
+        <xs:annotation>
+          <xs:documentation>StatusMessage provides that status for the registration request, and if
+            necessary, any error or warning information.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QueryRegistrationRequestType">
+    <xs:annotation>
+      <xs:documentation>QueryRegistrationRequestType describes the structure of a registration query
+        request. The type of query (data, reference metadata, or both) must be specified. It is
+        possible to query for registrations for a particular provision agreement, data provider, or
+        structure usage, or to query for all registrations in the registry. In addition the search
+        can be refined by providing constraints in the form of explicit time periods, constraint
+        regions, and key sets. When constraint regions and key sets are provided they will be
+        effectively processed by first matching all data for the included keys and regions (all
+        available data if there are none) and then removing any data matching the excluded keys or
+        regions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="QueryType" type="QueryTypeType">
+        <xs:annotation>
+          <xs:documentation>QueryType defines the type of sets (data, metadata, or both) that are
+            being queried for.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="All" type="common:EmptyType">
+          <xs:annotation>
+            <xs:documentation>All indicates that all registrations meeting the other criteria of the
+              query should be returned.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType">
+          <xs:annotation>
+            <xs:documentation>ProvisionAgreement provides a reference to a provision agreement in
+              the registry, for which all registered sets meeting the other criteria of this query
+              should be returned. The reference is provided as a URN and/or a complete set of
+              reference fields.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DataProvider" type="common:DataProviderReferenceType">
+          <xs:annotation>
+            <xs:documentation>DataProvider provides a reference to a data provider in the registry,
+              for which all registered sets meeting the other criteria of this query should be
+              returned. The reference is provided as a URN and/or a complete set of reference
+              fields.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Dataflow" type="common:DataflowReferenceType">
+          <xs:annotation>
+            <xs:documentation>Dataflow provides a reference to a data flow in the registry, for
+              which all registered sets meeting the other criteria of this query should be returned.
+              The reference is provided as a URN and/or a complete set of reference fields.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Metadataflow" type="common:MetadataflowReferenceType">
+          <xs:annotation>
+            <xs:documentation>Metadataflow provides a reference to a metadata flow in the registry,
+              for which all registered sets meeting the other criteria of this query should be
+              returned. The reference is provided as a URN and/or a complete set of reference fields
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="ReferencePeriod" type="common:ReferencePeriodType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ReferencePeriod provides an inclusive start and end date for the data or
+            metadata being sought.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataKeySet" type="structure:DataKeySetType">
+          <xs:annotation>
+            <xs:documentation>DataKeySet is used to provide a set of included or excluded keys which
+              serves to refine the data being sought.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MetadataKeySet" type="structure:MetadataKeySetType">
+          <xs:annotation>
+            <xs:documentation>MetadataKeySet is used to provide a set of included or excluded keys
+              which serves to refine the data being sought.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CubeRegion" type="common:CubeRegionType">
+          <xs:annotation>
+            <xs:documentation>CubeRegion is used to provide sets of include or excluded values for
+              dimensions when querying for data.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MetadataTargetRegion" type="common:MetadataTargetRegionType">
+          <xs:annotation>
+            <xs:documentation>MetadataTargetRegion is used to provide sets of included or excluded
+              values for identifier components when querying for metadata.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="returnConstraints" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>The returnConstraints attribute determines whether information about the
+          constraints on the data or metadata sets returned should also be sent the results.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="QueryRegistrationResponseType">
+    <xs:annotation>
+      <xs:documentation>QueryRegistrationResponseType describes the structure of a registration
+        query response. It provides a status for the request, and if successful, the resulting data
+        and/or metadata results.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StatusMessage" type="StatusMessageType">
+        <xs:annotation>
+          <xs:documentation>StatusMessage provides that status for the registration query request,
+            and if necessary, any error or warning information.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryResult" type="QueryResultType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>QueryResult contains a result for a successful registration query. It
+            can occur multiple times, for each registration the meets the conditions specified in
+            the query.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QueryResultType">
+    <xs:annotation>
+      <xs:documentation>QueryResultType describes the structure of a query result for a single data
+        source. Either a data result or metadata result is detailed, depending on the data source.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="DataResult" type="ResultType"/>
+        <xs:element name="MetadataResult" type="ResultType"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="timeSeriesMatch" type="xs:boolean" use="required">
+      <xs:annotation>
+        <xs:documentation>The timeSeriesMatch attribute is true when the result is an exact match
+          with the key found in the registry - that is, when the registered data source provides a
+          matching key. It is set to false when the data source is registered with cube-region
+          constraints, or in any other circumstance when it cannot be established that the
+          sought-for keys have been exactly matched. This is always true when the resulting data
+          source is the source of a metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ResultType">
+    <xs:annotation>
+      <xs:documentation>ResultType contains the details about a data or metadata source, through the
+        complete registration information. In addition, a reference to the content constraints for
+        the data source may be provided, if the query requested this information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Registration" type="RegistrationType">
+        <xs:annotation>
+          <xs:documentation>Registration provides the details of a matching registration. In
+            addition to the data source and provision agreement information, the id of the
+            registration must also be provided.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContentConstraint" type="common:ContentConstraintReferenceType"
+        minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ContentConstraint provides a reference to a content constraint in the
+            registry for the resulting data source (or possibly constraints base on the registration
+            provision agreement, data provider, structure usage, or structure). The reference is
+            provided for by a URN and/or a complete set of reference fields.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="QueryTypeType">
+    <xs:annotation>
+      <xs:documentation>QueryType provides an enumeration of values which specify the objects in the
+        result-set for a registry query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="DataSets">
+        <xs:annotation>
+          <xs:documentation>Only references data sets should be returned.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MetadataSets">
+        <xs:annotation>
+          <xs:documentation>Only references to metadata sets should be returned.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AllSets">
+        <xs:annotation>
+          <xs:documentation>References to both data sets and metadata sets should be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

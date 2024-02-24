@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Data Structure Query Module</xs:appinfo>
+    <xs:documentation>The data structure query module provides the construct of a query for a data
+      structure definition.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="DataStructureQueryType">
+    <xs:annotation>
+      <xs:documentation>DataStructureQueryType defines the structure of a data structure definition
+        query. The parameters for the query are contained in the DataStructureWhere element. The
+        References element is used to indicate how objects that reference or are referenced from the
+        matched data structure definition should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="DataStructureWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="DataStructureWhere" type="DataStructureWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>DataStructureWhere contains the parameters for a data structure definition
+        query. All parameters must be matched for an object to satisfy the query. The query is
+        simply a refinement of the base structure query to make the parameters specific to the data
+        structure definition.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataStructureWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DataStructureWhereBaseType is an abstract base type that forms the basis of
+        the DataStructureWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+          <xs:element name="UsedConcept" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="UsedRepresentation"
+            type="common:DataStructureEnumerationSchemeReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="GroupWhere"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:MaintainableTypeCodelistType" use="optional"
+          fixed="DataStructure"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataStructureWhereType">
+    <xs:annotation>
+      <xs:documentation>DataStructureWhereType defines the parameters of a data structure definition
+        query. In addition to querying based on the identification, it is also possible to search
+        for data structure definitions based on information about its components.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DataStructureWhereBaseType">
+        <xs:sequence>
+          <xs:element ref="AttributeWhere" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="DimensionWhere" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="MeasureDimensionWhere" minOccurs="0"/>
+          <xs:element ref="TimeDimensionWhere" minOccurs="0"/>
+          <xs:element ref="PrimaryMeasureWhere" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GroupWhere" type="GroupWhereType" substitutionGroup="ComponentListWhere">
+    <xs:annotation>
+      <xs:documentation>GroupWhere is used to query for a data structure definition that contains a
+        group meeting the conditions detailed in this container. This is an implicit set of "and"
+        parameters, that is the conditions within this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GroupWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>GroupWhereBaseType is an abstract base type that forms the basis for the
+        GroupWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="GroupDimensionWhere"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GroupWhereType">
+    <xs:annotation>
+      <xs:documentation>GroupWhereType defines the parameters querying for a data structure
+        definition based a group meeting the conditions detailed. Parameters include identification,
+        dimensions used in the group, and the group's referenced attachment constraint. This is an
+        implicit set of "and" parameters, that is the conditions within this must all be met in
+        order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GroupWhereBaseType">
+        <xs:sequence>
+          <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>AttachmentConstraint queries for a group where the referenced
+                attachment constraint defines the contents of the group.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GroupDimensionWhere" type="DimensionWhereType"
+    substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>GroupDimensionWhere is used to query a group based on the details of the
+        dimensions it groups. This is an implicit set of "and" parameters, that is the conditions
+        within this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataStructureComponentWhereType">
+    <xs:annotation>
+      <xs:documentation>DataStructureComponentWhereType defines the basic information for querying
+        for a data structure definition component. The component can be queried based on its
+        identification, the concept from which it takes its semantic, and the code list it uses as
+        its representation,. This is an implicit set of "and" parameters, that is the conditions
+        within this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType" minOccurs="0"/>
+          <xs:element name="Enumeration" type="common:CodelistReferenceType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="AttributeWhere" type="AttributeWhereType" substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>AttributeWhere is used to query for a data structure definition that
+        contains an attribute meeting the conditions contained in this structure. The attribute can
+        be queried based on its identification, the concept from which it takes its semantic, its
+        attachment level, the role it plays, and the code list it uses as the enumeration of its
+        representation. This is an implicit set of "and" parameters, that is the conditions within
+        this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="DimensionWhere" type="DimensionWhereType" substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>DimensionWhere is used to query for a data structure definition that
+        contains a dimension meeting the conditions contained in this structure. The dimension can
+        be queried based on its identification, the concept from which it takes its semantic, the
+        role it plays, and the code list it uses as the enumeration of its representation. This is
+        an implicit set of "and" parameters, that is the conditions within this must all be met in
+        order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="TimeDimensionWhere" type="TimeDimensionWhereType"
+    substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>TimeDimensionWhere is used to query for a data structure definition that
+        contains a time dimension meeting the conditions contained in this structure. The time
+        dimension can be queried based on its identification and the concept from which it takes its
+        semantic. This is an implicit set of "and" parameters, that is the conditions within this
+        must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PrimaryMeasureWhere" type="PrimaryMeasureWhereType"
+    substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>PrimaryMeasureWhere is used to query for a data structure definition that
+        contains a primary measure meeting the conditions contained in this structure. The primary
+        measure can be queried based on its identification, the concept from which it takes its
+        semantic, and the code list it uses as the enumeration of its representation. This is an
+        implicit set of "and" parameters, that is the conditions within this must all be met in
+        order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="MeasureDimensionWhere" type="MeasureDimensionWhereType"
+    substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>MeasureDimensionWhere is used to query for a data structure definition that
+        contains a measure dimension meeting the conditions contained in this structure. The
+        cross-sectional measure can be queried based on its identification, the concept from which
+        it takes its semantic, and the concept scheme it uses as the enumeration of its
+        representation. This is an implicit set of "and" parameters, that is the conditions within
+        this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="AttributeWhereType">
+    <xs:annotation>
+      <xs:documentation>AttributeWhereType describes the structure of an attribute query. An
+        attribute can be queried based on its identification, the concept from which it takes its
+        semantic, the role it plays, and the code list it uses as the enumeration of its
+        representation. This is an implicit set of "and" parameters, that is the conditions within
+        this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DataStructureComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Role" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Role is used to specify the role of the attribute.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DimensionWhereType">
+    <xs:annotation>
+      <xs:documentation>DimensionWhereType describes the structure of a dimension query. A dimension
+        can be queried based on its identification, the concept from which it takes its semantic,
+        the role it plays, and the code list it uses as the enumeration of its representation. This
+        is an implicit set of "and" parameters, that is the conditions within this must all be met
+        in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DataStructureComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Role" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Role is used to specify the role of the dimension.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeDimensionWhereType">
+    <xs:annotation>
+      <xs:documentation>TimeDimensionWhereType describes the structure of a time dimension query.
+        The time dimension can be queried based on the concept from which it takes its semantic.
+        This is an implicit set of "and" parameters, that is the conditions within this must all be
+        met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureDimensionWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MeasureDimensionWhereBaseType is an abstract base type which forms the basis
+        for a measure dimension query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType" minOccurs="0"/>
+          <xs:element name="Enumeration" type="common:ConceptSchemeReferenceType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureDimensionWhereType">
+    <xs:annotation>
+      <xs:documentation>MeasureDimensionWhereType describes the structure of a measure dimension
+        query. A measure dimension can be queried based on its identification, the concept from
+        which it takes its semantic, the role it plays, and the concept scheme which defines its
+        measure concepts. This is an implicit set of "and" parameters, that is the conditions within
+        this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureDimensionWhereBaseType">
+        <xs:sequence>
+          <xs:element name="Role" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Role is used to specify the role of the dimension.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PrimaryMeasureWhereType">
+    <xs:annotation>
+      <xs:documentation>MeasureWhereType describes the structure of a measure query. The primary
+        measure can be queried based on the concept from which it takes its semantic, and the code
+        list it uses as the enumeration of its representation. This is an implicit set of "and"
+        parameters, that is the conditions within this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType" minOccurs="0"/>
+          <xs:element name="Enumeration" type="common:CodelistReferenceType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,2357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+	elementFormDefault="qualified" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="SDMXCommonReferences.xsd"/>
+	<!-- Note: The following import statement sometimes causes problems with IE 6.* If you have this problem, comment it out. -->
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
+	<xs:annotation>
+		<xs:appinfo>SDMX Common Namespace Module</xs:appinfo>
+		<xs:documentation>The common namespace module contains common constructs that are used by
+			constructs in other namespaces.
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="TextType">
+		<xs:annotation>
+			<xs:documentation>TextType provides for a set of language-specific alternates to be provided
+				for any human-readable constructs in the instance.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="xml:lang" default="en">
+					<xs:annotation>
+						<xs:documentation>The xml:lang attribute specifies a language code for the text. If not
+							supplied, the default language is assumed to be English.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:element name="Name" type="TextType">
+		<xs:annotation>
+			<xs:documentation>Name is a reusable element, used for providing a human-readable name for an
+				object.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="Description" type="TextType">
+		<xs:annotation>
+			<xs:documentation>Description is a reusable element, used for providing a longer
+				human-readable description of an object.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="Text" type="TextType">
+		<xs:annotation>
+			<xs:documentation>Text is a reusable element, used for providing a language specific text
+				value for general purposes (i.e. not for a name or description).
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="StructuredText" type="XHTMLType">
+		<xs:annotation>
+			<xs:documentation>StructuredText is a reusable element, used for providing a language specific
+				text value structured as XHTML.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="StatusMessageType">
+		<xs:annotation>
+			<xs:documentation>StatusMessageType describes the structure of an error or warning message. A
+				message contains the text of the message, as well as an optional language indicator and an
+				optional code.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Text" type="TextType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Text contains the text of the message, in parallel language values.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="code" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The code attribute holds an optional code identifying the underlying error
+					that generated the message. This should be used if parallel language descriptions of the
+					error are supplied, to distinguish which of the multiple error messages are for the same
+					underlying error.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="CodedStatusMessageType">
+		<xs:annotation>
+			<xs:documentation>CodedStatusMessageType describes the structure of an error or warning
+				message which required a code.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="StatusMessageType">
+				<xs:sequence>
+					<xs:element name="Text" type="TextType" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="code" type="xs:string" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AnnotableType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>AnnotableType is an abstract base type used for all annotable artefacts. Any
+				type that provides for annotations should extend this type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="Annotations" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Annotations" type="AnnotationsType">
+		<xs:annotation>
+			<xs:documentation>Annotations is a reusable element the provides for a collection of
+				annotations. It has been made global so that restrictions of types that extend
+				AnnotatableType my reference it.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="AnnotationsType">
+		<xs:annotation>
+			<xs:documentation>AnnotationsType provides for a list of annotations to be attached to data
+				and structure messages.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Annotation" type="AnnotationType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AnnotationType">
+		<xs:annotation>
+			<xs:documentation>AnnotationType provides for non-documentation notes and annotations to be
+				embedded in data and structure messages. It provides optional fields for providing a title,
+				a type description, a URI, and the text of the annotation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AnnotationTitle" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationTitle provides a title for the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationType is used to distinguish between annotations designed to
+						support various uses. The types are not enumerated, as these can be specified by the
+						user or creator of the annotations. The definitions and use of annotation types should
+						be documented by their creator.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationURL" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationURL is a URI - typically a URL - which points to an external
+						resource which may contain or supplement the annotation. If a specific behavior is
+						desired, an annotation type should be defined which specifies the use of this field more
+						exactly.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationText" type="TextType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>AnnotationText holds a language-specific string containing the text of
+						the annotation.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The id attribute provides a non-standard identification of an annotation.
+					It can be used to disambiguate annotations.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:attributeGroup name="SetAttributeGroup">
+		<xs:annotation>
+			<xs:documentation>The SetAttributeGroup defines a common set of attributes for use in data and
+				reference metadata sets.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="structureRef" type="xs:IDREF" use="required">
+			<xs:annotation>
+				<xs:documentation>The structureRef contains a reference to a structural specification in the
+					header of a data or reference metadata message. The structural specification details which
+					structure the data or reference metadata conforms to, as well as providing additional
+					information such as how the data is structure (e.g. which dimension occurs at the
+					observation level for a data set).
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="setID" type="IDType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The setID provides an identification of the data or metadata set.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="action" type="ActionType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The action attribute indicates whether the file is appending, replacing,
+					or deleting.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="reportingBeginDate" type="BasicTimePeriodType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The reportingBeginDate indicates the inclusive start time of the data
+					reported in the data or metadata set.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="reportingEndDate" type="BasicTimePeriodType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The reportingEndDate indicates the inclusive end time of the data reported
+					in the data or metadata set.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validFromDate" type="xs:dateTime" use="optional">
+			<xs:annotation>
+				<xs:documentation>The validFromDate indicates the inclusive start time indicating the
+					validity of the information in the data or metadata set.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validToDate" type="xs:dateTime" use="optional">
+			<xs:annotation>
+				<xs:documentation>The validToDate indicates the inclusive end time indicating the validity
+					of the information in the data or metadata set.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="publicationYear" type="xs:gYear" use="optional">
+			<xs:annotation>
+				<xs:documentation>The publicationYear holds the ISO 8601 four-digit year.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="publicationPeriod" type="ObservationalTimePeriodType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The publicationPeriod specifies the period of publication of the data or
+					metadata in terms of whatever provisioning agreements might be in force (i.e., "Q1 2005"
+					if that is the time of publication for a data set published on a quarterly basis).
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="ExternalReferenceAttributeGroup">
+		<xs:attribute name="serviceURL" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>The serviceURL attribute indicates the URL of an SDMX SOAP web service
+					from which the details of the object can be retrieved. Note that this can be a registry or
+					and SDMX structural metadata repository, as they both implement that same web service
+					interface.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="structureURL" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>The structureURL attribute indicates the URL of a SDMX-ML structure
+					message (in the same version as the source document) in which the externally referenced
+					object is contained. Note that this may be a URL of an SDMX RESTful web service which will
+					return the referenced object.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:simpleType name="AlphaNumericType">
+		<xs:annotation>
+			<xs:documentation>AlphaNumericType is a reusable simple type that allows for only mixed-case
+				alphabetical and numeric characters.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-z0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AlphaType">
+		<xs:annotation>
+			<xs:documentation>AlphaType is a reusable simple type that allows for only mixed-case
+				alphabetical characters. This is derived from the AlphaNumericType.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="AlphaNumericType">
+			<xs:pattern value="[A-z]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NumericType">
+		<xs:annotation>
+			<xs:documentation>NumericType is a reusable simple type that allows for only numeric
+				characters. This is not to be confused with an integer, as this may be used to numeric
+				strings which have leading zeros. These leading zeros are not ignored. This is derived from
+				the AlphaNumericType.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="AlphaNumericType">
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ObservationalTimePeriodType">
+		<xs:annotation>
+			<xs:documentation>ObservationalTimePeriodType specifies a distinct time period or point in
+				time in SDMX. The time period can either be a Gregorian calendar period, a standard
+				reporting period, a distinct point in time, or a time range with a specific date and
+				duration.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="StandardTimePeriodType TimeRangeType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="StandardTimePeriodType">
+		<xs:annotation>
+			<xs:documentation>StandardTimePeriodType defines the set of standard time periods in SDMX.
+				This includes the reporting time periods and the basic date type (i.e. the calendar time
+				periods and the dateTime format).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="BasicTimePeriodType ReportingTimePeriodType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="BasicTimePeriodType">
+		<xs:annotation>
+			<xs:documentation>BasicTimePeriodType contains the basic dates and calendar periods. It is a
+				combination of the Gregorian time periods and the date time type..
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="GregorianTimePeriodType xs:dateTime"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="GregorianTimePeriodType">
+		<xs:annotation>
+			<xs:documentation>GregorianTimePeriodType defines the set of standard calendar periods in
+				SDMX.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:gYear xs:gYearMonth xs:date"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingTimePeriodType">
+		<xs:annotation>
+			<xs:documentation>ReportingTimePeriodType defines standard reporting periods in SDMX, which
+				are all in relation to the start day (day-month) of a reporting year which is specified in
+				the specialized reporting year start day attribute. If the reporting year start day is not
+				defined, a day of January 1 is assumed. The reporting year must be epxressed as the year at
+				the beginning of the period. Therfore, if the reproting year runs from April to March, any
+				given reporting year is expressed as the year for April. The general format of a report
+				period can be described as [year]-[period][time zone]?, where the type of period is
+				designated with a single character followed by a number representing the period. Note that
+				all periods allow for an optional time zone offset. See the details of each member type for
+				the specifics of its format.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union
+			memberTypes="ReportingYearType ReportingSemesterType ReportingTrimesterType ReportingQuarterType ReportingMonthType ReportingWeekType ReportingDayType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="BaseReportPeriodType">
+		<xs:annotation>
+			<xs:documentation>BaseReportPeriodType is a simple type which frames the general pattern of a
+				reporting period for validation purposes. This regular expression is only a general
+				validation which is meant to validate the following structure [year]-[period][time zone]?.
+				This type is meant to be derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{4}\-([ASTQ]\d{1}|[MW]\d{2}|[D]\d{3})(Z|((\+|\-)\d{2}:\d{2}))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportPeriodValidTimeZoneType">
+		<xs:annotation>
+			<xs:documentation>ReportPeriodValidTimeZoneType is a derivation of the BaseReportPeriodType
+				which validates that the time zone provided in the base type is valid. The base type will
+				have provided basic validation already. The patterns below validate that the time zone is
+				"Z" or that it is between -14:00 and +14:00, or that there is no time zone provided. This
+				type is meant to be derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="BaseReportPeriodType">
+			<xs:pattern value=".+Z"/>
+			<xs:pattern value=".{5}.*(\+|\-)(14:00|((0[0-9]|1[0-3]):[0-5][0-9]))"/>
+			<xs:pattern value=".{5}[^\+\-Z]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingYearType">
+		<xs:annotation>
+			<xs:documentation>ReportingYearType defines a time period of 1 year (P1Y) in relation to a
+				reporting year which has a start day (day-month) specified in the specialized reporting year
+				start day attribute. In the absence of a start day for the reporting year, a day of January
+				1 is assumed. In this case a reporting year will coincide with a calendar year. The format
+				of a reporting year is YYYY-A1 (e.g. 2000-A1). Note that the period value of 1 is fixed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}A1.*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingSemesterType">
+		<xs:annotation>
+			<xs:documentation>ReportingSemesterType defines a time period of 6 months (P6M) in relation to
+				a reporting year which has a start day (day-month) specified in the specialized reporting
+				year start day attribute. In the absence of a start day for the reporting year, a day of
+				January 1 is assumed. The format of a reporting semester is YYYY-Ss (e.g. 2000-S1), where s
+				is either 1 or 2.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}S[1-2].*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingTrimesterType">
+		<xs:annotation>
+			<xs:documentation>ReportingTrimesterType defines a time period of 4 months (P4M) in relation
+				to a reporting year which has a start day (day-month) specified in the specialized reporting
+				year start day attribute. In the absence of a start day for the reporting year, a day of
+				January 1 is assumed. The format of a reporting trimester is YYYY-Tt (e.g. 2000-T1), where s
+				is either 1, 2, or 3.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}T[1-3].*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingQuarterType">
+		<xs:annotation>
+			<xs:documentation>ReportingQuarterType defines a time period of 3 months (P3M) in relation to
+				a reporting year which has a start day (day-month) specified in the specialized reporting
+				year start day attribute. In the absence of a start day for the reporting year, a day of
+				January 1 is assumed. The format of a reporting quarter is YYYY-Qq (e.g. 2000-Q1), where q
+				is a value between 1 and 4.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}Q[1-4].*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingMonthType">
+		<xs:annotation>
+			<xs:documentation>ReportingMonthType defines a time period of 1 month (P1M) in relation to a
+				reporting year which has a start day (day-month) specified in the specialized reporting year
+				start day attribute. In the absence of a start day for the reporting year, a day of January
+				1 is assumed. In this case a reporting month will coincide with a calendar month. The format
+				of a reporting month is YYYY-Mmm (e.g. 2000-M01), where mm is a two digit month (i.e.
+				01-12).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}M(0[1-9]|1[0-2]).*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingWeekType">
+		<xs:annotation>
+			<xs:documentation>ReportingWeekType defines a time period of 7 days (P7D) in relation to a
+				reporting year which has a start day (day-month) specified in the specialized reporting year
+				start day attribute. A standard reporting week is based on the ISO 8601 defintion of a week
+				date, in relation to the reporting period start day. The first week is defined as the week
+				with the first Thursday on or after the reporting year start day. An equivalent definition
+				is the week starting with the Monday nearest in time to the reporting year start day. There
+				are other equivalent defintions, all of which should be adjusted based on the reporting year
+				start day. In the absence of a start day for the reporting year, a day of January 1 is
+				assumed. The format of a reporting week is YYYY-Www (e.g. 2000-W01), where mm is a two digit
+				week (i.e. 01-53).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}W(0[1-9]|[1-4][0-9]|5[0-3]).*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingDayType">
+		<xs:annotation>
+			<xs:documentation>ReportingDayType defines a time period of 1 day (P1D) in relation to a
+				reporting year which has a start day (day-month) specified in the specialized reporting year
+				start day attribute. In the absence of a start day for the reporting year, a day of January
+				1 is assumed. The format of a reporting day is YYYY-Dddd (e.g. 2000-D001), where ddd is a
+				three digit day (i.e. 001-366).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ReportPeriodValidTimeZoneType">
+			<xs:pattern value=".{5}D(0[0-9][1-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-6]).*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="BaseTimeRangeType">
+		<xs:annotation>
+			<xs:documentation>BaseTimeRangeType is a simple type which frames the general pattern for a
+				time range in SDMX. A time range pattern is generally described as [xs:date or
+				xs:dateTime]\[xs:duration], where the referenced types are defined by XML Schema. This type
+				is meant to be derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="\d{4}\-\d{2}\-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?(Z|((\+|\-)\d{2}:\d{2}))?/P.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RangeValidMonthDayType">
+		<xs:annotation>
+			<xs:documentation>RangeValidMonthDayType is a derivation of the BaseTimeRangeType which
+				validates that the day provided is valid for the month, without regard to leap years. The
+				base type will have provided basic validation already. The patterns below validate that
+				there are up to 29 days in February, up to 30 days in April, June, September, and November
+				and up to 31 days in January, March, May, July, August, October, and December. This type is
+				meant to be derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="BaseTimeRangeType">
+			<xs:pattern value=".{5}02\-(0[1-9]|[1-2][0-9]).+"/>
+			<xs:pattern value=".{5}(04|06|09|11)\-(0[1-9]|[1-2][0-9]|30).+"/>
+			<xs:pattern value=".{5}(01|03|05|07|08|10|12)\-(0[1-9]|[1-2][0-9]|3[0-1]).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RangeValidLeapYearType">
+		<xs:annotation>
+			<xs:documentation>RangeValidLeapYearType is a derivation of the RangeValidMonthDayType which
+				validates that a date of February 29 occurs in a valid leap year (i.e. if the year is
+				divisible 4 and not by 100, unless it is also divisible by 400). This type is meant to be
+				derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="RangeValidMonthDayType">
+			<xs:pattern
+				value="((\d{2}(04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96))|((00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)00))\-02\-29.+"/>
+			<xs:pattern value=".{5}02\-(([0-1][0-9])|(2[^9])).+"/>
+			<xs:pattern value=".{5}((0[1,3-9])|1[0-2]).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RangeValidTimeType">
+		<xs:annotation>
+			<xs:documentation>RangeValidTimeType is a derivation of the RangeValidLeapYearType which
+				validates that the time (if provided) is validly formatted. The base type will have provided
+				basic validation already. The patterns below validate that the time falls between 00:00:00
+				and 24:00:00. Note that as the XML dateTime type does, seconds are required. It is also
+				permissible to have fractions of seconds, but only within the boundaries of the range
+				specified. This type is meant to be derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="RangeValidLeapYearType">
+			<xs:pattern
+				value=".{10}T(24:00:00(\.[0]+)?|((([0-1][0-9])|(2[0-3])):[0-5][0-9]:[0-5][0-9](\.\d+)?))(/|Z|\+|\-).+"/>
+			<xs:pattern value="[^T]+/.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RangeValidTimeZoneType">
+		<xs:annotation>
+			<xs:documentation>RangeValidMonthDayType is a derivation of the RangeValidTimeType which
+				validates that the time zone provided in the base type is valid. The base type will have
+				provided basic validation already. The patterns below validate that the time zone is "Z" or
+				that it is between -14:00 and +14:00, or that there is no time zone provided. This type is
+				meant to be derived from for further validation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="RangeValidTimeType">
+			<xs:pattern value=".+Z/.+"/>
+			<xs:pattern value=".{10}.*(\+|\-)(14:00|((0[0-9]|1[0-3]):[0-5][0-9]))/.+"/>
+			<xs:pattern value=".{10}[^\+\-Z]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimeRangeValidDateDurationType">
+		<xs:annotation>
+			<xs:documentation>TimeRangeValidDateDurationType is an abstract derivation of the
+				RangeValidTimeType which validates that duration provided is generally valid, up to the time
+				component.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="RangeValidTimeZoneType">
+			<xs:pattern value=".+/P(\d+Y)?(\d+M)?(\d+D)?(T.+)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimeRangeType">
+		<xs:annotation>
+			<xs:documentation>TimeRangeType defines the structure of a time range in SDMX. The pattern of
+				a time range can be generally described as [start date]\[duration], where start date is an
+				date or dateTime type as defined in XML Schema and duration is a time duration as defined in
+				XML Schema. Note that it is permissible for a time zone offset to be provided on the date or
+				date time.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TimeRangeValidDateDurationType">
+			<xs:pattern value=".+/P.*T(\d+H)?(\d+M)?(\d+(.\d+)?S)?"/>
+			<xs:pattern value=".+/P[^T]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimezoneType">
+		<xs:annotation>
+			<xs:documentation>TimezoneType defines the pattern for a time zone. An offset of -14:00 to
+				+14:00 or Z can be specified.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="Z"/>
+			<xs:pattern value="(\+|\-)(14:00|((0[0-9]|1[0-3]):[0-5][0-9]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ReferencePeriodType">
+		<xs:annotation>
+			<xs:documentation>Specifies the inclusive start and end times.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="startTime" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The startTime attributes contains the inclusive start date for the
+					reference period.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="endTime" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>The endTime attributes contains the inclusive end date for the reference
+					period.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:simpleType name="OccurenceType">
+		<xs:annotation>
+			<xs:documentation>OccurenceType is used to express the maximum occurrence of an object. It
+				combines an integer, greater than 1, and the literal text, "unbounded", for objects which
+				have no upper limit on its occurrence.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="MaxOccursNumberType UnboundedCodeType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="MaxOccursNumberType">
+		<xs:annotation>
+			<xs:documentation>MaxOccursNumberType is a base type used to restrict an integer to be greater
+				than 1, for the purpose of expressing the maximum number of occurrences of an object.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UnboundedCodeType">
+		<xs:annotation>
+			<xs:documentation>UnboundedCodeType provides single textual value of "unbounded", for use in
+				OccurentType.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unbounded">
+				<xs:annotation>
+					<xs:documentation>Object has no upper limit on occurrences.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ActionType">
+		<xs:annotation>
+			<xs:documentation>ActionType provides a list of actions, describing the intention of the data
+				transmission from the sender's side. Each action provided at the data or metadata set level
+				applies to the entire data set for which it is given. Note that the actions indicated in the
+				Message Header are optional, and used to summarize specific actions indicated with this data
+				type for all registry interactions. The "Informational" value is used when the message
+				contains information in response to a query, rather than being used to invoke a maintenance
+				activity.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Append">
+				<xs:annotation>
+					<xs:documentation>Append - this is an incremental update for an existing data/metadata set
+						or the provision of new data or documentation (attribute values) formerly absent. If any
+						of the supplied data or metadata is already present, it will not replace that data or
+						metadata. This corresponds to the "Update" value found in version 1.0 of the SDMX
+						Technical Standards.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Replace">
+				<xs:annotation>
+					<xs:documentation>Replace - data/metadata is to be replaced, and may also include
+						additional data/metadata to be appended. The replacement occurs at the level of the
+						observation - that is, it is not possible to replace an entire series.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Delete">
+				<xs:annotation>
+					<xs:documentation>Delete - data/metadata is to be deleted. Deletion occurs at the lowest
+						level object. For instance, if a delete data message contains a series with no
+						observations, then the entire series will be deleted. If the series contains
+						observations, then only those observations specified will be deleted. The same basic
+						concept applies for attributes. If a series or observation in a delete message contains
+						attributes, then only those attributes will be deleted.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Information">
+				<xs:annotation>
+					<xs:documentation>Informational - data/metadata is being exchanged for informational
+						purposes only, and not meant to update a system.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildCardValueType">
+		<xs:annotation>
+			<xs:documentation>WildCardValueType is a single value code list, used to include the '%'
+				character - indicating that an entire field is wild carded.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="%">
+				<xs:annotation>
+					<xs:documentation>Indicates a wild card value.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="QueryableDataSourceType">
+		<xs:annotation>
+			<xs:documentation>QueryableDataSourceType describes a data source which is accepts an standard
+				SDMX Query message and responds appropriately.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataURL" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>DataURL contains the URL of the data source.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WSDLURL" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>WSDLURL provides the location of a WSDL instance on the internet which
+						describes the queryable data source.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WADLURL" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>WADLURL provides the location of a WADL instance on the internet which
+						describes the REST protocol of the queryable data source.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="isRESTDatasource" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>The isRESTDatasource attribute indicates, if true, that the queryable data
+					source is accessible via the REST protocol.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isWebServiceDatasource" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>The isWebServiceDatasource attribute indicates, if true, that the
+					queryable data source is accessible via Web Services protocols.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:simpleType name="DimensionTypeType">
+		<xs:annotation>
+			<xs:documentation>DimensionTypeType enumerates the sub-classes of a dimension.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Dimension">
+				<xs:annotation>
+					<xs:documentation>An ordinary dimension.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MeasureDimension">
+				<xs:annotation>
+					<xs:documentation>A measure dimension.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TimeDimension">
+				<xs:annotation>
+					<xs:documentation>The time dimension.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="XHTMLType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>XHTMLType allows for mixed content of text and XHTML tags. When using this
+				type, one will have to provide a reference to the XHTML schema, since the processing of the
+				tags within this type is strict, meaning that they are validated against the XHTML schema
+				provided.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:any namespace="http://www.w3.org/1999/xhtml" processContents="strict"/>
+		</xs:sequence>
+		<xs:attribute ref="xml:lang" default="en"/>
+	</xs:complexType>
+
+	<xs:simpleType name="ContentConstraintTypeCodeType">
+		<xs:annotation>
+			<xs:documentation>ContentConstraintTypeCodeType defines a list of types for a content
+				constraint. A content constraint can state which data is present or which content is allowed
+				for the constraint attachment.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Allowed">
+				<xs:annotation>
+					<xs:documentation>The constraint contains the allowed values for attachable object.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Actual">
+				<xs:annotation>
+					<xs:documentation>The constraints contains the actual data present for the attachable
+						object.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="RegionType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>RegionType is an abstract type which defines a generic constraint region.
+				This type can be refined to define regions for data or metadata sets. A region is defined by
+				a collection of key values - each of which a collection of values for a component which
+				disambiguates data or metadata (i.e. dimensions or the target objects of a metadata target).
+				For each region, as collection of attribute values can be provided. Taken together, the key
+				values and attributes serve to identify or describe a subset of a data or metadata set.
+				Finally, the region can flagged as being included or excluded, although this flag only makes
+				sense when the region is used in a particular context.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="KeyValue" type="ComponentValueSetType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>KeyValue contains a reference to a component which disambiguates the
+						data or metadata (i.e. a dimension or target object) and provides a collection of values
+						for the component. The collection of values can be flagged as being inclusive or
+						exclusive to the region being defined. Any key component that is not included is assumed
+						to be wild carded, which is to say that the cube includes all possible values for the
+						un-referenced key components. Further, this assumption applies to the values of the
+						components as well. The values for any given component can only be sub-setted in the
+						region by explicit inclusion or exclusion. For example, a dimension X which has the
+						possible values of 1, 2, 3 is assumed to have all of these values if a key value is not
+						defined. If a key value is defined with an inclusion attribute of true and the values of
+						1 and 2, the only the values of 1 and 2 for dimension X are included in the definition
+						of the region. If the key value is defined with an inclusion attribute of false and the
+						value of 1, then the values of 2 and 3 for dimension X are included in the definition of
+						the region. Note that any given key component must only be referenced once in the
+						region.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Attribute" type="ComponentValueSetType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Attributes contains a reference to an attribute component (data or
+						metadata) and provides a collection of values for the referenced attribute. This serves
+						to state that for the key which defines the region, the attributes that are specified
+						here have or do not have (depending to the include attribute of the value set) the
+						values provided. It is possible to provide and attribute reference without specifying
+						values, for the purpose of stating the attribute is absent (include = false) or present
+						with an unbounded set of values. As opposed to key components, which are assumed to be
+						wild carded if absent, no assumptions are made about the absence of an attribute. Only
+						attributes which are explicitly stated to be present or absent from the region will be
+						know. All unstated attributes for the set cannot be assumed to absent or present.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="include" type="xs:boolean" use="optional" default="true">
+			<xs:annotation>
+				<xs:documentation>The include attribute indicates that the region is to be included or
+					excluded within the context in which it is defined. For example, if the regions is defined
+					as part of a content constraint, the exclude flag would mean the data identified by the
+					region is not present.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##local"/>
+	</xs:complexType>
+
+	<xs:complexType name="ComponentValueSetType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>ComponentValueSetType is an abstract base type which is used to provide a
+				set of value for a referenced component. Implementations of this type will be based on a
+				particular component type and refine the allowed values to reflect the types of values that
+				are possible for that type of component.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0">
+			<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Value provides a simple value for the component, such as a coded,
+						numeric, or simple text value. This type of component value is applicable for dimensions
+						and attributes.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataSet" type="SetReferenceType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DataSet provides a reference to a data set and is used to state a value
+						for the data set target component in a metadata target.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataKey" type="DataKeyType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DataKey provides a set of dimension references and value, which form a
+						full or partial data key. This is used to state a value for the key descriptor values
+						target component in a metadata target.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Object" type="ObjectReferenceType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Object provides a reference to an Identifiable object in the SDMX
+						Information Model. This is used to state a value for an identifiable target component in
+						a metadata target.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeRange" type="TimeRangeValueType">
+				<xs:annotation>
+					<xs:documentation>TimeValue provides a value for a component which has a time
+						representation. This is repeatable to allow for a range to be specified, although a
+						single value can also be provided. An operator is available on this to indicate whether
+						the specified value indicates an exact value or the beginning/end of a range (inclusive
+						or exclusive).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="id" type="NestedNCNameIDType" use="required">
+			<xs:annotation>
+				<xs:documentation>The id attribute provides the identifier for the component for which
+					values are being provided. This base type allows for a nested identifier to be provided,
+					for the purpose of referencing a nested component (i.e. a metadata attribute). However,
+					specific implementations will restrict this representation to only allow single level
+					identifiers where appropriate.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="include" type="xs:boolean" use="optional" default="true">
+			<xs:annotation>
+				<xs:documentation>The include attribute indicates whether the values provided for the
+					referenced component are to be included are excluded from the region in which they are
+					defined.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="DistinctKeyType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>DistinctKeyType is an abstract base type which is a special type of region
+				that only defines a distinct region of data or metadata. For each component defined in the
+				region, only a single values is provided. However, the same rules that apply to the general
+				region about unstated components being wild carded apply here as well. Thus, this type can
+				define a distinct full or partial key for data or metadata.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="RegionType">
+				<xs:sequence>
+					<xs:element name="KeyValue" type="DinstinctKeyValueType" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="include" type="xs:boolean" use="optional" fixed="true">
+					<xs:annotation>
+						<xs:documentation>The include attribute has a fixed value of true for a distinct key,
+							since such a key is always assumed to identify existing data or metadata.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##local"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DinstinctKeyValueType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>DinstinctKeyValueType is an abstract base type which defines a singular,
+				required value for a key component.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentValueSetType">
+				<xs:choice>
+					<xs:element name="Value" type="SimpleKeyValueType"/>
+					<xs:element name="DataSet" type="SetReferenceType"/>
+					<xs:element name="DataKey" type="DataKeyType"/>
+					<xs:element name="Object" type="ObjectReferenceType"/>
+				</xs:choice>
+				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
+				<xs:attribute name="include" type="xs:boolean" use="optional" fixed="true"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DataKeyType">
+		<xs:annotation>
+			<xs:documentation>DataKeyType is a region which defines a distinct full or partial data key.
+				The key consists of a set of values, each referencing a dimension and providing a single
+				value for that dimension. The purpose of the key is to define a subset of a data set (i.e.
+				the observed value and data attribute) which have the dimension values provided in this
+				definition. Any dimension not stated explicitly in this key is assumed to be wild carded,
+				thus allowing for the definition of partial data keys.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DistinctKeyType">
+				<xs:sequence>
+					<xs:element name="KeyValue" type="DataKeyValueType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DataKeyValueType">
+		<xs:annotation>
+			<xs:documentation>DataKeyValueType is a type for providing a dimension value for the purpose
+				of defining a distinct data key. Only a single value can be provided for the dimension.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DinstinctKeyValueType">
+				<xs:sequence>
+					<xs:element name="Value" type="SimpleKeyValueType"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataKeyType">
+		<xs:annotation>
+			<xs:documentation>MetadataKeyType is a region which defines a distinct full or partial
+				metadata key. The key consists of a set of values, each referencing a target object for the
+				metadata target referenced in the metadataTarget attribute, which must be defined in the
+				report structure referenced in the report attribute. Each target object can be assigned a
+				single value. If an target object from the reference metadata target is not included in this
+				key, the value of that is assumed to be all known objects for a reference target object, all
+				possible keys for a key descriptor values target object, or all dates for report period
+				target object. The purpose of this key reference a metadata conforming to a particular
+				report structure for given object or set of objects.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DistinctKeyType">
+				<xs:sequence>
+					<xs:element name="KeyValue" type="MetadataKeyValueType" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="report" type="IDType" use="required">
+					<xs:annotation>
+						<xs:documentation>The report attribute is required and holds the identifier of the
+							report structure which the reference metadata being defined by this key is based on.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="metadataTarget" type="IDType" use="required">
+					<xs:annotation>
+						<xs:documentation>The metadataTarget attribute is required and identifies the metadata
+							target for the report structure which this key is based upon. Note that a report
+							structure can have multiple metadata targets, so to properly determine the object or
+							objects for which the key applies, the proper metadata target must be identified.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataKeyValueType">
+		<xs:annotation>
+			<xs:documentation>MetadataKeyValueType is a type for providing a target object value for the
+				purpose of defining a distinct metadata key. Only a single value can be provided for the
+				target object.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DinstinctKeyValueType">
+				<xs:choice>
+					<xs:element name="Value" type="SimpleKeyValueType"/>
+					<xs:element name="DataSet" type="SetReferenceType"/>
+					<xs:element name="DataKey" type="DataKeyType"/>
+					<xs:element name="Object" type="ObjectReferenceType"/>
+				</xs:choice>
+				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CubeRegionType">
+		<xs:annotation>
+			<xs:documentation>CubeRegionType defines the structure of a data cube region. This is based on
+				the abstract RegionType and simply refines the key and attribute values to conform with what
+				is applicable for dimensions and attributes, respectively. See the documentation of the base
+				type for more details on how a region is defined.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="RegionType">
+				<xs:sequence>
+					<xs:element name="KeyValue" type="CubeRegionKeyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Attribute" type="AttributeValueSetType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataTargetRegionType">
+		<xs:annotation>
+			<xs:documentation>MetadataTargetRegionType defines the structure of a metadata target region.
+				A metadata target region must define the report structure and the metadata target from that
+				structure on which the region is based. This type is based on the abstract RegionType and
+				simply refines the key and attribute values to conform with what is applicable for target
+				objects and metadata attributes, respectively. See the documentation of the base type for
+				more details on how a region is defined.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="RegionType">
+				<xs:sequence>
+					<xs:element name="KeyValue" type="MetadataTargetRegionKeyType" minOccurs="0"
+						maxOccurs="unbounded"/>
+					<xs:element name="Attribute" type="MetadataAttributeValueSetType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="report" type="IDType" use="required">
+					<xs:annotation>
+						<xs:documentation>The report attribute is required and holds the identifier of the
+							report structure which the reference metadata being defined by this region is based
+							on.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="metadataTarget" type="IDType" use="required">
+					<xs:annotation>
+						<xs:documentation>The metadataTarget attribute is required and identifies the metadata
+							target for the report structure which this region is based upon. Note that a report
+							structure can have multiple metadata targets, so to properly determine the object or
+							objects for which the region applies, the proper metadata target must be identified.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CubeRegionKeyType">
+		<xs:annotation>
+			<xs:documentation>CubeRegionKeyType is a type for providing a set of values for a dimension
+				for the purpose of defining a data cube region. A set of distinct value can be provided, or
+				if this dimension is represented as time, and time range can be specified.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentValueSetType">
+				<xs:choice>
+					<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded"/>
+					<xs:element name="TimeRange" type="TimeRangeValueType"/>
+				</xs:choice>
+				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataTargetRegionKeyType">
+		<xs:annotation>
+			<xs:documentation>MetadataTargetRegionKeyType is a type for providing a set of values for a
+				target object in a metadata target of a re fence metadata report. A set of values or a time
+				range can be provided for a report period target object. A collection of the respective
+				types of references can be provided for data set reference and identifiable object reference
+				target objects. For a key descriptor values target object, a collection of data keys can be
+				provided.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentValueSetType">
+				<xs:choice>
+					<xs:element name="Value" type="SimpleKeyValueType" maxOccurs="unbounded"/>
+					<xs:element name="DataSet" type="SetReferenceType" maxOccurs="unbounded"/>
+					<xs:element name="DataKey" type="DataKeyType" maxOccurs="unbounded"/>
+					<xs:element name="Object" type="ObjectReferenceType" maxOccurs="unbounded"/>
+					<xs:element name="TimeRange" type="TimeRangeValueType"/>
+				</xs:choice>
+				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AttributeValueSetType">
+		<xs:annotation>
+			<xs:documentation>AttributeValueSetType defines the structure for providing values for a data
+				attribute. If no values are provided, the attribute is implied to include/excluded from the
+				region in which it is defined, with no regard to the value of the data attribute. Note that
+				for metadata attributes which occur within other metadata attributes, a nested identifier
+				can be provided. For example, a value of CONTACT.ADDRESS.STREET refers to the metadata
+				attribute with the identifier STREET which exists in the ADDRESS metadata attribute in the
+				CONTACT metadata attribute, which is defined at the root of the report structure.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentValueSetType">
+				<xs:choice minOccurs="0">
+					<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded"/>
+					<xs:element name="TimeRange" type="TimeRangeValueType"/>
+				</xs:choice>
+				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataAttributeValueSetType">
+		<xs:annotation>
+			<xs:documentation>MetadataAttributeValueSetType defines the structure for providing values for
+				a metadata attribute. If no values are provided, the attribute is implied to
+				include/excluded from the region in which it is defined, with no regard to the value of the
+				metadata attribute.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentValueSetType">
+				<xs:choice minOccurs="0">
+					<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded"/>
+					<xs:element name="TimeRange" type="TimeRangeValueType"/>
+				</xs:choice>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SimpleValueType">
+		<xs:annotation>
+			<xs:documentation>SimpleValueType contains a simple value for a component, and if that value
+				is from a code list, the ability to indicate that child codes in a simple hierarchy are part
+				of the value set of the component for the region.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="cascadeValues" type="xs:boolean" use="optional" default="false">
+					<xs:annotation>
+						<xs:documentation>The cascadeValues attribute, if true, indicates that if the value is
+							taken from a code all child codes in a simple hierarchy are understood be included in
+							the region.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="SimpleKeyValueType">
+		<xs:annotation>
+			<xs:documentation>SimpleKeyValueType derives from the SimpleValueType, but does not allow for
+				the cascading of value in the hierarchy, as keys are meant to describe a distinct full or
+				partial key.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleValueType">
+				<xs:attribute name="cascadeValues" type="xs:boolean" use="prohibited"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="TimeRangeValueType">
+		<xs:annotation>
+			<xs:documentation>TimeRangeValueType allows a time period value to be expressed as a range. It
+				can be expressed as the period before a period, after a period, or between two periods. Each
+				of these properties can specify their inclusion in regards to the range.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="BeforePeriod" type="TimePeriodRangeType">
+				<xs:annotation>
+					<xs:documentation>BeforePeriod is the period before which the period is meant to cover.
+						This date may be inclusive or exclusive in the range.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AfterPeriod" type="TimePeriodRangeType">
+				<xs:annotation>
+					<xs:documentation>AfterPeriod is the period after which the period is meant to cover. This
+						date may be inclusive or exclusive in the range.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence>
+				<xs:element name="StartPeriod" type="TimePeriodRangeType">
+					<xs:annotation>
+						<xs:documentation>StartPeriod is the start date or the range that the queried date must
+							occur within. This date may be inclusive or exclusive in the range.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="EndPeriod" type="TimePeriodRangeType">
+					<xs:annotation>
+						<xs:documentation>EndPeriod is the end period of the range. This date may be inclusive
+							or exclusive in the range.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="TimePeriodRangeType">
+		<xs:annotation>
+			<xs:documentation>TimePeriodRangeType defines a time period, and indicates whether it is
+				inclusive in a range.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ObservationalTimePeriodType">
+				<xs:attribute name="isInclusive" type="xs:boolean" default="true">
+					<xs:annotation>
+						<xs:documentation>The isInclusive attribute, when true, indicates that the time period
+							specified is included in the range.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="SimpleOperatorType">
+		<xs:annotation>
+			<xs:documentation>SimpleOperatorType provides an enumeration of simple operators to be applied
+				to any value.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="notEqual">
+				<xs:annotation>
+					<xs:documentation>(!=) - value must not be equal to the value supplied.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="equal">
+				<xs:annotation>
+					<xs:documentation>(=) - value must be exactly equal to the value supplied.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RangeOperatorType">
+		<xs:annotation>
+			<xs:documentation>RangeOperatorType provides an enumeration of range operators to be applied
+				to an ordered value.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="greaterThanOrEqual">
+				<xs:annotation>
+					<xs:documentation>(>=) - value must be greater than or equal to the value supplied.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lessThanOrEqual">
+				<xs:annotation>
+					<xs:documentation>(&lt;=) - value must be less than or equal to the value supplied.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="greaterThan">
+				<xs:annotation>
+					<xs:documentation>(>) - value must be greater than the value supplied.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lessThan">
+				<xs:annotation>
+					<xs:documentation>(&lt;) - value must be less than the value supplied.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TextSearchOperatorType">
+		<xs:annotation>
+			<xs:documentation>TextSearchOperatorType provides an enumeration of text search operators.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="contains">
+				<xs:annotation>
+					<xs:documentation>The text being searched must contain the supplied text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="startsWith">
+				<xs:annotation>
+					<xs:documentation>The text being searched must start with the supplied text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="endsWith">
+				<xs:annotation>
+					<xs:documentation>The text being searched must end with the supplied text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="doesNotContain">
+				<xs:annotation>
+					<xs:documentation>The text being searched cannot contain the supplied text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="doesNotStartWith">
+				<xs:annotation>
+					<xs:documentation>The text being searched cannot start with the supplied text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="doesNotEndWith">
+				<xs:annotation>
+					<xs:documentation>The text being searched cannot end with the supplied text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrderedOperatorType">
+		<xs:annotation>
+			<xs:documentation>OrderedOperatorType combines the SimpleOperatorType and the
+				RangeOperatorType to provide a full range or operators for any ordered value.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="SimpleOperatorType RangeOperatorType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="TextOperatorType">
+		<xs:annotation>
+			<xs:documentation></xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="SimpleOperatorType TextSearchOperatorType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimeOperatorType">
+		<xs:annotation>
+			<xs:documentation>TimeOperatorType derives from the OrderedOperatorType to remove the notEqual
+				operator.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrderedOperatorType">
+			<xs:enumeration value="equal"/>
+			<xs:enumeration value="greaterThanOrEqual"/>
+			<xs:enumeration value="lessThanOrEqual"/>
+			<xs:enumeration value="greaterThan"/>
+			<xs:enumeration value="lessThan"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Structure Specifications for Data/Metadata Messages -->
+
+	<xs:complexType name="PayloadStructureType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>PayloadStructureType is an abstract base type used to define the structural
+				information for data or metadata sets. A reference to the structure is provided (either
+				explicitly or through a reference to a structure usage).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType">
+					<xs:annotation>
+						<xs:documentation>ProvisionAgreement references a provision agreement which the data or
+							metadata is reported against.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="StructureUsage" type="StructureUsageReferenceBaseType">
+					<xs:annotation>
+						<xs:documentation>StructureUsage references a flow which the data or metadata is
+							reported against.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Structure" type="StructureReferenceBaseType">
+					<xs:annotation>
+						<xs:documentation>Structure references the structure which defines the structure of the
+							data or metadata set.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="structureID" type="xs:ID" use="required">
+			<xs:annotation>
+				<xs:documentation>The structureID attribute uniquely identifies the structure for the
+					purpose of referencing it from the payload. This is only used in structure specific
+					formats. Although it is required, it is only useful when more than one data set is present
+					in the message.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schemaURL" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>The schemaURL attribute provides a location from which the structure
+					specific schema can be located.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="namespace" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>The namespace attribute is used to provide the namespace for
+					structure-specific formats. By communicating this information in the header, it is
+					possible to generate the structure specific schema while processing the message.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The dimensionAtObservation is used to reference the dimension at the
+					observation level for data messages. This can also be given the explicit value of
+					"AllDimensions" which denotes that the cross sectional data is in the flat format.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explicitMeasures" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>The explicitMeasures indicates whether explicit measures are used in the
+					cross sectional format. This is only applicable for the measure dimension as the dimension
+					at the observation level or the flat structure.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="ExternalReferenceAttributeGroup"/>
+	</xs:complexType>
+
+	<xs:complexType name="DataStructureType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>DataStructureType is an abstract base type the forms the basis for the
+				structural information for a data set.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="PayloadStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType">
+							<xs:annotation>
+								<xs:documentation>ProvisionAgreement references a provision agreement which the data
+									is reported against.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="StructureUsage" type="DataflowReferenceType">
+							<xs:annotation>
+								<xs:documentation>StructureUsage references a dataflow which the data is reported
+									against.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Structure" type="DataStructureReferenceType">
+							<xs:annotation>
+								<xs:documentation>Structure references the data structure definition which defines
+									the structure of the data.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DataStructureRequestType">
+		<xs:annotation>
+			<xs:documentation>DataStructureRequestType is a variation of a the DataStructureType for
+				querying purposes. Only the observation dimension and the explicit measures flag are
+				allowed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="schemaURL" type="xs:anyURI" use="prohibited"/>
+				<xs:attribute name="namespace" type="xs:anyURI" use="prohibited"/>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" use="optional" default="false"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GenericDataStructureRequestType">
+		<xs:annotation>
+			<xs:documentation>GenericDataStructureRequestType is a variation of a the
+				DataStructureRequestType for querying purposes. The explicit measure flag in not allowed.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DataStructureRequestType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="TimeSeriesDataStructureRequestType">
+		<xs:annotation>
+			<xs:documentation>TimeSeriesDataStructureRequestType is a variation of a the
+				DataStructureRequestType for querying purposes. The observation dimension is fixed to
+				TIME_PERIOD
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DataStructureRequestType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"
+					fixed="TIME_PERIOD"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" use="optional" default="false"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="TimeSeriesGenericDataStructureRequestType">
+		<xs:annotation>
+			<xs:documentation>TimeSeriesGenericDataStructureRequestType is a variation of a the
+				GenericDataStructureRequestType for querying purposes. The observation dimension is fixed to
+				TIME_PERIOD.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GenericDataStructureRequestType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"
+					fixed="TIME_PERIOD"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GenericDataStructureType">
+		<xs:annotation>
+			<xs:documentation>GenericDataStructureType defines the structural information for a generic
+				data set. A reference to the structure, either explicitly or through a dataflow or provision
+				agreement is required as well as the dimension which occurs at the observation level.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="schemaURL" type="xs:anyURI" use="prohibited"/>
+				<xs:attribute name="namespace" type="xs:anyURI" use="prohibited"/>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GenericTimeSeriesDataStructureType">
+		<xs:annotation>
+			<xs:documentation>GenericTimeSeriesDataStructureType defines the structural information for a
+				generic time series based data set. The dimension at the observation level is fixed to be
+				TIME_PERIOD.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GenericDataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"
+					fixed="TIME_PERIOD"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StructureSpecificDataStructureType">
+		<xs:annotation>
+			<xs:documentation>StructureSpecificDataStructureType defines the structural information for a
+				structured data set. In addition to referencing the data structure or dataflow which defines
+				the structure of the data, the namespace for the data structure specific schema as well as
+				which dimension is used at the observation level must be provided. It is also necessary to
+				state whether the format uses explicit measures, although this is technically only
+				applicable is the dimension at the observation level is the measure dimension or the flat
+				data format is used.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="namespace" type="xs:anyURI" use="required"/>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" default="false"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StructureSpecificDataTimeSeriesStructureType">
+		<xs:annotation>
+			<xs:documentation>StructureSpecificDataTimeSeriesStructureType defines the structural
+				information for a structure definition specific time series data set. The dimension at the
+				observation level is fixed to be TIME_PERIOD.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="StructureSpecificDataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="DataflowReferenceType"/>
+						<xs:element name="Structure" type="DataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="namespace" type="xs:anyURI" use="required"/>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType" use="required"
+					fixed="TIME_PERIOD"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataStructureType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureType is an abstract base type the forms the basis of the
+				structural information for any metadata message. A reference to the metadata structure
+				definition or a metadataflow must be provided. This can be used to determine the structure
+				of the message.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="PayloadStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType">
+							<xs:annotation>
+								<xs:documentation>ProvisionAgreement references a provision agreement which the
+									metadata is reported against.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="StructureUsage" type="MetadataflowReferenceType">
+							<xs:annotation>
+								<xs:documentation>StructureUsage references a metadataflow which the metadata is
+									reported against.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Structure" type="MetadataStructureReferenceType">
+							<xs:annotation>
+								<xs:documentation>Structure references the metadata structure definition which
+									defines the structure of the metadata.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="dimensionAtObservation" type="ObservationDimensionType"
+					use="prohibited"/>
+				<xs:attribute name="explicitMeasures" type="xs:boolean" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StructureSpecificMetadataStructureType">
+		<xs:annotation>
+			<xs:documentation>StructureSpecificMetadataStructureType defines the structural information
+				for a structured metadata message.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="MetadataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="MetadataflowReferenceType"/>
+						<xs:element name="Structure" type="MetadataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="namespace" type="xs:anyURI" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="GenericMetadataStructureType">
+		<xs:annotation>
+			<xs:documentation>GenericMetadataStructureType defines the structural information for a
+				generic metadata message.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="MetadataStructureType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="ProvisionAgrement" type="ProvisionAgreementReferenceType"/>
+						<xs:element name="StructureUsage" type="MetadataflowReferenceType"/>
+						<xs:element name="Structure" type="MetadataStructureReferenceType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="namespace" type="xs:anyURI" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="ObservationDimensionType">
+		<xs:annotation>
+			<xs:documentation>ObservationDimensionType allows for the dimension at the observation level
+				to be specified by either providing the dimension identifier or using the explicit value
+				"AllDimensions".
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="NCNameIDType ObsDimensionsCodeType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="ObsDimensionsCodeType">
+		<xs:annotation>
+			<xs:documentation>ObsDimensionsCodeType is an enumeration containing the values
+				"TimeDimension" and "AllDimensions"
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AllDimensions">
+				<xs:annotation>
+					<xs:documentation>AllDimensions notes that the cross sectional format shall be flat; that
+						is all dimensions should be contained at the observation level.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TIME_PERIOD">
+				<xs:annotation>
+					<xs:documentation>TIME_PERIOD refers to the fixed identifier for the time dimension.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataType">
+		<xs:annotation>
+			<xs:documentation>DataTypeType provides an enumerated list of the types of data formats
+				allowed as the for the representation of an object.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="String">
+				<xs:annotation>
+					<xs:documentation>A string datatype corresponding to W3C XML Schema's xs:string
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Alpha">
+				<xs:annotation>
+					<xs:documentation>A string datatype which only allows for the simple aplhabetic charcter
+						set of A-z.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AlphaNumeric">
+				<xs:annotation>
+					<xs:documentation>A string datatype which only allows for the simple alphabetic character
+						set of A-z plus the simple numeric character set of 0-9.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Numeric">
+				<xs:annotation>
+					<xs:documentation>A string datatype which only allows for the simple numeric character set
+						of 0-9. This format is not treated as an integer, and therefore can having leading
+						zeros.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BigInteger">
+				<xs:annotation>
+					<xs:documentation>An integer datatype corresponding to W3C XML Schema's xs:integer
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Integer">
+				<xs:annotation>
+					<xs:documentation>An integer datatype corresponding to W3C XML Schema's xs:int datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Long">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:long datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Short">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:short
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Decimal">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:decimal
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Float">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:float
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Double">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:double
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Boolean">
+				<xs:annotation>
+					<xs:documentation>A datatype corresponding to W3C XML Schema's xs:boolean datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="URI">
+				<xs:annotation>
+					<xs:documentation>A datatype corresponding to W3C XML Schema's xs:anyURI datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Count">
+				<xs:annotation>
+					<xs:documentation>A simple incrementing Integer type. The isSequence facet must be set to
+						true, and the interval facet must be set to "1".
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="InclusiveValueRange">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the startValue and endValue attributes provide
+						the inclusive boundaries of a numeric range of type xs:decimal.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ExclusiveValueRange">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the startValue and endValue attributes provide
+						the exclusive boundaries of a numeric range, of type xs:decimal.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Incremental">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the value increments according to the value
+						provided in the interval facet, and has a true value for the isSequence facet.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ObservationalTimePeriod">
+				<xs:annotation>
+					<xs:documentation>Observational time periods are the superset of all time periods in SDMX.
+						It is the union of the standard time periods (i.e. Gregorian time periods, the reporting
+						time periods, and date time) and a time range.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StandardTimePeriod">
+				<xs:annotation>
+					<xs:documentation>Standard time periods is a superset of distinct time period in SDMX. It
+						is the union of the basic time periods (i.e. the Gregorian time periods and date time)
+						and the reporting time periods.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BasicTimePeriod">
+				<xs:annotation>
+					<xs:documentation>BasicTimePeriod time periods is a superset of the Gregorian time periods
+						and a date time.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GregorianTimePeriod">
+				<xs:annotation>
+					<xs:documentation>Gregorian time periods correspond to calendar periods and are
+						represented in ISO-8601 formats. This is the union of the year, year month, and date
+						formats.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GregorianYear">
+				<xs:annotation>
+					<xs:documentation>A Gregorian time period corresponding to W3C XML Schema's xs:gYear
+						datatype, which is based on ISO-8601.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GregorianYearMonth">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gYearMonth
+						datatype, which is based on ISO-8601.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GregorianDay">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:date datatype,
+						which is based on ISO-8601.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingTimePeriod">
+				<xs:annotation>
+					<xs:documentation>Reporting time periods represent periods of a standard length within a
+						reporting year, where to start of the year (defined as a month and day) must be defined
+						elsewhere or it is assumed to be January 1. This is the union of the reporting year,
+						semester, trimester, quarter, month, week, and day.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingYear">
+				<xs:annotation>
+					<xs:documentation>A reporting year represents a period of 1 year (P1Y) from the start date
+						of the reporting year. This is expressed as using the SDMX specific ReportingYearType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingSemester">
+				<xs:annotation>
+					<xs:documentation>A reporting semester represents a period of 6 months (P6M) from the
+						start date of the reporting year. This is expressed as using the SDMX specific
+						ReportingSemesterType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingTrimester">
+				<xs:annotation>
+					<xs:documentation>A reporting trimester represents a period of 4 months (P4M) from the
+						start date of the reporting year. This is expressed as using the SDMX specific
+						ReportingTrimesterType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingQuarter">
+				<xs:annotation>
+					<xs:documentation>A reporting quarter represents a period of 3 months (P3M) from the start
+						date of the reporting year. This is expressed as using the SDMX specific
+						ReportingQuarterType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingMonth">
+				<xs:annotation>
+					<xs:documentation>A reporting month represents a period of 1 month (P1M) from the start
+						date of the reporting year. This is expressed as using the SDMX specific
+						ReportingMonthType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingWeek">
+				<xs:annotation>
+					<xs:documentation>A reporting week represents a period of 7 days (P7D) from the start date
+						of the reporting year. This is expressed as using the SDMX specific ReportingWeekType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingDay">
+				<xs:annotation>
+					<xs:documentation>A reporting day represents a period of 1 day (P1D) from the start date
+						of the reporting year. This is expressed as using the SDMX specific ReportingDayType.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DateTime">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:dateTime
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TimeRange">
+				<xs:annotation>
+					<xs:documentation>TimeRange defines a time period by providing a distinct start (date or
+						date time) and a duration.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Month">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gMonth datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MonthDay">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gMonthDay
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Day">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gDay datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Time">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:time datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Duration">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:duration
+						datatype.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="XHTML">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the content of the component can contain XHTML
+						markup.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KeyValues">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the content of the component will be data key
+						(a set of dimension references and values for the dimensions).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IdentifiableReference">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the content of the component will be complete
+						reference (either URN or full set of reference fields) to an Identifiable object in the
+						SDMX Information Model.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DataSetReference">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the content of the component will be reference
+						to a data provider, which is actually a formal reference to a data provider and a data
+						set identifier value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AttachmentConstraintReference">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the content of the component will be reference
+						to an attachment constraint, which is actually a combination of a collection of full or
+						partial key values and a reference to a data set or data structure, usage, or provision
+						agreement.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="BasicComponentDataType">
+		<xs:annotation>
+			<xs:documentation>BasicComponentDataType provides an enumerated list of the types of
+				characters allowed in the textType attribute for all non-target object components.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="DataType">
+			<xs:enumeration value="String"/>
+			<xs:enumeration value="Alpha"/>
+			<xs:enumeration value="AlphaNumeric"/>
+			<xs:enumeration value="Numeric"/>
+			<xs:enumeration value="BigInteger"/>
+			<xs:enumeration value="Integer"/>
+			<xs:enumeration value="Long"/>
+			<xs:enumeration value="Short"/>
+			<xs:enumeration value="Decimal"/>
+			<xs:enumeration value="Float"/>
+			<xs:enumeration value="Double"/>
+			<xs:enumeration value="Boolean"/>
+			<xs:enumeration value="URI"/>
+			<xs:enumeration value="Count"/>
+			<xs:enumeration value="InclusiveValueRange"/>
+			<xs:enumeration value="ExclusiveValueRange"/>
+			<xs:enumeration value="Incremental"/>
+			<xs:enumeration value="ObservationalTimePeriod"/>
+			<xs:enumeration value="StandardTimePeriod"/>
+			<xs:enumeration value="BasicTimePeriod"/>
+			<xs:enumeration value="GregorianTimePeriod"/>
+			<xs:enumeration value="GregorianYear"/>
+			<xs:enumeration value="GregorianYearMonth"/>
+			<xs:enumeration value="GregorianDay"/>
+			<xs:enumeration value="ReportingTimePeriod"/>
+			<xs:enumeration value="ReportingYear"/>
+			<xs:enumeration value="ReportingSemester"/>
+			<xs:enumeration value="ReportingTrimester"/>
+			<xs:enumeration value="ReportingQuarter"/>
+			<xs:enumeration value="ReportingMonth"/>
+			<xs:enumeration value="ReportingWeek"/>
+			<xs:enumeration value="ReportingDay"/>
+			<xs:enumeration value="DateTime"/>
+			<xs:enumeration value="TimeRange"/>
+			<xs:enumeration value="Month"/>
+			<xs:enumeration value="MonthDay"/>
+			<xs:enumeration value="Day"/>
+			<xs:enumeration value="Time"/>
+			<xs:enumeration value="Duration"/>
+			<xs:enumeration value="XHTML"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SimpleDataType">
+		<xs:annotation>
+			<xs:documentation>SimpleDataType restricts BasicComponentDataType to specify the allowable
+				data types for a data structure definition component. The XHTML representation is removed as
+				a possible type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="BasicComponentDataType">
+			<xs:enumeration value="String"/>
+			<xs:enumeration value="Alpha"/>
+			<xs:enumeration value="AlphaNumeric"/>
+			<xs:enumeration value="Numeric"/>
+			<xs:enumeration value="BigInteger"/>
+			<xs:enumeration value="Integer"/>
+			<xs:enumeration value="Long"/>
+			<xs:enumeration value="Short"/>
+			<xs:enumeration value="Decimal"/>
+			<xs:enumeration value="Float"/>
+			<xs:enumeration value="Double"/>
+			<xs:enumeration value="Boolean"/>
+			<xs:enumeration value="URI"/>
+			<xs:enumeration value="Count"/>
+			<xs:enumeration value="InclusiveValueRange"/>
+			<xs:enumeration value="ExclusiveValueRange"/>
+			<xs:enumeration value="Incremental"/>
+			<xs:enumeration value="ObservationalTimePeriod"/>
+			<xs:enumeration value="StandardTimePeriod"/>
+			<xs:enumeration value="BasicTimePeriod"/>
+			<xs:enumeration value="GregorianTimePeriod"/>
+			<xs:enumeration value="GregorianYear"/>
+			<xs:enumeration value="GregorianYearMonth"/>
+			<xs:enumeration value="GregorianDay"/>
+			<xs:enumeration value="ReportingTimePeriod"/>
+			<xs:enumeration value="ReportingYear"/>
+			<xs:enumeration value="ReportingSemester"/>
+			<xs:enumeration value="ReportingTrimester"/>
+			<xs:enumeration value="ReportingQuarter"/>
+			<xs:enumeration value="ReportingMonth"/>
+			<xs:enumeration value="ReportingWeek"/>
+			<xs:enumeration value="ReportingDay"/>
+			<xs:enumeration value="DateTime"/>
+			<xs:enumeration value="TimeRange"/>
+			<xs:enumeration value="Month"/>
+			<xs:enumeration value="MonthDay"/>
+			<xs:enumeration value="Day"/>
+			<xs:enumeration value="Time"/>
+			<xs:enumeration value="Duration"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimeDataType">
+		<xs:annotation>
+			<xs:documentation>TimeDataType restricts SimpleDataType to specify the allowable data types
+				for representing a time value.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="SimpleDataType">
+			<xs:enumeration value="ObservationalTimePeriod"/>
+			<xs:enumeration value="StandardTimePeriod"/>
+			<xs:enumeration value="BasicTimePeriod"/>
+			<xs:enumeration value="GregorianTimePeriod"/>
+			<xs:enumeration value="GregorianYear"/>
+			<xs:enumeration value="GregorianYearMonth"/>
+			<xs:enumeration value="GregorianDay"/>
+			<xs:enumeration value="ReportingTimePeriod"/>
+			<xs:enumeration value="ReportingYear"/>
+			<xs:enumeration value="ReportingSemester"/>
+			<xs:enumeration value="ReportingTrimester"/>
+			<xs:enumeration value="ReportingQuarter"/>
+			<xs:enumeration value="ReportingMonth"/>
+			<xs:enumeration value="ReportingWeek"/>
+			<xs:enumeration value="ReportingDay"/>
+			<xs:enumeration value="DateTime"/>
+			<xs:enumeration value="TimeRange"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

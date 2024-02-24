@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Metadata Structure Definition Query Module</xs:appinfo>
+    <xs:documentation>The metadata structure definition query module provides the construct of a
+      query for a metadata structure definition.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="MetadataStructureQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataStructureQueryType defines the structure of a metadata structure
+        definition query. The parameters for the query are contained in the
+        MetadataStructureDefinitionWhere element. The References element is used to indicate how
+        objects that reference or are referenced from the matched metadata structure definition
+        should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="MetadataStructureWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataStructureWhere" type="MetadataStructureWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>MetadataStructureWhere contains the parameters for a metadata structure
+        definition query. All parameters must be matched for an object to satisfy the query. The
+        query is simply a refinement of the base structure query to make the parameters specific to
+        the metadata structure definition.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataStructureWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MetadataStructureWhereBaseType is an abstract base type the forms the basis
+        for the MetadataStructureWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+          <xs:element name="UsedConcept" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="UsedRepresentation" type="common:ItemSchemeReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:MaintainableTypeCodelistType" use="optional"
+          fixed="MetadataStructure"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataStructureWhereType">
+    <xs:annotation>
+      <xs:documentation>MetadataStructureWhereType defines the parameters of a metadata structure
+        definition query. In addition to querying based on the identification, it is also possible
+        to search for metadata structure definitions based on information about its components.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MetadataStructureWhereBaseType">
+        <xs:sequence>
+          <xs:element ref="MetadataTargetWhere" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="TargetObjectWhere" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="ReportStructureWhere" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="MetadataAttributeWhere" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataTargetWhere" type="MetadataTargetWhereType"
+    substitutionGroup="ComponentListWhere">
+    <xs:annotation>
+      <xs:documentation>MetadataTargetWhere is used to query for a metadata structure definition
+        that contains a metadata target meeting the conditions contained in this structure. The
+        metadata target can be queried based on its identification and/or the details of its target
+        objects. This is an implicit set of "and" parameters, that is the conditions within this
+        must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataTargetWhereType">
+    <xs:annotation>
+      <xs:documentation>MetadataTargetWhereType describes the structure that is used to query for
+        metadata structure definitions containing a metadata target meeting the conditions detailed.
+        Conditions include the identification and the details of the target objects which make up
+        the metadata target.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListWhereType">
+        <xs:sequence>
+          <xs:sequence>
+            <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+            <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+              <xs:element ref="TargetObjectWhere"/>
+            </xs:sequence>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="TargetObjectWhere" type="TargetObjectWhereType"
+    substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>IdentifierComponentWhere is used to query for specific target identifiers or
+        metadata structure definitions where a contained identifier component meets the conditions
+        detailed. This is an implicit set of "and" parameters, that is the conditions within this
+        must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="TargetObjectWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>TargetObjectWhereBaseType is an abstract base type that forms the basis for
+        the TargetObjectWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Enumeration" type="common:ItemSchemeReferenceType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TargetObjectWhereType">
+    <xs:annotation>
+      <xs:documentation>TargetObjectWhereType describes the structure of a target object query. A
+        target object can be queried based on its identification, its type (i.e. data set target,
+        key descriptor values target, report period target, or identifiable object target), and in
+        the case of an identifiable object target, an item scheme which enumerates the possible
+        values and/or the class of the target object reference.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="TargetObjectWhereBaseType">
+        <xs:attribute name="type" type="common:TargetObjectTypeCodelistType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The type attribute is used to query for a target object of a given
+              type (i.e. data set target, key descriptor values target, report period target, or
+              identifiable object target)
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="targetClass" type="common:ObjectTypeCodelistType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The targetClass attribute is used to query for an identifiable object
+              target based on the class its target object.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ReportStructureWhere" type="ReportStructureWhereType"
+    substitutionGroup="ComponentListWhere">
+    <xs:annotation>
+      <xs:documentation>ReportStructureWhere is used to query for metadata structure definitions
+        where a given report structure meets the conditions specified. A report structure can be
+        queried based on identification or details about its metadata attributes. This is an
+        implicit set of "and" parameters, that is the conditions within this must all be met in
+        order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ReportStructureWhereType">
+    <xs:annotation>
+      <xs:documentation>ReportStructureWhereType defines the parameters for matching based on the
+        details of a report structure. This is used to query for metadata structure definitions
+        where a given report structure meets the conditions specified. A report structure can be
+        queried based on identification and details about its metadata attributes. This is an
+        implicit set of "and" parameters, that is the conditions within this must all be met in
+        order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="MetadataAttributeWhere"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataAttributeWhere" type="MetadataAttributeWhereType"
+    substitutionGroup="ComponentWhere">
+    <xs:annotation>
+      <xs:documentation>MetadataAttributeWhere is a parameter which is used in a report structure
+        parameter or to query metadata structure definitions where a contained metadata attribute
+        meets the conditions specified. A metadata attribute can be queried based on its
+        identification, the concept from which it takes its semantic, and an item scheme it uses as
+        its representation. Nested metadata attributes allow for the querying of metadata attributes
+        explicitly at nested level, although a top level metadata attribute query will be processed
+        by querying metadata attributes at any level. This is an implicit set of "and" parameters,
+        that is the conditions within this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataAttributeWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MetadataAttributeWhereBaseType is an abstract base type that forms the basis
+        for the MetadataAttributeWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Enumeration" type="common:CodelistReferenceType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataAttributeWhereType">
+    <xs:annotation>
+      <xs:documentation>MetadataAttributeWhereType describes the parameters for a metadata
+        attribute. A metadata attribute can be queried based on its identification, the concept from
+        which it takes its semantic, and an item scheme it uses as its representation. Nested
+        metadata attributes allow for the querying of metadata attributes explicitly at nested
+        level, although a top level metadata attribute query will be processed by querying metadata
+        attributes at any level. This is an implicit set of "and" parameters, that is the conditions
+        within this must all be met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MetadataAttributeWhereBaseType">
+        <xs:sequence>
+          <xs:element ref="MetadataAttributeWhere" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

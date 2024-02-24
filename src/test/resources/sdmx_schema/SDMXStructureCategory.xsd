@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Category Structure Module</xs:appinfo>
+    <xs:documentation>The category structure module defines the structure of category scheme and
+      category constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="CategorySchemeType">
+    <xs:annotation>
+      <xs:documentation>CategorySchemeType describes the structure of a category scheme. A category
+        scheme is the descriptive information for an arrangement or division of categories into
+        groups based on characteristics, which the objects have in common. This provides for a
+        simple, leveled hierarchy or categories.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="Category"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>The id attribute holds the identification of the category scheme. The
+              type of this id is restricted to the common:NCNNameIDType. This is necessary, since
+              the category scheme may be used to create simple types in data and metadata structure
+              specific schemas and therefore must be compliant with the NCName type in XML Schema
+              (see common:NCNameIDType for further details).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Category" type="CategoryType" substitutionGroup="Item">
+    <xs:annotation>
+      <xs:documentation>Category represents a set of nested categories which describe a simple
+        classification hierarchy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:unique name="Category_UniqueCategory">
+      <xs:selector xpath="structure:Category"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="CategoryType">
+    <xs:annotation>
+      <xs:documentation>CategoryType describes the details of a category. A category is defined as
+        an item at any level in a classification. The Category element represents a set of nested
+        categories which are child categories.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:choice minOccurs="0">
+            <xs:sequence maxOccurs="unbounded">
+              <xs:element ref="Category"/>
+            </xs:sequence>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

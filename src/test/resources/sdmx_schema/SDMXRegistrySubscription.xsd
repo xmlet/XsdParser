@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+  <xs:include schemaLocation="SDMXRegistryBase.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+    schemaLocation="SDMXStructure.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Subscription Registry Module</xs:appinfo>
+    <xs:documentation>The subscription registry module defines the constructs that are used for the
+      maintenance and usage of notification subscriptions in a registry.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="SubmitSubscriptionsRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitSubscriptionsRequestType defines the payload of a request message used
+        to submit addtions, updates, or deletions of subscriptions. Subscriptions are submitted to
+        the registry to subscribe to registration and change events for specific registry resources.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubscriptionRequest" type="SubscriptionRequestType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SubscriptionType">
+    <xs:annotation>
+      <xs:documentation>SubscriptionType describes the details of a subscription to a registration
+        or change event for registry resources. When it occurs as the content of a response message,
+        the registry URN must be provide, unless the response is a failure notification for the
+        creation of a new subscription.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Organisation" type="common:OrganisationReferenceType">
+        <xs:annotation>
+          <xs:documentation>Organisation provides a reference to the organisation that owns this
+            subscription. The reference is provided via a URN and/or a complete set of reference
+            fields.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistryURN" type="xs:anyURI" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>RegistryURN is used to identify the subscription in the case of deletion
+            or modification. This should be provided in all response messages, unless the response
+            it a notification of the failure to create a newly submitted subscription - in which
+            case there will be no registry assigned URN.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NotificationMailTo" type="NotificationURLType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>NotificationMailTo holds an e-mail address (the "mailto:" protocol).
+            Multiple email address can be notified for a single subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NotificationHTTP" type="NotificationURLType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>NotificationHTTP holds an http address to which notifications can be
+            addressed as POSTs. Multiple http address may be notified for a single subscription
+            event.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SubscriberAssignedID" type="common:IDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>SubscriberAssignedID allows the subscriber to specify an identification
+            which will be returned as part of the notification for the subscribed events. This
+            should be used if multiple new requests are made, so that the responses can be
+            accurately correlated to the requests.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValidityPeriod" type="ValidityPeriodType">
+        <xs:annotation>
+          <xs:documentation>Validity period sets a start and end date for the subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EventSelector" type="EventSelectorType">
+        <xs:annotation>
+          <xs:documentation>EventSelector indicates an event or events for the subscription.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:unique name="EventSelector_DistinctType">
+          <xs:selector xpath="*"/>
+          <xs:field xpath="@TYPE"/>
+        </xs:unique>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SubscriptionRequestType">
+    <xs:annotation>
+      <xs:documentation>SubscriptionRequestType describes the structure of a single subscription
+        request. It contains subscription details and an action field to indicate the action to be
+        taken on the contained subscription. Note that if the action is update or delete, then the
+        registry supplied URN for the subscription must be included.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Subscription" type="SubscriptionType">
+        <xs:annotation>
+          <xs:documentation>Subscription contains the details of the subscription to be added,
+            updated, or deleted.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="action" type="common:ActionType" use="required">
+      <xs:annotation>
+        <xs:documentation>The action attribute indicates whether this is an addition, a
+          modification, or a deletion of a subscription.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SubmitSubscriptionsResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitSubscriptionsResponseType describes the structure of the response to a
+        new subscription submission. A status is provided for each subscription in the request.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubscriptionStatus" type="SubscriptionStatusType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>SubscriptionStatus contains information which describes the success or
+            failure of a subscription request, providing any error messages in the event of failure.
+            The statuses should occur in the same order as the requests when responding to a message
+            with multiple subscription requests. If a subscriber-assigned identification for the
+            subscription is provided, it will be returned to allow for accurate matching of the
+            responses to the requests. A registry assigned URN will be returned for any successfully
+            created, updated, or deleted subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SubscriptionStatusType">
+    <xs:annotation>
+      <xs:documentation>SubscriptionStatusType describes the structure a status for a single
+        subscription request.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubscriptionURN" type="xs:anyURI" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>SubscriptionURN contains the registry generated URN for the
+            subscription, and will be returned for any successfully created, updated, or deleted
+            subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SubscriberAssignedID" type="common:IDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>SubscriberAssignedID is the id assigned by the subscriber to the
+            subscription. If it existed in the subscription request, it will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StatusMessage" type="StatusMessageType">
+        <xs:annotation>
+          <xs:documentation>StatusMessage provides that status for the subscription request, and if
+            necessary, any error or warning information.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QuerySubscriptionRequestType">
+    <xs:annotation>
+      <xs:documentation>QuerySubscriptionRequestType describes the structure of a query for
+        subscriptions. Subscriptions for a given organisation may be retrieved.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Organisation" type="common:OrganisationReferenceType">
+        <xs:annotation>
+          <xs:documentation>Organisation provides a reference to the data consumer for which the
+            subscription details should be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QuerySubscriptionResponseType">
+    <xs:annotation>
+      <xs:documentation>QuerySubscriptionResponseType describes the structure of a subscription
+        query response. A status will describe the success or failure of the request (and provide
+        error or warning messages if necessary). If the query was successful, details of all of the
+        organisation's subscriptions will be provided.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StatusMessage" type="StatusMessageType">
+        <xs:annotation>
+          <xs:documentation>StatusMessage provides that status for the query subscription request,
+            and if necessary, any error or warning information.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Subscription" type="SubscriptionType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Subscription contains the details of a subscription for the
+            organisation. This may occur multiple times for each subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NotifyRegistryEventType">
+    <xs:annotation>
+      <xs:documentation>NotifyRegistryEventType describes the structure a registry notification, in
+        response to a subscription to a registry event. At a minimum, the event time, a reference to
+        the change object, a reference to the underlying subscription triggering the notification,
+        and the action that took place on the object are sent. In addition, the full details of the
+        object may be provided at the discretion of the registry. In the event that the details are
+        not sent, it will be possible to query for the details of the changed object using the
+        reference provided.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EventTime" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>EventTime specifies the time of the triggering event.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="ObjectURN" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>ObjectURN provides the URN of the object on which the event occurred,
+              unless the event is related to a registration, in which case the RegistrationID
+              element should be used.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RegistrationID" type="common:IDType">
+          <xs:annotation>
+            <xs:documentation>RegistrationID provides the id of the registration that underwent an
+              event.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="SubscriptionURN" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>SubscriptionURN provides the registry/repository URN of the subscription
+            that is the cause of this notification being sent.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EventAction" type="common:ActionType">
+        <xs:annotation>
+          <xs:documentation>EventAction indicates the nature of the event - whether the action was
+            an addition, a modification, or a deletion.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:element name="StructuralEvent" type="StructuralEventType">
+          <xs:annotation>
+            <xs:documentation>StructuralEvent is used to provide the details of the structural
+              object that has changed.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RegistrationEvent" type="RegistrationEventType">
+          <xs:annotation>
+            <xs:documentation>RegistrationEvent is used to provide the details or the registration
+              object that has changed.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NotificationURLType">
+    <xs:annotation>
+      <xs:documentation>NotificationURLType describes the structure of an http or email address. The
+        content holds the addresses while an attribute indicates whether or not is expects the
+        contents in a SOAP message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:anyURI">
+        <xs:attribute name="isSOAP" type="xs:boolean" default="false">
+          <xs:annotation>
+            <xs:documentation>The isSOAP attribute, if true, indicates the provided URL expects the
+              notification to be sent in a SOAP message.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ValidityPeriodType">
+    <xs:annotation>
+      <xs:documentation>ValidityPeriodType specifies inclusive start and end-dates for the
+        subscription period.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StartDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>StartDate is an inclusive start date for the subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>EndDate is an inclusive end date for the subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EventSelectorType">
+    <xs:annotation>
+      <xs:documentation>EventSelectorType describes the details of the events for a subscription. It
+        allows subscribers to specify registry and repository events for which they wish to receive
+        notifications.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="3">
+      <xs:element name="StructuralRepositoryEvents" type="StructuralRepositoryEventsType">
+        <xs:annotation>
+          <xs:documentation>StructuralRepositoryEvents details structural events for the
+            subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataRegistrationEvents" type="DataRegistrationEventsType">
+        <xs:annotation>
+          <xs:documentation>DataRegistrationEvents details the data registration events for the
+            subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MetadataRegistrationEvents" type="MetadataRegistrationEventsType">
+        <xs:annotation>
+          <xs:documentation>MetadataRegistrationEvents details the metadata registration events for
+            the subscription.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="StructuralRepositoryEventsType">
+    <xs:annotation>
+      <xs:documentation>StructuralRepositoryEventsType details the structural events for the
+        subscription. At least one maintenance agency must be specified, although it may be given a
+        wildcard value (meaning the subscription is for the structural events of all agencies). This
+        can also be a list of agencies to allow the subscription to subscribe the events of more
+        than one agency. It should be noted that when doing so, all of the subsequent objects are
+        assumed to apply to every agency in the list. The subscription is then refined by detailing
+        the structural objects maintained by the agency for which the subscription should apply. It
+        is possible to explicitly select all object events, all objects of given types, or to
+        individually list out specific objects. Note that for any object, it is also possible to
+        provide an explicit URN to reference a distinct object. In this case, the reference to
+        maintenance agency described above is ignored. Although it is not required, if specific
+        objects are being referenced by explicit URNs, it is good practice to list the agencies.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AgencyID" type="NestedIDQueryType" maxOccurs="unbounded" default="%">
+        <xs:annotation>
+          <xs:documentation>AgencyID specifies a maintenance agency for the object or objects
+            indicated in the other fields. This can be either a specific ID, or a single wildcard
+            character ("%"). A wild card character can be used to select all agencies, allowing a
+            subscription to all events for particular object types. This can occur multiple times to
+            list a of group of maintenance agencies, creating event subscriptions for all of the
+            subsequent objects for each agency in the group. Note that if multiple agencies are
+            supplied, then the wildcard character should not be used for any of them.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="AllEvents" type="common:EmptyType">
+          <xs:annotation>
+            <xs:documentation>AllEvents creates a subscription to structural events for all
+              structural objects maintained by the agencies referenced.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="AgencyScheme" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>AgencyScheme is used to subscribe to changes of agency schemes. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DataConsmerScheme" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>DataConsmerScheme is used to subscribe to changes of data consumer
+                schemes. The maintenance agencies of the object are those identified in the AgencyID
+                collection, effectively making separate version of this query for each agency
+                specified. The agency is ignored if the content of this is a URN, which references
+                an explicit object. Otherwise, either all objects of this type or specific object
+                according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DataProviderScheme" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>DataProviderScheme is used to subscribe to changes of data provider
+                schemes. The maintenance agencies of the object are those identified in the AgencyID
+                collection, effectively making separate version of this query for each agency
+                specified. The agency is ignored if the content of this is a URN, which references
+                an explicit object. Otherwise, either all objects of this type or specific object
+                according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrganisationUnitScheme" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>OrganisationUnitScheme is used to subscribe to changes of
+                organisation unit schemes. The maintenance agencies of the object are those
+                identified in the AgencyID collection, effectively making separate version of this
+                query for each agency specified. The agency is ignored if the content of this is a
+                URN, which references an explicit object. Otherwise, either all objects of this type
+                or specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Dataflow" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>Dataflow is used to subscribe to changes of data flows. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Metadataflow" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>Metadataflow is used to subscribe to changes of metadata flows. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CategoryScheme" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>CategoryScheme is used to subscribe to changes of category schemes.
+                The maintenance agencies of the object are those identified in the AgencyID
+                collection, effectively making separate version of this query for each agency
+                specified. The agency is ignored if the content of this is a URN, which references
+                an explicit object. Otherwise, either all objects of this type or specific object
+                according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Categorisation" type="IdentifiableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>Categorisation is used to subscribe to changes of categorizations.
+                The maintenance agencies of the object are those identified in the AgencyID
+                collection, effectively making separate version of this query for each agency
+                specified. The agency is ignored if the content of this is a URN, which references
+                an explicit object. Otherwise, either all objects of this type or specific object
+                according to the id field can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Codelist" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>Codelist is used to subscribe to changes of code lists. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HierarchicalCodelist" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>HierarchicalCodelist is used to subscribe to changes of hierarchical
+                code lists. The maintenance agencies of the object are those identified in the
+                AgencyID collection, effectively making separate version of this query for each
+                agency specified. The agency is ignored if the content of this is a URN, which
+                references an explicit object. Otherwise, either all objects of this type or
+                specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConceptScheme" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>ConceptScheme is used to subscribe to changes of concept schemes.
+                The maintenance agencies of the object are those identified in the AgencyID
+                collection, effectively making separate version of this query for each agency
+                specified. The agency is ignored if the content of this is a URN, which references
+                an explicit object. Otherwise, either all objects of this type or specific object
+                according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MetadataStructureDefinition" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>MetadataStructureDefinition is used to subscribe to changes of
+                metadata structure definitions. The maintenance agencies of the object are those
+                identified in the AgencyID collection, effectively making separate version of this
+                query for each agency specified. The agency is ignored if the content of this is a
+                URN, which references an explicit object. Otherwise, either all objects of this type
+                or specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="KeyFamily" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>KeyFamily is used to subscribe to changes of key families. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StructureSet" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>StructureSet is used to subscribe to changes of structure sets. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingTaxonomy" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>ReportingTaxonomy is used to subscribe to changes of reporting
+                taxonomies. The maintenance agencies of the object are those identified in the
+                AgencyID collection, effectively making separate version of this query for each
+                agency specified. The agency is ignored if the content of this is a URN, which
+                references an explicit object. Otherwise, either all objects of this type or
+                specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Process" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>Process is used to subscribe to changes of processes. The
+                maintenance agencies of the object are those identified in the AgencyID collection,
+                effectively making separate version of this query for each agency specified. The
+                agency is ignored if the content of this is a URN, which references an explicit
+                object. Otherwise, either all objects of this type or specific object according to
+                the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttachmentConstraint" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>AttachmentConstraint is used to subscribe to changes of attachment
+                constraints. The maintenance agencies of the object are those identified in the
+                AgencyID collection, effectively making separate version of this query for each
+                agency specified. The agency is ignored if the content of this is a URN, which
+                references an explicit object. Otherwise, either all objects of this type or
+                specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContentConstraint" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>ContentConstraint is used to subscribe to changes of content
+                constraints. The maintenance agencies of the object are those identified in the
+                AgencyID collection, effectively making separate version of this query for each
+                agency specified. The agency is ignored if the content of this is a URN, which
+                references an explicit object. Otherwise, either all objects of this type or
+                specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProvisionAgreement" type="VersionableObjectEventType">
+            <xs:annotation>
+              <xs:documentation>ProvisionAgreement is used to subscribe to changes of a provision
+                agreement. The maintenance agencies of the object are those identified in the
+                AgencyID collection, effectively making separate version of this query for each
+                agency specified. The agency is ignored if the content of this is a URN, which
+                references an explicit object. Otherwise, either all objects of this type or
+                specific object according to the id and version fields can be selected.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="TYPE" type="xs:string" fixed="STRUCTURE">
+      <xs:annotation>
+        <xs:documentation>TYPE is a fixed attribute that is used to ensure only of each event
+          selector may be provided, when it is referenced in a uniqueness constraint.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="IdentifiableObjectEventType">
+    <xs:annotation>
+      <xs:documentation>IdentifiableObjectEventType describes the structure of a reference to an
+        identifiable object's events. Either all instances of the object matching the inherited
+        criteria, a specific instance, or specific instances of the object may be selected.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="All" type="common:EmptyType">
+        <xs:annotation>
+          <xs:documentation>All subscribes to the events all instances of the containing object
+            meeting the other criteria specified.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="URN" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>URN subscribes to the events of the specific instance of the object type
+            referenced by this URN. Note that when this field is used, the agency information
+            inherited from the structural repository event container is ignored.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="ID" type="IDQueryType" default="%">
+          <xs:annotation>
+            <xs:documentation>ID subscribes to the events of the specific instance of the object
+              type where the value provided here matches the id of the object. The default value is
+              the wildcard character("%").
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="VersionableObjectEventType">
+    <xs:annotation>
+      <xs:documentation>VersionableObjectEventType describes the structure of a reference to a
+        versionable object's events. Either all instances of the object matching the inherited
+        criteria, a specific instance, or specific instances of the object may be selected.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="All" type="common:EmptyType">
+        <xs:annotation>
+          <xs:documentation>All subscribes to the events all instances of the containing object
+            meeting the other criteria specified.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="URN" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>URN subscribes to the events of the specific instance of the object type
+            referenced by this URN. Note that when this field is used, the agency information
+            inherited from the structural repository event container is ignored.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="ID" type="IDQueryType" default="%">
+          <xs:annotation>
+            <xs:documentation>ID subscribes to the events of the specific instance of the object
+              type where the value provided here matches the id of the object and the value provided
+              in the version field matches the version of the object. The default value is the
+              wildcard character("%").
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Version" type="VersionQueryType" default="%">
+          <xs:annotation>
+            <xs:documentation>Version subscribes to the events of the specific instance of the
+              object type where the value provided in the id field matches the id of the object and
+              the value here matches the version of the object. The default value is the wildcard
+              character("%"). Note that in addition to being wild-carded, this can also be bound to
+              the latest version of the object with the late-bound character("*").
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="DataRegistrationEventsType">
+    <xs:annotation>
+      <xs:documentation>DataRegistrationEventsType details the data registration events for the
+        subscription. It is possible to subscribe to all data registration events in the repository,
+        or specific events for; single registrations, provision agreements, data providers, data
+        flows, key families, and categories that categorize data flows or key families.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="AllEvents" type="common:EmptyType">
+        <xs:annotation>
+          <xs:documentation>AllEvents subscribes to all data registration events in the
+            repository.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="RegistrationID" type="common:IDType">
+          <xs:annotation>
+            <xs:documentation>RegistrationID subscribes to all the data registration events for the
+              unique registration referenced.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType">
+          <xs:annotation>
+            <xs:documentation>ProvisionAgreementReference subscribes to all data registration events
+              for the explicitly referenced provision agreement.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DataProvider" type="common:DataProviderReferenceType">
+          <xs:annotation>
+            <xs:documentation>DataProviderReference subscribes to all data registration events for
+              the explicitly referenced data provider.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DataflowReference" type="MaintainableEventType">
+          <xs:annotation>
+            <xs:documentation>DataflowReference subscribes to all data registration events for the
+              data flows referenced by this object. This may reference one or more data flows, as
+              the specific references fields allow for a wild-carded value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="KeyFamilyReference" type="MaintainableEventType">
+          <xs:annotation>
+            <xs:documentation>KeyFamilyReference subscribes to all data registration events for the
+              key families referenced by this object. This may reference one or more key families,
+              as the specific references fields allow for a wild-carded value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Category" type="common:CategoryReferenceType">
+          <xs:annotation>
+            <xs:documentation>Category subscribes to all data registration events for any data flows
+              or key families that are categorized by the referenced category.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:choice>
+    <xs:attribute name="TYPE" type="xs:string" fixed="DATA">
+      <xs:annotation>
+        <xs:documentation>TYPE is a fixed attribute that is used to ensure only of each event
+          selector may be provided, when it is referenced in a uniqueness constraint.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataRegistrationEventsType">
+    <xs:annotation>
+      <xs:documentation>MetadataRegistrationEventsType details the metadata registration events for
+        the subscription. It is possible to subscribe to all metadata registration events in the
+        repository, or specific events for; single registrations, provision agreements, data
+        providers, metadata flows, metadata structure definitions, and categories that categorize
+        metadata flows or metadata structure definitions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="AllEvents" type="common:EmptyType">
+        <xs:annotation>
+          <xs:documentation>AllEvents subscribes to all metadata registration events in the
+            repository.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="RegistrationID" type="common:IDType">
+          <xs:annotation>
+            <xs:documentation>RegistrationID subscribes to all the metadata registration events for
+              the unique registration referenced.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType">
+          <xs:annotation>
+            <xs:documentation>ProvisionAgreementReference subscribes to all metadata registration
+              events for the explicitly referenced provision agreement.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DataProvider" type="common:DataProviderReferenceType">
+          <xs:annotation>
+            <xs:documentation>DataProvider subscribes to all metadata registration events for the
+              explicitly referenced data provider.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MetadataflowReference" type="MaintainableEventType">
+          <xs:annotation>
+            <xs:documentation>MetadataflowReference subscribes to all metadata registration events
+              for the metadata flows referenced by this object. This may reference one or more
+              metadata flows, as the specific references fields allow for a wild-carded value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MetadataStructureDefinitionReference" type="MaintainableEventType">
+          <xs:annotation>
+            <xs:documentation>MetadataStructureDefinitionReference subscribes to all metadata
+              registration events for the metadata structure definitions referenced by this object.
+              This may reference one or more metadata structure definitions, as the specific
+              references fields allow for a wild-carded value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Category" type="common:CategoryReferenceType">
+          <xs:annotation>
+            <xs:documentation>Category subscribes to all metadata registration events for any
+              metadata flows or metadata structure definitions that are categorized by the
+              referenced category.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:choice>
+    <xs:attribute name="TYPE" type="xs:string" fixed="METADATA">
+      <xs:annotation>
+        <xs:documentation>TYPE is a fixed attribute that is used to ensure only of each event
+          selector may be provided, when it is referenced in a uniqueness constraint.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MaintainableEventType">
+    <xs:annotation>
+      <xs:documentation>MaintainableEventType provides a reference to a maintainable object's event
+        with either the URN of the specific object, or a set of potentially wild-carded reference
+        fields.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="URN" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>URN provides an explicit reference to a single object.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Ref" type="MaintainableQueryType">
+        <xs:annotation>
+          <xs:documentation>Ref provides a reference to potentially many object through the use of
+            possible wild-carded reference fields.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="StructuralEventType">
+    <xs:annotation>
+      <xs:documentation>StructuralEventType provides the details of a structure event, specifically
+        the object that changed.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element ref="structure:Structures">
+        <xs:annotation>
+          <xs:documentation>Structures contains the details of the structural object that has
+            triggered the event. Although this container allows for multiple structural object, it
+            should only contain the one changed object.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="RegistrationEventType">
+    <xs:annotation>
+      <xs:documentation>This provides the details of a data or metadata registration event for the
+        purposes of notification.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Registration" type="RegistrationType">
+        <xs:annotation>
+          <xs:documentation>Registration provides the changed details of the data or metadata
+            registration.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Categorisation Structure Module</xs:appinfo>
+    <xs:documentation>The categorisation structure module defines the structure categorisation
+      constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="CategorisationType">
+    <xs:annotation>
+      <xs:documentation>CategorisationType is defines the structure for a categorisation. A source
+        object is referenced via an object reference and the target category is referenced via the
+        target category.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MaintainableType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="Source" type="common:ObjectReferenceType">
+            <xs:annotation>
+              <xs:documentation>Source is a reference to an object to be categorized.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Target" type="common:CategoryReferenceType">
+            <xs:annotation>
+              <xs:documentation>Target is reference to the category that the referenced object is to
+                be mapped to.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

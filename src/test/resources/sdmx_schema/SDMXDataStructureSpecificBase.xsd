@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Core Base Structure Specific Data Module</xs:appinfo>
+    <xs:documentation>The core base structure specific data module contains the descriptions of base
+      structure specific data set format. The data set defined here describes the structure of the
+      data set in all structure specific data messages. Any structure specific data messages must
+      derive the data set from this format. The entire structure declared for the is data set is
+      abstract, meaning that instances will have to be based on types derived from these structures
+      in schemas created based on the details data structure definition.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="DataSetType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <p>DataSetType is the abstract type which defines the base structure for any data structure
+          definition specific data set. A derived data set type will be created that is specific to
+          a data structure definition and the details of the organisation of the data (i.e. which
+          dimension is the observation dimension and whether explicit measures should be used). Data
+          is organised into either a collection of series (grouped observations) or a collection of
+          un-grouped observations. The derived data set type will restrict this choice to be either
+          grouped or un-grouped observations. If this dimension is "AllDimensions" then the derived
+          data set type must consist of a collection of un-grouped observations; otherwise the data
+          set will contain a collection of series with the observations in the series disambiguated
+          by the specified dimension at the observation level. This data set is capable of
+          containing data (observed values) and/or documentation (attribute values) and can be used
+          for incremental updates and deletions (i.e. only the relevant updates or deletes are
+          exchanged). It is assumed that each series or un-grouped observation will be distinct in
+          its purpose. For example, if series contains both data and documentation, it assumed that
+          each series will have a unique key. If the series contains only data or only
+          documentation, then it is possible that another series with the same key might exist, but
+          with not with the same purpose (i.e. to provide data or documentation) as the first
+          series.
+        </p>
+
+        <p>This base type is designed such that derived types can be processed in a generic manner;
+          it assures that data structure definition specific data will have a consistent structure.
+          The group, series, and observation elements are unqualified, meaning that they are not
+          qualified with a namespace in an instance. This means that in the derived data set types,
+          the elements will always be the same, regardless of the target namespace of the schemas
+          which defines these derived types. This allows for consistent processing of the structure
+          without regard to what the namespace might be for the data structure definition specific
+          schema.
+        </p>
+
+        <p>The data set can contain values for attributes which do not have an attribute
+          relationship with any data structure definition components. These attribute values will
+          exist in XML attributes in this element based on this type (DataSet). This is specified in
+          the content model with the declaration of anyAttributes in the "local" namespace. The
+          derived data set type will refine this structure so that the attributes are explicit. The
+          XML attributes will be given a name based on the attribute's identifier. These XML
+          attributes will be unqualified (meaning they do not have a namespace associated with
+          them). To allow for generic processing, it is required that the only unqualified XML
+          attributes in the derived data set type (outside of the standard data set attributes) be
+          for attributes declared in the data structure definition. If additional attributes are
+          required, these should be qualified with a namespace so that a generic application can
+          easily distinguish them as not being meant to represent a data structure definition
+          attribute.
+        </p>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>DataProvider contains a reference to the provider for the data
+                set.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Group" type="GroupType" form="unqualified" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Group contains a references to a defined group in the data structure
+                definition along with its key (if necessary) and values for the attributes which are
+                associated with the group. An attribute is associated to a group by either an
+                explicit group relationship or by a group attachment when the attribute has a
+                relationship with a dimension which is a member of this group.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0">
+            <xs:element name="Series" type="SeriesType" form="unqualified" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Series contains a collection of observations that share a common
+                  key (set of dimension values). The key of a series is every dimension defined in
+                  the data structure definition, save the dimension at the observation level. In
+                  addition to the key and observations, the series contains values for attributes
+                  which have a relationship with any dimension that is part of the series key, so
+                  long as the attribute does not specify an attachment group or also has a
+                  relationship with the dimension declared to be at the observation level.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Obs" type="ObsType" form="unqualified" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Obs is an un-grouped observation. This observation has a key which
+                  is a set of values for all dimensions declared in the data structure definition.
+                  In addition to the key, the value of the observation can be provided along with
+                  values for all attributes which have an association with the primary measure or
+                  any dimension (so long as it does not specify a group attachment).
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attributeGroup ref="SetAttributeGroup"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="optional">
+          <xs:annotation>
+            <xs:documentation>The REPORTING_YEAR_START_DAY attribute is an explict attribute for the
+              reporting year start day, which provides context to the time dimension when its value
+              contains a reporting period (e.g. 2010-Q1). This attribute is used to state the month
+              and day that the reporting year begins (e.g. --07-01 for July 1st). In the absence of
+              an explicit value provided in this attribute, all reporting period values will be
+              assumed to be based on a reporting year start day of January 1. This is declared in
+              the base schema since it has a fixed identifier and representation. The derived data
+              set type may either require or prohibit this attribute, depending on whether the data
+              structure declared the reporting year start day attribute and if so, the attribute
+              relationship and assignment status assigned to it.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GroupType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <p>GroupType is the abstract type which defines a structure which is used to communicate
+          attribute values for a group defined in a data structure definition. The group can consist
+          of either a subset of the dimensions defined by the data structure definition, or an
+          association to an attachment constraint, which in turn defines key sets to which
+          attributes can be attached. In the case that the group is based on an attachment
+          constraint, only the identification of group is provided. It is expected that a system
+          which is processing this will relate that identifier to the key sets defined in the
+          constraint and apply the values provided for the attributes appropriately.
+        </p>
+
+        <p>Data structure definition schemas will drive types based on this for each group defined
+          in the data structure definition. Both the dimension values which make up the key (if
+          applicable) and the attribute values associated with the group will be represented with
+          XML attributes. This is specified in the content model with the declaration of
+          anyAttributes in the "local" namespace. The derived group type will refine this structure
+          so that the attributes are explicit. The XML attributes will be given a name based on the
+          attribute's identifier. These XML attributes will be unqualified (meaning they do not have
+          a namespace associated with them). The dimension XML attributes will be required while the
+          attribute XML attributes will be optional. To allow for generic processing, it is required
+          that the only unqualified XML attributes in the derived group type be for the group
+          dimensions and attributes declared in the data structure definition. If additional
+          attributes are required, these should be qualified with a namespace so that a generic
+          application can easily distinguish them as not being meant to represent a data structure
+          definition dimension or attribute.
+        </p>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:attribute name="type" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The type attribute reference the identifier of the group as defined in
+              the data structure definition. This is optional, but derived group types will provide
+              a fixed value for this so that it always available in the post validation information
+              set. This allows the group to be processed in a generic manner.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="optional">
+          <xs:annotation>
+            <xs:documentation>The REPORTING_YEAR_START_DAY attribute is an explict attribute for the
+              reporting year start day, which provides context to the time dimension when its value
+              contains a reporting period (e.g. 2010-Q1). This attribute is used to state the month
+              and day that the reporting year begins (e.g. --07-01 for July 1st). In the absence of
+              an explicit value provided in this attribute, all reporting period values will be
+              assumed to be based on a reporting year start day of January 1. This is declared in
+              the base schema since it has a fixed identifier and representation. The derived group
+              types may either require or prohibit this attribute, depending on whether the data
+              structure declared the reporting year start day attribute and if so, the attribute
+              relationship and assignment status assigned to it.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SeriesType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <p>SeriesType is the abstract type which defines a structure which is used to group a
+          collection of observations which have a key in common. The key for a series is every
+          dimension defined in the data structure definition, save the dimension declared to be at
+          the observation level for this data set. In addition to observations, values can be
+          provided for attributes which are associated with the dimensions which make up this series
+          key (so long as the attributes do not specify a group attachment or also have an
+          relationship with the observation dimension). It is possible for the series to contain
+          only observations or only attribute values, or both.
+        </p>
+
+        <p>Data structure definition schemas will drive a type based on this that is specific to the
+          data structure definition and the variation of the format being expressed in the schema.
+          Both the dimension values which make up the key and the attribute values associated with
+          the key dimensions will be represented with XML attributes. This is specified in the
+          content model with the declaration of anyAttributes in the "local" namespace. The derived
+          series type will refine this structure so that the attributes are explicit. The XML
+          attributes will be given a name based on the attribute's identifier. These XML attributes
+          will be unqualified (meaning they do not have a namespace associated with them). The
+          dimension XML attributes will be required while the attribute XML attributes will be
+          optional. To allow for generic processing, it is required that the only unqualified XML
+          attributes in the derived group type be for the series dimensions and attributes declared
+          in the data structure definition. If additional attributes are required, these should be
+          qualified with a namespace so that a generic application can easily distinguish them as
+          not being meant to represent a data structure definition dimension or attribute.
+        </p>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element name="Obs" type="ObsType" form="unqualified" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="TIME_PERIOD" type="common:ObservationalTimePeriodType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The TIME_PERIOD attribute is an explict attribute for the time
+              dimension. This is declared in the base schema since it has a fixed identifier and
+              representation. The derived series type will either require or prohibit this
+              attribute, depending on whether time is the observation dimension. If the time
+              dimension specifies a more specific representation of time the derived type will
+              restrict the type definition to the appropriate type.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="optional">
+          <xs:annotation>
+            <xs:documentation>The REPORTING_YEAR_START_DAY attribute is an explict attribute for the
+              reporting year start day, which provides context to the time dimension when its value
+              contains a reporting period (e.g. 2010-Q1). This attribute is used to state the month
+              and day that the reporting year begins (e.g. --07-01 for July 1st). In the absence of
+              an explicit value provided in this attribute, all reporting period values will be
+              assumed to be based on a reporting year start day of January 1. This is declared in
+              the base schema since it has a fixed identifier and representation. The derived series
+              type may either require or prohibit this attribute, depending on whether the data
+              structure declared the reporting year start day attribute and if so, the attribute
+              relationship and assignment status assigned to it.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ObsType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        <p>ObsType is the abstract type which defines the structure of a grouped or un-grouped
+          observation. The observation must be provided a key, which is either a value for the
+          dimension which is declared to be at the observation level if the observation is grouped,
+          or a full set of values for all dimensions in the data structure definition if the
+          observation is un-grouped. This key should disambiguate the observation within the context
+          in which it is defined (e.g. there should not be another observation with the same
+          dimension value in a series). The observation can contain an observed value and/or
+          attribute values.
+        </p>
+
+        <p>Data structure definition schemas will drive a type or types based on this that is
+          specific to the data structure definition and the variation of the format being expressed
+          in the schema. The dimension value(s) which make up the key and the attribute values
+          associated with the key dimension(s) or the primary measure will be represented with XML
+          attributes. This is specified in the content model with the declaration of anyAttributes
+          in the "local" namespace. The derived observation type will refine this structure so that
+          the attributes are explicit. The XML attributes will be given a name based on the
+          attribute's identifier. These XML attributes will be unqualified (meaning they do not have
+          a namespace associated with them). The dimension XML attribute(s) will be required while
+          the attribute XML attributes will be optional. To allow for generic processing, it is
+          required that the only unqualified XML attributes in the derived observation type be for
+          the observation dimension(s) and attributes declared in the data structure definition. If
+          additional attributes are required, these should be qualified with a namespace so that a
+          generic application can easily distinguish them as not being meant to represent a data
+          structure definition dimension or attribute.
+        </p>
+
+        <p>If the data structure definition specific schema requires that explicit measures be used
+          (only possible when the measure dimension is specified at the observation), then there
+          will be types derived for each measure defined by the measure dimension. In this case, the
+          types will be specific to each measure, which is to say that the representation of the
+          primary measure (i.e. the observed value) will be restricted to that which is specified by
+          the specific measure.
+        </p>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:attribute name="type" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The type attribute is used when the derived format requires that
+              explicit measure be used. In this case, the derived type based on the measure will fix
+              this value to be the identification of the measure concept. This will not be required,
+              but since it is fixed it will be available in the post validation information set
+              which will allow for generic processing of the data. If explicit measures are not
+              used, then the derived type will prohibit the use of this attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="TIME_PERIOD" type="common:ObservationalTimePeriodType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The TIME_PERIOD attribute is an explicit attribute for the time
+              dimension. This is declared in the base schema since it has a fixed identifier and
+              representation. The derived series type will either require or prohibit this
+              attribute, depending on whether time is the observation dimension. If the time
+              dimension specifies a more specific representation of time the derived type will
+              restrict the type definition to the appropriate type.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="optional">
+          <xs:annotation>
+            <xs:documentation>The REPORTING_YEAR_START_DAY attribute is an explict attribute for the
+              reporting year start day, which provides context to the time dimension when its value
+              contains a reporting period (e.g. 2010-Q1). This attribute is used to state the month
+              and day that the reporting year begins (e.g. --07-01 for July 1st). In the absence of
+              an explicit value provided in this attribute, all reporting period values will be
+              assumed to be based on a reporting year start day of January 1. This is declared in
+              the base schema since it has a fixed identifier and representation. The derived
+              observation type may either require or prohibit this attribute, depending on whether
+              the data structure declared the reporting year start day attribute and if so, the
+              attribute relationship and assignment status assigned to it.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OBS_VALUE" use="optional">
+          <xs:annotation>
+            <xs:documentation>The OBS_VALUE attribute is an explicit attribute for the primary
+              measure, which is intended to hold the value for the observation. This is declared in
+              the base schema since it has a fixed identifier. This attribute is un-typed, since the
+              representation of the observed value can vary widely. Derived types will restrict this
+              to be a type based on the representation of the primary measure. In the case that an
+              explicit measure is used, the derived type for a given measure might further restrict
+              the type of the primary measure to be more specific to the core representation for the
+              measure concept. Note that it is required that in the case of multiple measures being
+              used, that the representation of the primary measure is broad enough to handle the
+              various representations of the measure concepts.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="DataScopeType">
+    <xs:annotation>
+      <xs:documentation>DataScopeType is an enumeration of the possible validity scopes for a data
+        set. These scopes indicate the level at which the data is stated to be valid.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DataStructure">
+        <xs:annotation>
+          <xs:documentation>The data set conforms simply to the data structure definition as it is
+            defined, without regard to any constraints.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ConstrainedDataStructure">
+        <xs:annotation>
+          <xs:documentation>The data set conforms to the known allowable content constraints applied
+            to the data structure definition.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Dataflow">
+        <xs:annotation>
+          <xs:documentation>The data set conforms to the known allowable content constraints applied
+            to the dataflow.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ProvisionAgreement">
+        <xs:annotation>
+          <xs:documentation>The data set conforms to the known allowable content constraints applied
+            to the provision agreement.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attributeGroup name="SetAttributeGroup">
+    <xs:annotation>
+      <xs:documentation>The SetAttributeGroup defines a common set of attributes pertaining to any
+        data set. The attributes are qualified, so that they will be easily distinguished from
+        attributes that are specific to the data structure. Note that many of these attributes are
+        duplications of fields available in the header of the data messages. The reason for this is
+        to allow the header values to be overridden at the data set level when a message contains
+        more than one data set. If an attribute here does not have a value, then the value from the
+        header is applied to the data set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="structureRef" type="xs:IDREF" use="required" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The structureRef contains a reference to a structural specification in the
+          header of a data or reference metadata message. The structural specification details which
+          structure the data or reference metadata conforms to, as well as providing additional
+          information such as how the data is structure (e.g. which dimension occurs at the
+          observation level for a data set).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="setID" type="common:IDType" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The setID provides an identification of the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="action" type="common:ActionType" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The action attribute indicates whether the file is appending, replacing,
+          or deleting.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="reportingBeginDate" type="common:BasicTimePeriodType" use="optional"
+      form="qualified">
+      <xs:annotation>
+        <xs:documentation>The reportingBeginDate indicates the inclusive start time of the data
+          reported in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="reportingEndDate" type="common:BasicTimePeriodType" use="optional"
+      form="qualified">
+      <xs:annotation>
+        <xs:documentation>The reportingEndDate indicates the inclusive end time of the data reported
+          in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validFromDate" type="xs:dateTime" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The validFromDate indicates the inclusive start time indicating the
+          validity of the information in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validToDate" type="xs:dateTime" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The validToDate indicates the inclusive end time indicating the validity
+          of the information in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="publicationYear" type="xs:gYear" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The publicationYear holds the ISO 8601 four-digit year.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="publicationPeriod" type="common:ObservationalTimePeriodType" use="optional"
+      form="qualified">
+      <xs:annotation>
+        <xs:documentation>The publicationPeriod specifies the period of publication of the data or
+          metadata in terms of whatever provisioning agreements might be in force (i.e., "Q1 2005"
+          if that is the time of publication for a data set published on a quarterly basis).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dataScope" type="DataScopeType" use="required" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The dataScope attribute indicates the scope at which the data is meant to
+          be validated. These scopes are hierarchical and are (from the top down); DataStructure,
+          ConstrainedDataStructure, Dataflow, and ProvisionAgreement. the hierarchy of these scopes
+          represent the cascading level of constraints, which can restrict the valid values for
+          components. For example, a data structure defines a dimension with a coded representation.
+          A data flow might have a constraint associated with it which further restricts the values
+          allowed from the referenced code list to a subset of the values allowed by the data
+          structure definition. A provision agreement that is based on the dataflow might also have
+          a constraint, which further restricts the subset of the codelist from the dataflow.
+          Therefore, the allowed content becomes stricter lower in the hierarchy. Data that is given
+          a scope of one value is stated to be valid at that level and all levels below it.
+          Therefore, this scope serves to state that data that is meant to be structured simply
+          against the data structure definition is not meant to be validated against the a dataflow,
+          where constraints might be applied.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+
+</xs:schema>

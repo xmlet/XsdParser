@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+	targetNamespace="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="ECBSDD_FLL_YYYY_MM_DD">
+		<xs:restriction base="xs:date">
+			<xs:pattern
+				value="([1-9][0-9]{3})\-((02\-((0[1-9])|([1-2][0-9])))|(((04)|(06)|(09)|(11))\-((0[1-9])|([1-2][0-9])|(30)))|(((01)|(03)|(05)|(07)|(08)|(10)|(12))\-((0[1-9])|([1-2][0-9])|(3[0-1]))))"/>
+			<!-- Aligned to SDD AnaCredit ver 2019-05-23 -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_ALL_2D">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="-999999999999999999.99"/>
+			<xs:maxInclusive value="999999999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_ALL_6D">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="6"/>
+			<xs:minInclusive value="-999999999999999999.999999"/>
+			<xs:maxInclusive value="999999999999999999.999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_NN_NGTV_2D">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_0TO1_6D">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="6"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_ISIN_12">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z][A-Z][A-Z0-9]{9}[0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_RSTRCTD_ID_60">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="60"/>
+			<xs:pattern value="[!-~]|([!-~][ -~]*[!-~])"/>
+			<!-- Aligned to SDD AnaCredit ver 2019-05-23 -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_RSTRCTD_ID_50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+			<xs:pattern value="[A-Za-z0-9_@$\-][!-~]*"/>
+			<!-- Aligned to SDD AnaCredit ver 2019-05-23 -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_LTN_EXT_255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+			<xs:pattern
+				value="[\p{IsBasicLatin}\p{IsLatin-1Supplement}\p{IsLatinExtended-A}\p{IsLatinExtended-B}‘-‟€]+"/>
+			<!-- Aligned to SDD AnaCredit ver 2019-05-23 -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ECBSDD_LTN_EXT_50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+			<xs:pattern
+				value="(\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B})+"/>
+			<!-- Aligned to SDD AnaCredit ver 2019-05-23 -->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

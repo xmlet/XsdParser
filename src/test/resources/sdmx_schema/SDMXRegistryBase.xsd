@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Base Registry Module</xs:appinfo>
+    <xs:documentation>The base registry module defines the common constructs that a reused across
+      multiple registry functions.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="RegistrationType">
+    <xs:annotation>
+      <xs:documentation>Registration provides the information needed for data and reference metadata
+        set registration. A data source must be supplied here if not already provided in the
+        provision agreement. The data set or metadata set must be associated with a provision
+        agreement, a metadata flow, or a dataflow definition. If possible, the provision agreement
+        should be specified. Only in cases where this is not possible should the dataflow or
+        metadata flow be used.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType">
+        <xs:annotation>
+          <xs:documentation>ProvisionAgreement provides a reference to the provision agreement that
+            the data is being registered against.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Datasource" type="DataSourceType">
+        <xs:annotation>
+          <xs:documentation>Datasource identifies the data source(s) where the registered data can
+            be retrieved.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:unique name="RegistrationType_DistinctSourceType">
+          <xs:selector xpath="*"/>
+          <xs:field xpath="@TYPE"/>
+        </xs:unique>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="common:IDType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The id attribute holds a registry assigned identification for the
+          registration. This must be provided in a response message (unless an error occurred while
+          submitting a new registration), and should be included when updating or deleting a
+          registration.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validFrom" type="xs:dateTime" use="optional">
+      <xs:annotation>
+        <xs:documentation>The validFrom attribute provides an inclusive start date for providing
+          supplemental validity information about the registration, so that data visibility from the
+          registry can be controlled by the registrant.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validTo" type="xs:dateTime" use="optional">
+      <xs:annotation>
+        <xs:documentation>The validFrom attribute provides an inclusive end date for providing
+          supplemental validity information about the registration, so that data visibility from the
+          registry can be controlled by the registrant.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="lastUpdated" type="xs:dateTime" use="optional">
+      <xs:annotation>
+        <xs:documentation>The lastUpdated attribute provides a timestamp for the last time the data
+          source was updated.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="indexTimeSeries" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>The indexTimeSeries, if true, indicates that the registry must index all
+          time series for the registered data. The default value is false, and the attribute will
+          always be assumed false when the provision agreement references a metadata flow.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="indexDataSet" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>The indexDataSet, if true, indicates that the registry must index the
+          range of actual (present) values for each dimension of the data set or identifier
+          component of the metadata set (as indicated in the set's structure definition). The
+          default value is false.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="indexAttributes" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>The indexAttributes, if true, indicates that the registry must index the
+          range of actual (present) values for each attribute of the data set or the presence of the
+          metadata attributes of the metadata set (as indicated in the set's structure definition).
+          The default value is false.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="indexReportingPeriod" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation>The indexReportingPeriod, if true, indicates that the registry must index
+          the time period ranges for which data is present for the data source. The default value is
+          false, and the attribute will always be assumed false when the provision agreement
+          references a metadata flow.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DataSourceType">
+    <xs:annotation>
+      <xs:documentation>DataSourceType specifies the properties of a data or metadata source. Either
+        a simple data source, a queryable data source, or both must be specified.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="2">
+      <xs:element name="SimpleDataSource" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>SimpleDatasource describes a data source that is an SDMX-ML data or
+            metadata message. It requires only the URL of the data.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryableDataSource" type="QueryableDataSourceType">
+        <xs:annotation>
+          <xs:documentation>QueryableDatasource describes a data source that must be able to accept
+            an SDMX-ML Query Message, and respond appropriately.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="SimpleDataSourceType">
+    <xs:annotation>
+      <xs:documentation>SimpleDataSourceType describes a simple data source. The URL of the data is
+        contained in the content.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:anyURI">
+        <xs:attribute name="TYPE" type="xs:string" fixed="SIMPLE">
+          <xs:annotation>
+            <xs:documentation>TYPE is a fixed attribute that is used to ensure only one simple data
+              source may be provided, when it is referenced in a uniqueness constraint.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="QueryableDataSourceType">
+    <xs:annotation>
+      <xs:documentation>QueryableDataSourceType describes a queryable data source, and add a fixed
+        attribute for ensuring only one queryable source can be provided.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:QueryableDataSourceType">
+        <xs:attribute name="TYPE" type="xs:string" fixed="QUERY">
+          <xs:annotation>
+            <xs:documentation>TYPE is a fixed attribute that is used to ensure only one queryable
+              data source may be provided, when it is referenced in a uniqueness constraint.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="IDQueryType">
+    <xs:annotation>
+      <xs:documentation>IDQueryType is a simple type that allows for an identifier to be substituted
+        with a wild card character ("%").
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="common:IDType common:WildCardValueType"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="NestedIDQueryType">
+    <xs:annotation>
+      <xs:documentation>NestedIDQueryType is a simple type that allows for a nested identifier to be
+        substituted with a wild card character ("%").
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="common:NestedIDType common:WildCardValueType"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="VersionQueryType">
+    <xs:annotation>
+      <xs:documentation>VersionQueryType is a simple type that allows for a version number to be
+        substituted with a wild card character ("%") or a late bound character ("*").
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="common:VersionQueryType common:WildCardValueType"/>
+  </xs:simpleType>
+
+  <xs:complexType name="IdentifiableQueryType">
+    <xs:annotation>
+      <xs:documentation>IdentifiableQueryType describes the structure of a query for an identifiable
+        object.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="id" type="IDQueryType" default="%">
+      <xs:annotation>
+        <xs:documentation>The id attribute is used to query for an object based on its identifier.
+          This is either an explicit value, or completely wild cared with the "%" value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="VersionableQueryType">
+    <xs:annotation>
+      <xs:documentation>VersionableQueryType describes the structure of a query for a versionable
+        object.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IdentifiableQueryType">
+        <xs:attribute name="version" type="VersionQueryType" default="*">
+          <xs:annotation>
+            <xs:documentation>The version attribute is used to query for an object based on its
+              version. This can be and explicit value, wild-carded ("%"), or late-bound ("*"). A
+              wild carded version will match any version of the object where as a late-bound version
+              will only match the latest version.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MaintainableQueryType">
+    <xs:annotation>
+      <xs:documentation>MaintainableQueryType describes the structure of a query for a maintainable
+        object.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="VersionableQueryType">
+        <xs:attribute name="agencyID" type="NestedIDQueryType" default="%">
+          <xs:annotation>
+            <xs:documentation>The agencyID attribute is used to query for an object based on its
+              maintenance agency's identifier. This is either an explicit value, or completely wild
+              cared with the "%" value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StatusMessageType">
+    <xs:annotation>
+      <xs:documentation>StatusMessageType carries the text of error messages and/or warnings in
+        response to queries or requests.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MessageText" type="common:StatusMessageType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>MessageText contains the text of the error and/or warning message. It
+            can occur multiple times to communicate message for multiple warnings or errors.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="status" type="StatusType" use="required">
+      <xs:annotation>
+        <xs:documentation>The status attribute carries the status of the query or request.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="StatusType">
+    <xs:annotation>
+      <xs:documentation>StatusType provides an enumeration of values that detail the status of
+        queries or requests.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="Success">
+        <xs:annotation>
+          <xs:documentation>Query or request successful.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Warning">
+        <xs:annotation>
+          <xs:documentation>Query or request successful, but with warnings.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Failure">
+        <xs:annotation>
+          <xs:documentation>Query or request not successful.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

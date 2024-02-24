@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Constraint Query Module</xs:appinfo>
+    <xs:documentation>The constraint query module provides the construct of a query for an
+      attachment or content constraint.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="ConstraintQueryType">
+    <xs:annotation>
+      <xs:documentation>ConstraintQueryType defines the structure of a constraint query. The
+        parameters for the query are contained in the ConstraintWhere element. The References
+        element is used to indicate how objects that are referenced from the matched constraint
+        should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="ConstraintWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ConstraintWhere" type="ConstraintWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>AttachmentConstraintWhere contains the parameters for a constraint query.
+        All parameters must be matched for an object to satisfy the query. In addition to querying
+        based on the basic maintainable properties, it is also possible to search for a constraint
+        based on the objects it applies to.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ConstraintWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ConstraintWhereBaseType is an abstract base type which forms the basis for
+        the ConstraintWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MaintainableWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="ConstraintTypeCodelistType" use="optional"
+          default="Constraint">
+          <xs:annotation>
+            <xs:documentation>The type attribute indicates the type of constraint that is being
+              queried for, with a default of Any, meaning both content and attachment constraints
+              will be searched.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ConstraintWhereType">
+    <xs:annotation>
+      <xs:documentation>ConstraintWhereType contains the parameters of a constraint query. All
+        supplied parameters must be matched in order for an object to stratify the query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ConstraintWhereBaseType">
+        <xs:sequence>
+          <xs:element name="ConstraintAttachmentWhere" type="ConstraintAttachmentWhereType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ConstraintAttachmentWhere identifies a collection of objects to
+                which a constraint may be attached. This container is an implicit and-query, meaning
+                all of the objects referenced in here must be part of the constraint attachment in
+                order for a constraint to match.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="allowable" type="xs:boolean" use="optional">
+          <xs:annotation>
+            <xs:documentation>The allowable attribute indicates whether the returned search should
+              be limited to only allowable constraints. This only applies to content constraint. If
+              this attribute has a value of true, this indicates that only matching allowable
+              content constraints should be returned. If this is false, than only actual content
+              constraints returned. If no value is provided, all matching content constraints will
+              be returned, regardless of whether they are stating actual or allowable content.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ConstraintAttachmentWhereType">
+    <xs:annotation>
+      <xs:documentation>ConstraintAttachmentWhereType describes the structure for querying for a
+        constraint based on the objects it is attached to. A constraint attachment query is
+        implicitly an and-query meaning all of the referenced objects must be part of a constraints
+        attachment in order to return a match. It is treated as a condition within its parent query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="DataProvider" type="common:DataProviderReferenceType">
+        <xs:annotation>
+          <xs:documentation>DataProviderReference references a data provider to which a constraint
+            is attached. It is referenced via a URN and/or a full set of reference fields. If a
+            constraint is attached to the data provider referenced, a match will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Dataflow" type="common:DataflowReferenceType">
+        <xs:annotation>
+          <xs:documentation>DataflowReference references a data flow to which a constraint is
+            attached. It is referenced via a URN and/or a full set of reference fields. If a
+            constraint is attached to the data flow referenced, a match will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataStructure" type="common:DataStructureReferenceType">
+        <xs:annotation>
+          <xs:documentation>DataStructureReference references a data structure definition to which a
+            constraint is attached. It is referenced via a URN and/or a full set of reference
+            fields. If a constraint is attached to the data structure definition referenced, a match
+            will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Metadataflow" type="common:MetadataflowReferenceType">
+        <xs:annotation>
+          <xs:documentation>MetadataflowReference references a metadata flow to which a constraint
+            is attached. It is referenced via a URN and/or a full set of reference fields. If a
+            constraint is attached to the metadata flow referenced, a match will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MetadataStructure" type="common:MetadataStructureReferenceType">
+        <xs:annotation>
+          <xs:documentation>MetadataStructureReference references a metadata structure definition to
+            which a constraint is attached. It is referenced via a URN and/or a full set of
+            reference fields. If a constraint is attached to the metadata structure definition
+            referenced, a match will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType">
+        <xs:annotation>
+          <xs:documentation>ProvisionAgreementReference references a provision agreement to which a
+            constraint is attached. It is referenced via a URN and/or a full set of reference
+            fields. If a constraint is attached to the provision agreement referenced, a match will
+            be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataSet" type="common:SetReferenceType">
+        <xs:annotation>
+          <xs:documentation>DataSetReference references a data set to which a constraint is
+            attached. If a constraint is attached to the data set referenced, a match will be
+            returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MetadataSet" type="common:SetReferenceType">
+        <xs:annotation>
+          <xs:documentation>MetadataSetReference references a reference metadata set to which a
+            constraint is attached. If a constraint is attached to the metadata set referenced, a
+            match will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataSourceURL" type="xs:anyURI">
+        <xs:annotation>
+          <xs:documentation>DataSourceURL references a queryable data source to which a constraint
+            it attached. The data source is referenced by its data URL. If a constraint is attached
+            to the data source described (by matching the data URL), a match will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:simpleType name="ConstraintTypeCodelistType">
+    <xs:annotation>
+      <xs:documentation>ConstraintTypeCodelistType defines a list of types for a constraint for the
+        purpose of querying.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="common:MaintainableTypeCodelistType">
+      <xs:enumeration value="Constraint"/>
+      <xs:enumeration value="AttachmentConstraint"/>
+      <xs:enumeration value="ContentConstraint"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

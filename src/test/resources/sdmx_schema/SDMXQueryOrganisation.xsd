@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Organisation Query Module</xs:appinfo>
+    <xs:documentation>The organisation query module provides the construct of a query for any type
+      of organisation scheme.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="OrganisationSchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeQueryType defines the structure of an organisation scheme
+        query. The parameters for the query are contained in the OrganisationSchemeWhere element.
+        The References element is used to indicate how objects that reference the matched
+        organisation scheme should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="StructureReturnDetailsType"/>
+          <xs:element ref="OrganisationSchemeWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OrganisationSchemeWhere" type="OrganisationSchemeWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeWhere defines the parameters for an organisation scheme
+        query, regardless of the specific type of organisation scheme being sought. All parameters
+        must be matched for an object to satisfy the query. In addition to querying based on the
+        basic maintainable properties, it is also possible to search for an organisation scheme
+        based on the details of its organisations. In any case, the organisation scheme will be
+        returned according the indicated return detail.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="OrganisationSchemeWhereType">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeWhereType contains the parameters of an organisation
+        scheme query. All supplied parameters must be matched in order for an object to satisfy the
+        query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemSchemeWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="OrganisationWhere"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="type" type="OrganisationSchemeTypeCodeType" use="optional"
+          default="OrganisationScheme">
+          <xs:annotation>
+            <xs:documentation>The type attribute indicates the type of organisation scheme which is
+              being queried for, with the default being any organisation scheme. Note that agency,
+              data consumer, and data provider scheme all have fixed identifiers and versions, so
+              specifying these types with parameters for the identifier and/or version which do not
+              match these fixed values will never return a result.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OrganisationWhere" type="OrganisationWhereType" substitutionGroup="ItemWhere">
+    <xs:annotation>
+      <xs:documentation>OrganisationWhere is used to query for organisations matching the parameters
+        supplied. This is an implicit set of "and" parameters, meaning all of the conditions must be
+        met in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="OrganisationWhereType">
+    <xs:annotation>
+      <xs:documentation>OrganisationWhereType defines a set of parameters for matching an
+        organisation. In addition to the base parameters for any item, there is an additional
+        parameter for matching an organisation based on the roles it serves. All supplied parameters
+        must be matched in order for an object to satisfy the query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:choice minOccurs="0">
+            <xs:element name="Parent" type="common:LocalOrganisationUnitReferenceType">
+              <xs:annotation>
+                <xs:documentation>Parent is only applicable when searching for organisation units,
+                  and is used to match organisations which have a parent organisation unit which is
+                  referenced here.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="OrganisationSchemeTypeCodeType">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeTypeCodeType enumerates the possible types of organisation
+        schemes that can be queried for.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="common:MaintainableTypeCodelistType">
+      <xs:enumeration value="OrganisationScheme"/>
+      <xs:enumeration value="AgencyScheme"/>
+      <xs:enumeration value="DataConsumerScheme"/>
+      <xs:enumeration value="DataProviderScheme"/>
+      <xs:enumeration value="OrganisationUnitScheme"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

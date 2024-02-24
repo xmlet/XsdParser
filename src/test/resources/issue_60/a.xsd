@@ -1,0 +1,6 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://mytestns.org/issue60" xmlns:B="http://mytestns.org/issue60_B" targetNamespace="http://mytestns.org/issue60">
+    <xsd:import namespace="B" schemaLocation="b.xsd"/>
+    <xsd:include schemaLocation="b.xsd"/>
+    <xsd:element name="elem1" type="B:Beer"/>
+    <xsd:element name="elem2" type="Pong"/>
+</xsd:schema>

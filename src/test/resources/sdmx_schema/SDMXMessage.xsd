@@ -1,0 +1,1747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+  xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+  xmlns:footer="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:registry="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  xmlns:data="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/generic"
+  xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+  xmlns:metadata="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/generic"
+  xmlns:msd="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/structurespecific"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+  elementFormDefault="qualified">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer"
+    schemaLocation="SDMXMessageFooter.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+    schemaLocation="SDMXStructure.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+    schemaLocation="SDMXQuery.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+    schemaLocation="SDMXRegistry.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/generic"
+    schemaLocation="SDMXDataGeneric.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+    schemaLocation="SDMXDataStructureSpecific.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/generic"
+    schemaLocation="SDMXMetadataGeneric.xsd"/>
+  <xs:import
+    namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/structurespecific"
+    schemaLocation="SDMXMetadataStructureSpecific.xsd"/>
+  <!-- Note: The following import statement sometimes causes problems with IE 6.* If you have this problem, comment it out. -->
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Message Namespace Module</xs:appinfo>
+    <xs:documentation>The message namespace module contains the common message constructs, including
+      the common header information which is used with all other SDMX-ML namespace modules.
+    </xs:documentation>
+  </xs:annotation>
+
+  <!-- Base Message Format -->
+
+  <xs:complexType name="MessageType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MessageType is an abstract type which is used by all of the messages, to
+        allow inheritance of common features. Every message consists of a mandatory header, followed
+        by optional payload (which may occur multiple times), and finally an optional footer section
+        for conveying error, warning, and informational messages.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="BaseHeaderType"/>
+      <xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="footer:Footer" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Structure Message -->
+
+  <xs:element name="Structure" type="StructureType">
+    <xs:annotation>
+      <xs:documentation>Structure is a message that contains structural metadata. It may contain any
+        of the following; categorisations, category schemes, code lists, concepts (concept schemes
+        and stand-alone concepts), constraints (attachment and content) data flows, hierarchical
+        code lists, metadata flows, metadata structure definitions, organisation schemes, processes,
+        reporting taxonomies, and structure sets.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructureType">
+    <xs:annotation>
+      <xs:documentation>StructureType defines the contents of a structure message. The payload is
+        optional since this message may be returned from a web service with only information in the
+        footer.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="StructureHeaderType"/>
+          <xs:element name="Structures" type="structure:StructuresType" minOccurs="0"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Data Messages -->
+
+  <xs:element name="GenericData" type="GenericDataType">
+    <xs:annotation>
+      <xs:documentation>GenericData is used to convey data in a non data structure specific form.
+        Data sets in this message will be each have a related structure specification in the header,
+        which states the data structure the data conforms to and how the data is organised (i.e. the
+        observation dimension).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GenericDataType">
+    <xs:annotation>
+      <xs:documentation>GenericDataType defines the contents of a generic data message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="GenericDataHeaderType"/>
+          <xs:element name="DataSet" type="data:DataSetType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GenericTimeSeriesData" type="GenericTimeSeriesDataType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesData is a special derivation of the generic data message
+        which only allows for time series oriented date (i.e. the observation dimension must be
+        time). Although this is a different message, the content of this message will be exactly the
+        same as a generic data message that specifies time as the observation dimension; therefore
+        no additional processing requirements are necessary. This message is intended to only be
+        used when it is necessary to restrict an exchange to being only time series based data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GenericTimeSeriesDataType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesDataType defines the structure of the generic time series
+        data message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="GenericDataType">
+        <xs:sequence>
+          <xs:element name="Header" type="GenericTimeSeriesDataHeaderType"/>
+          <xs:element name="DataSet" type="data:TimeSeriesDataSetType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructureSpecificData" type="StructureSpecificDataType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificData is used to convey data structure specific according to
+        data structure definition. The payload of this message (i.e. the data sets) will be based on
+        XML schemas which are specific to the data structure definition and the orientation (i.e.
+        the observation dimension) of the data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructureSpecificDataType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificDataType defines the structure of the structure specific
+        data message. Note that the data set payload type is abstract, and therefore it will have to
+        be assigned a type in an instance. This type must be derived from the base type referenced.
+        This base type defines a general structure which can be followed to allow for generic
+        processing of the data even if the exact details of the data structure specific format are
+        not known.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="StructureSpecificDataHeaderType"/>
+          <xs:element name="DataSet" type="dsd:DataSetType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructureSpecificTimeSeriesData" type="StructureSpecificTimeSeriesDataType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificTimeSeriesData is a special derivation of the structure
+        specific data message which only allows for time series oriented date (i.e. the observation
+        dimension must be time). Although this is a different message, the content of this message
+        will be exactly the same as a structure specific data message that specifies time as the
+        observation dimension; therefore no additional processing requirements are necessary. This
+        message is intended to only be used when it is necessary to restrict an exchange to being
+        only time series based data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructureSpecificTimeSeriesDataType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificTimeSeriesDataType defines the structure of the structure
+        specific time series data message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureSpecificDataType">
+        <xs:sequence>
+          <xs:element name="Header" type="StructureSpecificTimeSeriesDataHeaderType"/>
+          <xs:element name="DataSet" type="dsd:TimeSeriesDataSetType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Reference Metadata Messages -->
+
+  <xs:element name="GenericMetadata" type="GenericMetadataType">
+    <xs:annotation>
+      <xs:documentation>GenericMetadata contains reported metadata in a format which supports any
+        metadata structure definition.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GenericMetadataType">
+    <xs:annotation>
+      <xs:documentation>GenericMetadataType defines the contents of a generic metadata message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="GenericMetadataHeaderType"/>
+          <xs:element name="MetadataSet" type="metadata:MetadataSetType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructureSpecificMetadata" type="StructureSpecificMetadataType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificMetadata contains reported metadata in a format which is
+        specific to the metadata structure definitions which define the structure of the metadata
+        being reported. This format allows for validation of the metadata against the intended
+        structure. Note that the each metadata set provided will be based on a metadata structure
+        specific schema.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="StructureSpecificMetadataType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificMetadataType defines the structure of a structure specific
+        metadata message. Note that the metadata set payload type is abstract, and therefore it will
+        have to be assigned a type in an instance. This type must be derived from the base type
+        referenced. This base type defines a general structure which can be followed to allow for
+        generic processing of the data even if the exact details of the data structure specific
+        format are not known.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="StructureSpecificMetadataHeaderType"/>
+          <xs:element name="MetadataSet" type="msd:MetadataSetType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Registry Messages -->
+
+  <xs:element name="RegistryInterface" type="RegistryInterfaceType">
+    <xs:annotation>
+      <xs:documentation>RegistryInterface is used to conduct all interactions with the SDMX Registry
+        Services.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="RegistryInterfaceType">
+    <xs:annotation>
+      <xs:documentation>This is a type which describes a structure for holding all of the various
+        dedicated registry interface message types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:choice minOccurs="0">
+            <xs:element name="SubmitRegistrationsRequest"
+              type="registry:SubmitRegistrationsRequestType">
+              <xs:annotation>
+                <xs:documentation>SubmitRegistrationsRequest is sent to the registry by an agency or
+                  data/metadata provider to request one or more registrations for a data set or
+                  metadata set. The data source to be registered must be accessible to the registry
+                  services at an indicated URL, so that it can be processed by those services.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SubmitRegistrationsResponse"
+              type="registry:SubmitRegistrationsResponseType">
+              <xs:annotation>
+                <xs:documentation>SubmitRegistrationsResponse is sent to the agency or data/metadata
+                  provider in response to a submit registrations request. It indicates the success
+                  or failure of each registration request, and contains any error messages generated
+                  by the registration service.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="QueryRegistrationRequest"
+              type="registry:QueryRegistrationRequestType">
+              <xs:annotation>
+                <xs:documentation>QueryRegistrationRequest is used to query the contents of a
+                  registry for data sets and metadata sets. It specifies whether the result set
+                  should include metadata sets, data sets, or both. The search can be characterized
+                  by providing constraints including reference periods, data regions, and data keys.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="QueryRegistrationResponse"
+              type="registry:QueryRegistrationResponseType">
+              <xs:annotation>
+                <xs:documentation>QueryRegistrationResponse is sent as a response to any query of
+                  the contents of a registry. The result set contains a set of links to data and/or
+                  metadata If the result set is null, or there is some other problem with the query,
+                  then appropriate error messages and statuses will be returned.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SubmitStructureRequest" type="registry:SubmitStructureRequestType">
+              <xs:annotation>
+                <xs:documentation>SubmitStructureRequest is used to submit structure definitions to
+                  the repository. The structure resources (key families, agencies, concepts and
+                  concept schemes, code lists, etc.) to be submitted may be communicated in-line or
+                  be supplied in a referenced SDMX-ML Structure messages external to the registry. A
+                  response will indicate status and contain any relevant error information.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SubmitStructureResponse" type="registry:SubmitStructureResponseType">
+              <xs:annotation>
+                <xs:documentation>SubmitStructureResponse is returned by the registry when a
+                  structure submission request is received. It indicates the status of the
+                  submission, and carries any error messages which are generated, if relevant.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SubmitSubscriptionsRequest"
+              type="registry:SubmitSubscriptionsRequestType">
+              <xs:annotation>
+                <xs:documentation>SubmitSubscriptionsRequest contains one or more requests submitted
+                  to the registry to subscribe to registration and change events for specific
+                  registry resources.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SubmitSubscriptionsResponse"
+              type="registry:SubmitSubscriptionsResponseType">
+              <xs:annotation>
+                <xs:documentation>SubmitSubscriptionsResponse is the response to a submit
+                  subscriptions request. It contains information which describes the success or
+                  failure of each subscription request, providing any error messages in the event of
+                  failure. If successful, it returns the registry URN of the subscription, and the
+                  subscriber-assigned ID.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="QuerySubscriptionRequest"
+              type="registry:QuerySubscriptionRequestType">
+              <xs:annotation>
+                <xs:documentation>QuerySubscriptionRequest is used to query the registry for the
+                  subscriptions of a given organisation.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="QuerySubscriptionResponse"
+              type="registry:QuerySubscriptionResponseType">
+              <xs:annotation>
+                <xs:documentation>QuerySubscriptionResponse is sent as a response to a subscription
+                  query. If the query is successful, the details of all subscriptions for the
+                  requested organisation are sent.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="NotifyRegistryEvent" type="registry:NotifyRegistryEventType">
+              <xs:annotation>
+                <xs:documentation>NotifyRegistryEvent is sent by the registry services to
+                  subscribers, to notify them of specific registration and change events. Basic
+                  information about the event, such as the object that triggered it, the time of the
+                  event, the action that took place, and the subscription that triggered the
+                  notification are always sent. Optionally, the details of the changed object may
+                  also be provided.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SubmitRegistrationsRequest" type="SubmitRegistrationsRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationsRequest is sent to the registry by an agency or
+        data/metadata provider to request on or more registrations for a data set or metadata set.
+        The data source to be registered must be accessible to the registry services at an indicated
+        URL, so that it can be processed by those services.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SubmitRegistrationsRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationsRequestType defines the structure of a registry submit
+        registration requests document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="SubmitRegistrationsRequest"
+            type="registry:SubmitRegistrationsRequestType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SubmitRegistrationsResponse" type="SubmitRegistrationsResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationsResponse is sent to the agency or data/metadata provider
+        in response to a registration requests. It indicates the success or failure of each
+        registration request, and contains any error messages generated by the registration service.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SubmitRegistrationsResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationsResponseType defines the structure of a registry submit
+        registration response document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="SubmitRegistrationsResponse"
+            type="registry:SubmitRegistrationsResponseType"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="QueryRegistrationRequest" type="QueryRegistrationRequestType">
+    <xs:annotation>
+      <xs:documentation>QueryRegistrationRequest is used to query the contents of a registry for
+        data sets and metadata sets. It specifies whether the result set should include metadata
+        sets, data sets, or both. The search can be characterized by providing constraints including
+        reference periods, data regions, and data keys.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="QueryRegistrationRequestType">
+    <xs:annotation>
+      <xs:documentation>QueryRegistrationRequestType defines the structure of a registry query
+        registration request document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="QueryRegistrationRequest" type="registry:QueryRegistrationRequestType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="QueryRegistrationResponse" type="QueryRegistrationResponseType">
+    <xs:annotation>
+      <xs:documentation>QueryRegistrationResponse is sent as a response to any query of the contents
+        of a registry. The result set contains a set of links to data and/or metadata If the result
+        set is null, or there is some other problem with the query, then appropriate error messages
+        and statuses will be returned.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="QueryRegistrationResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitRegistrationRequestType defines the structure of a registry submit
+        registration response document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="QueryRegistrationResponse"
+            type="registry:QueryRegistrationResponseType"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SubmitStructureRequest" type="SubmitStructureRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitStructureRequest is used to submit structure definitions to the
+        repository. The structure resources (key families, agencies, concepts and concept schemes,
+        code lists, etc.) to be submitted may be communicated in-line or be supplied in a referenced
+        SDMX-ML Structure messages external to the registry. A response will indicate status and
+        contain any relevant error information.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SubmitStructureRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitStructureRequestType defines the structure of a registry submit
+        structure request document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="SubmitStructureRequest" type="registry:SubmitStructureRequestType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SubmitStructureResponse" type="SubmitStructureResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitStructureResponse is returned by the registry when a structure
+        submission request is received. It indicates the status of the submission, and carries any
+        error messages which are generated, if relevant.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SubmitStructureResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitStructureResponseType defines the structure of a registry submit
+        registration response document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="SubmitStructureResponse" type="registry:SubmitStructureResponseType"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SubmitSubscriptionsRequest" type="SubmitSubscriptionsRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitSubscriptionsRequest contains one or more requests submitted to the
+        registry to subscribe to registration and change events for specific registry resources.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SubmitSubscriptionsRequestType">
+    <xs:annotation>
+      <xs:documentation>SubmitSubscriptionsRequestType defines the structure of a registry submit
+        subscription request document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="SubmitSubscriptionsRequest"
+            type="registry:SubmitSubscriptionsRequestType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="SubmitSubscriptionsResponse" type="SubmitSubscriptionsResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitSubscriptionsResponse is the response to a submit subscriptions
+        request. It contains information which describes the success or failure of each subscription
+        request, providing any error messages in the event of failure. If successful, it returns the
+        registry URN of the subscription, and the subscriber-assigned ID.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SubmitSubscriptionsResponseType">
+    <xs:annotation>
+      <xs:documentation>SubmitSubscriptionsResponseType defines the structure of a registry submit
+        subscription response document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="SubmitSubscriptionsResponse"
+            type="registry:SubmitSubscriptionsResponseType"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="QuerySubscriptionRequest" type="QuerySubscriptionRequestType">
+    <xs:annotation>
+      <xs:documentation>QuerySubscriptionRequest is used to query the registry for the subscriptions
+        of a given organisation.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="QuerySubscriptionRequestType">
+    <xs:annotation>
+      <xs:documentation>QuerySubscriptionRequestType defines the structure of a registry query
+        subscription request document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="QuerySubscriptionRequest" type="registry:QuerySubscriptionRequestType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="QuerySubscriptionResponse" type="QuerySubscriptionResponseType">
+    <xs:annotation>
+      <xs:documentation>QuerySubscriptionResponse is sent as a response to a subscription query. If
+        the query is successful, the details of all subscriptions for the requested organisation are
+        sent.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="QuerySubscriptionResponseType">
+    <xs:annotation>
+      <xs:documentation>QuerySubscriptionResponseType defines the structure of a registry query
+        subscription response document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="QuerySubscriptionResponse"
+            type="registry:QuerySubscriptionResponseType"/>
+          <xs:element ref="footer:Footer" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="NotifyRegistryEvent" type="NotifyRegistryEventType">
+    <xs:annotation>
+      <xs:documentation>NotifyRegistryEvent is sent by the registry services to subscribers, to
+        notify them of specific registration and change events. Basic information about the event,
+        such as the object that triggered it, the time of the event, the action that took place, and
+        the subscription that triggered the notification are always sent. Optionally, the details of
+        the changed object may also be provided.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="NotifyRegistryEventType">
+    <xs:annotation>
+      <xs:documentation>NotifyRegistryEventType defines the structure of a registry notification
+        document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RegistryInterfaceType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="NotifyRegistryEvent" type="registry:NotifyRegistryEventType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Query Messages -->
+
+  <xs:element name="StructureSpecificDataQuery" type="DataQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificDataQuery is used to query SDMX compliant databases or web
+        services for structure specific data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataQueryType">
+    <xs:annotation>
+      <xs:documentation>DataQueryType defines the structure of a data query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:DataQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GenericDataQuery" type="GenericDataQueryType">
+    <xs:annotation>
+      <xs:documentation>GenericDataQuery is used to query SDMX compliant databases or web services
+        for generic data. This is actually a specialization of the structured data query, and
+        therfore can be processed in the same manner.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GenericDataQueryType">
+    <xs:annotation>
+      <xs:documentation>DataQueryType defines the structure of a generic data query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataQueryType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:GenericDataQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GenericTimeSeriesDataQuery" type="GenericTimeSeriesDataQueryType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesDataQuery is used to query SDMX compliant databases or web
+        services for time series only generic data. This is actually a specialization of the generic
+        data query, and therfore can be processed in the same manner. This message is intended to
+        only be used when it is necessary to restrict an exchange to being only time series based
+        data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GenericTimeSeriesDataQueryType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesDataQueryType defines the structure of a time series
+        generic data query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="GenericDataQueryType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:GenericTimeSeriesDataQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructureSpecificTimeSeriesDataQuery"
+    type="StructureSpecificTimeSeriesDataQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificTimeSeriesDataQuery is used to query SDMX compliant
+        databases or web services for time series only structure specific data. This is actually a
+        specialization of the structure specific data query, and therfore can be processed in the
+        same manner. This message is intended to only be used when it is necessary to restrict an
+        exchange to being only time series based data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructureSpecificTimeSeriesDataQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificTimeSeriesDataQueryType defines the structure of a time
+        series generic data query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataQueryType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:TimeSeriesDataQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GenericMetadataQuery" type="MetadataQueryType">
+    <xs:annotation>
+      <xs:documentation>GenericMetadataQuery is used to query SDMX compliant databases or web
+        services for generic format reference metadata.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="StructureSpecificMetadataQuery" type="MetadataQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificMetadataQuery is used to query SDMX compliant databases or
+        web services for metadata structure specific reference metadata.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataQueryType defines the structure of a reference metadata query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:MetadataQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="DataSchemaQuery" type="DataSchemaQueryType">
+    <xs:annotation>
+      <xs:documentation>DataSchemaQuery is used to query SDMX compliant databases or web services
+        for data structure specific schemas for the purpose of validating structured data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataSchemaQueryType">
+    <xs:annotation>
+      <xs:documentation>DataSchemaQueryType defines the structure of a data schema query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:DataSchemaQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataSchemaQuery" type="MetadataSchemaQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataSchemaQuery is used to query SDMX compliant databases or web
+        services for metadata structure specific schemas for the purpose of validating structured
+        metadata.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataSchemaQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataSchemaQueryType defines the structure of a metadata schema query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:MetadataSchemaQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructuresQuery" type="StructuresQueryType">
+    <xs:annotation>
+      <xs:documentation>StructuresQuery is used to query SDMX compliant databases or web services
+        for any structures based on simple maintainable object properties (e.g. all objects
+        maintained by a maintenance agency).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructuresQueryType">
+    <xs:annotation>
+      <xs:documentation>StructuresQueryType defines the structure of a structures query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:StructuresQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:element name="DataflowQuery" type="DataflowQueryType">
+    <xs:annotation>
+      <xs:documentation>DataflowQuery is used to query SDMX compliant databases or web services for
+        dataflows.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataflowQueryType">
+    <xs:annotation>
+      <xs:documentation>DataflowQueryType defines the structure of a dataflow query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:DataflowQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataflowQuery" type="MetadataflowQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataflowQuery is used to query SDMX compliant databases or web services
+        for metadata flows.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataflowQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataflowQueryType defines the structure of a metadata flow query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:MetadataflowQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="DataStructureQuery" type="DataStructureQueryType">
+    <xs:annotation>
+      <xs:documentation>DataStructureQuery is used to query SDMX compliant databases or web services
+        for data structures definitions.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataStructureQueryType">
+    <xs:annotation>
+      <xs:documentation>KeyFamilyQueryType defines the structure of a data structure query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:DataStructureQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MetadataStructureQuery" type="MetadataStructureQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataStructureQuery is used to query SDMX compliant databases or web
+        services for metadata structure definitions.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MetadataStructureQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataStructureQueryType defines the structure of a metadata structure
+        query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:MetadataStructureQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="CategorySchemeQuery" type="CategorySchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>CategorySchemeQuery is used to query SDMX compliant databases or web
+        services for category schemes.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="CategorySchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>CategorySchemeQueryType defines the structure of a category scheme query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:CategorySchemeQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ConceptSchemeQuery" type="ConceptSchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>ConceptSchemeQuery is used to query SDMX compliant databases or web services
+        for concept schemes.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ConceptSchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>ConceptSchemeQueryType defines the structure of a concept scheme query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:ConceptSchemeQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="CodelistQuery" type="CodelistQueryType">
+    <xs:annotation>
+      <xs:documentation>CodelistQuery is used to query SDMX compliant databases or web services for
+        codelists.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="CodelistQueryType">
+    <xs:annotation>
+      <xs:documentation>CodelistQueryType defines the structure of a codelist query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:CodelistQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="HierarchicalCodelistQuery" type="HierarchicalCodelistQueryType">
+    <xs:annotation>
+      <xs:documentation>HierarchicalCodelistQuery is used to query SDMX compliant databases or web
+        services for hierarchical codelists.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="HierarchicalCodelistQueryType">
+    <xs:annotation>
+      <xs:documentation>HierarchicalCodelistQueryType defines the structure of a hierarchical
+        codelist query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:HierarchicalCodelistQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="OrganisationSchemeQuery" type="OrganisationSchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeQuery is used to query SDMX compliant databases or web
+        services for organisation schemes.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="OrganisationSchemeQueryType">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeQueryType defines the structure of an organisation scheme
+        query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:OrganisationSchemeQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ReportingTaxonomyQuery" type="ReportingTaxonomyQueryType">
+    <xs:annotation>
+      <xs:documentation>ReportingTaxonomyQuery is used to query SDMX compliant databases or web
+        services for reporting taxonomies.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ReportingTaxonomyQueryType">
+    <xs:annotation>
+      <xs:documentation>ReportingTaxonomyQueryType defines the structure of a reporting taxonomy
+        query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:ReportingTaxonomyQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructureSetQuery" type="StructureSetQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSetQuery is used to query SDMX compliant databases or web services
+        for structure sets.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructureSetQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSetQueryType defines the structure of a structure set query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:StructureSetQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ProcessQuery" type="ProcessQueryType">
+    <xs:annotation>
+      <xs:documentation>ProcessQuery is used to query SDMX compliant databases or web services for
+        processes.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ProcessQueryType">
+    <xs:annotation>
+      <xs:documentation>CategorizationQueryType defines the structure of a categorization query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:ProcessQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="CategorisationQuery" type="CategorisationQueryType">
+    <xs:annotation>
+      <xs:documentation>CategorisationQuery is used to query SDMX compliant databases or web
+        services for categorisations.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="CategorisationQueryType">
+    <xs:annotation>
+      <xs:documentation>CategorisationQueryType defines the structure of a categorisation query
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:CategorisationQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ProvisionAgreementQuery" type="ProvisionAgreementQueryType">
+    <xs:annotation>
+      <xs:documentation>ProvisionAgreementQuery is used to query SDMX compliant databases or web
+        services for provision agreements.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ProvisionAgreementQueryType">
+    <xs:annotation>
+      <xs:documentation>ProvisionAgreementQueryType defines the structure of a provision agreement
+        query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:ProvisionAgreementQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="ConstraintQuery" type="ConstraintQueryType">
+    <xs:annotation>
+      <xs:documentation>ConstraintQuery is used to query SDMX compliant databases or web services
+        for constraints.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ConstraintQueryType">
+    <xs:annotation>
+      <xs:documentation>ConstraintQueryType defines the structure of a constraint query message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="BasicHeaderType"/>
+          <xs:element name="Query" type="query:ConstraintQueryType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Simple Error Message -->
+
+  <xs:element name="Error" type="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Error is used to communicate that an error has occurred when responding to a
+        request in an non-registry environment. The content will be a collection of error messages.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>ErrorType describes the structure of an error response.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ErrorMessage" type="common:CodedStatusMessageType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ErrorMessage contains the error message. It can occur multiple times to
+            communicate message for multiple errors, or to communicate the error message in parallel
+            languages. If both messages for multiple errors and parallel language messages are used,
+            then each error message should be given a code in order to distinguish message for
+            unique errors.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Header Constructs -->
+
+  <xs:complexType name="BaseHeaderType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>BaseHeaderType in an abstract base type that defines the basis for all
+        message headers. Specific message formats will refine this
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="common:IDType">
+        <xs:annotation>
+          <xs:documentation>ID identifies an identification for the message, assigned by the
+            sender.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Test" type="xs:boolean" default="false">
+        <xs:annotation>
+          <xs:documentation>Test indicates whether the message is for test purposes or not.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Prepared" type="HeaderTimeType">
+        <xs:annotation>
+          <xs:documentation>Prepared is the date the message was prepared.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sender" type="SenderType">
+        <xs:annotation>
+          <xs:documentation>Sender is information about the party that is transmitting the
+            message.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Receiver is information about the party that is the intended recipient
+            of the message.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Name provides a name for the transmission. Multiple instances allow for
+            parallel language values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Structure" type="common:PayloadStructureType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Structure provides a reference to the structure (either explicitly or
+            through a structure usage reference) that describes the format of data or reference
+            metadata. In addition to the structure, it is required to also supply the namespace of
+            the structure specific schema that defines the format of the data/metadata. For cross
+            sectional data, additional information is also required to state which dimension is
+            being used at the observation level. This information will allow the structure specific
+            schema to be generated. For generic format messages, this is used to simply reference
+            the underlying structure. It is not mandatory in these cases and the generic
+            data/metadata sets will require this reference explicitly.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>DataProvider identifies the provider of the data for a data/reference
+            metadata message.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>DataSetAction code provides a code for determining whether the enclosed
+            message is an Update or Delete message (not to be used with the UtilityData message).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>DataSetID provides an identifier for a contained data set.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Extracted" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Extracted is a time-stamp from the system rendering the data.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportingBegin" type="common:ObservationalTimePeriodType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ReportingBegin provides the start of the time period covered by the
+            message (in the case of data).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportingEnd" type="common:ObservationalTimePeriodType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ReportingEnd provides the end of the time period covered by the message
+            (in the case of data).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EmbargoDate" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>EmbargoDate holds a time period before which the data included in this
+            message is not available.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Source provides human-readable information about the source of the
+            data.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StructureHeaderType">
+    <xs:annotation>
+      <xs:documentation>StructureHeaderType defines the structure for structural metadata
+        messages.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GenericDataHeaderType">
+    <xs:annotation>
+      <xs:documentation>GenericDataHeaderType defines the header structure for a generic data
+        message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Structure" type="common:GenericDataStructureType"
+            maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+          <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="ReportingBegin" type="common:ObservationalTimePeriodType"
+            minOccurs="0"/>
+          <xs:element name="ReportingEnd" type="common:ObservationalTimePeriodType" minOccurs="0"/>
+          <xs:element name="EmbargoDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GenericTimeSeriesDataHeaderType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesDataHeaderType defines the header structure for a time
+        series only generic data message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="GenericDataHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Structure" type="common:GenericTimeSeriesDataStructureType"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+          <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="ReportingBegin" type="common:ObservationalTimePeriodType"
+            minOccurs="0"/>
+          <xs:element name="ReportingEnd" type="common:ObservationalTimePeriodType" minOccurs="0"/>
+          <xs:element name="EmbargoDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StructureSpecificDataHeaderType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificDataHeaderType defines the header structure for a structure
+        specific data message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Structure" type="common:StructureSpecificDataStructureType"
+            maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+          <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="ReportingBegin" type="common:ObservationalTimePeriodType"
+            minOccurs="0"/>
+          <xs:element name="ReportingEnd" type="common:ObservationalTimePeriodType" minOccurs="0"/>
+          <xs:element name="EmbargoDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StructureSpecificTimeSeriesDataHeaderType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificTimeSeriesDataHeaderType defines the header structure for a
+        time series only structure specific data message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureSpecificDataHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Structure" type="common:StructureSpecificDataTimeSeriesStructureType"
+            maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+          <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="ReportingBegin" type="common:ObservationalTimePeriodType"
+            minOccurs="0"/>
+          <xs:element name="ReportingEnd" type="common:ObservationalTimePeriodType" minOccurs="0"/>
+          <xs:element name="EmbargoDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GenericMetadataHeaderType">
+    <xs:annotation>
+      <xs:documentation>GenericMetadataHeaderType defines the header format for generic reference
+        metadata.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Structure" type="common:GenericMetadataStructureType"
+            maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+          <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StructureSpecificMetadataHeaderType">
+    <xs:annotation>
+      <xs:documentation>StructureSpecificMetadataHeaderType defines the header format for metadata
+        structure definition specific reference metadata messages.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Structure" type="common:StructureSpecificMetadataStructureType"
+            maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+          <xs:element name="DataSetID" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BasicHeaderType">
+    <xs:annotation>
+      <xs:documentation>BasicHeaderType defines the most basic header information used in simple
+        message exchanges.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseHeaderType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:IDType"/>
+          <xs:element name="Test" type="xs:boolean" default="false"/>
+          <xs:element name="Prepared" type="HeaderTimeType"/>
+          <xs:element name="Sender" type="SenderType"/>
+          <xs:element name="Receiver" type="PartyType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PartyType">
+    <xs:annotation>
+      <xs:documentation>PartyType defines the information which is sent about various parties such
+        as senders and receivers of messages.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Name is a human-readable name of the party.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Contact provides contact information for the party in regard to the
+            transmission of the message.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="common:IDType" use="required">
+      <xs:annotation>
+        <xs:documentation>The id attribute holds the identification of the party.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SenderType">
+    <xs:annotation>
+      <xs:documentation>SenderType extends the basic party structure to add an optional time zone
+        declaration.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PartyType">
+        <xs:sequence>
+          <xs:element name="Timezone" type="common:TimezoneType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Timezone specifies the time zone of the sender, and if specified can
+                be applied to all un-time zoned time values in the message. In the absence of this,
+                any dates without time zone are implied to be in an indeterminate "local time".
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ContactType">
+    <xs:annotation>
+      <xs:documentation>ContactType provides defines the contact information about a party.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Name contains a human-readable name for the contact.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Department" type="common:TextType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Department is designation of the organisational structure by a
+            linguistic expression, within which the contact person works.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Role" type="common:TextType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Role is the responsibility of the contact person with respect to the
+            object for which this person is the contact.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Telephone" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Telephone holds the telephone number for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Fax" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Fax holds the fax number for the contact person.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="X400" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>X400 holds the X.400 address for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="URI" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>URI holds an information URL for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Email" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Email holds the email address for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="HeaderTimeType">
+    <xs:annotation>
+      <xs:documentation>Provides a union type of xs:date and xs:dateTime for the header fields in
+        the message.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes="xs:dateTime xs:date"/>
+  </xs:simpleType>
+
+</xs:schema>

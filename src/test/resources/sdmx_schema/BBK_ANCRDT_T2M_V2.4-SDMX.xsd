@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:BBKCommonTypes="http://www.bundesbank.de/statistik/bbk/commontypes/v2"
+  xmlns="http://www.bundesbank.de/statistik/anacredit/t2m/v2"
+  xmlns:ns1="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+  xmlns:bcl="http://www.bundesbank.de/statistik/bbk/codelists/v2"
+  xmlns:ecl="http://www.bundesbank.de/statistik/ecb/codelists/v2"
+  xmlns:ECBCommonTypes="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+  targetNamespace="http://www.bundesbank.de/statistik/anacredit/t2m/v2"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+    schemaLocation="SDMXMessage.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+    schemaLocation="SDMXDataStructureSpecific.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/ecb/codelists/v2"
+    schemaLocation="ECB_CDLST_V2.4-SDMX.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/bbk/codelists/v2"
+    schemaLocation="BBK_CDLST_V2.4-SDMX.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/bbk/commontypes/v2"
+    schemaLocation="BBKCommonTypes_V2.4-SDMX.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+    schemaLocation="ECBCommonTypes_V2.4-SDMX.xsd"/>
+  <!-- Data Structur Definitions (DataSetType) -->
+  <xs:complexType name="ObsBBK_ANCRDT_HDR_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="RPRTNG_AGNT_CD" type="BBKCommonTypes:BBK_ID_BLZ" use="required"/>
+        <xs:attribute name="OBSRVD_AGNT_CD" type="BBKCommonTypes:BBK_ID_BLZ" use="required"/>
+        <xs:attribute name="DT_RFRNC" type="BBKCommonTypes:BBK_YYYY_MM" use="required"/>
+        <xs:attribute name="APPLCTN" type="bcl:CL_BBK_APPLCTN_ID" use="required" fixed="AC"/>
+        <xs:attribute name="SRVY_ID" type="bcl:CL_BBK_SRVY_ID" use="required" fixed="T2M"/>
+        <xs:attribute name="PRT_MSSG" type="BBKCommonTypes:BBK_PRT_MSSG" use="required"/>
+        <xs:attribute name="IS_LST_PRT_MSSG" type="xs:boolean" use="required"/>
+        <xs:attribute name="SBMSSN_TYP" type="bcl:CL_BBK_SBMSSN_TYP" use="required"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_HDR_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_HDR_C" form="unqualified" maxOccurs="1"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_ENTTY_DFLT_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CP_ID" type="BBKCommonTypes:BBK_CP_ID" use="required"/>
+        <xs:attribute name="TYP_CP_ID" type="bcl:CL_BBK_TYP_CP_ID" use="required"/>
+        <xs:attribute name="DFLT_STTS" type="ecl:CL_ECBSDD_CRDT_QLTY_DFLT_STTS_ANCRDT_CLLCTN"/>
+        <xs:attribute name="DT_DFLT_STTS" type="BBKCommonTypes:BBK_FLL_YYYY_MM_DD_NA"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_ENTTY_DFLT_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_ENTTY_DFLT_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_ENTTY_RSK_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CP_ID" type="BBKCommonTypes:BBK_CP_ID" use="required"/>
+        <xs:attribute name="TYP_CP_ID" type="bcl:CL_BBK_TYP_CP_ID" use="required"/>
+        <xs:attribute name="PD" type="ECBCommonTypes:ECBSDD_0TO1_6D"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_ENTTY_RSK_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_ENTTY_RSK_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_INSTRMNT_PRTCTN_RCVD_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CNTRCT_ID" type="ECBCommonTypes:ECBSDD_RSTRCTD_ID_60" use="required"/>
+        <xs:attribute name="INSTRMNT_ID" type="ECBCommonTypes:ECBSDD_RSTRCTD_ID_60" use="required"/>
+        <xs:attribute name="PRTCTN_ID" type="ECBCommonTypes:ECBSDD_RSTRCTD_ID_60" use="required"/>
+        <xs:attribute name="PRTCTN_ALLCTD_VL" type="ECBCommonTypes:ECBSDD_NN_NGTV_2D"/>
+        <xs:attribute name="THRD_PRTY_PRRTY_CLMS" type="ECBCommonTypes:ECBSDD_NN_NGTV_2D"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_INSTRMNT_PRTCTN_RCVD_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_INSTRMNT_PRTCTN_RCVD_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_PRTCTN_RCVD_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="PRTCTN_ID" type="ECBCommonTypes:ECBSDD_RSTRCTD_ID_60" use="required"/>
+        <xs:attribute name="TYP_PRTCTN" type="ecl:CL_ECBSDD_TYP_PRTCTN_ANCRDT_CLLCTN"/>
+        <xs:attribute name="PRTCTN_VL" type="ECBCommonTypes:ECBSDD_NN_NGTV_2D"/>
+        <xs:attribute name="TYP_PRTCTN_VL" type="ecl:CL_ECBSDD_TYP_PRTCTN_VL_ANCRDT_CLLCTN"/>
+        <xs:attribute name="PRTCTN_VLTN_APPRCH"
+          type="ecl:CL_ECBSDD_PRTCTN_VLTN_APPRCH_ANCRDT_CLLCTN"/>
+        <xs:attribute name="RL_ESTT_CLLTRL_LCTN" type="bcl:CL_BBK_ISO3166_NUTS_DSJNT_NA"/>
+        <xs:attribute name="DT_PRTCTN_VL" type="ECBCommonTypes:ECBSDD_FLL_YYYY_MM_DD"/>
+        <xs:attribute name="DT_MTRTY_PRTCTN" type="BBKCommonTypes:BBK_FLL_YYYY_MM_DD_NA"/>
+        <xs:attribute name="ORGNL_PRTCTN_VL" type="ECBCommonTypes:ECBSDD_NN_NGTV_2D"/>
+        <xs:attribute name="DT_ORGNL_PRTCTN_VL" type="ECBCommonTypes:ECBSDD_FLL_YYYY_MM_DD"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_PRTCTN_RCVD_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_PRTCTN_RCVD_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_PRTCTN_PRVDR_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="PRTCTN_ID" type="ECBCommonTypes:ECBSDD_RSTRCTD_ID_60" use="required"/>
+        <xs:attribute name="PRTCTN_PRVDR_CD" type="BBKCommonTypes:BBK_CP_ID_NA" use="required"/>
+        <xs:attribute name="PRTCTN_PRVDR_CD_TYP" type="bcl:CL_BBK_TYP_CP_ID_PRTC" use="required"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_PRTCTN_PRVDR_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_PRTCTN_PRVDR_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/generic"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/generic"
+  elementFormDefault="qualified">
+  <xs:include schemaLocation="SDMXDataGenericBase.xsd"/>
+  <xs:include schemaLocation="SDMXDataGenericTimeSeries.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Generic Data Namespace Module</xs:appinfo>
+    <xs:documentation>The generic data namespace module defines the generic (non-data structure
+      definition specific) format for data.
+    </xs:documentation>
+  </xs:annotation>
+
+</xs:schema>

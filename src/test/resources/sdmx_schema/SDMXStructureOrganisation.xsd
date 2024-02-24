@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Organisation Structure Module</xs:appinfo>
+    <xs:documentation>The organisation structure module defines the structure of organisation
+      schemes and organisation constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="OrganisationSchemeBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeBaseType is an abstract base type for any organisation
+        scheme.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrganisationSchemeType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>OrganisationSchemeType describes the structure of an organisation scheme.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="OrganisationSchemeBaseType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="Organisation"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Organisation" type="OrganisationType" substitutionGroup="Item" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Organisation is an abstract substitution head for a generic organisation.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="BaseOrganisationType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>BaseOrganisationType is an abstract base type the forms the basis for the
+        OrganisationType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:choice minOccurs="0">
+            <xs:element name="Parent" type="common:LocalOrganisationReferenceBaseType">
+              <xs:annotation>
+                <xs:documentation>If the particular organisation scheme allows, an organisation may
+                  reference a parent organisation defined in the same scheme. This does not affect
+                  the identification of the organisation, but rather only serves to state the
+                  relationship.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrganisationType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>OrganisationType in an abstract type which describes the structure of the
+        details of an organisation. In addition to the basic organisation identification, contact
+        details can be provided.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BaseOrganisationType">
+        <xs:sequence>
+          <xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Contact describes a contact for the organisation,</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AgencySchemeType">
+    <xs:annotation>
+      <xs:documentation>AgencySchemeType defines a specific type of organisation scheme which
+        contains only maintenance agencies. The agency scheme maintained by a particular maintenance
+        agency is always provided a fixed identifier and version, and is never final. Therefore,
+        agencies can be added or removed without have to version the scheme. Agencies schemes have
+        no hierarchy, meaning that no agency may define a relationship with another agency in the
+        scheme. In fact, the actual parent agency for an agency in a scheme is the agency which
+        defines the scheme.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="Agency"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required" fixed="AGENCIES"/>
+        <xs:attribute name="version" type="common:VersionType" use="optional" fixed="1.0"/>
+        <xs:attribute name="isFinal" type="xs:boolean" use="optional" fixed="false"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataConsumerSchemeType">
+    <xs:annotation>
+      <xs:documentation>DataConsumerSchemeType defines a type of organisation scheme which contains
+        only data consumers. The data consumer scheme maintained by a particular maintenance agency
+        is always provided a fixed identifier and version, and is never final. Therefore, consumers
+        can be added or removed without have to version the scheme. This scheme has no hierarchy,
+        meaning that no organisation may define a relationship with another organisation in the
+        scheme.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="DataConsumer"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required" fixed="DATA_CONSUMERS"/>
+        <xs:attribute name="version" type="common:VersionType" use="optional" fixed="1.0"/>
+        <xs:attribute name="isFinal" type="xs:boolean" use="optional" fixed="false"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataProviderSchemeType">
+    <xs:annotation>
+      <xs:documentation>DataProviderSchemeType defines a type of organisation scheme which contains
+        only data providers. The data provider scheme maintained by a particular maintenance agency
+        is always provided a fixed identifier and version, and is never final. Therefore, providers
+        can be added or removed without have to version the scheme. This scheme has no hierarchy,
+        meaning that no organisation may define a relationship with another organisation in the
+        scheme
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="DataProvider"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required" fixed="DATA_PROVIDERS"/>
+        <xs:attribute name="version" type="common:VersionType" use="optional" fixed="1.0"/>
+        <xs:attribute name="isFinal" type="xs:boolean" use="optional" fixed="false"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrganisationUnitSchemeType">
+    <xs:annotation>
+      <xs:documentation>OrganisationUnitSchemeType defines a type of organisation scheme which
+        simply defines organisations and there parent child relationships. Organisations in this
+        scheme are assigned no particular role, and may in fact exist within the other type of
+        organisation schemes as well.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="OrganisationUnit"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Agency" type="AgencyType" substitutionGroup="Organisation">
+    <xs:annotation>
+      <xs:documentation>Agency is an organisation which maintains structural metadata such as
+        statistical classifications, glossaries, key family structural definitions, and metadata
+        structure definitions..
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="DataConsumer" type="DataConsumerType" substitutionGroup="Organisation">
+    <xs:annotation>
+      <xs:documentation>DataConsumer describes an organisation using data as input for further
+        processing.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="DataProvider" type="DataProviderType" substitutionGroup="Organisation">
+    <xs:annotation>
+      <xs:documentation>DataProvider describes an organisation that produces data or reference
+        metadata.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="OrganisationUnit" type="OrganisationUnitType" substitutionGroup="Organisation">
+    <xs:annotation>
+      <xs:documentation>OrganisationUnit describes a generic organisation, which serves not
+        predefined role in SDMX.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="AgencyType">
+    <xs:annotation>
+      <xs:documentation>AgencyType defines the structure of an agency description. The contacts
+        defined for the organisation are specific to the agency role the organisation is serving.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>The id attribute holds the identification of the agency. The type of
+              this id is restricted to the common:NCNNameIDType. This is necessary, since the agency
+              identifier will be used as part of the name for simple types in data and metadata
+              structure specific schemas and therefore must be compliant with the NCName type in XML
+              Schema (see common:NCNameIDType for further details).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataConsumerType">
+    <xs:annotation>
+      <xs:documentation>DataConsumerType defines the structure of a data consumer description. The
+        contacts defined for the organisation are specific to the data consumer role the
+        organisation is serving.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataProviderType">
+    <xs:annotation>
+      <xs:documentation>DataProviderType defines the structure of a data provider description. The
+        contacts defined for the organisation are specific to the data provider role the
+        organisation is serving.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrganisationUnitType">
+    <xs:annotation>
+      <xs:documentation>OrganisationUnitType defines the structure of an organisation unit
+        description. In addition to general identification and contact information, an organisation
+        unit can specify a relationship with another organisation unit from the same scheme which is
+        its parent organisation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="OrganisationType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:choice minOccurs="0">
+            <xs:element name="Parent" type="common:LocalOrganisationUnitReferenceType"/>
+          </xs:choice>
+          <xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ContactType">
+    <xs:annotation>
+      <xs:documentation>ContactType describes the structure of a contact's details.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Department" type="common:TextType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Department is designation of the organisational structure by a
+            linguistic expression, within which the contact person works.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Role" type="common:TextType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Role is the responsibility of the contact person with respect to the
+            object for which this person is the contact.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Telephone" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Telephone holds the telephone number for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Fax" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Fax holds the fax number for the contact person.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="X400" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>X400 holds the X.400 address for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="URI" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>URI holds an information URL for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Email" type="xs:string">
+          <xs:annotation>
+            <xs:documentation>Email holds the email address for the contact person.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id" type="common:IDType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The id attribute is used to carry user id information for the contact.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+</xs:schema>

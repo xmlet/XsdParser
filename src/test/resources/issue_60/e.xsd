@@ -1,0 +1,4 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://mytestns.org/issue60_E" targetNamespace="http://mytestns.org/issue60_E">
+    <xsd:complexType name="Pong">
+    </xsd:complexType>
+</xsd:schema>

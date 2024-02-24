@@ -1,0 +1,4 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://mytestns.org/issue60_D" targetNamespace="http://mytestns.org/issue60_D">
+    <xsd:complexType name="Beer">
+    </xsd:complexType>
+</xsd:schema>

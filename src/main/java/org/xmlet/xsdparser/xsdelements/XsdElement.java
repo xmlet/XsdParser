@@ -247,6 +247,16 @@ public class XsdElement extends XsdNamedElements {
             elementCopy.complexType = ReferenceBase.clone(parser, this.complexType, elementCopy);
         }
 
+        if (this.substitutionGroup != null){
+            if (this.substitutionGroup instanceof ConcreteElement){
+                elementCopy.substitutionGroup = ReferenceBase.clone(parser, this.substitutionGroup, elementCopy);
+            }
+            else {
+                elementCopy.substitutionGroup = new UnsolvedReference(((UnsolvedReference)this.substitutionGroup).getRef(), new XsdElement(elementCopy, this.parser, new HashMap<>(), visitorFunction));
+                parser.addUnsolvedReference((UnsolvedReference) elementCopy.substitutionGroup);
+            }
+        }
+
         if (this.type != null){
             if (this.type instanceof ConcreteElement){
                 elementCopy.type = ReferenceBase.clone(parser, this.type, elementCopy);

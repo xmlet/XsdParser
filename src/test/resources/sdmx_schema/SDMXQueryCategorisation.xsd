@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Categorisation Query Module</xs:appinfo>
+    <xs:documentation>The categorisation query module provides the construct of a query for a
+      categorisation.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="CategorisationQueryType">
+    <xs:annotation>
+      <xs:documentation>CategorisationQueryType defines the structure of a categorisation query. The
+        parameters for the query are contained in the CategorisationWhere element. The References
+        element is used to indicate how objects that are referenced from the matched categorisations
+        should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="CategorisationWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="CategorisationWhere" type="CategorisationWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>CategorisationWhere defines the parameters for a categorisation query. All
+        parameters must be matched for an object to satisfy the query.In addition to querying based
+        on the basic maintainable properties, it is also possible to search based on the source
+        object being categorized and target category the object is categorized against.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="CategorisationWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>CategorisationWhereBaseType is an abstract base type which forms the basis
+        for the CategorisationWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MaintainableWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:MaintainableTypeCodelistType" use="optional"
+          fixed="Categorisation"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CategorisationWhereType">
+    <xs:annotation>
+      <xs:documentation>CategorisationWhereType contains a set of parameters for a categorisation
+        query. All supplied parameters must be matched in order for an object to satisfy the query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CategorisationWhereBaseType">
+        <xs:sequence>
+          <xs:element name="CategoryScheme" type="common:CategorySchemeReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>CategoryScheme references a category scheme for which
+                categorisations or sought for any of the scheme's categories. Any categorisation
+                which has a target of a category defined in the scheme will be returned.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TargetCategory" type="common:CategoryReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>TargetCategory references the category that defines the target of
+                the categorisation (the category which an object is categorized against). Only
+                categorisations which refence the category supplied here will be returned.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ObjectReference" type="common:ObjectReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ObjectReference references the object that is the source of the
+                categorisation (the object which is categorized). Only categorisations which
+                reference the object supplied here will be returned.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CategorisedObjectType" type="common:ObjectTypeCodelistType"
+            minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>CategorisedObjectType is used to specify the type of objects that
+                are categorised by the categorisations being sought. For example, this could be used
+                to find an caategorisation which classifies a code list.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

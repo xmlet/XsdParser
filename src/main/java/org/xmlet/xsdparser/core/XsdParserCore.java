@@ -392,31 +392,12 @@ public abstract class XsdParserCore {
             for (int i = 0; i < fileNameList.size(); i++) {
                 String fileName = fileNameList.get(i);
 
-                if (!doneList.get(i)) {
-                    List<String> includedFiles =
-                            parseElements.get(fileName)
-                                    .stream()
-                                    .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
-                                    .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
-                                    .collect(Collectors.toList());
+                if (!doneList.get(i)){
+                    Set<String> includedFiles = new HashSet<>();
+                    includedFiles.add(fileName);
+                    findTransitiveDependencies(fileName, includedFiles);
 
-                    Set<String> transitiveIncludes = new HashSet<>();
-
-                    for (String includedFile : includedFiles) {
-                        parseElements.keySet()
-                                .stream()
-                                .filter(fileNameAux -> fileNameAux.endsWith(includedFile))
-                                .findFirst()
-                                .ifPresent(fullIncludedFileName -> transitiveIncludes.addAll(parseElements.get(fullIncludedFileName)
-                                        .stream()
-                                        .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
-                                        .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
-                                        .collect(Collectors.toList())));
-                    }
-
-                    includedFiles.addAll((transitiveIncludes));
                     includedFiles.addAll(getResultXsdSchemas().filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName))).map(XsdSchema::getFilePath).distinct().collect(Collectors.toList()));
-                    includedFiles = includedFiles.stream().distinct().collect(Collectors.toList());
 
                     List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
 
@@ -446,8 +427,6 @@ public abstract class XsdParserCore {
                         unsolvedReferenceList = unsolvedReferenceList.stream().filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference())).collect(Collectors.toList());
 
                         for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
-                            doneSomething = true;
-
                             replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
                         }
 
@@ -460,6 +439,8 @@ public abstract class XsdParserCore {
 
                         if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize) {
                             solveMore = false;
+                        } else {
+                            doneSomething = true;
                         }
 
                         startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
@@ -479,6 +460,29 @@ public abstract class XsdParserCore {
                 }
             }
         }
+    }
+
+    private void findTransitiveDependencies(String fileName, Set<String> dependencies) {
+        List<String> includedFiles =
+                parseElements.get(fileName)
+                        .stream()
+                        .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
+                        .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
+                        .map(this::toRealFileName)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList());
+        for (String includedFile : includedFiles) {
+            if (dependencies.add(includedFile)) {
+                findTransitiveDependencies(includedFile, dependencies);
+            }
+        }
+    }
+    private Optional<String> toRealFileName(String fileName) {
+        return parseElements.keySet()
+                .stream()
+                .filter(fileNameAux -> fileNameAux.endsWith(fileName))
+                .findFirst();
     }
 
     /**

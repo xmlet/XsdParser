@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.core;
 
+import java.util.function.Function;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.utils.*;
 import org.xmlet.xsdparser.xsdelements.*;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
+import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.NAME_TAG;
 
 public abstract class XsdParserCore {
 
@@ -92,6 +94,125 @@ public abstract class XsdParserCore {
     void resolveRefs() {
         resolveInnerRefs();
         resolveOtherNamespaceRefs();
+        resolveUnion();
+    }
+
+  private void resolveMemberTypes(XsdUnion union) {
+    if (union != null) {
+      List<String> originalMemberTypes = union.getMemberTypesList();
+      for (String memberType : originalMemberTypes) {
+        XsdSchema schema = union.getXsdSchema();
+          String ref = null;
+          String[] split = memberType.split(":");
+          int length = split.length;
+        if (length == 1) {
+          ref = split[0];
+        }
+        if (length == 2 && schema != null) {
+          NamespaceInfo nsInfo = schema.getNamespaces().get(split[0]);
+          if (nsInfo != null) {
+            ref = split[1];
+            schema = getSchema(nsInfo.getFile());
+          } else {
+            schema = null;
+          }
+        }
+        if (ref != null) {
+          XsdAbstractElement element = findElement(schema, ref);
+          if (element instanceof XsdSimpleType) {
+            union.add((XsdSimpleType) element);
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Returns the first matching {@link XsdAbstractElement} from the {@link XsdSchema} and all {@link XsdInclude}'s with the given name.
+   *
+   * @param schema The initial {@link XsdSchema} to look up the file.
+   * @param name The name of the element which is searched.
+   * @return The first {@link XsdAbstractElement} with the given name or null if no element was found.
+   */
+  private XsdAbstractElement findElement(XsdSchema schema, String name) {
+    if (schema == null || name == null) {
+      return null;
+    }
+    XsdAbstractElement element = get(schema, name);
+    if (element == null) {
+      List<XsdInclude> includesFromSchema =
+          schema.getChildrenIncludes().collect(Collectors.toList());
+      while (!includesFromSchema.isEmpty()) {
+        XsdSchema resolvedSchema = getSchema(getSchemaLocation(includesFromSchema.remove(0)));
+        if (resolvedSchema != null) {
+          element = get(resolvedSchema, name);
+          if (element == null) {
+            resolvedSchema.getChildrenIncludes().forEach(inc -> includesFromSchema.add(0, inc));
+          } else {
+            includesFromSchema.clear();
+          }
+        }
+      }
+    }
+    return element;
+  }
+
+  /**
+   * Get the SchemaLocation of an {@link XsdImport} or {@link XsdInclude}.
+   *
+   * @param importOrInclude A XsdAbtractElement to get the SchemaLocation.
+   * @return the SchemaLocation or null
+   */
+  private static String getSchemaLocation(XsdAbstractElement importOrInclude) {
+    String schemaLocation = null;
+    if (importOrInclude instanceof XsdInclude) {
+      XsdInclude include = (XsdInclude) importOrInclude;
+      schemaLocation = include.getSchemaLocation();
+    }
+    if (importOrInclude instanceof XsdImport) {
+      XsdImport xsdImport = (XsdImport) importOrInclude;
+      schemaLocation = xsdImport.getSchemaLocation();
+    }
+    return schemaLocation;
+  }
+
+  private void resolveUnion() {
+    for (List<ReferenceBase> parsedElements : parseElements.values()) {
+      parsedElements.stream()
+          .map(ReferenceBase::getElement)
+          .filter(XsdSimpleType.class::isInstance)
+          .map(el -> (XsdSimpleType) el)
+          .map(XsdSimpleType::getUnion)
+          .filter(Objects::nonNull)
+          .forEach(this::resolveMemberTypes);
+        }
+    }
+
+  private XsdSchema getSchema(String fileName) {
+    return getResultXsdSchemas()
+        .collect(Collectors.toMap(XsdSchema::getFilePath, Function.identity()))
+        .entrySet()
+        .stream()
+        .filter(stringXsdSchemaEntry -> stringXsdSchemaEntry.getKey().endsWith(fileName))
+        .findFirst()
+        .map(Map.Entry::getValue)
+        .orElse(null);
+  }
+
+    private XsdAbstractElement get(XsdSchema schema, String name) {
+        if (name == null || schema == null) {
+            return null;
+        }
+        return schema
+                .getXsdElements()
+                .filter(
+                        st -> {
+                            Map<String, String> attributes = st.getAttributesMap();
+                            String nameAttributeValue = attributes.get(NAME_TAG);
+                            return name.equals(nameAttributeValue);
+                        })
+                .findFirst()
+                .orElse(null);
     }
 
     private void resolveOtherNamespaceRefs() {

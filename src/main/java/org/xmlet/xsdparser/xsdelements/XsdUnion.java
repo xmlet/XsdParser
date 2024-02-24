@@ -72,11 +72,29 @@ public class XsdUnion extends XsdAnnotatedElements {
         return simpleTypeList;
     }
 
-    @SuppressWarnings("unused")
     public List<String> getMemberTypesList() {
+        if(this.memberTypes == null) {
+            return new ArrayList<>();
+        }
         return Arrays.asList(memberTypes.split(" "));
     }
 
+  /**
+   * Returns the member types that can't be resolved. You have to provide a named type in the
+   * xsd.
+   *
+   * @return A List of the member types that can't be resolved or otherwise an empty list.
+   */
+  public List<String> getUnsolvedMemberTypesList() {
+    List<String> unsolvedMemberTypes = new ArrayList<>();
+    for (String member : getMemberTypesList()) {
+      if (getUnionElements().stream()
+          .noneMatch(st -> st.getName().endsWith(member.substring(member.indexOf(":") + 1)))) {
+        unsolvedMemberTypes.add(member);
+      }
+    }
+    return unsolvedMemberTypes;
+  }
     public static ReferenceBase parse(@NotNull  ParseData parseData){
         return xsdParseSkeleton(parseData.node, new XsdUnion(parseData.parserInstance, convertNodeMap(parseData.node.getAttributes()), parseData.visitorFunction));
     }

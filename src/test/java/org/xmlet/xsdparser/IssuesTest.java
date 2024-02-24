@@ -777,6 +777,26 @@ public class IssuesTest {
         Assert.assertEquals("elem2", ((XsdElement)elem2).getName());
     }
 
+  @Test
+  public void testIssue55_ResolveUnion() {
+    XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
+    XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
+
+    Assert.assertNotNull(schema);
+    XsdUnion result =
+        schema
+            .getXsdElements()
+            .filter(XsdSimpleType.class::isInstance)
+            .map(e -> (XsdSimpleType) e)
+            .filter(ct -> ct.getName().endsWith("VolumeAndVolumeRateUnitOfMeasure"))
+            .findFirst()
+            .map(XsdSimpleType::getUnion)
+            .orElse(null);
+    Assert.assertNotNull(result);
+    Assert.assertEquals(2, result.getUnionElements().size());
+    Assert.assertTrue(result.getUnsolvedMemberTypesList().isEmpty());
+  }
+
     @Test
     public void testPersons(){
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));

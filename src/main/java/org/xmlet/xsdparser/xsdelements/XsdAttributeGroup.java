@@ -107,6 +107,15 @@ public class XsdAttributeGroup extends XsdNamedElements {
                 attributeGroups.add(element);
             }
         }
+        if(element.getElement() instanceof XsdAttribute) {
+            for(int i = 0; i < attributes.size(); i++) {
+                ReferenceBase attributesUnsolvedReference = attributes.get(i);
+                if(attributesUnsolvedReference instanceof UnsolvedReference && (((UnsolvedReference) attributesUnsolvedReference).getRef().substring(((UnsolvedReference) attributesUnsolvedReference).getRef().indexOf(":") + 1).equals(element.getName()))) {
+                    attributes.set(i, element);
+                    break;
+                }
+            }
+        }
     }
 
     public Stream<XsdAttributeGroup> getXsdAttributeGroups() {

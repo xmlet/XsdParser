@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Data Structure Structure Module</xs:appinfo>
+    <xs:documentation>The Data Structure structure module defines the structure of data structure
+      definition constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="DataStructureType">
+    <xs:annotation>
+      <xs:documentation>DataStructureType describes the structure of a data structure definition. A
+        data structure definition is defined as a collection of metadata concepts, their structure
+        and usage when used to collect or disseminate data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="DataStructureComponents"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="DataStructureComponents" type="DataStructureComponentsType"
+    substitutionGroup="Grouping">
+    <xs:annotation>
+      <xs:documentation>DataStructureComponents defines the grouping of the sets of metadata
+        concepts that have a defined structural role in the data structure definition. Note that for
+        any component or group defined in a data structure definition, its id must be unique. This
+        applies to the identifiers explicitly defined by the components as well as those inherited
+        from the concept identity of a component. For example, if two dimensions take their identity
+        from concepts with same identity (regardless of whether the concepts exist in different
+        schemes) one of the dimensions must be provided a different explicit identifier. Although
+        there are XML schema constraints to help enforce this, these only apply to explicitly
+        assigned identifiers. Identifiers inherited from a concept from which a component takes its
+        identity cannot be validated against this constraint. Therefore, systems processing data
+        structure definitions will have to perform this check outside of the XML validation. There
+        are also three reserved identifiers in a data structure definition; OBS_VALUE, TIME_PERIOD,
+        and REPORTING_PERIOD_START_DAY. These identifiers may not be used outside of their
+        respective defintions (PrimaryMeasure, TimeDimension, and ReportingYearStartDay). This
+        applies to both the explicit identifiers that can be assigned to the components or groups as
+        well as an identifier inherited by a component from its concept identity. For example, if an
+        ordinary dimension (i.e. not the time dimension) takes its concept identity from a concept
+        with the identifier TIME_PERIOD, that dimension must provide a different explicit
+        identifier.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:unique name="DataStructureUniqueComponent">
+      <xs:selector
+        xpath="structure:Group | structure:DimensionList/structure:Dimension | structure:DimensionList/structure:TimeDimension | structure:DimensionList/structure:MeasureDimension | structure:AttributeList/structure:Attribute | structure:AttributeList/structure:ReportingYearStartDay| structure:MeasureList/structure:PrimaryMeasure"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="DataStructureComponentsBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DataStructureComponentsBaseType is an abstract base type the serves as the
+        basis for the DataStructureComponentsType. This type is necessary to allow for valid
+        substitutions of component lists.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="GroupingType">
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataStructureComponentsType">
+    <xs:annotation>
+      <xs:documentation>DataStructureComponentsType describes the structure of the grouping to the
+        sets of metadata concepts that have a defined structural role in the data structure
+        definition. At a minimum at least one dimension and a primary measure must be defined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DataStructureComponentsBaseType">
+        <xs:sequence>
+          <xs:element ref="DimensionList"/>
+          <xs:element ref="Group" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="AttributeList" minOccurs="0"/>
+          <xs:element ref="MeasureList"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="AttributeList" type="AttributeListType" substitutionGroup="ComponentList">
+    <xs:annotation>
+      <xs:documentation>AttributeList describes the attribute descriptor for the data structure
+        definition. It is a collection of metadata concepts that define the attributes of the data
+        structure definition.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="AttributeListBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>AttributeListBaseType is an abstract base type used as the basis for the
+        AttributeListType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="optional" fixed="AttributeDescriptor">
+          <xs:annotation>
+            <xs:documentation>The id attribute is provided in this case for completeness. However,
+              its value is fixed to AttributeDescriptor.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeListType">
+    <xs:annotation>
+      <xs:documentation>AttributeListType describes the attribute descriptor for the data structure
+        definition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeListBaseType">
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="Attribute"/>
+          <xs:element ref="ReportingYearStartDay"/>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Attribute" type="AttributeType" substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>Attribute describes the definition of a data attribute, which is defined as
+        a characteristic of an object or entity.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="AttributeBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>AttributeBaseType is an abstract base type that serves as the basis for the
+        AttributeType. It restricts the text format base to a text format valid for data components
+        (that does not allow for XHTML representation). The local representation is restricted to
+        the values defined in codelist. The concept role is restricted to the values valid for a
+        data attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="SimpleDataStructureRepresentationType"
+            minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeType">
+    <xs:annotation>
+      <xs:documentation>AttributeType describes the structure of a data attribute, which is defined
+        as a characteristic of an object or entity. The attribute takes its semantic, and in some
+        cases it representation, from its concept identity. An attribute can be coded by referencing
+        a code list from its coded local representation. It can also specify its text format, which
+        is used as the representation of the attribute if a coded representation is not defined.
+        Neither the coded or uncoded representation are necessary, since the attribute may take
+        these from the referenced concept. An attribute specifies its relationship with other data
+        structure components and is given an assignment status. These two properties dictate where
+        in a data message the attribute will be attached, and whether or not the attribute will be
+        required to be given a value. A set of roles defined in concept scheme can be assigned to
+        the attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:sequence>
+          <xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>ConceptRole references concepts which define roles which this
+                attribute serves. If the concept from which the attribute takes its identity also
+                defines a role the concept serves, then the isConceptRole indicator can be set to
+                true on the concept identity rather than repeating the reference here.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttributeRelationship" type="AttributeRelationshipType">
+            <xs:annotation>
+              <xs:documentation>AttributeRelationship describes how the value of this attribute
+                varies with the values of other components. These relationships will be used to
+                determine the attachment level of the attribute in the various data formats.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="assignmentStatus" type="UsageStatusType" use="required">
+          <xs:annotation>
+            <xs:documentation>The assignmentStatus attribute indicates whether a value must be
+              provided for the attribute when sending documentation along with the data.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeRelationshipType">
+    <xs:annotation>
+      <xs:documentation>AttributeRelationshipType defines the structure for stating the relationship
+        between an attribute and other data structure definition components.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="None" type="common:EmptyType">
+        <xs:annotation>
+          <xs:documentation>This means that value of the attribute will not vary with any of the
+            other key family components. This will always be treated as a data set level attribute.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="Dimension" type="common:LocalDimensionReferenceType"
+          maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>This is used to reference dimensions in the data structure definition
+              on which the value of this attribute depends. An attribute using this relationship can
+              be either a group, series (or section), or observation level attribute. The attachment
+              level of the attribute will be determined by the data format and which dimensions are
+              referenced.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="AttachmentGroup" type="common:LocalGroupKeyDescriptorReferenceType"
+          minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>This is used to specify that the attribute should always be attached
+              to the groups referenced here. Note that if one of the referenced dimensions is the
+              time dimension, the groups referenced here will be ignored.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="Group" type="common:LocalGroupKeyDescriptorReferenceType">
+        <xs:annotation>
+          <xs:documentation>This is used as a convenience to referencing all of the dimension
+            defined by the referenced group. The attribute will also be attached to this group.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrimaryMeasure" type="common:LocalPrimaryMeasureReferenceType">
+        <xs:annotation>
+          <xs:documentation>This is used to specify that the value of the attribute is dependent
+            upon the observed value. An attribute with this relationship will always be treated as
+            an observation level attribute.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:element name="ReportingYearStartDay" type="ReportingYearStartDayType"
+    substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>ReportingYearStartDay is a specialized data attribute which provides
+        important context to the time dimension. If the value of the time dimension is one of the
+        standard reporting periods (see common:ReportingTimePeriodType) then this attribute is used
+        to state the month and day that the reporting year begins. This provides a reference point
+        from which the actual calendar dates covered by these periods can be determined. If this
+        attribute does not occur in a data set, then the reporting year start day will be assumed to
+        be January 1.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ReportingYearStartDayType">
+    <xs:annotation>
+      <xs:documentation>ReportingYearStartDayType defines the structure of the reporting year start
+        day attribute. The reporting year start day attribute takes its semantic from its concept
+        identity (usually the REPORTING_YEAR_START_DAY concept), yet is always has a fixed
+        identifier (REPORTING_YEAR_START_DAY). The reporting year start day attribute always has a
+        fixed text format, which specifies that the format of its value is always a day and month in
+        the ISO 8601 format of '--MM-DD'. As with any other attribute, an attribute relationship
+        must be specified. this relationship should be carefully selected as it will determin what
+        type of data the data structure definition will allow. For example, if an attribute
+        relationship of none is specified, this will mean the data sets conforming to this data
+        structure definition can only contain data with standard reporting periods where the all
+        reporting periods have the same start day. In this case, data reported as standard reporting
+        periods from two entities with different fiscal year start days could not be contained in
+        the same data set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="AttributeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="ReportingYearStartDayRepresentationType"/>
+          <xs:element name="AttributeRelationship" type="AttributeRelationshipType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="optional"
+          fixed="REPORTING_YEAR_START_DAY"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ReportingYearStartDayRepresentationType">
+    <xs:annotation>
+      <xs:documentation>ReportingYearStartDayRepresentationType defines the representation for the
+        reporting year start day attribute. Enumerated values are not allowed and the text format is
+        fixed to be a day and month in the ISO 8601 format of '--MM-DD'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="SimpleDataStructureRepresentationType">
+        <xs:sequence>
+          <xs:element name="TextFormat" type="ReportingYearStartDayTextFormatType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ReportingYearStartDayTextFormatType">
+    <xs:annotation>
+      <xs:documentation>ReportingYearStartDayTextFormatType is a restricted version of the
+        NonFacetedTextFormatType that fixes the value of the text type to be DayMonth. This type
+        exists solely for the purpose of fixing the representation of the reporting year start day
+        attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="NonFacetedTextFormatType">
+        <xs:attribute name="textType" type="common:SimpleDataType" fixed="MonthDay"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="DimensionList" type="DimensionListType" substitutionGroup="ComponentList">
+    <xs:annotation>
+      <xs:documentation>DimensionList describes the key descriptor for the data structure
+        definition. It is an ordered set of metadata concepts that, combined, classify a statistical
+        series, such as a time series, and whose values, when combined (the key) in an instance such
+        as a data set, uniquely identify a specific series.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:unique name="SingleMeasureDimension">
+      <xs:selector xpath="structure:MeasureDimension"/>
+      <xs:field xpath="@type"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="DimensionListBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DimensionListBaseType is an abstract base type used as the basis for the
+        DimensionListType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="optional" fixed="DimensionDescriptor">
+          <xs:annotation>
+            <xs:documentation>The id attribute is provided in this case for completeness. However,
+              its value is fixed to DimensionDescriptor.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DimensionListType">
+    <xs:annotation>
+      <xs:documentation>DimensionListType describes the key descriptor for a data structure
+        definition. The order of the declaration of child dimensions is significant: it is used to
+        describe the order in which they will appear in data formats for which key values are
+        supplied in an ordered fashion (exclusive of the time dimension, which is not represented as
+        a member of the ordered key). Any data structure definition which uses the time dimension
+        should also declare a frequency dimension, conventionally the first dimension in the key
+        (the set of ordered non-time dimensions). If is not necessary to assign a time dimension, as
+        data can be organised in any fashion required.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DimensionListBaseType">
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="Dimension"/>
+          <xs:element ref="MeasureDimension"/>
+          <xs:element ref="TimeDimension"/>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BaseDimensionBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>BaseDimensionBaseType is an abstract base type that serves as the basis for
+        any dimension. It restricts the text format base to a text format valid for data components
+        (that does not allow for XHTML representation).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="DataStructureRepresentationType"
+            minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BaseDimensionType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>BaseDimensionType is an abstract base type which defines the basic structure
+        of all dimensions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BaseDimensionBaseType">
+        <xs:sequence>
+          <xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>ConceptRole references concepts which define roles which this
+                dimension serves. If the concept from which the attribute takes its identity also
+                defines a role the concept serves, then the isConceptRole indicator can be set to
+                true on the concept identity rather than repeating the reference here.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="position" type="xs:int" use="optional">
+          <xs:annotation>
+            <xs:documentation>The position attribute specifies the position of the dimension in the
+              data structure definition. It is optional an the position of the dimension in the key
+              descriptor (DimensionList element) always takes precedence over the value supplied
+              here. This is strictly for informational purposes only.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="common:DimensionTypeType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The type attribute identifies whether then dimension is a measure
+              dimension, the time dimension, or a regular dimension. Although these are all apparent
+              by the element names, this attribute allows for each dimension to be processed
+              independent of its element as well as maintaining the restriction of only one measure
+              and time dimension while still allowing dimension to occur in any order.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Dimension" type="DimensionType" substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>Dimension describes the structure of a dimension, which is defined as a
+        statistical concept used (most probably together with other statistical concepts) to
+        identify a statistical series, such as a time series, e.g. a statistical concept indicating
+        certain economic activity or a geographical reference area.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DimensionType">
+    <xs:annotation>
+      <xs:documentation>DimensionType describes the structure of an ordinary dimension, which is
+        defined as a statistical concept used (most probably together with other statistical
+        concepts) to identify a statistical series, such as a time series, e.g. a statistical
+        concept indicating certain economic activity or a geographical reference area. The dimension
+        takes its semantic, and in some cases it representation, from its concept identity. A
+        dimension can be coded by referencing a code list from its coded local representation. It
+        can also specify its text format, which is used as the representation of the dimension if a
+        coded representation is not defined. Neither the coded or uncoded representation are
+        necessary, since the dimension may take these from the referenced concept.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseDimensionType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="SimpleDataStructureRepresentationType"
+            minOccurs="0"/>
+          <xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:DimensionTypeType" use="optional" fixed="Dimension"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="TimeDimension" type="TimeDimensionType" substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>TimeDimension is a special dimension which designates the period in time in
+        which the data identified by the full series key applies.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="TimeDimensionType">
+    <xs:annotation>
+      <xs:documentation>TimeDimensionType describes the structure of a time dimension. The time
+        dimension takes its semantic from its concept identity (usually the TIME_PERIOD concept),
+        yet is always has a fixed identifier (TIME_PERIOD). The time dimension always has a fixed
+        text format, which specifies that its format is always the in the value set of the
+        observational time period (see common:ObservationalTimePeriodType). It is possible that the
+        format may be a sub-set of the observational time period value set. For example, it is
+        possible to state that the representation might always be a calendar year. See the
+        enumerations of the textType attribute in the LocalRepresentation/TextFormat for more
+        details of the possible sub-sets. It is also possible to facet this representation with
+        start and end dates. The purpose of such facts is to restrict the value of the time
+        dimension to occur within the specified range. If the time dimension is expected to allow
+        for the standard reporting periods (see common:ReportingTimePeriodType) to be used, then it
+        is strongly recommended that the reporting year start day attribute also be included in the
+        data structure definition. When the reporting year start day attribute is used, any standard
+        reporting period values will be assumed to be based on the start day contained in this
+        attribute. If the reporting year start day attribute is not included and standard reporting
+        periods are used, these values will be assumed to be based on a reporting year which begins
+        January 1.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseDimensionType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="TimeDimensionRepresentationType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="optional" fixed="TIME_PERIOD"/>
+        <xs:attribute name="type" type="common:DimensionTypeType" use="optional"
+          fixed="TimeDimension"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MeasureDimension" type="MeasureDimensionType" substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>MeasureDimension is a special type of dimension which defines multiple
+        measures in a key family. This is represented as any other dimension in a unless it is the
+        observation dimension. It takes it representation from a concept scheme, and this scheme
+        defines the measures and their representations. When data is formatted with this as the
+        observation dimension, these measures can be made explicit or the value of the dimension can
+        be treated as any other dimension. If the measures are explicit, the representation of the
+        observation will be specific to the core representation for each concept in the
+        representation concept scheme. Note that it is necessary that these representations are
+        compliant (the same or derived from) with that of the primary measure.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MeasureDimensionType">
+    <xs:annotation>
+      <xs:documentation>MeasureDimensionType defines the structure of the measure dimension. It is
+        derived from the base dimension structure, but requires that a coded representation taken
+        from a concept scheme is given.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BaseDimensionType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="MeasureDimensionRepresentationType"/>
+          <xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:DimensionTypeType" use="optional"
+          fixed="MeasureDimension"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Group" type="GroupType" substitutionGroup="ComponentList">
+    <xs:annotation>
+      <xs:documentation>Group describes a group descriptor in a data structure definition. It is a
+        set metadata concepts (and possibly their values) that define a partial key derived from the
+        key descriptor in a data structure definition.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GroupBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>GroupBaseType is an abstract base type that forms the basis for the
+        GroupType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GroupType">
+    <xs:annotation>
+      <xs:documentation>GroupType describes the structure of a group descriptor in a data structure
+        definition. A group may consist of a of partial key, or collection of distinct cube regions
+        or key sets to which attributes may be attached. The purpose of a group is to specify
+        attributes values which have the same value based on some common dimensionality. All groups
+        declared in the data structure must be unique - that is, you may not have duplicate partial
+        keys. All groups must be given unique identifiers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GroupBaseType">
+        <xs:choice>
+          <xs:element ref="GroupDimension" maxOccurs="unbounded"/>
+          <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType">
+            <xs:annotation>
+              <xs:documentation>AttachmentConstraint references an attachment constraint that
+                defines the key sets and/or cube regions that attributes may be attached to. This is
+                an alternative to referencing the dimensions, and allows attributes to be attached
+                to data for given values of dimensions.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GroupDimension" type="GroupDimensionType" substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>GroupDimension is a component which contains only a reference to a dimension
+        in the key descriptor (DimensionList). Although it is conventional to declare dimensions in
+        the same order as they are declared in the ordered key, there is no requirement to do so -
+        the ordering of the values of the key are taken from the order in which the dimensions are
+        declared. Note that the id of a dimension may be inherited from its underlying concept -
+        therefore this reference value may actually be the id of the concept.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GroupDimensionBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>GroupDimensionBaseType is an abstract base type which refines the base
+        ComponentType in order to form the basis for the GroupDimensionType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentType">
+        <xs:attribute name="id" type="common:NCNameIDType" use="prohibited"/>
+        <xs:attribute name="urn" type="xs:anyURI" use="prohibited"/>
+        <xs:attribute name="uri" type="xs:anyURI" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GroupDimensionType">
+    <xs:annotation>
+      <xs:documentation>GroupDimensionType defines a dimension component with a group key descriptor
+        component list. Although technically a component, this is essentially a reference to a
+        dimension defined in the key descriptor. Therefore, the identification, name, and
+        description, concept identity and representation properties that are typically available for
+        a component are not allowed here, as they are all inherited from the referenced dimension.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GroupDimensionBaseType">
+        <xs:sequence>
+          <xs:element name="DimensionReference" type="common:LocalDimensionReferenceType">
+            <xs:annotation>
+              <xs:documentation>DimensionReference provides a reference to a dimension defined in
+                the key descriptor of the data structure definition in which this group key
+                descriptor is defined.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="MeasureList" type="MeasureListType" substitutionGroup="ComponentList">
+    <xs:annotation>
+      <xs:documentation>MeasureList describes the measure descriptor for a key family. It contains a
+        single metadata concepts that define the primary measures of a data structure.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="MeasureListType">
+    <xs:annotation>
+      <xs:documentation>MeasureListType describes the structure of the measure descriptor for a data
+        structure definition. Only a primary may be defined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentListType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="PrimaryMeasure"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="optional" fixed="MeasureDescriptor"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="PrimaryMeasure" type="PrimaryMeasureType" substitutionGroup="Component">
+    <xs:annotation>
+      <xs:documentation>PrimaryMeasure defines the structure of the primary measure, which is the
+        concept that is the value of the phenomenon to be measured in a data set. Although this may
+        take its semantic from any concept, this is provided a fixed identifier (OBS_VALUE) so that
+        it may be easily distinguished in data messages.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="PrimaryMeasureType">
+    <xs:annotation>
+      <xs:documentation>PrimaryMeasureType describes the structure of the primary measure. It
+        describes the observation values for all presentations of the data. The primary measure
+        takes its semantic, and in some cases it representation, from its concept identity
+        (conventionally the OBS_VALUE concept). The primary measure can be coded by referencing a
+        code list from its coded local representation. It can also specify its text format, which is
+        used as the representation of the primary measure if a coded representation is not defined.
+        Neither the coded or uncoded representation are necessary, since the primary measure may
+        take these from the referenced concept. Note that if the data structure declares a measure
+        dimension, the representation of this must be a superset of all possible measure concept
+        representations.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ComponentType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+          <xs:element name="LocalRepresentation" type="SimpleDataStructureRepresentationType"
+            minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="optional" fixed="OBS_VALUE"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataStructureRepresentationType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DataStructureRepresentationType is an abstract base type which defines the
+        allowable representations for any data structure definition component. The enumeration must
+        be restricted to the proper type for item scheme for a given component.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="RepresentationType">
+        <xs:choice>
+          <xs:element name="TextFormat" type="SimpleComponentTextFormatType"/>
+          <xs:sequence>
+            <xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType"/>
+            <xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SimpleDataStructureRepresentationType">
+    <xs:annotation>
+      <xs:documentation>SimpleDataStructureRepresentationType defines the representation for any
+        non-measure and non-time dimension data structure definition component.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureRepresentationType">
+        <xs:choice>
+          <xs:element name="TextFormat" type="SimpleComponentTextFormatType"/>
+          <xs:sequence>
+            <xs:element name="Enumeration" type="common:CodelistReferenceType"/>
+            <xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureDimensionRepresentationType">
+    <xs:annotation>
+      <xs:documentation>BaseDimensionRepresentationType is an abstract base which defines the
+        representation for a measure dimension.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureRepresentationType">
+        <xs:sequence>
+          <xs:element name="Enumeration" type="common:ConceptSchemeReferenceType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeDimensionRepresentationType">
+    <xs:annotation>
+      <xs:documentation>TimeDimensionRepresentationType defines the representation for the time
+        dimension. Enumerated values are not allowed.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="SimpleDataStructureRepresentationType">
+        <xs:sequence>
+          <xs:element name="TextFormat" type="TimeTextFormatType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

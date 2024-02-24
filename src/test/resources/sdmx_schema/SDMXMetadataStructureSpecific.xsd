@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/structurespecific"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/metadata/structurespecific"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Structure Specific Metadata Namespace Module</xs:appinfo>
+    <xs:documentation>The structure specific metadata namespace module provides the common framework
+      to be used for all metadata structure definition-specific schemas for reference metadata
+      reporting. This forms the basis for all sets of namespace modules created and maintained by
+      those who create metadata structure definition-specific reference metadata schemas which are
+      not maintained by SDMX.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="MetadataSetType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MetadataSetType is an abstract base type the forms the basis for a metadata
+        structure specific metadata set. It is restricted by the metadata structure definition
+        specific schema to meet its needs.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>>DataProviderReference provides a references to an organisation with
+                the role of data provider that is providing this metadata set.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Report" type="ReportType" form="unqualified" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Report contains the details of a the reported metadata, including
+                the identification of the target and the report attributes. This element is
+                unqualified so that the metadata structure definition specific schema can refine the
+                type of the element such that it requires types built according to the metadata
+                structure definition. This allows the metadata structure definition to validate the
+                structure of the reported metadata against the metadata structure definition while
+                still allowing the content to be processed in a generic manner.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="SetAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ReportType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ReportType is an abstract base type the forms the basis for a metadata
+        structure definition specific report, based on the defined report structures. This type is
+        restricted in the metadata structure definition specific schema so that the Target and
+        AttributeSet conform to the prescribed report structure.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element name="Target" type="TargetType" form="unqualified">
+            <xs:annotation>
+              <xs:documentation>Target contains a set of target reference values which when taken
+                together, identify the object or objects to which the reported metadata apply. This
+                element is unqualified so that the metadata structure definition specific schema can
+                refine the type of the element such that the references values can be validated
+                against those defined in the metadata targets for the report structure.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttributeSet" form="unqualified">
+            <xs:annotation>
+              <xs:documentation>AttributeSet contains the reported metadata attribute values for the
+                reported metadata. This element is unqualified and un-typed so that it can refined
+                by the metadata structure definition specific schema to validate that the reported
+                metadata attributes conform to those prescribed by the report structure. The content
+                of this must be element only, and these elements must always represent a reported
+                attribute. Since this can not be strictly enforced in XML Schema, additional steps
+                have been added to make generic processing of this element simpler. When processing
+                this element, any element found with the attribute isMetadataAttribute in this
+                target namespace is assumed to be a reported metadata attribute and can be processed
+                as such.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The id attribute holds the identifier of the report structure as
+              defined in the metadata structure definition. This identifies the report structure
+              which defines the structure of metadata that is being reported. This is optional and
+              not expected to be supplied as the metadata structure definition specific schema will
+              specify a fixed value such that the reference to the report structure will always be
+              available if required for processing.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TargetType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>TargetType is an abstract base type that forms the basis of a the metadata
+        report's metadata target value. This type is restricted in the metadata structure definition
+        specific schema so that the ReferenceValue elements conform to the targets specified in the
+        metadata target defined in the metadata structure definition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReferenceValue" type="ReferenceValueType" form="unqualified"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ReferenceValue contains a value for a target reference. When this is
+            taken with its sibling elements, they identify the object or objects to which the
+            reported metadata apply. The content of this will either be a reference to an
+            identifiable object, a data key, a reference to a data set, or a report period. This
+            element is unqualified so that the metadata structure definition specific schema can
+            refine the type of the element such that value can be validated against the format
+            defined in the metadata structure definition.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="common:IDType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The id attribute holds the identifier of the metadata target as defined in
+          the metadata structure definition. This identifies the metadata target of the report
+          structure that identifies the target object(s) of the reported metadata. This is optional
+          and not expected to be supplied as the metadata structure definition specific schema will
+          specify a fixed value such that the reference to the metadata target will always be
+          available if required for processing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ReferenceValueType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ReferenceValueType is an abstract base type that forms the basis of a target
+        reference value. A target reference value will either be a reference to an identifiable
+        object, a data key, a reference to a data set, or a report period. The choice of these
+        options will be refined to only one according to the definition of the target in the
+        metadata structure definition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="ObjectReference" type="common:ReferenceType" form="unqualified">
+        <xs:annotation>
+          <xs:documentation>ObjectReference provides a reference to an identifiable object in the
+            SDMX information model. An identifiable object target will utilize this option as the
+            representation of the target reference value. This element is unqualified so that the
+            metadata structure definition specific schema can refine the type of the element such
+            that the type of reference is valid according to the object type specified in the
+            identifiable object target in the metadata structure definition. At the very least, the
+            reference will be specific to the type of object being referenced so that a complete set
+            of reference fields must be provided. In cases where an item object is restricted to be
+            from a particular scheme, this type will be further restricted so that only a valid item
+            reference can be supplied. The structure of this reference is such that it can be
+            generically processed without needing to know what the intended target object type is
+            prior to processing, as this information is part of the reference.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataKey" type="common:DataKeyType" form="unqualified">
+        <xs:annotation>
+          <xs:documentation>ObjectReference provides a set of dimension references and values for
+            those dimension for the purpose of reporting metadata against a set of data. A key
+            descriptor values target will utilize this option as the representation of the target
+            reference value. It is not expect that the metadata structure definition specific schema
+            would refine this, but none the less, it is an unqualified element.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataSetReference" type="common:SetReferenceType" form="unqualified">
+        <xs:annotation>
+          <xs:documentation>DataSetReference provides a reference to a data set for the purpose of
+            reporting metadata against the data. A data set target will utilize this option as the
+            representation of the target reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConstraintContentReference" type="common:AttachmentConstraintReferenceType"
+        form="unqualified">
+        <xs:annotation>
+          <xs:documentation>ConstraintContentReference provides a reference to an attachment
+            constraint for the purpose of reporting metadata against the data identified in the key
+            sets and/or cube regions identified by the constraint. A constraint target will utilize
+            this option as the representation of the target reference value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportPeriod" type="common:ObservationalTimePeriodType" form="unqualified">
+        <xs:annotation>
+          <xs:documentation>ReportPeriod provides a report period for the purpose of qualifying the
+            target reporting period of reported metadata. A report period target will utilize this
+            option as the representation of the target reference value. It is not expect that the
+            metadata structure definition specific schema would refine this, but none the less, it
+            is an unqualified element. This element is unqualified so that the metadata structure
+            definition specific schema can refine the type of the element such that the specific
+            type of time value prescribed in the metadata structure definition can be validated.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="id" type="common:IDType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The id attribute holds the identifier of the target reference object
+          reference as defined in the metadata structure definition. This identifies the target
+          reference of the metadata target that identifes one of the target references, that when
+          taken together, identify the target of the reported metadata. This is optional and not
+          expected to be supplied as the metadata structure definition specific schema will specify
+          a fixed value such that the reference to the target object definition will always be
+          available if required for processing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ReportedAttributeType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ReportedAttributeType is an abstract base type that forms the basis for a
+        metadata structure specific metadata attribute. A value for the attribute can be supplied as
+        either a single value, or multi-lingual text values (either structured or unstructured). An
+        optional set of child metadata attributes is also available if the metadata attribute
+        definition defines nested metadata attributes. The metadata structure definition specific
+        schema will refine this type for each metadata attribute such that the content can be
+        validation against what is defined in the metadata structure definition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:choice minOccurs="0">
+            <xs:element ref="common:Text" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Text is used to supply parallel multi-lingual textual values for
+                  the reported metadata attribute. This will be used if the text format of the
+                  metadata attribute has a type of string and the multi-lingual value is set to
+                  true.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element ref="common:StructuredText" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>StructuredText is used to supply parallel multi-lingual structured
+                  (as XHTML) textual values for the reported metadata attribute. This will be used
+                  if the text format of the metadata attribute has a type of XHTML and the
+                  multi-lingual value is set to true. If the multi-lingual flag is not set to true,
+                  it is expected that the maximum occurrence of this will be refined to be 1 in the
+                  metadata structure definition specific schema.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="AttributeSet" form="unqualified" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>AttributeSet contains the reported metadata attribute values for the
+                child metadata attributes. This element is unqualified and un-typed so that it can
+                refined by the metadata structure definition specific schema to validate that the
+                reported metadata attributes conform to those prescribed by the metadata attribute
+                definition. The content of this must be element only, and these elements must always
+                represent a reported attribute. Since this can not be strictly enforced in XML
+                Schema, additional steps have been added to make generic processing of this element
+                simpler. When processing this element, any element found with the attribute
+                isMetadataAttribute in this target namespace is assumed to be a reported metadata
+                attribute and can be processed as such.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The id attribute identifies the metadata attribute that the value is
+              being reported for. This is optional and not expected to be supplied as the metadata
+              structure definition specific schema will specify a fixed value such that the
+              reference to the metadata attribute will always be available if required for
+              processing.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" use="optional">
+          <xs:annotation>
+            <xs:documentation>The value attribute holds any simple value for the metadata attribute.
+              This attribute is un-typed such that the metadata structure definition specific schema
+              can specify any simple type according the text format / local representation defined
+              by the metadata structure definition.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isMetadataAttribute" type="xs:boolean" form="qualified" fixed="true">
+          <xs:annotation>
+            <xs:documentation>The isMetadataAttribute attribute is a fixed boolean (true) and is
+              intended to designate to processing applications that a given element represents a
+              reported attribute. This attribute is qualified (meaning that it will be qualified in
+              an instance with the target namespace) to ensure that it can be properly identified by
+              applications. The purpose of this is to allow applications to identify elements with
+              unknown names as reported attributes so that they may process a metadata structure
+              definition specific instance without knowledge of the underlying metadata structure
+              definition.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:attributeGroup name="SetAttributeGroup">
+    <xs:annotation>
+      <xs:documentation>The SetAttributeGroup defines a common set of attributes pertaining to any
+        metadata set. The attributes are qualified, so that they will be easily distinguished from
+        attributes that are specific to the metadata structure. Note that many of these attributes
+        are duplications of fields available in the header of the metadata messages. The reason for
+        this is to allow the header values to be overridden at the metadata set level when a message
+        contains more than one metadata set. If an attribute here does not have a value, then the
+        value from the header is applied to the metadata set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="structureRef" type="xs:IDREF" use="required" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The structureRef contains a reference to a structural specification in the
+          header of a data or reference metadata message. The structural specification details which
+          structure the data or reference metadata conforms to, as well as providing additional
+          information such as how the data is structure (e.g. which dimension occurs at the
+          observation level for a data set).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="setID" type="common:IDType" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The setID provides an identification of the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="action" type="common:ActionType" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The action attribute indicates whether the file is appending, replacing,
+          or deleting.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="reportingBeginDate" type="common:BasicTimePeriodType" use="optional"
+      form="qualified">
+      <xs:annotation>
+        <xs:documentation>The reportingBeginDate indicates the inclusive start time of the data
+          reported in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="reportingEndDate" type="common:BasicTimePeriodType" use="optional"
+      form="qualified">
+      <xs:annotation>
+        <xs:documentation>The reportingEndDate indicates the inclusive end time of the data reported
+          in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validFromDate" type="xs:dateTime" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The validFromDate indicates the inclusive start time indicating the
+          validity of the information in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="validToDate" type="xs:dateTime" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The validToDate indicates the inclusive end time indicating the validity
+          of the information in the data or metadata set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="publicationYear" type="xs:gYear" use="optional" form="qualified">
+      <xs:annotation>
+        <xs:documentation>The publicationYear holds the ISO 8601 four-digit year.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="publicationPeriod" type="common:ObservationalTimePeriodType" use="optional"
+      form="qualified">
+      <xs:annotation>
+        <xs:documentation>The publicationPeriod specifies the period of publication of the data or
+          metadata in terms of whatever provisioning agreements might be in force (i.e., "Q1 2005"
+          if that is the time of publication for a data set published on a quarterly basis).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+
+</xs:schema>

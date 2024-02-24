@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Schema Query Module</xs:appinfo>
+    <xs:documentation>The schema query module provides the construct of a query for data structure
+      or metadata structure definition specific schemas.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="DataSchemaQueryType">
+    <xs:annotation>
+      <xs:documentation>DataSchemaQueryType defines the structure of a query for a structured data
+        schema. This query consists of a single data structure which provides the full details of
+        what type of structured data schema should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataStructure" type="DataStructureRequestType">
+        <xs:annotation>
+          <xs:documentation>DataStructure references a data structure either explicitly or through a
+            usage (dataflow) or agreement based on the flow (provision agreement). An observation
+            dimension must be specifies as well as indicators for using explicit measures, deriving
+            the type from the time series specific data set, and processing constraints. The
+            explicit measure option is only applicable if the observation dimension is the measure
+            dimension; otherwise the value provided will be ignored. The time series option is only
+            applicable if the observation dimension is the time dimension; otherwise the value
+            provided will be ignored. Constraints will only be applied in the returned schemas if
+            specifically requested. This means that even if the request specifies a provision
+            agreement, the returned schema will not take into account the constraints on that
+            agreement unless the request explicitly requests this.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataSchemaQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataSchemaQueryType defines the structure of a query for a structured
+        metadata schema. This query consists of a single metadata structure which simply provides a
+        reference to a metadata structure.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MetadataStructure" type="common:GenericMetadataStructureType">
+        <xs:annotation>
+          <xs:documentation>MetadataStructure references a metadata structure either explicitly or
+            through it usage (metadataflow) or an application of that usage (provision agreement).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DataStructureRequestType">
+    <xs:annotation>
+      <xs:documentation>DataStructureRequestType extends the base DataStructureRequestType to add
+        additional parameters that are necessary when querying for a schema.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:DataStructureRequestType">
+        <xs:attribute name="timeSeries" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>The timeSeries attribute indicates that the requested schema should
+              derived from the time series specific data set. If the observation dimension is
+              anything but the time dimension, this field will be ignored.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="processConstraints" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>The processConstraints attribute indicates that constraints should be
+              processed when returning the schema. If this value is false, then the schema will be
+              based on the data structure deflation, regardless of whether the reference was
+              specified as a provision agreement, dataflow, or data structure. If this is true, then
+              the constraints at the requested level will be processed and the returned schema will
+              take these constraints into account (i.e. the appropriate code lists will be
+              sub-setted
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

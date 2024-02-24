@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific">
+  <xs:include schemaLocation="SDMXDataStructureSpecificBase.xsd"/>
+  <xs:include schemaLocation="SDMXDataStructureSpecificTimeSeries.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Core Structure Specific Data Namespace Module</xs:appinfo>
+    <xs:documentation>The core structure specific data namespace module provides the common
+      framework to be used for all data structure definition-specific schemas for data exchange,
+      update, and revisions. It is intended for bilateral use. This forms the basis for all sets of
+      namespace modules created and maintained by those who create data structure
+      definition-specific data schemas which are not maintained by SDMX.
+    </xs:documentation>
+  </xs:annotation>
+
+</xs:schema>

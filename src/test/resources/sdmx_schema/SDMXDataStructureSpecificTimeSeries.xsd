@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXDataStructureSpecificBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Core Time Series Structure Specific Data Module</xs:appinfo>
+    <xs:documentation>The core time series structure specific data module contains the descriptions
+      of a derivation of the base structure specific data set format which only allows for data
+      organised as time series. A data set structure specific according to the data set defined here
+      is a valid base structure specific data set, and can be processed using the same rules as
+      those for the base format. The difference in this structure is that the data is assured to be
+      organised as time series. This allows for variations of the structure specific data message
+      which restrict the data to only be formatted as time series. The entire structure declared for
+      the is data set is abstract, meaning that instances will have to be based on types derived
+      from these structures in schemas created based on the details data structure definition.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="TimeSeriesDataSetType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>TimeSeriesDataSetType is the abstract type which defines the base structure
+        for any data structure definition specific time series based data set. A derived data set
+        type will be created that is specific to a data structure definition. Unlike the base
+        format, only one variation of this is allowed for a data structure definition. This
+        variation is the time dimension as the observation dimension. Data is organised into a
+        collection of time series. Because this derivation is achieved using restriction, data sets
+        conforming to this type will inherently conform to the base data set structure as well. In
+        fact, data structure specific here will be identical to data in the base data set when the
+        time dimension is the observation dimension, even for the derived data set types. This means
+        that the data contained in this structure can be processed in exactly the same manner as the
+        base structure. The same rules for derivation as the base data set type apply to this
+        specialized data set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:element name="Group" type="GroupType" form="unqualified" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:choice minOccurs="0">
+            <xs:element name="Series" type="TimeSeriesType" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attributeGroup ref="SetAttributeGroup"/>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeSeriesType">
+    <xs:annotation>
+      <xs:documentation>TimeSeriesType defines an abstract structure which is used to group a
+        collection of observations which have a key in common, organised by time. The key for a
+        series is every dimension defined in the data structure definition, save the time dimension.
+        In addition to observations, values can be provided for attributes which are associated with
+        the dimensions which make up this series key (so long as the attributes do not specify a
+        group attachment or also have an relationship with the time dimension). It is possible for
+        the series to contain only observations or only attribute values, or both. The same rules
+        for derivation as the base series type apply to this specialized series.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="SeriesType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="Obs" type="TimeSeriesObsType" form="unqualified" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="TIME_PERIOD" type="common:ObservationalTimePeriodType"
+          use="prohibited"/>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeSeriesObsType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>TimeSeriesObsType defines the abstract structure of a time series
+        observation. The observation must be provided a value for the time dimension. This time
+        value should disambiguate the observation within the series in which it is defined (i.e.
+        there should not be another observation with the same time value). The observation can
+        contain an observed value and/or attribute values. The same rules for derivation as the base
+        observation type apply to this specialized observation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="TIME_PERIOD" type="common:ObservationalTimePeriodType" use="required">
+          <xs:annotation>
+            <xs:documentation>The TIME_PERIOD attribute is an explicit attribute for the time
+              dimension. This is declared in the base schema since it has a fixed identifier and
+              representation. Since this data is structured to be time series only, this attribute
+              is always required. If the time dimension specifies a more specific representation of
+              time the derived type will restrict the type definition to the appropriate type.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OBS_VALUE" use="optional"/>
+        <xs:anyAttribute namespace="##local"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

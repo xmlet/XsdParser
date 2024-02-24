@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Metadata Query Module</xs:appinfo>
+    <xs:documentation>The metadata query module provides the construct of a query for metadata.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="MetadataQueryType">
+    <xs:annotation>
+      <xs:documentation>MetadataQueryType defines the structure of a reference metadata query.
+        Reference metadata is queried as individual reports. The result of this query will be a
+        collection of metadata sets, with only the relevant metadata reports contained within them.
+        If no report level parameters are specified, then the query will result in entire metadata
+        sets being returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReturnDetails" type="MetadataReturnDetailsType">
+        <xs:annotation>
+          <xs:documentation>ReturnDetails specifies the details of how the reference metadata should
+            be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MetadataParameters" type="MetadataParametersAndType">
+        <xs:annotation>
+          <xs:documentation>MetadataParameters contains the parameters that are to be matched in
+            order to determine which metadata reports are to be returned as the result of the query.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataReturnDetailsType">
+    <xs:annotation>
+      <xs:documentation>MetadataReturnDetailsType is a structure for detailing how reference
+        metadata should be returned. Only a default size limit can be specified.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ReturnDetailsBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataParametersType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MetadataParametersType defines the parameters for querying for reference
+        metadata. This structure is refined by separate And/Or constructs which make logical
+        restrictions on which parameters apply in such cases.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MetadataSetID" type="QueryIDType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>MetadataSetID is used to match the id of the metadata set. Only metadata
+            reports from data sets with an identifier satisfying these conditions will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>DataProviderReference is used to match the provider of reference
+            metadata to the referenced data provider. Only metadata reports from metadata sets
+            provided by the referenced data provider will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MetadataStructure" type="common:MetadataStructureReferenceType"
+        minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>MetadataStructureReference is used to match the underlying structure of
+            the data. Only metadata reports from metadata sets that conform to referenced metadata
+            structure definition will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Metadataflow" type="common:MetadataflowReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>MetadataflowReference is used to match the flow which reference metadata
+            is reported against. Only metadata reports from metadata sets report against referenced
+            metadata flow will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType"
+        minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ProvisionAgreement is used to match the provision agreement which
+            metadata is reported against. Only metadata from metadata sets report against the
+            referenced provision agreement will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Category" type="common:CategoryReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>CategoryReference is used to match a reference metadata based on the
+            categorization of its underlying structure (metadata structure definition), or the usage
+            of that structure (metadata flow). Only metadata reports whose underlying structure or
+            structure usage are categorized against the referenced category will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Updated" type="common:TimeRangeValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Updated is used to match reference metadata based on when it was last
+            updated. Only metadata reports which satisfy the conditions for the last update
+            parameters supplied here will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConceptValue" type="ConceptValueType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ConceptValue is used to match reference metadata based on the value of a
+            particular concept which defines a metadata attribute. So long as the referenced concept
+            has the specified value for a metadata attribute anywhere within the report structure,
+            the metadata report which contains that attribute will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RepresentationValue" type="CodeValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>RepresentationValue is used to match reference metadata based on a
+            codelist having a particular value. This codelist only applies in the context of the
+            representation of a metadata attribute. So long as the value of any metadata attribute
+            within the report structure which uses the referenced codelist has the value specified,
+            any metadata report containing the attribute will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MetadataTargetValue" type="MetadataTargetValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>MetadataTargetValue is used to match reference metadata based on the
+            target object values of a particular metadata target. If not report structure is
+            specified in the query, this will result in a search across all metadata reports which
+            may use this metadata target. If a value is not given for a target object which is part
+            of this metadata target, it is assumed that all values are allowed for that target
+            object. Thus, if no target object values are given in the entire metadata target, the
+            query will simply match ant report where the reference metadata target is used. All
+            target object value conditions must be met to constitute a match.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportStructureValue" type="ReportStructureValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ReportStructureValue is used to match particular reference metadata
+            reports. Only metadata reports based on the referenced report structure will be matched.
+            It is also possible to detail the values of the metadata attributes contained within the
+            reference report. In this case, only metadata reports based on the referenced report
+            structure which have the metadata attribute values specified will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+        minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttachmentConstraint references an attachment constraint in order to
+            match reference metadata which matches the effective metadata keys or metadata target
+            regions defined in the constraint. Metadata will be returned by first matching metadata
+            on the keys and metadata target regions that are marked as included (or all metadata if
+            none), and then excluding the metadata that satisfies the conditions of the excluded
+            keys and metadata target regions.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttachedObject" type="common:ObjectReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttachedObject is used to match reference metadata based on an object
+            which it is attached to, regardless of the report structure or metadata target in which
+            the object is referenced. Any metadata reports attached to the referenced objects will
+            be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttachedDataKey" type="common:DataKeyType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttachedDataKey is used to match reference metadata based on a data key
+            it is attached to, regardless of the report structure or metadata target in which the
+            data key is referenced. Any metadata reports attached to the supplied data key will be
+            matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttachedDataSet" type="common:SetReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttachedDataSet is used to query for reference metadata based on a data
+            set it is attached to, regardless of the report structure or metadata target in which
+            the data set is referenced. Any metadata reports attached to the supplied metadata key
+            will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttachedReportingPeriod" type="common:TimeRangeValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttachedReportingPeriod is used to query for reference metadata based on
+            the reporting period to which it is attached, regardless of the report structure or
+            metadata target in which the reference period is referenced. Any metadata reports
+            attached to a reporting period which falls within the range specified will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Or" type="MetadataParametersOrType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Or contains a collection of additional parameters, any one of which can
+            be satisfied to result in a match.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="And" type="MetadataParametersAndType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>And contains a collection of additional parameters, all of which must be
+            satisfied to result in a match.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataParametersOrType">
+    <xs:annotation>
+      <xs:documentation>MetadataParametersOrType refines the base data parameters to define a set of
+        parameters joined by an "or" condition. Only one of the parameters supplied in an instance
+        of this type can be satisfied to result in a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MetadataParametersType">
+        <xs:sequence>
+          <xs:element name="MetadataSetID" type="QueryIDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="MetadataStructure" type="common:MetadataStructureReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Metadataflow" type="common:MetadataflowReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Category" type="common:CategoryReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="Updated" type="common:TimeRangeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="ConceptValue" type="ConceptValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="RepresentationValue" type="CodeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="MetadataTargetValue" type="MetadataTargetValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="ReportStructureValue" type="ReportStructureValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="AttachedObject" type="common:ObjectReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttachedDataKey" type="common:DataKeyType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttachedDataSet" type="common:SetReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttachedReportingPeriod" type="common:TimeRangeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="And" type="MetadataParametersAndType" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataParametersAndType">
+    <xs:annotation>
+      <xs:documentation>MetadataParametersAndType refines the base data parameters to define a set
+        of parameters joined by an "and" conditions. All of the parameters supplied in an instance
+        of this type must be satisfied to result in a match. As a result of this condition, the
+        maximum occurrence of some parameters has been reduced so as to not allow for impossible
+        conditions to be specified (for example data cannot be matched is it is specified that the
+        data set identifier should be "xyz" and the data identifier should be "abc".
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MetadataParametersType">
+        <xs:sequence>
+          <xs:element name="MetadataSetID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="MetadataStructure" type="common:MetadataStructureReferenceType"
+            minOccurs="0"/>
+          <xs:element name="Metadataflow" type="common:MetadataflowReferenceType" minOccurs="0"/>
+          <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Category" type="common:CategoryReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="Updated" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="ConceptValue" type="ConceptValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="RepresentationValue" type="CodeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="MetadataTargetValue" type="MetadataTargetValueType" minOccurs="0"/>
+          <xs:element name="ReportStructureValue" type="ReportStructureValueType" minOccurs="0"/>
+          <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="AttachedObject" type="common:ObjectReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttachedDataKey" type="common:DataKeyType" minOccurs="0"/>
+          <xs:element name="AttachedDataSet" type="common:SetReferenceType" minOccurs="0"/>
+          <xs:element name="AttachedReportingPeriod" type="common:TimeRangeValueType"
+            minOccurs="0"/>
+          <xs:element name="Or" type="MetadataParametersOrType" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataTargetValueType">
+    <xs:annotation>
+      <xs:documentation>MetadataTargetValueType describes the structure that is used to match
+        reference metadata where a given metadata target's target object have particular values. If
+        a value is not given for a target object which is part of the metadata target, it is assumed
+        that all values are allowed for that target object. Thus, if no target object values are
+        given in the entire metadata target, the query will simply match ant report where the
+        reference metadata target is used. All target object value conditions must be met to
+        constitute a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="common:NCNameIDType"/>
+      <xs:element name="TargetObjectValue" type="TargetObjectValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>TargetObjectValue is used to match reference metadata where a given
+            target object in a metadata target references a particular object or time period.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TargetObjectValueType">
+    <xs:annotation>
+      <xs:documentation>IdentifierComponentValueType describes the structure that is used to match
+        reference metadata where a given identifier component has a particular value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="common:NCNameIDType">
+        <xs:annotation>
+          <xs:documentation>ID identifies the metadata target object.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="DataSet" type="common:SetReferenceType">
+          <xs:annotation>
+            <xs:documentation>DataSet provides a reference to a data set which the target object
+              should reference to result in a match.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DataKey" type="common:DataKeyType">
+          <xs:annotation>
+            <xs:documentation>DataKey provides a data key (set of dimension values) which the target
+              object should reference to result in a match.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Object" type="common:ObjectReferenceType">
+          <xs:annotation>
+            <xs:documentation>Object provides a reference to any SDMX identifiable object which the
+              target object should reference to result in a match.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="TimeValue" maxOccurs="2">
+          <xs:annotation>
+            <xs:documentation>TimeValue is used to provide a time value or range for matching a
+              reporting period which the target object should reference to result in a match.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReportStructureValueType">
+    <xs:annotation>
+      <xs:documentation>ReportStructureValueType describes the structure that is used to match
+        reference metadata where the metadata attributes of a report structure have particular
+        values. All metadata attribute value conditions must be met to constitute a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="common:NCNameIDType"/>
+      <xs:element name="MetadataAttributeValue" type="MetadataAttributeValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>MetadataAttributeValue is used to match reference metadata where a
+            metadata attribute has a particular value within the referenced report structure.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MetadataAttributeValueType">
+    <xs:annotation>
+      <xs:documentation>MetadataAttributeValueType describes the structure that is used to match
+        reference metadata where a metadata attribute has a particular value. Metadata attribute
+        value queries can be nested for querying nested metadata attributes. If no value is
+        provided, then simply the presence of the metadata attribute within the given context will
+        result in a match. All nested metadata attribute value conditions must be met to constitute
+        a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="common:NCNameIDType"/>
+      <xs:choice minOccurs="0">
+        <xs:element ref="Value"/>
+        <xs:element ref="TextValue" maxOccurs="unbounded"/>
+        <xs:element ref="NumericValue" maxOccurs="2"/>
+        <xs:element ref="TimeValue" maxOccurs="2"/>
+      </xs:choice>
+      <xs:element name="MetadataAttributeValue" type="MetadataAttributeValueType" minOccurs="0"
+        maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

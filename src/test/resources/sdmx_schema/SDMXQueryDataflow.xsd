@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Data Flow Query Module</xs:appinfo>
+    <xs:documentation>The data flow query module provides the construct of a query for a data
+      flow.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="DataflowQueryType">
+    <xs:annotation>
+      <xs:documentation>DataflowQueryType defines the structure of a dataflow query. The parameters
+        for the query are contained in the DataflowWhere element. The References element is used to
+        indicate how objects that reference or are referenced from the matched dataflow should be
+        returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="DataflowWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="DataflowWhere" type="DataflowWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>DataflowWhere defines the parameters for a dataflow query. All parameters
+        must be matched for an object to satisfy the query. In addition to querying based on the
+        basic maintainable properties, it is also possible to search for a dataflow based on the key
+        family it defines the usage of.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DataflowWhereType">
+    <xs:annotation>
+      <xs:documentation>DataflowWhereType contains the parameters of a dataflow query. All supplied
+        parameters must be matched in order for an object to satisfy the query.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructureUsageWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+          <xs:element name="Structure" type="common:DataStructureReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Structure is used to indicate which key family the dataflow must
+                define a usage for in order to constitute a match.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:MaintainableTypeCodelistType" use="optional"
+          fixed="Dataflow"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

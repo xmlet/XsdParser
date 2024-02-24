@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Process Structure Module</xs:appinfo>
+    <xs:documentation>The process structure module defines the structure of process and process step
+      constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="ProcessType">
+    <xs:annotation>
+      <xs:documentation>ProcessType describes the structure of a process, which is a scheme which
+        defines or documents the operations performed on data in order to validate data or to derive
+        new information according to a given set of rules. Processes occur in order, and will
+        continue in order unless a transition dictates another step should occur.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MaintainableType">
+        <xs:sequence>
+          <xs:element name="ProcessStep" type="ProcessStepType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>ProcessStep defines a process step, which is a specific operation,
+                performed on data in order to validate or to derive new information according to a
+                given set of rules.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:unique name="ProcessStep_UniqueProcessStep">
+              <xs:selector xpath="structure:ProcessStep"/>
+              <xs:field xpath="@id"/>
+            </xs:unique>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessStepBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ProcessStepBaseType is an abstract base type used as the basis for the
+        ProcessStepType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="NameableType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessStepType">
+    <xs:annotation>
+      <xs:documentation>ProcessStepType describes the structure of a process step. A nested process
+        step is automatically sub-ordinate, and followed as the next step. If the following step is
+        conditional, it should be referenced in a transition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ProcessStepBaseType">
+        <xs:sequence>
+          <xs:element name="Input" type="InputOutputType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Input references an object which is an input to the process step.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Output" type="InputOutputType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Output references an object which is an output form the process
+                step.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Computation" type="ComputationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Computation describes the computations involved in the process, in
+                any form desired by the user (these are informational rather than
+                machine-actionable), and so may be supplied in multiple, parallel-language versions.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transition" type="TransitionType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Transition describes the next process steps. Each transition in a
+                process step should be evaluated, allowing for multiple process step branches from a
+                single process step.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProcessStep" type="ProcessStepType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>ProcessStep defines a process step, which is a specific operation,
+                performed on data in order to validate or to derive new information according to a
+                given set of rules.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:unique name="ChildProcessStep_UniqueProcessStep">
+              <xs:selector xpath="structure:ProcessStep"/>
+              <xs:field xpath="@id"/>
+            </xs:unique>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TransitionType">
+    <xs:annotation>
+      <xs:documentation>TransitionType describes the details of a transition, which is an expression
+        in a textual or formalised way of the transformation of data between two specific operations
+        performed on the data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IdentifiableType">
+        <xs:sequence>
+          <xs:element name="TargetStep" type="common:LocalProcessStepReferenceType">
+            <xs:annotation>
+              <xs:documentation>TargetStep references a process step within the process that should
+                be transitioned to, should the conditions described be met.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Condition" type="common:TextType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Condition is a textual description of the conditions to be met in
+                order for the target step to be proceeded to. It is informational only (not
+                machine-actionable), and may be supplied in multiple, parallel-language form.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="localID" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The localID attribute is an optional identification for the transition
+              within the process.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ComputationType">
+    <xs:annotation>
+      <xs:documentation>ComputationType describes a computation in a process.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element ref="common:Description" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Description describe the computation in any form desired by the user
+                (these are informational rather than machine-actionable), and so may be supplied in
+                multiple, parallel-language versions,
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="localID" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The localID attribute is an optional identification for the
+              computation within the process.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="softwarePackage" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The softwarePackage attribute holds the name of the software package
+              that is used to perform the computation.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="softwareLanguage" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The softwareLanguage attribute holds the coding language that the
+              software package used to perform the computation is written in.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="softwareVersion" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The softwareVersion attribute hold the version of the software package
+              that is used to perform that computation.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="InputOutputType">
+    <xs:annotation>
+      <xs:documentation>InputOutputType describes the structure of an input or output to a process
+        step. It provides a reference to the object that is the input or output.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:sequence>
+          <xs:element name="ObjectReference" type="common:ObjectReferenceType">
+            <xs:annotation>
+              <xs:documentation>ObjectReference is an abstract substitution head that references the
+                object that is an input or output. It is substituted with a concrete reference to an
+                explicit object type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="localID" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The localID attribute is an optional identification for the input or
+              output within the process.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

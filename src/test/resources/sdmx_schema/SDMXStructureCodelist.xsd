@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Code List Structure Module</xs:appinfo>
+    <xs:documentation>The code list structure module defines the structure of code list and code
+      constructs.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="CodelistType">
+    <xs:annotation>
+      <xs:documentation>CodelistType defines the structure of a codelist. A codelist is defined as a
+        list from which some statistical concepts (coded concepts) take their values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemSchemeType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="Code"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>The id attribute holds the identification of the code list. The type
+              of this id is restricted to the common:NCNNameIDType. This is necessary, since the
+              code list may be used to create simple types in data and metadata structure specific
+              schemas and therefore must be compliant with the NCName type in XML Schema (see
+              common:NCNameIDType for further details).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Code" type="CodeType" substitutionGroup="Item">
+    <xs:annotation>
+      <xs:documentation>Code describes a code in a codelist. In addition to the identification and
+        description of the code, basic presentational information is also available. Presentational
+        information not present may be added through the use of annotations.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="CodeType">
+    <xs:annotation>
+      <xs:documentation>CodeType describes the structure of a code. A code is defined as a language
+        independent set of letters, numbers or symbols that represent a concept whose meaning is
+        described in a natural language. Presentational information not present may be added through
+        the use of annotations.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ItemType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Name provides for a human-readable name for the object. This may be
+                provided in multiple, parallel language-equivalent forms. It may be used in place of
+                a short description.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Description provides a plain text, human-readable description of the
+                code. This may be provided in multiple, parallel language-equivalent forms.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0">
+            <xs:element name="Parent" type="common:LocalCodeReferenceType">
+              <xs:annotation>
+                <xs:documentation>Parent provides the ability to describe simple hierarchies within
+                  a single codelist, by referencing the id value of another code in the same
+                  codelist.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

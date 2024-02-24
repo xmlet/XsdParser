@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+  <xs:include schemaLocation="SDMXQueryCategorisation.xsd"/>
+  <xs:include schemaLocation="SDMXQueryCategory.xsd"/>
+  <xs:include schemaLocation="SDMXQueryCodelist.xsd"/>
+  <xs:include schemaLocation="SDMXQueryConcept.xsd"/>
+  <xs:include schemaLocation="SDMXQueryConstraint.xsd"/>
+  <xs:include schemaLocation="SDMXQueryData.xsd"/>
+  <xs:include schemaLocation="SDMXQueryDataflow.xsd"/>
+  <xs:include schemaLocation="SDMXQueryDataStructure.xsd"/>
+  <xs:include schemaLocation="SDMXQueryHierarchicalCodelist.xsd"/>
+  <xs:include schemaLocation="SDMXQueryMetadata.xsd"/>
+  <xs:include schemaLocation="SDMXQueryMetadataflow.xsd"/>
+  <xs:include schemaLocation="SDMXQueryMetadataStructure.xsd"/>
+  <xs:include schemaLocation="SDMXQueryOrganisation.xsd"/>
+  <xs:include schemaLocation="SDMXQueryProcess.xsd"/>
+  <xs:include schemaLocation="SDMXQueryProvisionAgreement.xsd"/>
+  <xs:include schemaLocation="SDMXQueryReportingTaxonomy.xsd"/>
+  <xs:include schemaLocation="SDMXQuerySchema.xsd"/>
+  <xs:include schemaLocation="SDMXQueryStructureSet.xsd"/>
+  <xs:include schemaLocation="SDMXQueryStructures.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Query Namespace Module</xs:appinfo>
+    <xs:documentation>The query namespace module describes the structure of the generic query
+      message for use in web service environments. It contains constructs for querying for data,
+      reference metadata, and structural metadata. For convenience, this module has been broken down
+      into sub-modules for the different types of queries.
+    </xs:documentation>
+  </xs:annotation>
+
+</xs:schema>

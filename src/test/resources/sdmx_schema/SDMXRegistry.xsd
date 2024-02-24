@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+  <xs:include schemaLocation="SDMXRegistryBase.xsd"/>
+  <xs:include schemaLocation="SDMXRegistryRegistration.xsd"/>
+  <xs:include schemaLocation="SDMXRegistryStructure.xsd"/>
+  <xs:include schemaLocation="SDMXRegistrySubscription.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Registry Namespace Module</xs:appinfo>
+    <xs:documentation>The registry namespace module describes the standard interfaces for
+      interactions with a set of registry services. For convenience, this module has been broken
+      down into sub-modules for the different registry functions.
+    </xs:documentation>
+  </xs:annotation>
+
+</xs:schema>

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Data Query Module</xs:appinfo>
+    <xs:documentation>The data query module provides the construct of a query for a data.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="DataQueryType">
+    <xs:annotation>
+      <xs:documentation>DataQueryType defines the structure of a query for data. This is generally
+        appliable for any data request, but can be refined depending on the type of data being
+        queried (generic or structured, time series specific or not) to the requirements of the
+        requested format.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReturnDetails" type="DataReturnDetailsType">
+        <xs:annotation>
+          <xs:documentation>ReturnDetails contains the details of how the returned data should be
+            structured, what type of data (e.g. active or deleted observations), and the limit of
+            the amount of observations to be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataWhere" type="DataParametersAndType">
+        <xs:annotation>
+          <xs:documentation>DataWhere contains the details of the data query.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TimeSeriesDataQueryType">
+    <xs:annotation>
+      <xs:documentation>TimeSeriesDataQueryType defines the structure of a query for data. This
+        specifically applies to requesting time series only structured data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="TimeSeriesDataReturnDetailsType"/>
+          <xs:element name="DataWhere" type="DataParametersAndType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GenericDataQueryType">
+    <xs:annotation>
+      <xs:documentation>GenericDataQueryType defines the structure of a query for data formatted in
+        the generic format. This structure generally applies to any type of generic data request,
+        but can be refined to request time series only data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="GenericDataReturnDetailsType"/>
+          <xs:element name="DataWhere" type="DataParametersAndType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GenericTimeSeriesDataQueryType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesDataQueryType defines the structure of a query for time
+        series only data formatted in the generic format.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="GenericDataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="GenericTimeSeriesDataReturnDetailsType"/>
+          <xs:element name="DataWhere" type="DataParametersAndType"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataReturnDetailsBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DataReturnDetailsBaseType is an abstract base type which forms the basis of
+        the DataReturnDetailsType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="ReturnDetailsBaseType">
+        <xs:attribute name="detail" type="DataReturnDetailType" default="Full">
+          <xs:annotation>
+            <xs:documentation>The detail attribute is used to indicate whether the response to the
+              query should return the full details of matched data sets, or just a subset of the
+              information should be returned. A value of "Full" indicates that the complete data set
+              (including data and documentation) will be returned. A value of "DataOnly" indicates
+              that only the observation values and keys should be returned. A value of
+              "SeriesKeyOnly" indicates that only the Series elements and their keys (i.e. Dimension
+              values) should be returned. A value of "NoData" indicates that only documentation
+              should be returned (i.e. the DataSet, Group, and Series level Attributes).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataReturnDetailsType">
+    <xs:annotation>
+      <xs:documentation>DataReturnDetailsType specifies the specifics of the how data should be
+        returned, including how it should be structured and how many and what type (e.g. active or
+        deleted) observations should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DataReturnDetailsBaseType">
+        <xs:sequence>
+          <xs:element name="FirstNObservations" type="xs:int" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>FirstNObservations specifies that number of observations indicated
+                should be returned, starting from the earliest observation. Note that this can be
+                used in conjunction with the LastNObservations. For example, if both
+                FirstNObservations and LastNObservations had a value of 1, then the first and the
+                last observation would be returned.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LastNObservations" type="xs:int" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>LastNObservations specifies that number of observations indicated
+                should be returned, starting from the latest observation and working back. Note that
+                this can be used in conjunction with the FirstNObservations. For example, if both
+                FirstNObservations and LastNObservations had a value of 1, then the first and the
+                last observation would be returned.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Structure" type="common:DataStructureRequestType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Structure defines how the is requested to be oriented in the
+                returned message. For each data structure, dataflow, or provision agreement, a
+                dimension at the observation level can be specified, and in the case that the
+                dimension is a measure and the query is for structured data, the measure can be
+                specified as being explicit. For any matched data in which there is not a structure
+                specification, the query service can orient that data in any manner, although it is
+                recommended that time be used as the observation dimension.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="observationAction" type="ObservationActionCodeType" use="optional"
+          default="Active">
+          <xs:annotation>
+            <xs:documentation>The observationAction attribute specifies the type of observations
+              (added, deleted, udpated, or current) to be returned. In the absence of the Updated
+              parameter, this will return all observations that have ever existed for Added, any
+              observations that have ever been updated for Updated, and any observations that have
+              ever been deleted for Deleted. Note that since observations themselves contain no
+              status in the data messages, it is only possible to query for active observations or
+              deleted observations, but not both. It is possible to subset active observation into
+              recently added and recently updated, however it is only possible to retrieve on or the
+              other. If active observations are returned, there will be no distinction as to whether
+              an individual observation was updated or added during the requested Update parameter.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="DataReturnDetailType">
+    <xs:annotation>
+      <xs:documentation>DataReturnDetailType contains a set of enumerations that indicate how much
+        detail should be returned for a data set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Full">
+        <xs:annotation>
+          <xs:documentation>The entire data set (including all data, documentation, and annotations)
+            will be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DataOnly">
+        <xs:annotation>
+          <xs:documentation>Only the observed values and their keys will be returned. Annotations
+            and documentation (i.e. Attributes) and therefore Groups, will be excluded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SeriesKeyOnly">
+        <xs:annotation>
+          <xs:documentation>Only the series elements and the values for the dimensions will be
+            returned. Annotations, documentation, and observations will be excluded.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NoData">
+        <xs:annotation>
+          <xs:documentation>Returns all documentation at the DataSet, Group, and Series level
+            without any Observations (therefore, Observation level documentation is not returned).
+            Annotations are not returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="GenericDataReturnDetailsType">
+    <xs:annotation>
+      <xs:documentation>GenericDataReturnDetailsType specifies the specifics of the how data should
+        be returned as it pertains to a request for generic data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataReturnDetailsType">
+        <xs:sequence>
+          <xs:element name="FirstNObservations" type="xs:int" minOccurs="0"/>
+          <xs:element name="LastNObservations" type="xs:int" minOccurs="0"/>
+          <xs:element name="Structure" type="common:GenericDataStructureRequestType" minOccurs="0"
+            maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="observationAction" type="ObservationActionCodeType" use="optional"
+          default="Active"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GenericTimeSeriesDataReturnDetailsType">
+    <xs:annotation>
+      <xs:documentation>GenericTimeSeriesDataReturnDetailsType specifies the specifics of the how
+        data should be returned as it pertains to a request for time series only oriented data in
+        the generic format.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="GenericDataReturnDetailsType">
+        <xs:sequence>
+          <xs:element name="FirstNObservations" type="xs:int" minOccurs="0"/>
+          <xs:element name="LastNObservations" type="xs:int" minOccurs="0"/>
+          <xs:element name="Structure" type="common:TimeSeriesGenericDataStructureRequestType"
+            minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="observationAction" type="ObservationActionCodeType" use="optional"
+          default="Active"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeSeriesDataReturnDetailsType">
+    <xs:annotation>
+      <xs:documentation>TimeSeriesDataReturnDetailsType specifies the specifics of the how data
+        should be returned as it pertains to a request for time series only oriented data in the
+        structured format.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataReturnDetailsType">
+        <xs:sequence>
+          <xs:element name="FirstNObservations" type="xs:int" minOccurs="0"/>
+          <xs:element name="LastNObservations" type="xs:int" minOccurs="0"/>
+          <xs:element name="Structure" type="common:TimeSeriesDataStructureRequestType"
+            minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="observationAction" type="ObservationActionCodeType" use="optional"
+          default="Active"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataParametersType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DataParametersType defines the parameters for querying for data. This
+        structure is refined by separate And/Or constructs which make logical restrictions on which
+        parameters apply in such cases.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DataSetID" type="QueryIDType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>DataSetID is used to match the id of the data set. Only data from data
+            sets with an identifier satisfying these conditions will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>DataProvider is used to match the provider of data to the referenced
+            data provider. Only data from data sets provided by the referenced data provider will be
+            matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataStructure" type="common:DataStructureReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>DataStructure is used to match the underlying structure of the data.
+            Only data from data sets that conform to referenced data structure definition will be
+            matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Dataflow" type="common:DataflowReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Dataflow is used to match the flow which data is reported against. Only
+            data from data sets report against referenced dataflow will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType"
+        minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ProvisionAgreement is used to match the provision agreement which data
+            is reported against. Only data from data sets report against the referenced provision
+            agreement will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Category" type="common:CategoryReferenceType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Category is used to match a data based on the categorization of its
+            underlying structure (data structure definition), or the usage of that structure (data
+            flow). Only data whose underlying structure or structure usage are categorized against
+            the referenced category will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Updated" type="common:TimeRangeValueType" minOccurs="0" maxOccurs="2">
+        <xs:annotation>
+          <xs:documentation>Updated is used to match data based on when it was last updated
+            (including additions and deletions). Only data which satisfies the conditions for the
+            last update parameters supplied here will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConceptValue" type="ConceptValueType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>ConceptValue is used to match data based on the value of a particular
+            concept. This concept may be used as a dimension, attribute, or measure for the data. So
+            long as the referenced concept has the specified value for a given data point, it will
+            be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RepresentationValue" type="CodeValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>RepresentationValue is used to match data based on a representation
+            scheme having a particular value. This representation scheme may be used as the
+            representation of a dimension, attribute, or measure. So long as the value of the
+            concept using the referenced codelist has the value specified, any data point for the
+            concept will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DimensionValue" type="DimensionValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>DimensionValue is used to match data based on the value of a dimension.
+            Any data with the dimension with the supplied identifier satisfies the conditions
+            supplied will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeDimensionValue" type="TimeDimensionValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>TimeDimensionValue is used to match data based on the value of the time
+            dimension. Any data with a time value satisfying the conditions supplied will be
+            matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttributeValue" type="AttributeValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttributeValue is used to match data based on the value of an attribute.
+            Any data with an attribute with the supplied identifier satisfies the conditions
+            supplied will be matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrimaryMeasureValue" type="PrimaryMeasureValueType" minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>PrimaryMeasureValue is used to match data based on the value of the
+            primary measure. Any data with its value satisfying the conditions supplied will be
+            matched.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+        minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>AttachmentConstraint references an attachment constraint in order to
+            match data which matches the effective data keys or cube regions defined in the
+            constraint. Data will be returned by first matching data on the keys and cube regions
+            that are marked as included (or all data if none), and then excluding the data that
+            satisfies the conditions of the excluded keys and cube regions.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeFormat" type="common:TimeDataType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>TimeFormat is used to match data when a frequency dimension is not
+            explicitly defined. Only data reported against the supplied time data type will be
+            returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Or" type="DataParametersOrType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Or contains a collection of additional parameters, any one of which can
+            be satisfied to result in a match.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="And" type="DataParametersAndType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>And contains a collection of additional parameters, all of which must be
+            satisfied to result in a match.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DataParametersOrType">
+    <xs:annotation>
+      <xs:documentation>DataParametersOrType refines the base data parameters to define a set of
+        parameters joined by an "or" condition. Only one of the parameters supplied in an instance
+        of this type can be satisfied to result in a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataParametersType">
+        <xs:sequence>
+          <xs:element name="DataSetID" type="QueryIDType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="DataStructure" type="common:DataStructureReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="Dataflow" type="common:DataflowReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Category" type="common:CategoryReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="Updated" type="common:TimeRangeValueType" minOccurs="0" maxOccurs="2"/>
+          <xs:element name="ConceptValue" type="ConceptValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="RepresentationValue" type="CodeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="DimensionValue" type="DimensionValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="TimeDimensionValue" type="TimeDimensionValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttributeValue" type="AttributeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="PrimaryMeasureValue" type="PrimaryMeasureValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="TimeFormat" type="common:TimeDataType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="And" type="DataParametersAndType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataParametersAndType">
+    <xs:annotation>
+      <xs:documentation>DataParametersAndType refines the base data parameters to define a set of
+        parameters joined by an "and" conditions. All of the parameters supplied in an instance of
+        this type must be satisfied to result in a match. As a result of this condition, the maximum
+        occurrence of some parameters has been reduced so as to not allow for impossible conditions
+        to be specified (for example data cannot be matched is it is specified that the data set
+        identifier should be "xyz" and the data identifier should be "abc".
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataParametersType">
+        <xs:sequence>
+          <xs:element name="DataSetID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" minOccurs="0"/>
+          <xs:element name="DataStructure" type="common:DataStructureReferenceType" minOccurs="0"/>
+          <xs:element name="Dataflow" type="common:DataflowReferenceType" minOccurs="0"/>
+          <xs:element name="ProvisionAgreement" type="common:ProvisionAgreementReferenceType"
+            minOccurs="0"/>
+          <xs:element name="Category" type="common:CategoryReferenceType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="Updated" type="common:TimeRangeValueType" minOccurs="0" maxOccurs="2"/>
+          <xs:element name="ConceptValue" type="ConceptValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="RepresentationValue" type="CodeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="DimensionValue" type="DimensionValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="TimeDimensionValue" type="TimeDimensionValueType" minOccurs="0"/>
+          <xs:element name="AttributeValue" type="AttributeValueType" minOccurs="0"
+            maxOccurs="unbounded"/>
+          <xs:element name="PrimaryMeasureValue" type="PrimaryMeasureValueType" minOccurs="0"/>
+          <xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType"
+            minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="TimeFormat" type="common:TimeDataType" minOccurs="0"/>
+          <xs:element name="Or" type="DataParametersOrType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataStructureComponentValueQueryType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>DataStructureComponentValueQueryType is an abstract base type that is the
+        basis for query a data structure definition component for a particular value. Multiple
+        values may be supplied, but the component value must match all of the value conditions
+        supplied in order to return a match.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ID" type="common:NCNameIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ID provides the identifier for component for which the value is
+            sought.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:element ref="NumericValue" maxOccurs="2"/>
+        <xs:element ref="TextValue" maxOccurs="unbounded"/>
+        <xs:element ref="TimeValue" maxOccurs="2"/>
+        <xs:element ref="Value"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DimensionValueType">
+    <xs:annotation>
+      <xs:documentation>DimensionValueType is used to query for data where a given dimension has a
+        particular value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureComponentValueQueryType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:NCNameIDType"/>
+          <xs:choice>
+            <xs:element ref="NumericValue" maxOccurs="2"/>
+            <xs:element ref="TimeValue" maxOccurs="2"/>
+            <xs:element ref="Value"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeValueType">
+    <xs:annotation>
+      <xs:documentation>AttributeValueType is used to query for data where a given attribute has a
+        particular value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureComponentValueQueryType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:NCNameIDType"/>
+          <xs:choice>
+            <xs:element ref="NumericValue" maxOccurs="2"/>
+            <xs:element ref="TextValue"/>
+            <xs:element ref="TimeValue" maxOccurs="2"/>
+            <xs:element ref="Value"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PrimaryMeasureValueType">
+    <xs:annotation>
+      <xs:documentation>PrimaryMeasureValueType is used to query for data where the primary measure
+        (i.e. the observed value) has a particular value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureComponentValueQueryType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:NCNameIDType" minOccurs="0" fixed="OBS_VALUE"/>
+          <xs:choice>
+            <xs:element ref="NumericValue" maxOccurs="2"/>
+            <xs:element ref="TextValue"/>
+            <xs:element ref="TimeValue" maxOccurs="2"/>
+            <xs:element ref="Value"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeDimensionValueType">
+    <xs:annotation>
+      <xs:documentation>TimeDimensionValueType is used to query for data where the time dimension
+        has a particular value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="DataStructureComponentValueQueryType">
+        <xs:sequence>
+          <xs:element name="ID" type="common:NCNameIDType" minOccurs="0" fixed="TIME_PERIOD"/>
+          <xs:choice>
+            <xs:element ref="TimeValue" maxOccurs="2"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ObservationActionCodeType">
+    <xs:annotation>
+      <xs:documentation>ObservationActionCodeType enumerates the type of observations to be
+        returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Active">
+        <xs:annotation>
+          <xs:documentation>Active observations, regardless of when they were added or updated will
+            be returned.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Added">
+        <xs:annotation>
+          <xs:documentation>Only newly added observations will be returned.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Updated">
+        <xs:annotation>
+          <xs:documentation>Only updated observations will be returned.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Deleted">
+        <xs:annotation>
+          <xs:documentation>Only deleted observations will be returned.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

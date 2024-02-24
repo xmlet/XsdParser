@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:include schemaLocation="SDMXQueryBase.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Structure Set Query Module</xs:appinfo>
+    <xs:documentation>The structure set query module provides the construct of a query for a
+      structure set.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="StructureSetQueryType">
+    <xs:annotation>
+      <xs:documentation>StructureSetQueryType defines the structure of a structure set query. The
+        parameters for the query are contained in the StructureSetWhere element. The References
+        element is used to indicate how objects that are referenced from the structure set should be
+        returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="StructuralMetadataQueryType">
+        <xs:sequence>
+          <xs:element name="ReturnDetails" type="MaintainableReturnDetailsType"/>
+          <xs:element ref="StructureSetWhere"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="StructureSetWhere" type="StructureSetWhereType"
+    substitutionGroup="StructuralMetadataWhere">
+    <xs:annotation>
+      <xs:documentation>StructureSetWhere contains the parameters for a structure query. All
+        parameters must be matched for an object to satisfy the query. In addition to querying based
+        on the basic maintainable properties, it is also possible to search based on the structures
+        that are related by the set or the objects which are mapped by the set's maps. In any case,
+        the structure set will be returned according the indicated return detail.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="StructureSetWhereBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>StructureSetWhereBaseType is an abstract base type which forms the basis for
+        the StructureSetWhereType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="MaintainableWhereType">
+        <xs:sequence>
+          <xs:element name="Annotation" type="AnnotationWhereType" minOccurs="0"/>
+          <xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="ID" type="QueryIDType" minOccurs="0"/>
+          <xs:element name="Name" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Description" type="QueryTextType" minOccurs="0"/>
+          <xs:element name="Version" type="common:VersionQueryType" minOccurs="0"/>
+          <xs:element name="VersionTo" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionFrom" type="common:TimeRangeValueType" minOccurs="0"/>
+          <xs:element name="VersionActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="AgencyID" type="QueryNestedIDType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="common:MaintainableTypeCodelistType" use="optional"
+          fixed="StructureSet">
+          <xs:annotation>
+            <xs:documentation>The type attribute indicates the type of constraint that is being
+              queried for, with a default of Any, meaning both content and attachment constraints
+              will be searched.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StructureSetWhereType">
+    <xs:annotation>
+      <xs:documentation>StructureSetWhereType defines the parameters of a structure set query. All
+        supplied parameters must be matched in order for an object to satisfy the query. In addition
+        to querying based on the base maintainable parameters, it is also possible to search based
+        on the structures that are related by the set or the objects which are mapped by the set's
+        maps.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StructureSetWhereBaseType">
+        <xs:sequence>
+          <xs:element name="RelatedStructures" type="common:StructureOrUsageReferenceType"
+            minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>RelatedStructure is used to query for structure sets where the
+                referenced key families, metadata structure definitions, dataflows, and
+                metadataflows are related to another by the structure set.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MappedObject" type="MappedObjectType" minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>MappedObject is used to query for structure sets where the reference
+                object is mapped in one of the maps defined by the structure set. The referenced
+                object can be specified as being either a source, a target, or either in the queried
+                map.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MappedObjectType">
+    <xs:annotation>
+      <xs:documentation>MappedObjectType defines a structure for referencing an object and
+        indicating whether it is the source, target, or either for the purposes of query for
+        structure set containing the referenced object in one of the maps it defines.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MappedObjectReferenceType">
+        <xs:attribute name="type" type="SourceTargetType" use="optional" default="Any">
+          <xs:annotation>
+            <xs:documentation>The type attribute indicates whether the referenced object should be
+              queried as the source, target, or both of a map.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MappedObjectReferenceType">
+    <xs:annotation>
+      <xs:documentation>MappedObjectReferenceType is a type for referencing any mappable object. It
+        consists of a URN and/or a complete set of reference fields; agency, id, and version.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="common:MaintainableReferenceType">
+        <xs:choice>
+          <xs:sequence>
+            <xs:element name="Ref" type="MappedObjectRefType" form="unqualified"/>
+            <xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
+          </xs:sequence>
+          <xs:element name="URN" type="xs:anyURI" form="unqualified"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MappedObjectRefType">
+    <xs:annotation>
+      <xs:documentation>MappedObjectRefType defines a set of reference fields for any type of
+        mappable object.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="common:MaintainableRefType">
+        <xs:attribute name="class" type="MappedObjectTypeCodelistType" use="required"/>
+        <xs:attribute name="package" type="common:PackageTypeCodelistType" use="required"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="MappedObjectTypeCodelistType">
+    <xs:annotation>
+      <xs:documentation>MappedObjectTypeCodelistType is a restriction of the
+        MaintainableTypeCodelistType which contains only the object types which can be mapped in a
+        structure set.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="common:ConcreteMaintainableTypeCodelistType">
+      <xs:enumeration value="AgencyScheme"/>
+      <xs:enumeration value="CategoryScheme"/>
+      <xs:enumeration value="Codelist"/>
+      <xs:enumeration value="ConceptScheme"/>
+      <xs:enumeration value="Dataflow"/>
+      <xs:enumeration value="DataConsumerScheme"/>
+      <xs:enumeration value="DataProviderScheme"/>
+      <xs:enumeration value="DataStructure"/>
+      <xs:enumeration value="HierarchicalCodelist"/>
+      <xs:enumeration value="Metadataflow"/>
+      <xs:enumeration value="MetadataStructure"/>
+      <xs:enumeration value="OrganisationUnitScheme"/>
+      <xs:enumeration value="ReportingTaxonomy"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SourceTargetType">
+    <xs:annotation>
+      <xs:documentation>SourceTargetType is an enumeration to indicate whether an object is the
+        source, target, or either of the two options.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Any"/>
+      <xs:enumeration value="Source"/>
+      <xs:enumeration value="Target"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

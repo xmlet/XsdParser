@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:BBKCommonTypes="http://www.bundesbank.de/statistik/bbk/commontypes/v2"
+  xmlns:bcl="http://www.bundesbank.de/statistik/bbk/codelists/v2"
+  xmlns:ecl="http://www.bundesbank.de/statistik/ecb/codelists/v2"
+  xmlns="http://www.bundesbank.de/statistik/riad/v2"
+  xmlns:ns1="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+  xmlns:ECBCommonTypes="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+  targetNamespace="http://www.bundesbank.de/statistik/riad/v2" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+    schemaLocation="SDMXMessage.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific"
+    schemaLocation="SDMXDataStructureSpecific.xsd"/>
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/bbk/commontypes/v2"
+    schemaLocation="BBKCommonTypes_V2.4-SDMX.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/bbk/codelists/v2"
+    schemaLocation="BBK_CDLST_V2.4-SDMX.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/ecb/codelists/v2"
+    schemaLocation="ECB_CDLST_V2.4-SDMX.xsd"/>
+  <xs:import namespace="http://www.bundesbank.de/statistik/ecb/commontypes/v2"
+    schemaLocation="ECBCommonTypes_V2.4-SDMX.xsd"/>
+  <!-- Data Structur Definitions (DataSetType) -->
+  <xs:complexType name="ObsBBK_RIAD_HDR_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="RPRTNG_AGNT_CD" type="BBKCommonTypes:BBK_ID_BLZ" use="required"/>
+        <xs:attribute name="DT_RFRNC" type="BBKCommonTypes:BBK_YYYY_MM" use="required"/>
+        <xs:attribute name="APPLCTN" type="bcl:CL_BBK_APPLCTN_ID" use="required" fixed="RIAD"/>
+        <xs:attribute name="SRVY_ID" type="bcl:CL_BBK_SRVY_ID" use="required" fixed="AC_RE"/>
+        <xs:attribute name="PRT_MSSG" type="BBKCommonTypes:BBK_PRT_MSSG"/>
+        <xs:attribute name="IS_LST_PRT_MSSG" type="xs:boolean"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_RIAD_HDR_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_RIAD_HDR_C" form="unqualified" maxOccurs="1"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_ENTTY_RFRNC_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="TYP_CP_ID" type="bcl:CL_BBK_TYP_CP_ID" use="required"/>
+        <xs:attribute name="CP_ID" type="BBKCommonTypes:BBK_CP_ID" use="required"/>
+        <xs:attribute name="LEI" type="BBKCommonTypes:BBK_LEI_NA"/>
+        <xs:attribute name="TYP_HD_OFFC_UNDRTKNG_ID" type="bcl:CL_BBK_TYP_CP_ID"/>
+        <xs:attribute name="HD_OFFC_UNDRTKNG_ID" type="BBKCommonTypes:BBK_CP_ID"/>
+        <xs:attribute name="TYP_IMMDT_PRNT_UNDRTKNG_ID" type="bcl:CL_BBK_TYP_CP_ID_PRTC"/>
+        <xs:attribute name="IMMDT_PRNT_UNDRTKNG_ID" type="BBKCommonTypes:BBK_CP_ID_NA"/>
+        <xs:attribute name="TYP_ULTMT_PRNT_UNDRTKNG_ID" type="bcl:CL_BBK_TYP_CP_ID_PRTC"/>
+        <xs:attribute name="ULTMT_PRNT_UNDRTKNG_ID" type="BBKCommonTypes:BBK_CP_ID_NA"/>
+        <xs:attribute name="NM_ENTTY" type="ECBCommonTypes:ECBSDD_LTN_EXT_255"/>
+        <xs:attribute name="STRT" type="BBKCommonTypes:BBK_LTN_EXT_255_NA"/>
+        <xs:attribute name="CTY" type="BBKCommonTypes:BBK_LTN_EXT_255_NA"/>
+        <xs:attribute name="TRRTRL_UNT" type="bcl:CL_BBK_NUTS3_NA"/>
+        <xs:attribute name="PSTL_CD" type="BBKCommonTypes:BBK_LTN_EXT_255_NA"/>
+        <xs:attribute name="CNTRY" type="ecl:CL_ECBSDD_ISO3166_DSJNT_IO"/>
+        <xs:attribute name="LGL_FRM" type="bcl:CL_BBK_LGL_FRM_NA"/>
+        <xs:attribute name="INSTTTNL_SCTR" type="bcl:CL_BBK_INSTTTNL_SCTR"/>
+        <xs:attribute name="KUSY" type="bcl:CL_BBK_KUSY"/>
+        <xs:attribute name="ECNMC_ACTVTY" type="ecl:CL_ECBSDD_NACE_LVLS2TO4_STGNG"/>
+        <xs:attribute name="LGL_PRCDNG_STTS" type="bcl:CL_BBK_LGL_PRCDNG_STTS_NA"/>
+        <xs:attribute name="LGL_PRCDNG_STTS_DT" type="BBKCommonTypes:BBK_FLL_YYYY_MM_DD_NA"/>
+        <xs:attribute name="ENTRPRS_SZ" type="bcl:CL_BBK_SZ_NA"/>
+        <xs:attribute name="ENTRPRS_SZ_DT" type="BBKCommonTypes:BBK_FLL_YYYY_MM_DD_NA"/>
+        <xs:attribute name="NMBR_EMPLYS" type="BBKCommonTypes:BBK_NN_NGTV_2D_NA"/>
+        <xs:attribute name="BLNC_SHT_TTL_CRRNCY" type="BBKCommonTypes:BBK_NN_NGTV_2D_NA"/>
+        <xs:attribute name="ANNL_TRNVR_CRRNCY" type="BBKCommonTypes:BBK_ALL_2D_NA"/>
+        <xs:attribute name="ACCNTNG_FRMWRK_SL" type="ecl:CL_ECBSDD_ACCNTNG_FRMWRK_RIAD_CLLCTN"/>
+        <xs:attribute name="ENTTY_RIAD_CD" type="ECBCommonTypes:ECBSDD_RSTRCTD_ID_50"/>
+        <xs:attribute name="ISIN" type="ECBCommonTypes:ECBSDD_ISIN_12"/>
+        <xs:attribute name="AE_BL_CD" type="BBKCommonTypes:BBK_ID_4D_TO_5D"/>
+        <xs:attribute name="AR_CUIT_CD" type="BBKCommonTypes:BBK_ID_2D_8D_1D"/>
+        <xs:attribute name="AT_FB_CD" type="BBKCommonTypes:BBK_ID_6D_L_3D"/>
+        <xs:attribute name="AT_GEM_CD" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="AT_IDENT_CD" type="BBKCommonTypes:BBK_ID_1_TO_8"/>
+        <xs:attribute name="AT_LAE_CD" type="BBKCommonTypes:BBK_ID_1"/>
+        <xs:attribute name="AT_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="AT_ZVR_CD" type="BBKCommonTypes:BBK_ID_1_TO_10"/>
+        <xs:attribute name="AU_ABN_CD" type="BBKCommonTypes:BBK_ID_2D_3D_3D_3D"/>
+        <xs:attribute name="AU_ACN_CD" type="BBKCommonTypes:BBK_ID_3D_3D_3D"/>
+        <xs:attribute name="AVID" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="BA_JIB_CD" type="BBKCommonTypes:BBK_ID_13D"/>
+        <xs:attribute name="BA_MBS_CD" type="BBKCommonTypes:BBK_ID_2D_5D_4D_2D_2D_4D_2D"/>
+        <xs:attribute name="BA_PIB_CD" type="BBKCommonTypes:BBK_ID_12D"/>
+        <xs:attribute name="BE_KBO_BCE_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="BE_OND_CD" type="BBKCommonTypes:BBK_ID_0_9"/>
+        <xs:attribute name="BG_BULSTAT_CD" type="BBKCommonTypes:BBK_ID_9_10_13"/>
+        <xs:attribute name="BG_UIC_CD" type="BBKCommonTypes:BBK_ID_9_13"/>
+        <xs:attribute name="BG_VAT_CD" type="BBKCommonTypes:BBK_ID_BG_9_10"/>
+        <xs:attribute name="BIC" type="BBKCommonTypes:BBK_ID_11D_OR_L_OR_8_D_OR_L"/>
+        <xs:attribute name="BLMBRG_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="BM_RN_CD" type="BBKCommonTypes:BBK_ID_4D_TO_5D"/>
+        <xs:attribute name="BR_CNPJ_CD" type="BBKCommonTypes:BBK_ID_2D_3D_3D_4D_2D"/>
+        <xs:attribute name="BS_NBR_CD" type="BBKCommonTypes:BBK_ID_5D_OR_7D"/>
+        <xs:attribute name="BVD_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="BY_NBR_CD" type="BBKCommonTypes:BBK_ID_9D"/>
+        <xs:attribute name="BZ_TIN_CD" type="BBKCommonTypes:BBK_ID_6D"/>
+        <xs:attribute name="CA_BN_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="CA_REG_ID_CD" type="BBKCommonTypes:BBK_ID_7D_OR_BC_7D"/>
+        <xs:attribute name="CH_ID_CD" type="BBKCommonTypes:BBK_ID_CH_11D"/>
+        <xs:attribute name="CH_NUMMER" type="BBKCommonTypes:BBK_ID_CH_3D_1D_3D_3D_1D"/>
+        <xs:attribute name="CH_UID_CD" type="BBKCommonTypes:BBK_ID_CHE_3D_3D_3D"/>
+        <xs:attribute name="CL_RUT_CD" type="BBKCommonTypes:BBK_ID_2D_3D_3D_K_OR_8D_K"/>
+        <xs:attribute name="CN_CC_CD" type="BBKCommonTypes:BBK_ID_18_L_OR_D"/>
+        <xs:attribute name="CO_NIT_CD" type="BBKCommonTypes:BBK_ID_9D_1D"/>
+        <xs:attribute name="CY_CBCID_CD" type="BBKCommonTypes:BBK_ID_2L_1_TO_8D"/>
+        <xs:attribute name="CY_DRCOR_CD" type="BBKCommonTypes:BBK_ID_COP_8D"/>
+        <xs:attribute name="CY_GG_CD" type="BBKCommonTypes:BBK_ID_S13_8D"/>
+        <xs:attribute name="CY_IF_CD" type="BBKCommonTypes:BBK_ID_CYIF_4D"/>
+        <xs:attribute name="CY_OTHER_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="CY_PF_CD" type="BBKCommonTypes:BBK_ID_PF_4D"/>
+        <xs:attribute name="CY_TIC_CD" type="BBKCommonTypes:BBK_ID_8D_1L"/>
+        <xs:attribute name="CY_VAT_CD" type="BBKCommonTypes:BBK_ID_D_7D_L"/>
+        <xs:attribute name="CZ_ICO_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="CZ_NID_CD" type="BBKCommonTypes:BBK_ID_8_OR_10"/>
+        <xs:attribute name="DE_BAK_CD" type="BBKCommonTypes:BBK_ID_BAK"/>
+        <xs:attribute name="DE_BAKISG_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="DE_BAKISN_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="DE_BLZ" type="BBKCommonTypes:BBK_ID_BLZ"/>
+        <xs:attribute name="DE_DESTATIS_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="DE_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="DE_TAX_CD" type="BBKCommonTypes:BBK_ID_13"/>
+        <xs:attribute name="DE_TRD_RGSTR_CD" type="BBKCommonTypes:BBK_ID_HRA_HRB_PR_VR_GnR"/>
+        <xs:attribute name="DE_VAT_CD" type="BBKCommonTypes:BBK_ID_DE_9D"/>
+        <xs:attribute name="DK_CVR_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="DK_FT_CD" type="BBKCommonTypes:BBK_ID_VAR_LEN_D_DASH"/>
+        <xs:attribute name="DK_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="DK_SE_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="DUNS_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="EC_RUC_CD" type="BBKCommonTypes:BBK_ID_13D"/>
+        <xs:attribute name="EE_FON_CD" type="BBKCommonTypes:BBK_ID_1_TO_4"/>
+        <xs:attribute name="EE_RG_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="EIOPA_ENTTY_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="ES_NIF_CD" type="BBKCommonTypes:BBK_ID_9D_OR_L"/>
+        <xs:attribute name="FI_ALV_CD" type="BBKCommonTypes:BBK_ID_FI_8D"/>
+        <xs:attribute name="FI_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="FI_SIRA_CD" type="BBKCommonTypes:BBK_ID_8D_3D"/>
+        <xs:attribute name="FI_Y_CD" type="BBKCommonTypes:BBK_ID_8D_DASH"/>
+        <xs:attribute name="FR_CIB" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="FR_IF_CD" type="BBKCommonTypes:BBK_ID_FR_10L_OR_10D"/>
+        <xs:attribute name="FR_RNA_CD" type="BBKCommonTypes:BBK_ID_1L_9D"/>
+        <xs:attribute name="FR_SIREN_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="FVC_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_255"/>
+        <xs:attribute name="GB_CRN_CD" type="BBKCommonTypes:BBK_ID_8DL"/>
+        <xs:attribute name="GB_FSR_CD" type="BBKCommonTypes:BBK_ID_6"/>
+        <xs:attribute name="GB_UTR_CD" type="BBKCommonTypes:BBK_ID_10D_OR_9DK"/>
+        <xs:attribute name="GB_VAT_CD" type="BBKCommonTypes:BBK_ID_GB_VAT_CD"/>
+        <xs:attribute name="GEN_IPF_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_NBR_ENTTY_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_NCB_ENTTY_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="GEN_NSA_ENTTY_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_NSI_ENTTY_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_OTHER_CD" type="BBKCommonTypes:BBK_ID_511"/>
+        <xs:attribute name="GEN_PS_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_TAX_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_TRD_RGSTR_ENTTY_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GEN_VAT_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="GG_RN_CD" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="GR_AFM_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="GR_IMO_CD" type="BBKCommonTypes:BBK_ID_7"/>
+        <xs:attribute name="HK_CR_CD" type="BBKCommonTypes:BBK_ID_L_7D"/>
+        <xs:attribute name="HR_MB_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="HR_MBS_CD" type="BBKCommonTypes:BBK_ID_0_OR_1_8D"/>
+        <xs:attribute name="HR_OIB_CD" type="BBKCommonTypes:BBK_ID_11"/>
+        <xs:attribute name="HU_CEG_CD" type="BBKCommonTypes:BBK_ID_2D-2D-6D"/>
+        <xs:attribute name="HU_FB_CD" type="BBKCommonTypes:BBK_ID_FB5D_OR_FB3D_1L_2D"/>
+        <xs:attribute name="HU_KOZ_CD" type="BBKCommonTypes:BBK_ID_HU_8D"/>
+        <xs:attribute name="HU_TOR_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="ID_NPWP_CD" type="BBKCommonTypes:BBK_ID_2D_3D_3D_1D_3D_3D"/>
+        <xs:attribute name="IE_CRO_CD" type="BBKCommonTypes:BBK_ID_1_OR_9_D_1_6"/>
+        <xs:attribute name="IE_GOV_CD" type="BBKCommonTypes:BBK_ID_GV_4D_OR_LA_3D"/>
+        <xs:attribute name="IE_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="IE_VAT_CD" type="BBKCommonTypes:BBK_ID_IE_1D_TO_9D"/>
+        <xs:attribute name="IL_TAX_CD" type="BBKCommonTypes:BBK_ID_9D"/>
+        <xs:attribute name="IM_RN_CD" type="BBKCommonTypes:BBK_ID_6D_1L"/>
+        <xs:attribute name="IM_TAX_CD" type="BBKCommonTypes:BBK_ID_HCX_6D_2D"/>
+        <xs:attribute name="IN_CIN_CD" type="BBKCommonTypes:BBK_ID_21D_OR_L"/>
+        <xs:attribute name="IN_PAN_CD" type="BBKCommonTypes:BBK_ID_10D_OR_L"/>
+        <xs:attribute name="IFS_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_255"/>
+        <xs:attribute name="IT_ABI_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="IT_CCIAA_CD" type="BBKCommonTypes:BBK_ID_2L_7D"/>
+        <xs:attribute name="IT_CF_CD" type="BBKCommonTypes:BBK_ID_11"/>
+        <xs:attribute name="IT_UCITS_CD" type="BBKCommonTypes:BBK_ID_MAX_7D"/>
+        <xs:attribute name="JE_TAX_CD" type="BBKCommonTypes:BBK_ID_L_L_5D"/>
+        <xs:attribute name="JP_CN_CD" type="BBKCommonTypes:BBK_ID_13D"/>
+        <xs:attribute name="KR_TIN_CD" type="BBKCommonTypes:BBK_ID_3D_2D_5D"/>
+        <xs:attribute name="LEID" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="LI_FL_CD" type="BBKCommonTypes:BBK_ID_FL_4D_3D_3D_1D"/>
+        <xs:attribute name="LT_INV_CD" type="BBKCommonTypes:BBK_ID_LT_INV_CD"/>
+        <xs:attribute name="LT_JAR_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="LU_IF_CD" type="BBKCommonTypes:BBK_ID_1L_6D_C_5D"/>
+        <xs:attribute name="LU_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="LU_RCS_CD" type="BBKCommonTypes:BBK_ID_A_Z_D"/>
+        <xs:attribute name="LU_VAT_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="LV_FON_CD" type="BBKCommonTypes:BBK_ID_LV_FON_CD"/>
+        <xs:attribute name="LV_NBR_CD" type="BBKCommonTypes:BBK_ID_11"/>
+        <xs:attribute name="LV_VAT_CD" type="BBKCommonTypes:BBK_ID_LV_11D"/>
+        <xs:attribute name="MC_CIB" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="MC_NIS_CD" type="BBKCommonTypes:BBK_ID_4D_1L_5D"/>
+        <xs:attribute name="MC_RCI_CD" type="BBKCommonTypes:BBK_ID_2D_3L_5D"/>
+        <xs:attribute name="MH_EN_CD" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="MH_NBR_CD" type="BBKCommonTypes:BBK_ID_4D_TO_6D"/>
+        <xs:attribute name="MT_CNUM_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="MT_OLE_CD" type="ECBCommonTypes:ECBSDD_LTN_EXT_50"/>
+        <xs:attribute name="MT_VAT_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="MX_RFC_CD" type="BBKCommonTypes:BBK_ID_3L_6D_3D_OR_L"/>
+        <xs:attribute name="MY_CRN_CD" type="BBKCommonTypes:BBK_ID_6D_1L_2"/>
+        <xs:attribute name="NC_NBR_CD" type="BBKCommonTypes:BBK_ID_10D"/>
+        <xs:attribute name="NL_KVK_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="NL_RSIN_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="NO_NBR_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="PA_RUC_CD" type="BBKCommonTypes:BBK_ID_9D"/>
+        <xs:attribute name="PE_RUC_CD" type="BBKCommonTypes:BBK_ID_11D"/>
+        <xs:attribute name="PL_KRS_CD" type="BBKCommonTypes:BBK_ID_VAR_LEN"/>
+        <xs:attribute name="PL_NIP_CD" type="BBKCommonTypes:BBK_ID_10"/>
+        <xs:attribute name="PL_REGON_CD" type="BBKCommonTypes:BBK_ID_14_OR_9"/>
+        <xs:attribute name="PL_VAT_CD" type="BBKCommonTypes:BBK_ID_PL_10"/>
+        <xs:attribute name="PT_ASF_CD" type="BBKCommonTypes:BBK_ID_1_TO_4"/>
+        <xs:attribute name="PT_FSA_CD" type="BBKCommonTypes:BBK_ID_MAX_6D"/>
+        <xs:attribute name="PT_IF_CD" type="BBKCommonTypes:BBK_ID_1_TO_8"/>
+        <xs:attribute name="PT_NIF_CD" type="BBKCommonTypes:BBK_ID_9"/>
+        <xs:attribute name="RO_CUI_CD" type="BBKCommonTypes:BBK_ID_RO_10D"/>
+        <xs:attribute name="RO_TAX_CD" type="BBKCommonTypes:BBK_ID_RO_10D"/>
+        <xs:attribute name="RO_TRN_CD" type="BBKCommonTypes:BBK_ID_J_D_D_D"/>
+        <xs:attribute name="RS_MB_CD" type="BBKCommonTypes:BBK_ID_8D"/>
+        <xs:attribute name="RS_PIB_CD" type="BBKCommonTypes:BBK_ID_9D"/>
+        <xs:attribute name="RU_INN_CD" type="BBKCommonTypes:BBK_ID_10"/>
+        <xs:attribute name="RU_OGRN_CD" type="BBKCommonTypes:BBK_ID_13"/>
+        <xs:attribute name="SE_FIN_CD" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="SE_MOM_CD" type="BBKCommonTypes:BBK_ID_SE_12"/>
+        <xs:attribute name="SE_NOTAP_CD" type="BBKCommonTypes:BBK_NotApplicable"/>
+        <xs:attribute name="SE_ORG_CD" type="BBKCommonTypes:BBK_ID_6D_4D"/>
+        <xs:attribute name="SG_ROB_CD" type="BBKCommonTypes:BBK_ID_9D_1L"/>
+        <xs:attribute name="SI_DAV_CD" type="BBKCommonTypes:BBK_ID_8"/>
+        <xs:attribute name="SI_DDV_CD" type="BBKCommonTypes:BBK_ID_SI_8"/>
+        <xs:attribute name="SI_MAT_CD" type="BBKCommonTypes:BBK_ID_10"/>
+        <xs:attribute name="SK_ICO_CD" type="BBKCommonTypes:BBK_ID_8D_OR_8D_1L"/>
+        <xs:attribute name="SK_IF_CD" type="BBKCommonTypes:BBK_ID_SK_8D_3L_2D"/>
+        <xs:attribute name="SM_COE_CD" type="BBKCommonTypes:BBK_ID_5D"/>
+        <xs:attribute name="TH_NBR_CD" type="BBKCommonTypes:BBK_ID_13D"/>
+        <xs:attribute name="TR_VKN_CD" type="BBKCommonTypes:BBK_ID_1D_TO_10D"/>
+        <xs:attribute name="TW_TAX_CD" type="BBKCommonTypes:BBK_ID_8D"/>
+        <xs:attribute name="US_CIK_CD" type="BBKCommonTypes:BBK_ID_10"/>
+        <xs:attribute name="US_DSFN_CD" type="BBKCommonTypes:BBK_ID_6D_OR_7D"/>
+        <xs:attribute name="US_EIN_CD" type="BBKCommonTypes:BBK_ID_2D_7D"/>
+        <xs:attribute name="UY_RUT_CD" type="BBKCommonTypes:BBK_ID_12D"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_ENTTY_RFRNC_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_ENTTY_RFRNC_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObsBBK_ANCRDT_ENTTY_PRTCTD_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:ObsType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="TYP_CP_ID" type="bcl:CL_BBK_TYP_CP_ID" use="required"/>
+        <xs:attribute name="CP_ID" type="BBKCommonTypes:BBK_CP_ID" use="required"/>
+        <xs:attribute name="type" type="common:IDType" use="prohibited"/>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BBK_ANCRDT_ENTTY_PRTCTD_C">
+    <xs:complexContent>
+      <xs:restriction base="dsd:DataSetType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element name="DataProvider" type="common:DataProviderReferenceType" form="unqualified"
+            minOccurs="0"/>
+          <xs:choice minOccurs="1">
+            <xs:element name="Obs" type="ObsBBK_ANCRDT_ENTTY_PRTCTD_C" form="unqualified"
+              maxOccurs="unbounded"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

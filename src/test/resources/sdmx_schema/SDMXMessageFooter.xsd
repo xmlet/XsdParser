@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+  elementFormDefault="qualified">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+  <!-- Note: The following import statement sometimes causes problems with IE 6.* If you have this problem, comment it out. -->
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
+  <xs:element name="Footer" type="FooterType">
+    <xs:annotation>
+      <xs:documentation>Footer is used to communicate information such as error and warnings after
+        the payload of a message.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="FooterType">
+    <xs:annotation>
+      <xs:documentation>FooterType describes the structure of a message footer. The footer is used
+        to convey any error, information, or warning messages. This is to be used when the message
+        has payload, but also needs to communicate additional information. If an error occurs and no
+        payload is generated, an Error message should be returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Message" type="FooterMessageType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Message contains a single error, information, or warning message. A code
+            is provided along with an optional severity. The text of the message can be expressed in
+            multiple languages.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FooterMessageType">
+    <xs:annotation>
+      <xs:documentation>FooterMessageType defines the structure of a message that is contained in
+        the footer of a message. It is a status message that have a severity code of Error,
+        Information, or Warning added to it.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:CodedStatusMessageType">
+        <xs:attribute name="severity" type="SeverityCodeType" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="SeverityCodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Error">
+        <xs:annotation>
+          <xs:documentation>Error indicates the status message coresponds to an error.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Warning">
+        <xs:annotation>
+          <xs:documentation>Warning indicates that the status message corresponds to a warning.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Information">
+        <xs:annotation>
+          <xs:documentation>Information indicates that the status message corresponds to an
+            informational message.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

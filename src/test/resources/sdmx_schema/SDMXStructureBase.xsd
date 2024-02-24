@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+  xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+  <xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+    schemaLocation="SDMXCommon.xsd"/>
+
+  <xs:annotation>
+    <xs:appinfo>SDMX Base Structure Module</xs:appinfo>
+    <xs:documentation>The base structure module contains the descriptions of base structural
+      metadata constructs, such as item schemes, structures, and structure usages, as well as
+      constructs reused by multiple types of structural components.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="IdentifiableType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>IdentifiableType is an abstract base type for all identifiable objects.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="common:AnnotableType">
+        <xs:attribute name="id" type="common:IDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The id is the identifier for the object.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="urn" type="xs:anyURI" use="optional">
+          <xs:annotation>
+            <xs:documentation>The urn attribute holds a valid SDMX Registry URN (see SDMX Registry
+              Specification for details).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="uri" type="xs:anyURI" use="optional">
+          <xs:annotation>
+            <xs:documentation>The uri attribute holds a URI that contains a link to a resource with
+              additional information about the object, such as a web page. This uri is not a SDMX
+              message.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="NameableType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>NameableType is an abstract base type for all nameable objects.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IdentifiableType">
+        <xs:sequence>
+          <xs:element ref="common:Name" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Name provides for a human-readable name for the object. This may be
+                provided in multiple, parallel language-equivalent forms.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Description provides for a longer human-readable description of the
+                object. This may be provided in multiple, parallel language-equivalent forms.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="VersionableType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>VersionableType is an abstract base type for all versionable objects.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NameableType">
+        <xs:attribute name="version" type="common:VersionType" use="optional" default="1.0">
+          <xs:annotation>
+            <xs:documentation>This version attribute holds a version number in the format of #[.#]+
+              (see common:VersionType definition for details). If not supplied, the version number
+              is defaulted to 1.0.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="validFrom" type="xs:dateTime" use="optional">
+          <xs:annotation>
+            <xs:documentation>The validFrom attribute provides the inclusive start date for
+              providing supplemental validity information about the version.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="validTo" type="xs:dateTime" use="optional">
+          <xs:annotation>
+            <xs:documentation>The validTo attribute provides the inclusive end date for providing
+              supplemental validity information about the version.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MaintainableBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MaintainableBaseType is an abstract type that only serves the purpose of
+        forming the base for the actual MaintainableType. The purpose of this type is to restrict
+        the VersionableType to require the id attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="VersionableType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MaintainableType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>MaintainableType is an abstract base type for all maintainable objects.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MaintainableBaseType">
+        <xs:attribute name="agencyID" type="common:NestedNCNameIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>The agencyID must be provided, and identifies the maintenance agency
+              of the object.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isFinal" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>The isFinal attribute indicates whether the object is unchangeable
+              without versioning. If the value is true, the object must be versioned upon change. If
+              the final attribute is not supplied, then the object is assumed not to be final. Note
+              that all production objects must be final.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isExternalReference" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>The isExternalReference attribute, if true, indicates that the actual
+              object is not defined the corresponding element, rather its full details are defined
+              elsewhere - indicated by either the registryURL, the repositoryURL, or the
+              structureURL. The purpose of this is so that each structure message does not have to
+              redefine object that are already defined elsewhere. If the isExternalReference
+              attribute is not set, then it is assumed to be false, and the object should contain
+              the full definition of its contents. If more than one of the registryURL, the
+              repositoryURL, and the structureURL are supplied, then the application processing the
+              object can choose the method it finds best suited to retrieve the details of the
+              object.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attributeGroup ref="common:ExternalReferenceAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ItemSchemeType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ItemSchemeType is an abstract base type for all item scheme objects. It
+        contains a collection of items. Concrete instances of this type should restrict the actual
+        types of items allowed within the scheme.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MaintainableType">
+        <xs:sequence>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="Item"/>
+          </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="isPartial" type="xs:boolean" use="optional" default="false">
+          <xs:annotation>
+            <xs:documentation>The isPartial, if true, indicates that only the relevant portion of
+              the item scheme is being communicated. This is used in cases where a codelist is
+              returned for a key family in the context of a constraint.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Item" type="ItemType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Item is an abstract element that serves as a substitution head for all items
+        in an item scheme, including those items nested within other items. Concrete instances of
+        this must use a concrete instance of ItemType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ItemBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ItemBaseType is an abstract base type that forms the basis for the ItemType.
+        It requires that at least an id be supplied for an item.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="NameableType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+          <xs:element ref="common:Name" maxOccurs="unbounded"/>
+          <xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:IDType" use="required"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ItemType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ItemType is an abstract base type for all items with in an item scheme.
+        Concrete instances of this type may or may not utilize the nested item, but if so should
+        restrict the actual types of item allowed.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ItemBaseType">
+        <xs:choice minOccurs="0">
+          <xs:element name="Parent" type="common:LocalItemReferenceType"/>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element ref="Item"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StructureType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>StructureType is an abstract base type for all structure objects. Concrete
+        instances of this should restrict to a concrete grouping.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MaintainableType">
+        <xs:sequence>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="Grouping"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Grouping" type="GroupingType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Grouping is an abstract element that serves as a substitution head for all
+        structure groupings. Groupings contain a collection of component lists for a structure.
+        Concrete instances of this must use a concrete instance of GroupingType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="GroupingType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>GroupType is an abstract base type for specific structure groupings. It
+        contains a collection of component lists. Concrete instances of this should restrict to
+        specific concrete component lists.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ComponentList"/>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="ComponentList" type="ComponentListType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ComponentList is an abstract element that serves as a substitution head for
+        all component lists. Concrete instances of this must use a concrete instance of
+        ComponentListType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ComponentListType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ComponentListType is an abstract base type for all component lists. It
+        contains a collection of components. Concrete types should restrict this to specific
+        concrete components.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IdentifiableType">
+        <xs:sequence>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="Component"/>
+          </xs:sequence>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Component" type="ComponentType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Component is an abstract element that serves as a substitution head for all
+        components. Concrete instances of this must use a concrete instance of ComponentType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ComponentBaseType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ComponentBaseType is an abstract type that only serves the purpose of
+        forming the base for the actual ComponentType. It only restricts the format of the id
+        attribute to the NCNameIDType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="IdentifiableType">
+        <xs:sequence>
+          <xs:element ref="common:Annotations" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="common:NCNameIDType" use="optional">
+          <xs:annotation>
+            <xs:documentation>The id attribute holds an explicit identification of the component. If
+              this identifier is not supplied, then it is assumed to be the same as the identifier
+              of the concept referenced from the concept identity. Because structures require that
+              every component be given a unique identifier, it may be necessary to assign an
+              explicit identifier when more than one component in a structure reference concepts
+              with same identifier. It is important to note that this applies strictly to the
+              identifier of concept and not the URN. Therefore if two concepts with the same
+              identifier from different concept schemes are referenced in the same structure, one of
+              the components will have to provide a unique explicit identifier. The type of this
+              identifier is restricted to the common:NCNameIDType. This is necessary, since
+              component identifiers are used to create XML elements and attributes in data and
+              metadata structure specific schemas and therefore must be compliant with the NCName
+              type in XML Schema (see common:NCNameIDType for further details).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ComponentType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>ComponentType is an abstract base type for all components. It contains
+        information pertaining to a component, including an optional reference to a concept, an
+        optional role played by the concept, an optional text format description, and an optional
+        local representation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ComponentBaseType">
+        <xs:sequence>
+          <xs:element name="ConceptIdentity" type="common:ConceptReferenceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ConceptIdentity allows for the referencing of a concept in a concept
+                scheme. The component takes its semantic from this concept, and if an id is not
+                specified, it takes its identification as well. If a representation
+                (LocalRepresentation) is not supplied, then the representation of the component is
+                also inherited from the concept. Note that in the case of the component
+                representation being inherited from the concept, the allowable representations for
+                the component still apply. Therefore, if a component references a concept with a
+                core representation that is not allowed for the concept, that representation must be
+                locally overridden. For components which can specify a concept role, it is implied
+                that the concept which is referenced also identifies a role for the component.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LocalRepresentation" type="RepresentationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>LocalRepresentation references item schemes that may be used to
+                create the representation of a component. The type of this must be refined such that
+                a concrete item scheme reference is used.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StructureUsageType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>StructureUsageType is an abstract base type for all structure usages. It
+        contains a reference to a structure. Concrete instances of this type should restrict the
+        type of structure referenced.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MaintainableType">
+        <xs:sequence>
+          <xs:element name="Structure" type="common:StructureReferenceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Structure references the structure (data structure or metadata
+                structure definition) which the structure usage is based upon. Implementations will
+                have to refine the type to use a concrete structure reference (i.e. either a data
+                structure or metadata structure definition reference).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="UsageStatusType">
+    <xs:annotation>
+      <xs:documentation>UsageStatusType provides a list of enumerated types for indicating whether
+        reporting a given attribute is mandatory or conditional.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="Mandatory">
+        <xs:annotation>
+          <xs:documentation>Reporting the associated attribute is mandatory - a value must be
+            supplied.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Conditional">
+        <xs:annotation>
+          <xs:documentation>Reporting the associated attribute is not mandatory - a value may be
+            supplied, but is not required.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="RepresentationType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>RepresentationType is an abstract type that defines a representation.
+        Because the type of item schemes that are allowed as the an enumeration vary based on the
+        object in which this is defined, this type is abstract to force that the enumeration
+        reference be restricted to the proper type of item scheme reference.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="TextFormat" type="TextFormatType">
+        <xs:annotation>
+          <xs:documentation>TextFormat describes an uncoded textual format.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType">
+          <xs:annotation>
+            <xs:documentation>Enumeration references an item scheme that enumerates the allowable
+              values for this representation.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>EnumerationFormat describes the facets of the item scheme enumeration.
+              This is for the most part, informational.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="TextFormatType">
+    <xs:annotation>
+      <xs:documentation>TextFormatType defines the information for describing a full range of text
+        formats and may place restrictions on the values of the other attributes, referred to as
+        "facets".
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="textType" type="common:DataType" default="String">
+      <xs:annotation>
+        <xs:documentation>The textType attribute provides a description of the datatype. If it is
+          not specified, any valid characters may be included in the text field (it corresponds to
+          the xs:string datatype of W3C XML Schema) within the constraints of the facets.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isSequence" type="xs:boolean" use="optional">
+      <xs:annotation>
+        <xs:documentation>The isSequence attribute indicates whether the values are intended to be
+          ordered, and it may work in combination with the interval, startValue, and endValue
+          attributes or the timeInterval, startTime, and endTime, attributes. If this attribute
+          holds a value of true, a start value or time and a numeric or time interval must supplied.
+          If an end value is not given, then the sequence continues indefinitely.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="interval" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The interval attribute specifies the permitted interval (increment) in a
+          sequence. In order for this to be used, the isSequence attribute must have a value of
+          true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="startValue" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The startValue attribute is used in conjunction with the isSequence and
+          interval attributes (which must be set in order to use this attribute). This attribute is
+          used for a numeric sequence, and indicates the starting point of the sequence. This value
+          is mandatory for a numeric sequence to be expressed.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="endValue" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The endValue attribute is used in conjunction with the isSequence and
+          interval attributes (which must be set in order to use this attribute). This attribute is
+          used for a numeric sequence, and indicates that ending point (if any) of the sequence.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="timeInterval" type="xs:duration" use="optional">
+      <xs:annotation>
+        <xs:documentation>The timeInterval attribute indicates the permitted duration in a time
+          sequence. In order for this to be used, the isSequence attribute must have a value of
+          true.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="startTime" type="common:StandardTimePeriodType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The startTime attribute is used in conjunction with the isSequence and
+          timeInterval attributes (which must be set in order to use this attribute). This attribute
+          is used for a time sequence, and indicates the start time of the sequence. This value is
+          mandatory for a time sequence to be expressed.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="endTime" type="common:StandardTimePeriodType" use="optional">
+      <xs:annotation>
+        <xs:documentation>The endTime attribute is used in conjunction with the isSequence and
+          timeInterval attributes (which must be set in order to use this attribute). This attribute
+          is used for a time sequence, and indicates that ending point (if any) of the sequence.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="minLength" type="xs:positiveInteger" use="optional">
+      <xs:annotation>
+        <xs:documentation>The minLength attribute specifies the minimum and length of the value in
+          characters.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="maxLength" type="xs:positiveInteger" use="optional">
+      <xs:annotation>
+        <xs:documentation>The maxLength attribute specifies the maximum length of the value in
+          characters.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="minValue" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The minValue attribute is used for inclusive and exclusive ranges,
+          indicating what the lower bound of the range is. If this is used with an inclusive range,
+          a valid value will be greater than or equal to the value specified here. If the inclusive
+          and exclusive data type is not specified (e.g. this facet is used with an integer data
+          type), the value is assumed to be inclusive.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="maxValue" type="xs:decimal" use="optional">
+      <xs:annotation>
+        <xs:documentation>The maxValue attribute is used for inclusive and exclusive ranges,
+          indicating what the upper bound of the range is. If this is used with an inclusive range,
+          a valid value will be less than or equal to the value specified here. If the inclusive and
+          exclusive data type is not specified (e.g. this facet is used with an integer data type),
+          the value is assumed to be inclusive.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="decimals" type="xs:positiveInteger" use="optional">
+      <xs:annotation>
+        <xs:documentation>The decimals attribute indicates the number of characters allowed after
+          the decimal separator.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="pattern" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>The pattern attribute holds any regular expression permitted in the
+          similar facet in W3C XML Schema.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="isMultiLingual" type="xs:boolean" use="optional" default="true">
+      <xs:annotation>
+        <xs:documentation>The isMultiLingual attribute indicates for a text format of type "string",
+          whether the value should allow for multiple values in different languages.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="BasicComponentTextFormatType">
+    <xs:annotation>
+      <xs:documentation>BasicComponentTextFormatType is a restricted version of the TextFormatType
+        that restricts the text type to the representations allowed for all components except for
+        target objects.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="TextFormatType">
+        <xs:attribute name="textType" type="common:BasicComponentDataType" use="optional"
+          default="String"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SimpleComponentTextFormatType">
+    <xs:annotation>
+      <xs:documentation>SimpleComponentTextFormatType is a restricted version of the
+        BasicComponentTextFormatType that does not allow for multi-lingual values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="BasicComponentTextFormatType">
+        <xs:attribute name="textType" type="common:SimpleDataType" use="optional" default="String"/>
+        <xs:attribute name="isMultiLingual" type="xs:boolean" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CodededTextFormatType">
+    <xs:annotation>
+      <xs:documentation>CodededTextFormatType is a restricted version of the
+        SimpleComponentTextFormatType that only allows factets and text types applicable to codes.
+        Although the time facets permit any value, an actual code identifier does not support the
+        necessary characters for time. Therefore these facets should not contain time in their
+        values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="SimpleComponentTextFormatType">
+        <xs:attribute name="textType" type="CodeDataType" use="optional"/>
+        <xs:attribute name="isSequence" type="xs:boolean" use="optional"/>
+        <xs:attribute name="interval" type="xs:integer" use="optional"/>
+        <xs:attribute name="startValue" type="xs:integer" use="optional"/>
+        <xs:attribute name="endValue" type="xs:integer" use="optional"/>
+        <xs:attribute name="timeInterval" type="xs:duration" use="optional"/>
+        <xs:attribute name="startTime" type="common:StandardTimePeriodType" use="optional"/>
+        <xs:attribute name="endTime" type="common:StandardTimePeriodType" use="optional"/>
+        <xs:attribute name="minLength" type="xs:positiveInteger" use="optional"/>
+        <xs:attribute name="maxLength" type="xs:positiveInteger" use="optional"/>
+        <xs:attribute name="minValue" type="xs:integer" use="optional"/>
+        <xs:attribute name="maxValue" type="xs:integer" use="optional"/>
+        <xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="pattern" type="xs:string" use="optional"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="CodeDataType">
+    <xs:annotation>
+      <xs:documentation>CodeDataType is a restriction of the basic data types that are applicable to
+        codes. Although some of the higher level time period formats are perimitted, it should be
+        noted that any value which contains time (which includes a time zone offset) is not
+        allowable as a code identifier.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="common:SimpleDataType">
+      <xs:enumeration value="String"/>
+      <xs:enumeration value="Alpha"/>
+      <xs:enumeration value="AlphaNumeric"/>
+      <xs:enumeration value="Numeric"/>
+      <xs:enumeration value="BigInteger"/>
+      <xs:enumeration value="Integer"/>
+      <xs:enumeration value="Long"/>
+      <xs:enumeration value="Short"/>
+      <xs:enumeration value="Boolean"/>
+      <xs:enumeration value="URI"/>
+      <xs:enumeration value="Count"/>
+      <xs:enumeration value="InclusiveValueRange"/>
+      <xs:enumeration value="ExclusiveValueRange"/>
+      <xs:enumeration value="Incremental"/>
+      <xs:enumeration value="ObservationalTimePeriod"/>
+      <xs:enumeration value="StandardTimePeriod"/>
+      <xs:enumeration value="BasicTimePeriod"/>
+      <xs:enumeration value="GregorianTimePeriod"/>
+      <xs:enumeration value="GregorianYear"/>
+      <xs:enumeration value="GregorianYearMonth"/>
+      <xs:enumeration value="GregorianDay"/>
+      <xs:enumeration value="ReportingTimePeriod"/>
+      <xs:enumeration value="ReportingYear"/>
+      <xs:enumeration value="ReportingSemester"/>
+      <xs:enumeration value="ReportingTrimester"/>
+      <xs:enumeration value="ReportingQuarter"/>
+      <xs:enumeration value="ReportingMonth"/>
+      <xs:enumeration value="ReportingWeek"/>
+      <xs:enumeration value="ReportingDay"/>
+      <xs:enumeration value="Month"/>
+      <xs:enumeration value="MonthDay"/>
+      <xs:enumeration value="Day"/>
+      <xs:enumeration value="Duration"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="NonFacetedTextFormatType">
+    <xs:annotation>
+      <xs:documentation>NonFacetedTextFormatType is a restricted version of the
+        SimpleComponentTextFormatType that does not allow for any facets.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="SimpleComponentTextFormatType">
+        <xs:attribute name="textType" type="common:SimpleDataType" use="optional"/>
+        <xs:attribute name="isSequence" type="xs:boolean" use="prohibited"/>
+        <xs:attribute name="interval" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="startValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="endValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="timeInterval" type="xs:duration" use="prohibited"/>
+        <xs:attribute name="startTime" type="common:BasicTimePeriodType" use="prohibited"/>
+        <xs:attribute name="endTime" type="common:BasicTimePeriodType" use="prohibited"/>
+        <xs:attribute name="minLength" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="maxLength" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="minValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="maxValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="pattern" type="xs:string" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeTextFormatType">
+    <xs:annotation>
+      <xs:documentation>TimeTextFormat is a restricted version of the SimpleComponentTextFormatType
+        that only allows time based format and specifies a default ObservationalTimePeriod
+        representation and facets of a start and end time.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="SimpleComponentTextFormatType">
+        <xs:attribute name="textType" type="common:TimeDataType" default="ObservationalTimePeriod"/>
+        <xs:attribute name="startTime" type="common:StandardTimePeriodType" use="optional"/>
+        <xs:attribute name="endTime" type="common:StandardTimePeriodType" use="optional"/>
+        <xs:attribute name="isSequence" type="xs:boolean" use="prohibited"/>
+        <xs:attribute name="interval" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="startValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="endValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="timeInterval" type="xs:duration" use="prohibited"/>
+        <xs:attribute name="minLength" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="maxLength" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="minValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="maxValue" type="xs:decimal" use="prohibited"/>
+        <xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
+        <xs:attribute name="pattern" type="xs:string" use="prohibited"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

@@ -236,6 +236,7 @@ public class XsdElement extends XsdNamedElements {
         placeHolderAttributes.putAll(attributesMap);
         placeHolderAttributes.remove(TYPE_TAG);
         placeHolderAttributes.remove(REF_TAG);
+        placeHolderAttributes.remove(SUBSTITUTION_GROUP_TAG);
 
         XsdElement elementCopy = new XsdElement(this.parent, this.parser, placeHolderAttributes, visitorFunction);
 

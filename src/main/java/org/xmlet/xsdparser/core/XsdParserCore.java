@@ -98,62 +98,6 @@ public abstract class XsdParserCore {
         resolveUnion();
     }
 
-    /**
-     * This is not a good solution, since its only a patch on the problem, the root cause should be solved. There are loose
-     * unsolvedReferences that aren't actually unsolved anymore but somehow they aren't removed from the list.
-     */
-    private void cleanUpLooseUnsolvedReferences() {
-        Map<String, List<UnsolvedReference>> original = new HashMap<>(unsolvedElements);
-        unsolvedElements.clear();
-        for (List<UnsolvedReference> value : original.values()) {
-            for (UnsolvedReference unsolvedReference : value) {
-                XsdSchema schema = extractXsdSchema(unsolvedReference);
-                if(schema != null) {
-                    String fileName = schema.getFilePath();
-                    List<UnsolvedReference> unsolvedReferences = unsolvedElements.getOrDefault(fileName, new ArrayList<>());
-                    if (unsolvedReferences.isEmpty()) {
-                        unsolvedElements.put(fileName, unsolvedReferences);
-                    }
-                    unsolvedReferences.add(unsolvedReference);
-                } else {
-                    List<UnsolvedReference> unsolvedReferences = unsolvedElements.getOrDefault("UNK", new ArrayList<>());
-                    if (unsolvedReferences.isEmpty()) {
-                        unsolvedElements.put("UNK", unsolvedReferences);
-                    }
-                    unsolvedReferences.add(unsolvedReference);
-                }
-            }
-        }
-    }
-
-    private static XsdSchema extractXsdSchema(ReferenceBase unsolvedReference) {
-        List<XsdAbstractElement> allElementsInRow = new ArrayList<>();
-        XsdAbstractElement current = unsolvedReference.getElement();
-        XsdAbstractElement parent = current.getParent();
-        if(parent == null) {
-            current.setParentAvailable(true);
-            parent = current.getParent();
-            current.setParentAvailable(false);
-        }
-        allElementsInRow.add(current);
-        while(parent != null) {
-            current = parent;
-            parent = current.getParent();
-            if(parent == null) {
-                current.setParentAvailable(true);
-                parent = current.getParent();
-                current.setParentAvailable(false);
-            }
-            allElementsInRow.add(0, current);
-        }
-        XsdAbstractElement firstElement = allElementsInRow.get(0);
-        if(firstElement instanceof  XsdSchema) {
-            return (XsdSchema) firstElement;
-        } else {
-            return null;
-        }
-    }
-
     private void resolveUnion() {
         for (List<ReferenceBase> parsedElements : parseElements.values()) {
             parsedElements.stream()
@@ -168,9 +112,9 @@ public abstract class XsdParserCore {
 
     private void resolveMemberTypes(XsdUnion union) {
         if (union != null) {
-            XsdSchema schema = union.getXsdSchema();
             List<String> originalMemberTypes = union.getMemberTypesList();
             for (String memberType : originalMemberTypes) {
+                XsdSchema schema = union.getXsdSchema();
                 String ref = null;
                 String[] split = memberType.split(":");
                 int length = split.length;
@@ -432,6 +376,10 @@ public abstract class XsdParserCore {
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
+
+            if (unsolvedElements.get(fileName).isEmpty()){
+                unsolvedElements.remove(fileName);
+            }
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
@@ -516,8 +464,6 @@ public abstract class XsdParserCore {
 
                         currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
 
-                        cleanUpLooseUnsolvedReferences();
-
                         if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize) {
                             solveMore = false;
                         } else {
@@ -595,6 +541,10 @@ public abstract class XsdParserCore {
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
+
+            if (unsolvedElements.get(fileName).isEmpty()){
+                unsolvedElements.remove(fileName);
+            }
         } else {
             storeUnsolvedItem(unsolvedReference);
         }

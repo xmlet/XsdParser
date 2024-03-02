@@ -174,6 +174,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
     @Override
     public XsdRestriction clone(@NotNull Map<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(attributesMap);
+        placeHolderAttributes.remove(BASE_TAG);
 
         XsdRestriction elementCopy = new XsdRestriction(this.parser, placeHolderAttributes, visitorFunction);
 
@@ -241,6 +242,7 @@ public class XsdRestriction extends XsdAnnotatedElements {
             elementCopy.group = ReferenceBase.clone(this.parser, this.group, elementCopy);
         }
 
+        elementCopy.cloneOf = this;
         elementCopy.parent = null;
         elementCopy.base = this.base;
 

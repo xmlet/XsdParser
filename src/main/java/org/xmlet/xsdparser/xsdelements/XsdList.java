@@ -63,6 +63,7 @@ public class XsdList extends XsdAnnotatedElements {
         }
 
         elementCopy.parent = null;
+        elementCopy.cloneOf = this;
 
         return elementCopy;
     }

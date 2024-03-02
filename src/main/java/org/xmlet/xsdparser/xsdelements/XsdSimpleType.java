@@ -124,6 +124,8 @@ public class XsdSimpleType extends XsdNamedElements {
             elementCopy.restriction = (XsdRestriction) this.restriction.clone(this.restriction.getAttributesMap(), elementCopy);
         }
 
+        elementCopy.cloneOf = this;
+
         return elementCopy;
     }
 

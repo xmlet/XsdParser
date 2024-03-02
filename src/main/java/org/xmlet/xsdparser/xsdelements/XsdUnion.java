@@ -65,6 +65,7 @@ public class XsdUnion extends XsdAnnotatedElements {
         }
 
         elementCopy.parent = null;
+        elementCopy.cloneOf = this;
 
         return elementCopy;
     }

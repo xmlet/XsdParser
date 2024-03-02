@@ -109,6 +109,7 @@ public class XsdExtension extends XsdAnnotatedElements {
     @Override
     public XsdExtension clone(@NotNull Map<String, String> placeHolderAttributes) {
         placeHolderAttributes.putAll(attributesMap);
+        placeHolderAttributes.remove(BASE_TAG);
 
         XsdExtension elementCopy = new XsdExtension(this.parser, placeHolderAttributes, visitorFunction);
 

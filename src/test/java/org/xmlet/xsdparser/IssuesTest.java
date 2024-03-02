@@ -777,6 +777,26 @@ public class IssuesTest {
         Assert.assertEquals("elem2", ((XsdElement) elem2).getName());
     }
 
+    @Test
+    public void testIssue55_ResolveUnion() {
+        XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
+        XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
+
+        Assert.assertNotNull(schema);
+        XsdUnion result =
+                schema
+                        .getXsdElements()
+                        .filter(XsdSimpleType.class::isInstance)
+                        .map(e -> (XsdSimpleType) e)
+                        .filter(ct -> ct.getName().endsWith("VolumeAndVolumeRateUnitOfMeasure"))
+                        .findFirst()
+                        .map(XsdSimpleType::getUnion)
+                        .orElse(null);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.getUnionElements().size());
+        Assert.assertTrue(result.getUnsolvedMemberTypesList().isEmpty());
+    }
+
     @Test()
     public void testIssue58(){
         XsdParser parser = new XsdParser(getFilePath("issue_58/a.xsd"));
@@ -803,25 +823,54 @@ public class IssuesTest {
         Assert.assertEquals("Pong", type2.getName());
     }
 
-    @Test
-    public void testIssue55_ResolveUnion() {
-        XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
-        XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
+    @Test()
+    public void testIssue62(){
+        XsdParser parser = new XsdParser(getFilePath("issue_62/a.xsd"));
 
-        Assert.assertNotNull(schema);
-        XsdUnion result =
-                schema
-                        .getXsdElements()
-                        .filter(XsdSimpleType.class::isInstance)
-                        .map(e -> (XsdSimpleType) e)
-                        .filter(ct -> ct.getName().endsWith("VolumeAndVolumeRateUnitOfMeasure"))
-                        .findFirst()
-                        .map(XsdSimpleType::getUnion)
-                        .orElse(null);
-        Assert.assertNotNull(result);
-        Assert.assertEquals(2, result.getUnionElements().size());
-        Assert.assertTrue(result.getUnsolvedMemberTypesList().isEmpty());
+        Optional<XsdSchema> schemaAOptional = parser.getResultXsdSchemas().filter(schema -> schema.getTargetNamespace().equals("http://a.com")).findFirst();
+
+        Assert.assertTrue(schemaAOptional.isPresent());
+
+        XsdSchema schemaA = schemaAOptional.get();
+
+        Stream<XsdSimpleType> schemaAXsdSimpleTypes = schemaA.getChildrenSimpleTypes();
+
+        Optional<XsdSimpleType> testaOptional = schemaAXsdSimpleTypes.filter(e -> e.getName().equals("testa")).findFirst();
+        Optional<XsdSimpleType> uniontestOptional = schemaA.getChildrenSimpleTypes().filter(e -> e.getName().equals("uniontest")).findFirst();
+
+        Assert.assertTrue(testaOptional.isPresent());
+        Assert.assertTrue(uniontestOptional.isPresent());
+
+        XsdSimpleType testa = testaOptional.get();
+
+        XsdRestriction testaRestriction = testa.getRestriction();
+
+        Assert.assertNotNull(testaRestriction);
+
+        XsdSimpleType testc = testaRestriction.getBaseAsSimpleType();
+
+        Assert.assertNotNull(testc);
+
+        XsdSimpleType uniontest = uniontestOptional.get();
+
+        Assert.assertNotNull(uniontest);
+
+        XsdUnion union = uniontest.getUnion();
+
+        Assert.assertNotNull(union);
+
+        List<XsdSimpleType> unionElements = union.getUnionElements();
+
+        Assert.assertEquals(2, unionElements.size());
+
+        Optional<XsdSimpleType> unionImport = unionElements.stream().filter(unionElement -> unionElement.getName().equals("unionimport")).findFirst();
+        Optional<XsdSimpleType> unionMemberTesta = unionElements.stream().filter(unionElement -> unionElement.getName().equals("testa")).findFirst();
+
+        Assert.assertTrue(unionImport.isPresent());
+        Assert.assertTrue(unionMemberTesta.isPresent());
     }
+
+
 
     @Test
     public void testPersons() {

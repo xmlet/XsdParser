@@ -67,6 +67,7 @@ public class XsdChoice extends XsdMultipleElements {
         }
 
         elementCopy.setParent(null);
+        elementCopy.cloneOf = this;
 
         return elementCopy;
     }

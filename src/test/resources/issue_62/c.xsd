@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://c.com"
+           targetNamespace="http://c.com" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+<xs:simpleType name="testc">
+    <xs:restriction>
+        <xs:length value="1"/>
+    </xs:restriction>
+</xs:simpleType>
+</xs:schema>

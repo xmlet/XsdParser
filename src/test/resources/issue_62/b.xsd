@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://b.com"
+           targetNamespace="http://b.com" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:include schemaLocation="c.xsd"/>
+    <xs:simpleType name="unionimport">
+        <xs:restriction>
+            <xs:pattern value="\\d">
+            </xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -45,7 +45,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.8</version>
+    <version>1.2.9</version>
 </dependency>
 ```
 
@@ -332,6 +332,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.9
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/62" title="There are unsolved References in schema">Details</a> - Fixes some instances where unsolved references were being added twice, resulting in unattached pointers in the final Unsolved References list. Includes suggestions by <a href="https://github.com/darthweiter" title="Daniel Radtke">Daniel Radtke</a>.         
+        </li>
+    </ul>
+</div>
 
 ### 1.2.8
 

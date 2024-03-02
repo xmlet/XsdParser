@@ -79,9 +79,16 @@ public class XsdAttribute extends XsdNamedElements {
         this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefaultValue));
         this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
-        if (type != null && !XsdParserCore.getXsdTypesToJava().containsKey(type)){
-            this.simpleType = new UnsolvedReference(type, new XsdSimpleType(this, parser, new HashMap<>(), elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
-            parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
+        if (type != null){
+            if (!XsdParserCore.getXsdTypesToJava().containsKey(type)){
+                this.simpleType = new UnsolvedReference(type, new XsdSimpleType(this, parser, new HashMap<>(), elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
+                parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
+            }
+            else {
+                HashMap<String, String> attributes = new HashMap<>();
+                attributes.put(NAME_TAG, type);
+                this.simpleType = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
+            }
         }
     }
 

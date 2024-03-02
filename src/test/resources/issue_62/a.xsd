@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Provided by Deutsche Bundesbank 2022 - www.bundesbank.de/anacredit -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:b="http://b.com"
+           xmlns="http://a.com"
+           targetNamespace="http://a.com" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://b.com"
+               schemaLocation="b.xsd"/>
+    <xs:attribute name="base" type="xs:anyURI">
+        <xs:annotation>
+            <xs:documentation>See http://www.w3.org/TR/xmlbase/ for
+                information about this attribute.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+    <xs:simpleType name="testa">
+        <xs:restriction base="b:testc">
+            <xs:pattern value="a">
+            </xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="uniontest">
+        <xs:union memberTypes="b:unionimport testa">
+        </xs:union>
+    </xs:simpleType>
+    <xs:attributeGroup name="testattributegroup">
+        <xs:attribute ref="base"/>
+    </xs:attributeGroup>
+</xs:schema>

@@ -195,7 +195,7 @@ public class XsdAttribute extends XsdNamedElements {
     }
 
     public XsdSimpleType getXsdSimpleType(){
-        return simpleType instanceof ConcreteElement ? (XsdSimpleType) simpleType.getElement() : null;
+        return ( simpleType != null && simpleType.getElement() instanceof XsdSimpleType ) ? (XsdSimpleType) simpleType.getElement() : null;
     }
 
     public String getType() {

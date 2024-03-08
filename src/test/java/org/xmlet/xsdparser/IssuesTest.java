@@ -12,6 +12,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -870,7 +872,30 @@ public class IssuesTest {
         Assert.assertTrue(unionMemberTesta.isPresent());
     }
 
+    @Test
+    public void testIssue63() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_63/a.xsd"));
+        List<XsdElement> elements = xsdParser.getResultXsdElements().collect(Collectors.toList());
+        for (XsdElement currentElement : elements) {
+            XsdComplexType complexType = currentElement.getXsdComplexType();
+            if ( complexType != null ) {
+                complexType.getXsdAttributes().forEach( a -> a.getAllRestrictions() );
+                Optional<XsdAttribute> firstAttributeOptional = complexType.getXsdAttributes().findFirst();
 
+                Assert.assertTrue(firstAttributeOptional.isPresent());
+
+                XsdAttribute firstAttribute = firstAttributeOptional.get();
+
+                Assert.assertNotNull(firstAttribute);
+
+                XsdBuiltInDataType firstAttributeBuiltInType = firstAttribute.getTypeAsBuiltInType();
+
+                Assert.assertNotNull(firstAttributeBuiltInType);
+
+                Assert.assertEquals("xsd:string", firstAttributeBuiltInType.getRawName());
+            }
+        }
+    }
 
     @Test
     public void testPersons() {

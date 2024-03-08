@@ -195,7 +195,27 @@ public class XsdAttribute extends XsdNamedElements {
     }
 
     public XsdSimpleType getXsdSimpleType(){
-        return ( simpleType != null && simpleType.getElement() instanceof XsdSimpleType ) ? (XsdSimpleType) simpleType.getElement() : null;
+        if (this.simpleType instanceof ConcreteElement){
+            XsdAbstractElement baseType = this.simpleType.getElement();
+
+            if (baseType instanceof XsdSimpleType){
+                return (XsdSimpleType) baseType;
+            }
+        }
+
+        return null;
+    }
+
+    public XsdBuiltInDataType getTypeAsBuiltInType(){
+        if (this.simpleType instanceof ConcreteElement){
+            XsdAbstractElement baseType = this.simpleType.getElement();
+
+            if (baseType instanceof XsdBuiltInDataType){
+                return (XsdBuiltInDataType) baseType;
+            }
+        }
+
+        return null;
     }
 
     public String getType() {

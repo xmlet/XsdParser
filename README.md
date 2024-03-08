@@ -45,7 +45,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.9</version>
+    <version>1.2.10</version>
 </dependency>
 ```
 
@@ -332,6 +332,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.10
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/63" title="java.lang.ClassCastException on XsdAttribute:198 - xsd parser version 1.2.9">Details</a> - Fixes getXsdSimpleType on XsdAttributes when simpleTypes are XsdBuiltIntTypes. Includes suggestions by <a href="https://github.com/fugerit79" title="Matteo Franci">Matteo Franci</a>.         
+        </li>
+    </ul>
+</div>
 
 ### 1.2.9
 

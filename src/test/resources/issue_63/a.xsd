@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Sample test xsd for issue : https://github.com/xmlet/XsdParser/issues/63
+java.lang.ClassCastException on XsdAttribute:198 - xsd parser version 1.2.9
+-->
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='https://github.com/xmlet/XsdParser/issues/63'
+	xmlns:doc='https://github.com/xmlet/XsdParser/issues/63' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name='info'>
+		<xsd:annotation>
+			<xsd:documentation>Some documentation text</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='name' type='xsd:string' use='required'>
+				<xsd:annotation>
+					<xsd:documentation>More documentation text</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

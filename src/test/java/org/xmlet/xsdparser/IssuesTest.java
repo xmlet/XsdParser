@@ -906,6 +906,12 @@ public class IssuesTest {
         Assert.assertEquals(0, unsolvedReferences.size());
     }
 
+    @Test
+    public void testIssue65() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_65.xsd"));
+        XsdElement element = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenElements().findFirst().get();
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

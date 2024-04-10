@@ -80,7 +80,7 @@ public abstract class XsdParserCore {
     boolean isXsdSchema(Node node) {
         String schemaNodeName = node.getNodeName();
 
-        return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG) || schemaNodeName.equals(XsdSchema.TAG);
+        return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG) || schemaNodeName.equals(XsdSchema.TAG) || schemaNodeName.contains(XsdSchema.TAG);
     }
 
     /**

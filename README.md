@@ -333,6 +333,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.11
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/65" title="Parsing an XSD with no or a different prefix than xs or xsd fails with a ParsingException">Details</a> - Parsing an XSD with no or a different prefix than xs or xsd fails with a ParsingException.         
+        </li>
+    </ul>
+</div>
+
 ### 1.2.10
 
 <div align="justify">

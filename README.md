@@ -45,7 +45,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.10</version>
+    <version>1.2.11</version>
 </dependency>
 ```
 

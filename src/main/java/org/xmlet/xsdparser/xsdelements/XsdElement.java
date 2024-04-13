@@ -118,7 +118,7 @@ public class XsdElement extends XsdNamedElements {
         String typeString = attributesMap.get(TYPE_TAG);
 
         if (typeString != null){
-            if (XsdParserCore.getXsdTypesToJava().containsKey(typeString)){
+            if (XsdParserCore.isXsdTypeToJava(typeString)){
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, typeString);
                 this.type = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));

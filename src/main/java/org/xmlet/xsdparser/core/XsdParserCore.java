@@ -666,8 +666,50 @@ public abstract class XsdParserCore {
         return xsdTypesToJava;
     }
 
+    public static boolean isXsdTypeToJava(String type) {
+        String typeAux = type.contains(":") ? type.substring(type.indexOf(":") + 1) : type;
+
+        return xsdTypesToJava.keySet().stream().anyMatch(xsdType -> {
+            xsdType = xsdType.contains(":") ? xsdType.substring(xsdType.indexOf(":") + 1) : xsdType;
+
+            return xsdType.equals(typeAux);
+        });
+    }
+
+    public static String getXsdTypeToJava(String type) {
+        String typeAux = type.contains(":") ? type.substring(type.indexOf(":") + 1) : type;
+
+        String key = xsdTypesToJava.keySet().stream().filter(xsdType -> {
+            xsdType = xsdType.contains(":") ? xsdType.substring(xsdType.indexOf(":") + 1) : xsdType;
+
+            return xsdType.equals(typeAux);
+        }).findFirst().orElse(null);
+
+        if (key == null){
+            return null;
+        }
+
+        return xsdTypesToJava.get(key);
+    }
+
     public static Map<String, ConfigEntryData> getParseMappers() {
         return parseMappers;
+    }
+
+    public static ConfigEntryData getParseMappers(String name) {
+        String nameAux = name.contains(":") ? name.substring(name.indexOf(":") + 1) : name;
+
+        String key = parseMappers.keySet().stream().filter(xsdType -> {
+            xsdType = xsdType.contains(":") ? xsdType.substring(xsdType.indexOf(":") + 1) : xsdType;
+
+            return xsdType.equals(nameAux);
+        }).findFirst().orElse(null);
+
+        if (key == null){
+            return null;
+        }
+
+        return parseMappers.get(key);
     }
 
     public void addParsedElement(ReferenceBase wrappedElement) {

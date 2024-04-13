@@ -224,7 +224,7 @@ public abstract class XsdAbstractElement {
             if (child.getNodeType() == Node.ELEMENT_NODE) {
                 String nodeName = child.getNodeName();
 
-                ConfigEntryData configEntryData = XsdParserCore.getParseMappers().get(nodeName);
+                ConfigEntryData configEntryData = XsdParserCore.getParseMappers(nodeName);
 
                 if (configEntryData != null && configEntryData.parserFunction != null){
                     XsdAbstractElement childElement = configEntryData.parserFunction.apply(new ParseData(parser, child, configEntryData.visitorFunction)).getElement();

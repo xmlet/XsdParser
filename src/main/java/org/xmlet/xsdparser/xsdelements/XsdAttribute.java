@@ -80,7 +80,7 @@ public class XsdAttribute extends XsdNamedElements {
         this.use = AttributeValidations.belongsToEnum(UsageEnum.OPTIONAL, attributesMap.getOrDefault(USE_TAG, UsageEnum.OPTIONAL.getValue()));
 
         if (type != null){
-            if (!XsdParserCore.getXsdTypesToJava().containsKey(type)){
+            if (!XsdParserCore.isXsdTypeToJava(type)){
                 this.simpleType = new UnsolvedReference(type, new XsdSimpleType(this, parser, new HashMap<>(), elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
                 parser.addUnsolvedReference((UnsolvedReference) this.simpleType);
             }

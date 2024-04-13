@@ -88,7 +88,7 @@ public class XsdParser extends XsdParserCore{
 
             this.currentFile = filePath.replace("\\", "/");
 
-            ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
+            ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);
 
             if (xsdSchemaConfig == null){
                 throw new ParserConfigurationException("XsdSchema not correctly configured.");

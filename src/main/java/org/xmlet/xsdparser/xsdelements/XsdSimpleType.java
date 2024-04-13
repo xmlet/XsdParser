@@ -161,10 +161,9 @@ public class XsdSimpleType extends XsdNamedElements {
      */
     public List<XsdRestriction> getAllRestrictions() {
         Map<String, XsdRestriction> restrictions = new HashMap<>();
-        Map<String, String> xsdBuiltinTypes = XsdParserCore.getXsdTypesToJava();
 
         if (restriction != null){
-            restrictions.put(xsdBuiltinTypes.get(restriction.getBase()), restriction);
+            restrictions.put(XsdParserCore.getXsdTypeToJava(restriction.getBase()), restriction);
         }
 
         if (union != null){
@@ -172,7 +171,7 @@ public class XsdSimpleType extends XsdNamedElements {
                 XsdRestriction unionMemberRestriction = unionMember.getRestriction();
 
                 if (unionMemberRestriction != null){
-                    XsdRestriction existingRestriction = restrictions.getOrDefault(xsdBuiltinTypes.get(unionMemberRestriction.getBase()), null);
+                    XsdRestriction existingRestriction = restrictions.getOrDefault(XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), null);
 
                     if (existingRestriction != null){
                         if (existsRestrictionOverlap(existingRestriction, unionMemberRestriction)){
@@ -181,7 +180,7 @@ public class XsdSimpleType extends XsdNamedElements {
 
                         updateExistingRestriction(existingRestriction, unionMemberRestriction);
                     } else {
-                        restrictions.put(xsdBuiltinTypes.get(unionMemberRestriction.getBase()), unionMemberRestriction);
+                        restrictions.put(XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), unionMemberRestriction);
                     }
                 }
             });

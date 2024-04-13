@@ -45,7 +45,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.11</version>
+    <version>1.2.12</version>
 </dependency>
 ```
 
@@ -332,6 +332,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.12
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/65" title="Parsing an XSD with no or a different prefix than xs or xsd fails with a ParsingException">Details</a> - Introduces changes to allow any kind of prefix at runtime for the purposes of determining built-in types and parse functions.           
+        </li>
+    </ul>
+</div>
 
 ### 1.2.11
 

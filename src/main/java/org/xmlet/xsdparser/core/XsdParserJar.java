@@ -87,7 +87,7 @@ public class XsdParserJar extends XsdParserCore {
 //                throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
 //            }
 
-            ConfigEntryData xsdSchemaConfig = parseMappers.getOrDefault(XsdSchema.XSD_TAG, parseMappers.getOrDefault(XsdSchema.XS_TAG, null));
+            ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);
 
             if (xsdSchemaConfig == null){
                 throw new ParserConfigurationException("XsdSchema not correctly configured.");

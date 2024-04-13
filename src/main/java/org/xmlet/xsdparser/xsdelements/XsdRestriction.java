@@ -18,8 +18,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.xmlet.xsdparser.core.XsdParserCore.getParseMappers;
-
 /**
  * A class representing the xsd:restriction element.
  *
@@ -116,13 +114,12 @@ public class XsdRestriction extends XsdAnnotatedElements {
         this.baseString = baseValue;
 
         if (baseValue != null){
-            if (XsdParserCore.getXsdTypesToJava().containsKey(baseValue)){
+            if (XsdParserCore.isXsdTypeToJava(baseValue)){
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, baseValue);
                 this.base = ReferenceBase.createFromXsd(new XsdBuiltInDataType(parser, attributes, this));
             } else {
-                Map<String, ConfigEntryData> parseMappers = getParseMappers();
-                ConfigEntryData config = parseMappers.getOrDefault(XsdElement.XSD_TAG, parseMappers.getOrDefault(XsdElement.XS_TAG, null));
+                ConfigEntryData config = XsdParserCore.getParseMappers(XsdElement.TAG);
 
                 if (config == null){
                     throw new ParsingException("Invalid Parsing Configuration for XsdElement.");

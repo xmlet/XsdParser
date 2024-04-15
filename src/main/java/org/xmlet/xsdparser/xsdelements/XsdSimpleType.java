@@ -171,7 +171,7 @@ public class XsdSimpleType extends XsdNamedElements {
                 XsdRestriction unionMemberRestriction = unionMember.getRestriction();
 
                 if (unionMemberRestriction != null){
-                    XsdRestriction existingRestriction = restrictions.getOrDefault(XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), null);
+                    XsdRestriction existingRestriction = restrictions.getOrDefault( unionMemberRestriction.getBase() == null ? null : XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), null);
 
                     if (existingRestriction != null){
                         if (existsRestrictionOverlap(existingRestriction, unionMemberRestriction)){
@@ -180,7 +180,7 @@ public class XsdSimpleType extends XsdNamedElements {
 
                         updateExistingRestriction(existingRestriction, unionMemberRestriction);
                     } else {
-                        restrictions.put(XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), unionMemberRestriction);
+                        restrictions.put( unionMemberRestriction.getBase() == null ? null : XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), unionMemberRestriction);
                     }
                 }
             });

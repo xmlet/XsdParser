@@ -898,6 +898,23 @@ public class IssuesTest {
     }
 
     @Test
+    public void testIssue67() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_67/a.xsd"));
+        List<XsdElement> elements = xsdParser.getResultXsdElements().collect(Collectors.toList());
+        for (XsdElement currentElement : elements) {
+            XsdSimpleType simpleType = currentElement.getXsdSimpleType();
+            if ( simpleType != null ) {
+                 /*
+                  * 1.2.12 code : restrictions.getOrDefault( XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase(), null)
+                  * patch proposal : restrictions.getOrDefault( unionMemberRestriction.getBase() == null ? null : XsdParserCore.getXsdTypeToJava(unionMemberRestriction.getBase()), null)
+                  */
+                 // before the path here there is a NullPointerException on simpleType.getAllRestrictions()
+                 Assert.assertEquals( 2, simpleType.getAllRestrictions().size() );
+            }
+        }
+    }
+
+    @Test
     public void testPersons() {
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
 

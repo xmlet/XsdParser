@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Sample test xsd for issue : https://github.com/xmlet/XsdParser/issues/67
+xsd parser version 1.2.12
+-->
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='https://github.com/xmlet/XsdParser/issues/67'
+	xmlns:doc='https://github.com/xmlet/XsdParser/issues/67' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name='info' type="doc:formatType">
+	</xsd:element>
+
+	<xsd:simpleType name="formatType">
+		<xsd:annotation>
+			<xsd:documentation>Data format</xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="doc:formatDateType">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1"/>
+					<xsd:maxLength value="128"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:union>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="formatDateType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yyyy-MM-dd"></xsd:enumeration>
+			<xsd:enumeration value="yyyy-MM-dd hh:mm:ss"></xsd:enumeration>
+			<xsd:enumeration value="yyyy-MM-dd'T'HH:mm:ss.SSSZ"></xsd:enumeration>
+			<xsd:enumeration value="iso"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

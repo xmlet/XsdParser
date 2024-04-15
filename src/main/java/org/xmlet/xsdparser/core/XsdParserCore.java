@@ -677,6 +677,10 @@ public abstract class XsdParserCore {
     }
 
     public static String getXsdTypeToJava(String type) {
+        if (type == null){
+            return null;
+        }
+
         String typeAux = type.contains(":") ? type.substring(type.indexOf(":") + 1) : type;
 
         String key = xsdTypesToJava.keySet().stream().filter(xsdType -> {
@@ -697,6 +701,10 @@ public abstract class XsdParserCore {
     }
 
     public static ConfigEntryData getParseMappers(String name) {
+        if (name == null) {
+            return null;
+        }
+
         String nameAux = name.contains(":") ? name.substring(name.indexOf(":") + 1) : name;
 
         String key = parseMappers.keySet().stream().filter(xsdType -> {

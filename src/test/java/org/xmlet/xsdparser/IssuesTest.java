@@ -915,6 +915,42 @@ public class IssuesTest {
     }
 
     @Test
+    public void testIssue69_Folders() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_69/A/Main.xsd"));
+        Optional<XsdElement> optionalA = xsdParser.getResultXsdElements().filter(xsdElement -> xsdElement.getName().equals("A")).findFirst();
+
+        Assert.assertTrue(optionalA.isPresent());
+
+        XsdElement a = optionalA.get();
+
+        Assert.assertNotNull(a);
+
+        XsdComplexType aComplexType = a.getTypeAsComplexType();
+
+        Assert.assertNotNull(aComplexType);
+
+        Assert.assertEquals("TypeA", aComplexType.getName());
+    }
+
+    @Test
+    public void testIssue69_Direct() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_69/Main.xsd"));
+        Optional<XsdElement> optionalA = xsdParser.getResultXsdElements().filter(xsdElement -> xsdElement.getName().equals("A")).findFirst();
+
+        Assert.assertTrue(optionalA.isPresent());
+
+        XsdElement a = optionalA.get();
+
+        Assert.assertNotNull(a);
+
+        XsdComplexType aComplexType = a.getTypeAsComplexType();
+
+        Assert.assertNotNull(aComplexType);
+
+        Assert.assertEquals("TypeA", aComplexType.getName());
+    }
+
+    @Test
     public void testPersons() {
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
 

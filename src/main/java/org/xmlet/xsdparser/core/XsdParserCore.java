@@ -1,5 +1,7 @@
 package org.xmlet.xsdparser.core;
 
+import java.io.IOException;
+import java.io.File;
 import java.util.function.Function;
 
 import org.w3c.dom.Node;
@@ -495,7 +497,7 @@ public abstract class XsdParserCore {
                         .stream()
                         .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
                         .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
-                        .map(this::toRealFileName)
+                        .map(schemaLocation -> toRealFileName(fileName, schemaLocation))
                         .filter(Optional::isPresent)
                         .map(Optional::get)
                         .collect(Collectors.toList());
@@ -505,10 +507,29 @@ public abstract class XsdParserCore {
             }
         }
     }
-    private Optional<String> toRealFileName(String fileName) {
+    private Optional<String> toRealFileName(String currentFileStr, String fileNameStr) {
+        try {
+            File fileBeingParsed = new File(currentFileStr);
+            File fileBeingParsedFolder = new File(fileBeingParsed.getParent());
+            File includedFile = new File(fileBeingParsedFolder, fileNameStr);
+
+            fileNameStr = includedFile.getCanonicalPath();
+        } catch (IOException ignored) { }
+
+        String finalFileNameStr = fileNameStr;
         return parseElements.keySet()
                 .stream()
-                .filter(fileNameAux -> fileNameAux.endsWith(fileName))
+                .filter(fileNameAux -> {
+                    if (fileNameAux.contains("/") && finalFileNameStr.contains("\\")){
+                        fileNameAux = fileNameAux.replace("/", "\\");
+                    }
+
+                    if (fileNameAux.contains("\\") && finalFileNameStr.contains("/")){
+                        fileNameAux = fileNameAux.replace("\\", "/");
+                    }
+
+                    return fileNameAux.endsWith(finalFileNameStr);
+                })
                 .findFirst();
     }
 

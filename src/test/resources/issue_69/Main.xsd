@@ -1,0 +1,4 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://whatever.example.org" targetNamespace="http://whatever.example.org">
+	<xs:include schemaLocation="Include.xsd"/>
+	<xs:element name="A" type="TypeA" />
+</xs:schema>

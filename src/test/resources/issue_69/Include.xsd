@@ -1,0 +1,9 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://whatever.example.org" targetNamespace="http://whatever.example.org">
+	<xs:complexType name="TypeA">
+		<xs:sequence>
+			<xs:element name="B" type="xs:string" minOccurs="1" form="unqualified" />
+			<xs:element name="C" type="xs:string" minOccurs="1" form="unqualified"/>
+			<xs:element name="D" type="xs:string" minOccurs="1" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

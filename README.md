@@ -45,7 +45,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.13</version>
+    <version>1.2.14</version>
 </dependency>
 ```
 
@@ -332,6 +332,17 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.14
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/69" title="Parsing an XSD with no or a different prefix than xs or xsd fails with a ParsingException">Details</a> - Fixes comparison to match included file paths to parsed files paths.           
+        </li>
+    </ul>
+</div>
+
 
 ### 1.2.12
 

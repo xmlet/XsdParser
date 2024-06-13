@@ -1,0 +1,20 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:t="http://mytestns.org"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+        targetNamespace="http://mytestns.org"
+>
+
+    <include schemaLocation="b.xsd"/>
+
+    <simpleType name="TestUnionA1">
+        <!-- inf. loop: time is looked up in the cyclic include -->
+        <union memberTypes="time xsd:time"/>
+    </simpleType>
+
+    <simpleType name="TestUnionA2">
+        <union memberTypes="t:TestUnionA1"/>
+    </simpleType>
+
+    <element name="EA1" type="t:TestUnionA1"/>
+    <element name="EA2" type="t:TestUnionA2"/>
+</schema>

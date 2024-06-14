@@ -950,6 +950,15 @@ public class IssuesTest {
         Assert.assertEquals("TypeA", aComplexType.getName());
     }
 
+    @Test(timeout=3000)
+    public void testIssue70() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_70/a.xsd"));
+        final List<XsdElement> result = xsdParser.getResultXsdElements().collect(Collectors.toList());
+        Assert.assertEquals(4, result.size());
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+
+    }
+
     @Test
     public void testPersons() {
         XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));

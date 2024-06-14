@@ -1,0 +1,20 @@
+<xsd:schema xmlns="http://mytestns.org"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+        targetNamespace="http://mytestns.org"
+>
+    <xsd:include schemaLocation="a.xsd"/>
+    <xsd:include schemaLocation="b.xsd"/>
+
+    <xsd:simpleType name="TestUnionB1">
+        <xsd:union memberTypes="TestUnionA1"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="TestUnionB2">
+        <!-- inf. loop: undefined is looked up in the cyclic include -->
+        <xsd:union memberTypes="undefined"/>
+    </xsd:simpleType>
+
+    <xsd:element name="EB1" type="TestUnionB1"/>
+    <xsd:element name="EB2" type="TestUnionB2"/>
+
+</xsd:schema>

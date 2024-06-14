@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.14</version>
+    <version>1.2.15</version>
 </dependency>
 ```
 
@@ -328,6 +328,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.15
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/70" title="Inf. lookup with unqualified union memberTypes and circular includes">Details</a> - Fixes infinite type lookups on circular includes. Fixes by <a href="https://github.com/jonherrmann" title="jonherrmann">jonherrmann</a>.       
+        </li>
+    </ul>
+</div>
 
 ### 1.2.14
 

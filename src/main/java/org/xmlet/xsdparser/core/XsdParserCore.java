@@ -161,7 +161,7 @@ public abstract class XsdParserCore {
             while (!includesFromSchema.isEmpty()) {
                 final XsdInclude topSchemaInclude = includesFromSchema.remove(0);
                 XsdSchema resolvedSchema = getSchema(getSchemaLocation(topSchemaInclude));
-                if (resolvedSchema != null && !visitedIncludes.add(topSchemaInclude)) {
+                if (resolvedSchema != null && visitedIncludes.add(topSchemaInclude)) {
                     element = getElementFromSchema(resolvedSchema, name);
                     if (element == null) {
                         resolvedSchema.getChildrenIncludes().forEach(inc -> {

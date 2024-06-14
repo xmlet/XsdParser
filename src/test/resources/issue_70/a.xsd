@@ -15,6 +15,10 @@
         <union memberTypes="t:TestUnionA1"/>
     </simpleType>
 
+    <simpleType name="TestUnionA3">
+        <union memberTypes="t:X"/>
+    </simpleType>
+
     <element name="EA1" type="t:TestUnionA1"/>
     <element name="EA2" type="t:TestUnionA2"/>
 </schema>

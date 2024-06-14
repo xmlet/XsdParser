@@ -14,6 +14,9 @@
         <xsd:union memberTypes="undefined"/>
     </xsd:simpleType>
 
+    <xsd:simpleType name="X">
+    </xsd:simpleType>
+
     <xsd:element name="EB1" type="TestUnionB1"/>
     <xsd:element name="EB2" type="TestUnionB2"/>
 

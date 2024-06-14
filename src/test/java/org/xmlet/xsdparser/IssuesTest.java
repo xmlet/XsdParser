@@ -957,6 +957,21 @@ public class IssuesTest {
         Assert.assertEquals(4, result.size());
         Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
 
+        Optional<XsdSchema> testUnionA3SchemaOptional = xsdParser.getResultXsdSchemas()
+                .filter(schema -> schema.getChildrenSimpleTypes().anyMatch(simpleType -> simpleType.getName().equals("TestUnionA3")))
+                .findFirst();
+
+        Assert.assertTrue(testUnionA3SchemaOptional.isPresent());
+
+        XsdSchema testUnion3ASchema = testUnionA3SchemaOptional.get();
+
+        Optional<XsdSimpleType> testUnionA3SimpleTypeOptional = testUnion3ASchema.getChildrenSimpleTypes().filter(element -> element.getName().equals("TestUnionA3")).findFirst();
+
+        Assert.assertTrue(testUnionA3SimpleTypeOptional.isPresent());
+
+        XsdSimpleType simpleType = testUnionA3SimpleTypeOptional.get();
+
+        Assert.assertFalse(simpleType.getUnion().getUnionElements().isEmpty());
     }
 
     @Test

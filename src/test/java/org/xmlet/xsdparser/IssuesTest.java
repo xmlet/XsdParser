@@ -989,6 +989,26 @@ public class IssuesTest {
         XsdElement element = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenElements().findFirst().get();
     }
 
+    @Test
+    public void testIssue72Simplified() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_72_simplified.xsd"));
+        XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().filter(e -> e.getName().equals("Document")).collect(Collectors.toList()).stream().findFirst().get();
+
+        XsdElement sequenceElement = documentComplexType.getChildAsSequence().getChildrenElements().collect(Collectors.toList()).stream().findFirst().get();
+
+        XsdComplexType type = sequenceElement.getTypeAsComplexType();
+
+        Assert.assertNotNull(type);
+    }
+
+    @Test
+    public void testIssue72() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_72.xsd"));
+        List<XsdElement> elements = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenElements().collect(Collectors.toList());
+
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

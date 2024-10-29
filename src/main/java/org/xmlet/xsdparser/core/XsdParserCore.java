@@ -461,6 +461,8 @@ public abstract class XsdParserCore {
                     do {
                         unsolvedReferenceList = unsolvedReferenceList.stream().filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference())).collect(Collectors.toList());
 
+                        Collections.sort(unsolvedReferenceList, (UnsolvedReference item1, UnsolvedReference item2) ->  Boolean.compare(item2.isTypeRef(), item1.isTypeRef()));
+
                         for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
                             replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
                         }
@@ -654,8 +656,8 @@ public abstract class XsdParserCore {
 
         String localCurrentFile = currentFile;
 
-        if (schema != null) {
-            String schemaFilePath = schema.getFilePath();
+        if (schema != null && schema.getFilePath() != null) {
+            String schemaFilePath = schema.getFilePath().replace("\\", "/");
 
             if (!localCurrentFile.equals(schemaFilePath)) {
                 localCurrentFile = schemaFilePath;

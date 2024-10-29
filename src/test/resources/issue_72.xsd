@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- XML root element -->
+    <xs:element name="document" type="Document" />
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:element ref="animal"/> <!-- Note that the name of this element is determined by the actual type of animal -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Element names: `Cow`s should be serialised as an element named `cow`, `Goat`s should be serialised as an element named `goat`. -->
+    <xs:element name="animal" type="Animal" abstract="true" />
+    <xs:element name="cow" type="Cow" substitutionGroup="animal" />
+    <xs:element name="goat" type="Goat" substitutionGroup="animal" />
+
+    <!-- Types: `Cow` and `Goat` extend from `Animal` -->
+    <xs:complexType name="Animal">
+        <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+    <xs:complexType name="Cow">
+        <xs:complexContent>
+            <xs:extension base="Animal" />
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Goat">
+        <xs:complexContent>
+            <xs:extension base="Animal" />
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

@@ -329,6 +329,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.16
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/72" title="Element ref not resolved correctly">Details</a> - Improves unsolved references resolution. Fixes by <a href="https://github.com/SimonCockx" title="SimonCockx">SimonCockx</a>.       
+        </li>
+    </ul>
+</div>
+
 ### 1.2.15
 
 <div align="justify">

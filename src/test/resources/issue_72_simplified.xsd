@@ -1,0 +1,13 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:element ref="myElem"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="myElem" type="Foo" />
+
+    <xs:complexType name="Foo">
+        <xs:attribute name="bar" type="xs:string" />
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,4 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- XML root element -->
+    <xs:attribute name="document" default="found" />
+</xs:schema>

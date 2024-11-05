@@ -1009,6 +1009,15 @@ public class IssuesTest {
         Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
     }
 
+    @Test
+    public void testIssue73() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_73.xsd"));
+        XsdAttribute attribute = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenAttributes().findFirst().get();
+
+        Assert.assertNotNull(attribute);
+        Assert.assertEquals("found", attribute.getDefaultValue());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

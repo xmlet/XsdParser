@@ -329,6 +329,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.17
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/73" title="Missing attribute default values">Details</a> - Fixes default value mapping on XsdAttributes. Fixes by <a href="https://github.com/skfcz" title="Carsten Zerbst">Carsten Zerbst</a>.       
+        </li>
+    </ul>
+</div>
+
 ### 1.2.16
 
 <div align="justify">

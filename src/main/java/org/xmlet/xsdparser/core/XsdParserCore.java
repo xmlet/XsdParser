@@ -39,15 +39,15 @@ public abstract class XsdParserCore {
     private static Map<String, String> xsdTypesToJava;
 
     /**
-     * A {@link List} which contains all the top elements parsed by this class.
+     * A {@link LinkedHashMap} which contains all the top elements parsed by this class.
      */
-    public Map<String, List<ReferenceBase>> parseElements = new HashMap<>();
+    public Map<String, List<ReferenceBase>> parseElements = new LinkedHashMap<>();
 
     /**
-     * A {@link List} of {@link UnsolvedReference} elements that weren't solved. This list is consulted after all the
+     * A {@link LinkedHashMap} of {@link UnsolvedReference} elements that weren't solved. This list is consulted after all the
      * elements are parsed in order to find if there is any suitable parsed element to replace the unsolved element.
      */
-    private Map<String, List<UnsolvedReference>> unsolvedElements = new HashMap<>();
+    private Map<String, List<UnsolvedReference>> unsolvedElements = new LinkedHashMap<>();
 
     /**
      * A {@link List} containing all the elements that even after parsing all the elements on the file, don't have a

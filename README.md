@@ -329,6 +329,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### 1.2.18
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/74" title="Order of XSD schema's is unreliable">Details</a> - Fixes getResultXsdSchemas return order. Fix by <a href="https://github.com/SimonCockx" title="SimonCockx">SimonCockx</a>.         
+        </li>
+    </ul>
+</div>
+
 ### 1.2.17
 
 <div align="justify">

@@ -109,4 +109,12 @@ public class XsdChoice extends XsdMultipleElements {
     public Stream<XsdGroup> getChildrenGroups(){
         return getXsdElements().filter(element -> element instanceof XsdGroup).map(element -> (XsdGroup) element);
     }
+
+    /**
+     * @return The children elements that are of the type {@link XsdAny}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdAny> getChildrenAny(){
+        return getXsdElements().filter(element -> element instanceof XsdAny).map(element -> (XsdAny) element);
+    }
 }

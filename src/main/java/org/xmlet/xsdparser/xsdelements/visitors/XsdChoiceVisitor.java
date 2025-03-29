@@ -48,4 +48,10 @@ public class XsdChoiceVisitor extends XsdAnnotatedElementsVisitor {
         super.visit(element);
         owner.addElement(element);
     }
+
+    @Override
+    public void visit(XsdAny element) {
+        super.visit(element);
+        owner.addElement(element);
+    }
 }

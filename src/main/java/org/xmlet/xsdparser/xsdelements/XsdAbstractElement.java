@@ -66,6 +66,7 @@ public abstract class XsdAbstractElement {
     public static final String MEMBER_TYPES_TAG = "memberTypes";
     public static final String SCHEMA_LOCATION = "schemaLocation";
     public static final String NAMESPACE = "namespace";
+    public static final String PROCESS_CONTENTS = "processContents";
     public static final String REF_TAG = "ref";
     protected static final String VALUE_TAG = "value";
 

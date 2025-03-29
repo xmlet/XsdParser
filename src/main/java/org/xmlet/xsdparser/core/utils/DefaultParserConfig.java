@@ -160,6 +160,7 @@ public class DefaultParserConfig implements ParserConfig {
 
         parseMappers.put(XsdSchema.TAG, new ConfigEntryData(XsdSchema::parse, elem -> new XsdSchemaVisitor((XsdSchema) elem)));
         parseMappers.put(XsdAll.TAG, new ConfigEntryData(XsdAll::parse, elem -> new XsdAllVisitor((XsdAll) elem)));
+        parseMappers.put(XsdAny.TAG, new ConfigEntryData(XsdAny::parse, elem -> new XsdAnyVisitor((XsdAny) elem)));
         parseMappers.put(XsdAttribute.TAG, new ConfigEntryData(XsdAttribute::parse, elem -> new XsdAttributeVisitor((XsdAttribute) elem)));
         parseMappers.put(XsdAttributeGroup.TAG, new ConfigEntryData(XsdAttributeGroup::parse, elem -> new XsdAttributeGroupVisitor((XsdAttributeGroup) elem)));
         parseMappers.put(XsdChoice.TAG, new ConfigEntryData(XsdChoice::parse, elem -> new XsdChoiceVisitor((XsdChoice) elem)));
@@ -198,6 +199,7 @@ public class DefaultParserConfig implements ParserConfig {
         //XS
         parseMappers.put(XsdSchema.XS_TAG, new ConfigEntryData(XsdSchema::parse, elem -> new XsdSchemaVisitor((XsdSchema) elem)));
         parseMappers.put(XsdAll.XS_TAG, new ConfigEntryData(XsdAll::parse, elem -> new XsdAllVisitor((XsdAll) elem)));
+        parseMappers.put(XsdAny.XS_TAG, new ConfigEntryData(XsdAny::parse, elem -> new XsdAnyVisitor((XsdAny) elem)));
         parseMappers.put(XsdAttribute.XS_TAG, new ConfigEntryData(XsdAttribute::parse, elem -> new XsdAttributeVisitor((XsdAttribute) elem)));
         parseMappers.put(XsdAttributeGroup.XS_TAG, new ConfigEntryData(XsdAttributeGroup::parse, elem -> new XsdAttributeGroupVisitor((XsdAttributeGroup) elem)));
         parseMappers.put(XsdChoice.XS_TAG, new ConfigEntryData(XsdChoice::parse, elem -> new XsdChoiceVisitor((XsdChoice) elem)));
@@ -236,6 +238,7 @@ public class DefaultParserConfig implements ParserConfig {
         //XSD
         parseMappers.put(XsdSchema.XSD_TAG, new ConfigEntryData(XsdSchema::parse, elem -> new XsdSchemaVisitor((XsdSchema) elem)));
         parseMappers.put(XsdAll.XSD_TAG, new ConfigEntryData(XsdAll::parse, elem -> new XsdAllVisitor((XsdAll) elem)));
+        parseMappers.put(XsdAny.XSD_TAG, new ConfigEntryData(XsdAny::parse, elem -> new XsdAnyVisitor((XsdAny) elem)));
         parseMappers.put(XsdAttribute.XSD_TAG, new ConfigEntryData(XsdAttribute::parse, elem -> new XsdAttributeVisitor((XsdAttribute) elem)));
         parseMappers.put(XsdAttributeGroup.XSD_TAG, new ConfigEntryData(XsdAttributeGroup::parse, elem -> new XsdAttributeGroupVisitor((XsdAttributeGroup) elem)));
         parseMappers.put(XsdChoice.XSD_TAG, new ConfigEntryData(XsdChoice::parse, elem -> new XsdChoiceVisitor((XsdChoice) elem)));

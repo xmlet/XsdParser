@@ -99,6 +99,8 @@ public interface XsdAbstractElementVisitor {
 
     default void visit(XsdInclude xsdInclude) {}
 
+    default void visit(XsdAny xsdAny) {}
+
     XsdAbstractElement getOwner();
 
 }

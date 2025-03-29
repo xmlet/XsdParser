@@ -1018,6 +1018,59 @@ public class IssuesTest {
         Assert.assertEquals("found", attribute.getDefaultValue());
     }
 
+    @Test
+    public void testIssue75() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_75.xsd"));
+        List<XsdComplexType> complexTypes = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().collect(Collectors.toList());
+
+        Optional<XsdComplexType> optionalXsdComplexType1Sequence = complexTypes.stream().filter(c -> c.getName().equals("SupplementaryDataEnvelope1Sequence")).findFirst();
+
+        Assert.assertTrue(optionalXsdComplexType1Sequence.isPresent());
+
+        XsdComplexType xsdComplexType1Sequence = optionalXsdComplexType1Sequence.get();
+
+        XsdSequence xsdSequence = xsdComplexType1Sequence.getChildAsSequence();
+
+        Assert.assertNotNull(xsdSequence);
+
+        List<XsdAny> sequenceAnys = xsdSequence.getChildrenAny().collect(Collectors.toList());
+
+        Assert.assertNotNull(sequenceAnys);
+        Assert.assertEquals(1, sequenceAnys.size());
+
+        XsdAny sequenceAny = sequenceAnys.stream().findFirst().get();
+
+        Assert.assertNotNull(sequenceAny);
+        Assert.assertEquals("##any", sequenceAny.getNamespace());
+        Assert.assertEquals(new Integer(1), sequenceAny.getMinOccurs());
+        Assert.assertEquals("1", sequenceAny.getMaxOccurs());
+        Assert.assertEquals("lax", sequenceAny.getProcessContents());
+
+
+        Optional<XsdComplexType> optionalXsdComplexType1Choice = complexTypes.stream().filter(c -> c.getName().equals("SupplementaryDataEnvelope1Choice")).findFirst();
+
+        Assert.assertTrue(optionalXsdComplexType1Choice.isPresent());
+
+        XsdComplexType xsdComplexType1Choice = optionalXsdComplexType1Choice.get();
+
+        XsdChoice xsdChoice = xsdComplexType1Choice.getChildAsChoice();
+
+        Assert.assertNotNull(xsdChoice);
+
+        List<XsdAny> choiceAnys = xsdChoice.getChildrenAny().collect(Collectors.toList());
+
+        Assert.assertNotNull(choiceAnys);
+        Assert.assertEquals(1, choiceAnys.size());
+
+        XsdAny choiceAny = choiceAnys.stream().findFirst().get();
+
+        Assert.assertNotNull(choiceAny);
+        Assert.assertEquals("##any", choiceAny.getNamespace());
+        Assert.assertEquals(new Integer(1), choiceAny.getMinOccurs());
+        Assert.assertEquals("1", choiceAny.getMaxOccurs());
+        Assert.assertEquals("skip", choiceAny.getProcessContents());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

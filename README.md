@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.18</version>
+    <version>1.2.19</version>
 </dependency>
 ```
 
@@ -328,6 +328,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.19
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/75" title="xs:any parseable">Details</a> - Adds xsd:any type to the Parser.         
+        </li>
+    </ul>
+</div>
 
 ### 1.2.18
 

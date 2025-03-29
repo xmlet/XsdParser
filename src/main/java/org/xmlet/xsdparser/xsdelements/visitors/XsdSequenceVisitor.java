@@ -52,4 +52,10 @@ public class XsdSequenceVisitor extends XsdAnnotatedElementsVisitor {
 
         owner.addElement(element);
     }
+
+    @Override
+    public void visit(XsdAny element) {
+        super.visit(element);
+        owner.addElement(element);
+    }
 }

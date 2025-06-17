@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser.xsdelements;
 
+import jakarta.validation.constraints.NotNull;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -14,7 +15,6 @@ import org.xmlet.xsdparser.xsdelements.exceptions.ParentAvailableException;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
-import javax.validation.constraints.NotNull;
 import javax.xml.XMLConstants;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;

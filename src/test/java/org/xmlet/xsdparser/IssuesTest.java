@@ -6,6 +6,7 @@ import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
 import java.io.File;
@@ -1069,6 +1070,20 @@ public class IssuesTest {
         Assert.assertEquals(new Integer(1), choiceAny.getMinOccurs());
         Assert.assertEquals("1", choiceAny.getMaxOccurs());
         Assert.assertEquals("skip", choiceAny.getProcessContents());
+    }
+
+    @Test
+    public void testIssueWithGroupRef() {
+        XsdParser xsdParser = new XsdParser(getFilePath("issue_with_group_ref.xsd"));
+
+        XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes()
+            .filter(e -> e.getName().equals("Document")).findFirst().get();
+        XsdGroup group = documentComplexType.getChildAsSequence().getChildrenGroups()
+            .filter(g -> g.getName().equals("myGroup")).findFirst().get();
+        ReferenceBase childElement = group.getChildAsSequence().getElements().get(0);
+
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+        Assert.assertFalse(childElement instanceof UnsolvedReference);
     }
 
     private String getInfo(XsdAbstractElement xae) {

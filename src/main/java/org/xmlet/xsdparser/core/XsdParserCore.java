@@ -427,61 +427,48 @@ public abstract class XsdParserCore {
             for (int i = 0; i < fileNameList.size(); i++) {
                 String fileName = fileNameList.get(i);
 
-                if (!doneList.get(i)){
+                if (!doneList.get(i)) {
                     Set<String> includedFiles = new HashSet<>();
                     includedFiles.add(fileName);
                     findTransitiveDependencies(fileName, includedFiles);
 
-                    includedFiles.addAll(getResultXsdSchemas().filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName))).map(XsdSchema::getFilePath).distinct().collect(Collectors.toList()));
+                    includedFiles.addAll(getResultXsdSchemas().filter(schema -> schema.getChildrenIncludes()
+                            .anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName))).map(XsdSchema::getFilePath)
+                        .distinct().collect(Collectors.toList()));
 
                     List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
 
                     includedFiles.stream().filter(Objects::nonNull).forEach(includedFile -> {
                         String includedFilename = includedFile.substring(includedFile.lastIndexOf("/") + 1);
 
-                        includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
+                        includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(
+                            parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
                     });
 
                     Map<String, List<NamedConcreteElement>> concreteElementsMap =
-                            includedElements.stream()
-                                    .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
-                                    .map(concreteElement -> (NamedConcreteElement) concreteElement)
-                                    .collect(groupingBy(NamedConcreteElement::getName));
+                        includedElements.stream()
+                            .filter(concreteElement -> concreteElement instanceof NamedConcreteElement)
+                            .map(concreteElement -> (NamedConcreteElement) concreteElement)
+                            .collect(groupingBy(NamedConcreteElement::getName));
 
-                    List<UnsolvedReference> unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
-                            .stream()
-                            .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
-                            .collect(Collectors.toList());
-
-                    long startingUnsolvedReferenceListSize = unsolvedReferenceList.size();
-                    long currentUnsolvedReferenceListSize = 0;
+                    List<UnsolvedReference> unsolvedReferences = getUnsolvedReferences(fileName);
                     boolean solveMore = true;
                     boolean doneSomething = false;
-
                     do {
-                        unsolvedReferenceList = unsolvedReferenceList.stream().filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference())).collect(Collectors.toList());
-
-                        Collections.sort(unsolvedReferenceList, (UnsolvedReference item1, UnsolvedReference item2) ->  Boolean.compare(item2.isTypeRef(), item1.isTypeRef()));
-
-                        for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
-                            replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
+                        boolean replacedAtLeastOne = false;
+                        for (UnsolvedReference unsolvedReference : unsolvedReferences) {
+                            replacedAtLeastOne |= replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
                         }
 
-                        unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
-                                .stream()
-                                .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
-                                .collect(Collectors.toList());
-
-                        currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
-
-                        if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize) {
+                        if (!replacedAtLeastOne) {
                             solveMore = false;
-                        } else {
-                            doneSomething = true;
                         }
-
-                        startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
-                    } while (solveMore);
+                        else {
+                            doneSomething = true;
+                            unsolvedReferences = getUnsolvedReferences(fileName);
+                        }
+                    }
+                    while (solveMore);
 
                     doneList.set(i, true);
 
@@ -497,6 +484,14 @@ public abstract class XsdParserCore {
                 }
             }
         }
+    }
+
+    private List<UnsolvedReference> getUnsolvedReferences(String fileName) {
+        return unsolvedElements.getOrDefault(fileName, new ArrayList<>())
+            .stream()
+            .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
+            .filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference()))
+            .collect(Collectors.toList());
     }
 
     private void findTransitiveDependencies(String fileName, Set<String> dependencies) {
@@ -548,8 +543,10 @@ public abstract class XsdParserCore {
      *
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference   The unsolved reference to solve.
+     * @return whether the unsolved reference was replaced or not
      */
-    private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+    private boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+        boolean replaced = false;
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
         if (concreteElements != null) {
@@ -567,6 +564,7 @@ public abstract class XsdParserCore {
                 }
 
                 unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
+                replaced = true;
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
@@ -577,6 +575,7 @@ public abstract class XsdParserCore {
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
+        return replaced;
     }
 
     /**

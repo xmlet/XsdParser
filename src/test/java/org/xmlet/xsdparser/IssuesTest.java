@@ -13,8 +13,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -1073,22 +1071,27 @@ public class IssuesTest {
     }
 
     @Test
-    public void testIssueWithGroupRef() {
-        XsdParser xsdParser = new XsdParser(getFilePath("issue_with_group_ref.xsd"));
-
-        XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes()
-            .filter(e -> e.getName().equals("Document")).findFirst().get();
-        XsdGroup group = documentComplexType.getChildAsSequence().getChildrenGroups()
-            .filter(g -> g.getName().equals("myGroup")).findFirst().get();
-        ReferenceBase childElement = group.getChildAsSequence().getElements().get(0);
-
-        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
-        Assert.assertFalse(childElement instanceof UnsolvedReference);
+    public void testForwardGroupRef() {
+        testForwardGroupRef("forward_group_ref.xsd");
     }
 
     @Test
-    public void testIssueWithGroupRefAndInclude() {
-        XsdParser xsdParser = new XsdParser(getFilePath("issue_with_group_ref_and_include.xsd"));
+    public void testForwardGroupRefAndInclude() {
+        testForwardGroupRef("forward_group_ref_and_include.xsd");
+    }
+
+    @Test
+    public void testNestedForwardGroupRef() {
+        testForwardGroupRef("nested_forward_group_ref.xsd");
+    }
+
+    @Test
+    public void testNestedForwardGroupRefAndInclude() {
+        testForwardGroupRef("nested_forward_group_ref_and_include.xsd");
+    }
+
+    private static void testForwardGroupRef(String fileName) {
+        XsdParser xsdParser = new XsdParser(getFilePath(fileName));
 
         XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes()
             .filter(e -> e.getName().equals("Document")).findFirst().get();
@@ -1096,8 +1099,8 @@ public class IssuesTest {
             .filter(g -> g.getName().equals("myGroup")).findFirst().get();
         ReferenceBase childElement = group.getChildAsSequence().getElements().get(0);
 
-        Assert.assertFalse(childElement instanceof UnsolvedReference);
         Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+        Assert.assertFalse(childElement instanceof UnsolvedReference);
     }
 
     private String getInfo(XsdAbstractElement xae) {

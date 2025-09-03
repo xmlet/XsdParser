@@ -250,6 +250,7 @@ public abstract class XsdParserCore {
         parseElements
                 .keySet()
                 .forEach(fileName -> {
+                    currentFile = fileName;
                     XsdSchema xsdSchema =
                             parseElements.get(fileName)
                                     .stream()
@@ -424,6 +425,7 @@ public abstract class XsdParserCore {
         while (doneList.contains(Boolean.FALSE)) {
             for (int i = 0; i < fileNameList.size(); i++) {
                 String fileName = fileNameList.get(i);
+                currentFile = fileName;
 
                 if (!doneList.get(i)) {
                     Set<String> includedFiles = new HashSet<>();

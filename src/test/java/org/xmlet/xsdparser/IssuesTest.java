@@ -1086,6 +1086,20 @@ public class IssuesTest {
         Assert.assertFalse(childElement instanceof UnsolvedReference);
     }
 
+    @Test
+    public void testIssueWithGroupRefAndInclude() {
+        XsdParser xsdParser = new XsdParser(getFilePath("issue_with_group_ref_and_include.xsd"));
+
+        XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes()
+            .filter(e -> e.getName().equals("Document")).findFirst().get();
+        XsdGroup group = documentComplexType.getChildAsSequence().getChildrenGroups()
+            .filter(g -> g.getName().equals("myGroup")).findFirst().get();
+        ReferenceBase childElement = group.getChildAsSequence().getElements().get(0);
+
+        Assert.assertFalse(childElement instanceof UnsolvedReference);
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

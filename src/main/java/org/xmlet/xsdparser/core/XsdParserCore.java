@@ -266,11 +266,10 @@ public abstract class XsdParserCore {
                             .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
                             .collect(Collectors.toList());
 
-                    long startingUnsolvedReferenceListSize = unsolvedReferenceList.size();
-                    long currentUnsolvedReferenceListSize;
                     boolean solveMore = true;
 
                     do {
+                        boolean replacedAtLeastOne = false;
                         for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
                             String unsolvedElementNamespace = unsolvedReference.getRef().substring(0, unsolvedReference.getRef().indexOf(":"));
 
@@ -297,7 +296,7 @@ public abstract class XsdParserCore {
                                                 .map(concreteElement -> (NamedConcreteElement) concreteElement)
                                                 .collect(groupingBy(NamedConcreteElement::getName));
 
-                                replaceUnsolvedImportedReference(concreteElementsMap, unsolvedReference, fileName);
+                                replacedAtLeastOne |= replaceUnsolvedImportedReference(concreteElementsMap, unsolvedReference, fileName);
                             }
                         }
 
@@ -307,13 +306,9 @@ public abstract class XsdParserCore {
                                 .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
                                 .collect(Collectors.toList());
 
-                        currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
-
-                        if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize) {
+                        if (!replacedAtLeastOne) {
                             solveMore = false;
                         }
-
-                        startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
                     } while (solveMore);
                 });
     }
@@ -363,7 +358,8 @@ public abstract class XsdParserCore {
         return importedElements;
     }
 
-    private void replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+    private boolean replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+        boolean replaced = false;
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
 
         if (concreteElements != null) {
@@ -381,6 +377,7 @@ public abstract class XsdParserCore {
                 }
 
                 unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
+                replaced = true;
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
@@ -391,6 +388,7 @@ public abstract class XsdParserCore {
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
+        return replaced;
     }
 
     /**

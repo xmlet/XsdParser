@@ -1086,6 +1086,22 @@ public class IssuesTest {
         Assert.assertEquals("unbounded", secondGroup.getMaxOccurs());
     }
 
+    @Test
+    public void testMinMaxOccursGivenTwoRefsToSameElement() {
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_two_refs_to_same_element.xsd"));
+        XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().findFirst().get();
+        List<XsdElement> myElements = complexType.getChildAsSequence().getChildrenElements()
+            .filter(e -> e.getName().equals("myElement")).collect(Collectors.toList());
+
+        Assert.assertEquals(2, myElements.size());
+        XsdElement firstGroup = myElements.get(0);
+        XsdElement secondGroup = myElements.get(1);
+        Assert.assertEquals(Integer.valueOf(1), firstGroup.getMinOccurs());
+        Assert.assertEquals("2", firstGroup.getMaxOccurs());
+        Assert.assertEquals(Integer.valueOf(3), secondGroup.getMinOccurs());
+        Assert.assertEquals("unbounded", secondGroup.getMaxOccurs());
+    }
+
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
             return "null";

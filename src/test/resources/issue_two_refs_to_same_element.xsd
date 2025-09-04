@@ -1,0 +1,13 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="myElement" type="xs:string" />
+
+    <xs:complexType name="complexType">
+        <xs:sequence>
+            <xs:element ref="myElement" minOccurs="1" maxOccurs="2"/>
+            <xs:element name="otherElement" type="xs:string"/>
+            <xs:element ref="myElement" minOccurs="3" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

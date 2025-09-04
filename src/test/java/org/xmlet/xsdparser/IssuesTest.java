@@ -1073,7 +1073,7 @@ public class IssuesTest {
 
     @Test
     public void testMinMaxOccursGivenTwoRefsToSameGroup() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_maxOccurs_two_refs_to_same_group.xsd"));
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_two_refs_to_same_group.xsd"));
         XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().findFirst().get();
         List<XsdGroup> groups = complexType.getChildAsSequence().getChildrenGroups().collect(Collectors.toList());
 

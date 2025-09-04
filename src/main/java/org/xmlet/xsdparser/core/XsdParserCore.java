@@ -373,8 +373,7 @@ public abstract class XsdParserCore {
                     substitutionElementWrapper = concreteElement;
                 }
 
-                unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
-                replaced = true;
+                replaced |= unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
@@ -532,7 +531,7 @@ public abstract class XsdParserCore {
      *
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference   The unsolved reference to solve.
-     * @return whether the unsolved reference was replaced
+     * @return whether the unsolved reference was successfully replaced
      */
     private boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
         boolean replaced = false;
@@ -552,8 +551,7 @@ public abstract class XsdParserCore {
                     substitutionElementWrapper = concreteElement;
                 }
 
-                unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
-                replaced = true;
+                replaced |= unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);

@@ -273,18 +273,25 @@ public abstract class XsdAbstractElement {
      * @param element A fully parsed element with a name that will replace an {@link UnsolvedReference} object, if a
      *                match between the {@link NamedConcreteElement} name attribute and the {@link UnsolvedReference}
      *                ref attribute.
+     * @return whether the unsolved element was successfully replaced
      */
-    public void replaceUnsolvedElements(NamedConcreteElement element){
+    public boolean replaceUnsolvedElements(NamedConcreteElement element){
         List<ReferenceBase> elements = this.getElements();
+        if (elements == null){
+            return false;
+        }
 
-        if (elements != null){
-            elements.stream()
+        Optional<UnsolvedReference> optionalUnsolvedReference = elements.stream()
                 .filter(referenceBase -> referenceBase instanceof UnsolvedReference)
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
                 .filter(unsolvedReference -> compareReference(element, unsolvedReference))
-                .findFirst()
-                .ifPresent(oldElement -> elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent())));
+                .findFirst();
+        if (!optionalUnsolvedReference.isPresent()) {
+            return false;
         }
+        UnsolvedReference oldElement = optionalUnsolvedReference.get();
+        elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent()));
+        return true;
     }
 
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){

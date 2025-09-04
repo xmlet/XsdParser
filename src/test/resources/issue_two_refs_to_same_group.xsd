@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:group name="group">
+        <xs:sequence>
+            <xs:element name="a" type="xs:string"/>
+            <xs:element name="b" type="xs:string"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="complexType">
+        <xs:sequence>
+            <xs:group ref="group" minOccurs="1" maxOccurs="2"/>
+            <xs:element name="element" type="xs:string"/>
+            <xs:group ref="group" minOccurs="3" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

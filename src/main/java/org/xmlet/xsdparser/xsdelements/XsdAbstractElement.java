@@ -307,19 +307,13 @@ public abstract class XsdAbstractElement {
     }
 
     private static boolean compareMinMaxOccurs(NamedConcreteElement element, UnsolvedReference reference) {
-        if (element.getElement() instanceof XsdElement && reference.getElement() instanceof XsdElement) {
-            XsdElement elementCasted = (XsdElement) element.getElement();
-            XsdElement referenceCasted = (XsdElement) reference.getElement();
-            return Objects.equals(elementCasted.getMinOccurs(), referenceCasted.getMinOccurs()) &&
-                Objects.equals(elementCasted.getMaxOccurs(), referenceCasted.getMaxOccurs());
-        }
-        if (element.getElement() instanceof XsdGroup && reference.getElement() instanceof XsdGroup) {
-            XsdGroup elementCasted = (XsdGroup) element.getElement();
-            XsdGroup referenceCasted = (XsdGroup) reference.getElement();
-            return Objects.equals(elementCasted.getMinOccurs(), referenceCasted.getMinOccurs()) &&
-                Objects.equals(elementCasted.getMaxOccurs(), referenceCasted.getMaxOccurs());
-        }
-        return true;
+        int elementMinOccurs = AttributeValidations.validateNonNegativeInteger("", MIN_OCCURS_TAG, element.getElement().getAttributesMap().getOrDefault(MIN_OCCURS_TAG, "1"));
+        String elementMaxOccurs = AttributeValidations.maxOccursValidation("", element.getElement().getAttributesMap().getOrDefault(MAX_OCCURS_TAG, "1"));
+
+        int referenceMinOccurs = AttributeValidations.validateNonNegativeInteger("", MIN_OCCURS_TAG, reference.getElement().getAttributesMap().getOrDefault(MIN_OCCURS_TAG, "1"));
+        String referenceMaxOccurs = AttributeValidations.maxOccursValidation("", reference.getElement().getAttributesMap().getOrDefault(MAX_OCCURS_TAG, "1"));
+
+        return Objects.equals(elementMinOccurs, referenceMinOccurs) && Objects.equals(elementMaxOccurs, referenceMaxOccurs);
     }
 
     /**

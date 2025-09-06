@@ -1105,7 +1105,7 @@ public class IssuesTest {
 
     @Test
     public void testMinMaxOccursGivenTwoRefsToSameGroup() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_two_refs_to_same_group.xsd"));
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_80/issue_two_refs_to_same_group.xsd"));
         XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().findFirst().get();
         List<XsdGroup> groups = complexType.getChildAsSequence().getChildrenGroups().collect(Collectors.toList());
 
@@ -1120,7 +1120,7 @@ public class IssuesTest {
 
     @Test
     public void testMinMaxOccursGivenTwoRefsToSameElement() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_two_refs_to_same_element.xsd"));
+        XsdParser xsdParser = new XsdParser( getFilePath("issue_80/issue_two_refs_to_same_element.xsd"));
         XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().findFirst().get();
         List<XsdElement> myElements = complexType.getChildAsSequence().getChildrenElements()
             .filter(e -> e.getName().equals("myElement")).collect(Collectors.toList());

@@ -1,0 +1,21 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:group ref="myGroup"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name="myGroup">
+        <xs:sequence>
+            <xs:group ref="mySubGroup" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:group name="mySubGroup">
+        <xs:sequence>
+            <xs:element name="myElem" type="xs:string" />
+        </xs:sequence>
+    </xs:group>
+
+</xs:schema>

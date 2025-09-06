@@ -12,6 +12,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -120,27 +121,36 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
      * performs all the required actions to fully exchange the {@link UnsolvedReference} object with the element parameter.
      * @param element The resolved element that will be match with the contents of this visitor in order to assert if
      *                there is anything to replace.
+     * @return whether an unsolved attribute was replaced
      */
-    public void replaceUnsolvedAttributes(XsdParserCore parser, NamedConcreteElement element, XsdAbstractElement parent){
+    public boolean replaceUnsolvedAttributes(XsdParserCore parser, NamedConcreteElement element, XsdAbstractElement parent){
+        boolean replaced = false;
         if (element.getElement() instanceof XsdAttributeGroup){
-            attributeGroups.stream()
-                    .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attributeGroup))
-                    .findFirst().ifPresent(referenceBase -> {
-                attributeGroups.remove(referenceBase);
+            Optional<ReferenceBase> optionalUnresolvedReference = attributeGroups.stream()
+                .filter(attributeGroup -> attributeGroup instanceof UnsolvedReference
+                    && XsdAbstractElement.compareReference(element, (UnsolvedReference) attributeGroup))
+                .findFirst();
+            if (optionalUnresolvedReference.isPresent()){
+                attributeGroups.remove(optionalUnresolvedReference.get());
                 ReferenceBase attributeGroupCloneReference = ReferenceBase.clone(parser, element, parent);
 
                 attributeGroups.add(attributeGroupCloneReference);
-            });
+                replaced = true;
+            }
         }
 
-        if (element.getElement() instanceof XsdAttribute ){
-            attributes.stream()
-                    .filter(attribute -> attribute instanceof UnsolvedReference && XsdAbstractElement.compareReference(element, (UnsolvedReference) attribute))
-                    .findFirst().ifPresent(referenceBase -> {
-                attributes.remove(referenceBase);
+        if (element.getElement() instanceof XsdAttribute){
+            Optional<ReferenceBase> optionalUnresolvedReference = attributes.stream()
+                .filter(attribute -> attribute instanceof UnsolvedReference
+                    && XsdAbstractElement.compareReference(element, (UnsolvedReference) attribute))
+                .findFirst();
+            if (optionalUnresolvedReference.isPresent()){
+                attributes.remove(optionalUnresolvedReference.get());
                 attributes.add(ReferenceBase.clone(parser, element, parent));
-            });
+                replaced = true;
+            }
         }
+        return replaced;
     }
 
     public List<XsdAttribute> getAllAttributes() {

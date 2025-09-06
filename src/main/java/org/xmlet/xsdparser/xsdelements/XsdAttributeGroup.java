@@ -98,26 +98,29 @@ public class XsdAttributeGroup extends XsdNamedElements {
     }
 
     @Override
-    public void replaceUnsolvedElements(NamedConcreteElement element) {
+    public boolean replaceUnsolvedElements(NamedConcreteElement element) {
+        boolean replaced = false;
         if (element.getElement() instanceof  XsdAttributeGroup){
             Optional<ReferenceBase> attributeGroupUnsolvedReference = attributeGroups.stream().filter(attributeGroup -> attributeGroup instanceof UnsolvedReference && ((UnsolvedReference) attributeGroup).getRef().equals(element.getName())).findFirst();
             if (attributeGroupUnsolvedReference.isPresent()){
                 attributeGroups.remove(attributeGroupUnsolvedReference.get());
 
                 attributeGroups.add(element);
+                replaced = true;
             }
         }
-
         if(element.getElement() instanceof XsdAttribute) {
             for(int i = 0; i < attributes.size(); i++) {
                 ReferenceBase attributesUnsolvedReference = attributes.get(i);
 
                 if(attributesUnsolvedReference instanceof UnsolvedReference && (((UnsolvedReference) attributesUnsolvedReference).getRef().substring(((UnsolvedReference) attributesUnsolvedReference).getRef().indexOf(":") + 1).equals(element.getName()))) {
                     attributes.set(i, element);
+                    replaced = true;
                     break;
                 }
             }
         }
+        return replaced;
     }
 
     public Stream<XsdAttributeGroup> getXsdAttributeGroups() {

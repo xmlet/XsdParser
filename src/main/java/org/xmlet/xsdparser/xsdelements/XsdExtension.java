@@ -71,10 +71,11 @@ public class XsdExtension extends XsdAnnotatedElements {
      * @param element A concrete element with a name that will replace the {@link UnsolvedReference} object created in the
      *                {@link XsdExtension} constructor. The {@link UnsolvedReference} is only replaced if there
      *                is a match between the {@link UnsolvedReference#ref} and the {@link NamedConcreteElement#name}.
+     * @return whether the unsolved element was successfully replaced
      */
     @Override
-    public void replaceUnsolvedElements(NamedConcreteElement element) {
-        super.replaceUnsolvedElements(element);
+    public boolean replaceUnsolvedElements(NamedConcreteElement element) {
+        boolean replaced = super.replaceUnsolvedElements(element);
 
         XsdNamedElements elem = element.getElement();
 
@@ -82,13 +83,16 @@ public class XsdExtension extends XsdAnnotatedElements {
 
         if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.base)){
             this.base = element;
+            replaced = true;
         }
 
         if (this.childElement instanceof UnsolvedReference && elem instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
             this.childElement = element;
+            replaced = true;
         }
 
-        ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
+        replaced |= ((XsdExtensionVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
+        return replaced;
     }
 
     @Override

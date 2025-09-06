@@ -280,10 +280,11 @@ public class XsdElement extends XsdNamedElements {
      * @param element A concrete element with a name that will replace the {@link UnsolvedReference} object created in the
      *                {@link XsdElement} constructor. The {@link UnsolvedReference} is only replaced if there
      *                is a match between the {@link UnsolvedReference#ref} and the {@link NamedConcreteElement#name}.
+     * @return whether the unsolved element was successfully replaced
      */
     @Override
-    public void replaceUnsolvedElements(NamedConcreteElement element) {
-        super.replaceUnsolvedElements(element);
+    public boolean replaceUnsolvedElements(NamedConcreteElement element) {
+        boolean replaced = super.replaceUnsolvedElements(element);
 
         XsdNamedElements elem = element.getElement();
 
@@ -291,11 +292,14 @@ public class XsdElement extends XsdNamedElements {
 
         if (this.type instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.type)){
             this.type = element;
+            replaced = true;
         }
 
         if (this.substitutionGroup instanceof UnsolvedReference && elem instanceof XsdElement && compareReference(element, (UnsolvedReference) this.substitutionGroup)){
             this.substitutionGroup = element;
+            replaced = true;
         }
+        return replaced;
     }
 
     public XsdComplexType getXsdComplexType() {

@@ -168,14 +168,16 @@ public class XsdComplexType extends XsdNamedElements {
     }
 
     @Override
-    public void replaceUnsolvedElements(NamedConcreteElement element) {
-        super.replaceUnsolvedElements(element);
-        ((XsdComplexTypeVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
+    public boolean replaceUnsolvedElements(NamedConcreteElement element) {
+        boolean replaced = super.replaceUnsolvedElements(element);
+        replaced |= ((XsdComplexTypeVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
 
         if (this.childElement instanceof UnsolvedReference && this.childElement.getElement() instanceof XsdGroup &&
                 element.getElement() instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.childElement)){
             this.childElement = element;
+            replaced = true;
         }
+        return replaced;
     }
 
     public XsdAbstractElement getXsdChildElement() {

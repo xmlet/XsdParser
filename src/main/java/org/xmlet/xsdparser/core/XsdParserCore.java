@@ -453,6 +453,9 @@ public abstract class XsdParserCore {
                     do {
                         replacedAtLeastOne = false;
                         unsolvedReferenceList = unsolvedReferenceList.stream().filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference())).collect(Collectors.toList());
+
+                        Collections.sort(unsolvedReferenceList, (UnsolvedReference item1, UnsolvedReference item2) ->  Boolean.compare(item2.isTypeRef(), item1.isTypeRef()));
+
                         for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
                             replacedAtLeastOne |= replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
                         }

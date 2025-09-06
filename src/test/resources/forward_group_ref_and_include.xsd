@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="empty.xsd"/>
+
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:group ref="myGroup"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:group name="myGroup">
+        <xs:sequence>
+            <xs:element ref="myElem" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:element name="myElem" type="xs:string" />
+
+</xs:schema>

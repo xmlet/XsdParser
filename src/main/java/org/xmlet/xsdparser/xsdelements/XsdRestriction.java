@@ -143,10 +143,10 @@ public class XsdRestriction extends XsdAnnotatedElements {
     }
 
     @Override
-    public void replaceUnsolvedElements(NamedConcreteElement element) {
-        super.replaceUnsolvedElements(element);
+    public boolean replaceUnsolvedElements(NamedConcreteElement element) {
+        boolean replaced = super.replaceUnsolvedElements(element);
 
-        ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
+        replaced |= ((XsdRestrictionsVisitor)visitor).replaceUnsolvedAttributes(parser, element, this);
 
         XsdNamedElements elem = element.getElement();
 
@@ -154,12 +154,15 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
         if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.base)){
             this.base = element;
+            replaced = true;
         }
 
         if (this.group instanceof UnsolvedReference && this.group.getElement() instanceof XsdGroup &&
                 elem instanceof XsdGroup && compareReference(element, (UnsolvedReference) this.group)){
             this.group = element;
+            replaced = true;
         }
+        return replaced;
     }
 
     /**

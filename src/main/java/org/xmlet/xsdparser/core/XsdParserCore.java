@@ -250,6 +250,7 @@ public abstract class XsdParserCore {
         parseElements
                 .keySet()
                 .forEach(fileName -> {
+                    currentFile = fileName;
                     XsdSchema xsdSchema =
                             parseElements.get(fileName)
                                     .stream()
@@ -266,11 +267,9 @@ public abstract class XsdParserCore {
                             .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
                             .collect(Collectors.toList());
 
-                    long startingUnsolvedReferenceListSize = unsolvedReferenceList.size();
-                    long currentUnsolvedReferenceListSize;
-                    boolean solveMore = true;
-
+                    boolean replacedAtLeastOne;
                     do {
+                        replacedAtLeastOne = false;
                         for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
                             String unsolvedElementNamespace = unsolvedReference.getRef().substring(0, unsolvedReference.getRef().indexOf(":"));
 
@@ -297,7 +296,7 @@ public abstract class XsdParserCore {
                                                 .map(concreteElement -> (NamedConcreteElement) concreteElement)
                                                 .collect(groupingBy(NamedConcreteElement::getName));
 
-                                replaceUnsolvedImportedReference(concreteElementsMap, unsolvedReference, fileName);
+                                replacedAtLeastOne |= replaceUnsolvedImportedReference(concreteElementsMap, unsolvedReference, fileName);
                             }
                         }
 
@@ -307,14 +306,7 @@ public abstract class XsdParserCore {
                                 .filter(unsolvedElement -> unsolvedElement.getRef().contains(":"))
                                 .collect(Collectors.toList());
 
-                        currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
-
-                        if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize) {
-                            solveMore = false;
-                        }
-
-                        startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
-                    } while (solveMore);
+                    } while (replacedAtLeastOne);
                 });
     }
 
@@ -363,7 +355,8 @@ public abstract class XsdParserCore {
         return importedElements;
     }
 
-    private void replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+    private boolean replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+        boolean replaced = false;
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
 
         if (concreteElements != null) {
@@ -380,7 +373,7 @@ public abstract class XsdParserCore {
                     substitutionElementWrapper = concreteElement;
                 }
 
-                unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
+                replaced |= unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
@@ -391,6 +384,7 @@ public abstract class XsdParserCore {
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
+        return replaced;
     }
 
     /**
@@ -426,6 +420,7 @@ public abstract class XsdParserCore {
         while (doneList.contains(Boolean.FALSE)) {
             for (int i = 0; i < fileNameList.size(); i++) {
                 String fileName = fileNameList.get(i);
+                currentFile = fileName;
 
                 if (!doneList.get(i)){
                     Set<String> includedFiles = new HashSet<>();
@@ -453,35 +448,23 @@ public abstract class XsdParserCore {
                             .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
                             .collect(Collectors.toList());
 
-                    long startingUnsolvedReferenceListSize = unsolvedReferenceList.size();
-                    long currentUnsolvedReferenceListSize = 0;
-                    boolean solveMore = true;
+                    boolean replacedAtLeastOne;
                     boolean doneSomething = false;
-
                     do {
+                        replacedAtLeastOne = false;
                         unsolvedReferenceList = unsolvedReferenceList.stream().filter(u -> parserUnsolvedElementsMap.stream().noneMatch(u1 -> u == u1.getUnsolvedReference())).collect(Collectors.toList());
-
-                        Collections.sort(unsolvedReferenceList, (UnsolvedReference item1, UnsolvedReference item2) ->  Boolean.compare(item2.isTypeRef(), item1.isTypeRef()));
-
                         for (UnsolvedReference unsolvedReference : unsolvedReferenceList) {
-                            replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
+                            replacedAtLeastOne |= replaceUnsolvedReference(concreteElementsMap, unsolvedReference, fileName);
                         }
 
-                        unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
+                        if (replacedAtLeastOne) {
+                            doneSomething = true;
+                            unsolvedReferenceList = unsolvedElements.getOrDefault(fileName, new ArrayList<>())
                                 .stream()
                                 .filter(unsolvedElement -> !unsolvedElement.getRef().contains(":"))
                                 .collect(Collectors.toList());
-
-                        currentUnsolvedReferenceListSize = unsolvedReferenceList.size();
-
-                        if (currentUnsolvedReferenceListSize == startingUnsolvedReferenceListSize) {
-                            solveMore = false;
-                        } else {
-                            doneSomething = true;
                         }
-
-                        startingUnsolvedReferenceListSize = currentUnsolvedReferenceListSize;
-                    } while (solveMore);
+                    } while (replacedAtLeastOne);
 
                     doneList.set(i, true);
 
@@ -548,8 +531,10 @@ public abstract class XsdParserCore {
      *
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference   The unsolved reference to solve.
+     * @return whether the unsolved reference was successfully replaced
      */
-    private void replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+    private boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
+        boolean replaced = false;
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
         if (concreteElements != null) {
@@ -566,7 +551,7 @@ public abstract class XsdParserCore {
                     substitutionElementWrapper = concreteElement;
                 }
 
-                unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
+                replaced |= unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
             }
 
             unsolvedElements.get(fileName).remove(unsolvedReference);
@@ -577,6 +562,7 @@ public abstract class XsdParserCore {
         } else {
             storeUnsolvedItem(unsolvedReference);
         }
+        return replaced;
     }
 
     /**

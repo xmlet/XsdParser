@@ -178,16 +178,19 @@ public class XsdAttribute extends XsdNamedElements {
      * This implies that the object being received is the object that is being referred with the {@link XsdAttribute#type}
      * String.
      * @param elementWrapper The object that should be wrapping the requested {@link XsdSimpleType} object.
+     * @return whether the unsolved element was successfully replaced
      */
     @Override
-    public void replaceUnsolvedElements(NamedConcreteElement elementWrapper) {
-        super.replaceUnsolvedElements(elementWrapper);
+    public boolean replaceUnsolvedElements(NamedConcreteElement elementWrapper) {
+        boolean replaced = super.replaceUnsolvedElements(elementWrapper);
 
         XsdAbstractElement element = elementWrapper.getElement();
 
         if (element instanceof XsdSimpleType && simpleType != null && compareReference(elementWrapper, type)){
             this.simpleType = elementWrapper;
+            replaced = true;
         }
+        return replaced;
     }
 
     public void setSimpleType(ReferenceBase simpleType) {

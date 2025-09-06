@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.19</version>
+    <version>1.2.20</version>
 </dependency>
 ```
 
@@ -328,6 +328,19 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.20
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/issues/78" title="more issues with unsolved references">Details</a> - Improves the Parser to keep solving unsolved references until a run no longer resolves any unsolved reference. Fix by <a href="https://github.com/HennoVermeulen" title="HennoVermeulen">HennoVermeulen</a>.
+        </li>
+        <li>
+        <a href="https://github.com/xmlet/XsdParser/issues/80" title="bug with min and maxOccurs when group or element is referenced twice">Details</a> - Small change to keep minOccurs/maxOccurs when the unsolved element is resolved. Fix by <a href="https://github.com/HennoVermeulen" title="HennoVermeulen">HennoVermeulen</a>.
+        </li>
+    </ul>
+</div>
 
 ### 1.2.19
 

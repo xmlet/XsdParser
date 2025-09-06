@@ -295,15 +295,31 @@ public abstract class XsdAbstractElement {
     }
 
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
-        return compareReference(element, reference.getRef());
+        return compareReferenceName(element, reference.getRef()) && compareMinMaxOccurs(element, reference);
     }
 
-    static boolean compareReference(NamedConcreteElement element, String unsolvedRef){
+    static boolean compareReferenceName(NamedConcreteElement element, String unsolvedRef){
         if (unsolvedRef.contains(":")){
             unsolvedRef = unsolvedRef.substring(unsolvedRef.indexOf(":") + 1);
         }
 
         return element.getName().equals(unsolvedRef);
+    }
+
+    private static boolean compareMinMaxOccurs(NamedConcreteElement element, UnsolvedReference reference) {
+        if (element.getElement() instanceof XsdElement && reference.getElement() instanceof XsdElement) {
+            XsdElement elementCasted = (XsdElement) element.getElement();
+            XsdElement referenceCasted = (XsdElement) reference.getElement();
+            return Objects.equals(elementCasted.getMinOccurs(), referenceCasted.getMinOccurs()) &&
+                Objects.equals(elementCasted.getMaxOccurs(), referenceCasted.getMaxOccurs());
+        }
+        if (element.getElement() instanceof XsdGroup && reference.getElement() instanceof XsdGroup) {
+            XsdGroup elementCasted = (XsdGroup) element.getElement();
+            XsdGroup referenceCasted = (XsdGroup) reference.getElement();
+            return Objects.equals(elementCasted.getMinOccurs(), referenceCasted.getMinOccurs()) &&
+                Objects.equals(elementCasted.getMaxOccurs(), referenceCasted.getMaxOccurs());
+        }
+        return true;
     }
 
     /**

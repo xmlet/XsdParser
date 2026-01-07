@@ -142,6 +142,10 @@ public class XsdSchema extends XsdAnnotatedElements {
         elements.add(element);
     }
 
+    public void add(XsdRedefine element) {
+        elements.add(element);
+    }
+
     public void add(XsdAnnotation element) {
         elements.add(element);
     }
@@ -217,6 +221,16 @@ public class XsdSchema extends XsdAnnotatedElements {
         return getXsdElements()
                 .filter(element -> element instanceof XsdImport)
                 .map(element -> (XsdImport) element);
+    }
+
+    /**
+     * @return The children elements that are of the type {@link XsdRedefine}.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdRedefine> getChildrenRedefines(){
+        return getXsdElements()
+                .filter(element -> element instanceof XsdRedefine)
+                .map(element -> (XsdRedefine) element);
     }
 
     /**

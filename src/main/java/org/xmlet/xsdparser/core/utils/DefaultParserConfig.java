@@ -169,6 +169,7 @@ public class DefaultParserConfig implements ParserConfig {
         parseMappers.put(XsdGroup.TAG, new ConfigEntryData(XsdGroup::parse, elem -> new XsdGroupVisitor((XsdGroup) elem)));
         parseMappers.put(XsdInclude.TAG, new ConfigEntryData(XsdInclude::parse, elem -> new XsdAnnotatedElementsVisitor((XsdInclude) elem)));
         parseMappers.put(XsdImport.TAG, new ConfigEntryData(XsdImport::parse, elem -> new XsdAnnotatedElementsVisitor((XsdImport) elem)));
+        parseMappers.put(XsdRedefine.TAG, new ConfigEntryData(XsdRedefine::parse, elem -> new XsdRedefineVisitor((XsdRedefine) elem)));
         parseMappers.put(XsdSequence.TAG, new ConfigEntryData(XsdSequence::parse, elem -> new XsdSequenceVisitor((XsdSequence) elem)));
         parseMappers.put(XsdSimpleType.TAG, new ConfigEntryData(XsdSimpleType::parse, elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
         parseMappers.put(XsdList.TAG, new ConfigEntryData(XsdList::parse, elem -> new XsdListVisitor((XsdList) elem)));
@@ -208,6 +209,7 @@ public class DefaultParserConfig implements ParserConfig {
         parseMappers.put(XsdGroup.XS_TAG, new ConfigEntryData(XsdGroup::parse, elem -> new XsdGroupVisitor((XsdGroup) elem)));
         parseMappers.put(XsdInclude.XS_TAG, new ConfigEntryData(XsdInclude::parse, elem -> new XsdAnnotatedElementsVisitor((XsdInclude) elem)));
         parseMappers.put(XsdImport.XS_TAG, new ConfigEntryData(XsdImport::parse, elem -> new XsdAnnotatedElementsVisitor((XsdImport) elem)));
+        parseMappers.put(XsdRedefine.XS_TAG, new ConfigEntryData(XsdRedefine::parse, elem -> new XsdRedefineVisitor((XsdRedefine) elem)));
         parseMappers.put(XsdSequence.XS_TAG, new ConfigEntryData(XsdSequence::parse, elem -> new XsdSequenceVisitor((XsdSequence) elem)));
         parseMappers.put(XsdSimpleType.XS_TAG, new ConfigEntryData(XsdSimpleType::parse, elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
         parseMappers.put(XsdList.XS_TAG, new ConfigEntryData(XsdList::parse, elem -> new XsdListVisitor((XsdList) elem)));
@@ -247,6 +249,7 @@ public class DefaultParserConfig implements ParserConfig {
         parseMappers.put(XsdGroup.XSD_TAG, new ConfigEntryData(XsdGroup::parse, elem -> new XsdGroupVisitor((XsdGroup) elem)));
         parseMappers.put(XsdInclude.XSD_TAG, new ConfigEntryData(XsdInclude::parse, elem -> new XsdAnnotatedElementsVisitor((XsdInclude) elem)));
         parseMappers.put(XsdImport.XSD_TAG, new ConfigEntryData(XsdImport::parse, elem -> new XsdAnnotatedElementsVisitor((XsdImport) elem)));
+        parseMappers.put(XsdRedefine.XSD_TAG, new ConfigEntryData(XsdRedefine::parse, elem -> new XsdRedefineVisitor((XsdRedefine) elem)));
         parseMappers.put(XsdSequence.XSD_TAG, new ConfigEntryData(XsdSequence::parse, elem -> new XsdSequenceVisitor((XsdSequence) elem)));
         parseMappers.put(XsdSimpleType.XSD_TAG, new ConfigEntryData(XsdSimpleType::parse, elem -> new XsdSimpleTypeVisitor((XsdSimpleType) elem)));
         parseMappers.put(XsdList.XSD_TAG, new ConfigEntryData(XsdList::parse, elem -> new XsdListVisitor((XsdList) elem)));

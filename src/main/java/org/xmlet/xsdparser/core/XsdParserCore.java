@@ -57,9 +57,9 @@ public abstract class XsdParserCore {
     private List<UnsolvedReferenceItem> parserUnsolvedElementsMap = new ArrayList<>();
 
     /**
-     * A {@link List} containing the paths of files that were present in either {@link XsdInclude} or {@link XsdImport}
-     * objects that are present in the original or subsequent files. These paths are stored to be parsed as well, the
-     * parsing process only ends when all the files present in this {@link List} are parsed.
+     * A {@link List} containing the paths of files that were present in either {@link XsdInclude}, {@link XsdImport},
+     * or {@link XsdRedefine} objects that are present in the original or subsequent files. These paths are stored to
+     * be parsed as well, the parsing process only ends when all the files present in this {@link List} are parsed.
      */
     List<String> schemaLocations = new ArrayList<>();
     Map<String, String> schemaLocationsMap = new HashMap<>();
@@ -143,7 +143,8 @@ public abstract class XsdParserCore {
     }
 
     /**
-     * Returns the first matching {@link XsdAbstractElement} from the {@link XsdSchema} and all {@link XsdInclude}'s with the given name.
+     * Returns the first matching {@link XsdAbstractElement} from the {@link XsdSchema} and all {@link XsdInclude}'s
+     * and {@link XsdRedefine}'s with the given name. Redefines take priority over includes.
      *
      * @param schema The initial {@link XsdSchema} to look up the file.
      * @param name   The name of the element which is searched.
@@ -153,29 +154,85 @@ public abstract class XsdParserCore {
         if (schema == null || name == null) {
             return null;
         }
+
+        // First check local schema definitions
         XsdAbstractElement element = getElementFromSchema(schema, name);
-        if (element == null) {
-            List<XsdInclude> includesFromSchema =
-                    schema.getChildrenIncludes().collect(Collectors.toList());
-            Set<XsdInclude> visitedIncludes = new HashSet<>();
-            while (!includesFromSchema.isEmpty()) {
-                final XsdInclude topSchemaInclude = includesFromSchema.remove(0);
-                XsdSchema resolvedSchema = getSchema(getSchemaLocation(topSchemaInclude));
-                if (resolvedSchema != null && visitedIncludes.add(topSchemaInclude)) {
-                    element = getElementFromSchema(resolvedSchema, name);
-                    if (element == null) {
-                        resolvedSchema.getChildrenIncludes().forEach(inc -> {
-                            if (!visitedIncludes.add(inc)) {
-                                includesFromSchema.add(0, inc);
-                            }
-                        });
-                    } else {
-                        includesFromSchema.clear();
-                    }
+        if (element != null) {
+            return element;
+        }
+
+        // Then check redefines (they have priority over includes)
+        element = findElementInRedefines(schema, name);
+        if (element != null) {
+            return element;
+        }
+
+        // Finally check includes
+        List<XsdInclude> includesFromSchema =
+                schema.getChildrenIncludes().collect(Collectors.toList());
+        Set<XsdInclude> visitedIncludes = new HashSet<>();
+        while (!includesFromSchema.isEmpty()) {
+            final XsdInclude topSchemaInclude = includesFromSchema.remove(0);
+            XsdSchema resolvedSchema = getSchema(getSchemaLocation(topSchemaInclude));
+            if (resolvedSchema != null && visitedIncludes.add(topSchemaInclude)) {
+                element = getElementFromSchema(resolvedSchema, name);
+                if (element == null) {
+                    resolvedSchema.getChildrenIncludes().forEach(inc -> {
+                        if (!visitedIncludes.add(inc)) {
+                            includesFromSchema.add(0, inc);
+                        }
+                    });
+                } else {
+                    includesFromSchema.clear();
                 }
             }
         }
         return element;
+    }
+
+    /**
+     * Finds an element in redefine declarations. Redefines contain both the redefined type
+     * and reference to the original schema, so redefined types take priority.
+     *
+     * @param schema The schema to search for redefines
+     * @param name   The name of the element to find
+     * @return The redefined element or null if not found
+     */
+    private XsdAbstractElement findElementInRedefines(XsdSchema schema, String name) {
+        if (schema == null || name == null) {
+            return null;
+        }
+
+        List<XsdRedefine> redefinesFromSchema = schema.getChildrenRedefines().collect(Collectors.toList());
+
+        for (XsdRedefine redefine : redefinesFromSchema) {
+            // First check if the element is redefined locally in the redefine element itself
+            XsdAbstractElement redefinedElement = redefine.getXsdElements()
+                    .filter(elem -> {
+                        if (elem instanceof XsdNamedElements) {
+                            String elementName = ((XsdNamedElements) elem).getName();
+                            return name.equals(elementName);
+                        }
+                        return false;
+                    })
+                    .findFirst()
+                    .orElse(null);
+
+            if (redefinedElement != null) {
+                return redefinedElement.clone(redefinedElement.getAttributesMap(), redefinedElement.getParent());
+            }
+
+            // If not in the redefine's local definitions, check the redefined schema
+            XsdSchema redefinedSchema = getSchema(redefine.getSchemaLocation());
+            if (redefinedSchema != null) {
+                XsdAbstractElement element = getElementFromSchema(redefinedSchema, name);
+                if (element != null) {
+                    return element;
+                }
+            }
+        }
+
+        return null;
     }
 
     private XsdAbstractElement getElementFromSchema(XsdSchema schema, String name) {
@@ -202,20 +259,24 @@ public abstract class XsdParserCore {
     }
 
     /**
-     * Get the SchemaLocation of an {@link XsdImport} or {@link XsdInclude}.
+     * Get the SchemaLocation of an {@link XsdImport}, {@link XsdInclude}, or {@link XsdRedefine}.
      *
-     * @param importOrInclude A XsdAbtractElement to get the SchemaLocation.
+     * @param importOrIncludeOrRedefine A XsdAbstractElement to get the SchemaLocation.
      * @return the SchemaLocation or null
      */
-    private static String getSchemaLocation(XsdAbstractElement importOrInclude) {
+    private static String getSchemaLocation(XsdAbstractElement importOrIncludeOrRedefine) {
         String schemaLocation = null;
-        if (importOrInclude instanceof XsdInclude) {
-            XsdInclude include = (XsdInclude) importOrInclude;
+        if (importOrIncludeOrRedefine instanceof XsdInclude) {
+            XsdInclude include = (XsdInclude) importOrIncludeOrRedefine;
             schemaLocation = include.getSchemaLocation();
         }
-        if (importOrInclude instanceof XsdImport) {
-            XsdImport xsdImport = (XsdImport) importOrInclude;
+        if (importOrIncludeOrRedefine instanceof XsdImport) {
+            XsdImport xsdImport = (XsdImport) importOrIncludeOrRedefine;
             schemaLocation = xsdImport.getSchemaLocation();
+        }
+        if (importOrIncludeOrRedefine instanceof XsdRedefine) {
+            XsdRedefine redefine = (XsdRedefine) importOrIncludeOrRedefine;
+            schemaLocation = redefine.getSchemaLocation();
         }
         return schemaLocation;
     }
@@ -334,22 +395,41 @@ public abstract class XsdParserCore {
                         .findFirst()
                         .orElse(null))));
 
-        List<XsdInclude> schemaIncludes = importedElements.stream()
-                .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
-                .map(referenceBase -> (XsdInclude) referenceBase.getElement())
+        // Process both includes and redefines
+        List<XsdAbstractElement> schemaIncludesAndRedefines = importedElements.stream()
+                .filter(referenceBase -> referenceBase instanceof ConcreteElement &&
+                        (referenceBase.getElement() instanceof XsdInclude ||
+                         referenceBase.getElement() instanceof XsdRedefine))
+                .map(referenceBase -> referenceBase.getElement())
                 .collect(Collectors.toList());
         List<String> includedSchemaLocations = new ArrayList<>();
 
-        while (!schemaIncludes.isEmpty()){
-            XsdInclude xsdInclude = schemaIncludes.get(0);
-            XsdSchema xsdSchema = getSchema(xsdInclude.getSchemaLocation());
-            includedSchemaLocations.add(xsdInclude.getSchemaLocation());
+        while (!schemaIncludesAndRedefines.isEmpty()){
+            XsdAbstractElement includeOrRedefine = schemaIncludesAndRedefines.remove(0);
+            String schemaLocation = getSchemaLocation(includeOrRedefine);
+            XsdSchema xsdSchema = getSchema(schemaLocation);
+            includedSchemaLocations.add(schemaLocation);
 
-            importedElements.addAll(xsdSchema.getElements());
+            if (xsdSchema != null) {
+                if (includeOrRedefine instanceof XsdRedefine) {
+                    // For redefines, add both the redefined types and the base schema elements
+                    XsdRedefine redefine = (XsdRedefine) includeOrRedefine;
+                    // Add redefined elements first (they take priority)
+                    redefine.getXsdElements().forEach(elem ->
+                        importedElements.add(ReferenceBase.createFromXsd(elem))
+                    );
+                }
 
-            schemaIncludes.remove(0);
+                importedElements.addAll(xsdSchema.getElements());
 
-            schemaIncludes.addAll(xsdSchema.getChildrenIncludes().filter(moreXsdInclude -> !includedSchemaLocations.contains(moreXsdInclude.getSchemaLocation())).collect(Collectors.toList()));
+                // Add more includes and redefines to process
+                xsdSchema.getChildrenIncludes()
+                        .filter(moreInclude -> !includedSchemaLocations.contains(moreInclude.getSchemaLocation()))
+                        .forEach(schemaIncludesAndRedefines::add);
+                xsdSchema.getChildrenRedefines()
+                        .filter(moreRedefine -> !includedSchemaLocations.contains(moreRedefine.getSchemaLocation()))
+                        .forEach(schemaIncludesAndRedefines::add);
+            }
         }
 
         return importedElements;
@@ -427,7 +507,13 @@ public abstract class XsdParserCore {
                     includedFiles.add(fileName);
                     findTransitiveDependencies(fileName, includedFiles);
 
-                    includedFiles.addAll(getResultXsdSchemas().filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName))).map(XsdSchema::getFilePath).distinct().collect(Collectors.toList()));
+                    // Add files that include or redefine this file
+                    includedFiles.addAll(getResultXsdSchemas()
+                            .filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName)) ||
+                                    schema.getChildrenRedefines().anyMatch(xsdRedefine -> xsdRedefine.getSchemaLocation().equals(fileName)))
+                            .map(XsdSchema::getFilePath)
+                            .distinct()
+                            .collect(Collectors.toList()));
 
                     List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
 
@@ -486,11 +572,23 @@ public abstract class XsdParserCore {
     }
 
     private void findTransitiveDependencies(String fileName, Set<String> dependencies) {
+        // Collect both includes and redefines
         List<String> includedFiles =
                 parseElements.get(fileName)
                         .stream()
-                        .filter(referenceBase -> referenceBase instanceof ConcreteElement && referenceBase.getElement() instanceof XsdInclude)
-                        .map(referenceBase -> (((XsdInclude) referenceBase.getElement()).getSchemaLocation()))
+                        .filter(referenceBase -> referenceBase instanceof ConcreteElement &&
+                                (referenceBase.getElement() instanceof XsdInclude ||
+                                 referenceBase.getElement() instanceof XsdRedefine))
+                        .map(referenceBase -> {
+                            XsdAbstractElement element = referenceBase.getElement();
+                            if (element instanceof XsdInclude) {
+                                return ((XsdInclude) element).getSchemaLocation();
+                            } else if (element instanceof XsdRedefine) {
+                                return ((XsdRedefine) element).getSchemaLocation();
+                            }
+                            return null;
+                        })
+                        .filter(Objects::nonNull)
                         .map(schemaLocation -> toRealFileName(fileName, schemaLocation))
                         .filter(Optional::isPresent)
                         .map(Optional::get)

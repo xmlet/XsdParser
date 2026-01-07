@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/redefine"
+           xmlns="http://example.com/redefine"
+           elementFormDefault="qualified">
+
+    <!-- Top layer: redefine the middle schema (which already redefined the base) -->
+    <xs:redefine schemaLocation="redefine_test_chained_middle.xsd">
+
+        <!-- Further extend PersonType with a nickname -->
+        <xs:complexType name="PersonType">
+            <xs:complexContent>
+                <xs:extension base="PersonType">
+                    <xs:sequence>
+                        <xs:element name="nickname" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+
+    </xs:redefine>
+
+    <!-- Use the fully redefined PersonType -->
+    <xs:element name="ExtendedPerson" type="PersonType"/>
+
+</xs:schema>

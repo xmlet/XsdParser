@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/redefine"
+           xmlns="http://example.com/redefine"
+           elementFormDefault="qualified">
+
+    <!-- Redefine the base schema with extensions and restrictions -->
+    <xs:redefine schemaLocation="redefine_test_base.xsd">
+
+        <!-- Extend PersonType with additional fields -->
+        <xs:complexType name="PersonType">
+            <xs:complexContent>
+                <xs:extension base="PersonType">
+                    <xs:sequence>
+                        <xs:element name="email" type="xs:string"/>
+                        <xs:element name="phone" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+
+        <!-- Restrict StatusType with fewer values -->
+        <xs:simpleType name="StatusType">
+            <xs:restriction base="StatusType">
+                <xs:enumeration value="active"/>
+            </xs:restriction>
+        </xs:simpleType>
+
+        <!-- Extend AddressGroup with additional elements -->
+        <xs:group name="AddressGroup">
+            <xs:sequence>
+                <xs:group ref="AddressGroup"/>
+                <xs:element name="zipCode" type="xs:string"/>
+                <xs:element name="country" type="xs:string"/>
+            </xs:sequence>
+        </xs:group>
+
+        <!-- Extend IdentifierAttributes with more attributes -->
+        <xs:attributeGroup name="IdentifierAttributes">
+            <xs:attributeGroup ref="IdentifierAttributes"/>
+            <xs:attribute name="version" type="xs:string"/>
+        </xs:attributeGroup>
+
+    </xs:redefine>
+
+    <!-- Use the redefined types -->
+    <xs:element name="Person" type="PersonType"/>
+
+    <xs:element name="Employee">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="AddressGroup"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="IdentifierAttributes"/>
+            <xs:attribute name="status" type="StatusType"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

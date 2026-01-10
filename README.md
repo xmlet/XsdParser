@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.20</version>
+    <version>1.2.21</version>
 </dependency>
 ```
 
@@ -328,6 +328,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.21
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/81" title="Add support for xsd:redefine">Details</a> - Improves the Parser to support xsd:redefine. Contribution by <a href="https://github.com/davidalk" title="David Al-Kanani">David Al-Kanani</a>.
+        </li>
+    </ul>
+</div>
 
 ### 1.2.20
 

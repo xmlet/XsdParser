@@ -108,6 +108,24 @@ public class RedefineTest {
                 .findFirst()
                 .orElse(null);
         assertNotNull("Person element should be found", personElement);
+
+        XsdComplexType personTypeComplexType = personElement.getXsdComplexType();
+        assertNotNull(personTypeComplexType);
+
+        XsdComplexContent personTypeComplexContent = personTypeComplexType.getComplexContent();
+        assertNotNull(personTypeComplexContent);
+
+        XsdExtension personTypeExtension = personTypeComplexContent.getXsdExtension();
+        assertNotNull(personTypeExtension);
+
+        XsdSequence personTypeSequence = personTypeExtension.getChildAsSequence();
+        assertNotNull(personTypeSequence);
+
+        List<XsdElement> personTypeSequenceElements = personTypeSequence.getChildrenElements().collect(Collectors.toList());
+        assertFalse(personTypeSequenceElements.isEmpty());
+        assertEquals(2, personTypeSequenceElements.size());
+        assertEquals(1, personTypeSequenceElements.stream().filter(element -> element.getName().equals("email")).count());
+        assertEquals(1, personTypeSequenceElements.stream().filter(element -> element.getName().equals("phone")).count());
     }
 
     /**

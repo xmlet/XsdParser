@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/redefine"
+           xmlns="http://example.com/redefine"
+           elementFormDefault="qualified">
+
+    <!-- Base complex type that will be redefined -->
+    <xs:complexType name="PersonType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Base simple type that will be redefined -->
+    <xs:simpleType name="StatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="active"/>
+            <xs:enumeration value="inactive"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Base group that will be redefined -->
+    <xs:group name="AddressGroup">
+        <xs:sequence>
+            <xs:element name="street" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+        </xs:sequence>
+    </xs:group>
+
+    <!-- Base attribute group that will be redefined -->
+    <xs:attributeGroup name="IdentifierAttributes">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:attributeGroup>
+
+</xs:schema>

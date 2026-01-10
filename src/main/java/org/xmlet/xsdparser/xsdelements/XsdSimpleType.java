@@ -74,22 +74,22 @@ public class XsdSimpleType extends XsdNamedElements {
     }
 
     /**
-     * Asserts that the current object has the required name attribute when not being a direct child of the XsdSchema element.
-     * Throws an exception if the required attribute is not present.
+     * Asserts that the current object has the required name attribute when not being a direct child of the XsdSchema
+     * or XsdRedefine element. Throws an exception if the required attribute is not present.
      */
     private void rule2() {
-        if (!(parent instanceof XsdSchema) && name != null){
-            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should only be used when the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " element." );
+        if (!(parent instanceof XsdSchema) && !(parent instanceof XsdRedefine) && name != null){
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should only be used when the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + " element." );
         }
     }
 
     /**
-     * Asserts if the current has no value for its name attribute while being a direct child of the top level XsdSchema element,
-     * which is required. Throws an exception if no name is present.
+     * Asserts if the current has no value for its name attribute while being a direct child of the top level XsdSchema
+     * or XsdRedefine element, which is required. Throws an exception if no name is present.
      */
     private void rule3() {
-        if (parent instanceof XsdSchema && name == null){
-            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should is required the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " element." );
+        if ((parent instanceof XsdSchema || parent instanceof XsdRedefine) && name == null){
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should is required the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + " element." );
         }
     }
 

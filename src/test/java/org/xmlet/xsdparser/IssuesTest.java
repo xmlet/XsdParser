@@ -1069,6 +1069,33 @@ public class IssuesTest {
         Assert.assertEquals("1", choiceAny.getMaxOccurs());
         Assert.assertEquals("skip", choiceAny.getProcessContents());
     }
+    
+	@Test
+	public void testIssue82_other_ns() {
+		testIssue82("issue_82/element_other_ns_ref_annotation.xsd");
+	}
+
+	@Test
+	public void testIssue82_inner_ns() {
+		testIssue82("issue_82/element_inner_ns_ref_annotation.xsd");
+	}
+	
+	private void testIssue82(String filename) {
+		XsdParser xsdParser = new XsdParser(getFilePath(filename));
+		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
+
+		XsdElement aElement = xsdSchema.getChildrenElements().findFirst().get();
+		Assert.assertEquals("aElement", aElement.getRawName());
+		Assert.assertEquals("This Annotation is available",
+				aElement.getAnnotation().getDocumentations().iterator().next().getContent());
+
+		XsdComplexType ct_issue_81 = xsdSchema.getChildrenComplexTypes()
+				.filter(ct -> ct.getName().equals("ct_issue_82")).findFirst().get();
+		XsdElement xsdElement = ct_issue_81.getChildAsSequence().getChildrenElements().findFirst().get();
+		XsdDocumentation lostAnnotation = xsdElement.getAnnotation().getDocumentations().iterator().next();
+		Assert.assertEquals("aElement", xsdElement.getRawName());
+		Assert.assertEquals("This is the lost annotation", lostAnnotation.getContent());
+	}
 
     @Test
     public void testForwardGroupRef() {

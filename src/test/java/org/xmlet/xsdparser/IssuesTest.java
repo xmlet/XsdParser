@@ -1090,7 +1090,7 @@ public class IssuesTest {
 				aElement.getAnnotation().getDocumentations().iterator().next().getContent());
 
 		XsdComplexType ct_issue_81 = xsdSchema.getChildrenComplexTypes()
-				.filter(ct -> ct.getName().equals("ct_issue_81")).findFirst().get();
+				.filter(ct -> ct.getName().equals("ct_issue_82")).findFirst().get();
 		XsdElement xsdElement = ct_issue_81.getChildAsSequence().getChildrenElements().findFirst().get();
 		XsdDocumentation lostAnnotation = xsdElement.getAnnotation().getDocumentations().iterator().next();
 		Assert.assertEquals("aElement", xsdElement.getRawName());

@@ -8,7 +8,7 @@
 		</annotation>
 	</element>
 
-	<complexType name="ct_issue_81">
+	<complexType name="ct_issue_82">
 		<sequence>
 			<element ref="tns:aElement">
 				<annotation>

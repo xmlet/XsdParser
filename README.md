@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.21</version>
+    <version>1.2.22</version>
 </dependency>
 ```
 
@@ -328,6 +328,16 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.22
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/82" title="PR82 fix lost annotation of a element where ref another element#82">Details</a> - Keeps xsd:annotation on referenced elements. Contribution by <a href="https://github.com/waldi5001" title="waldi5001">waldi5001</a>.
+        </li>
+    </ul>
+</div>
 
 ### 1.2.21
 

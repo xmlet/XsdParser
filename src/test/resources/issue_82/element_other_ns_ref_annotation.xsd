@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="https://github.com/xmlet/XsdParser/issues/81"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://github.com/xmlet/XsdParser/issues/81">
+
+	<element name="aElement">
+		<annotation>
+			<documentation>This Annotation is available</documentation>
+		</annotation>
+	</element>
+
+	<complexType name="ct_issue_81">
+		<sequence>
+			<element ref="tns:aElement">
+				<annotation>
+					<documentation>This is the lost annotation</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

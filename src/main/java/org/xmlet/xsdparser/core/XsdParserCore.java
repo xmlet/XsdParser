@@ -447,6 +447,7 @@ public abstract class XsdParserCore {
 
                 if (!unsolvedReference.isTypeRef()) {
                     XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(oldElementAttributes, concreteElement.getElement().getParent());
+                    substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
 
                     substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
                 } else {
@@ -646,6 +647,7 @@ public abstract class XsdParserCore {
 
                 if (!unsolvedReference.isTypeRef()) {
                     XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(oldElementAttributes, concreteElement.getElement().getParent());
+                    substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
 
                     substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
                 } else {

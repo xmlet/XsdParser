@@ -436,36 +436,9 @@ public abstract class XsdParserCore {
     }
 
     private boolean replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
-        boolean replaced = false;
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
 
-        if (concreteElements != null) {
-            Map<String, String> oldElementAttributes = unsolvedReference.getElement().getAttributesMap();
-
-            for (NamedConcreteElement concreteElement : concreteElements) {
-                NamedConcreteElement substitutionElementWrapper;
-
-                if (!unsolvedReference.isTypeRef()) {
-                    XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(oldElementAttributes, concreteElement.getElement().getParent());
-                    substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
-
-                    substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
-                } else {
-                    substitutionElementWrapper = concreteElement;
-                }
-
-                replaced |= unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
-            }
-
-            unsolvedElements.get(fileName).remove(unsolvedReference);
-
-            if (unsolvedElements.get(fileName).isEmpty()){
-                unsolvedElements.remove(fileName);
-            }
-        } else {
-            storeUnsolvedItem(unsolvedReference);
-        }
-        return replaced;
+        return replaceUnsolvedReference(concreteElements, unsolvedReference, fileName);
     }
 
     /**
@@ -636,8 +609,13 @@ public abstract class XsdParserCore {
      * @return whether the unsolved reference was successfully replaced
      */
     private boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, String fileName) {
-        boolean replaced = false;
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
+
+        return replaceUnsolvedReference(concreteElements, unsolvedReference, fileName);
+    }
+
+    private boolean replaceUnsolvedReference(List<NamedConcreteElement> concreteElements, UnsolvedReference unsolvedReference, String fileName) {
+        boolean replaced = false;
 
         if (concreteElements != null) {
             Map<String, String> oldElementAttributes = new HashMap<>(unsolvedReference.getElement().getAttributesMap());

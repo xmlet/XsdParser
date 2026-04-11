@@ -295,7 +295,7 @@ public abstract class XsdAbstractElement {
     }
 
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
-        return compareReferenceName(element, reference.getRef()) && compareMinMaxOccurs(element, reference);
+        return compareReferenceName(element, reference.getRef()) ;
     }
 
     static boolean compareReferenceName(NamedConcreteElement element, String unsolvedRef){
@@ -304,16 +304,6 @@ public abstract class XsdAbstractElement {
         }
 
         return element.getName().equals(unsolvedRef);
-    }
-
-    private static boolean compareMinMaxOccurs(NamedConcreteElement element, UnsolvedReference reference) {
-        int elementMinOccurs = AttributeValidations.validateNonNegativeInteger("", MIN_OCCURS_TAG, element.getElement().getAttributesMap().getOrDefault(MIN_OCCURS_TAG, "1"));
-        String elementMaxOccurs = AttributeValidations.maxOccursValidation("", element.getElement().getAttributesMap().getOrDefault(MAX_OCCURS_TAG, "1"));
-
-        int referenceMinOccurs = AttributeValidations.validateNonNegativeInteger("", MIN_OCCURS_TAG, reference.getElement().getAttributesMap().getOrDefault(MIN_OCCURS_TAG, "1"));
-        String referenceMaxOccurs = AttributeValidations.maxOccursValidation("", reference.getElement().getAttributesMap().getOrDefault(MAX_OCCURS_TAG, "1"));
-
-        return Objects.equals(elementMinOccurs, referenceMinOccurs) && Objects.equals(elementMaxOccurs, referenceMaxOccurs);
     }
 
     /**

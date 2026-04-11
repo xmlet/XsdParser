@@ -489,7 +489,7 @@ public abstract class XsdParserCore {
                             .distinct()
                             .collect(Collectors.toList()));
 
-                    List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
+                    List<ReferenceBase> includedElements = new ArrayList<>();
 
                     includedFiles.stream().filter(Objects::nonNull).forEach(includedFile -> {
                         String includedFilename = includedFile.substring(includedFile.lastIndexOf("/") + 1);

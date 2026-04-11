@@ -576,6 +576,9 @@ public abstract class XsdParserCore {
         }
     }
     private Optional<String> toRealFileName(String currentFileStr, String fileNameStr) {
+		if (fileNameStr.startsWith("http")) {
+			return Optional.of(fileNameStr);
+		}
         try {
             File fileBeingParsed = new File(currentFileStr);
             File fileBeingParsedFolder = new File(fileBeingParsed.getParent());

@@ -155,7 +155,7 @@ public abstract class XsdAbstractElement {
      * @return A copy of the object from which is called upon.
      */
     public XsdAbstractElement clone(@NotNull Map<String, String> placeHolderAttributes, XsdAbstractElement parent){
-        XsdAbstractElement clone = clone(placeHolderAttributes);
+        XsdAbstractElement clone = clone(new HashMap<>(placeHolderAttributes));
         clone.setParent(parent);
 
         return clone;
@@ -277,7 +277,7 @@ public abstract class XsdAbstractElement {
      */
     public boolean replaceUnsolvedElements(NamedConcreteElement element){
         List<ReferenceBase> elements = this.getElements();
-        if (elements == null){
+        if (elements.isEmpty()){
             return false;
         }
 
@@ -293,7 +293,7 @@ public abstract class XsdAbstractElement {
         elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent()));
         return true;
     }
-
+    
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
         return compareReferenceName(element, reference.getRef()) ;
     }

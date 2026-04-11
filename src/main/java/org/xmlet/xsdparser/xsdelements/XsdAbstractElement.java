@@ -155,7 +155,7 @@ public abstract class XsdAbstractElement {
      * @return A copy of the object from which is called upon.
      */
     public XsdAbstractElement clone(@NotNull Map<String, String> placeHolderAttributes, XsdAbstractElement parent){
-        XsdAbstractElement clone = clone(placeHolderAttributes);
+        XsdAbstractElement clone = clone(new HashMap<>(placeHolderAttributes));
         clone.setParent(parent);
 
         return clone;
@@ -284,7 +284,7 @@ public abstract class XsdAbstractElement {
         Optional<UnsolvedReference> optionalUnsolvedReference = elements.stream()
                 .filter(referenceBase -> referenceBase instanceof UnsolvedReference)
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
-                .filter(unsolvedReference -> compareReference(element, unsolvedReference))
+                .filter(unsolvedReference -> compareReferenceNotNested(element, unsolvedReference))
                 .findFirst();
         if (!optionalUnsolvedReference.isPresent()) {
             return false;
@@ -292,6 +292,10 @@ public abstract class XsdAbstractElement {
         UnsolvedReference oldElement = optionalUnsolvedReference.get();
         elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent()));
         return true;
+    }
+    
+    public static boolean compareReferenceNotNested(NamedConcreteElement element, UnsolvedReference reference){
+        return compareReferenceName(element, reference.getRef()) && isNotNested(element);
     }
 
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
@@ -305,6 +309,10 @@ public abstract class XsdAbstractElement {
 
         return element.getName().equals(unsolvedRef);
     }
+
+	private static boolean isNotNested(NamedConcreteElement e) {
+		return e.getElement().getParent() != null && e.getElement().getParent() instanceof XsdSchema;
+	}
 
     /**
      * @return The parent of the current {@link XsdAbstractElement} object.

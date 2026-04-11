@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="https://github.com/xmlet/XsdParser/issues/83"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://github.com/xmlet/XsdParser/issues/83">
+
+	<xs:complexType name="ct_issue_83_with_element">
+		<xs:sequence>
+			<xs:element name="aElement">
+				<xs:annotation>
+					<xs:documentation>The wrong element</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="aElement">
+		<xs:annotation>
+			<xs:documentation>The right element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="ct_issue_83">
+		<xs:sequence>
+			<xs:element ref="aElement" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="rootElemenet" type="ct_issue_83" />
+	
+</xs:schema>

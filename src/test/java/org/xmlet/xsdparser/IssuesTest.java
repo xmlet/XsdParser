@@ -3,6 +3,7 @@ package org.xmlet.xsdparser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
+import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -10,6 +11,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +23,10 @@ public class IssuesTest {
     private static final List<XsdElement> elements;
     private static final List<XsdSchema> schemas;
 
-    private static final XsdParser parser;
+    private static final XsdParserCore parser;
 
     static {
-        parser = new XsdParser(getFilePath("issues.xsd"));
+        parser = getParser(getURL("issues.xsd"));
 
         schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         elements = parser.getResultXsdElements().collect(Collectors.toList());
@@ -135,7 +137,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue23() {
-        XsdParser parser = new XsdParser(getFilePath("issue_23.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_23.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
@@ -144,7 +146,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue24() {
-        XsdParser parser = new XsdParser(getFilePath("issue_24.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_24.xsd"));
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         for (XsdSchema schema : schemas) {
             List<XsdComplexType> cts = schema.getChildrenComplexTypes().collect(Collectors.toList());
@@ -164,21 +166,21 @@ public class IssuesTest {
 
     @Test
     public void testIssue25ToysBaby() {
-        XsdParser parser = new XsdParser(getFilePath("issue_25_ToysBaby.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_25_ToysBaby.xsd"));
 
         testToysBaby(parser);
     }
 
     @Test
     public void testIssue26_Includes() {
-        XsdParser parser = new XsdParser(getFilePath("issue_26_ToysBaby_Includes.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_26_ToysBaby_Includes.xsd"));
 
         testToysBaby(parser);
     }
 
     @Test
     public void testIssue26_CustomerTypes() {
-        XsdParser parser = new XsdParser(getFilePath("issue_26_CustomerTypes.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_26_CustomerTypes.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
@@ -189,7 +191,7 @@ public class IssuesTest {
         Assert.assertTrue(true);
     }
 
-    private void testToysBaby(XsdParser parser) {
+    private void testToysBaby(XsdParserCore parser) {
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
 
         Assert.assertTrue(mainSchemaOptional.isPresent());
@@ -262,7 +264,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue25AutoAccessory() {
-        XsdParser parser = new XsdParser(getFilePath("issue_25_AutoAccessory.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_25_AutoAccessory.xsd"));
 
         XsdSchema amz = parser.getResultXsdSchemas().filter(schema -> schema.getId() == null).findFirst().get();
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
@@ -323,7 +325,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue27Attributes() {
-        XsdParser parser = new XsdParser(getFilePath("issue_27_attributes.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_27_attributes.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
@@ -362,7 +364,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue27TransitiveIncludes() {
-        XsdParser parser = new XsdParser(getFilePath("issue_27_Includes_A.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_27_Includes_A.xsd"));
 
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
 
@@ -431,7 +433,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue27TransitiveImports() {
-        XsdParser parser = new XsdParser(getFilePath("issue_27_Import_A.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_27_Import_A.xsd"));
 
         Optional<XsdSchema> mainSchemaOptional = parser.getResultXsdSchemas().filter(schema -> schema.getId() != null && schema.getId().equals("main")).findFirst();
 
@@ -500,12 +502,12 @@ public class IssuesTest {
 
     @Test
     public void testIssue28() {
-        XsdParser parser = new XsdParser(getFilePath("issue_28.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_28.xsd"));
     }
 
     @Test
     public void testIssue30() {
-        XsdParser parser = new XsdParser(getFilePath("issue_30.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_30.xsd"));
 
         Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
 
@@ -564,7 +566,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue34() {
-        XsdParser parser = new XsdParser(getFilePath("issue_34.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_34.xsd"));
 
         Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
 
@@ -617,7 +619,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue35() {
-        XsdParser parser = new XsdParser(getFilePath("issue_35.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_35.xsd"));
 
         Optional<XsdSchema> optionalXsdSchema = parser.getResultXsdSchemas().findFirst();
 
@@ -650,7 +652,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue37() {
-        XsdParser parser = new XsdParser(getFilePath("issue_37/entire/us-gaap-entryPoint-all-2021-01-31.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_37/entire/us-gaap-entryPoint-all-2021-01-31.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
         List<XsdElement> elements = parser.getResultXsdElements().collect(Collectors.toList());
@@ -659,7 +661,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue44() {
-        XsdParser parser = new XsdParser(getFilePath("issue_44.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_44.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
@@ -711,7 +713,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue49() {
-        XsdParser parser = new XsdParser(getFilePath("issue_49.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_49.xsd"));
 
         List<XsdSchema> schemas = parser.getResultXsdSchemas().collect(Collectors.toList());
 
@@ -748,18 +750,19 @@ public class IssuesTest {
 
     @Test()
     public void testIssue50() {
-
-        // ensure the OCX Schema is parserd without null pointer exception
-
-        File xsdFileIn = new File("src/test/resources/issue_50/OCX_Schema.xsd");
-
-        XsdParser parser = new XsdParser(xsdFileIn.getAbsolutePath());
-
+        try {
+        	// ensure the OCX Schema is parserd without null pointer exception
+			File xsdFileIn = new File("src/test/resources/issue_50/OCX_Schema.xsd");
+			URL url = new File(xsdFileIn.getAbsolutePath()).toURI().toURL();
+			getParser(url);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
     }
 
     @Test()
     public void testIssue53() {
-        XsdParser parser = new XsdParser(getFilePath("issue_53.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_53.xsd"));
 
         XsdSchema schema = parser.getResultXsdSchemas().findFirst().get();
         XsdComplexType type = (XsdComplexType) schema.getXsdElements().findFirst().get();
@@ -780,7 +783,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue55_ResolveUnion() {
-        XsdParser parser = new XsdParser(getFilePath("issue_25_amzn-base.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_25_amzn-base.xsd"));
         XsdSchema schema = parser.getResultXsdSchemas().findFirst().orElse(null);
 
         Assert.assertNotNull(schema);
@@ -800,7 +803,7 @@ public class IssuesTest {
 
     @Test()
     public void testIssue58(){
-        XsdParser parser = new XsdParser(getFilePath("issue_58/a.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_58/a.xsd"));
 
         XsdElement elem = parser.getResultXsdElements().findFirst().get();
         XsdNamedElements type = elem.getTypeAsXsd();
@@ -810,7 +813,7 @@ public class IssuesTest {
 
     @Test()
     public void testIssue60(){
-        XsdParser parser = new XsdParser(getFilePath("issue_60/a.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_60/a.xsd"));
 
         XsdElement elem1 = parser.getResultXsdElements().filter(e -> e.getName().equals("elem1")).findFirst().get();
         XsdElement elem2 = parser.getResultXsdElements().filter(e -> e.getName().equals("elem2")).findFirst().get();
@@ -826,7 +829,7 @@ public class IssuesTest {
 
     @Test()
     public void testIssue62(){
-        XsdParser parser = new XsdParser(getFilePath("issue_62/a.xsd"));
+        XsdParserCore parser = getParser(getURL("issue_62/a.xsd"));
 
         Optional<XsdSchema> schemaAOptional = parser.getResultXsdSchemas().filter(schema -> schema.getTargetNamespace().equals("http://a.com")).findFirst();
 
@@ -873,7 +876,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue63() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_63/a.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_63/a.xsd"));
         List<XsdElement> elements = xsdParser.getResultXsdElements().collect(Collectors.toList());
         for (XsdElement currentElement : elements) {
             XsdComplexType complexType = currentElement.getXsdComplexType();
@@ -898,7 +901,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue67() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_67/a.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_67/a.xsd"));
         List<XsdElement> elements = xsdParser.getResultXsdElements().collect(Collectors.toList());
         for (XsdElement currentElement : elements) {
             XsdSimpleType simpleType = currentElement.getXsdSimpleType();
@@ -915,7 +918,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue69_Folders() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_69/A/Main.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_69/A/Main.xsd"));
         Optional<XsdElement> optionalA = xsdParser.getResultXsdElements().filter(xsdElement -> xsdElement.getName().equals("A")).findFirst();
 
         Assert.assertTrue(optionalA.isPresent());
@@ -933,7 +936,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue69_Direct() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_69/Main.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_69/Main.xsd"));
         Optional<XsdElement> optionalA = xsdParser.getResultXsdElements().filter(xsdElement -> xsdElement.getName().equals("A")).findFirst();
 
         Assert.assertTrue(optionalA.isPresent());
@@ -951,7 +954,7 @@ public class IssuesTest {
 
     @Test(timeout=3000)
     public void testIssue70() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_70/a.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_70/a.xsd"));
         final List<XsdElement> result = xsdParser.getResultXsdElements().collect(Collectors.toList());
         Assert.assertEquals(4, result.size());
         Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
@@ -975,7 +978,7 @@ public class IssuesTest {
 
     @Test
     public void testPersons() {
-        XsdParser parser = new XsdParser(getFilePath("persons/Person.xsd"));
+        XsdParserCore parser = getParser(getURL("persons/Person.xsd"));
 
         List<UnsolvedReferenceItem> unsolvedReferences = parser.getUnsolvedReferences();
 
@@ -984,13 +987,13 @@ public class IssuesTest {
 
     @Test
     public void testIssue65() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_65.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_65.xsd"));
         XsdElement element = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenElements().findFirst().get();
     }
 
     @Test
     public void testIssue72Simplified() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_72_simplified.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_72_simplified.xsd"));
         XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().filter(e -> e.getName().equals("Document")).collect(Collectors.toList()).stream().findFirst().get();
 
         XsdElement sequenceElement = documentComplexType.getChildAsSequence().getChildrenElements().collect(Collectors.toList()).stream().findFirst().get();
@@ -1002,7 +1005,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue72() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_72.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_72.xsd"));
         List<XsdElement> elements = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenElements().collect(Collectors.toList());
 
         Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
@@ -1010,7 +1013,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue73() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_73.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_73.xsd"));
         XsdAttribute attribute = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenAttributes().findFirst().get();
 
         Assert.assertNotNull(attribute);
@@ -1019,7 +1022,7 @@ public class IssuesTest {
 
     @Test
     public void testIssue75() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_75.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_75.xsd"));
         List<XsdComplexType> complexTypes = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().collect(Collectors.toList());
 
         Optional<XsdComplexType> optionalXsdComplexType1Sequence = complexTypes.stream().filter(c -> c.getName().equals("SupplementaryDataEnvelope1Sequence")).findFirst();
@@ -1081,7 +1084,7 @@ public class IssuesTest {
 	}
 	
 	private void testIssue82(String filename) {
-		XsdParser xsdParser = new XsdParser(getFilePath(filename));
+		XsdParserCore xsdParser = getParser(getURL(filename));
 		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
 
 		XsdElement aElement = xsdSchema.getChildrenElements().findFirst().get();
@@ -1099,7 +1102,7 @@ public class IssuesTest {
 	
 	@Test
 	public void testIssue83() {
-		XsdParser xsdParser = new XsdParser(getFilePath("issue_83/element_name_not_uq.xsd"));
+		XsdParserCore xsdParser = getParser(getURL("issue_83/element_name_not_uq.xsd"));
 		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
 		
 		XsdElement rootElement = elementByName(xsdSchema.getChildrenElements(), "rootElement", XsdElement.class);
@@ -1121,7 +1124,7 @@ public class IssuesTest {
 	
 	@Test
 	public void testIssue84() {
-		XsdParser xsdParser = new XsdParser(getFilePath("issue_84/Main.xsd"));
+		XsdParserCore xsdParser = getParser(getURL("issue_84/Main.xsd"));
 		XsdElement a = xsdParser.getResultXsdElements().filter(xsdElement -> xsdElement.getName().equals("A"))
 				.findFirst().get();
 
@@ -1156,7 +1159,7 @@ public class IssuesTest {
     }
 
     private static void testForwardGroupRef(String fileName) {
-        XsdParser xsdParser = new XsdParser(getFilePath(fileName));
+        XsdParserCore xsdParser = getParser(getURL(fileName));
 
         XsdComplexType documentComplexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes()
             .filter(e -> e.getName().equals("Document")).findFirst().get();
@@ -1170,7 +1173,7 @@ public class IssuesTest {
 
     @Test
     public void testMinMaxOccursGivenTwoRefsToSameGroup() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_80/issue_two_refs_to_same_group.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_80/issue_two_refs_to_same_group.xsd"));
         XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().findFirst().get();
         List<XsdGroup> groups = complexType.getChildAsSequence().getChildrenGroups().collect(Collectors.toList());
 
@@ -1185,7 +1188,7 @@ public class IssuesTest {
 
     @Test
     public void testMinMaxOccursGivenTwoRefsToSameElement() {
-        XsdParser xsdParser = new XsdParser( getFilePath("issue_80/issue_two_refs_to_same_element.xsd"));
+        XsdParserCore xsdParser = getParser( getURL("issue_80/issue_two_refs_to_same_element.xsd"));
         XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get().getChildrenComplexTypes().findFirst().get();
         List<XsdElement> myElements = complexType.getChildAsSequence().getChildrenElements()
             .filter(e -> e.getName().equals("myElement")).collect(Collectors.toList());
@@ -1212,13 +1215,11 @@ public class IssuesTest {
     /**
      * @return Obtains the filePath of the file associated with this test class.
      */
-    private static String getFilePath(String fileName) {
-        URL resource = HtmlParseTest.class.getClassLoader().getResource(fileName);
-
-        if (resource != null) {
-            return resource.getPath();
-        } else {
-            throw new RuntimeException("The issues.xsd file is missing from the XsdParser resource folder.");
-        }
+    private static URL getURL(String fileName) {
+		return IssuesTest.class.getResource("/" + fileName);
+    }
+    
+    private static XsdParserCore getParser(URL url) {
+    	return XsdParser.fromURL(url, null);
     }
 }

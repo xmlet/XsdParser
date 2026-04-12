@@ -1,9 +1,10 @@
 package org.xmlet.xsdparser.core;
 
+import static java.lang.String.format;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -29,6 +30,41 @@ import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
  * after the instance is created.
  */
 public class XsdParser extends XsdParserCore{
+	
+	public static XsdParser fromFile(File pathToXsd, ParserConfig config) {
+		try {
+			return new XsdParser(pathToXsd.toURI().toURL(), config);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public static XsdParser fromJar(File jarFile, String xsdInJar, ParserConfig config) {
+		try {
+			return new XsdParser(new URL(format("jar:%s!/%s", jarFile.toURI().toURL(), xsdInJar)), config);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public static XsdParser fromURL(URL jarFile, String xsdInJar, ParserConfig config) {
+		try {
+			return new XsdParser(new URL(format("jar:%s!/%s", jarFile.toString(), xsdInJar)), config);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public static XsdParser fromURL(URL url, ParserConfig config) {
+		return new XsdParser(url, config);
+	}
+	
+    private XsdParser(URL filePath, ParserConfig config){
+		if (config != null) {
+			super.updateConfig(config);
+		}
+        parse(filePath);
+    }
 
     /**
      * The XsdParser constructor will parse the XSD file with the {@code filepath} and will also parse all the subsequent
@@ -39,7 +75,11 @@ public class XsdParser extends XsdParserCore{
      * @param filePath States the path of the XSD file to be parsed.
      */
     public XsdParser(String filePath){
-        parse(filePath);
+        try {
+ 			parse(new File(filePath).toURI().toURL());
+ 		} catch (MalformedURLException e) {
+ 			throw new RuntimeException(e.getMessage(), e);
+ 		}
     }
 
     /**
@@ -54,22 +94,21 @@ public class XsdParser extends XsdParserCore{
     public XsdParser(String filePath, ParserConfig config){
         super.updateConfig(config);
 
-        parse(filePath);
-    }
-
-    private void parse(String filePath){
-		try {
-			schemaLocations.add(new File(filePath).toURI().toURL());
-			
-			int index = 0;
-			while (schemaLocations.size() > index) {
-				URL schemaLocation = schemaLocations.get(index);
-				parseFile(schemaLocation);
-				++index;
-			}
+        try {
+			parse(new File(filePath).toURI().toURL());
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
+    }
+
+    private void parse(URL filePath){
+    	schemaLocations.add(filePath);
+    	int index = 0;
+    	while (schemaLocations.size() > index) {
+    		URL schemaLocation = schemaLocations.get(index);
+    		parseFile(schemaLocation);
+    		++index;
+    	}
         resolveRefs();
     }
 
@@ -82,18 +121,6 @@ public class XsdParser extends XsdParserCore{
     private void parseFile(URL url) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
         try {
-        	URI uri = url.toURI();
-			if (uri.getScheme().equals("file") && !new File(uri).exists()) {
-				// think now its unnecessary
-//				 && isRelativePath(url)
-//                String parentFile = schemaLocationsMap.get(filePath);
-//                filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
-//
-//                if (!new File(filePath).exists()) {
-//                    throw new FileNotFoundException(filePath);
-//                }
-            }
-
             this.currentFile = url;
 
             ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);

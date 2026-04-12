@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.core.XsdParserCore;
-import org.xmlet.xsdparser.core.XsdParserJar;
 import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.*;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
@@ -23,21 +22,21 @@ public class HtmlParseTest {
     private static final List<ParserResult> parserPartedResults = new ArrayList<>();
 
     static{
+    	ParserResult html5Jar = new ParserResult("/html_5.jar", "html_5_jar.xsd");
+    	ParserResult partedHtml5Jar = new ParserResult("/html_5.jar", "html_5_types_jar.xsd");
         ParserResult html5 = new ParserResult(getFilePath("html_5.xsd"));
         ParserResult partedHtml5 = new ParserResult(getFilePath("html_5_types.xsd"));
-//        ParserResult html5Jar = new ParserResult("html_5.jar", "html_5_jar.xsd");
-//        ParserResult partedHtml5Jar = new ParserResult("html_5.jar", "html_5_types_jar.xsd");
 
         parserResults.add(html5);
         parserResults.add(partedHtml5);
-//        parserResults.add(html5Jar);
-//        parserResults.add(partedHtml5Jar);
+        parserResults.add(html5Jar);
+        parserResults.add(partedHtml5Jar);
 
         parserNonPartedResults.add(html5);
-//        parserNonPartedResults.add(html5Jar);
+        parserNonPartedResults.add(html5Jar);
 
         parserPartedResults.add(partedHtml5);
-//        parserPartedResults.add(partedHtml5Jar);
+        parserPartedResults.add(partedHtml5Jar);
     }
 
     @Test
@@ -57,8 +56,14 @@ public class HtmlParseTest {
         }
 
         for(ParserResult parserResult : parserPartedResults){
-            Optional<XsdSchema> schema0Optional = parserResult.getSchemas().stream().filter(xsdSchema -> xsdSchema.getFilePath().endsWith("html_5_elements.xsd")).findFirst();
-            Optional<XsdSchema> schema1Optional = parserResult.getSchemas().stream().filter(xsdSchema -> xsdSchema.getFilePath().endsWith("html_5_types.xsd")).findFirst();
+			Optional<XsdSchema> schema0Optional = parserResult.getSchemas().stream()
+					.filter(xsdSchema -> xsdSchema.getFilePath().endsWith("html_5_elements.xsd")
+							|| xsdSchema.getFilePath().endsWith("html_5_elements_jar.xsd"))
+					.findFirst();
+			Optional<XsdSchema> schema1Optional = parserResult.getSchemas().stream()
+					.filter(xsdSchema -> xsdSchema.getFilePath().endsWith("html_5_types.xsd")
+							|| xsdSchema.getFilePath().endsWith("html_5_types_jar.xsd"))
+					.findFirst();
 
             Assert.assertTrue(schema0Optional.isPresent());
             Assert.assertTrue(schema1Optional.isPresent());
@@ -309,7 +314,7 @@ class ParserResult{
     }
 
     ParserResult(String jarName, String fileName){
-        XsdParserCore parser = new XsdParserJar(jarName, fileName);
+        XsdParserCore parser = XsdParser.fromURL(getClass().getResource(jarName), fileName, null);
 
         elements = parser.getResultXsdElements().collect(Collectors.toList());
         schemas = parser.getResultXsdSchemas().collect(Collectors.toList());

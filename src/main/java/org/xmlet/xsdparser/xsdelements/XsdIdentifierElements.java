@@ -25,4 +25,10 @@ public abstract class XsdIdentifierElements extends XsdAbstractElement {
     public String getId() {
         return id;
     }
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "[id=" + id + "]";
+	}
+    
 }

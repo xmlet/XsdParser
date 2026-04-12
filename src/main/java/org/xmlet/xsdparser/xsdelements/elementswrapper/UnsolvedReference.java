@@ -39,4 +39,10 @@ public class UnsolvedReference extends ReferenceBase {
     public XsdNamedElements getElement() {
         return (XsdNamedElements) element;
     }
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "[ref=" + ref + ", isTypeRef=" + isTypeRef + ", element=" + element + "]";
+	}
+    
 }

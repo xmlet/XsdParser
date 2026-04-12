@@ -1,5 +1,17 @@
 package org.xmlet.xsdparser.core;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -10,18 +22,6 @@ import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * {@link XsdParser} in the core class of the XsdParser project. It functions as a one shot class, receiving the name
@@ -60,8 +60,8 @@ public class XsdParser extends XsdParserCore{
     private void parse(String filePath){
 		try {
 			schemaLocations.add(new File(filePath).toURI().toURL());
+			
 			int index = 0;
-
 			while (schemaLocations.size() > index) {
 				URL schemaLocation = schemaLocations.get(index);
 				parseFile(schemaLocation);

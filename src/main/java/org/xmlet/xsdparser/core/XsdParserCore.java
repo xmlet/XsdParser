@@ -56,7 +56,7 @@ public abstract class XsdParserCore {
      * type supported by this mapper, this way based on the concrete {@link XsdAbstractElement} tag the according parse
      * method can be invoked.
      */
-    static Map<String, ConfigEntryData> parseMappers;
+    private static Map<String, ConfigEntryData> parseMappers;
 
     /**
      * A {@link Map} object that contains the all the XSD types and their respective types in the Java
@@ -73,22 +73,22 @@ public abstract class XsdParserCore {
      * A {@link LinkedHashMap} of {@link UnsolvedReference} elements that weren't solved. This list is consulted after all the
      * elements are parsed in order to find if there is any suitable parsed element to replace the unsolved element.
      */
-    private Map<URL, List<UnsolvedReference>> unsolvedElements = new LinkedHashMap<>();
+    protected Map<URL, List<UnsolvedReference>> unsolvedElements = new LinkedHashMap<>();
 
     /**
      * A {@link List} containing all the elements that even after parsing all the elements on the file, don't have a
      * suitable object to replace the reference. This list can be consulted after the parsing process to assert if there
      * is any missing information in the XSD file.
      */
-    private List<UnsolvedReferenceItem> parserUnsolvedElementsMap = new ArrayList<>();
+    protected List<UnsolvedReferenceItem> parserUnsolvedElementsMap = new ArrayList<>();
 
     /**
      * A {@link List} containing the paths of files that were present in either {@link XsdInclude}, {@link XsdImport},
      * or {@link XsdRedefine} objects that are present in the original or subsequent files. These paths are stored to
      * be parsed as well, the parsing process only ends when all the files present in this {@link List} are parsed.
      */
-    List<URL> schemaLocations = new ArrayList<>();
-    Map<URL, URL> schemaLocationsMap = new HashMap<>();
+	protected List<URL> schemaLocations = new ArrayList<URL>();
+	protected Map<URL, URL> schemaLocationsMap = new HashMap<>();
 
     protected URL currentFile;
 
@@ -121,13 +121,13 @@ public abstract class XsdParserCore {
      * objects matches a {@link NamedConcreteElement} object by having its ref attribute with the same value as the
      * name attribute of the {@link NamedConcreteElement}.
      */
-    void resolveRefs() {
+    protected void resolveRefs() {
         resolveInnerRefs();
         resolveOtherNamespaceRefs();
         resolveUnion();
     }
 
-    private void resolveUnion() {
+    protected void resolveUnion() {
         for (List<ReferenceBase> parsedElements : parseElements.values()) {
             parsedElements.stream()
                     .map(ReferenceBase::getElement)
@@ -139,7 +139,7 @@ public abstract class XsdParserCore {
         }
     }
 
-    private void resolveMemberTypes(XsdUnion union) {
+    protected void resolveMemberTypes(XsdUnion union) {
         if (union != null) {
             List<String> originalMemberTypes = union.getMemberTypesList();
             for (String memberType : originalMemberTypes) {
@@ -295,20 +295,14 @@ public abstract class XsdParserCore {
      * @return the SchemaLocation or null
      */
     private static String getSchemaLocation(XsdAbstractElement importOrIncludeOrRedefine) {
-        String schemaLocation = null;
-        if (importOrIncludeOrRedefine instanceof XsdInclude) {
-            XsdInclude include = (XsdInclude) importOrIncludeOrRedefine;
-            schemaLocation = include.getSchemaLocation();
-        }
-        if (importOrIncludeOrRedefine instanceof XsdImport) {
-            XsdImport xsdImport = (XsdImport) importOrIncludeOrRedefine;
-            schemaLocation = xsdImport.getSchemaLocation();
-        }
-        if (importOrIncludeOrRedefine instanceof XsdRedefine) {
-            XsdRedefine redefine = (XsdRedefine) importOrIncludeOrRedefine;
-            schemaLocation = redefine.getSchemaLocation();
-        }
-        return schemaLocation;
+		if (importOrIncludeOrRedefine instanceof XsdInclude) {
+			return ((XsdInclude) importOrIncludeOrRedefine).getSchemaLocation();
+		} else if (importOrIncludeOrRedefine instanceof XsdImport) {
+			return ((XsdImport) importOrIncludeOrRedefine).getSchemaLocation();
+		} else if (importOrIncludeOrRedefine instanceof XsdRedefine) {
+			return ((XsdRedefine) importOrIncludeOrRedefine).getSchemaLocation();
+		}
+        return null;
     }
 
     private XsdSchema getSchema(String fileName) {
@@ -323,7 +317,7 @@ public abstract class XsdParserCore {
                 .orElse(null);
     }
 
-    private void resolveOtherNamespaceRefs() {
+    protected void resolveOtherNamespaceRefs() {
         List<XsdSchema> schemas = getResultXsdSchemas().collect(Collectors.toList());
 
         for (XsdSchema schema : schemas) {
@@ -402,7 +396,7 @@ public abstract class XsdParserCore {
                 });
     }
 
-    private List<ReferenceBase> findElementTree(Map<String, NamespaceInfo> ns, String namespaceId) {
+    protected List<ReferenceBase> findElementTree(Map<String, NamespaceInfo> ns, String namespaceId) {
         List<ReferenceBase> importedElements = new ArrayList<>();
 		String importFileLocation = ns.get(namespaceId).getFile();
 		URL importedFileUrl = toURL(currentFile, importFileLocation);
@@ -448,13 +442,13 @@ public abstract class XsdParserCore {
         return importedElements;
     }
 
-    private boolean replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, URL fileName) {
+    protected boolean replaceUnsolvedImportedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, URL fileName) {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
 
         return replaceUnsolvedReference(concreteElements, unsolvedReference, fileName);
     }
 
-    private void resolveInnerRefs() {
+    protected void resolveInnerRefs() {
         ArrayList<Boolean> doneList = new ArrayList<>();
         ArrayList<URL> fileNameList = new ArrayList<>(parseElements.keySet());
 
@@ -474,11 +468,11 @@ public abstract class XsdParserCore {
 
                     // Add files that include or redefine this file
                     includedFiles.addAll(getResultXsdSchemas()
-                            .filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName)) ||
-                                    schema.getChildrenRedefines().anyMatch(xsdRedefine -> xsdRedefine.getSchemaLocation().equals(fileName)))
+                            .filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> toURL(currentFile, xsdInclude.getSchemaLocation()).equals(fileName)) ||
+                                    schema.getChildrenRedefines().anyMatch(xsdRedefine -> toURL(currentFile, xsdRedefine.getSchemaLocation()).equals(fileName)))
                             .map(XsdSchema::getFilePath)
                             .filter(Objects::nonNull)
-							.map(path -> toURL(path))
+							.map(XsdParserCore::toURL)
                             .distinct()
                             .collect(Collectors.toList()));
 
@@ -546,7 +540,7 @@ public abstract class XsdParserCore {
         }
     }
 
-    private void findTransitiveDependencies(URL fileName, Set<URL> dependencies) {
+    protected void findTransitiveDependencies(URL fileName, Set<URL> dependencies) {
         // Collect both includes and redefines
         List<URL> includedFiles =
                 parseElements.get(fileName)
@@ -589,10 +583,10 @@ public abstract class XsdParserCore {
      * @param unsolvedReference   The unsolved reference to solve.
      * @return whether the unsolved reference was successfully replaced
      */
-    private boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, URL fileName) {
+	protected boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, URL fileName) {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef());
 
-        return replaceUnsolvedReference(concreteElements, unsolvedReference, null);
+        return replaceUnsolvedReference(concreteElements, unsolvedReference, fileName);
     }
 
     protected boolean replaceUnsolvedReference(List<NamedConcreteElement> concreteElements,
@@ -737,15 +731,14 @@ public abstract class XsdParserCore {
 
 	protected boolean replaceUnsolvedElement(NamedConcreteElement concreteElement, UnsolvedReference unsolvedReference) {
 		NamedConcreteElement substitutionElementWrapper;
-		if (!unsolvedReference.isTypeRef()) {
-			Map<String, String> attributesMap = unsolvedReference.getElement().getAttributesMap();
-			XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement()
-					.clone(attributesMap, concreteElement.getElement().getParent());
-			substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
-
-			substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
-		} else {
+		if (unsolvedReference.isTypeRef()) {
 			substitutionElementWrapper = concreteElement;
+		} else {
+			Map<String, String> attributesMap = unsolvedReference.getElement().getAttributesMap();
+			XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(attributesMap, concreteElement.getElement().getParent());
+			substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
+			
+			substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
 		}
 		return unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
 	}
@@ -828,7 +821,7 @@ public abstract class XsdParserCore {
         URL localCurrentFile = currentFile;
 
 		if (schema != null && schema.getFilePath() != null) {
-			URL schemaUrl = toURL(schema.getFilePath().replace("\\", "/"));
+			URL schemaUrl = toURL(schema.getFilePath());
 			if (!localCurrentFile.equals(schemaUrl)) {
 				localCurrentFile = schemaUrl;
 			}
@@ -925,7 +918,7 @@ public abstract class XsdParserCore {
         elements.add(wrappedElement);
     }
 
-    static void updateConfig(ParserConfig config) {
+    protected static void updateConfig(ParserConfig config) {
         xsdTypesToJava = config.getXsdTypesToJava();
         parseMappers = config.getParseMappers();
     }

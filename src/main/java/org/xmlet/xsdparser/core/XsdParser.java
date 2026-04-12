@@ -59,11 +59,11 @@ public class XsdParser extends XsdParserCore{
 
     private void parse(String filePath){
 		try {
-			schemaLocations.add(new File(filePath).toURI().toURL().toString());
+			schemaLocations.add(new File(filePath).toURI().toURL());
 			int index = 0;
 
 			while (schemaLocations.size() > index) {
-				String schemaLocation = schemaLocations.get(index);
+				URL schemaLocation = schemaLocations.get(index);
 				parseFile(schemaLocation);
 				++index;
 			}
@@ -79,21 +79,22 @@ public class XsdParser extends XsdParserCore{
      * field.
      * @param filePath The path to the XSD file.
      */
-    private void parseFile(String filePath) {
+    private void parseFile(URL url) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
         try {
-        	URI uri = new URL(filePath).toURI();
-			if (uri.getScheme().equals("file") && !new File(uri).exists() && isRelativePath(filePath)) {
-                String parentFile = schemaLocationsMap.get(filePath);
-                //think now its unnecessary
-                filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
-
-                if (!new File(filePath).exists()) {
-                    throw new FileNotFoundException(filePath);
-                }
+        	URI uri = url.toURI();
+			if (uri.getScheme().equals("file") && !new File(uri).exists()) {
+				// think now its unnecessary
+//				 && isRelativePath(url)
+//                String parentFile = schemaLocationsMap.get(filePath);
+//                filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
+//
+//                if (!new File(filePath).exists()) {
+//                    throw new FileNotFoundException(filePath);
+//                }
             }
 
-            this.currentFile = filePath;
+            this.currentFile = url;
 
             ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);
 
@@ -101,8 +102,8 @@ public class XsdParser extends XsdParserCore{
                 throw new ParserConfigurationException("XsdSchema not correctly configured.");
             }
 
-            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(filePath), xsdSchemaConfig.visitorFunction));
-            ((XsdSchema)schemaReference.getElement()).setFilePath(filePath);
+            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(url), xsdSchemaConfig.visitorFunction));
+            ((XsdSchema)schemaReference.getElement()).setFilePath(url);
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
 			throw new RuntimeException(e);
@@ -120,9 +121,10 @@ public class XsdParser extends XsdParserCore{
      * @throws ParserConfigurationException If the {@link DocumentBuilderFactory#newDocumentBuilder()} throws
      *      {@link ParserConfigurationException}.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
+     * @throws URISyntaxException 
      */
-    private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
-        Document doc = getDocumentBuilder().parse(filePath);
+    private Node getSchemaNode(URL filePath) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
+        Document doc = getDocumentBuilder().parse(filePath.openStream());
 
         doc.getDocumentElement().normalize();
 

@@ -1,5 +1,15 @@
 package org.xmlet.xsdparser.core;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -11,18 +21,9 @@ import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class XsdParserJar extends XsdParserCore {
 
-    private static ClassLoader classLoader;
+	private static ClassLoader classLoader;
 
     /**
      * Adds the jar file represented the jarPath to the classpath and proceeds by parsing the file present in the
@@ -30,9 +31,13 @@ public class XsdParserJar extends XsdParserCore {
      * @param jarPath The path to the jar file.
      * @param filePath The filePath of the XSD file to parse. Relative to the Jar structure.
      */
-    public XsdParserJar(String jarPath, String filePath){
-        parse(jarPath, filePath);
-    }
+	public XsdParserJar(String jarPath, String filePath) {
+		try {
+			parse(jarPath, filePath);
+		} catch (IOException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
 
     /**
      * Adds the jar file represented the jarPath to the classpath and proceeds by parsing the file present in the
@@ -41,38 +46,39 @@ public class XsdParserJar extends XsdParserCore {
      * @param filePath The filePath of the XSD file to parse. Relative to the Jar structure.
      * @param config Config for the parser.
      */
-    public XsdParserJar(String jarPath, String filePath, ParserConfig config){
-        super.updateConfig(config);
+	public XsdParserJar(String jarPath, String filePath, ParserConfig config) {
+		super.updateConfig(config);
+		try {
+			parse(jarPath, filePath);
+		} catch (IOException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
 
-        parse(jarPath, filePath);
-    }
+	private void parse(String jarPath, String filePath) throws IOException {
+		setClassLoader(jarPath);
+		parseJarFile(toURL(jarPath));
 
-    private void parse(String jarPath, String filePath){
-        setClassLoader(jarPath);
+		int index = 0;
+		while (schemaLocations.size() > index) {
+			URL schemaLocation = schemaLocations.get(index);
+			parseJarFile(schemaLocation);
+			++index;
+		}
 
-        parseJarFile(filePath);
-
-        int index = 0;
-
-        while (schemaLocations.size() > index){
-            String schemaLocation = schemaLocations.get(index);
-            parseJarFile(schemaLocation);
-            ++index;
-        }
-
-        resolveRefs();
-    }
+		resolveRefs();
+	}
 
     /**
      * Parses the XSD file represented by the received InputStream.
      * @param filePath The filePath of the XSD file.
      */
-    private void parseJarFile(String filePath) {
-        //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
-        this.currentFile = filePath.replace("\\", "/");
-        InputStream inputStream = classLoader.getResourceAsStream(filePath);
+	private void parseJarFile(URL filePath) throws IOException {
+		this.currentFile = filePath;
+		InputStream inputStream = filePath.openStream();
+		//InputStream inputStream = classLoader.getResourceAsStream(filePath);
 
-        try {
+		try {
 //            Node schemaNode = getSchemaNode(inputStream);
 //
 //            if (isXsdSchema(schemaNode)){
@@ -87,64 +93,64 @@ public class XsdParserJar extends XsdParserCore {
 //                throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
 //            }
 
-            ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);
+			ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);
 
-            if (xsdSchemaConfig == null){
-                throw new ParserConfigurationException("XsdSchema not correctly configured.");
-            }
+			if (xsdSchemaConfig == null) {
+				throw new ParserConfigurationException("XsdSchema not correctly configured.");
+			}
 
-            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(inputStream), xsdSchemaConfig.visitorFunction));
-        } catch (SAXException | IOException | ParserConfigurationException e) {
-            Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
-            throw new RuntimeException(e);
-        }
-    }
+			ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(inputStream), xsdSchemaConfig.visitorFunction));
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
+			throw new RuntimeException(e);
+		}
+	}
 
-    private Node getSchemaNode(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
-        Document doc = getDocumentBuilder().parse(inputStream);
+	private Node getSchemaNode(InputStream inputStream) throws ParserConfigurationException, IOException, SAXException {
+		Document doc = getDocumentBuilder().parse(inputStream);
 
-        doc.getDocumentElement().normalize();
+		doc.getDocumentElement().normalize();
 
-        NodeList nodes = doc.getChildNodes();
+		NodeList nodes = doc.getChildNodes();
 
-        for (int i = 0; i < nodes.getLength(); i++) {
-            Node node = nodes.item(i);
-            if (isXsdSchema(node)){
-                return node;
-            }
-        }
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node node = nodes.item(i);
+			if (isXsdSchema(node)) {
+				return node;
+			}
+		}
 
-        throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
-    }
+		throw new ParsingException("The top level element of a XSD file should be the xsd:schema node.");
+	}
 
     /**
      * Creates a new class loader, replacing the current one, having another path added to the classpath. The new
      * path is the path to the jar received in this class constructor.
      * @param jarPath The path of the jar file.
      */
-    private void setClassLoader(String jarPath) {
-        if (!jarPath.endsWith(".jar")){
-            throw new ParsingException("The jarPath received doesn't represent a jar file.");
-        }
+	private void setClassLoader(String jarPath) {
+		if (!jarPath.endsWith(".jar")) {
+			throw new ParsingException("The jarPath received doesn't represent a jar file.");
+		}
 
-        ClassLoader originalCl = Thread.currentThread().getContextClassLoader();
+		ClassLoader originalCl = Thread.currentThread().getContextClassLoader();
 
-        URL url = originalCl.getResource(jarPath);
+		URL url = originalCl.getResource(jarPath);
 
-        if (url == null){
-            try {
-                url = new URL("file:/" + jarPath);
-            } catch (MalformedURLException e) {
-                throw new ParsingException("Invalid jar name.");
-            }
-        }
+		if (url == null) {
+			try {
+				url = new URL("file:/" + jarPath);
+			} catch (MalformedURLException e) {
+				throw new ParsingException("Invalid jar name.");
+			}
+		}
 
-        // Create class loader using given codebase
-        // Use prevCl as parent to maintain current visibility
-        ClassLoader urlCl = URLClassLoader.newInstance(new URL[]{url}, originalCl);
+		// Create class loader using given codebase
+		// Use prevCl as parent to maintain current visibility
+		ClassLoader urlCl = URLClassLoader.newInstance(new URL[] { url }, originalCl);
 
-        Thread.currentThread().setContextClassLoader(urlCl);
+		Thread.currentThread().setContextClassLoader(urlCl);
 
-        classLoader = urlCl;
-    }
+		classLoader = urlCl;
+	}
 }

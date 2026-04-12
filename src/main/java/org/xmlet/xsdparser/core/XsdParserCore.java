@@ -1,11 +1,46 @@
 package org.xmlet.xsdparser.core;
 
+import static java.util.stream.Collectors.groupingBy;
+
 import java.io.IOException;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Node;
-import org.xmlet.xsdparser.core.utils.*;
-import org.xmlet.xsdparser.xsdelements.*;
+import org.xmlet.xsdparser.core.utils.ConfigEntryData;
+import org.xmlet.xsdparser.core.utils.DefaultParserConfig;
+import org.xmlet.xsdparser.core.utils.NamespaceInfo;
+import org.xmlet.xsdparser.core.utils.ParserConfig;
+import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
+import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
+import org.xmlet.xsdparser.xsdelements.XsdComplexType;
+import org.xmlet.xsdparser.xsdelements.XsdElement;
+import org.xmlet.xsdparser.xsdelements.XsdImport;
+import org.xmlet.xsdparser.xsdelements.XsdInclude;
+import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
+import org.xmlet.xsdparser.xsdelements.XsdRedefine;
+import org.xmlet.xsdparser.xsdelements.XsdSchema;
+import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
+import org.xmlet.xsdparser.xsdelements.XsdUnion;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -379,28 +414,15 @@ public abstract class XsdParserCore {
 
     private List<ReferenceBase> findElementTree(Map<String, NamespaceInfo> ns, String namespaceId, String fileName) {
         List<ReferenceBase> importedElements = new ArrayList<>();
-        String importedFileLocation = ns.get(namespaceId).getFile();
-
-        String importedFileName = importedFileLocation;
-
-        if (isRelativePath(importedFileName)) {
-            String parentFile = schemaLocationsMap.get(importedFileName);
-
-            if (parentFile == null) {
-                parentFile = fileName;
-            }
-
-            importedFileName = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(importedFileName);
-        }
-
-        String finalImportedFileName = importedFileName;
-        importedElements.addAll(parseElements.getOrDefault(importedFileLocation,
-                parseElements.get(parseElements.keySet()
-                        .stream()
-                        .filter(k -> cleanPath(k).endsWith(cleanPath(finalImportedFileName)))
-                        .findFirst()
-                        .orElse(null))));
-
+		String importedFileUrl = null;
+        try {
+        	String importFileLocation = ns.get(namespaceId).getFile();
+			importedFileUrl = new URL(new URL(currentFile), importFileLocation).toString();
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+        importedElements.addAll(parseElements.getOrDefault(importedFileUrl, new ArrayList<>()));
+        
         // Process both includes and redefines
         List<XsdAbstractElement> schemaIncludesAndRedefines = importedElements.stream()
                 .filter(referenceBase -> referenceBase instanceof ConcreteElement &&
@@ -445,28 +467,6 @@ public abstract class XsdParserCore {
         List<NamedConcreteElement> concreteElements = concreteElementsMap.get(unsolvedReference.getRef().substring(unsolvedReference.getRef().indexOf(":") + 1));
 
         return replaceUnsolvedReference(concreteElements, unsolvedReference, fileName);
-    }
-
-    /**
-     * Clean the path by useless ../
-     * example /A/B/../B/C into /A/B/C
-     */
-    private String cleanPath(String pathValue) {
-        List<String> source = Arrays.asList(pathValue.split("/"));
-        List<String> results = new ArrayList<>(source);
-        int index = 0;
-        for (String value : source) {
-            if (value.equals("..")) {
-                results.remove(index);
-                if (index > 0) {
-                    results.remove(index - 1);
-                    index--;
-                }
-            } else {
-                index++;
-            }
-        }
-        return results.stream().map(Object::toString).collect(Collectors.joining("/"));
     }
 
     private void resolveInnerRefs() {
@@ -590,32 +590,13 @@ public abstract class XsdParserCore {
         }
     }
     private Optional<String> toRealFileName(String currentFileStr, String fileNameStr) {
-		if (fileNameStr.startsWith("http")) {
-			return Optional.of(fileNameStr);
+		try {
+			URL currentFile = new URL(currentFileStr);
+			URL includeUrl = new URL(currentFile, fileNameStr);
+			return parseElements.keySet().stream().filter(url -> url.equals(includeUrl.toString())).findFirst();
+		} catch (IOException ex) {
+			throw new RuntimeException(ex.getMessage(), ex);
 		}
-        try {
-            File fileBeingParsed = new File(currentFileStr);
-            File fileBeingParsedFolder = new File(fileBeingParsed.getParent());
-            File includedFile = new File(fileBeingParsedFolder, fileNameStr);
-
-            fileNameStr = includedFile.getCanonicalPath();
-        } catch (IOException ignored) { }
-
-        String finalFileNameStr = fileNameStr;
-        return parseElements.keySet()
-                .stream()
-                .filter(fileNameAux -> {
-                    if (fileNameAux.contains("/") && finalFileNameStr.contains("\\")){
-                        fileNameAux = fileNameAux.replace("/", "\\");
-                    }
-
-                    if (fileNameAux.contains("\\") && finalFileNameStr.contains("/")){
-                        fileNameAux = fileNameAux.replace("\\", "/");
-                    }
-
-                    return fileNameAux.endsWith(finalFileNameStr);
-                })
-                .findFirst();
     }
 
     /**
@@ -969,27 +950,21 @@ public abstract class XsdParserCore {
      * @param schemaLocation A new file path of another XSD file to parse.
      */
     public void addFileToParse(String schemaLocation) {
-        String fullSchemaLocation = currentFile.substring(0, currentFile.lastIndexOf('/') + 1) + schemaLocation;
-        boolean urlSchemaLocation = false;
-
-        if (!schemaLocations.contains((urlSchemaLocation = schemaLocation.startsWith("http")) ? schemaLocation
-                : (fullSchemaLocation = cleanPath(fullSchemaLocation))) && schemaLocation.endsWith(".xsd")) {
-			if (urlSchemaLocation) {
-				schemaLocations.add(schemaLocation);
-				schemaLocationsMap.put(schemaLocation, currentFile);
-			} else if (currentFile.startsWith("http")) {
-				schemaLocations.add(fullSchemaLocation);
-				schemaLocationsMap.put(fullSchemaLocation, currentFile);
-			} else {
-				try {
-					String canonicalPath = new File(fullSchemaLocation).getCanonicalPath();
-					schemaLocations.add(canonicalPath);
-					schemaLocationsMap.put(canonicalPath, currentFile);
-				} catch (IOException e) {
-					throw new RuntimeException(e.getMessage(), e);
-				}
+		try {
+			if (!schemaLocation.endsWith(".xsd")) {
+				return;
 			}
-        }
+			URL urlCurrentFile = new URL(currentFile);
+			URL urlSchema = new URL(urlCurrentFile, schemaLocation);
+			String urlAsString = urlSchema.toString();
+			if (schemaLocations.contains(urlAsString)) {
+				return;
+			}
+			schemaLocations.add(urlAsString);
+			schemaLocationsMap.put(urlAsString, currentFile);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
     }
 
     public static Map<String, String> getXsdTypesToJava() {

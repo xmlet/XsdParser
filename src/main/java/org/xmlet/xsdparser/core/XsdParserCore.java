@@ -970,17 +970,25 @@ public abstract class XsdParserCore {
      */
     public void addFileToParse(String schemaLocation) {
         String fullSchemaLocation = currentFile.substring(0, currentFile.lastIndexOf('/') + 1) + schemaLocation;
-        boolean urlSchemaLoction = false;
+        boolean urlSchemaLocation = false;
 
-        if (!schemaLocations.contains((urlSchemaLoction = schemaLocation.startsWith("http")) ? schemaLocation
+        if (!schemaLocations.contains((urlSchemaLocation = schemaLocation.startsWith("http")) ? schemaLocation
                 : (fullSchemaLocation = cleanPath(fullSchemaLocation))) && schemaLocation.endsWith(".xsd")) {
-            if (urlSchemaLoction) {
-                schemaLocations.add(schemaLocation);
-                schemaLocationsMap.put(schemaLocation, currentFile);
-            } else {
-                schemaLocations.add(fullSchemaLocation);
-                schemaLocationsMap.put(fullSchemaLocation, currentFile);
-            }
+			if (urlSchemaLocation) {
+				schemaLocations.add(schemaLocation);
+				schemaLocationsMap.put(schemaLocation, currentFile);
+			} else if (currentFile.startsWith("http")) {
+				schemaLocations.add(fullSchemaLocation);
+				schemaLocationsMap.put(fullSchemaLocation, currentFile);
+			} else {
+				try {
+					String canonicalPath = new File(fullSchemaLocation).getCanonicalPath();
+					schemaLocations.add(canonicalPath);
+					schemaLocationsMap.put(canonicalPath, currentFile);
+				} catch (IOException e) {
+					throw new RuntimeException(e.getMessage(), e);
+				}
+			}
         }
     }
 

@@ -1118,6 +1118,22 @@ public class IssuesTest {
 	private static String getContent(XsdAnnotation annotation) {
 		return annotation.getDocumentations().iterator().next().getContent();
 	}
+	
+	@Test
+	public void testIssue84() {
+		XsdParser xsdParser = new XsdParser(getFilePath("issue_84/Main.xsd"));
+		XsdElement a = xsdParser.getResultXsdElements().filter(xsdElement -> xsdElement.getName().equals("A"))
+				.findFirst().get();
+
+		List<UnsolvedReferenceItem> unsolvedReferences = xsdParser.getUnsolvedReferences();
+		Assert.assertTrue(unsolvedReferences.isEmpty());
+
+		XsdComplexType aComplexType = a.getTypeAsComplexType();
+
+		Assert.assertNotNull(aComplexType);
+
+		Assert.assertEquals("TypeA", aComplexType.getName());
+	}
 
     @Test
     public void testForwardGroupRef() {

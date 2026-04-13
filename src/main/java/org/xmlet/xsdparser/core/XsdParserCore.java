@@ -489,7 +489,7 @@ public abstract class XsdParserCore {
                             .distinct()
                             .collect(Collectors.toList()));
 
-                    List<ReferenceBase> includedElements = new ArrayList<>(parseElements.get(fileName));
+                    List<ReferenceBase> includedElements = new ArrayList<>();
 
                     includedFiles.stream().filter(Objects::nonNull).forEach(includedFile -> {
                         String includedFilename = includedFile.substring(includedFile.lastIndexOf("/") + 1);
@@ -574,6 +574,9 @@ public abstract class XsdParserCore {
         }
     }
     private Optional<String> toRealFileName(String currentFileStr, String fileNameStr) {
+		if (fileNameStr.startsWith("http")) {
+			return Optional.of(fileNameStr);
+		}
         try {
             File fileBeingParsed = new File(currentFileStr);
             File fileBeingParsedFolder = new File(fileBeingParsed.getParent());
@@ -618,13 +621,12 @@ public abstract class XsdParserCore {
         boolean replaced = false;
 
         if (concreteElements != null) {
-            Map<String, String> oldElementAttributes = new HashMap<>(unsolvedReference.getElement().getAttributesMap());
-
             for (NamedConcreteElement concreteElement : concreteElements) {
                 NamedConcreteElement substitutionElementWrapper;
 
                 if (!unsolvedReference.isTypeRef()) {
-                    XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(oldElementAttributes, concreteElement.getElement().getParent());
+                    Map<String, String> attributesMap = unsolvedReference.getElement().getAttributesMap();
+					XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(attributesMap, concreteElement.getElement().getParent());
                     substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
 
                     substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);

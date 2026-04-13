@@ -155,7 +155,7 @@ public abstract class XsdAbstractElement {
      * @return A copy of the object from which is called upon.
      */
     public XsdAbstractElement clone(@NotNull Map<String, String> placeHolderAttributes, XsdAbstractElement parent){
-        XsdAbstractElement clone = clone(placeHolderAttributes);
+        XsdAbstractElement clone = clone(new HashMap<>(placeHolderAttributes));
         clone.setParent(parent);
 
         return clone;
@@ -284,7 +284,7 @@ public abstract class XsdAbstractElement {
         Optional<UnsolvedReference> optionalUnsolvedReference = elements.stream()
                 .filter(referenceBase -> referenceBase instanceof UnsolvedReference)
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
-                .filter(unsolvedReference -> compareReference(element, unsolvedReference))
+                .filter(unsolvedReference -> compareReferenceNotNested(element, unsolvedReference))
                 .findFirst();
         if (!optionalUnsolvedReference.isPresent()) {
             return false;
@@ -293,9 +293,13 @@ public abstract class XsdAbstractElement {
         elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent()));
         return true;
     }
+    
+    public static boolean compareReferenceNotNested(NamedConcreteElement element, UnsolvedReference reference){
+        return compareReferenceName(element, reference.getRef()) && isNotNested(element);
+    }
 
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
-        return compareReferenceName(element, reference.getRef()) && compareMinMaxOccurs(element, reference);
+        return compareReferenceName(element, reference.getRef()) ;
     }
 
     static boolean compareReferenceName(NamedConcreteElement element, String unsolvedRef){
@@ -306,15 +310,9 @@ public abstract class XsdAbstractElement {
         return element.getName().equals(unsolvedRef);
     }
 
-    private static boolean compareMinMaxOccurs(NamedConcreteElement element, UnsolvedReference reference) {
-        int elementMinOccurs = AttributeValidations.validateNonNegativeInteger("", MIN_OCCURS_TAG, element.getElement().getAttributesMap().getOrDefault(MIN_OCCURS_TAG, "1"));
-        String elementMaxOccurs = AttributeValidations.maxOccursValidation("", element.getElement().getAttributesMap().getOrDefault(MAX_OCCURS_TAG, "1"));
-
-        int referenceMinOccurs = AttributeValidations.validateNonNegativeInteger("", MIN_OCCURS_TAG, reference.getElement().getAttributesMap().getOrDefault(MIN_OCCURS_TAG, "1"));
-        String referenceMaxOccurs = AttributeValidations.maxOccursValidation("", reference.getElement().getAttributesMap().getOrDefault(MAX_OCCURS_TAG, "1"));
-
-        return Objects.equals(elementMinOccurs, referenceMinOccurs) && Objects.equals(elementMaxOccurs, referenceMaxOccurs);
-    }
+	private static boolean isNotNested(NamedConcreteElement e) {
+		return e.getElement().getParent() != null && e.getElement().getParent() instanceof XsdSchema;
+	}
 
     /**
      * @return The parent of the current {@link XsdAbstractElement} object.

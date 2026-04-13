@@ -1096,6 +1096,28 @@ public class IssuesTest {
 		Assert.assertEquals("aElement", xsdElement.getRawName());
 		Assert.assertEquals("This is the lost annotation", lostAnnotation.getContent());
 	}
+	
+	@Test
+	public void testIssue83() {
+		XsdParser xsdParser = new XsdParser(getFilePath("issue_83/element_name_not_uq.xsd"));
+		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
+		
+		XsdElement rootElement = elementByName(xsdSchema.getChildrenElements(), "rootElemenet", XsdElement.class);
+		XsdComplexType ct = rootElement.getTypeAsComplexType();
+		Assert.assertEquals("ct_issue_83", ct.getRawName());
+		XsdSequence sequence = ct.getChildAsSequence();
+		XsdElement xsdElement = elementByName(sequence.getChildrenElements(), "aElement", XsdElement.class);
+		XsdElement original = ((XsdElement) xsdElement.getCloneOf());
+		Assert.assertEquals("The right element",getContent(original.getAnnotation()));	
+	}
+	
+	private static <E> E elementByName(Stream<? extends XsdNamedElements> elements, String name, Class<E> resultType) {
+		return resultType.cast(elements.filter(e -> e.getRawName().equals(name)).findAny().orElse(null));
+	}
+	
+	private static String getContent(XsdAnnotation annotation) {
+		return annotation.getDocumentations().iterator().next().getContent();
+	}
 
     @Test
     public void testForwardGroupRef() {

@@ -1102,7 +1102,7 @@ public class IssuesTest {
 		XsdParser xsdParser = new XsdParser(getFilePath("issue_83/element_name_not_uq.xsd"));
 		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
 		
-		XsdElement rootElement = elementByName(xsdSchema.getChildrenElements(), "rootElemenet", XsdElement.class);
+		XsdElement rootElement = elementByName(xsdSchema.getChildrenElements(), "rootElement", XsdElement.class);
 		XsdComplexType ct = rootElement.getTypeAsComplexType();
 		Assert.assertEquals("ct_issue_83", ct.getRawName());
 		XsdSequence sequence = ct.getChildAsSequence();

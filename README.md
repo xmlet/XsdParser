@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.22</version>
+    <version>1.2.23</version>
 </dependency>
 ```
 
@@ -328,6 +328,32 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.2.23
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/85" title="wrong element is used if a ref='elementName' is not unique#85">Details</a>. Contribution by <a href="https://github.com/waldi5001" title="waldi5001">waldi5001</a>.
+        </li>
+    </ul>
+</div>
+
+### Added — XSD schema-rule validations
+
+- **Parent scoping** — `xs:include`, `xs:redefine` must be under `xs:schema`; `xs:choice`/`xs:sequence` restricted to model-group parents; `xs:complexType` `abstract`/`final`/`block` only at top-level.
+- **Mutex / presence rules** — `ref` vs inline attributes/children on `xs:element`, `xs:attribute`, `xs:attributeGroup`, `xs:group`, `xs:list`, `xs:union`; `fixed` vs `default` and `use` interactions on `xs:attribute`/`xs:element`; `xs:simpleType` requires exactly one of `restriction`/`list`/`union`; `xs:simpleContent`/`xs:complexContent` require exactly one of `restriction`/`extension`; `base` required on `xs:extension` and on `xs:restriction` nested in content-model wrappers.
+- **Value / range checks** — `minOccurs` ≤ `maxOccurs` across `xs:element`/`xs:choice`/`xs:sequence`/`xs:group`/`xs:any`; `xs:all` child `maxOccurs` ∈ {0,1}; numeric facet ordering (`minLength`≤`maxLength`, `fractionDigits`≤`totalDigits`, `min`/`maxInclusive`, `min`/`maxExclusive`); facet `value` attribute required.
+- **Token / enum validation** — `xs:any` `processContents` ∈ {strict,lax,skip} and `namespace` token list; `xs:schema` `blockDefault`/`finalDefault` enum token lists; `xs:import` `namespace` must be a URI and differ from the enclosing `targetNamespace`; `xs:appinfo`/`xs:documentation` `source` must be a URI.
+- **Reference target kinds** — `xs:list` `itemType`, `xs:union` `memberTypes`, and `xs:restriction` `base` reject `xs:complexType` targets where the spec requires a simple type; `xs:extension` `base` checked against `simpleContent`/`complexContent` parent.
+
+### Added — xs:redefine resolution
+
+- Spec-conformant override mechanism scoped by transitive include/import visibility. Direct base-importers still see originals; chained and circular-`base` cases resolved deterministically. New `redefine_external_{a,b,c,d}.xsd` fixtures and `RedefineTest` coverage.
+
+### Fixed
+
+- Redefined types/groups/attribute groups no longer resolve to their originals in chained include/redefine scenarios.
 
 ### 1.2.22
 

@@ -45,6 +45,15 @@ public class XsdInclude extends XsdAnnotatedElements {
     }
 
     @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if (!(parent instanceof XsdSchema)){
+            throw new ParsingException(XSD_TAG + " element: parent must be " + XsdSchema.XSD_TAG + ".");
+        }
+    }
+
+    @Override
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);

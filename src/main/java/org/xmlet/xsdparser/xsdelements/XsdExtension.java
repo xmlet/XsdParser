@@ -86,6 +86,12 @@ public class XsdExtension extends XsdAnnotatedElements {
         boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
         if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.base)){
+            if (parent instanceof XsdSimpleContent && elem instanceof XsdComplexType && ((XsdComplexType) elem).getComplexContent() != null){
+                throw new ParsingException(XSD_TAG + " element: when nested in " + XsdSimpleContent.XSD_TAG + ", " + BASE_TAG + " must reference a simpleType or a complexType with " + XsdSimpleContent.XSD_TAG + "; \"" + ((XsdComplexType) elem).getRawName() + "\" has " + XsdComplexContent.XSD_TAG + ".");
+            }
+            if (parent instanceof XsdComplexContent && elem instanceof XsdSimpleType){
+                throw new ParsingException(XSD_TAG + " element: when nested in " + XsdComplexContent.XSD_TAG + ", " + BASE_TAG + " must reference a " + XsdComplexType.XSD_TAG + ", not a " + XsdSimpleType.XSD_TAG + ": \"" + elem.getRawName() + "\".");
+            }
             this.base = element;
             replaced = true;
         }

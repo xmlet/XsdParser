@@ -4,6 +4,7 @@ import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -42,6 +43,20 @@ public class XsdChoice extends XsdMultipleElements {
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+        AttributeValidations.validateOccurrenceRange(XSD_TAG, this.minOccurs, this.maxOccurs);
+    }
+
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if (!(parent instanceof XsdComplexType || parent instanceof XsdGroup || parent instanceof XsdRestriction || parent instanceof XsdExtension || parent instanceof XsdChoice || parent instanceof XsdSequence)){
+            throw new ParsingException(XSD_TAG + " element: parent must be one of " + XsdComplexType.XSD_TAG + ", " + XsdGroup.XSD_TAG + ", " + XsdRestriction.XSD_TAG + ", " + XsdExtension.XSD_TAG + ", " + XsdChoice.XSD_TAG + " or " + XsdSequence.XSD_TAG + ".");
+        }
+
+        if (parent instanceof XsdGroup && (attributesMap.containsKey(MIN_OCCURS_TAG) || attributesMap.containsKey(MAX_OCCURS_TAG))){
+            throw new ParsingException(XSD_TAG + " element: " + MIN_OCCURS_TAG + " and " + MAX_OCCURS_TAG + " are not allowed when the parent is " + XsdGroup.XSD_TAG + ".");
+        }
     }
 
     @Override

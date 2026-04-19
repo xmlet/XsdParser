@@ -100,10 +100,6 @@ public class XsdAttribute extends XsdNamedElements {
     private static String getFormDefaultValue(XsdAbstractElement parent) {
         if (parent == null) return null;
 
-        if (parent instanceof XsdElement){
-            return ((XsdElement) parent).getForm();
-        }
-
         if (parent instanceof XsdSchema){
             return ((XsdSchema) parent).getAttributeFormDefault();
         }
@@ -120,6 +116,18 @@ public class XsdAttribute extends XsdNamedElements {
 
         rule2();
         rule3();
+        rule4();
+        rule5();
+    }
+
+    /**
+     * Asserts that the {@code form} attribute is not used on top-level attributes (direct children of
+     * {@link XsdSchema}).
+     */
+    private void rule5() {
+        if (parent instanceof XsdSchema && attributesMap.containsKey(FORM_TAG)){
+            throw new ParsingException(XSD_TAG + " element: " + FORM_TAG + " attribute is only allowed on local attributes, not when the parent is " + XsdSchema.XSD_TAG + ".");
+        }
     }
 
     /**
@@ -139,6 +147,24 @@ public class XsdAttribute extends XsdNamedElements {
     private void rule2() {
         if (fixed != null && defaultElement != null){
             throw new ParsingException(XSD_TAG + " element: " + FIXED_TAG + " and " + DEFAULT_ELEMENT_TAG + " attributes are not allowed at the same time.");
+        }
+    }
+
+    /**
+     * Asserts the combination of {@code use} with {@code default}/{@code fixed}. A {@code default} value
+     * implies the attribute is optional, so it cannot coexist with {@code use="required"} or
+     * {@code use="prohibited"}. A {@code fixed} value cannot coexist with {@code use="prohibited"}.
+     */
+    private void rule4() {
+        if (use == null) return;
+        String useValue = use.getValue();
+
+        if (defaultElement != null && UsageEnum.REQUIRED.getValue().equals(useValue)){
+            throw new ParsingException(XSD_TAG + " element: " + DEFAULT_ELEMENT_TAG + " attribute cannot be used together with " + USE_TAG + "=\"" + UsageEnum.REQUIRED.getValue() + "\".");
+        }
+
+        if ((defaultElement != null || fixed != null) && UsageEnum.PROHIBITED.getValue().equals(useValue)){
+            throw new ParsingException(XSD_TAG + " element: " + DEFAULT_ELEMENT_TAG + " and " + FIXED_TAG + " attributes cannot be used together with " + USE_TAG + "=\"" + UsageEnum.PROHIBITED.getValue() + "\".");
         }
     }
 

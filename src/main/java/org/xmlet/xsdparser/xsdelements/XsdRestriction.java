@@ -13,6 +13,7 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdRestrictionsVisitor;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.*;
 
 import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -137,6 +138,41 @@ public class XsdRestriction extends XsdAnnotatedElements {
     }
 
     @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if ((parent instanceof XsdSimpleContent || parent instanceof XsdComplexContent) && baseString == null){
+            throw new ParsingException(XSD_TAG + " element: " + BASE_TAG + " attribute is required when the parent is " + XsdSimpleContent.XSD_TAG + " or " + XsdComplexContent.XSD_TAG + ".");
+        }
+
+        if (minLength != null && maxLength != null && minLength.getValue() > maxLength.getValue()){
+            throw new ParsingException(XSD_TAG + " element: " + XsdMinLength.XSD_TAG + " (" + minLength.getValue() + ") must not exceed " + XsdMaxLength.XSD_TAG + " (" + maxLength.getValue() + ").");
+        }
+
+        if (totalDigits != null && fractionDigits != null && fractionDigits.getValue() > totalDigits.getValue()){
+            throw new ParsingException(XSD_TAG + " element: " + XsdFractionDigits.XSD_TAG + " (" + fractionDigits.getValue() + ") must not exceed " + XsdTotalDigits.XSD_TAG + " (" + totalDigits.getValue() + ").");
+        }
+
+        validateNumericBoundOrder(minInclusive == null ? null : minInclusive.getValue(), maxInclusive == null ? null : maxInclusive.getValue(), XsdMinInclusive.XSD_TAG, XsdMaxInclusive.XSD_TAG);
+        validateNumericBoundOrder(minExclusive == null ? null : minExclusive.getValue(), maxExclusive == null ? null : maxExclusive.getValue(), XsdMinExclusive.XSD_TAG, XsdMaxExclusive.XSD_TAG);
+    }
+
+    private static void validateNumericBoundOrder(String minValue, String maxValue, String minTag, String maxTag){
+        if (minValue == null || maxValue == null) return;
+        BigDecimal min;
+        BigDecimal max;
+        try {
+            min = new BigDecimal(minValue.trim());
+            max = new BigDecimal(maxValue.trim());
+        } catch (NumberFormatException ignored){
+            return;
+        }
+        if (min.compareTo(max) > 0){
+            throw new ParsingException(XSD_TAG + " element: " + minTag + " (" + minValue + ") must not exceed " + maxTag + " (" + maxValue + ").");
+        }
+    }
+
+    @Override
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
@@ -153,6 +189,9 @@ public class XsdRestriction extends XsdAnnotatedElements {
         boolean isComplexOrSimpleType = elem instanceof XsdComplexType || elem instanceof XsdSimpleType;
 
         if (this.base instanceof UnsolvedReference && isComplexOrSimpleType && compareReference(element, (UnsolvedReference) this.base)){
+            if (parent instanceof XsdSimpleType && elem instanceof XsdComplexType){
+                throw new ParsingException(XSD_TAG + " element: when nested in " + XsdSimpleType.XSD_TAG + ", " + BASE_TAG + " must reference a " + XsdSimpleType.XSD_TAG + " or built-in type, not a " + XsdComplexType.XSD_TAG + ": \"" + elem.getRawName() + "\".");
+            }
             this.base = element;
             replaced = true;
         }

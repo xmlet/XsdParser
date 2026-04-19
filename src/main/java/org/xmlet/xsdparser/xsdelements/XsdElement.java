@@ -87,7 +87,7 @@ public class XsdElement extends XsdNamedElements {
         * substitution - prevents elements derived by substitution;
         * #all - all of the above.
      */
-    private BlockEnum block;
+    private String block;
 
     /**
      * Prevents other elements to derive depending on its value. This attribute cannot be present unless this
@@ -96,7 +96,7 @@ public class XsdElement extends XsdNamedElements {
          * restriction - prevents elements derived by restriction;
          * #all - all of the above.
      */
-    private FinalEnum finalObj;
+    private String finalObj;
 
     /**
      * Specifies the minimum number of times this element can occur in the parent element. The value can be any
@@ -143,10 +143,11 @@ public class XsdElement extends XsdNamedElements {
         this.form = AttributeValidations.belongsToEnum(FormEnum.QUALIFIED, attributesMap.getOrDefault(FORM_TAG, formDefault));
         this.nillable = AttributeValidations.validateBoolean(attributesMap.getOrDefault(NILLABLE_TAG, "false"));
         this.abstractObj = AttributeValidations.validateBoolean(attributesMap.getOrDefault(ABSTRACT_TAG, "false"));
-        this.block = AttributeValidations.belongsToEnum(BlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
-        this.finalObj = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.block = AttributeValidations.validateEnumTokenList(BlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.finalObj = AttributeValidations.validateEnumTokenList(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+        AttributeValidations.validateOccurrenceRange(XSD_TAG, this.minOccurs, this.maxOccurs);
     }
 
     public XsdElement(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
@@ -170,6 +171,21 @@ public class XsdElement extends XsdNamedElements {
         rule8();
         rule9();
         rule10();
+        rule11();
+    }
+
+    /**
+     * Asserts that final and abstract are only present on top-level elements.
+     */
+    private void rule11() {
+        if (!(parent instanceof XsdSchema)){
+            if (attributesMap.containsKey(FINAL_TAG)){
+                throw new ParsingException(XSD_TAG + " element: The " + FINAL_TAG + " attribute can only be present when the parent of the " + xsdElementIsXsdSchema);
+            }
+            if (attributesMap.containsKey(ABSTRACT_TAG)){
+                throw new ParsingException(XSD_TAG + " element: The " + ABSTRACT_TAG + " attribute can only be present when the parent of the " + xsdElementIsXsdSchema);
+            }
+        }
     }
 
     /**
@@ -429,7 +445,7 @@ public class XsdElement extends XsdNamedElements {
     }
 
     public String getFinal() {
-        return finalObj.getValue();
+        return finalObj;
     }
 
     @SuppressWarnings("unused")
@@ -462,7 +478,7 @@ public class XsdElement extends XsdNamedElements {
 
     @SuppressWarnings("unused")
     public String getBlock() {
-        return block.getValue();
+        return block;
     }
 
     @SuppressWarnings("unused")

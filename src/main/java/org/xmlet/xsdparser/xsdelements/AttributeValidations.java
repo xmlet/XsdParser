@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.MAX_OCCURS_TAG;
+import static org.xmlet.xsdparser.xsdelements.XsdAbstractElement.MIN_OCCURS_TAG;
 
 public class AttributeValidations {
 
@@ -183,6 +184,72 @@ public class AttributeValidations {
         if (value == null) throw new ParsingException(attributeMissingMessage(elementName, attributeName));
 
         return validatePositiveInteger(elementName, attributeName, value);
+    }
+
+    /**
+     * Validates the value of a {@code namespace} attribute on {@code xs:any} / {@code xs:anyAttribute}. Per
+     * XSD 1.0 §3.10.2 the value is either {@code ##any} / {@code ##other} (alone), or a whitespace-separated list
+     * of items where each item is {@code ##targetNamespace}, {@code ##local}, or a URI reference.
+     */
+    static String validateAnyNamespace(String elementName, String value){
+        if (value == null) return null;
+        String trimmed = value.trim();
+        if (trimmed.isEmpty()) return trimmed;
+        if (trimmed.equals("##any") || trimmed.equals("##other")) return trimmed;
+        for (String token : trimmed.split("\\s+")) {
+            if (token.equals("##any") || token.equals("##other")){
+                throw new ParsingException(elementName + " element: " + token + " cannot appear in a namespace token list.");
+            }
+            if (token.equals("##targetNamespace") || token.equals("##local")) continue;
+            try {
+                new java.net.URI(token);
+            } catch (java.net.URISyntaxException e){
+                throw new ParsingException(elementName + " element: namespace token \"" + token + "\" is not a valid URI reference.");
+            }
+        }
+        return trimmed;
+    }
+
+    /**
+     * Validates that {@code minOccurs} is less than or equal to {@code maxOccurs}. Both have already been validated
+     * individually as non-negative integers / {@code "unbounded"}; this only checks the relation.
+     */
+    static void validateOccurrenceRange(String elementName, Integer minOccurs, String maxOccurs){
+        if (minOccurs == null || maxOccurs == null) return;
+        if (maxOccurs.equals("unbounded")) return;
+        int max;
+        try {
+            max = Integer.parseInt(maxOccurs.trim());
+        } catch (NumberFormatException e){
+            return;
+        }
+        if (minOccurs > max){
+            throw new ParsingException("The " + elementName + " " + MIN_OCCURS_TAG + " attribute (" + minOccurs + ") must be less than or equal to " + MAX_OCCURS_TAG + " (" + max + ").");
+        }
+    }
+
+    /**
+     * Validates that {@code value} is a legal XML NCName (XSD §3.3.x {@code name} attribute): starts with a letter
+     * or underscore, contains only NCName characters, and does not contain a colon.
+     */
+    static void validateNCName(String elementName, String value){
+        if (value == null) return;
+        if (value.isEmpty()){
+            throw new ParsingException(elementName + " element: " + XsdAbstractElement.NAME_TAG + " attribute must be a non-empty NCName.");
+        }
+        if (value.indexOf(':') >= 0){
+            throw new ParsingException(elementName + " element: " + XsdAbstractElement.NAME_TAG + " attribute must be an NCName (cannot contain ':'): \"" + value + "\".");
+        }
+        char first = value.charAt(0);
+        if (!(Character.isLetter(first) || first == '_')){
+            throw new ParsingException(elementName + " element: " + XsdAbstractElement.NAME_TAG + " attribute must start with a letter or underscore: \"" + value + "\".");
+        }
+        for (int i = 1; i < value.length(); i++){
+            char c = value.charAt(i);
+            if (!(Character.isLetterOrDigit(c) || c == '_' || c == '-' || c == '.')){
+                throw new ParsingException(elementName + " element: " + XsdAbstractElement.NAME_TAG + " attribute contains an illegal NCName character: \"" + value + "\".");
+            }
+        }
     }
 
     public static Boolean validateBoolean(String value){

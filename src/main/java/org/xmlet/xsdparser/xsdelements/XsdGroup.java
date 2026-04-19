@@ -50,6 +50,7 @@ public class XsdGroup extends XsdNamedElements {
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+        AttributeValidations.validateOccurrenceRange(XSD_TAG, this.minOccurs, this.maxOccurs);
     }
 
     private XsdGroup(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
@@ -68,6 +69,17 @@ public class XsdGroup extends XsdNamedElements {
         rule3();
         rule4();
         rule5();
+        rule6();
+    }
+
+    /**
+     * Asserts that a {@link XsdGroup} without a {@code ref} attribute carries a child model group
+     * ({@link XsdAll}, {@link XsdChoice} or {@link XsdSequence}).
+     */
+    private void rule6() {
+        if (!attributesMap.containsKey(REF_TAG) && childElement == null){
+            throw new ParsingException(XSD_TAG + " element: a child model group (" + XsdAll.XSD_TAG + ", " + XsdChoice.XSD_TAG + " or " + XsdSequence.XSD_TAG + ") is required when " + REF_TAG + " is not present.");
+        }
     }
 
     /**

@@ -7,9 +7,12 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.enums.BlockDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FinalDefaultEnum;
 import org.xmlet.xsdparser.xsdelements.enums.FormEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +86,16 @@ public class XsdSchema extends XsdAnnotatedElements {
         this.blockDefault = AttributeValidations.validateEnumTokenList(BlockDefaultEnum.DEFAULT, attributesMap.getOrDefault(BLOCK_DEFAULT, BlockDefaultEnum.DEFAULT.getValue()));
         this.finalDefault = AttributeValidations.validateEnumTokenList(FinalDefaultEnum.instance, attributesMap.getOrDefault(FINAL_DEFAULT, FinalDefaultEnum.DEFAULT.getValue()));
         this.targetNamespace = attributesMap.getOrDefault(TARGET_NAMESPACE, targetNamespace);
+        if (this.targetNamespace != null){
+            if (this.targetNamespace.isEmpty()){
+                throw new ParsingException(XSD_TAG + " element: " + TARGET_NAMESPACE + " attribute must not be an empty string.");
+            }
+            try {
+                new URI(this.targetNamespace);
+            } catch (URISyntaxException e){
+                throw new ParsingException(XSD_TAG + " element: " + TARGET_NAMESPACE + " attribute must be a valid URI reference: \"" + this.targetNamespace + "\".");
+            }
+        }
         this.version = attributesMap.getOrDefault(VERSION, version);
         this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
 

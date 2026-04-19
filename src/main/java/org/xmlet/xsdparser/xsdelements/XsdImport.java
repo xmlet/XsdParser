@@ -3,9 +3,12 @@ package org.xmlet.xsdparser.xsdelements;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -38,6 +41,14 @@ public class XsdImport extends XsdAnnotatedElements {
         this.namespace = attributesMap.getOrDefault(NAMESPACE, namespace);
         this.schemaLocation = attributesMap.getOrDefault(SCHEMA_LOCATION, schemaLocation);
 
+        if (this.namespace != null){
+            try {
+                new URI(this.namespace);
+            } catch (URISyntaxException e){
+                throw new ParsingException(XSD_TAG + " element: " + NAMESPACE + " attribute must be a valid URI reference: \"" + this.namespace + "\".");
+            }
+        }
+
         if (this.schemaLocation != null){
             parser.addFileToParse(this.schemaLocation);
         }
@@ -47,6 +58,18 @@ public class XsdImport extends XsdAnnotatedElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if (namespace != null && parent instanceof XsdSchema){
+            String enclosingTargetNamespace = ((XsdSchema) parent).getTargetNamespace();
+            if (namespace.equals(enclosingTargetNamespace)){
+                throw new ParsingException(XSD_TAG + " element: " + NAMESPACE + " attribute must not match the enclosing " + XsdSchema.XSD_TAG + " " + TARGET_NAMESPACE + ": \"" + namespace + "\".");
+            }
+        }
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

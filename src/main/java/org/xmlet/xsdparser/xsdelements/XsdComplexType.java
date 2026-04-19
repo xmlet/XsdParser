@@ -56,13 +56,13 @@ public class XsdComplexType extends XsdNamedElements {
      * Prevents a complex type that has a specified type of derivation from being used in place of this complex type.
      * Possible values are extension, restriction or #all.
      */
-    private ComplexTypeBlockEnum block;
+    private String block;
 
     /**
      * Prevents a specified type of derivation of this complex type element.
      * Possible values are extension, restriction or #all.
      */
-    private FinalEnum elementFinal;
+    private String elementFinal;
 
     /**
      * A {@link XsdComplexContent} child.
@@ -85,8 +85,8 @@ public class XsdComplexType extends XsdNamedElements {
 
         this.elementAbstract = AttributeValidations.validateBoolean(attributesMap.getOrDefault(ABSTRACT_TAG, "false"));
         this.mixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(MIXED_TAG, "false"));
-        this.block = AttributeValidations.belongsToEnum(ComplexTypeBlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, filteredBlockDefault));
-        this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.block = AttributeValidations.validateEnumTokenList(ComplexTypeBlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, filteredBlockDefault));
+        this.elementFinal = AttributeValidations.validateEnumTokenList(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
     }
 
     private static String filterComplexTypeBlockDefault(String blockDefault) {
@@ -113,6 +113,7 @@ public class XsdComplexType extends XsdNamedElements {
         super.validateSchemaRules();
 
         rule2();
+        rule3();
     }
 
     /**
@@ -122,6 +123,24 @@ public class XsdComplexType extends XsdNamedElements {
     private void rule2() {
         if (simpleContent != null && Boolean.TRUE.equals(mixed)){
             throw new ParsingException(XSD_TAG + " element: The simpleContent element and the " + MIXED_TAG  + "=\"true\" attribute are not allowed at the same time.");
+        }
+    }
+
+    /**
+     * Asserts that {@code abstract}, {@code final} and {@code block} are only declared on top-level
+     * complexTypes (direct children of {@link XsdSchema} or {@link XsdRedefine}).
+     */
+    private void rule3() {
+        if (parent instanceof XsdSchema || parent instanceof XsdRedefine) return;
+
+        if (attributesMap.containsKey(ABSTRACT_TAG)){
+            throw new ParsingException(XSD_TAG + " element: " + ABSTRACT_TAG + " attribute is only allowed when the parent is " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + ".");
+        }
+        if (attributesMap.containsKey(FINAL_TAG)){
+            throw new ParsingException(XSD_TAG + " element: " + FINAL_TAG + " attribute is only allowed when the parent is " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + ".");
+        }
+        if (attributesMap.containsKey(BLOCK_TAG)){
+            throw new ParsingException(XSD_TAG + " element: " + BLOCK_TAG + " attribute is only allowed when the parent is " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + ".");
         }
     }
 
@@ -201,7 +220,7 @@ public class XsdComplexType extends XsdNamedElements {
     }
 
     public String getFinal() {
-        return elementFinal.getValue();
+        return elementFinal;
     }
 
     List<ReferenceBase> getAttributes() {
@@ -261,7 +280,7 @@ public class XsdComplexType extends XsdNamedElements {
 
     @SuppressWarnings("unused")
     public String getBlock() {
-        return block.getValue();
+        return block;
     }
 
     /**

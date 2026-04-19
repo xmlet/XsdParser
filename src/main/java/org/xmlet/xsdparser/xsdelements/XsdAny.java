@@ -42,7 +42,8 @@ public class XsdAny extends XsdAnnotatedElements {
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
-        this.namespace = attributesMap.getOrDefault(NAMESPACE, "##any");
+        AttributeValidations.validateOccurrenceRange(XSD_TAG, this.minOccurs, this.maxOccurs);
+        this.namespace = AttributeValidations.validateAnyNamespace(XSD_TAG, attributesMap.getOrDefault(NAMESPACE, "##any"));
         this.processContents = attributesMap.getOrDefault(PROCESS_CONTENTS, "strict");
 
         if (!this.processContents.equals("strict") && !this.processContents.equals("lax") && !this.processContents.equals("skip")){

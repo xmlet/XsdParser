@@ -11,6 +11,7 @@ import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParentAvailableException;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -135,6 +136,9 @@ public abstract class XsdParserCore {
                 }
                 if (ref != null) {
                     XsdAbstractElement element = findElement(schema, ref);
+                    if (element instanceof XsdComplexType){
+                        throw new ParsingException(XsdUnion.XSD_TAG + " element: " + XsdAbstractElement.MEMBER_TYPES_TAG + " entries must reference a " + XsdSimpleType.XSD_TAG + " or built-in type, not a " + XsdComplexType.XSD_TAG + ": \"" + ((XsdComplexType) element).getRawName() + "\".");
+                    }
                     if (element instanceof XsdSimpleType) {
                         union.add((XsdSimpleType) element);
                     }

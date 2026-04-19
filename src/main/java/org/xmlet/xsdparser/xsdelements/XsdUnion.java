@@ -39,7 +39,8 @@ public class XsdUnion extends XsdAnnotatedElements {
     private XsdUnion(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
 
-        this.memberTypes = attributesMap.getOrDefault(MEMBER_TYPES_TAG, memberTypes);
+        String rawMemberTypes = attributesMap.getOrDefault(MEMBER_TYPES_TAG, memberTypes);
+        this.memberTypes = (rawMemberTypes == null || rawMemberTypes.trim().isEmpty()) ? null : rawMemberTypes;
     }
 
     @Override
@@ -73,6 +74,8 @@ public class XsdUnion extends XsdAnnotatedElements {
         if (this.simpleTypeList != null) {
             elementCopy.simpleTypeList = this.simpleTypeList.stream().map(simpleType -> (XsdSimpleType) simpleType.clone(simpleType.getAttributesMap(), elementCopy)).collect(Collectors.toList());
         }
+
+        elementCopy.memberTypes = this.memberTypes;
 
         elementCopy.parent = null;
         elementCopy.cloneOf = this;

@@ -47,7 +47,7 @@ public class XsdSimpleType extends XsdNamedElements {
     /**
      * Prevents other elements to derive depending on its value.
      */
-    private SimpleTypeFinalEnum finalObj;
+    private String finalObj;
 
     XsdSimpleType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
@@ -55,7 +55,7 @@ public class XsdSimpleType extends XsdNamedElements {
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
         String filteredFinalDefault = filterSimpleTypeFinalDefault(finalDefault);
 
-        this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, filteredFinalDefault));
+        this.finalObj = AttributeValidations.validateEnumTokenList(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, filteredFinalDefault));
     }
 
     private static String filterSimpleTypeFinalDefault(String finalDefault) {
@@ -352,6 +352,6 @@ public class XsdSimpleType extends XsdNamedElements {
 
     @SuppressWarnings("unused")
     public String getFinalObj() {
-        return finalObj.getValue();
+        return finalObj;
     }
 }

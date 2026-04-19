@@ -31,6 +31,9 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
         super(parser, attributesMap, null);
         this.source = attributesMap.getOrDefault(SOURCE_TAG, source);
         if (this.source != null){
+            if (this.source.trim().isEmpty()){
+                throw new ParsingException(SOURCE_TAG + " attribute must be a valid URI reference: empty string is not allowed.");
+            }
             try {
                 new URI(this.source);
             } catch (URISyntaxException e){

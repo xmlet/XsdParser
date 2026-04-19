@@ -63,6 +63,14 @@ public class XsdAll extends XsdMultipleElements {
     public void validateSchemaRules() {
         super.validateSchemaRules();
 
+        if (!(parent instanceof XsdComplexType || parent instanceof XsdGroup || parent instanceof XsdRestriction || parent instanceof XsdExtension)){
+            throw new ParsingException(XSD_TAG + " element: parent must be one of " + XsdComplexType.XSD_TAG + ", " + XsdGroup.XSD_TAG + ", " + XsdRestriction.XSD_TAG + " or " + XsdExtension.XSD_TAG + ".");
+        }
+
+        if (parent instanceof XsdGroup && (attributesMap.containsKey(MIN_OCCURS_TAG) || attributesMap.containsKey(MAX_OCCURS_TAG))){
+            throw new ParsingException(XSD_TAG + " element: " + MIN_OCCURS_TAG + " and " + MAX_OCCURS_TAG + " are not allowed when the parent is " + XsdGroup.XSD_TAG + ".");
+        }
+
         for (ReferenceBase ref : getElements()){
             if (!(ref instanceof ConcreteElement)) continue;
             XsdAbstractElement child = ref.getElement();

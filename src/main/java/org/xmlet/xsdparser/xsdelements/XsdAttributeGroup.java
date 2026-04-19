@@ -70,6 +70,18 @@ public class XsdAttributeGroup extends XsdNamedElements {
                 throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, child " + XsdAttribute.XSD_TAG + " or " + XSD_TAG + " elements cannot be present.");
             }
         }
+
+        boolean topLevel = parent instanceof XsdSchema || parent instanceof XsdRedefine;
+        if (topLevel){
+            if (!attributesMap.containsKey(NAME_TAG)){
+                throw new ParsingException(XSD_TAG + " element: " + NAME_TAG + " attribute is required when the parent is " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + ".");
+            }
+            if (attributesMap.containsKey(REF_TAG)){
+                throw new ParsingException(XSD_TAG + " element: " + REF_TAG + " attribute is not allowed when the parent is " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + ".");
+            }
+        } else if (!attributesMap.containsKey(REF_TAG)){
+            throw new ParsingException(XSD_TAG + " element: " + REF_TAG + " attribute is required when the parent is not " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + ".");
+        }
     }
 
     /**

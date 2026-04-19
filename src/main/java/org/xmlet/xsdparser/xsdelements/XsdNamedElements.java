@@ -31,6 +31,7 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
     @Override
     public void validateSchemaRules() {
         rule1();
+        rule2();
     }
 
     /**
@@ -41,6 +42,13 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
         if (name != null && attributesMap.containsKey(REF_TAG)){
             throw new ParsingException(NAME_TAG + " and " + REF_TAG + " attributes cannot both be present at the same time.");
         }
+    }
+
+    /**
+     * Asserts that {@link #name}, when present, is a valid XML NCName per XSD 1.0.
+     */
+    private void rule2() {
+        AttributeValidations.validateNCName(getClass().getSimpleName(), name);
     }
 
     /**

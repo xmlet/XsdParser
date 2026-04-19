@@ -35,7 +35,7 @@ public abstract class XsdAbstractElement {
      */
     protected Map<String, String> attributesMap;
 
-    public static final String ATTRIBUTE_FORM_DEFAULT = "attribtueFormDefault";
+    public static final String ATTRIBUTE_FORM_DEFAULT = "attributeFormDefault";
     public static final String ELEMENT_FORM_DEFAULT = "elementFormDefault";
     public static final String BLOCK_DEFAULT = "blockDefault";
     public static final String FINAL_DEFAULT = "finalDefault";

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/redefine-external"
+           xmlns="http://example.com/redefine-external"
+           elementFormDefault="qualified">
+
+    <xs:include schemaLocation="redefine_external_b.xsd"/>
+
+    <xs:element name="P" type="PersonType"/>
+
+</xs:schema>

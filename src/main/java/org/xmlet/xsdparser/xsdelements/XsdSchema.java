@@ -41,14 +41,14 @@ public class XsdSchema extends XsdAnnotatedElements {
      * {@link XsdComplexType}. The default value is "". Other possible value are "extension", "restriction",
      * "substitution" and "#all".
      */
-    private BlockDefaultEnum blockDefault;
+    private String blockDefault;
 
     /**
      * Specifies if the final attribute for the current {@link XsdSchema} children such as {@link XsdElement},
      * {@link XsdSimpleType} and {@link XsdComplexType}. The default value is "". Other possible value are "extension",
      * "restriction", "list", "union" and "#all".
      */
-    private FinalDefaultEnum finalDefault;
+    private String finalDefault;
 
     /**
      * A URI reference of the namespace of this {@link XsdSchema} element.
@@ -80,8 +80,8 @@ public class XsdSchema extends XsdAnnotatedElements {
 
         this.attributeFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, attributesMap.getOrDefault(ATTRIBUTE_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
         this.elementFormDefault = AttributeValidations.belongsToEnum(FormEnum.UNQUALIFIED, attributesMap.getOrDefault(ELEMENT_FORM_DEFAULT, FormEnum.UNQUALIFIED.getValue()));
-        this.blockDefault = AttributeValidations.belongsToEnum(BlockDefaultEnum.DEFAULT, attributesMap.getOrDefault(BLOCK_DEFAULT, BlockDefaultEnum.DEFAULT.getValue()));
-        this.finalDefault = AttributeValidations.belongsToEnum(FinalDefaultEnum.instance, attributesMap.getOrDefault(FINAL_DEFAULT, FinalDefaultEnum.DEFAULT.getValue()));
+        this.blockDefault = AttributeValidations.validateEnumTokenList(BlockDefaultEnum.DEFAULT, attributesMap.getOrDefault(BLOCK_DEFAULT, BlockDefaultEnum.DEFAULT.getValue()));
+        this.finalDefault = AttributeValidations.validateEnumTokenList(FinalDefaultEnum.instance, attributesMap.getOrDefault(FINAL_DEFAULT, FinalDefaultEnum.DEFAULT.getValue()));
         this.targetNamespace = attributesMap.getOrDefault(TARGET_NAMESPACE, targetNamespace);
         this.version = attributesMap.getOrDefault(VERSION, version);
         this.xmlns = attributesMap.getOrDefault(XMLNS, xmlns);
@@ -186,12 +186,12 @@ public class XsdSchema extends XsdAnnotatedElements {
 
     @SuppressWarnings("unused")
     public String getBlockDefault() {
-        return blockDefault.getValue();
+        return blockDefault;
     }
 
     @SuppressWarnings("unused")
     public String getFinalDefault() {
-        return finalDefault.getValue();
+        return finalDefault;
     }
 
     @SuppressWarnings("unused")
@@ -322,6 +322,6 @@ public class XsdSchema extends XsdAnnotatedElements {
     }
 
     public void setFilePath(String filePath) {
-        this.filePath = filePath;
+        this.filePath = filePath == null ? null : filePath.replace('\\', '/');
     }
 }

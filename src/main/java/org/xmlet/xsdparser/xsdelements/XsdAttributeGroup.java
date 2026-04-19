@@ -5,6 +5,7 @@ import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.NamedConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -55,6 +56,20 @@ public class XsdAttributeGroup extends XsdNamedElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if (attributesMap.containsKey(REF_TAG)){
+            if (attributesMap.containsKey(NAME_TAG)){
+                throw new ParsingException(XSD_TAG + " element: " + REF_TAG + " and " + NAME_TAG + " attributes are mutually exclusive.");
+            }
+            if (!attributes.isEmpty() || !attributeGroups.isEmpty()){
+                throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, child " + XsdAttribute.XSD_TAG + " or " + XSD_TAG + " elements cannot be present.");
+            }
+        }
     }
 
     /**

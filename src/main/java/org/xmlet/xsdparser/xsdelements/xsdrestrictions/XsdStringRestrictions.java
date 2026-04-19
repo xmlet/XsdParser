@@ -3,6 +3,7 @@ package org.xmlet.xsdparser.xsdelements.xsdrestrictions;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +26,10 @@ public class XsdStringRestrictions extends XsdAnnotatedElements{
     XsdStringRestrictions(@NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, elementFieldsMapParam, visitorFunction);
 
-        value = attributesMap.getOrDefault(VALUE_TAG, value);
+        value = attributesMap.get(VALUE_TAG);
+        if (value == null){
+            throw new ParsingException("The " + VALUE_TAG + " attribute is required.");
+        }
     }
 
     /**
@@ -35,23 +39,11 @@ public class XsdStringRestrictions extends XsdAnnotatedElements{
      * @return True if the value of both classes is different, False if the value is equal.
      */
     public static boolean hasDifferentValue(XsdStringRestrictions o1, XsdStringRestrictions o2) {
-        if (o1 == null && o2 == null) {
+        if (o1 == null || o2 == null) {
             return false;
         }
 
-        String o1Value = null;
-        String o2Value;
-
-        if (o1 != null) {
-            o1Value = o1.getValue();
-        }
-
-        if (o2 != null) {
-            o2Value = o2.getValue();
-            return o2Value.equals(o1Value);
-        }
-
-        return false;
+        return !java.util.Objects.equals(o1.getValue(), o2.getValue());
     }
 
     public String getValue() {

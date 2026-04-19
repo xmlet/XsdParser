@@ -4,6 +4,7 @@ import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -43,6 +44,10 @@ public class XsdAny extends XsdAnnotatedElements {
         this.maxOccurs = AttributeValidations.maxOccursValidation(XSD_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
         this.namespace = attributesMap.getOrDefault(NAMESPACE, "##any");
         this.processContents = attributesMap.getOrDefault(PROCESS_CONTENTS, "strict");
+
+        if (!this.processContents.equals("strict") && !this.processContents.equals("lax") && !this.processContents.equals("skip")){
+            throw new ParsingException(XSD_TAG + " element: " + PROCESS_CONTENTS + " must be one of \"strict\", \"lax\", or \"skip\".");
+        }
     }
 
     @Override

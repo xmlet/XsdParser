@@ -47,7 +47,11 @@ public class XsdExtension extends XsdAnnotatedElements {
 
         String baseValue = attributesMap.getOrDefault(BASE_TAG, null);
 
-        if (baseValue != null){
+        if (baseValue == null){
+            throw new ParsingException(XSD_TAG + " element: The " + BASE_TAG + " attribute is required.");
+        }
+
+        {
             if (XsdParserCore.isXsdTypeToJava(baseValue)){
                 HashMap<String, String> attributes = new HashMap<>();
                 attributes.put(NAME_TAG, baseValue);

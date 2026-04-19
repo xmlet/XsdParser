@@ -66,6 +66,28 @@ public class XsdGroup extends XsdNamedElements {
 
         rule2();
         rule3();
+        rule4();
+        rule5();
+    }
+
+    /**
+     * Asserts that a top-level {@link XsdGroup} (direct child of {@link XsdSchema}) does not declare
+     * {@code minOccurs} or {@code maxOccurs}.
+     */
+    private void rule4() {
+        if (parent instanceof XsdSchema && (attributesMap.containsKey(MIN_OCCURS_TAG) || attributesMap.containsKey(MAX_OCCURS_TAG))){
+            throw new ParsingException(XSD_TAG + " element: " + MIN_OCCURS_TAG + " and " + MAX_OCCURS_TAG + " are not allowed when the parent is " + XsdSchema.XSD_TAG + ".");
+        }
+    }
+
+    /**
+     * Asserts that a {@link XsdGroup} with a {@code ref} attribute does not also carry an inline model group child
+     * ({@link XsdAll}, {@link XsdChoice} or {@link XsdSequence}).
+     */
+    private void rule5() {
+        if (attributesMap.containsKey(REF_TAG) && childElement != null){
+            throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, a child model group (" + XsdAll.XSD_TAG + ", " + XsdChoice.XSD_TAG + " or " + XsdSequence.XSD_TAG + ") cannot be present at the same time.");
+        }
     }
 
     /**
@@ -84,7 +106,7 @@ public class XsdGroup extends XsdNamedElements {
      */
     private void rule3() {
         if ((parent instanceof XsdSchema || parent instanceof XsdRedefine) && name == null){
-            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " should is required the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + " element." );
+            throw new ParsingException(XSD_TAG + " element: The " + NAME_TAG + " attribute is required when the parent of the " + XSD_TAG + " is the " + XsdSchema.XSD_TAG + " or " + XsdRedefine.XSD_TAG + " element." );
         }
     }
 

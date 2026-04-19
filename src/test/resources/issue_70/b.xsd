@@ -15,6 +15,7 @@
     </xsd:simpleType>
 
     <xsd:simpleType name="X">
+        <xsd:restriction base="xsd:string"/>
     </xsd:simpleType>
 
     <xsd:element name="EB1" type="TestUnionB1"/>

@@ -13,33 +13,86 @@ public class AttributeValidations {
     private AttributeValidations(){ }
 
     /**
-     * Verifies if a given value is present in a given {@link Enum} type.
+     * Verifies if a given value is present in a given {@link Enum} type. All whitespace-separated tokens in
+     * {@code value} are validated against {@code instance}; unsupported tokens cause a {@link ParsingException}.
+     * <p>
+     * Returns only the FIRST matching enum value. For attributes that semantically represent a token list
+     * (e.g. {@code blockDefault}, {@code finalDefault}, {@code block}, {@code final}) prefer
+     * {@link #validateEnumTokenList(XsdEnum, String)} which preserves the full normalized list.
+     * <p>
+     * Null returns represent "no value" (attribute absent or explicitly empty without an empty-string enum entry).
      * @param instance An instance of the concrete {@link Enum} type that is expected to contain the {@code value} received.
      * @param value The value that is expected to be present in the received {@link Enum} type.
      * @param <T> The concrete type of the {@link Enum} type.
-     * @return The instance of the concrete {@link Enum} type that represents {@code value} in the respective {@link Enum}.
+     * @return The first matching {@link Enum} entry, or {@code null} when {@code value} is null or empty and the enum
+     *         does not declare an empty-string member.
      */
     public static <T extends XsdEnum> T belongsToEnum(final XsdEnum<T> instance, final String value){
         if (value == null){
             return null;
         }
 
-        Optional<T> enumValue = Arrays.stream(instance.getValues()).filter(enumField -> enumField.getValue().equals(value)).findFirst();
-
-        if (enumValue.isPresent()){
-            return enumValue.get();
-        } else {
-            StringBuilder possibleValues = new StringBuilder();
-
-            instance.getSupportedValues().forEach(supportedValue -> possibleValues.append(supportedValue).append(", "));
-
-            String values = possibleValues.toString();
-            values = values.substring(0, values.length() - 2);
-
-            throw new ParsingException("The attribute " + instance.getVariableName() + " doesn't support the value \"" + value + "\".\n" +
-                    "The possible values for the " + instance.getVariableName() + " attribute are:\n" +
-                    values);
+        String trimmed = value.trim();
+        if (trimmed.isEmpty()){
+            return Arrays.stream(instance.getValues())
+                    .filter(enumField -> enumField.getValue().equals(""))
+                    .findFirst()
+                    .orElse(null);
         }
+
+        String[] tokens = trimmed.split("\\s+");
+        T first = null;
+        for (String token : tokens) {
+            Optional<T> enumValue = Arrays.stream(instance.getValues()).filter(enumField -> enumField.getValue().equals(token)).findFirst();
+            if (!enumValue.isPresent()) {
+                throwUnsupportedEnumValue(instance, token);
+            }
+            if (first == null) first = enumValue.get();
+        }
+        return first;
+    }
+
+    /**
+     * Validates each whitespace-separated token in {@code value} against the supplied {@link XsdEnum} instance and
+     * returns the normalized token list (single-space separated). Returns {@code null} when {@code value} is null.
+     */
+    public static <T extends XsdEnum> String validateEnumTokenList(final XsdEnum<T> instance, final String value){
+        if (value == null){
+            return null;
+        }
+
+        String trimmed = value.trim();
+        if (trimmed.isEmpty()){
+            Optional<T> emptyEnum = Arrays.stream(instance.getValues())
+                    .filter(enumField -> enumField.getValue().equals(""))
+                    .findFirst();
+            if (!emptyEnum.isPresent()){
+                throwUnsupportedEnumValue(instance, "");
+            }
+            return "";
+        }
+
+        String[] tokens = trimmed.split("\\s+");
+        StringBuilder normalized = new StringBuilder();
+        for (String token : tokens) {
+            boolean known = Arrays.stream(instance.getValues()).anyMatch(enumField -> enumField.getValue().equals(token));
+            if (!known){
+                throwUnsupportedEnumValue(instance, token);
+            }
+            if (normalized.length() > 0) normalized.append(' ');
+            normalized.append(token);
+        }
+        return normalized.toString();
+    }
+
+    private static void throwUnsupportedEnumValue(XsdEnum<?> instance, String token){
+        StringBuilder possibleValues = new StringBuilder();
+        instance.getSupportedValues().forEach(supportedValue -> possibleValues.append(supportedValue).append(", "));
+        String values = possibleValues.toString();
+        values = values.substring(0, values.length() - 2);
+        throw new ParsingException("The attribute " + instance.getVariableName() + " doesn't support the value \"" + token + "\".\n" +
+                "The possible values for the " + instance.getVariableName() + " attribute are:\n" +
+                values);
     }
 
     /**
@@ -133,7 +186,11 @@ public class AttributeValidations {
     }
 
     public static Boolean validateBoolean(String value){
-         return Boolean.parseBoolean(value);
+        if (value == null) return null;
+        String trimmed = value.trim();
+        if (trimmed.equals("true") || trimmed.equals("1")) return Boolean.TRUE;
+        if (trimmed.equals("false") || trimmed.equals("0")) return Boolean.FALSE;
+        throw new ParsingException("Invalid xs:boolean value \"" + value + "\". Valid values are: true, false, 0, 1.");
     }
 
     /**

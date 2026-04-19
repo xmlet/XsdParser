@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/redefine-external"
+           xmlns="http://example.com/redefine-external"
+           elementFormDefault="qualified">
+
+    <xs:redefine schemaLocation="redefine_external_a.xsd">
+        <xs:complexType name="PersonType">
+            <xs:complexContent>
+                <xs:extension base="PersonType">
+                    <xs:sequence>
+                        <xs:element name="email" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:redefine>
+
+</xs:schema>

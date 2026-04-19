@@ -3,10 +3,13 @@ package org.xmlet.xsdparser.xsdelements;
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.exceptions.VisitorNotFoundException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 
 /**
@@ -27,6 +30,13 @@ public abstract class XsdAnnotationChildren extends XsdAbstractElement {
     XsdAnnotationChildren(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap) {
         super(parser, attributesMap, null);
         this.source = attributesMap.getOrDefault(SOURCE_TAG, source);
+        if (this.source != null){
+            try {
+                new URI(this.source);
+            } catch (URISyntaxException e){
+                throw new ParsingException(SOURCE_TAG + " attribute must be a valid URI reference: \"" + this.source + "\".");
+            }
+        }
     }
 
     /**

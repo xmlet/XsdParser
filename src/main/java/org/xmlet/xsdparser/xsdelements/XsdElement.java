@@ -167,6 +167,48 @@ public class XsdElement extends XsdNamedElements {
         rule5();
         rule6();
         rule7();
+        rule8();
+        rule9();
+        rule10();
+    }
+
+    /**
+     * Asserts that top-level elements don't have minOccurs/maxOccurs attributes.
+     */
+    private void rule8() {
+        if (parent instanceof XsdSchema && (attributesMap.containsKey(MIN_OCCURS_TAG) || attributesMap.containsKey(MAX_OCCURS_TAG))){
+            throw new ParsingException(XSD_TAG + " element: The " + MIN_OCCURS_TAG + " and " + MAX_OCCURS_TAG + " attributes cannot be present when the parent of the " + xsdElementIsXsdSchema);
+        }
+    }
+
+    /**
+     * Asserts that default and fixed are mutually exclusive.
+     */
+    private void rule9() {
+        if (defaultObj != null && fixed != null){
+            throw new ParsingException(XSD_TAG + " element: " + DEFAULT_TAG + " and " + FIXED_TAG + " attributes are not allowed at the same time.");
+        }
+    }
+
+    /**
+     * Asserts that when ref is present, the forbidden peer attributes/children are absent.
+     */
+    private void rule10() {
+        if (!attributesMap.containsKey(REF_TAG)) return;
+
+        if (type != null
+                || simpleType != null
+                || complexType != null
+                || defaultObj != null
+                || fixed != null
+                || attributesMap.containsKey(FORM_TAG)
+                || substitutionGroup != null
+                || attributesMap.containsKey(BLOCK_TAG)
+                || attributesMap.containsKey(NILLABLE_TAG)
+                || attributesMap.containsKey(ABSTRACT_TAG)
+                || attributesMap.containsKey(FINAL_TAG)){
+            throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, type/simpleType/complexType/default/fixed/form/substitutionGroup/block/nillable/abstract/final cannot be present at the same time.");
+        }
     }
 
     private static String xsdElementIsXsdSchema = XSD_TAG + " is a " + XsdSchema.XSD_TAG + " element.";
@@ -194,7 +236,7 @@ public class XsdElement extends XsdNamedElements {
      * which isn't allowed, throwing an exception in that case.
      */
     private void rule4() {
-        if (!(parent instanceof XsdSchema) && substitutionGroup != null){
+        if (!(parent instanceof XsdSchema) && attributesMap.containsKey(SUBSTITUTION_GROUP_TAG)){
             throw new ParsingException(XSD_TAG + " element: The " + SUBSTITUTION_GROUP_TAG + " attribute can only be present when the parent of the " + xsdElementIsXsdSchema);
         }
     }

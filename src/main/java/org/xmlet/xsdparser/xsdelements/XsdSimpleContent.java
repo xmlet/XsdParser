@@ -5,6 +5,7 @@ import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -40,6 +41,15 @@ public class XsdSimpleContent extends XsdAnnotatedElements {
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if ((restriction == null) == (extension == null)){
+            throw new ParsingException(XSD_TAG + " element: exactly one of " + XsdRestriction.XSD_TAG + " or " + XsdExtension.XSD_TAG + " is required.");
+        }
     }
 
     /**

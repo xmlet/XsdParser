@@ -81,10 +81,23 @@ public class XsdComplexType extends XsdNamedElements {
         String blockDefault = AttributeValidations.getBlockDefaultValue(parent);
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
 
+        String filteredBlockDefault = filterComplexTypeBlockDefault(blockDefault);
+
         this.elementAbstract = AttributeValidations.validateBoolean(attributesMap.getOrDefault(ABSTRACT_TAG, "false"));
         this.mixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(MIXED_TAG, "false"));
-        this.block = AttributeValidations.belongsToEnum(ComplexTypeBlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, blockDefault));
+        this.block = AttributeValidations.belongsToEnum(ComplexTypeBlockEnum.ALL, attributesMap.getOrDefault(BLOCK_TAG, filteredBlockDefault));
         this.elementFinal = AttributeValidations.belongsToEnum(FinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+    }
+
+    private static String filterComplexTypeBlockDefault(String blockDefault) {
+        if (blockDefault == null || blockDefault.isEmpty()) return blockDefault;
+        StringBuilder sb = new StringBuilder();
+        for (String token : blockDefault.trim().split("\\s+")) {
+            if (token.equals("substitution")) continue;
+            if (sb.length() > 0) sb.append(' ');
+            sb.append(token);
+        }
+        return sb.toString();
     }
 
     XsdComplexType(XsdAbstractElement parent, @NotNull XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
@@ -107,8 +120,8 @@ public class XsdComplexType extends XsdNamedElements {
      * an exception in that case.
      */
     private void rule2() {
-        if (simpleContent != null && attributesMap.containsKey(MIXED_TAG)){
-            throw new ParsingException(XSD_TAG + " element: The simpleContent element and the " + MIXED_TAG  + " attribute are not allowed at the same time.");
+        if (simpleContent != null && Boolean.TRUE.equals(mixed)){
+            throw new ParsingException(XSD_TAG + " element: The simpleContent element and the " + MIXED_TAG  + "=\"true\" attribute are not allowed at the same time.");
         }
     }
 

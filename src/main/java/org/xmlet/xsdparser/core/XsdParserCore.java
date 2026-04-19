@@ -2,7 +2,6 @@ package org.xmlet.xsdparser.core;
 
 import java.io.IOException;
 import java.io.File;
-import java.util.function.Function;
 
 import org.w3c.dom.Node;
 import org.xmlet.xsdparser.core.utils.*;
@@ -21,7 +20,6 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.lang.String.format;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
@@ -83,8 +81,9 @@ public abstract class XsdParserCore {
      */
     boolean isXsdSchema(Node node) {
         String schemaNodeName = node.getNodeName();
-
-        return schemaNodeName.equals(XsdSchema.XSD_TAG) || schemaNodeName.equals(XsdSchema.XS_TAG) || schemaNodeName.equals(XsdSchema.TAG) || schemaNodeName.contains(XsdSchema.TAG);
+        int colonIdx = schemaNodeName.indexOf(':');
+        String localName = colonIdx >= 0 ? schemaNodeName.substring(colonIdx + 1) : schemaNodeName;
+        return localName.equals(XsdSchema.TAG);
     }
 
     /**
@@ -284,13 +283,14 @@ public abstract class XsdParserCore {
     }
 
     private XsdSchema getSchema(String fileName) {
+        if (fileName == null) {
+            return null;
+        }
+        String target = fileName.replace('\\', '/');
         return getResultXsdSchemas()
-                .collect(Collectors.toMap(XsdSchema::getFilePath, Function.identity()))
-                .entrySet()
-                .stream()
-                .filter(stringXsdSchemaEntry -> stringXsdSchemaEntry.getKey().endsWith(fileName))
+                .filter(schema -> schema.getFilePath() != null)
+                .filter(schema -> schema.getFilePath().endsWith(target))
                 .findFirst()
-                .map(Map.Entry::getValue)
                 .orElse(null);
     }
 
@@ -488,15 +488,25 @@ public abstract class XsdParserCore {
                             .filter(schema -> schema.getChildrenIncludes().anyMatch(xsdInclude -> xsdInclude.getSchemaLocation().equals(fileName)) ||
                                     schema.getChildrenRedefines().anyMatch(xsdRedefine -> xsdRedefine.getSchemaLocation().equals(fileName)))
                             .map(XsdSchema::getFilePath)
+                            .filter(Objects::nonNull)
                             .distinct()
                             .collect(Collectors.toList()));
 
                     List<ReferenceBase> includedElements = new ArrayList<>();
 
                     includedFiles.stream().filter(Objects::nonNull).forEach(includedFile -> {
-                        String includedFilename = includedFile.substring(includedFile.lastIndexOf("/") + 1);
-
-                        includedElements.addAll(parseElements.getOrDefault(includedFile, parseElements.get(parseElements.keySet().stream().filter(k -> k.endsWith(includedFilename)).findFirst().get())));
+                        List<ReferenceBase> direct = parseElements.get(includedFile);
+                        if (direct != null) {
+                            includedElements.addAll(direct);
+                            return;
+                        }
+                        String normalizedIncluded = includedFile.replace('\\', '/');
+                        String includedFilename = normalizedIncluded.substring(normalizedIncluded.lastIndexOf('/') + 1);
+                        parseElements.keySet().stream()
+                                .filter(k -> k.replace('\\', '/').endsWith(includedFilename))
+                                .findFirst()
+                                .map(parseElements::get)
+                                .ifPresent(includedElements::addAll);
                     });
 
                     Map<String, List<NamedConcreteElement>> concreteElementsMap =
@@ -640,40 +650,192 @@ public abstract class XsdParserCore {
 	}
 
 	/**
-	 * finds the NamedConcreteElement for the UnsolvedReference. The logic is as
-	 * follows: if the element is a child of a Redefine, replace it with the
-	 * original element. Otherwise, if a Redefine is available, replace it with
-	 * that. In this case, the UnsolvedReference points to a Redefine. In the latter
-	 * case, all elements with a schema as parent are considered. If
-	 * UnsolvedReference is a TypeRef, the element must be a Simple or Complex Type.
-	 * If it is not a TypeRef, it must be an ElementRef.
+	 * Selects a {@link NamedConcreteElement} from the candidate list deterministically,
+	 * honouring xs:redefine semantics per W3C XSD 1.0 §4.2.2.
+	 *
+	 * <ul>
+	 *     <li>When the unsolved reference sits inside an {@code xs:redefine} element
+	 *         (the circular base case, e.g. {@code <xs:extension base="T"/>} inside
+	 *         {@code <xs:redefine><xs:complexType name="T">}), the reference resolves to
+	 *         component {@code T} as seen from the redefined schema — that schema's own
+	 *         redefine override if it is itself a redefiner (chained redefines), or its
+	 *         direct definition otherwise.</li>
+	 *     <li>Otherwise, if any candidate is a redefine override (parent is
+	 *         {@link XsdRedefine}), the topmost override wins — the one whose enclosing
+	 *         schema is not itself redefined by another candidate's {@link XsdRedefine}.</li>
+	 *     <li>Otherwise, the first candidate with an {@link XsdSchema} parent matching the
+	 *         type constraint is returned.</li>
+	 * </ul>
 	 */
 	protected NamedConcreteElement find(List<NamedConcreteElement> elements, UnsolvedReference unsolvedReference) {
-		if (getRedefine(unsolvedReference) != null) {
-			String schemaLocation = getRedefine(unsolvedReference).getSchemaLocation();
-			return findSchema(elements, schemaLocation);
-		} else if (!findRedefines(elements).isEmpty()) {
-			for (NamedConcreteElement redefineElement : findRedefines(elements)) {
-				if (redefineElement.getElement().getXsdSchema().equals(unsolvedReference.getElement().getXsdSchema())) {
-					return redefineElement;
-				}
+		XsdRedefine enclosingRedefine = getRedefine(unsolvedReference);
+		if (enclosingRedefine != null) {
+			NamedConcreteElement redefined = selectForRedefinedSchema(elements, enclosingRedefine, unsolvedReference);
+			if (redefined != null) {
+				return redefined;
 			}
-			throw new RuntimeException(format("No redefine for Ref %s found", unsolvedReference.getRef()));
 		} else {
-			for (NamedConcreteElement e : elements) {
-				if (e.getElement().getParent() instanceof XsdSchema) {
-					if (unsolvedReference.isTypeRef()) {
-						if (e.getElement() instanceof XsdSimpleType || e.getElement() instanceof XsdComplexType) {
-							return e;
-						} // else {
-						continue;
-					} else {
-						return e;
-					}
-				}
+			NamedConcreteElement override = selectTopmostOverride(elements, unsolvedReference);
+			if (override != null) {
+				return override;
 			}
 		}
-		return null;
+
+		for (NamedConcreteElement e : elements) {
+			if (e.getElement().getParent() instanceof XsdSchema && matchesTypeConstraint(e, unsolvedReference)) {
+				return e;
+			}
+		}
+		for (NamedConcreteElement e : elements) {
+			if (matchesTypeConstraint(e, unsolvedReference)) {
+				return e;
+			}
+		}
+		return elements.isEmpty() ? null : elements.get(0);
+	}
+
+	/**
+	 * Picks the candidate representing the effective component as visible inside the schema
+	 * targeted by {@code enclosingRedefine}. Used for the circular-base case inside
+	 * {@code xs:redefine}. Prefers a redefine override in the redefined schema (supports
+	 * chained redefines) before falling back to its direct definition.
+	 */
+	private NamedConcreteElement selectForRedefinedSchema(List<NamedConcreteElement> elements,
+			XsdRedefine enclosingRedefine, UnsolvedReference unsolvedReference) {
+		String targetPath = resolveRedefineTargetPath(enclosingRedefine);
+		NamedConcreteElement chainedOverride = elements.stream()
+				.filter(e -> e.getElement().getParent() instanceof XsdRedefine)
+				.filter(e -> matchesResolvedPath(e, targetPath))
+				.filter(e -> matchesTypeConstraint(e, unsolvedReference))
+				.findFirst()
+				.orElse(null);
+		if (chainedOverride != null) {
+			return chainedOverride;
+		}
+		return elements.stream()
+				.filter(e -> e.getElement().getParent() instanceof XsdSchema)
+				.filter(e -> matchesResolvedPath(e, targetPath))
+				.filter(e -> matchesTypeConstraint(e, unsolvedReference))
+				.findFirst()
+				.orElse(null);
+	}
+
+	/**
+	 * Among candidates whose parent is an {@link XsdRedefine}, returns the topmost — the
+	 * override whose enclosing schema is not itself redefined by another candidate's
+	 * {@link XsdRedefine}. Returns {@code null} when no redefine overrides exist.
+	 */
+	private NamedConcreteElement selectTopmostOverride(List<NamedConcreteElement> elements,
+			UnsolvedReference unsolvedReference) {
+		List<NamedConcreteElement> overrides = elements.stream()
+				.filter(e -> e.getElement().getParent() instanceof XsdRedefine)
+				.filter(e -> matchesTypeConstraint(e, unsolvedReference))
+				.collect(toList());
+		if (overrides.isEmpty()) {
+			return null;
+		}
+		Set<String> shadowedAbsolutePaths = overrides.stream()
+				.map(e -> resolveRedefineTargetPath((XsdRedefine) e.getElement().getParent()))
+				.map(XsdParserCore::canonicalPath)
+				.filter(Objects::nonNull)
+				.collect(Collectors.toSet());
+		return overrides.stream()
+				.filter(e -> {
+					XsdSchema schema = e.getElement().getXsdSchema();
+					if (schema == null || schema.getFilePath() == null) {
+						return true;
+					}
+					String candidate = canonicalPath(schema.getFilePath());
+					return candidate == null || !shadowedAbsolutePaths.contains(candidate);
+				})
+				.findFirst()
+				.orElse(overrides.get(0));
+	}
+
+	/**
+	 * Resolves an {@link XsdRedefine}'s {@code schemaLocation} to a canonical absolute path
+	 * (forward-slash form). Returns URL-form unchanged. Falls back to the raw location when
+	 * the enclosing schema's path is unavailable — callers should check absolute-ness before
+	 * treating the result as authoritative for identity.
+	 */
+	private static String resolveRedefineTargetPath(XsdRedefine redefine) {
+		if (redefine == null) {
+			return null;
+		}
+		String schemaLocation = redefine.getSchemaLocation();
+		if (schemaLocation == null) {
+			return null;
+		}
+		String normalized = schemaLocation.replace('\\', '/');
+		if (normalized.matches("^[a-zA-Z][a-zA-Z0-9+.-]*://.*")) {
+			return normalized;
+		}
+		XsdSchema parentSchema = redefine.getXsdSchema();
+		if (parentSchema == null || parentSchema.getFilePath() == null) {
+			return normalized;
+		}
+		String parentCanonical = canonicalPath(parentSchema.getFilePath());
+		if (parentCanonical == null) {
+			return normalized;
+		}
+		try {
+			java.nio.file.Path parentDir = java.nio.file.Paths.get(parentCanonical).getParent();
+			if (parentDir == null) {
+				return normalized;
+			}
+			return parentDir.resolve(normalized).normalize().toString().replace('\\', '/');
+		} catch (Exception e) {
+			return normalized;
+		}
+	}
+
+	private static boolean matchesResolvedPath(NamedConcreteElement e, String resolvedTargetPath) {
+		if (resolvedTargetPath == null) {
+			return false;
+		}
+		XsdSchema schema = e.getElement().getXsdSchema();
+		if (schema == null || schema.getFilePath() == null) {
+			return false;
+		}
+		String target = canonicalPath(resolvedTargetPath);
+		String candidate = canonicalPath(schema.getFilePath());
+		if (target != null && target.equals(candidate)) {
+			return true;
+		}
+		if (target == null && resolvedTargetPath.startsWith("http")) {
+			return resolvedTargetPath.equals(schema.getFilePath().replace('\\', '/'));
+		}
+		return false;
+	}
+
+	/**
+	 * Canonicalizes a filesystem path to an absolute, forward-slash form for reliable
+	 * equality comparisons. Returns {@code null} for URL-form paths (e.g. http://) so
+	 * callers can handle them separately.
+	 */
+	private static String canonicalPath(String path) {
+		if (path == null || path.isEmpty()) {
+			return null;
+		}
+		String normalized = path.replace('\\', '/');
+		if (normalized.matches("^[a-zA-Z][a-zA-Z0-9+.-]*://.*")) {
+			return null;
+		}
+		if (normalized.matches("^/[a-zA-Z]:/.*")) {
+			normalized = normalized.substring(1);
+		}
+		try {
+			return java.nio.file.Paths.get(normalized).toAbsolutePath().normalize().toString().replace('\\', '/');
+		} catch (Exception e) {
+			return normalized;
+		}
+	}
+
+	private static boolean matchesTypeConstraint(NamedConcreteElement e, UnsolvedReference unsolvedReference) {
+		if (!unsolvedReference.isTypeRef()) {
+			return true;
+		}
+		return e.getElement() instanceof XsdSimpleType || e.getElement() instanceof XsdComplexType;
 	}
 
 	protected static XsdRedefine getRedefine(UnsolvedReference unsolvedReference) {
@@ -706,14 +868,6 @@ public abstract class XsdParserCore {
 		return unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
 	}
 	
-	protected static NamedConcreteElement findSchema(List<NamedConcreteElement> elements, String name) {
-		return elements.stream().filter(e -> e.getElement().getXsdSchema().getFilePath().endsWith(name)).findAny().get();
-	}
-
-	protected static List<NamedConcreteElement> findRedefines(List<NamedConcreteElement> elements) {
-		return elements.stream().filter(e -> e.getElement().getParent() instanceof XsdRedefine).collect(toList());
-	}
-
     /**
      * Saves an occurrence of an element which couldn't be resolved in the {@link XsdParser#replaceUnsolvedReference}
      * method, which can be accessed at the end of the parsing process in order to verify if were there were any
@@ -896,7 +1050,13 @@ public abstract class XsdParserCore {
     }
 
     protected boolean isRelativePath(String filePath) {
-        return !filePath.matches(".*:.*");
+        if (filePath == null || filePath.isEmpty()) {
+            return true;
+        }
+        if (filePath.matches("^[a-zA-Z][a-zA-Z0-9+.-]*://.*")) {
+            return false;
+        }
+        return !new File(filePath).isAbsolute();
     }
 
     protected DocumentBuilder getDocumentBuilder() throws ParserConfigurationException {

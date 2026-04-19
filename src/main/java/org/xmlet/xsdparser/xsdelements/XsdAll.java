@@ -2,8 +2,10 @@ package org.xmlet.xsdparser.xsdelements;
 
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
+import org.xmlet.xsdparser.xsdelements.elementswrapper.ConcreteElement;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -41,12 +43,43 @@ public class XsdAll extends XsdMultipleElements {
 
         this.minOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MIN_OCCURS_TAG, attributesMap.getOrDefault(MIN_OCCURS_TAG, "1"));
         this.maxOccurs = AttributeValidations.validateNonNegativeInteger(XSD_TAG, MAX_OCCURS_TAG, attributesMap.getOrDefault(MAX_OCCURS_TAG, "1"));
+
+        if (this.minOccurs != 0 && this.minOccurs != 1) {
+            throw new ParsingException(XSD_TAG + " element: " + MIN_OCCURS_TAG + " must be either 0 or 1.");
+        }
+
+        if (this.maxOccurs != 1) {
+            throw new ParsingException(XSD_TAG + " element: " + MAX_OCCURS_TAG + " must be 1.");
+        }
     }
 
     @Override
     public void accept(XsdAbstractElementVisitor visitorParam) {
         super.accept(visitorParam);
         visitorParam.visit(this);
+    }
+
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        for (ReferenceBase ref : getElements()){
+            if (!(ref instanceof ConcreteElement)) continue;
+            XsdAbstractElement child = ref.getElement();
+            if (!(child instanceof XsdElement)) continue;
+            String childMax = ((XsdElement) child).getMaxOccurs();
+            if (childMax == null) continue;
+            if (childMax.equals("unbounded")){
+                throw new ParsingException(XSD_TAG + " element: " + XsdElement.XSD_TAG + " children may not declare " + MAX_OCCURS_TAG + "=\"unbounded\".");
+            }
+            try {
+                int parsed = Integer.parseInt(childMax.trim());
+                if (parsed > 1){
+                    throw new ParsingException(XSD_TAG + " element: " + XsdElement.XSD_TAG + " children must have " + MAX_OCCURS_TAG + " of 0 or 1.");
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

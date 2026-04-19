@@ -8,6 +8,7 @@ import org.xmlet.xsdparser.xsdelements.XsdAnnotatedElements;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
 import org.xmlet.xsdparser.xsdelements.enums.WhiteSpaceEnum;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -30,7 +31,11 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
         super(parser, elementFieldsMapParam, visitorFunction);
 
         fixed = AttributeValidations.validateBoolean(attributesMap.getOrDefault(FIXED_TAG, "false"));
-        value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.PRESERVE, elementFieldsMapParam.getOrDefault(VALUE_TAG, null));
+        String rawValue = elementFieldsMapParam.get(VALUE_TAG);
+        if (rawValue == null){
+            throw new ParsingException(XSD_TAG + " element: The " + VALUE_TAG + " attribute is required.");
+        }
+        value = AttributeValidations.belongsToEnum(WhiteSpaceEnum.PRESERVE, rawValue);
     }
 
     @Override
@@ -69,22 +74,10 @@ public class XsdWhiteSpace extends XsdAnnotatedElements {
     }
 
     public static boolean hasDifferentValue(XsdWhiteSpace o1, XsdWhiteSpace o2) {
-        if (o1 == null && o2 == null) {
+        if (o1 == null || o2 == null) {
             return false;
         }
 
-        WhiteSpaceEnum o1Value = null;
-        WhiteSpaceEnum o2Value;
-
-        if (o1 != null) {
-            o1Value = o1.getValue();
-        }
-
-        if (o2 != null) {
-            o2Value = o2.getValue();
-            return o2Value.equals(o1Value);
-        }
-
-        return false;
+        return !java.util.Objects.equals(o1.getValue(), o2.getValue());
     }
 }

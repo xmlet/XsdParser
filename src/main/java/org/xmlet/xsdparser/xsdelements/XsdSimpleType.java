@@ -53,8 +53,20 @@ public class XsdSimpleType extends XsdNamedElements {
         super(parser, attributesMap, visitorFunction);
 
         String finalDefault = AttributeValidations.getFinalDefaultValue(parent);
+        String filteredFinalDefault = filterSimpleTypeFinalDefault(finalDefault);
 
-        this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, finalDefault));
+        this.finalObj = AttributeValidations.belongsToEnum(SimpleTypeFinalEnum.ALL, attributesMap.getOrDefault(FINAL_TAG, filteredFinalDefault));
+    }
+
+    private static String filterSimpleTypeFinalDefault(String finalDefault) {
+        if (finalDefault == null || finalDefault.isEmpty()) return finalDefault;
+        StringBuilder sb = new StringBuilder();
+        for (String token : finalDefault.trim().split("\\s+")) {
+            if (token.equals("extension")) continue;
+            if (sb.length() > 0) sb.append(' ');
+            sb.append(token);
+        }
+        return sb.toString();
     }
 
     XsdSimpleType(XsdAbstractElement parent, XsdParserCore parser, @NotNull Map<String, String> elementFieldsMapParam, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
@@ -71,6 +83,17 @@ public class XsdSimpleType extends XsdNamedElements {
 
         rule2();
         rule3();
+        rule4();
+    }
+
+    /**
+     * Asserts that exactly one of restriction, list, or union is present.
+     */
+    private void rule4() {
+        int count = (restriction != null ? 1 : 0) + (list != null ? 1 : 0) + (union != null ? 1 : 0);
+        if (count != 1){
+            throw new ParsingException(XSD_TAG + " element: exactly one of " + XsdRestriction.XSD_TAG + ", " + XsdList.XSD_TAG + ", or " + XsdUnion.XSD_TAG + " is required.");
+        }
     }
 
     /**

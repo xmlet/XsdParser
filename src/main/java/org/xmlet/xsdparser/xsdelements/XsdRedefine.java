@@ -3,6 +3,7 @@ package org.xmlet.xsdparser.xsdelements;
 import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -45,9 +46,11 @@ public class XsdRedefine extends XsdAnnotatedElements {
 
         this.schemaLocation = attributesMap.getOrDefault(SCHEMA_LOCATION, schemaLocation);
 
-        if (this.schemaLocation != null){
-            parser.addFileToParse(this.schemaLocation);
+        if (this.schemaLocation == null){
+            throw new ParsingException(XSD_TAG + " element: The " + SCHEMA_LOCATION + " attribute is required.");
         }
+
+        parser.addFileToParse(this.schemaLocation);
     }
 
     public static ReferenceBase parse(@NotNull ParseData parseData){

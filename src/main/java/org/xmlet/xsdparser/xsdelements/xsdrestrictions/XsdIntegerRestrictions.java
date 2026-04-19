@@ -42,23 +42,11 @@ public class XsdIntegerRestrictions extends XsdAnnotatedElements {
      * @return True if the value of both classes is different, False if the value is equal.
      */
     public static boolean hasDifferentValue(XsdIntegerRestrictions o1, XsdIntegerRestrictions o2) {
-        if (o1 == null && o2 == null) {
+        if (o1 == null || o2 == null) {
             return false;
         }
 
-        int o1Value = Integer.MAX_VALUE;
-        int o2Value;
-
-        if (o1 != null) {
-            o1Value = o1.getValue();
-        }
-
-        if (o2 != null) {
-            o2Value = o2.getValue();
-            return o2Value == o1Value;
-        }
-
-        return false;
+        return o1.getValue() != o2.getValue();
     }
 
     public int getValue() {

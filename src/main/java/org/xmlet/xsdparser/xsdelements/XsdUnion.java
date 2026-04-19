@@ -4,6 +4,7 @@ import org.xmlet.xsdparser.core.XsdParserCore;
 import org.xmlet.xsdparser.core.utils.ParseData;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.UnsolvedReference;
+import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
@@ -47,6 +48,15 @@ public class XsdUnion extends XsdAnnotatedElements {
         visitorParam.visit(this);
     }
 
+    @Override
+    public void validateSchemaRules() {
+        super.validateSchemaRules();
+
+        if (memberTypes == null && (simpleTypeList == null || simpleTypeList.isEmpty())){
+            throw new ParsingException(XSD_TAG + " element: at least one of " + MEMBER_TYPES_TAG + " attribute or " + XsdSimpleType.XSD_TAG + " child is required.");
+        }
+    }
+
     /**
      * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
      * {@link UnsolvedReference} objects in the reference solving process.
@@ -78,7 +88,11 @@ public class XsdUnion extends XsdAnnotatedElements {
         if (this.memberTypes == null) {
             return new ArrayList<>();
         }
-        return Arrays.asList(memberTypes.split(" "));
+        String trimmed = this.memberTypes.trim();
+        if (trimmed.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return Arrays.asList(trimmed.split("\\s+"));
     }
 
     /**

@@ -127,8 +127,8 @@ public class XsdAttribute extends XsdNamedElements {
      * Throws an exception in that case.
      */
     private void rule3() {
-        if (attributesMap.containsKey(REF_TAG) && (simpleType != null || form != null || type != null)){
-            throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, simpleType element, form attribute and type attribute cannot be present at the same time.");
+        if (attributesMap.containsKey(REF_TAG) && (simpleType != null || attributesMap.containsKey(FORM_TAG) || type != null || attributesMap.containsKey(NAME_TAG))){
+            throw new ParsingException(XSD_TAG + " element: If " + REF_TAG + " attribute is present, simpleType element, form attribute, type attribute and name attribute cannot be present at the same time.");
         }
     }
 

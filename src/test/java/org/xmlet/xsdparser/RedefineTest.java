@@ -1,5 +1,6 @@
 package org.xmlet.xsdparser;
 
+import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.*;
 
 import java.net.URL;
@@ -117,6 +118,11 @@ public class RedefineTest {
 
         XsdExtension personTypeExtension = personTypeComplexContent.getXsdExtension();
         assertNotNull(personTypeExtension);
+        
+        List<XsdElement> extensionElements = personTypeExtension.getBaseAsComplexType().getChildAsSequence().getChildrenElements().collect(toList());
+        assertEquals(2, extensionElements.size());
+        assertEquals(1, extensionElements.stream().filter(element -> element.getName().equals("name")).count());
+        assertEquals(1, extensionElements.stream().filter(element -> element.getName().equals("age")).count());
 
         XsdSequence personTypeSequence = personTypeExtension.getChildAsSequence();
         assertNotNull(personTypeSequence);

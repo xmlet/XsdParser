@@ -24,6 +24,6 @@
 		</xs:sequence>
 	</xs:complexType>
 	
-	<xs:element name="rootElemenet" type="ct_issue_83" />
+	<xs:element name="rootElement" type="ct_issue_83" />
 	
 </xs:schema>

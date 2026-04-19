@@ -277,14 +277,14 @@ public abstract class XsdAbstractElement {
      */
     public boolean replaceUnsolvedElements(NamedConcreteElement element){
         List<ReferenceBase> elements = this.getElements();
-        if (elements == null){
+        if (elements.isEmpty()){
             return false;
         }
 
         Optional<UnsolvedReference> optionalUnsolvedReference = elements.stream()
                 .filter(referenceBase -> referenceBase instanceof UnsolvedReference)
                 .map(referenceBase -> (UnsolvedReference) referenceBase)
-                .filter(unsolvedReference -> compareReferenceNotNested(element, unsolvedReference))
+                .filter(unsolvedReference -> compareReference(element, unsolvedReference))
                 .findFirst();
         if (!optionalUnsolvedReference.isPresent()) {
             return false;
@@ -294,10 +294,6 @@ public abstract class XsdAbstractElement {
         return true;
     }
     
-    public static boolean compareReferenceNotNested(NamedConcreteElement element, UnsolvedReference reference){
-        return compareReferenceName(element, reference.getRef()) && isNotNested(element);
-    }
-
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
         return compareReferenceName(element, reference.getRef()) ;
     }
@@ -309,10 +305,6 @@ public abstract class XsdAbstractElement {
 
         return element.getName().equals(unsolvedRef);
     }
-
-	private static boolean isNotNested(NamedConcreteElement e) {
-		return e.getElement().getParent() != null && e.getElement().getParent() instanceof XsdSchema;
-	}
 
     /**
      * @return The parent of the current {@link XsdAbstractElement} object.

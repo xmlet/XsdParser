@@ -21,7 +21,9 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.lang.String.format;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 public abstract class XsdParserCore {
 
@@ -617,36 +619,100 @@ public abstract class XsdParserCore {
         return replaceUnsolvedReference(concreteElements, unsolvedReference, fileName);
     }
 
-    private boolean replaceUnsolvedReference(List<NamedConcreteElement> concreteElements, UnsolvedReference unsolvedReference, String fileName) {
-        boolean replaced = false;
+    protected boolean replaceUnsolvedReference(List<NamedConcreteElement> concreteElements,
+			UnsolvedReference unsolvedReference, String fileName) {
+		if (concreteElements == null) {
+			storeUnsolvedItem(unsolvedReference);
+			return false;
+		}
+		if (concreteElements.size() == 1) {
+			boolean result = replaceUnsolvedElement(concreteElements.iterator().next(), unsolvedReference);
+			if (result) {
+				removeUnsolvedElements(unsolvedReference, fileName);
+			}
+			return result;
+		}
+		boolean replaced = replaceUnsolvedElement(find(concreteElements, unsolvedReference), unsolvedReference);
+		if (replaced) {
+			removeUnsolvedElements(unsolvedReference, fileName);
+		}
+		return replaced;
+	}
 
-        if (concreteElements != null) {
-            for (NamedConcreteElement concreteElement : concreteElements) {
-                NamedConcreteElement substitutionElementWrapper;
+	/**
+	 * finds the NamedConcreteElement for the UnsolvedReference. The logic is as
+	 * follows: if the element is a child of a Redefine, replace it with the
+	 * original element. Otherwise, if a Redefine is available, replace it with
+	 * that. In this case, the UnsolvedReference points to a Redefine. In the latter
+	 * case, all elements with a schema as parent are considered. If
+	 * UnsolvedReference is a TypeRef, the element must be a Simple or Complex Type.
+	 * If it is not a TypeRef, it must be an ElementRef.
+	 */
+	protected NamedConcreteElement find(List<NamedConcreteElement> elements, UnsolvedReference unsolvedReference) {
+		if (getRedefine(unsolvedReference) != null) {
+			String schemaLocation = getRedefine(unsolvedReference).getSchemaLocation();
+			return findSchema(elements, schemaLocation);
+		} else if (!findRedefines(elements).isEmpty()) {
+			for (NamedConcreteElement redefineElement : findRedefines(elements)) {
+				if (redefineElement.getElement().getXsdSchema().equals(unsolvedReference.getElement().getXsdSchema())) {
+					return redefineElement;
+				}
+			}
+			throw new RuntimeException(format("No redefine for Ref %s found", unsolvedReference.getRef()));
+		} else {
+			for (NamedConcreteElement e : elements) {
+				if (e.getElement().getParent() instanceof XsdSchema) {
+					if (unsolvedReference.isTypeRef()) {
+						if (e.getElement() instanceof XsdSimpleType || e.getElement() instanceof XsdComplexType) {
+							return e;
+						} // else {
+						continue;
+					} else {
+						return e;
+					}
+				}
+			}
+		}
+		return null;
+	}
 
-                if (!unsolvedReference.isTypeRef()) {
-                    Map<String, String> attributesMap = unsolvedReference.getElement().getAttributesMap();
-					XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(attributesMap, concreteElement.getElement().getParent());
-                    substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
+	protected static XsdRedefine getRedefine(UnsolvedReference unsolvedReference) {
+		XsdAbstractElement parent = unsolvedReference.getParent();
+		while (parent != null && !(parent instanceof XsdRedefine)) {
+			parent = parent.getParent();
+		}
+		return (XsdRedefine) parent;
+	}
 
-                    substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
-                } else {
-                    substitutionElementWrapper = concreteElement;
-                }
+	private void removeUnsolvedElements(UnsolvedReference unsolvedReference, String fileName) {
+		unsolvedElements.get(fileName).remove(unsolvedReference);
+		if (unsolvedElements.get(fileName).isEmpty()) {
+			unsolvedElements.remove(fileName);
+		}
+	}
 
-                replaced |= unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
-            }
+	protected boolean replaceUnsolvedElement(NamedConcreteElement concreteElement, UnsolvedReference unsolvedReference) {
+		NamedConcreteElement substitutionElementWrapper;
+		if (!unsolvedReference.isTypeRef()) {
+			Map<String, String> attributesMap = unsolvedReference.getElement().getAttributesMap();
+			XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement()
+					.clone(attributesMap, concreteElement.getElement().getParent());
+			substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
 
-            unsolvedElements.get(fileName).remove(unsolvedReference);
+			substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
+		} else {
+			substitutionElementWrapper = concreteElement;
+		}
+		return unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
+	}
+	
+	protected static NamedConcreteElement findSchema(List<NamedConcreteElement> elements, String name) {
+		return elements.stream().filter(e -> e.getElement().getXsdSchema().getFilePath().endsWith(name)).findAny().get();
+	}
 
-            if (unsolvedElements.get(fileName).isEmpty()){
-                unsolvedElements.remove(fileName);
-            }
-        } else {
-            storeUnsolvedItem(unsolvedReference);
-        }
-        return replaced;
-    }
+	protected static List<NamedConcreteElement> findRedefines(List<NamedConcreteElement> elements) {
+		return elements.stream().filter(e -> e.getElement().getParent() instanceof XsdRedefine).collect(toList());
+	}
 
     /**
      * Saves an occurrence of an element which couldn't be resolved in the {@link XsdParser#replaceUnsolvedReference}

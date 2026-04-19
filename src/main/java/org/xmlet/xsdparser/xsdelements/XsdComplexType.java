@@ -12,7 +12,11 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdComplexTypeVisitor;
 
 import jakarta.validation.constraints.NotNull;
+
+import static java.util.Collections.emptyList;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -117,9 +121,8 @@ public class XsdComplexType extends XsdNamedElements {
     /**
      * @return The elements of his child as if they belong to the {@link XsdComplexType} instance.
      */
-    @Override
     public List<ReferenceBase> getElements() {
-        return childElement == null ? null : childElement.getElement().getElements();
+        return childElement == null ? emptyList() : childElement.getElement().getElements();
     }
 
     /**

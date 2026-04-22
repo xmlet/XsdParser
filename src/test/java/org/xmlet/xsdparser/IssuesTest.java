@@ -1118,6 +1118,23 @@ public class IssuesTest {
 	private static String getContent(XsdAnnotation annotation) {
 		return annotation.getDocumentations().iterator().next().getContent();
 	}
+	
+	@Test
+	public void testIssue86() {
+		XsdParser xsdParser = new XsdParser(getFilePath("issue_86/element_ref_parent.xsd"));
+		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
+
+		XsdElement aElement = xsdSchema.getChildrenElements().findFirst().get();
+		Assert.assertEquals("aElement", aElement.getRawName());
+		Assert.assertEquals(xsdSchema, aElement.getParent());
+
+		XsdComplexType ct_issue_83 = xsdSchema.getChildrenComplexTypes()
+				.filter(ct -> ct.getName().equals("ct_issue_86")).findFirst().get();
+		XsdSequence sequence = ct_issue_83.getChildAsSequence();
+		XsdElement xsdElement = sequence.getChildrenElements().findFirst().get();
+		Assert.assertEquals("aElement", xsdElement.getRawName());
+		Assert.assertEquals(sequence, xsdElement.getParent());
+	}
 
     @Test
     public void testForwardGroupRef() {

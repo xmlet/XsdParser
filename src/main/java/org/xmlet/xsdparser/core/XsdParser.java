@@ -1,5 +1,18 @@
 package org.xmlet.xsdparser.core;
 
+import static java.lang.String.format;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -11,20 +24,47 @@ import org.xmlet.xsdparser.xsdelements.XsdSchema;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * {@link XsdParser} in the core class of the XsdParser project. It functions as a one shot class, receiving the name
  * of the file to parse in its constructor and storing the parse results in its multiple fields, which can be consulted
  * after the instance is created.
  */
 public class XsdParser extends XsdParserCore{
+	
+	public static XsdParser fromFile(File pathToXsd, ParserConfig config) {
+		try {
+			return new XsdParser(pathToXsd.toURI().toURL(), config);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public static XsdParser fromJar(File jarFile, String xsdInJar, ParserConfig config) {
+		try {
+			return new XsdParser(new URL(format("jar:%s!/%s", jarFile.toURI().toURL(), xsdInJar)), config);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public static XsdParser fromURL(URL jarFile, String xsdInJar, ParserConfig config) {
+		try {
+			return new XsdParser(new URL(format("jar:%s!/%s", jarFile.toString(), xsdInJar)), config);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public static XsdParser fromURL(URL url, ParserConfig config) {
+		return new XsdParser(url, config);
+	}
+	
+    private XsdParser(URL filePath, ParserConfig config){
+		if (config != null) {
+			super.updateConfig(config);
+		}
+        parse(filePath);
+    }
 
     /**
      * The XsdParser constructor will parse the XSD file with the {@code filepath} and will also parse all the subsequent
@@ -35,7 +75,11 @@ public class XsdParser extends XsdParserCore{
      * @param filePath States the path of the XSD file to be parsed.
      */
     public XsdParser(String filePath){
-        parse(filePath);
+        try {
+ 			parse(new File(filePath).toURI().toURL());
+ 		} catch (MalformedURLException e) {
+ 			throw new RuntimeException(e.getMessage(), e);
+ 		}
     }
 
     /**
@@ -50,19 +94,21 @@ public class XsdParser extends XsdParserCore{
     public XsdParser(String filePath, ParserConfig config){
         super.updateConfig(config);
 
-        parse(filePath);
+        try {
+			parse(new File(filePath).toURI().toURL());
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage(), e);
+		}
     }
 
-    private void parse(String filePath){
-        schemaLocations.add(filePath);
-        int index = 0;
-
-        while (schemaLocations.size() > index){
-            String schemaLocation = schemaLocations.get(index);
-            parseFile(schemaLocation);
-            ++index;
-        }
-
+    private void parse(URL filePath){
+    	schemaLocations.add(filePath);
+    	int index = 0;
+    	while (schemaLocations.size() > index) {
+    		URL schemaLocation = schemaLocations.get(index);
+    		parseFile(schemaLocation);
+    		++index;
+    	}
         resolveRefs();
     }
 
@@ -72,21 +118,10 @@ public class XsdParser extends XsdParserCore{
      * field.
      * @param filePath The path to the XSD file.
      */
-    private void parseFile(String filePath) {
+    private void parseFile(URL url) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
-
         try {
-            if (!new File(filePath).exists() && isRelativePath(filePath)){
-                String parentFile = schemaLocationsMap.get(filePath);
-
-                filePath  = parentFile.substring(0, parentFile.lastIndexOf('/') + 1).concat(filePath);
-
-                if (!new File(filePath).exists()) {
-                    throw new FileNotFoundException(filePath);
-                }
-            }
-
-            this.currentFile = filePath.replace("\\", "/");
+            this.currentFile = url;
 
             ConfigEntryData xsdSchemaConfig = getParseMappers(XsdSchema.TAG);
 
@@ -94,12 +129,15 @@ public class XsdParser extends XsdParserCore{
                 throw new ParserConfigurationException("XsdSchema not correctly configured.");
             }
 
-            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(filePath), xsdSchemaConfig.visitorFunction));
-            ((XsdSchema)schemaReference.getElement()).setFilePath(filePath);
-        } catch (SAXException | IOException | ParserConfigurationException e) {
-            Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
-            throw new RuntimeException(e);
-        }
+            ReferenceBase schemaReference = xsdSchemaConfig.parserFunction.apply(new ParseData(this, getSchemaNode(url), xsdSchemaConfig.visitorFunction));
+            ((XsdSchema)schemaReference.getElement()).setFilePath(url);
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
+			throw new RuntimeException(e);
+		} catch (URISyntaxException e) {
+			Logger.getAnonymousLogger().log(Level.SEVERE, "Exception while parsing.", e);
+			throw new RuntimeException(e);
+		}
     }
 
     /**
@@ -110,9 +148,10 @@ public class XsdParser extends XsdParserCore{
      * @throws ParserConfigurationException If the {@link DocumentBuilderFactory#newDocumentBuilder()} throws
      *      {@link ParserConfigurationException}.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
+     * @throws URISyntaxException 
      */
-    private Node getSchemaNode(String filePath) throws IOException, SAXException, ParserConfigurationException {
-        Document doc = getDocumentBuilder().parse(filePath);
+    private Node getSchemaNode(URL filePath) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
+        Document doc = getDocumentBuilder().parse(filePath.openStream());
 
         doc.getDocumentElement().normalize();
 

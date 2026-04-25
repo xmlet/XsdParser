@@ -13,6 +13,7 @@ import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,7 +70,7 @@ public class XsdSchema extends XsdAnnotatedElements {
      */
     private String xmlns;
 
-    private String filePath;
+    private URL filePath;
 
     private Map<String, NamespaceInfo> namespaces = new HashMap<>();
 
@@ -331,10 +332,14 @@ public class XsdSchema extends XsdAnnotatedElements {
     }
 
     public String getFilePath() {
+		return filePath != null ? filePath.toString() : null;
+    }
+    
+    public URL getFilePathURL() {
         return filePath;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath == null ? null : filePath.replace('\\', '/');
+    public void setFilePath(URL filePath) {
+		this.filePath = filePath;
     }
 }

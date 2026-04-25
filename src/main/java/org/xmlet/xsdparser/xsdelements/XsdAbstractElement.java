@@ -385,4 +385,11 @@ public abstract class XsdAbstractElement {
 
         return stringBuilder.toString();
     }
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName();
+	}
+    
+    
 }

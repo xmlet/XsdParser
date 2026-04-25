@@ -65,4 +65,11 @@ public abstract class XsdNamedElements extends XsdAnnotatedElements {
     public void setName(String name) {
         this.name = name;
     }
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName()+ "[name=" + name + ", getId()=" + getId() + "]";
+	}
+    
+    
 }

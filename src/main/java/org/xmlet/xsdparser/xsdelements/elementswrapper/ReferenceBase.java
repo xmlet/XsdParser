@@ -102,4 +102,10 @@ public abstract class ReferenceBase {
     private static String getNodeValue(XsdAbstractElement element, String nodeName){
         return element.getAttributesMap().getOrDefault(nodeName, null);
     }
+    
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "[element=" + element + "]";
+	}
+    
 }

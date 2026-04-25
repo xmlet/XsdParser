@@ -116,7 +116,7 @@ public class XsdParser extends XsdParserCore{
      * Parses a XSD file and all its containing XSD elements. This code iterates on the nodes and parses the supported
      * ones. The supported types are all the XSD types that have their tag present in the {@link XsdParser#parseMappers}
      * field.
-     * @param filePath The path to the XSD file.
+     * @param url The path to the XSD file.
      */
     private void parseFile(URL url) {
         //https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/

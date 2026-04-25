@@ -1139,7 +1139,7 @@ public class IssuesTest {
   }
   
 	public void testIssue86() {
-		XsdParser xsdParser = new XsdParser(getFilePath("issue_86/element_ref_parent.xsd"));
+		XsdParserCore xsdParser = getParser(getURL("issue_86/element_ref_parent.xsd"));
 		XsdSchema xsdSchema = xsdParser.getResultXsdSchemas().findFirst().get();
 
 		XsdElement aElement = xsdSchema.getChildrenElements().findFirst().get();

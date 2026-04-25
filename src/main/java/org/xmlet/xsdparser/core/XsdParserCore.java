@@ -30,6 +30,7 @@ import org.xmlet.xsdparser.core.utils.DefaultParserConfig;
 import org.xmlet.xsdparser.core.utils.NamespaceInfo;
 import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
+import org.xmlet.xsdparser.xsdelements.DerivationValidation;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
@@ -165,6 +166,10 @@ public abstract class XsdParserCore {
                         throw new ParsingException(XsdUnion.XSD_TAG + " element: " + XsdAbstractElement.MEMBER_TYPES_TAG + " entries must reference a " + XsdSimpleType.XSD_TAG + " or built-in type, not a " + XsdComplexType.XSD_TAG + ": \"" + ((XsdComplexType) element).getRawName() + "\".");
                     }
                     if (element instanceof XsdSimpleType) {
+                        String baseFinal = DerivationValidation.typeFinal(element);
+                        if (DerivationValidation.tokenListBlocks(baseFinal, DerivationValidation.UNION)){
+                            throw new ParsingException(XsdUnion.XSD_TAG + " element: " + XsdAbstractElement.MEMBER_TYPES_TAG + " entry \"" + memberType + "\" has " + XsdAbstractElement.FINAL_TAG + "=\"" + baseFinal + "\", which forbids derivation by union.");
+                        }
                         union.add((XsdSimpleType) element);
                     }
                 }

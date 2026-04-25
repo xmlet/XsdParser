@@ -95,6 +95,10 @@ public class XsdList extends XsdAnnotatedElements {
                 throw new ParsingException(XSD_TAG + " element: " + ITEM_TYPE_TAG + " attribute must reference a simpleType or built-in type, not a complexType: \"" + itemType + "\".");
             }
             if (element instanceof XsdSimpleType){
+                String baseFinal = DerivationValidation.typeFinal(element);
+                if (DerivationValidation.tokenListBlocks(baseFinal, DerivationValidation.LIST)){
+                    throw new ParsingException(XSD_TAG + " element: " + ITEM_TYPE_TAG + " \"" + itemType + "\" has " + FINAL_TAG + "=\"" + baseFinal + "\", which forbids derivation by list.");
+                }
                 this.itemTypeReference = elementWrapper;
                 replaced = true;
             }

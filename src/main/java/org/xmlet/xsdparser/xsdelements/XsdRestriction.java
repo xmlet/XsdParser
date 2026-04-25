@@ -192,6 +192,10 @@ public class XsdRestriction extends XsdAnnotatedElements {
             if (parent instanceof XsdSimpleType && elem instanceof XsdComplexType){
                 throw new ParsingException(XSD_TAG + " element: when nested in " + XsdSimpleType.XSD_TAG + ", " + BASE_TAG + " must reference a " + XsdSimpleType.XSD_TAG + " or built-in type, not a " + XsdComplexType.XSD_TAG + ": \"" + elem.getRawName() + "\".");
             }
+            String baseFinal = DerivationValidation.typeFinal(elem);
+            if (DerivationValidation.tokenListBlocks(baseFinal, DerivationValidation.RESTRICTION)){
+                throw new ParsingException(XSD_TAG + " element: " + BASE_TAG + " \"" + elem.getRawName() + "\" has " + FINAL_TAG + "=\"" + baseFinal + "\", which forbids derivation by restriction.");
+            }
             this.base = element;
             replaced = true;
         }

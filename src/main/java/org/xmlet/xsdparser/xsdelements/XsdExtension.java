@@ -92,6 +92,10 @@ public class XsdExtension extends XsdAnnotatedElements {
             if (parent instanceof XsdComplexContent && elem instanceof XsdSimpleType){
                 throw new ParsingException(XSD_TAG + " element: when nested in " + XsdComplexContent.XSD_TAG + ", " + BASE_TAG + " must reference a " + XsdComplexType.XSD_TAG + ", not a " + XsdSimpleType.XSD_TAG + ": \"" + elem.getRawName() + "\".");
             }
+            String baseFinal = DerivationValidation.typeFinal(elem);
+            if (DerivationValidation.tokenListBlocks(baseFinal, DerivationValidation.EXTENSION)){
+                throw new ParsingException(XSD_TAG + " element: " + BASE_TAG + " \"" + elem.getRawName() + "\" has " + FINAL_TAG + "=\"" + baseFinal + "\", which forbids derivation by extension.");
+            }
             this.base = element;
             replaced = true;
         }

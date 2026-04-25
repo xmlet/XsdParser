@@ -1134,6 +1134,7 @@ public class IssuesTest {
 		XsdElement xsdElement = sequence.getChildrenElements().findFirst().get();
 		Assert.assertEquals("aElement", xsdElement.getRawName());
 		Assert.assertEquals(sequence, xsdElement.getParent());
+        Assert.assertEquals(xsdSchema, aElement.getParent());
 	}
 
     @Test

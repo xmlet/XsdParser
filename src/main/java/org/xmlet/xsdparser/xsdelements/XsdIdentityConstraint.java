@@ -50,7 +50,9 @@ public abstract class XsdIdentityConstraint extends XsdNamedElements {
         }
     }
 
-    /** The XSD tag (e.g. {@code "xsd:unique"}) of the concrete subclass — used in error messages. */
+    /**
+     * @return the XSD tag (e.g. {@code "xsd:unique"}) of the concrete subclass, used in error messages.
+     */
     protected abstract String getXsdTag();
 
     public void setSelector(XsdSelector selector) {
@@ -69,7 +71,10 @@ public abstract class XsdIdentityConstraint extends XsdNamedElements {
         return fields;
     }
 
-    /** Copy selector + fields onto a freshly constructed clone of the same concrete type. */
+    /**
+     * Copy selector + fields onto a freshly constructed clone of the same concrete type.
+     * @param copy the freshly constructed clone to receive cloned selector and field children.
+     */
     protected void copyChildrenInto(XsdIdentityConstraint copy) {
         if (this.selector != null) {
             copy.selector = (XsdSelector) this.selector.clone(this.selector.getAttributesMap(), copy);

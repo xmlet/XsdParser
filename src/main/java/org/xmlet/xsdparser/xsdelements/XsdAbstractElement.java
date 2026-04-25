@@ -156,6 +156,7 @@ public abstract class XsdAbstractElement {
      * Performs a copy of the current object for replacing purposes. The cloned objects are used to replace
      * {@link UnsolvedReference} objects in the reference solving process.
      * @param placeHolderAttributes The additional attributes to add to the clone.
+     * @param parent The parent to assign to the cloned element.
      * @return A copy of the object from which is called upon.
      */
     public XsdAbstractElement clone(@NotNull Map<String, String> placeHolderAttributes, XsdAbstractElement parent){
@@ -318,6 +319,8 @@ public abstract class XsdAbstractElement {
     }
 
     /**
+     * @param enforceParentAvailability if {@code true} and the parent isn't available, throws
+     *                                  {@link ParentAvailableException}; if {@code false}, returns {@code null}.
      * @return The parent of the current {@link XsdAbstractElement} object.
      */
     public XsdAbstractElement getParent(boolean enforceParentAvailability) {
@@ -342,6 +345,7 @@ public abstract class XsdAbstractElement {
 
     /**
      * Sets source of the clone of the current {@link XsdAbstractElement} object.
+     * @param cloneOf the original element this object is a clone of.
      */
     public void setCloneOf(XsdAbstractElement cloneOf) {
         this.cloneOf = cloneOf;

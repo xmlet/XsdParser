@@ -56,6 +56,10 @@ public class AttributeValidations {
     /**
      * Validates each whitespace-separated token in {@code value} against the supplied {@link XsdEnum} instance and
      * returns the normalized token list (single-space separated). Returns {@code null} when {@code value} is null.
+     * @param <T> the concrete enum type whose values are admissible tokens.
+     * @param instance the enum instance whose {@code getValues()} provides the allowed token set.
+     * @param value the raw attribute value to validate; may be {@code null}.
+     * @return the normalized token list (single-space separated), or {@code null} when {@code value} is {@code null}.
      */
     public static <T extends XsdEnum> String validateEnumTokenList(final XsdEnum<T> instance, final String value){
         if (value == null){

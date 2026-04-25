@@ -33,7 +33,13 @@ public final class DerivationValidation {
 
     private DerivationValidation() {}
 
-    /** True if the space-separated {@code tokenList} contains {@code method} or {@code "#all"}. */
+    /**
+     * True if the space-separated {@code tokenList} contains {@code method} or {@code "#all"}.
+     * @param tokenList space-separated final/block attribute value to inspect; may be {@code null}.
+     * @param method derivation method to check for ({@link #EXTENSION}, {@link #RESTRICTION},
+     *               {@link #LIST}, {@link #UNION}).
+     * @return {@code true} when {@code method} or {@code "#all"} appears in {@code tokenList}.
+     */
     public static boolean tokenListBlocks(String tokenList, String method) {
         if (tokenList == null || tokenList.isEmpty()) return false;
         for (String token : tokenList.trim().split("\\s+")) {
@@ -46,6 +52,8 @@ public final class DerivationValidation {
      * Returns the {@code final} attribute of a resolved type, or {@code null} if the argument
      * is not a parsed user-defined complex/simple type. The returned value already includes any
      * {@code finalDefault} inherited from the enclosing schema (parsing handles that merge).
+     * @param type the candidate type whose {@code final} attribute should be returned.
+     * @return the {@code final} value or {@code null} for non user-defined types.
      */
     public static String typeFinal(XsdAbstractElement type) {
         if (type instanceof XsdComplexType) return ((XsdComplexType) type).getFinal();
@@ -71,15 +79,19 @@ public final class DerivationValidation {
      * ({@code namespace="##any"}, {@code processContents="lax"}).
      *
      * <p>This is an approximation in one specific case: when an extension somewhere along the
-     * chain widens the wildcard via union, the spec's "effective wildcard" is the
-     * {@link #unionWith union} of the base's effective and the local. The walker returns the
-     * nearest local instead of computing the union, which is correct for restriction-only
-     * chains (the common case) and an under-approximation (potentially narrower than the true
-     * effective) for chains containing extensions. The under-approximation is safe in the
-     * sense that it never accepts a schema the spec rejects.
+     * chain widens the wildcard via union, the spec's "effective wildcard" is the union of the
+     * base's effective and the local. The walker returns the nearest local instead of computing
+     * the union, which is correct for restriction-only chains (the common case) and an
+     * under-approximation (potentially narrower than the true effective) for chains containing
+     * extensions. The under-approximation is safe in the sense that it never accepts a schema
+     * the spec rejects.
      *
-     * <p>Implementation: iterative loop, no allocation. Bounded by {@link #MAX_DERIVATION_DEPTH}
+     * <p>Implementation: iterative loop, no allocation. Bounded by {@code MAX_DERIVATION_DEPTH}
      * which doubles as cycle protection.
+     *
+     * @param ct the complex type whose effective wildcard should be computed.
+     * @return the nearest declared {@code xs:anyAttribute} along the derivation chain, or
+     *         {@code null} if none was found within the depth bound.
      */
     public static XsdAnyAttribute effectiveLocalWildcard(XsdComplexType ct) {
         XsdComplexType current = ct;
@@ -124,6 +136,11 @@ public final class DerivationValidation {
      * from {@code xs:anyType} ({@code namespace="##any"}, {@code processContents="lax"}) —
      * every complex type ultimately derives from {@code xs:anyType}, so a "missing" base
      * wildcard is really the inherited one.
+     *
+     * @param derivedWildcard the wildcard declared on the derived (restricting) type, or {@code null}.
+     * @param baseWildcard the effective wildcard of the base type, or {@code null} to fall through
+     *                     to {@code xs:anyType}'s implicit {@code ##any/lax}.
+     * @param elementTag the XSD tag (e.g. {@code "xsd:restriction"}) used in error messages.
      */
     public static void requireWildcardSubset(XsdAnyAttribute derivedWildcard,
                                              XsdAnyAttribute baseWildcard,
@@ -179,6 +196,10 @@ public final class DerivationValidation {
      * §3.10.6.2 covers every combination), so this check is theoretically vacuous — but we
      * compute the union explicitly and throw if the result isn't a valid wildcard form, so any
      * future spec extension that introduces a new constraint kind would surface here.
+     *
+     * @param localWildcard the wildcard declared on the extending type, or {@code null}.
+     * @param baseWildcard the base type's wildcard, or {@code null}.
+     * @param elementTag the XSD tag (e.g. {@code "xsd:extension"}) used in error messages.
      */
     public static void requireWildcardUnionExpressible(XsdAnyAttribute localWildcard,
                                                        XsdAnyAttribute baseWildcard,

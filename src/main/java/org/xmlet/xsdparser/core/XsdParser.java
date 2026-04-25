@@ -148,6 +148,7 @@ public class XsdParser extends XsdParserCore{
      * @throws ParserConfigurationException If the {@link DocumentBuilderFactory#newDocumentBuilder()} throws
      *      {@link ParserConfigurationException}.
      * @return A list of nodes that represent the node tree of the XSD file with the path received.
+     * @throws URISyntaxException If the {@code filePath} URL cannot be converted to a valid {@link java.net.URI}.
      */
     private Node getSchemaNode(URL filePath) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
         Document doc = getDocumentBuilder().parse(filePath.openStream());

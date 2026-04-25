@@ -119,8 +119,10 @@ public abstract class AttributesVisitor extends XsdAnnotatedElementsVisitor {
      * Tries to match the received {@link NamedConcreteElement} object, with any of the elements present either in
      * {@link AttributesVisitor#attributeGroups} or {@link AttributesVisitor#attributes}. If a match occurs this method
      * performs all the required actions to fully exchange the {@link UnsolvedReference} object with the element parameter.
+     * @param parser The parser instance, used when cloning resolved references onto a new owner.
      * @param element The resolved element that will be match with the contents of this visitor in order to assert if
      *                there is anything to replace.
+     * @param parent The parent that the cloned reference should be attached to.
      * @return whether an unsolved attribute was replaced
      */
     public boolean replaceUnsolvedAttributes(XsdParserCore parser, NamedConcreteElement element, XsdAbstractElement parent){

@@ -588,6 +588,7 @@ public abstract class XsdParserCore {
      *
      * @param concreteElementsMap The map containing all named concreteElements.
      * @param unsolvedReference   The unsolved reference to solve.
+     * @param fileName The file name.
      * @return whether the unsolved reference was successfully replaced
      */
 	protected boolean replaceUnsolvedReference(Map<String, List<NamedConcreteElement>> concreteElementsMap, UnsolvedReference unsolvedReference, URL fileName) {
@@ -633,6 +634,11 @@ public abstract class XsdParserCore {
 	 *     <li>Otherwise, the first candidate with an {@link XsdSchema} parent matching the
 	 *         type constraint is returned.</li>
 	 * </ul>
+	 * @param elements the candidate {@link NamedConcreteElement} list (multiple definitions
+	 *                 sharing the same name, e.g. due to redefines or includes).
+	 * @param unsolvedReference the unsolved reference being resolved, used to locate the
+	 *                          enclosing {@code xs:redefine} (if any) and the enclosing schema.
+	 * @return the chosen {@link NamedConcreteElement}, or {@code null} if none match.
 	 */
 	protected NamedConcreteElement find(List<NamedConcreteElement> elements, UnsolvedReference unsolvedReference) {
 		XsdRedefine enclosingRedefine = getRedefine(unsolvedReference);

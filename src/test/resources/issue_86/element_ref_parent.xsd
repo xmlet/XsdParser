@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	targetNamespace="https://github.com/xmlet/XsdParser/issues/86"
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="https://github.com/xmlet/XsdParser/issues/86">
+
+	<xs:element name="aElement" />
+
+	<xs:complexType name="ct_issue_86">
+		<xs:sequence>
+			<xs:element ref="aElement" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

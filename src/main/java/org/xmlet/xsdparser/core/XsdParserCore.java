@@ -735,7 +735,8 @@ public abstract class XsdParserCore {
 			substitutionElementWrapper = concreteElement;
 		} else {
 			Map<String, String> attributesMap = unsolvedReference.getElement().getAttributesMap();
-			XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement().clone(attributesMap, concreteElement.getElement().getParent());
+			XsdNamedElements substitutionElement = (XsdNamedElements) concreteElement.getElement()
+					.clone(attributesMap, unsolvedReference.getElement().getParent());
 			substitutionElement.setAnnotation(unsolvedReference.getElement().getAnnotation());
 			
 			substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);

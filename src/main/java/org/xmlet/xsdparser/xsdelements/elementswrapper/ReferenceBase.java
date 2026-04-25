@@ -77,9 +77,7 @@ public abstract class ReferenceBase {
             return unsolvedClonedElement;
         }
         else {
-            originalReference.getElement().setParentAvailable(false);
-
-            return  originalReference;
+			return originalReference;
 
 //            XsdAbstractElement cloneElement = originalElement.clone(originalElement.getAttributesMap());
 //            cloneElement.setParent(parent);

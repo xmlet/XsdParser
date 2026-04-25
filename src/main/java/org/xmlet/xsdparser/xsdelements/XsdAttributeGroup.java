@@ -43,6 +43,11 @@ public class XsdAttributeGroup extends XsdNamedElements {
      */
     private List<ReferenceBase> attributes = new ArrayList<>();
 
+    /**
+     * The single {@code xs:anyAttribute} child of this attributeGroup, if any.
+     */
+    private XsdAnyAttribute anyAttribute;
+
     private XsdAttributeGroup(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
     }
@@ -117,6 +122,10 @@ public class XsdAttributeGroup extends XsdNamedElements {
 
         elementCopy.attributes = this.attributes.stream().map(attributeReference -> ReferenceBase.clone(parser, attributeReference, elementCopy)).collect(Collectors.toList());
         elementCopy.attributeGroups = this.attributeGroups.stream().map(attributeGroupReference -> ReferenceBase.clone(parser, attributeGroupReference, elementCopy)).collect(Collectors.toList());
+
+        if (this.anyAttribute != null){
+            elementCopy.anyAttribute = (XsdAnyAttribute) this.anyAttribute.clone(this.anyAttribute.getAttributesMap(), elementCopy);
+        }
 
         elementCopy.cloneOf = this;
         elementCopy.parent = null;
@@ -205,5 +214,20 @@ public class XsdAttributeGroup extends XsdNamedElements {
 
     public void addAttributeGroup(ReferenceBase attributeGroup) {
         attributeGroups.add(attributeGroup);
+    }
+
+    public void setAnyAttribute(XsdAnyAttribute anyAttribute) {
+        if (this.anyAttribute != null && anyAttribute != null){
+            throw new ParsingException(XSD_TAG + " element: at most one " + XsdAnyAttribute.XSD_TAG + " is allowed.");
+        }
+        this.anyAttribute = anyAttribute;
+    }
+
+    /**
+     * @return The single {@code xs:anyAttribute} child of this attributeGroup, or {@code null} if none.
+     */
+    @SuppressWarnings("unused")
+    public XsdAnyAttribute getAnyAttribute() {
+        return anyAttribute;
     }
 }

@@ -85,4 +85,11 @@ public class XsdSchemaVisitor extends AttributesVisitor {
 
         owner.add(element);
     }
+
+    @Override
+    public void visit(XsdNotation element) {
+        super.visit(element);
+
+        owner.add(element);
+    }
 }

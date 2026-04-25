@@ -188,6 +188,18 @@ public class XsdSchema extends XsdAnnotatedElements {
         elements.add(element);
     }
 
+    public void add(XsdNotation element) {
+        elements.add(element);
+    }
+
+    /**
+     * @return The {@code xs:notation} children declared at the top level of this schema.
+     */
+    @SuppressWarnings("unused")
+    public Stream<XsdNotation> getChildrenNotations(){
+        return elements.stream().filter(e -> e instanceof XsdNotation).map(e -> (XsdNotation) e);
+    }
+
     @SuppressWarnings("unused")
     public String getAttributeFormDefault() {
         return attributeFormDefault.getValue();

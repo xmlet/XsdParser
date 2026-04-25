@@ -103,6 +103,20 @@ public interface XsdAbstractElementVisitor {
 
     default void visit(XsdAny xsdAny) {}
 
+    default void visit(XsdAnyAttribute xsdAnyAttribute) {}
+
+    default void visit(XsdNotation xsdNotation) {}
+
+    default void visit(XsdUnique xsdUnique) {}
+
+    default void visit(XsdKey xsdKey) {}
+
+    default void visit(XsdKeyref xsdKeyref) {}
+
+    default void visit(XsdSelector xsdSelector) {}
+
+    default void visit(XsdField xsdField) {}
+
     XsdAbstractElement getOwner();
 
 }

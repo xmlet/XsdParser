@@ -1,6 +1,7 @@
 package org.xmlet.xsdparser.xsdelements.visitors;
 
 import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
+import org.xmlet.xsdparser.xsdelements.XsdAnyAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdAttributeGroup;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
@@ -40,5 +41,12 @@ public class XsdAttributeGroupVisitor extends XsdAnnotatedElementsVisitor {
         super.visit(element);
 
         owner.addAttributeGroup(ReferenceBase.createFromXsd(element));
+    }
+
+    @Override
+    public void visit(XsdAnyAttribute element) {
+        super.visit(element);
+
+        owner.setAnyAttribute(element);
     }
 }

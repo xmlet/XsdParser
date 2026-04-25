@@ -108,6 +108,11 @@ public class XsdRestriction extends XsdAnnotatedElements {
      */
     private String baseString;
 
+    /**
+     * The single {@code xs:anyAttribute} child of this restriction, if any.
+     */
+    private XsdAnyAttribute anyAttribute;
+
     private XsdRestriction(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
 
@@ -143,6 +148,14 @@ public class XsdRestriction extends XsdAnnotatedElements {
 
         if ((parent instanceof XsdSimpleContent || parent instanceof XsdComplexContent) && baseString == null){
             throw new ParsingException(XSD_TAG + " element: " + BASE_TAG + " attribute is required when the parent is " + XsdSimpleContent.XSD_TAG + " or " + XsdComplexContent.XSD_TAG + ".");
+        }
+
+        // Per spec: xs:restriction inside xs:simpleType only accepts facets (and an optional
+        // inline simpleType). xs:anyAttribute is forbidden in this context. Checked here
+        // because XsdAnyAttribute's own validateSchemaRules runs before its grandparent
+        // (this restriction's parent) has been wired up.
+        if (parent instanceof XsdSimpleType && this.anyAttribute != null){
+            throw new ParsingException(XSD_TAG + " element: " + XsdAnyAttribute.XSD_TAG + " is not allowed when the parent is " + XsdSimpleType.XSD_TAG + ".");
         }
 
         if (minLength != null && maxLength != null && minLength.getValue() > maxLength.getValue()){
@@ -195,6 +208,16 @@ public class XsdRestriction extends XsdAnnotatedElements {
             String baseFinal = DerivationValidation.typeFinal(elem);
             if (DerivationValidation.tokenListBlocks(baseFinal, DerivationValidation.RESTRICTION)){
                 throw new ParsingException(XSD_TAG + " element: " + BASE_TAG + " \"" + elem.getRawName() + "\" has " + FINAL_TAG + "=\"" + baseFinal + "\", which forbids derivation by restriction.");
+            }
+            // Wildcard Subset (§3.10.6.1): this restriction's local xs:anyAttribute must be a
+            // subset of the base type's *effective* wildcard — walked up the derivation chain
+            // rather than just looking at the immediate base's local declaration, since a base
+            // that has no local wildcard may still inherit one (or fall through to xs:anyType's
+            // implicit ##any/lax).
+            if (this.anyAttribute != null && elem instanceof XsdComplexType){
+                DerivationValidation.requireWildcardSubset(this.anyAttribute,
+                        DerivationValidation.effectiveLocalWildcard((XsdComplexType) elem),
+                        XSD_TAG);
             }
             this.base = element;
             replaced = true;
@@ -285,6 +308,10 @@ public class XsdRestriction extends XsdAnnotatedElements {
             elementCopy.group = ReferenceBase.clone(this.parser, this.group, elementCopy);
         }
 
+        if (this.anyAttribute != null){
+            elementCopy.anyAttribute = (XsdAnyAttribute) this.anyAttribute.clone(this.anyAttribute.getAttributesMap(), elementCopy);
+        }
+
         elementCopy.cloneOf = this;
         elementCopy.parent = null;
         elementCopy.base = this.base;
@@ -304,6 +331,21 @@ public class XsdRestriction extends XsdAnnotatedElements {
     @SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
         return ((XsdRestrictionsVisitor)visitor).getXsdAttributeGroups();
+    }
+
+    /**
+     * @return The single {@code xs:anyAttribute} child of this restriction, or {@code null} if none.
+     */
+    @SuppressWarnings("unused")
+    public XsdAnyAttribute getAnyAttribute() {
+        return anyAttribute;
+    }
+
+    public void setAnyAttribute(XsdAnyAttribute anyAttribute) {
+        if (this.anyAttribute != null && anyAttribute != null){
+            throw new ParsingException(XSD_TAG + " element: at most one " + XsdAnyAttribute.XSD_TAG + " is allowed.");
+        }
+        this.anyAttribute = anyAttribute;
     }
 
     /**

@@ -57,4 +57,11 @@ public class XsdComplexTypeVisitor extends AttributesVisitor {
 
         owner.setSimpleContent(element);
     }
+
+    @Override
+    public void visit(XsdAnyAttribute element) {
+        super.visit(element);
+
+        owner.setAnyAttribute(element);
+    }
 }

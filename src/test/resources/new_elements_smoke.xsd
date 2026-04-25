@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:notation name="gif" public="-//IETF//NONSGML Media Type image/gif//EN" system="http://example.com/gif"/>
+
+  <xs:complexType name="WildAttrType">
+    <xs:sequence>
+      <xs:element name="payload" type="xs:string"/>
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+
+  <xs:attributeGroup name="extras">
+    <xs:attribute name="extraTag" type="xs:string"/>
+    <xs:anyAttribute namespace="##any" processContents="skip"/>
+  </xs:attributeGroup>
+
+  <xs:element name="catalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="item" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="id"   type="xs:string" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+
+    <xs:unique name="uniqueItemName">
+      <xs:selector xpath="item"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
+
+    <xs:key name="itemKey">
+      <xs:selector xpath="item"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="itemKeyRef" refer="itemKey">
+      <xs:selector xpath="item"/>
+      <xs:field xpath="@id"/>
+    </xs:keyref>
+  </xs:element>
+
+</xs:schema>

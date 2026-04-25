@@ -13,9 +13,13 @@ import org.xmlet.xsdparser.xsdelements.exceptions.ParsingException;
 import org.xmlet.xsdparser.xsdelements.visitors.XsdAbstractElementVisitor;
 
 import jakarta.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A class representing the xsd:element element. Extends {@link XsdNamedElements} because it's one of the
@@ -111,6 +115,12 @@ public class XsdElement extends XsdNamedElements {
      * Default value is 1. This attribute cannot be used if the parent element is the XsdSchema element.
      */
     private String maxOccurs;
+
+    /**
+     * Identity constraints declared on this element: {@code xs:unique}, {@code xs:key}, and
+     * {@code xs:keyref}. The list preserves declaration order.
+     */
+    private List<XsdIdentityConstraint> identityConstraints = new ArrayList<>();
 
     public XsdElement(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
@@ -326,6 +336,11 @@ public class XsdElement extends XsdNamedElements {
             }
         }
 
+        for (XsdIdentityConstraint constraint : this.identityConstraints){
+            XsdIdentityConstraint cloned = (XsdIdentityConstraint) constraint.clone(constraint.getAttributesMap(), elementCopy);
+            elementCopy.identityConstraints.add(cloned);
+        }
+
         elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
@@ -500,5 +515,42 @@ public class XsdElement extends XsdNamedElements {
 
     public XsdElement getXsdSubstitutionGroup() {
         return substitutionGroup instanceof ConcreteElement ? (XsdElement) substitutionGroup.getElement() : null;
+    }
+
+    public void add(XsdUnique element) {
+        identityConstraints.add(element);
+    }
+
+    public void add(XsdKey element) {
+        identityConstraints.add(element);
+    }
+
+    public void add(XsdKeyref element) {
+        identityConstraints.add(element);
+    }
+
+    /**
+     * @return All identity constraints (unique/key/keyref) declared on this element, in document order.
+     */
+    public List<XsdIdentityConstraint> getIdentityConstraints() {
+        return identityConstraints;
+    }
+
+    /** @return The {@code xs:unique} children declared on this element. */
+    @SuppressWarnings("unused")
+    public Stream<XsdUnique> getUniques() {
+        return identityConstraints.stream().filter(c -> c instanceof XsdUnique).map(c -> (XsdUnique) c);
+    }
+
+    /** @return The {@code xs:key} children declared on this element. */
+    @SuppressWarnings("unused")
+    public Stream<XsdKey> getKeys() {
+        return identityConstraints.stream().filter(c -> c instanceof XsdKey).map(c -> (XsdKey) c);
+    }
+
+    /** @return The {@code xs:keyref} children declared on this element. */
+    @SuppressWarnings("unused")
+    public Stream<XsdKeyref> getKeyrefs() {
+        return identityConstraints.stream().filter(c -> c instanceof XsdKeyref).map(c -> (XsdKeyref) c);
     }
 }

@@ -31,6 +31,7 @@ import org.xmlet.xsdparser.core.utils.NamespaceInfo;
 import org.xmlet.xsdparser.core.utils.ParserConfig;
 import org.xmlet.xsdparser.core.utils.UnsolvedReferenceItem;
 import org.xmlet.xsdparser.xsdelements.DerivationValidation;
+import org.xmlet.xsdparser.xsdelements.SchemaConstraintValidation;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
@@ -126,6 +127,7 @@ public abstract class XsdParserCore {
         resolveInnerRefs();
         resolveOtherNamespaceRefs();
         resolveUnion();
+        SchemaConstraintValidation.validate(parseElements);
     }
 
     protected void resolveUnion() {

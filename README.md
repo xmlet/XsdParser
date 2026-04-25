@@ -329,6 +329,13 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
+### TBD
+
+### Added — XSD 1.0 missing elements
+
+Adds `xs:anyAttribute`, `xs:notation`, `xs:unique`, `xs:key`, `xs:keyref`, `xs:selector`, and `xs:field`, bringing element coverage to 42/42. Each element enforces its spec attribute set (NCName/QName/token lexical checks, unknown-attribute rejection), child cardinality and ordering, parent-type restrictions, and the relevant schema-level constraints — name uniqueness within target namespace, `xs:keyref` scope and field-count rules, and `xs:anyAttribute` wildcard subset/union along derivation chains.
+
+
 ### 1.2.23
 
 <div align="justify">

@@ -220,6 +220,14 @@ public class DefaultParserConfig implements ParserConfig {
         parseMappers.put(XsdTotalDigits.TAG, new ConfigEntryData(XsdTotalDigits::parse, elem -> new XsdAnnotatedElementsVisitor((XsdTotalDigits) elem)));
         parseMappers.put(XsdWhiteSpace.TAG, new ConfigEntryData(XsdWhiteSpace::parse, elem -> new XsdAnnotatedElementsVisitor((XsdWhiteSpace) elem)));
 
+        parseMappers.put(XsdAnyAttribute.TAG, new ConfigEntryData(XsdAnyAttribute::parse, elem -> new XsdAnyAttributeVisitor((XsdAnyAttribute) elem)));
+        parseMappers.put(XsdNotation.TAG, new ConfigEntryData(XsdNotation::parse, elem -> new XsdNotationVisitor((XsdNotation) elem)));
+        parseMappers.put(XsdSelector.TAG, new ConfigEntryData(XsdSelector::parse, elem -> new XsdSelectorVisitor((XsdSelector) elem)));
+        parseMappers.put(XsdField.TAG, new ConfigEntryData(XsdField::parse, elem -> new XsdFieldVisitor((XsdField) elem)));
+        parseMappers.put(XsdUnique.TAG, new ConfigEntryData(XsdUnique::parse, elem -> new XsdIdentityConstraintVisitor((XsdUnique) elem)));
+        parseMappers.put(XsdKey.TAG, new ConfigEntryData(XsdKey::parse, elem -> new XsdIdentityConstraintVisitor((XsdKey) elem)));
+        parseMappers.put(XsdKeyref.TAG, new ConfigEntryData(XsdKeyref::parse, elem -> new XsdIdentityConstraintVisitor((XsdKeyref) elem)));
+
 
         //XS
         parseMappers.put(XsdSchema.XS_TAG, new ConfigEntryData(XsdSchema::parse, elem -> new XsdSchemaVisitor((XsdSchema) elem)));
@@ -260,6 +268,14 @@ public class DefaultParserConfig implements ParserConfig {
         parseMappers.put(XsdTotalDigits.XS_TAG, new ConfigEntryData(XsdTotalDigits::parse, elem -> new XsdAnnotatedElementsVisitor((XsdTotalDigits) elem)));
         parseMappers.put(XsdWhiteSpace.XS_TAG, new ConfigEntryData(XsdWhiteSpace::parse, elem -> new XsdAnnotatedElementsVisitor((XsdWhiteSpace) elem)));
 
+        parseMappers.put(XsdAnyAttribute.XS_TAG, new ConfigEntryData(XsdAnyAttribute::parse, elem -> new XsdAnyAttributeVisitor((XsdAnyAttribute) elem)));
+        parseMappers.put(XsdNotation.XS_TAG, new ConfigEntryData(XsdNotation::parse, elem -> new XsdNotationVisitor((XsdNotation) elem)));
+        parseMappers.put(XsdSelector.XS_TAG, new ConfigEntryData(XsdSelector::parse, elem -> new XsdSelectorVisitor((XsdSelector) elem)));
+        parseMappers.put(XsdField.XS_TAG, new ConfigEntryData(XsdField::parse, elem -> new XsdFieldVisitor((XsdField) elem)));
+        parseMappers.put(XsdUnique.XS_TAG, new ConfigEntryData(XsdUnique::parse, elem -> new XsdIdentityConstraintVisitor((XsdUnique) elem)));
+        parseMappers.put(XsdKey.XS_TAG, new ConfigEntryData(XsdKey::parse, elem -> new XsdIdentityConstraintVisitor((XsdKey) elem)));
+        parseMappers.put(XsdKeyref.XS_TAG, new ConfigEntryData(XsdKeyref::parse, elem -> new XsdIdentityConstraintVisitor((XsdKeyref) elem)));
+
 
         //XSD
         parseMappers.put(XsdSchema.XSD_TAG, new ConfigEntryData(XsdSchema::parse, elem -> new XsdSchemaVisitor((XsdSchema) elem)));
@@ -299,6 +315,14 @@ public class DefaultParserConfig implements ParserConfig {
         parseMappers.put(XsdPattern.XSD_TAG, new ConfigEntryData(XsdPattern::parse, elem -> new XsdAnnotatedElementsVisitor((XsdPattern) elem)));
         parseMappers.put(XsdTotalDigits.XSD_TAG, new ConfigEntryData(XsdTotalDigits::parse, elem -> new XsdAnnotatedElementsVisitor((XsdTotalDigits) elem)));
         parseMappers.put(XsdWhiteSpace.XSD_TAG, new ConfigEntryData(XsdWhiteSpace::parse, elem -> new XsdAnnotatedElementsVisitor((XsdWhiteSpace) elem)));
+
+        parseMappers.put(XsdAnyAttribute.XSD_TAG, new ConfigEntryData(XsdAnyAttribute::parse, elem -> new XsdAnyAttributeVisitor((XsdAnyAttribute) elem)));
+        parseMappers.put(XsdNotation.XSD_TAG, new ConfigEntryData(XsdNotation::parse, elem -> new XsdNotationVisitor((XsdNotation) elem)));
+        parseMappers.put(XsdSelector.XSD_TAG, new ConfigEntryData(XsdSelector::parse, elem -> new XsdSelectorVisitor((XsdSelector) elem)));
+        parseMappers.put(XsdField.XSD_TAG, new ConfigEntryData(XsdField::parse, elem -> new XsdFieldVisitor((XsdField) elem)));
+        parseMappers.put(XsdUnique.XSD_TAG, new ConfigEntryData(XsdUnique::parse, elem -> new XsdIdentityConstraintVisitor((XsdUnique) elem)));
+        parseMappers.put(XsdKey.XSD_TAG, new ConfigEntryData(XsdKey::parse, elem -> new XsdIdentityConstraintVisitor((XsdKey) elem)));
+        parseMappers.put(XsdKeyref.XSD_TAG, new ConfigEntryData(XsdKeyref::parse, elem -> new XsdIdentityConstraintVisitor((XsdKeyref) elem)));
 
         return parseMappers;
     }

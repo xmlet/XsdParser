@@ -3,7 +3,10 @@ package org.xmlet.xsdparser.xsdelements.visitors;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
+import org.xmlet.xsdparser.xsdelements.XsdKey;
+import org.xmlet.xsdparser.xsdelements.XsdKeyref;
 import org.xmlet.xsdparser.xsdelements.XsdSimpleType;
+import org.xmlet.xsdparser.xsdelements.XsdUnique;
 import org.xmlet.xsdparser.xsdelements.elementswrapper.ReferenceBase;
 
 /**
@@ -41,5 +44,26 @@ public class XsdElementVisitor extends XsdAnnotatedElementsVisitor {
         super.visit(element);
 
         owner.setSimpleType(ReferenceBase.createFromXsd(element));
+    }
+
+    @Override
+    public void visit(XsdUnique element) {
+        super.visit(element);
+
+        owner.add(element);
+    }
+
+    @Override
+    public void visit(XsdKey element) {
+        super.visit(element);
+
+        owner.add(element);
+    }
+
+    @Override
+    public void visit(XsdKeyref element) {
+        super.visit(element);
+
+        owner.add(element);
     }
 }

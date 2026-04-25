@@ -42,6 +42,11 @@ public class XsdExtension extends XsdAnnotatedElements {
      */
     private ReferenceBase base;
 
+    /**
+     * The single {@code xs:anyAttribute} child of this extension, if any.
+     */
+    private XsdAnyAttribute anyAttribute;
+
     private XsdExtension(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
 
@@ -96,6 +101,12 @@ public class XsdExtension extends XsdAnnotatedElements {
             if (DerivationValidation.tokenListBlocks(baseFinal, DerivationValidation.EXTENSION)){
                 throw new ParsingException(XSD_TAG + " element: " + BASE_TAG + " \"" + elem.getRawName() + "\" has " + FINAL_TAG + "=\"" + baseFinal + "\", which forbids derivation by extension.");
             }
+            // Wildcard Union (§3.10.6.2): the derived complexType's effective wildcard is
+            // base.wildcard ∪ local.wildcard; verify the union is expressible.
+            if (this.anyAttribute != null && elem instanceof XsdComplexType){
+                DerivationValidation.requireWildcardUnionExpressible(this.anyAttribute,
+                        ((XsdComplexType) elem).getAnyAttribute(), XSD_TAG);
+            }
             this.base = element;
             replaced = true;
         }
@@ -140,6 +151,9 @@ public class XsdExtension extends XsdAnnotatedElements {
 
         elementCopy.childElement = ReferenceBase.clone(parser, this.childElement, elementCopy);
         elementCopy.base = this.base;
+        if (this.anyAttribute != null){
+            elementCopy.anyAttribute = (XsdAnyAttribute) this.anyAttribute.clone(this.anyAttribute.getAttributesMap(), elementCopy);
+        }
         elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
@@ -227,6 +241,21 @@ public class XsdExtension extends XsdAnnotatedElements {
     @SuppressWarnings("unused")
     public Stream<XsdAttributeGroup> getXsdAttributeGroup() {
         return ((XsdExtensionVisitor)visitor).getXsdAttributeGroups();
+    }
+
+    /**
+     * @return The single {@code xs:anyAttribute} child of this extension, or {@code null} if none.
+     */
+    @SuppressWarnings("unused")
+    public XsdAnyAttribute getAnyAttribute() {
+        return anyAttribute;
+    }
+
+    public void setAnyAttribute(XsdAnyAttribute anyAttribute) {
+        if (this.anyAttribute != null && anyAttribute != null){
+            throw new ParsingException(XSD_TAG + " element: at most one " + XsdAnyAttribute.XSD_TAG + " is allowed.");
+        }
+        this.anyAttribute = anyAttribute;
     }
 
     @SuppressWarnings("unused")

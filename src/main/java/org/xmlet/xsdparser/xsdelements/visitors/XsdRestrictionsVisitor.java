@@ -151,4 +151,11 @@ public class XsdRestrictionsVisitor extends AttributesVisitor {
 
         owner.setGroup(ReferenceBase.createFromXsd(element));
     }
+
+    @Override
+    public void visit(XsdAnyAttribute element) {
+        super.visit(element);
+
+        owner.setAnyAttribute(element);
+    }
 }

@@ -75,6 +75,11 @@ public class XsdComplexType extends XsdNamedElements {
      */
     private XsdSimpleContent simpleContent;
 
+    /**
+     * The single {@code xs:anyAttribute} child of this complex type, if any.
+     */
+    private XsdAnyAttribute anyAttribute;
+
     XsdComplexType(@NotNull XsdParserCore parser, @NotNull Map<String, String> attributesMap, @NotNull Function<XsdAbstractElement, XsdAbstractElementVisitor> visitorFunction) {
         super(parser, attributesMap, visitorFunction);
 
@@ -196,6 +201,10 @@ public class XsdComplexType extends XsdNamedElements {
         ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributes(clonedAttributes);
         ((XsdComplexTypeVisitor)elementCopy.visitor).setAttributeGroups(clonedAttributeGroups);
 
+        if (this.anyAttribute != null){
+            elementCopy.anyAttribute = (XsdAnyAttribute) this.anyAttribute.clone(this.anyAttribute.getAttributesMap(), elementCopy);
+        }
+
         elementCopy.cloneOf = this;
         elementCopy.parent = null;
 
@@ -281,6 +290,21 @@ public class XsdComplexType extends XsdNamedElements {
     @SuppressWarnings("unused")
     public String getBlock() {
         return block;
+    }
+
+    /**
+     * @return The single {@code xs:anyAttribute} child of this complex type, or {@code null} if none was declared.
+     */
+    @SuppressWarnings("unused")
+    public XsdAnyAttribute getAnyAttribute() {
+        return anyAttribute;
+    }
+
+    public void setAnyAttribute(XsdAnyAttribute anyAttribute) {
+        if (this.anyAttribute != null && anyAttribute != null){
+            throw new ParsingException(XSD_TAG + " element: at most one " + XsdAnyAttribute.XSD_TAG + " is allowed.");
+        }
+        this.anyAttribute = anyAttribute;
     }
 
     /**

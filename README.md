@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.2.23</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
@@ -329,7 +329,18 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 ## Changelog
 
-### TBD
+### 1.3.0
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/86" title="fix wrong parent of a element where ref another element">Details</a> - Fix wrong parent of a element where ref another element. Contribution by <a href="https://github.com/waldi5001" title="waldi5001">waldi5001</a>.
+        </li>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/87" title="Suggestion for using java.net.URL">Details</a> - Suggestion for using java.net.URL. Contribution by <a href="https://github.com/waldi5001" title="waldi5001">waldi5001</a>.
+        </li>
+    </ul>
+</div>
 
 ### Added — XSD 1.0 missing elements
 

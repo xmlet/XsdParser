@@ -603,14 +603,21 @@ public abstract class XsdParserCore {
 			storeUnsolvedItem(unsolvedReference);
 			return false;
 		}
-		if (concreteElements.size() == 1) {
-			boolean result = replaceUnsolvedElement(concreteElements.iterator().next(), unsolvedReference);
-			if (result) {
-				removeUnsolvedElements(unsolvedReference, fileName);
-			}
-			return result;
-		}
-		boolean replaced = replaceUnsolvedElement(find(concreteElements, unsolvedReference), unsolvedReference);
+        List<NamedConcreteElement> matchingConcreteElements = concreteElements.stream()
+                .filter(element -> unsolvedReference.isTypeRef() || matchesReferenceKind(element, unsolvedReference))
+                .collect(toList());
+        if (matchingConcreteElements.isEmpty()) {
+            storeUnsolvedItem(unsolvedReference);
+            return false;
+        }
+        if (matchingConcreteElements.size() == 1) {
+            boolean result = replaceUnsolvedElement(matchingConcreteElements.iterator().next(), unsolvedReference);
+            if (result) {
+                removeUnsolvedElements(unsolvedReference, fileName);
+            }
+            return result;
+        }
+        boolean replaced = replaceUnsolvedElement(find(matchingConcreteElements, unsolvedReference), unsolvedReference);
 		if (replaced) {
 			removeUnsolvedElements(unsolvedReference, fileName);
 		}
@@ -720,11 +727,17 @@ public abstract class XsdParserCore {
 		return toURL(toURL(redefine.getXsdSchema().getFilePath()), redefine.getSchemaLocation());
 	}
 
-	private static boolean matchesTypeConstraint(NamedConcreteElement e, UnsolvedReference unsolvedReference) {
+	private static boolean matchesReferenceKind(NamedConcreteElement element,
+			UnsolvedReference unsolvedReference) {
+		return element.getElement().getClass().equals(unsolvedReference.getElement().getClass());
+	}
+
+	private static boolean matchesTypeConstraint(NamedConcreteElement element,
+			UnsolvedReference unsolvedReference) {
 		if (!unsolvedReference.isTypeRef()) {
 			return true;
 		}
-		return e.getElement() instanceof XsdSimpleType || e.getElement() instanceof XsdComplexType;
+		return element.getElement() instanceof XsdSimpleType || element.getElement() instanceof XsdComplexType;
 	}
 
 	protected static XsdRedefine getRedefine(UnsolvedReference unsolvedReference) {

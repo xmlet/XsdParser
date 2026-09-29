@@ -1156,6 +1156,31 @@ public class IssuesTest {
 	}
 
     @Test
+    public void testIssue86CrossNamespaceReferenceKeepsDeclarationSchema() {
+        XsdParserCore xsdParser = getParser(getURL("issue_86/element_ref_cross_namespace.xsd"));
+        XsdSchema mainSchema = xsdParser.getResultXsdSchemas()
+            .filter(schema -> "https://github.com/xmlet/XsdParser/issues/86/main".equals(schema.getTargetNamespace()))
+            .findFirst()
+            .orElseThrow();
+        XsdSchema dependencySchema = xsdParser.getResultXsdSchemas()
+            .filter(schema -> "https://github.com/xmlet/XsdParser/issues/86/dependency".equals(schema.getTargetNamespace()))
+            .findFirst()
+            .orElseThrow();
+
+        XsdComplexType containerType = mainSchema.getChildrenComplexTypes()
+            .filter(type -> "ContainerType".equals(type.getName()))
+            .findFirst()
+            .orElseThrow();
+        XsdSequence sequence = containerType.getChildAsSequence();
+        XsdElement referencedElement = sequence.getChildrenElements().findFirst().orElseThrow();
+
+        Assert.assertEquals(sequence, referencedElement.getParent());
+        Assert.assertEquals(dependencySchema, referencedElement.getXsdSchema());
+        Assert.assertEquals("ReferencedElement", ((XsdNamedElements) referencedElement.getCloneOf()).getRawName());
+        Assert.assertTrue(xsdParser.getUnsolvedReferences().isEmpty());
+    }
+
+    @Test
     public void testForwardGroupRef() {
         testForwardGroupRef("forward_group_ref.xsd");
     }

@@ -212,6 +212,11 @@ public abstract class XsdAbstractElement {
 
         hierarchy.add(element);
 
+        if (element.cloneOf != null){
+            // A reference clone belongs to the local tree, but its schema is the declaration schema.
+            return getXsdSchema(element.cloneOf, hierarchy);
+        }
+
         return getXsdSchema(element.getParent(true), hierarchy);
     }
 

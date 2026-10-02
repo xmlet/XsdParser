@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    targetNamespace="https://github.com/xmlet/XsdParser/issues/91/main"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:dependency="https://github.com/xmlet/XsdParser/issues/91/dependency">
+
+    <xs:import
+        namespace="https://github.com/xmlet/XsdParser/issues/91/dependency"
+        schemaLocation="group_ref_cross_namespace_dependency.xsd"/>
+
+    <xs:complexType name="ContainerType">
+        <xs:sequence>
+            <xs:group ref="dependency:ReferencedGroup" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

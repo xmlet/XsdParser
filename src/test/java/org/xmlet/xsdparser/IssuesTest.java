@@ -1161,22 +1161,69 @@ public class IssuesTest {
         XsdSchema mainSchema = xsdParser.getResultXsdSchemas()
             .filter(schema -> "https://github.com/xmlet/XsdParser/issues/86/main".equals(schema.getTargetNamespace()))
             .findFirst()
-            .orElseThrow();
+            .get();
         XsdSchema dependencySchema = xsdParser.getResultXsdSchemas()
             .filter(schema -> "https://github.com/xmlet/XsdParser/issues/86/dependency".equals(schema.getTargetNamespace()))
             .findFirst()
-            .orElseThrow();
+            .get();
 
         XsdComplexType containerType = mainSchema.getChildrenComplexTypes()
             .filter(type -> "ContainerType".equals(type.getName()))
             .findFirst()
-            .orElseThrow();
+            .get();
         XsdSequence sequence = containerType.getChildAsSequence();
-        XsdElement referencedElement = sequence.getChildrenElements().findFirst().orElseThrow();
+        XsdElement referencedElement = sequence.getChildrenElements().findFirst().get();
 
         Assert.assertEquals(sequence, referencedElement.getParent());
         Assert.assertEquals(dependencySchema, referencedElement.getXsdSchema());
         Assert.assertEquals("ReferencedElement", ((XsdNamedElements) referencedElement.getCloneOf()).getRawName());
+        Assert.assertTrue(xsdParser.getUnsolvedReferences().isEmpty());
+    }
+
+    @Test
+    public void testIssue91ChameleonIncludeReferenceKeepsIncludingSchema() {
+        XsdParserCore xsdParser = getParser(getURL("issue_91/chameleon_include_main.xsd"));
+        XsdSchema mainSchema = xsdParser.getResultXsdSchemas()
+            .filter(schema -> "https://github.com/xmlet/XsdParser/issues/91".equals(schema.getTargetNamespace()))
+            .findFirst()
+            .get();
+
+        XsdComplexType containerType = mainSchema.getChildrenComplexTypes()
+            .filter(type -> "ContainerType".equals(type.getName()))
+            .findFirst()
+            .get();
+        XsdSequence sequence = containerType.getChildAsSequence();
+        XsdElement referencedElement = sequence.getChildrenElements().findFirst().get();
+
+        Assert.assertEquals(sequence, referencedElement.getParent());
+        Assert.assertEquals(mainSchema, referencedElement.getXsdSchema());
+        Assert.assertEquals("ChameleonElement", ((XsdNamedElements) referencedElement.getCloneOf()).getRawName());
+        Assert.assertTrue(xsdParser.getUnsolvedReferences().isEmpty());
+    }
+
+    @Test
+    public void testIssue91CrossNamespaceGroupReferenceKeepsDeclarationSchema() {
+        XsdParserCore xsdParser = getParser(getURL("issue_91/group_ref_cross_namespace.xsd"));
+        XsdSchema mainSchema = xsdParser.getResultXsdSchemas()
+            .filter(schema -> "https://github.com/xmlet/XsdParser/issues/91/main".equals(schema.getTargetNamespace()))
+            .findFirst()
+            .get();
+        XsdSchema dependencySchema = xsdParser.getResultXsdSchemas()
+            .filter(schema -> "https://github.com/xmlet/XsdParser/issues/91/dependency".equals(schema.getTargetNamespace()))
+            .findFirst()
+            .get();
+
+        XsdComplexType containerType = mainSchema.getChildrenComplexTypes()
+            .filter(type -> "ContainerType".equals(type.getName()))
+            .findFirst()
+            .get();
+        XsdSequence sequence = containerType.getChildAsSequence();
+        XsdGroup referencedGroup = sequence.getChildrenGroups().findFirst().get();
+
+        Assert.assertEquals(sequence, referencedGroup.getParent());
+        Assert.assertEquals(dependencySchema, referencedGroup.getXsdSchema());
+        Assert.assertEquals("ReferencedGroup", ((XsdNamedElements) referencedGroup.getCloneOf()).getRawName());
+        Assert.assertEquals(Integer.valueOf(0), referencedGroup.getMinOccurs());
         Assert.assertTrue(xsdParser.getUnsolvedReferences().isEmpty());
     }
 

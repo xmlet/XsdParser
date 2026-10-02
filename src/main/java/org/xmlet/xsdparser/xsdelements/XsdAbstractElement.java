@@ -213,8 +213,13 @@ public abstract class XsdAbstractElement {
         hierarchy.add(element);
 
         if (element.cloneOf != null){
-            // A reference clone belongs to the local tree, but its schema is the declaration schema.
-            return getXsdSchema(element.cloneOf, hierarchy);
+            // A reference clone belongs to the local tree, but its schema is the declaration schema, unless that schema
+            // has no targetNamespace (a chameleon include), whose components take the namespace of the including schema.
+            XsdSchema declarationSchema = getXsdSchema(element.cloneOf, new ArrayList<>(hierarchy));
+
+            if (declarationSchema == null || declarationSchema.getTargetNamespace() != null){
+                return declarationSchema;
+            }
         }
 
         return getXsdSchema(element.getParent(true), hierarchy);

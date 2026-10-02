@@ -159,6 +159,8 @@ public class XsdGroup extends XsdNamedElements {
             elementCopy.childElement = (XsdMultipleElements) this.childElement.clone(this.childElement.getAttributesMap(), elementCopy);
         }
 
+        elementCopy.cloneOf = this;
+
         return elementCopy;
     }
 

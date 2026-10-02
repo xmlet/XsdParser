@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A chameleon include: no targetNamespace, so its components take the namespace of the including schema. -->
+<xs:schema
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="ChameleonElement" type="xs:string"/>
+
+</xs:schema>

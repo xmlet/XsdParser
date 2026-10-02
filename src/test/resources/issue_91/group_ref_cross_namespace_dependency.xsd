@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    targetNamespace="https://github.com/xmlet/XsdParser/issues/91/dependency"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:group name="ReferencedGroup">
+        <xs:sequence>
+            <xs:element name="DependencyValue" type="xs:string"/>
+        </xs:sequence>
+    </xs:group>
+
+</xs:schema>

@@ -1,5 +1,5 @@
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.xmlet/xsdParser.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.xmlet%7CxsdParser%7C1.2.21%7Cjar)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.xmlet/xsdParser.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.xmlet%7CxsdParser%7C1.3.1%7Cjar)
 
 # XsdParser
 
@@ -41,7 +41,7 @@ public class XsdAnnotation extends XsdAbstractElement {
 <dependency>
     <groupId>com.github.xmlet</groupId>
     <artifactId>xsdParser</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 
@@ -328,6 +328,26 @@ class XsdComplexContentVisitor extends XsdAnnotatedElementsVisitor {
 
 
 ## Changelog
+
+### 1.3.1
+
+<div align="justify">
+    <ul>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/88" title="Fix reference resolution when an xs:element and an xs:group share the same name">Details</a> - Fix reference resolution when an xs:element and an xs:group share the same name. Contribution by <a href="https://github.com/Neutius" title="Neutius">Neutius</a>.
+        </li>
+        <li>
+            <a href="https://github.com/xmlet/XsdParser/pull/90" title="Preserve the declaration schema when resolving cloned cross-namespace element references">Details</a> - Preserve the declaration schema when resolving cloned cross-namespace element references. Contribution by <a href="https://github.com/Neutius" title="Neutius">Neutius</a>.
+        </li>
+    </ul>
+</div>
+
+### Fixed
+
+- A resolved reference inside `xs:sequence`/`xs:choice`/`xs:all` no longer takes the position of a sibling reference with the same name.
+- `substitutionGroup` resolves to the head element when a type shares its name.
+- Resolved `xs:group` references report the schema where the group is declared.
+- References into chameleon includes (schemas without `targetNamespace`) keep the including schema.
 
 ### 1.3.0
 

@@ -1221,36 +1221,88 @@ public class IssuesTest {
 
     @Test
     public void testReferenceWithDuplicateElementAndGroupNameUsesElement() {
-        XsdParserCore xsdParser = getParser(getURL("issue_83/element_and_group_same_name.xsd"));
-        XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get()
-            .getChildrenComplexTypes()
-            .filter(type -> type.getName().equals("ErtmsSignalType"))
-            .findFirst()
-            .get();
-        XsdElement modeProfile = complexType.getChildAsSequence().getChildrenElements().findFirst().orElse(null);
+        assertElementReferenceUsesElement("issue_89/element_and_group_same_name.xsd");
+    }
 
-        Assert.assertNotNull(modeProfile);
-        Assert.assertEquals("ModeProfile", modeProfile.getRawName());
-        Assert.assertEquals(
-            "Q_MAMODE",
-            modeProfile.getXsdComplexType().getChildAsSequence().getChildrenElements().findFirst().get().getRawName());
+    @Test
+    public void testReferenceWithDuplicateElementAndGroupNameUsesElementWhenElementDeclaredFirst() {
+        assertElementReferenceUsesElement("issue_89/element_and_group_same_name_element_first.xsd");
     }
 
     @Test
     public void testReferenceWithDuplicateElementAndGroupNameUsesGroup() {
-        XsdParserCore xsdParser = getParser(getURL("issue_83/element_and_group_same_name.xsd"));
-        XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get()
-            .getChildrenComplexTypes()
-            .filter(type -> type.getName().equals("ErtmsSignalType"))
-            .findFirst()
-            .get();
-        XsdGroup modeProfile = complexType.getChildAsSequence().getChildrenGroups().findFirst().orElse(null);
+        assertGroupReferenceUsesGroup("issue_89/element_and_group_same_name.xsd");
+    }
+
+    @Test
+    public void testReferenceWithDuplicateElementAndGroupNameUsesGroupWhenElementDeclaredFirst() {
+        assertGroupReferenceUsesGroup("issue_89/element_and_group_same_name_element_first.xsd");
+    }
+
+    @Test
+    public void testReferenceWithDuplicateElementAndGroupNameKeepsPositionWhenOtherKindIsMissing() {
+        XsdParserCore xsdParser = getParser(getURL("issue_89/element_and_group_same_name_one_missing.xsd"));
+
+        List<ReferenceBase> groupRefMissing = getComplexType(xsdParser, "GroupRefMissing").getChildAsSequence().getElements();
+        Assert.assertTrue(groupRefMissing.get(0) instanceof UnsolvedReference);
+        Assert.assertTrue(groupRefMissing.get(0).getElement() instanceof XsdGroup);
+        Assert.assertFalse(groupRefMissing.get(1) instanceof UnsolvedReference);
+        Assert.assertEquals("OnlyElement", ((XsdElement) groupRefMissing.get(1).getElement()).getRawName());
+        Assert.assertEquals(Integer.valueOf(0), ((XsdElement) groupRefMissing.get(1).getElement()).getMinOccurs());
+
+        List<ReferenceBase> elementRefMissing = getComplexType(xsdParser, "ElementRefMissing").getChildAsSequence().getElements();
+        Assert.assertTrue(elementRefMissing.get(0) instanceof UnsolvedReference);
+        Assert.assertTrue(elementRefMissing.get(0).getElement() instanceof XsdElement);
+        Assert.assertFalse(elementRefMissing.get(1) instanceof UnsolvedReference);
+        Assert.assertEquals("OnlyGroup", ((XsdGroup) elementRefMissing.get(1).getElement()).getRawName());
+
+        Assert.assertEquals(2, xsdParser.getUnsolvedReferences().size());
+    }
+
+    @Test
+    public void testSubstitutionGroupWithSameNameAsTypeUsesElement() {
+        XsdParserCore xsdParser = getParser(getURL("issue_89/substitution_group_same_name_as_type.xsd"));
+        XsdElement member = xsdParser.getResultXsdElements().filter(element -> element.getName().equals("Member")).findFirst().get();
+        XsdElement head = member.getXsdSubstitutionGroup();
+
+        Assert.assertNotNull(head);
+        Assert.assertEquals("Head", head.getRawName());
+        Assert.assertEquals("Head", head.getTypeAsComplexType().getRawName());
+        Assert.assertEquals("Head", member.getTypeAsComplexType().getRawName());
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+    }
+
+    private static void assertElementReferenceUsesElement(String fileName) {
+        XsdParserCore xsdParser = getParser(getURL(fileName));
+        XsdElement modeProfile = getComplexType(xsdParser, "ErtmsSignalType").getChildAsSequence().getChildrenElements().findFirst().orElse(null);
+
+        Assert.assertNotNull(modeProfile);
+        Assert.assertEquals("ModeProfile", modeProfile.getRawName());
+        Assert.assertEquals(Integer.valueOf(0), modeProfile.getMinOccurs());
+        Assert.assertEquals(
+            "Q_MAMODE",
+            modeProfile.getXsdComplexType().getChildAsSequence().getChildrenElements().findFirst().get().getRawName());
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+    }
+
+    private static void assertGroupReferenceUsesGroup(String fileName) {
+        XsdParserCore xsdParser = getParser(getURL(fileName));
+        XsdGroup modeProfile = getComplexType(xsdParser, "ErtmsSignalType").getChildAsSequence().getChildrenGroups().findFirst().orElse(null);
 
         Assert.assertNotNull(modeProfile);
         Assert.assertEquals("ModeProfile", modeProfile.getRawName());
         Assert.assertEquals(
             "D_MAMODE",
             modeProfile.getChildAsSequence().getChildrenElements().findFirst().get().getRawName());
+        Assert.assertEquals(0, xsdParser.getUnsolvedReferences().size());
+    }
+
+    private static XsdComplexType getComplexType(XsdParserCore xsdParser, String name) {
+        return xsdParser.getResultXsdSchemas().findFirst().get()
+            .getChildrenComplexTypes()
+            .filter(type -> type.getName().equals(name))
+            .findFirst()
+            .get();
     }
       
     private String getInfo(XsdAbstractElement xae) {

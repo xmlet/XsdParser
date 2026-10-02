@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
-    targetNamespace="https://github.com/xmlet/XsdParser/issues/83"
+    targetNamespace="https://github.com/xmlet/XsdParser/issues/89"
     elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns="https://github.com/xmlet/XsdParser/issues/83">
-
-    <xs:group name="ModeProfile">
-        <xs:annotation>
-            <xs:documentation>group</xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="D_MAMODE" type="xs:integer"/>
-        </xs:sequence>
-    </xs:group>
+    xmlns="https://github.com/xmlet/XsdParser/issues/89">
 
     <xs:element name="ModeProfile">
         <xs:annotation>
@@ -24,6 +15,15 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:group name="ModeProfile">
+        <xs:annotation>
+            <xs:documentation>group</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="D_MAMODE" type="xs:integer"/>
+        </xs:sequence>
+    </xs:group>
 
     <xs:complexType name="ErtmsSignalType">
         <xs:sequence>

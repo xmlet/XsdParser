@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    targetNamespace="https://github.com/xmlet/XsdParser/issues/89"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="https://github.com/xmlet/XsdParser/issues/89">
+
+    <xs:element name="OnlyElement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Q_MAMODE" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:group name="OnlyGroup">
+        <xs:sequence>
+            <xs:element name="D_MAMODE" type="xs:integer"/>
+        </xs:sequence>
+    </xs:group>
+
+    <!-- The unresolvable reference comes first, so a name-only replacement would put the resolved one in its slot. -->
+    <xs:complexType name="GroupRefMissing">
+        <xs:sequence>
+            <xs:group ref="OnlyElement"/>
+            <xs:element ref="OnlyElement" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ElementRefMissing">
+        <xs:sequence>
+            <xs:element ref="OnlyGroup" minOccurs="0"/>
+            <xs:group ref="OnlyGroup"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

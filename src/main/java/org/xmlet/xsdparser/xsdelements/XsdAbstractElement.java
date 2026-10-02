@@ -298,7 +298,20 @@ public abstract class XsdAbstractElement {
         elements.set(elements.indexOf(oldElement), ReferenceBase.clone(parser, element, oldElement.getParent()));
         return true;
     }
-    
+
+    /**
+     * Replaces the given {@link UnsolvedReference} with the resolved element. By default it delegates to
+     * {@link XsdAbstractElement#replaceUnsolvedElements(NamedConcreteElement)}, which matches by name. Containers that
+     * can hold several references with the same name, such as an xs:element and an xs:group, override it to replace
+     * exactly the reference being solved.
+     * @param element A fully parsed element with a name that will replace the {@link UnsolvedReference} object.
+     * @param unsolvedReference The reference being solved.
+     * @return whether the unsolved element was successfully replaced
+     */
+    public boolean replaceUnsolvedElements(NamedConcreteElement element, UnsolvedReference unsolvedReference){
+        return replaceUnsolvedElements(element);
+    }
+
     public static boolean compareReference(NamedConcreteElement element, UnsolvedReference reference){
         return compareReferenceName(element, reference.getRef()) ;
     }

@@ -63,6 +63,28 @@ public abstract class XsdMultipleElements extends XsdAnnotatedElements {
     }
 
     /**
+     * Replaces exactly the given {@link UnsolvedReference}, so a resolved xs:element never takes the place of a sibling
+     * xs:group sharing its name, or vice versa. The parser and this container hold different {@link UnsolvedReference}
+     * wrappers, so the match is made on the wrapped placeholder element.
+     * @param element A fully parsed element with a name that will replace the {@link UnsolvedReference} object.
+     * @param unsolvedReference The reference being solved.
+     * @return whether the unsolved element was successfully replaced
+     */
+    @Override
+    public boolean replaceUnsolvedElements(NamedConcreteElement element, UnsolvedReference unsolvedReference) {
+        for (int i = 0; i < elements.size(); i++) {
+            ReferenceBase child = elements.get(i);
+
+            if (child instanceof UnsolvedReference && child.getElement() == unsolvedReference.getElement()) {
+                elements.set(i, ReferenceBase.clone(parser, element, unsolvedReference.getParent()));
+                return true;
+            }
+        }
+
+        return super.replaceUnsolvedElements(element, unsolvedReference);
+    }
+
+    /**
      * @param element The element containing the child to return.
      * @return The childElement as a {@link XsdAll} object or null if childElement isn't a {@link XsdAll} instance.
      */

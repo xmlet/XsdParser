@@ -604,7 +604,7 @@ public abstract class XsdParserCore {
 			return false;
 		}
         List<NamedConcreteElement> matchingConcreteElements = concreteElements.stream()
-                .filter(element -> unsolvedReference.isTypeRef() || matchesReferenceKind(element, unsolvedReference))
+                .filter(element -> matchesReferenceKind(element, unsolvedReference))
                 .collect(toList());
         if (matchingConcreteElements.isEmpty()) {
             storeUnsolvedItem(unsolvedReference);
@@ -729,15 +729,32 @@ public abstract class XsdParserCore {
 
 	private static boolean matchesReferenceKind(NamedConcreteElement element,
 			UnsolvedReference unsolvedReference) {
+		if (isSubstitutionGroupRef(unsolvedReference)) {
+			return element.getElement() instanceof XsdElement;
+		}
+		if (unsolvedReference.isTypeRef()) {
+			return true;
+		}
 		return element.getElement().getClass().equals(unsolvedReference.getElement().getClass());
 	}
 
 	private static boolean matchesTypeConstraint(NamedConcreteElement element,
 			UnsolvedReference unsolvedReference) {
-		if (!unsolvedReference.isTypeRef()) {
+		// Substitution group references were already filtered by matchesReferenceKind.
+		if (!unsolvedReference.isTypeRef() || isSubstitutionGroupRef(unsolvedReference)) {
 			return true;
 		}
 		return element.getElement() instanceof XsdSimpleType || element.getElement() instanceof XsdComplexType;
+	}
+
+	/**
+	 * A substitution group reference is held as a type reference, so it's linked to its head element instead of being
+	 * replaced by a copy, but it can only be solved by an element. {@link XsdElement} holds the same
+	 * {@link UnsolvedReference} it registers in the parser, which identifies it.
+	 */
+	private static boolean isSubstitutionGroupRef(UnsolvedReference unsolvedReference) {
+		XsdAbstractElement parent = unsolvedReference.getParent();
+		return parent instanceof XsdElement && ((XsdElement) parent).getSubstitutionGroup() == unsolvedReference;
 	}
 
 	protected static XsdRedefine getRedefine(UnsolvedReference unsolvedReference) {
@@ -767,7 +784,7 @@ public abstract class XsdParserCore {
 			
 			substitutionElementWrapper = (NamedConcreteElement) ReferenceBase.createFromXsd(substitutionElement);
 		}
-		return unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper);
+		return unsolvedReference.getParent().replaceUnsolvedElements(substitutionElementWrapper, unsolvedReference);
 	}
 	
     /**

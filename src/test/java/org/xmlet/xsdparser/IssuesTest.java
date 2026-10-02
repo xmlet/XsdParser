@@ -1218,6 +1218,40 @@ public class IssuesTest {
         Assert.assertEquals(Integer.valueOf(3), secondGroup.getMinOccurs());
         Assert.assertEquals("unbounded", secondGroup.getMaxOccurs());
     }
+
+    @Test
+    public void testReferenceWithDuplicateElementAndGroupNameUsesElement() {
+        XsdParserCore xsdParser = getParser(getURL("issue_83/element_and_group_same_name.xsd"));
+        XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get()
+            .getChildrenComplexTypes()
+            .filter(type -> type.getName().equals("ErtmsSignalType"))
+            .findFirst()
+            .get();
+        XsdElement modeProfile = complexType.getChildAsSequence().getChildrenElements().findFirst().orElse(null);
+
+        Assert.assertNotNull(modeProfile);
+        Assert.assertEquals("ModeProfile", modeProfile.getRawName());
+        Assert.assertEquals(
+            "Q_MAMODE",
+            modeProfile.getXsdComplexType().getChildAsSequence().getChildrenElements().findFirst().get().getRawName());
+    }
+
+    @Test
+    public void testReferenceWithDuplicateElementAndGroupNameUsesGroup() {
+        XsdParserCore xsdParser = getParser(getURL("issue_83/element_and_group_same_name.xsd"));
+        XsdComplexType complexType = xsdParser.getResultXsdSchemas().findFirst().get()
+            .getChildrenComplexTypes()
+            .filter(type -> type.getName().equals("ErtmsSignalType"))
+            .findFirst()
+            .get();
+        XsdGroup modeProfile = complexType.getChildAsSequence().getChildrenGroups().findFirst().orElse(null);
+
+        Assert.assertNotNull(modeProfile);
+        Assert.assertEquals("ModeProfile", modeProfile.getRawName());
+        Assert.assertEquals(
+            "D_MAMODE",
+            modeProfile.getChildAsSequence().getChildrenElements().findFirst().get().getRawName());
+    }
       
     private String getInfo(XsdAbstractElement xae) {
         if (xae == null) {
